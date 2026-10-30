@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServeTune frozen finite knob space",
+  "type": "object",
+  "properties": {
+    "max_num_seqs": {
+      "enum": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ]
+    },
+    "max_num_batched_tokens": {
+      "enum": [
+        2048,
+        4096,
+        8192,
+        16384
+      ]
+    },
+    "enable_chunked_prefill": {
+      "enum": [
+        false,
+        true
+      ]
+    },
+    "gpu_memory_utilization": {
+      "enum": [
+        0.7,
+        0.8,
+        0.85,
+        0.9,
+        0.92
+      ]
+    }
+  },
+  "required": [
+    "max_num_seqs",
+    "max_num_batched_tokens",
+    "enable_chunked_prefill",
+    "gpu_memory_utilization"
+  ],
+  "additionalProperties": false
+}

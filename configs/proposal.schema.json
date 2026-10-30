@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Spark one-knob proposal",
+  "type": "object",
+  "properties": {
+    "hypothesis": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "expected_effect": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "diff": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "max_num_seqs": {
+          "enum": [
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+            1024
+          ]
+        },
+        "max_num_batched_tokens": {
+          "enum": [
+            2048,
+            4096,
+            8192,
+            16384
+          ]
+        },
+        "enable_chunked_prefill": {
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "gpu_memory_utilization": {
+          "enum": [
+            0.7,
+            0.8,
+            0.85,
+            0.9,
+            0.92
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "hypothesis",
+    "expected_effect",
+    "diff"
+  ],
+  "additionalProperties": false
+}

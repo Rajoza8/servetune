@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "servetune"
+version = "0.2.0"
+description = "Measured, replayable energy tuning for Meta model serving"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+gpu = ["nvidia-ml-py>=12"]
+media = ["Pillow>=10", "imageio-ffmpeg>=0.6"]
+
+[project.scripts]
+servetune = "servetune.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["servetune*"]

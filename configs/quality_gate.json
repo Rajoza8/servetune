@@ -1,0 +1,8 @@
+{
+  "dev_allowed_decrease": 3,
+  "dev_items": 150,
+  "final_allowed_decrease": 6,
+  "final_items": 300,
+  "max_output_tokens": 1024,
+  "wording": "within the predeclared 2-percentage-point tolerance"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "engine": {
+    "model_id": "meta-models/Muse-Glimmer-30B",
+    "model_revision": null,
+    "host": "127.0.0.1",
+    "port": 8000,
+    "engine_executable": "vllm",
+    "startup_timeout_s": 600,
+    "request_timeout_s": 120,
+    "gpu_index": 0,
+    "max_model_len": 4096,
+    "max_num_seqs": 8,
+    "max_num_batched_tokens": 4096,
+    "gpu_memory_utilization": 0.9,
+    "enable_chunked_prefill": true,
+    "use_engine_defaults": true,
+    "enable_prefix_caching": false,
+    "fp8_quantization": "fp8_per_tensor"
+  },
+  "trace": {
+    "seed": 20261030,
+    "duration_s": 480.0,
+    "arrival_rate": 0.1,
+    "max_output_tokens": 128,
+    "max_requests": 256
+  },
+  "measurement": {
+    "repeats": 3,
+    "cv_limit": 0.03,
+    "warmup_requests": 1,
+    "idle_seconds": 3.0,
+    "allow_power_fallback": false,
+    "max_counter_relative_error": 0.01
+  },
+  "try_fp8": true,
+  "data": {
+    "prompts": null,
+    "dev": null,
+    "final": null,
+    "provenance": null
+  },
+  "quality": {
+    "dev_items": 150,
+    "final_items": 300,
+    "dev_allowed_decrease": 3,
+    "final_allowed_decrease": 6,
+    "max_output_tokens": 1024,
+    "wording": "within the predeclared 2-percentage-point tolerance"
+  },
+  "provider_caps_usd": {
+    "meta": 15,
+    "baseten": 5
+  }
+}

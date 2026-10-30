@@ -1,0 +1,211 @@
+
+ServeTune: build brief (v4, conditional floor)
+Pitch: ServeTune finds lower-energy serving configurations for a Meta model under a fixed workload, latency target and quality check, and records the evidence behind every decision.
+
+Hackathon: Meta AI Developer Hackathon, Push the Frontier (energy / controlling a physical system). Submission deadline: November 4, 2026, 9:00 PM Eastern. GPU window: about 50 hours, ending November 1. Every GPU measurement used in a comparison must be finished inside this window. November 2–4 is for dashboard, replay, write-up and video, with no new comparison runs. Owner decisions: spending caps, GPU choice and any change of direction belong to the user. Ask; do not assume.
+
+The three results (and the floor)
+The project is designed so the video and repo have solid material even if the agent comparison is inconclusive. Nothing here is guaranteed: the floor is a deliverable conditional on preflight passing. Neither FP8 support nor any energy saving is guaranteed.
+
+#	Result	Type	Deadline
+1	Energy map: GPU energy per output token and per completed request, against p95 latency, for Glimmer on this GPU across several fixed load levels. bf16 always; FP8 too if P1b passes.	Measurement	Oct 31 (floor)
+2	FP8 vs bf16 A/B: one pre-planned comparison at the default config, gated by quality. Only if P1b passes.	Pre-planned experiment	Oct 31 (floor if P1b passed)
+3	Spark agent vs random search: equal search space and GPU-time budget, either outcome reported	Experiment	Nov 1
+Floor rule: the floor applies only if P1, P2 and P4 pass. If any fails, stop and report to the user; there is no floor to build toward. When they pass, the floor is met by the end of October 31 with:
+
+the bf16 energy map (Result 1, bf16 portion) with raw data
+replayable evidence: run records that the replay tool plays back with no GPU and no API keys
+if P1b passed: the FP8 portion of the map and the FP8 vs bf16 A/B (Result 2)
+If the floor is not met by then, stop new work on Result 3 and report to the user. If Result 3 fails or is inconclusive, the submission still ships on the floor results.
+
+What we claim, and what we don't
+Claims (only as measured, on this GPU, engine version and frozen workloads):
+the energy/latency trade-off of each tested configuration at each load level
+FP8 against bf16: Y% less GPU energy per output token with no detected quality regression on this evaluation, or whatever the data shows
+how the agent and random search compared
+Don't claim: novelty, whole-system energy, general speedups, or that the agent beats simple search unless the experiment shows it.
+Prior work to cite:
+InferenceBench (arXiv 2607.20468): agents optimizing inference servers. Simple hyperparameter search outperformed the agents there.
+AutoTuneBench (arXiv 2609.18123): trustworthy propose–measure–keep loops.
+Our contribution: a carefully measured, replayable energy-tuning harness and an energy characterization of a newly released open-weight Meta model on workstation Blackwell.
+Hackathon rules that constrain the build
+The repository must be public and be new work built during the event. Keep a BUILT_DURING_HACKATHON.md with dated commits.
+Use only code, data and models we have rights to. Use no employer code, configs or internal data.
+The demo is a three-minute video, judged together with the code and the live product.
+Hardware
+GPU: one NVIDIA RTX PRO 6000 Blackwell, 96 GB (SM120). There is no root access, so there are no power-limit or clock knobs.
+Memory: Meta's deployment guide lists roughly 72 GB for Glimmer in bf16, leaving about 24 GB for KV cache. FP8 weights free more memory. Verify actual footprints in preflight.
+Kernels: vLLM support for SM120 varies by release and kernel path. For each dtype, record which kernel backend actually runs.
+Record a hardware ID, driver version and engine version in every trial record. Never mix machines in one comparison.
+If local serving or energy telemetry fails, stop and report to the user. A hosted fallback without power telemetry removes the energy story. That is the user's call, not an automatic fallback.
+Preflight (October 30, go/no-go)
+#	Check	Pass condition
+P1	Glimmer serves locally in bf16	vLLM serves Muse Glimmer on this GPU. Record the model revision hash, engine version, memory footprint, kernel backend and a successful completion.
+P1b	Glimmer serves in FP8	Same check, using a published FP8 checkpoint if Meta provides one with compatible license, otherwise vLLM's online FP8 weight quantization. Record which was used and the kernel backend. If this fails, Result 2 is dropped. Report it, and the map runs in bf16 only.
+P2	Energy telemetry	Check whether nvmlDeviceGetTotalEnergyConsumption (cumulative mJ counter) is supported and increases under load. Record its update granularity. Note that power.draw on newer GPUs is a 1-second average (see NVIDIA's NVML docs), so polling it fast does not give independent samples. Use it only as a fallback and a cross-check.
+P3	Muse Spark proposals	The Meta Model API returns schema-valid JSON proposals from Muse Spark. Verify the model ID and request format against dev.meta.ai docs.
+P4	Measurement noise	The same config, run 3× on one frozen trace, has a CV below 3% for GPU J/token and p95 latency. If not, lengthen the measurement window before anything else.
+Write reports/preflight.md with commands, raw outputs and a go/no-go per check. Do not build further if P1 or P2 fails. Report to the user.
+
+Frozen workloads
+These are identical every time they are used.
+
+Prompts: a fixed, versioned prompt set from a public dataset, with its license noted and the set hashed.
+Load levels: 3–4 predeclared arrival rates, from light load up to near the measured saturation point of bf16 defaults. For each, create a fixed open-loop request trace with arrival timestamps (for example Poisson) and fixed max output tokens per request, each hashed. Concurrency is not a knob. The trace defines the work served.
+Tuning load: one of these levels is the tuning load for Result 3. Declare it before tuning starts.
+Latency: measured from scheduled arrival time, so queueing is included. Report TTFT and end-to-end p50/p95.
+Completeness: every request in the trace must complete. Any failure or timeout fails the run. For the energy map, record saturated or failing load levels as such rather than dropping them.
+Cache state: restart the engine, or explicitly reset the prefix cache, before each measured run. Use a fixed warmup that is excluded from measurement.
+Measurement window: the measured window covers the complete workload. It starts at the trace's first scheduled arrival and ends when the final request completes, including the queue-draining period after the last arrival. Read the cumulative energy counter at both ends. The trace must be long enough that the counter's resolution adds well under 1% error. Start with traces of at least 120 s of arrivals and adjust after P4.
+Actual work done: a fixed maximum output length does not make actual output lengths equal, because different dtypes and batching can change what is generated. For every run, record:
+prompt tokens and actual generated tokens, summed from the engine's per-request usage
+completed requests
+total GPU joules over the window
+J per output token = joules ÷ actual generated tokens
+J per completed request = joules ÷ completed requests
+Length-drift rule: if a config's total generated tokens differ from its reference config's by more than 2%, flag the run. A flagged config's energy improvement counts only if J/token and J/request both improve.
+Quality
+Dev eval: 150 fixed items from a public, automatically scorable dataset (for example a math subset with exact-match answers), with greedy decoding and a fixed max output length. Use it for the Result 2 check on October 31 and for every candidate during tuning. Batching changes can alter outputs numerically, so every change is gated.
+Final eval: a separate, untouched set of 300 items from the same source, used once, in the final confirmation.
+Wording: "no detected regression on this evaluation", nothing broader.
+Quality gate (numeric, frozen before the first measured run)
+These defaults may be changed by the user before the first measured run. After that they are frozen and recorded with a hash in configs/quality_gate.json.
+
+Item	Rule
+Scorer	One deterministic scorer script: answer extraction plus exact match after a declared normalization. Commit and hash it. No LLM judging.
+Reference baseline	The bf16 engine-default score on the dev eval, measured once in preflight and frozen. Every candidate is compared with this same reference, including FP8 configs and both tuning arms, so tolerances never compound.
+Permitted decrease	A candidate passes if its dev-eval correct count is at least the reference count minus 3 (2 percentage points on 150 items).
+Truncated answers	An answer that hits the max output length without an extractable final answer is scored incorrect. Report the truncation count separately.
+Failed answers	A request error, timeout or empty response is scored incorrect. Any failed eval request also fails the candidate outright.
+Final eval	In the final confirmation, report each config's correct count with a paired comparison against bf16 default on the same items. "No detected regression" may be claimed only if the decrease is at most 6 items (2 percentage points of 300).
+Result 1: energy map
+Grid: {bf16, FP8} × each load level × a small set of max_num_seqs values (for example default and two alternatives) × 3 runs each.
+Output:
+a tidy CSV of every run
+a chart per load level of GPU J/token against p95 latency, marking the Pareto frontier
+one overview chart of J/token against load level
+Budget: about 5 GPU-hours. Shrink the grid if P4 requires longer windows.
+Result 2: FP8 vs bf16 A/B
+Use the engine's default config at the tuning load level, alternating bf16/FP8 (ABAB…) with at least 5 runs each, plus the dev eval for both.
+Report the J/token difference with its spread, the latency difference and the quality difference.
+The headline FP8 numbers come from the final confirmation, which includes both defaults and uses the final eval.
+Result 3: agent vs random search
+Objective and acceptance rule
+Minimize: GPU energy per output token at the tuning load, as the median of 3 runs, computed from the cumulative energy counter over the complete-workload window. J per completed request is always recorded alongside it.
+Subject to:
+p95 end-to-end latency (including queueing) within a predeclared SLO
+all trace requests completed
+the numeric dev quality gate passes
+the length-drift rule
+Accept a change only if median J/token improves by more than max(2 × observed CV, 2%). Otherwise revert.
+Label all energy numbers "GPU energy (NVML)", never "system energy". Report idle GPU power separately for context.
+Config space
+Fixed dtype: both arms tune in one dtype, declared before tuning starts. Use FP8 if Result 2 passed the quality gate, otherwise bf16.
+Knobs, each with declared bounds:
+max_num_seqs
+max_num_batched_tokens
+enable_chunked_prefill
+gpu_memory_utilization, bounded by the KV memory actually available
+Store them as a JSON schema. Reject any proposal outside the schema without executing it, and log the rejection.
+Arms
+Both arms are required and get the same search space and the same GPU-time budget:
+
+Arm	Proposer
+R	Random search over the whitelist, with a fixed seed
+S	Muse Spark agent: one knob change per trial, given the full trial history
+Fairness rules
+Same start: both arms start from the same baseline config, the engine default in the declared tuning dtype, using the same baseline measurement.
+Separate histories: each arm sees only its own search history. Arm S's prompts contain no results from arm R, the energy map or the A/B test beyond the shared baseline measurement. Arm R samples from the whitelist schema with a fixed seed and keeps the best passing config so far.
+Same rules: both arms use the same acceptance rule, quality gate, length-drift rule, latency SLO and trace.
+Same budget, measured as wall-clock time from the arm's first engine start to the end of its last measurement. About 6 hours per arm. The budget includes:
+engine restarts and model loads
+warmup
+measured runs
+dev-eval quality checks
+failed attempts, crashes, OOMs and reverts
+Planner waiting time: time spent waiting for Muse Spark responses is charged to arm S's budget, because the GPU sits idle while it waits. Also report it as a separate line, so it's clear how much of the budget went to planning rather than measurement. Arm R's proposal time is negligible but logged the same way.
+Schema rejections: a schema-rejected proposal costs only the time it took to produce. It is logged and counted as a failed attempt.
+Stopping: an arm stops when its budget would be exceeded by starting another trial. Partially completed trials at the cutoff are discarded, and this is logged.
+Run second seeds only if the window allows.
+Alternate arms where practical, so thermal or clock drift doesn't favour one.
+Final confirmation (November 1, inside the GPU window)
+Freshly remeasure these configs in alternating order, with at least 5 runs each on the tuning-load trace:
+bf16 default
+FP8 default (if P1b passed)
+the R winner
+the S winner
+Run the final eval on each. This is its single use.
+Only these fresh numbers go in the headline results table. Tuning-time numbers stay as process evidence.
+Never drop this step. If time runs short, drop second seeds first, then shorten the arms.
+Safety and execution boundaries
+The agent never runs arbitrary shell commands. It can only call fixed controller functions.
+Engine restarts use a fixed command template filled from schema-validated values.
+Every phase has a timeout. On OOM, crash or a failed health check, revert to the last good config automatically and record the failure.
+Keep secrets in environment variables only. Never log or commit them.
+Records, replay and dashboard
+Run records: every run (map, A/B, trial, confirmation) writes an immutable record:
+config hash and engine command line
+dtype and kernel backend
+trace and prompt hashes
+raw energy counter readings and latency files, with their hashes
+quality results
+Spark's reasoning (arm S only)
+the decision and the rule that triggered it
+Replay: play back any run directory with no GPU and no API keys.
+Dashboard (built off-GPU, Nov 2):
+the energy map charts
+the FP8 vs bf16 comparison
+J/token per trial for R against S
+p95 latency with the SLO line
+dev-eval correct count against the gate threshold (reference minus 3)
+J/token and J/request side by side, with length-drift flags
+a trial timeline showing Spark's hypotheses and accept/revert decisions
+Ledger: a new ServeTune ledger, one cumulative ledger per provider, separate from Verifier Forge's. Reserve before dispatch, retain failed or unknown outcomes, never retry silently.
+Caps: Meta $15, Baseten $5. Warn at 50%; stop paid calls at 100% until the user approves more.
+Cost check: report the actual cost per Spark call after preflight.
+Baseten: there is no planned use. Never leave a dedicated Baseten deployment running.
+Milestones
+Date	Deliverable	Evidence
+Oct 30	Preflight P1–P4, traces and both evals frozen and hashed, saturation point measured, energy-map runs started	reports/preflight.md, raw files
+Oct 31	FLOOR (if P1, P2 and P4 passed): bf16 energy map and replayable evidence complete. If P1b passed, also the FP8 map and the FP8 A/B on the dev eval. Controller and gates working with a scripted proposer. Arm R started.	Map CSV and charts, replay check, A/B table if applicable, reports/floor.md
+Nov 1	Arms R and S complete, second seeds if time allows, final confirmation and final eval. GPU window closes.	Headline results table, ledger
+Nov 2	Replay, dashboard, README results and write-up (no GPU)	Screenshots, README
+Nov 3	Three-minute video from replay. Live demo endpoint on Modal if approved (serving only, no energy claims from Modal)	Video file, demo URL
+Nov 4	Buffer, submission by 9:00 PM Eastern, X post	Submission confirmation
+Rough GPU-time budget (about 50 h):
+
+Phase	Hours
+Preflight and development	≤ 10
+Result 1 (energy map)	5
+Result 2 (FP8 A/B)	3
+Arm R	6
+Arm S	6
+Second seeds	up to 8
+Final confirmation	5
+Slack	7
+Stretch, in order, only after the Nov 1 confirmation is done
+Glimmer operator notes. Glimmer writes plain-English summaries of recorded trials. This can run off the critical path from replay data and adds Meta-tooling value.
+FP8 KV cache, as a separate, clearly labelled experiment, only if GPU time remains.
+NVFP4 weights and speculative decoding: future work, listed in the README.
+Three-minute video outline
+0:00–0:20. The problem: serving open models costs GPU energy, and defaults aren't tuned for your workload. Introduce ServeTune.
+0:20–0:45. The method: frozen workloads, a latency target including queueing, energy counters, a quality gate, and accept/revert decisions backed by measurements.
+0:45–1:20. Result 1: the energy map, showing where serving Glimmer wastes energy at each load level.
+1:20–1:45. Result 2: FP8 against bf16, energy saved and quality held (or not), from the fresh confirmation.
+1:45–2:35. Result 3: replay of the Spark agent's hypotheses and accept/revert decisions next to random search, and the honest comparison.
+2:35–3:00. What was built during the hackathon, limits, future work, the repo link.
+Out of scope
+No RL or training.
+No multi-node or Spark Open serving.
+No production deployment.
+No whole-system energy claims.
+No novelty or state-of-the-art claims.
+Reporting back
+At each milestone, report:
+
+what works, with evidence paths
+what failed
+whether the conditional floor is met (the bf16 map and replay, plus FP8 results if P1b passed)
+current spend per provider against the cap
+GPU hours used against the window
+any decision the user needs to make
