@@ -11,6 +11,18 @@ This is a standalone Python 3.11+ project inside the existing workspace. It does
 not import or modify Verifier Forge. Its ledger is separate. The accepted scope
 is preserved verbatim in `BUILD_BRIEF_V4.txt`.
 
+## New: ServeDoctor and the ServeIncidents benchmark (October 31 – November 2)
+
+ServeDoctor is an on-call agent for LLM serving: a local Muse Glimmer monitor
+escalates anomalies to Muse Spark, which diagnoses the root cause and proposes a
+whitelisted fix that is verified against the latency target or rolled back.
+ServeIncidents is the benchmark used to evaluate it: serving incidents recorded on
+a real GPU with sealed answer keys, scored against threshold rules, Glimmer alone,
+Spark alone and Glimmer→Spark. It lives in `servedoctor/` and reuses ServeTune's
+engine control and measurement code; the ServeTune v4 study below is unchanged.
+See [docs/SERVEDOCTOR.md](docs/SERVEDOCTOR.md). No ServeIncidents result exists
+until the GPU recordings are made.
+
 ## Completed v4 study
 
 The October 30, 2026 GPU study completed with **111 verified live trials**.
