@@ -15,6 +15,7 @@ media = ["Pillow>=10", "imageio-ffmpeg>=0.6"]
 
 [project.scripts]
 servetune = "servetune.cli:main"
+servedoctor = "servedoctor.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["servetune*"]
+include = ["servetune*", "servedoctor*"]

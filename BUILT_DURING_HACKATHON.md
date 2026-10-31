@@ -41,3 +41,16 @@ The rented GPU was stopped with user approval; a later resume was unavailable
 and its queued request was cancelled. Full measurement results are pending a
 confirmed GPU allocation. The approved cumulative rental limit is $60 with up
 to 35 additional GPU hours; Meta $15 and Baseten $5 remain unchanged.
+
+October 31, 2026, America/New_York: started ServeDoctor, a separate package
+(`servedoctor/`) built on ServeTune's engine lifecycle, NVML and workload code.
+Implemented the ServeIncidents fault catalog and seeded scenario generator with
+sealed answer keys, an open-loop load generator behind a live-adjustable
+gateway, once-per-second Prometheus/NVML/client telemetry recording, fault
+injectors (traffic surge, long-prompt flood, KV-cache starvation, low batch
+limit, small context limit, GPU contention, underutilization, healthy
+controls), an observation builder with no look-ahead, four evaluation arms
+(threshold rules, Glimmer, Spark, Glimmer→Spark), a separate API ledger
+(Meta $50, Baseten $20), scoring, an HTML report, a closed-loop live mode with
+verify-or-rollback, and a synthetic rehearsal mode. Tests run offline against a
+fake vLLM server. No GPU recording or ServeIncidents result exists yet.
