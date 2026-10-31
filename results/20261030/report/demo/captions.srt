@@ -1,0 +1,157 @@
+1
+00:00:00,000 --> 00:00:05,000
+ServeTune measures serving configurations
+for an open-weight Meta model. This record
+contains
+
+2
+00:00:05,000 --> 00:00:10,000
+111 indexed trials, including 111 verified
+live observations. The goal is lower
+
+3
+00:00:10,000 --> 00:00:15,000
+GPU energy per token under a fixed incoming
+workload, a latency target
+
+4
+00:00:15,000 --> 00:00:20,000
+and a quality gate. The final comparison
+uses fresh confirmation measurements.
+
+5
+00:00:20,000 --> 00:00:25,000
+The trace fixes when requests arrive,
+including queueing in latency. Each bounded
+
+6
+00:00:25,000 --> 00:00:30,000
+configuration starts a fresh engine, warms
+up, and measures the complete workload
+
+7
+00:00:30,000 --> 00:00:35,000
+through the final response. NVML cumulative
+counters measure GPU energy. Actual tokens
+
+8
+00:00:35,000 --> 00:00:40,000
+and completed requests are counted. Quality,
+latency, failures and length drift govern
+
+9
+00:00:40,000 --> 00:00:45,000
+whether a change can be kept.
+
+10
+00:00:45,000 --> 00:00:52,000
+The record contains 36 energy-map trials
+across the recorded load levels. The
+
+11
+00:00:52,000 --> 00:00:59,000
+plot pairs joules per output token with
+ninety-fifth percentile latency. Lower
+values
+
+12
+00:00:59,000 --> 00:01:06,000
+are preferable. The frontier uses eligible
+observations; failures remain in the record.
+
+13
+00:01:06,000 --> 00:01:13,000
+Energy per completed request is reported
+alongside energy per token. These
+measurements
+
+14
+00:01:13,000 --> 00:01:20,000
+apply only to the recorded GPU, engine,
+model revision and workload.
+
+15
+00:01:20,000 --> 00:01:26,250
+Fresh eligible confirmation records show a
+median of 0.4685 GPU joules per
+
+16
+00:01:26,250 --> 00:01:32,500
+output token for BF16 defaults, and 0.4663
+for FP8 defaults. These are
+
+17
+00:01:32,500 --> 00:01:38,750
+observed values, with no assumed positive
+saving. The quality comparison must be
+
+18
+00:01:38,750 --> 00:01:45,000
+read alongside them, using the predeclared
+two-percentage-point tolerance on held-out
+items.
+
+19
+00:01:45,000 --> 00:01:52,143
+The arm histories retain 17 proposal and
+decision records. Random search and
+
+20
+00:01:52,143 --> 00:01:59,286
+Muse Spark receive the same configuration
+space and allocated time budget. Spark's
+
+21
+00:01:59,286 --> 00:02:06,429
+planning wait, engine loads, warmup,
+evaluations, failures and incomplete trials
+count against
+
+22
+00:02:06,429 --> 00:02:13,571
+its clock. Each arm sees only its own search
+history. The timeline
+
+23
+00:02:13,571 --> 00:02:20,714
+shows the actual hypothesis and the recorded
+accept or revert decision. Tuning
+
+24
+00:02:20,714 --> 00:02:27,857
+observations are process evidence, not
+headline results. Both arms selected the
+same
+
+25
+00:02:27,857 --> 00:02:35,000
+confirmed configuration; those aliases share
+one set of measurements, not independent
+confirmations.
+
+26
+00:02:35,000 --> 00:02:40,000
+The final table contains 10 live
+confirmation attempts, with 2 eligible
+configuration
+
+27
+00:02:40,000 --> 00:02:45,000
+groups. Failed or ineligible confirmations
+stay in the report. Quality wording is
+
+28
+00:02:45,000 --> 00:02:50,000
+within the predeclared two-percentage-point
+tolerance on this evaluation. The repository
+includes frozen
+
+29
+00:02:50,000 --> 00:02:55,000
+inputs, raw evidence, offline reports and
+rebuild instructions. No whole-system
+energy, general
+
+30
+00:02:55,000 --> 00:03:00,000
+speedup or state-of-the-art claim is made.

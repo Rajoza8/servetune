@@ -11,6 +11,22 @@ This is a standalone Python 3.11+ project inside the existing workspace. It does
 not import or modify Verifier Forge. Its ledger is separate. The accepted scope
 is preserved verbatim in `BUILD_BRIEF_V4.txt`.
 
+## Completed v4 study
+
+The October 30, 2026 GPU study completed with **111 verified live trials**.
+Neither the predeclared Spark-guided policy nor random search found an accepted
+energy improvement over their shared FP8 starting configuration. Both retained
+FP8 defaults. In five fresh confirmation repeats per precision, FP8 used
+**0.471% less GPU energy per output token** and had **49.54% lower p95 latency**
+than BF16. Final quality was **285/300 versus 284/300**, within the declared
+count tolerance. These results apply to the recorded GPU and frozen workload.
+
+[Read the measured results, search comparison, and limitations](results/20261030/README.md).
+The results include an offline dashboard, three-minute demo, and split raw
+evidence archive with hashes and replay instructions. The negative tuning
+result evaluates this particular Spark policy; it does not establish the limits
+of other optimization strategies.
+
 ## On your Mac
 
 The core uses the Python standard library. Import, simulation, replay, and tests

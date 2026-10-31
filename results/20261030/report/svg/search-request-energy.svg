@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" role="img">
+<title>Search GPU energy per request</title><rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial,sans-serif" fill="#142638">
+<text x="85" y="28" font-size="18" font-weight="600">Search GPU energy per request</text>
+<path d="M 85.00 55 V 370 M 85 55.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="85.00" y="393" text-anchor="middle" font-size="11">0</text>
+<text x="73" y="59.00" text-anchor="end" font-size="11">91.9</text>
+<path d="M 215.00 55 V 370 M 85 118.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="215.00" y="393" text-anchor="middle" font-size="11">21.8</text>
+<text x="73" y="122.00" text-anchor="end" font-size="11">73.5</text>
+<path d="M 345.00 55 V 370 M 85 181.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="345.00" y="393" text-anchor="middle" font-size="11">43.6</text>
+<text x="73" y="185.00" text-anchor="end" font-size="11">55.1</text>
+<path d="M 475.00 55 V 370 M 85 244.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="475.00" y="393" text-anchor="middle" font-size="11">65.4</text>
+<text x="73" y="248.00" text-anchor="end" font-size="11">36.8</text>
+<path d="M 605.00 55 V 370 M 85 307.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="605.00" y="393" text-anchor="middle" font-size="11">87.3</text>
+<text x="73" y="311.00" text-anchor="end" font-size="11">18.4</text>
+<path d="M 735.00 55 V 370 M 85 370.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="735.00" y="393" text-anchor="middle" font-size="11">109</text>
+<text x="73" y="374.00" text-anchor="end" font-size="11">0</text>
+<circle cx="424.66" cy="165.69" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-000-00: search-R-000; Recorded trial order=57; GPU J / completed request=59.6175</title></circle>
+<circle cx="430.62" cy="165.61" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-000-01: search-R-000; Recorded trial order=58; GPU J / completed request=59.6412</title></circle>
+<circle cx="436.58" cy="165.57" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-000-02: search-R-000; Recorded trial order=59; GPU J / completed request=59.6514</title></circle>
+<circle cx="442.54" cy="165.60" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-000-00: search-S-000; Recorded trial order=60; GPU J / completed request=59.6425</title></circle>
+<circle cx="448.49" cy="165.58" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-000-01: search-S-000; Recorded trial order=61; GPU J / completed request=59.6499</title></circle>
+<circle cx="454.45" cy="165.67" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-000-02: search-S-000; Recorded trial order=62; GPU J / completed request=59.6239</title></circle>
+<circle cx="460.41" cy="165.76" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-001-00: search-R-001; Recorded trial order=63; GPU J / completed request=59.5976</title></circle>
+<circle cx="466.37" cy="165.71" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-001-01: search-R-001; Recorded trial order=64; GPU J / completed request=59.6123</title></circle>
+<circle cx="472.33" cy="165.59" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-001-02: search-R-001; Recorded trial order=65; GPU J / completed request=59.6471</title></circle>
+<circle cx="478.29" cy="165.62" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-001-00: search-S-001; Recorded trial order=66; GPU J / completed request=59.6365</title></circle>
+<circle cx="484.25" cy="165.64" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-001-01: search-S-001; Recorded trial order=67; GPU J / completed request=59.6312</title></circle>
+<circle cx="490.21" cy="165.60" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-001-02: search-S-001; Recorded trial order=68; GPU J / completed request=59.6434</title></circle>
+<circle cx="496.17" cy="165.69" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-002-00: search-R-002; Recorded trial order=69; GPU J / completed request=59.6166</title></circle>
+<circle cx="502.13" cy="165.54" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-002-01: search-R-002; Recorded trial order=70; GPU J / completed request=59.6606</title></circle>
+<circle cx="508.08" cy="165.56" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-002-02: search-R-002; Recorded trial order=71; GPU J / completed request=59.6538</title></circle>
+<circle cx="514.04" cy="165.59" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-002-00: search-S-002; Recorded trial order=72; GPU J / completed request=59.6473</title></circle>
+<circle cx="520.00" cy="165.64" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-002-01: search-S-002; Recorded trial order=73; GPU J / completed request=59.632</title></circle>
+<circle cx="525.96" cy="165.53" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-002-02: search-S-002; Recorded trial order=74; GPU J / completed request=59.6641</title></circle>
+<circle cx="531.92" cy="165.69" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-003-00: search-R-003; Recorded trial order=75; GPU J / completed request=59.6172</title></circle>
+<circle cx="537.88" cy="165.58" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-003-01: search-R-003; Recorded trial order=76; GPU J / completed request=59.6494</title></circle>
+<circle cx="543.84" cy="165.54" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-003-02: search-R-003; Recorded trial order=77; GPU J / completed request=59.6596</title></circle>
+<circle cx="549.80" cy="165.68" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-003-00: search-S-003; Recorded trial order=78; GPU J / completed request=59.6204</title></circle>
+<circle cx="555.76" cy="165.59" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-003-01: search-S-003; Recorded trial order=79; GPU J / completed request=59.647</title></circle>
+<circle cx="561.71" cy="165.63" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-003-02: search-S-003; Recorded trial order=80; GPU J / completed request=59.6356</title></circle>
+<circle cx="567.67" cy="88.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-004-00: search-R-004; Recorded trial order=81; GPU J / completed request=82.0676</title></circle>
+<circle cx="573.63" cy="165.61" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-004-00: search-S-004; Recorded trial order=82; GPU J / completed request=59.6407</title></circle>
+<circle cx="579.59" cy="165.59" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-004-01: search-S-004; Recorded trial order=83; GPU J / completed request=59.6469</title></circle>
+<circle cx="585.55" cy="165.54" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-004-02: search-S-004; Recorded trial order=84; GPU J / completed request=59.6608</title></circle>
+<circle cx="591.51" cy="165.74" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-005-00: search-R-005; Recorded trial order=85; GPU J / completed request=59.6031</title></circle>
+<circle cx="597.47" cy="165.64" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-005-01: search-R-005; Recorded trial order=86; GPU J / completed request=59.6307</title></circle>
+<circle cx="603.43" cy="165.58" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-005-02: search-R-005; Recorded trial order=87; GPU J / completed request=59.6493</title></circle>
+<circle cx="609.39" cy="165.61" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-005-00: search-S-005; Recorded trial order=88; GPU J / completed request=59.6406</title></circle>
+<circle cx="615.34" cy="165.57" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-005-01: search-S-005; Recorded trial order=89; GPU J / completed request=59.6516</title></circle>
+<circle cx="621.30" cy="165.65" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-005-02: search-S-005; Recorded trial order=90; GPU J / completed request=59.6275</title></circle>
+<circle cx="633.22" cy="165.66" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-006-00: search-S-006; Recorded trial order=92; GPU J / completed request=59.6257</title></circle>
+<circle cx="639.18" cy="165.65" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-007-00: search-R-007; Recorded trial order=93; GPU J / completed request=59.628</title></circle>
+<circle cx="645.14" cy="165.62" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-007-01: search-R-007; Recorded trial order=94; GPU J / completed request=59.6362</title></circle>
+<circle cx="651.10" cy="165.51" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-007-02: search-R-007; Recorded trial order=95; GPU J / completed request=59.6686</title></circle>
+<circle cx="657.06" cy="165.59" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-007-00: search-S-007; Recorded trial order=96; GPU J / completed request=59.6454</title></circle>
+<circle cx="663.02" cy="165.60" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-007-01: search-S-007; Recorded trial order=97; GPU J / completed request=59.6437</title></circle>
+<circle cx="668.98" cy="165.58" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-007-02: search-S-007; Recorded trial order=98; GPU J / completed request=59.6498</title></circle>
+<circle cx="674.93" cy="165.69" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-008-00: search-R-008; Recorded trial order=99; GPU J / completed request=59.618</title></circle>
+<circle cx="680.89" cy="165.53" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-008-01: search-R-008; Recorded trial order=100; GPU J / completed request=59.6621</title></circle>
+<circle cx="686.85" cy="165.55" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-008-02: search-R-008; Recorded trial order=101; GPU J / completed request=59.6569</title></circle>
+<text x="410.0" y="423" text-anchor="middle" font-size="13">Recorded trial order</text>
+<text transform="translate(20 212.5) rotate(-90)" text-anchor="middle" font-size="13">GPU J / completed request</text>
+</g></svg>

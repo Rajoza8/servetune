@@ -1,0 +1,25 @@
+{
+  "accounted_usd": {
+    "baseten": 0.0,
+    "meta": 0.059826
+  },
+  "attempts": 9,
+  "available": true,
+  "basis": "Reported-token cost estimates plus full unknown/interrupted reservations; not an invoice",
+  "blocked": false,
+  "caps_usd": {
+    "baseten": 5.0,
+    "meta": 15.0
+  },
+  "exhausted_providers": [],
+  "project": "servetune",
+  "remaining_usd": {
+    "baseten": 5.0,
+    "meta": 14.940174
+  },
+  "unreconciled_reservations_usd": {
+    "baseten": 0.0,
+    "meta": 0.0
+  },
+  "warnings": []
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" role="img">
+<title>GPU energy / latency · load-1</title><rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial,sans-serif" fill="#142638">
+<text x="85" y="28" font-size="18" font-weight="600">GPU energy / latency · load-1</text>
+<path d="M 85.00 55 V 370 M 85 55.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="85.00" y="393" text-anchor="middle" font-size="11">0</text>
+<text x="73" y="59.00" text-anchor="end" font-size="11">1.7</text>
+<path d="M 215.00 55 V 370 M 85 118.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="215.00" y="393" text-anchor="middle" font-size="11">3.24</text>
+<text x="73" y="122.00" text-anchor="end" font-size="11">1.36</text>
+<path d="M 345.00 55 V 370 M 85 181.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="345.00" y="393" text-anchor="middle" font-size="11">6.48</text>
+<text x="73" y="185.00" text-anchor="end" font-size="11">1.02</text>
+<path d="M 475.00 55 V 370 M 85 244.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="475.00" y="393" text-anchor="middle" font-size="11">9.72</text>
+<text x="73" y="248.00" text-anchor="end" font-size="11">0.682</text>
+<path d="M 605.00 55 V 370 M 85 307.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="605.00" y="393" text-anchor="middle" font-size="11">13</text>
+<text x="73" y="311.00" text-anchor="end" font-size="11">0.341</text>
+<path d="M 735.00 55 V 370 M 85 370.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="735.00" y="393" text-anchor="middle" font-size="11">16.2</text>
+<text x="73" y="374.00" text-anchor="end" font-size="11">0</text>
+<path d="M 686.85 55 V 370" stroke="#c13c45" stroke-dasharray="6 4"/><text x="691.85" y="69" font-size="11">Latency SLO</text>
+<polyline points="194.37,97.71 194.51,97.90 194.55,98.94" fill="none" stroke="#8e9eb0" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="284.87" cy="88.86" r="4.5" fill="#58758c" opacity="0.8"><title>map-load-1-bf16-default-00: bf16-default; p95 end-to-end latency (s)=4.98135; GPU J / output token=1.52133</title></circle>
+<circle cx="284.89" cy="88.76" r="4.5" fill="#58758c" opacity="0.8"><title>map-load-1-bf16-default-01: bf16-default; p95 end-to-end latency (s)=4.98186; GPU J / output token=1.52184</title></circle>
+<circle cx="285.07" cy="88.77" r="4.5" fill="#58758c" opacity="0.8"><title>map-load-1-bf16-default-02: bf16-default; p95 end-to-end latency (s)=4.98628; GPU J / output token=1.52181</title></circle>
+<circle cx="285.35" cy="88.75" r="4.5" fill="#58758c" opacity="0.8"><title>map-load-1-bf16-seqs-64-00: bf16-seqs-64; p95 end-to-end latency (s)=4.99331; GPU J / output token=1.52191</title></circle>
+<circle cx="285.37" cy="88.82" r="4.5" fill="#58758c" opacity="0.8"><title>map-load-1-bf16-seqs-64-01: bf16-seqs-64; p95 end-to-end latency (s)=4.99377; GPU J / output token=1.52152</title></circle>
+<circle cx="285.43" cy="88.86" r="4.5" fill="#58758c" opacity="0.8"><title>map-load-1-bf16-seqs-64-02: bf16-seqs-64; p95 end-to-end latency (s)=4.99522; GPU J / output token=1.52132</title></circle>
+<circle cx="194.37" cy="97.71" r="4.5" fill="#d29128" opacity="0.8"><title>map-load-1-fp8-default-00: fp8-default; p95 end-to-end latency (s)=2.72582; GPU J / output token=1.47343</title></circle>
+<circle cx="194.51" cy="97.90" r="4.5" fill="#d29128" opacity="0.8"><title>map-load-1-fp8-default-01: fp8-default; p95 end-to-end latency (s)=2.72921; GPU J / output token=1.47242</title></circle>
+<circle cx="194.56" cy="97.87" r="4.5" fill="#d29128" opacity="0.8"><title>map-load-1-fp8-default-02: fp8-default; p95 end-to-end latency (s)=2.73056; GPU J / output token=1.47256</title></circle>
+<circle cx="194.55" cy="98.94" r="4.5" fill="#d29128" opacity="0.8"><title>map-load-1-fp8-seqs-64-00: fp8-seqs-64; p95 end-to-end latency (s)=2.73022; GPU J / output token=1.46675</title></circle>
+<circle cx="194.69" cy="98.50" r="4.5" fill="#d29128" opacity="0.8"><title>map-load-1-fp8-seqs-64-01: fp8-seqs-64; p95 end-to-end latency (s)=2.7338; GPU J / output token=1.46914</title></circle>
+<circle cx="194.74" cy="97.96" r="4.5" fill="#d29128" opacity="0.8"><title>map-load-1-fp8-seqs-64-02: fp8-seqs-64; p95 end-to-end latency (s)=2.73513; GPU J / output token=1.47207</title></circle>
+<text x="410.0" y="423" text-anchor="middle" font-size="13">p95 end-to-end latency (s)</text>
+<text transform="translate(20 212.5) rotate(-90)" text-anchor="middle" font-size="13">GPU J / output token</text>
+</g></svg>

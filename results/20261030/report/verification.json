@@ -1,0 +1,14 @@
+{
+  "floor": {
+    "conditional_fp8_supported": true,
+    "controller_claimed_built": true,
+    "established": true,
+    "live_verified_map_trials": 36,
+    "reason": "Frozen bf16 map, conditional FP8 map/A/B, sealed raw records and offline replay available"
+  },
+  "root_manifest_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+  "root_manifest_verified": true,
+  "schema_version": 1,
+  "status": "complete",
+  "warnings": []
+}

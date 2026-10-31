@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" role="img">
+<title>Search latency</title><rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial,sans-serif" fill="#142638">
+<text x="85" y="28" font-size="18" font-weight="600">Search latency</text>
+<path d="M 85.00 55 V 370 M 85 55.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="85.00" y="393" text-anchor="middle" font-size="11">0</text>
+<text x="73" y="59.00" text-anchor="end" font-size="11">193</text>
+<path d="M 215.00 55 V 370 M 85 118.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="215.00" y="393" text-anchor="middle" font-size="11">21.8</text>
+<text x="73" y="122.00" text-anchor="end" font-size="11">155</text>
+<path d="M 345.00 55 V 370 M 85 181.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="345.00" y="393" text-anchor="middle" font-size="11">43.6</text>
+<text x="73" y="185.00" text-anchor="end" font-size="11">116</text>
+<path d="M 475.00 55 V 370 M 85 244.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="475.00" y="393" text-anchor="middle" font-size="11">65.4</text>
+<text x="73" y="248.00" text-anchor="end" font-size="11">77.3</text>
+<path d="M 605.00 55 V 370 M 85 307.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="605.00" y="393" text-anchor="middle" font-size="11">87.3</text>
+<text x="73" y="311.00" text-anchor="end" font-size="11">38.7</text>
+<path d="M 735.00 55 V 370 M 85 370.00 H 735" stroke="#e5ebf1" fill="none"/>
+<text x="735.00" y="393" text-anchor="middle" font-size="11">109</text>
+<text x="73" y="374.00" text-anchor="end" font-size="11">0</text>
+<path d="M 85 345.56 H 735" stroke="#c13c45" stroke-dasharray="6 4"/><text x="93" y="338.56" font-size="11">Quality threshold 15</text>
+<circle cx="424.66" cy="364.76" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-000-00: search-R-000; Recorded trial order=57; p95 latency (s)=3.21336</title></circle>
+<circle cx="430.62" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-000-01: search-R-000; Recorded trial order=58; p95 latency (s)=3.22112</title></circle>
+<circle cx="436.58" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-000-02: search-R-000; Recorded trial order=59; p95 latency (s)=3.21983</title></circle>
+<circle cx="442.54" cy="364.75" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-000-00: search-S-000; Recorded trial order=60; p95 latency (s)=3.22318</title></circle>
+<circle cx="448.49" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-000-01: search-S-000; Recorded trial order=61; p95 latency (s)=3.21635</title></circle>
+<circle cx="454.45" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-000-02: search-S-000; Recorded trial order=62; p95 latency (s)=3.21638</title></circle>
+<circle cx="460.41" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-001-00: search-R-001; Recorded trial order=63; p95 latency (s)=3.22374</title></circle>
+<circle cx="466.37" cy="364.73" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-001-01: search-R-001; Recorded trial order=64; p95 latency (s)=3.23186</title></circle>
+<circle cx="472.33" cy="364.74" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-001-02: search-R-001; Recorded trial order=65; p95 latency (s)=3.22591</title></circle>
+<circle cx="478.29" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-001-00: search-S-001; Recorded trial order=66; p95 latency (s)=3.21827</title></circle>
+<circle cx="484.25" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-001-01: search-S-001; Recorded trial order=67; p95 latency (s)=3.21789</title></circle>
+<circle cx="490.21" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-001-02: search-S-001; Recorded trial order=68; p95 latency (s)=3.21443</title></circle>
+<circle cx="496.17" cy="364.61" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-002-00: search-R-002; Recorded trial order=69; p95 latency (s)=3.30497</title></circle>
+<circle cx="502.13" cy="364.61" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-002-01: search-R-002; Recorded trial order=70; p95 latency (s)=3.30931</title></circle>
+<circle cx="508.08" cy="364.60" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-002-02: search-R-002; Recorded trial order=71; p95 latency (s)=3.31318</title></circle>
+<circle cx="514.04" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-002-00: search-S-002; Recorded trial order=72; p95 latency (s)=3.21848</title></circle>
+<circle cx="520.00" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-002-01: search-S-002; Recorded trial order=73; p95 latency (s)=3.21737</title></circle>
+<circle cx="525.96" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-002-02: search-S-002; Recorded trial order=74; p95 latency (s)=3.21695</title></circle>
+<circle cx="531.92" cy="364.76" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-003-00: search-R-003; Recorded trial order=75; p95 latency (s)=3.21572</title></circle>
+<circle cx="537.88" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-003-01: search-R-003; Recorded trial order=76; p95 latency (s)=3.22373</title></circle>
+<circle cx="543.84" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-003-02: search-R-003; Recorded trial order=77; p95 latency (s)=3.22012</title></circle>
+<circle cx="549.80" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-003-00: search-S-003; Recorded trial order=78; p95 latency (s)=3.21748</title></circle>
+<circle cx="555.76" cy="364.75" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-003-01: search-S-003; Recorded trial order=79; p95 latency (s)=3.2212</title></circle>
+<circle cx="561.71" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-003-02: search-S-003; Recorded trial order=80; p95 latency (s)=3.21815</title></circle>
+<circle cx="567.67" cy="88.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-004-00: search-R-004; Recorded trial order=81; p95 latency (s)=172.603</title></circle>
+<circle cx="573.63" cy="364.77" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-004-00: search-S-004; Recorded trial order=82; p95 latency (s)=3.2082</title></circle>
+<circle cx="579.59" cy="364.77" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-004-01: search-S-004; Recorded trial order=83; p95 latency (s)=3.21153</title></circle>
+<circle cx="585.55" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-004-02: search-S-004; Recorded trial order=84; p95 latency (s)=3.21535</title></circle>
+<circle cx="591.51" cy="364.77" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-005-00: search-R-005; Recorded trial order=85; p95 latency (s)=3.21156</title></circle>
+<circle cx="597.47" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-005-01: search-R-005; Recorded trial order=86; p95 latency (s)=3.22165</title></circle>
+<circle cx="603.43" cy="364.77" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-005-02: search-R-005; Recorded trial order=87; p95 latency (s)=3.21095</title></circle>
+<circle cx="609.39" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-005-00: search-S-005; Recorded trial order=88; p95 latency (s)=3.21294</title></circle>
+<circle cx="615.34" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-005-01: search-S-005; Recorded trial order=89; p95 latency (s)=3.21676</title></circle>
+<circle cx="621.30" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-005-02: search-S-005; Recorded trial order=90; p95 latency (s)=3.21584</title></circle>
+<circle cx="633.22" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-006-00: search-S-006; Recorded trial order=92; p95 latency (s)=3.21666</title></circle>
+<circle cx="639.18" cy="364.76" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-007-00: search-R-007; Recorded trial order=93; p95 latency (s)=3.21405</title></circle>
+<circle cx="645.14" cy="364.76" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-007-01: search-R-007; Recorded trial order=94; p95 latency (s)=3.21665</title></circle>
+<circle cx="651.10" cy="364.76" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-007-02: search-R-007; Recorded trial order=95; p95 latency (s)=3.21674</title></circle>
+<circle cx="657.06" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-007-00: search-S-007; Recorded trial order=96; p95 latency (s)=3.21335</title></circle>
+<circle cx="663.02" cy="364.77" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-007-01: search-S-007; Recorded trial order=97; p95 latency (s)=3.21057</title></circle>
+<circle cx="668.98" cy="364.76" r="4.5" fill="#3567bb" opacity="0.8"><title>search-S-007-02: search-S-007; Recorded trial order=98; p95 latency (s)=3.21828</title></circle>
+<circle cx="674.93" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-008-00: search-R-008; Recorded trial order=99; p95 latency (s)=3.21954</title></circle>
+<circle cx="680.89" cy="364.75" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-008-01: search-R-008; Recorded trial order=100; p95 latency (s)=3.22334</title></circle>
+<circle cx="686.85" cy="364.74" r="4.5" fill="#1c8c72" opacity="0.8"><title>search-R-008-02: search-R-008; Recorded trial order=101; p95 latency (s)=3.22701</title></circle>
+<text x="410.0" y="423" text-anchor="middle" font-size="13">Recorded trial order</text>
+<text transform="translate(20 212.5) rotate(-90)" text-anchor="middle" font-size="13">p95 latency (s)</text>
+</g></svg>

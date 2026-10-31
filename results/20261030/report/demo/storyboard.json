@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "duration_s": 180,
+  "fps": 12,
+  "width": 1280,
+  "height": 720,
+  "synthetic": false,
+  "result_ready": true,
+  "persistent_label": "VERIFIED FINAL CONFIRMATION",
+  "study_status": "complete",
+  "root_manifest_verified": true,
+  "root_manifest_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+  "indexed_trials": 111,
+  "verified_live_trials": 111,
+  "headline_observations": 10,
+  "confirmed_groups": {
+    "bf16-default": {
+      "observations": 5,
+      "joules_per_output_token": 0.4685400931025439,
+      "joules_per_completed_request": 59.97313191712562,
+      "p95_latency_s": 6.3579144960269325
+    },
+    "fp8-default": {
+      "observations": 5,
+      "joules_per_output_token": 0.46633170769691035,
+      "joules_per_completed_request": 59.68271361132966,
+      "p95_latency_s": 3.2083720855414866
+    }
+  },
+  "paired_quality": [
+    {
+      "config_label": "bf16-default",
+      "split": "final",
+      "passed": true,
+      "items": 300,
+      "candidate_correct": 284,
+      "reference_correct": 284,
+      "allowed_decrease": 6,
+      "minimum_correct": 278,
+      "difference_percentage_points": 0.0,
+      "paired_lost": 0,
+      "paired_gained": 0,
+      "failed_requests": 0,
+      "wording": "within the predeclared 2-percentage-point tolerance",
+      "claim_scope": "observed counts on this fixed evaluation; no statistical equivalence claim",
+      "items_sha256": "4da09e4186e97c84b2f4a982ce974961898ae6652fb33068bf8e90f5b231e960",
+      "scorer_sha256": "719a21d7ead6d5613480dba8c5677c37b164bff474d0243f10d05b79fdc36203"
+    },
+    {
+      "config_label": "fp8-default",
+      "split": "final",
+      "passed": true,
+      "items": 300,
+      "candidate_correct": 285,
+      "reference_correct": 284,
+      "allowed_decrease": 6,
+      "minimum_correct": 278,
+      "difference_percentage_points": 0.3333333333333333,
+      "paired_lost": 1,
+      "paired_gained": 2,
+      "failed_requests": 0,
+      "wording": "within the predeclared 2-percentage-point tolerance",
+      "claim_scope": "observed counts on this fixed evaluation; no statistical equivalence claim",
+      "items_sha256": "4da09e4186e97c84b2f4a982ce974961898ae6652fb33068bf8e90f5b231e960",
+      "scorer_sha256": "719a21d7ead6d5613480dba8c5677c37b164bff474d0243f10d05b79fdc36203"
+    },
+    {
+      "config_label": "R-winner",
+      "split": "final",
+      "passed": true,
+      "items": 300,
+      "candidate_correct": 285,
+      "reference_correct": 284,
+      "allowed_decrease": 6,
+      "minimum_correct": 278,
+      "difference_percentage_points": 0.3333333333333333,
+      "paired_lost": 1,
+      "paired_gained": 2,
+      "failed_requests": 0,
+      "wording": "within the predeclared 2-percentage-point tolerance",
+      "claim_scope": "observed counts on this fixed evaluation; no statistical equivalence claim",
+      "items_sha256": "4da09e4186e97c84b2f4a982ce974961898ae6652fb33068bf8e90f5b231e960",
+      "scorer_sha256": "719a21d7ead6d5613480dba8c5677c37b164bff474d0243f10d05b79fdc36203"
+    },
+    {
+      "config_label": "S-winner",
+      "split": "final",
+      "passed": true,
+      "items": 300,
+      "candidate_correct": 285,
+      "reference_correct": 284,
+      "allowed_decrease": 6,
+      "minimum_correct": 278,
+      "difference_percentage_points": 0.3333333333333333,
+      "paired_lost": 1,
+      "paired_gained": 2,
+      "failed_requests": 0,
+      "wording": "within the predeclared 2-percentage-point tolerance",
+      "claim_scope": "observed counts on this fixed evaluation; no statistical equivalence claim",
+      "items_sha256": "4da09e4186e97c84b2f4a982ce974961898ae6652fb33068bf8e90f5b231e960",
+      "scorer_sha256": "719a21d7ead6d5613480dba8c5677c37b164bff474d0243f10d05b79fdc36203"
+    }
+  ],
+  "chapters": [
+    {
+      "key": "problem",
+      "title": "The problem",
+      "start_s": 0.0,
+      "end_s": 20.0,
+      "narration": "ServeTune measures serving configurations for an open-weight Meta model. This record contains 111 indexed trials, including 111 verified live observations. The goal is lower GPU energy per token under a fixed incoming workload, a latency target and a quality gate. The final comparison uses fresh confirmation measurements."
+    },
+    {
+      "key": "method",
+      "title": "The measured loop",
+      "start_s": 20.0,
+      "end_s": 45.0,
+      "narration": "The trace fixes when requests arrive, including queueing in latency. Each bounded configuration starts a fresh engine, warms up, and measures the complete workload through the final response. NVML cumulative counters measure GPU energy. Actual tokens and completed requests are counted. Quality, latency, failures and length drift govern whether a change can be kept."
+    },
+    {
+      "key": "map",
+      "title": "The energy map",
+      "start_s": 45.0,
+      "end_s": 80.0,
+      "narration": "The record contains 36 energy-map trials across the recorded load levels. The plot pairs joules per output token with ninety-fifth percentile latency. Lower values are preferable. The frontier uses eligible observations; failures remain in the record. Energy per completed request is reported alongside energy per token. These measurements apply only to the recorded GPU, engine, model revision and workload."
+    },
+    {
+      "key": "ab",
+      "title": "BF16 and FP8",
+      "start_s": 80.0,
+      "end_s": 105.0,
+      "narration": "Fresh eligible confirmation records show a median of 0.4685 GPU joules per output token for BF16 defaults, and 0.4663 for FP8 defaults. These are observed values, with no assumed positive saving. The quality comparison must be read alongside them, using the predeclared two-percentage-point tolerance on held-out items."
+    },
+    {
+      "key": "search",
+      "title": "Spark and random search",
+      "start_s": 105.0,
+      "end_s": 155.0,
+      "narration": "The arm histories retain 17 proposal and decision records. Random search and Muse Spark receive the same configuration space and allocated time budget. Spark's planning wait, engine loads, warmup, evaluations, failures and incomplete trials count against its clock. Each arm sees only its own search history. The timeline shows the actual hypothesis and the recorded accept or revert decision. Tuning observations are process evidence, not headline results. Both arms selected the same confirmed configuration; those aliases share one set of measurements, not independent confirmations."
+    },
+    {
+      "key": "results",
+      "title": "Results and limits",
+      "start_s": 155.0,
+      "end_s": 180,
+      "narration": "The final table contains 10 live confirmation attempts, with 2 eligible configuration groups. Failed or ineligible confirmations stay in the report. Quality wording is within the predeclared two-percentage-point tolerance on this evaluation. The repository includes frozen inputs, raw evidence, offline reports and rebuild instructions. No whole-system energy, general speedup or state-of-the-art claim is made."
+    }
+  ],
+  "claim_scope": "GPU energy (NVML); exact recorded hardware/model/engine/frozen workloads only",
+  "chart_links": [],
+  "results_link": null,
+  "study_dir": "study"
+}

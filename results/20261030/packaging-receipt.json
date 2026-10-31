@@ -1,0 +1,41 @@
+{
+  "all_original_study_bytes_preserved": true,
+  "archive_members": 1710,
+  "archive_parts": [
+    {
+      "bytes": 40000000,
+      "path": "sealed-evidence.tar.gz.part001",
+      "sha256": "783643216e5a126ac25b68ef04e67e55619d3aaa80bc8bb9dacf826a1e15a635"
+    },
+    {
+      "bytes": 40000000,
+      "path": "sealed-evidence.tar.gz.part002",
+      "sha256": "7e7cfb6fceb902798445bf92cbb1e4752862f7078ffd46092f0e9e390f5358ea"
+    },
+    {
+      "bytes": 26765582,
+      "path": "sealed-evidence.tar.gz.part003",
+      "sha256": "f4ed38854282d1e4a74d81393a38d8c2a5bc0b525ca6c7dfb489fdfba7b80b3e"
+    }
+  ],
+  "archive_sha256": "1cc4cbfd6f0b128374a6968228a69e719ce37a62a3d0ef04d776d18594f634e8",
+  "credential_scan": "all selected members passed known-credential and private-key-material checks",
+  "gpu_required": false,
+  "known_secret_values_checked": 5,
+  "offline_only": true,
+  "original_study_files": 1638,
+  "prepared_at": "2026-10-31T05:28:22.666192+00:00",
+  "private_packaging_input_bound_bytes": 1500000000,
+  "provider_calls": 0,
+  "raw_archive_input_bytes": 1143576721,
+  "report_demo_pending": false,
+  "schema_version": 1,
+  "scientific_source_modified": false,
+  "study_manifest_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+  "study_status": "complete",
+  "tests": "15 private publisher fixture tests passed",
+  "archive_body_verified": true,
+  "archive_verified_members": 1710,
+  "verified_at": "2026-10-31T05:29:02.721990+00:00",
+  "public_report_files": 22
+}
