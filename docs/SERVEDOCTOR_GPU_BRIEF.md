@@ -47,6 +47,11 @@ export REV=<exact 40-character Glimmer Hub commit used in v4>
    `nvidia-smi` in another shell.
 3. Initialize the ledger once: `python3 -m servedoctor ledger-init`.
 4. Export `MODEL_API_KEY` (Meta) in the shell only. Never write it to a file.
+5. **Verify Muse Wonder's API model ID and per-token prices** against
+   dev.meta.ai docs (the code assumes `muse-wonder` at $4 / $20 per million
+   input / output tokens). If the ID differs, `export META_WONDER_MODEL=<id>`.
+   If prices differ, stop and tell the user before any Wonder call, because
+   the ledger would under-reserve.
 
 ## 2. Calibrate capacity (about 10 minutes)
 
@@ -93,9 +98,9 @@ test recording, and every change must be listed in your report.
 ## 5. Dev evaluation of the model arms (about 30 minutes)
 
 ```sh
-python3 -m servedoctor evaluate --study-dir runs/sd-study --split dev --arms spark
+python3 -m servedoctor evaluate --study-dir runs/sd-study --split dev --arms spark,wonder
 python3 -m servedoctor evaluate --study-dir runs/sd-study --split dev \
-  --arms glimmer,glimmer_to_spark --start-glimmer --model-revision $REV
+  --arms glimmer,glimmer_to_spark,glimmer_to_wonder --start-glimmer --model-revision $REV
 python3 -m servedoctor score --study-dir runs/sd-study --split dev
 ```
 
@@ -109,15 +114,18 @@ that arm and rerun, and record the change. Freeze prompts after this step.
 
 ```sh
 python3 -m servedoctor record --model-revision $REV --study-dir runs/sd-study --split test
-python3 -m servedoctor evaluate --study-dir runs/sd-study --split test --arms rules,spark
+python3 -m servedoctor evaluate --study-dir runs/sd-study --split test --arms rules,spark,wonder
 python3 -m servedoctor evaluate --study-dir runs/sd-study --split test \
-  --arms glimmer,glimmer_to_spark --start-glimmer --model-revision $REV
+  --arms glimmer,glimmer_to_spark,glimmer_to_wonder --start-glimmer --model-revision $REV
 python3 -m servedoctor report --study-dir runs/sd-study
 ```
 
 ## 7. Live runs (about 2 hours)
 
-Pick one **test** incident per fault type (6 runs) and run the full agent:
+Pick one **test** incident per fault type (6 runs) and run the full agent.
+Use whichever escalation arm scored better on the **dev** split
+(`glimmer_to_spark` or `glimmer_to_wonder`), decided before any test result
+is seen:
 
 ```sh
 python3 -m servedoctor live --model-revision $REV --study-dir runs/sd-study --id inc-XX --arm glimmer_to_spark
@@ -136,6 +144,14 @@ credential. Add `results/servedoctor-20261102/README.md` with: hardware, vLLM
 version, model revision, commitment hashes, every config/prompt/threshold change
 and why, GPU hours and cost, ledger summary, and failures. Commit to branch
 `servedoctor` and push.
+
+## Expected API spend
+
+Each observation is about 1,400 input tokens. Expect roughly $0.002–0.005 per
+Spark call and $0.02–0.04 per Wonder call, so the whole study should cost a few
+dollars for Spark and under about $15 for Wonder, inside the shared $50 Meta
+cap. Report `ledger.summary()` after each step; stop at the 50% warning and
+tell the user.
 
 ## Expected GPU time
 

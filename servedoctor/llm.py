@@ -29,6 +29,13 @@ PROVIDERS = {
               "input_per_m": Decimal("1.25"), "output_per_m": Decimal("4.25"),
               "extra": {"reasoning_effort": "low"}, "max_tokens_field": "max_completion_tokens",
               "temperature": 1.0},
+    # Muse Wonder (Meta's newer frontier model). Model ID and rates must be checked
+    # against dev.meta.ai before the first paid call; override with META_WONDER_MODEL.
+    "wonder": {"provider": "meta", "url": "https://api.meta.ai/v1/chat/completions",
+               "model": "muse-wonder", "key_env": ("MODEL_API_KEY", "META_API_KEY"),
+               "input_per_m": Decimal("4"), "output_per_m": Decimal("20"),
+               "extra": {"reasoning_effort": "low"}, "max_tokens_field": "max_completion_tokens",
+               "temperature": 1.0},
     "glimmer-local": {"provider": "local", "url": None, "model": "servetune-glimmer", "key_env": (),
                       "input_per_m": Decimal(0), "output_per_m": Decimal(0),
                       "extra": {"chat_template_kwargs": {"reasoning_strength": "low"},
@@ -122,6 +129,8 @@ class ModelClient:
         environ = os.environ if environ is None else environ
         if name == "glimmer-local":
             self.spec["url"] = (base_url or "http://127.0.0.1:8000/v1").rstrip("/") + "/chat/completions"
+        if name == "wonder":
+            self.spec["model"] = model or environ.get("META_WONDER_MODEL", self.spec["model"])
         if name == "glimmer-baseten":
             self.spec["url"] = base_url or environ.get("BASETEN_BASE_URL", "").rstrip("/") + "/chat/completions"
             self.spec["model"] = model or environ.get("BASETEN_MODEL")

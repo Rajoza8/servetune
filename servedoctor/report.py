@@ -9,7 +9,8 @@ from .observe import buckets, load_incident
 from .scoring import score_study
 
 ARM_LABELS = {"rules": "Threshold rules", "glimmer": "Glimmer alone", "spark": "Spark alone",
-              "glimmer_to_spark": "Glimmer → Spark"}
+              "wonder": "Wonder alone", "glimmer_to_spark": "Glimmer → Spark",
+              "glimmer_to_wonder": "Glimmer → Wonder"}
 
 
 def _spark(values, width=260, height=46, color="#2a7"):
@@ -43,7 +44,7 @@ td,th{border-color:#30363d}.muted{color:#8b949e}.banner{background:#2d2008;borde
         parts.append('<div class="banner"><b>SYNTHETIC REHEARSAL.</b> Toy-model telemetry, not a result.</div>')
     parts.append("<h2>Scoreboard</h2><table><tr><th>Arm</th><th>Detected</th><th>Correct diagnosis</th>"
                  "<th>Fix proposed</th><th>Harmful actions</th><th>False alarms</th>"
-                 "<th>Median time to detect</th><th>Invalid outputs</th><th>Spark calls / cost</th></tr>")
+                 "<th>Median time to detect</th><th>Invalid outputs</th><th>Paid Meta calls / cost</th></tr>")
     for arm in arms:
         a = scores["by_arm"][arm]
         parts.append(
@@ -51,7 +52,7 @@ td,th{border-color:#30363d}.muted{color:#8b949e}.banner{background:#2d2008;borde
             f"<td>{a['diagnosis_correct']}/{a['incidents']}</td><td>{a['fix_proposed']}/{a['incidents']}</td>"
             f"<td>{a['harmful']}</td><td>{a['false_alarms']} ({a['healthy_false_alarms']}/{a['healthy_controls']} controls)</td>"
             f"<td>{a['median_time_to_detect_s'] if a['median_time_to_detect_s'] is not None else '–'} s</td>"
-            f"<td>{a['invalid_outputs']}</td><td>{a['spark_calls']} / ${a['spark_cost_usd']:.3f}</td></tr>")
+            f"<td>{a['invalid_outputs']}</td><td>{a['api_calls']} / ${a['api_cost_usd']:.3f}</td></tr>")
     parts.append("</table><p class=muted>Incidents exclude healthy controls. Diagnosis on a control counts as "
                  "correct only if nothing is flagged. Fixes are judged against sealed per-cause rules.</p>")
     parts.append("<h2>Incidents</h2><table><tr><th>Incident</th><th>Split</th><th>Truth</th>"

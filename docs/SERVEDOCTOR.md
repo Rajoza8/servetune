@@ -2,7 +2,7 @@
 
 **ServeDoctor** is an on-call agent for LLM serving. A local Muse Glimmer model
 watches a live vLLM deployment every 30 seconds. When it sees an anomaly it
-escalates to Muse Spark, which names the root cause and proposes at most two
+escalates to an expert model (Muse Spark or Muse Wonder), which names the root cause and proposes at most two
 fixes from a fixed list of allowed actions. In live runs the fix is applied,
 recovery is measured on real requests, and the change is rolled back if the
 service does not recover.
@@ -61,7 +61,12 @@ decision is final, as it would be on call.
 | `rules` | Transparent thresholds written by the fault designers: an optimistic baseline, not a strawman |
 | `glimmer` | Muse Glimmer (local, open weights) diagnoses at every checkpoint |
 | `spark` | Muse Spark (Meta API) diagnoses at every checkpoint |
+| `wonder` | Muse Wonder (Meta API, Meta's newer frontier model) diagnoses at every checkpoint |
 | `glimmer_to_spark` | Glimmer monitors; only anomalies are escalated to Spark |
+| `glimmer_to_wonder` | Glimmer monitors; only anomalies are escalated to Wonder |
+
+Comparing Spark and Wonder as the escalation expert shows whether a stronger
+(and pricier) model buys better diagnoses or fixes on these incidents.
 
 ## Scoring
 
@@ -72,7 +77,7 @@ decision is final, as it would be on call.
   the direction of a knob change), and no action is harmful.
 - **Harmful:** any action matches a harmful rule; stopping any process other
   than the injected job is always harmful.
-- **Cost:** Spark calls and dollars per arm, from reported token usage.
+- **Cost:** paid Meta calls (Spark or Wonder) and dollars per arm, from reported token usage.
 - **Live runs (subset):** recovered (p95 latency and error rate back within the
   SLO on requests 30–90 s after the fix), time to recover, shed rate, restart
   time, rollbacks.
