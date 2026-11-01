@@ -12,7 +12,7 @@ from pathlib import Path
 
 from . import rules
 from .catalog import ActionError, validate_action
-from .llm import MONITOR_SYSTEM, diagnose_system, normalize_decision, parse_json
+from .llm import BudgetWarningError, MONITOR_SYSTEM, diagnose_system, normalize_decision, parse_json
 from .observe import load_incident, normal_profile, observe, render
 
 EXPERTS = ("spark", "wonder")
@@ -65,14 +65,20 @@ def _monitor(client, observation):
             "valid_output": status is not None}
 
 
-def run_incident(arm, incident, *, profile, reference_config, clients, checkpoint_s):
+def run_incident(arm, incident, *, profile, reference_config, clients, checkpoint_s, on_step=None):
     duration = incident["recording"]["duration_s"]
     trail = []
     final = None
     t = checkpoint_s
+
+    def snapshot():
+        return {"arm": arm, "incident": incident["id"], "engine_config": incident["engine_config"],
+                "final": final, "checkpoints": len(trail), "trail": trail}
+
     while t <= duration + 1e-9 and final is None:
         observation = observe(incident, t, profile=profile, reference_config=reference_config)
         step = {"t": t, "observation_sha256": hashlib.sha256(render(observation).encode()).hexdigest()}
+        stopped = None
         try:
             if arm == "rules":
                 decision = _rules_decision(observation)
@@ -85,21 +91,30 @@ def run_incident(arm, incident, *, profile, reference_config, clients, checkpoin
                 if monitor["status"] == "healthy":
                     decision = {"incident": False, "root_cause": "healthy", "actions": [{"type": "no_action"}]}
                 else:
-                    decision = _model_decision(clients[expert_of(arm)], observation)
                     step["escalated"] = True
+                    decision = _model_decision(clients[expert_of(arm)], observation)
             else:
                 raise ValueError(f"Unknown arm {arm}")
         except Exception as exc:  # Provider/network failure: recorded, never retried silently.
             step["error"] = type(exc).__name__
             decision = {"incident": False, "root_cause": "healthy", "actions": [{"type": "no_action"}],
                         "call_failed": True}
+            if isinstance(exc, BudgetWarningError):
+                stopped = exc
         step["decision"] = decision
         trail.append(step)
         if decision.get("incident"):
             final = {**decision, "t": t}
+        if on_step:
+            on_step(snapshot())
+        if stopped:
+            raise stopped
+        for client in clients.values():
+            ledger = getattr(client, "ledger", None)
+            if ledger is not None:
+                ledger.require_below_warning()
         t += checkpoint_s
-    return {"arm": arm, "incident": incident["id"], "engine_config": incident["engine_config"],
-            "final": final, "checkpoints": len(trail), "trail": trail}
+    return snapshot()
 
 
 def evaluate(study_dir, arms, *, clients, checkpoint_s=30, ids=None, split=None, answers=None, log=print):
@@ -121,11 +136,24 @@ def evaluate(study_dir, arms, *, clients, checkpoint_s=30, ids=None, split=None,
             if out.exists():
                 results.append(json.loads(out.read_text()))
                 continue
+            partial = out_dir / f"{path.name}.partial.json"
+            if partial.exists():
+                raise RuntimeError(f"Incomplete evaluation preserved at {partial}; "
+                                   "use a new run directory and record the reason before re-evaluating")
             incident = load_incident(path)
+
+            def journal(result):
+                temporary = partial.with_suffix(".tmp")
+                temporary.write_text(json.dumps({**result, "incomplete": True}, indent=1) + "\n")
+                temporary.replace(partial)
+
+            with partial.open("x") as stream:
+                json.dump({"arm": arm, "incident": incident["id"], "incomplete": True, "trail": []}, stream)
             result = run_incident(arm, incident, profile=profile, reference_config=reference_config,
-                                  clients=clients, checkpoint_s=checkpoint_s)
+                                  clients=clients, checkpoint_s=checkpoint_s, on_step=journal)
             with out.open("x") as stream:
                 json.dump(result, stream, indent=1)
+            partial.unlink()
             final = result["final"]
             log(f"{arm} {path.name}: " + (f"{final['root_cause']} at t={final['t']} {final['actions']}"
                                           if final else "no incident flagged"))

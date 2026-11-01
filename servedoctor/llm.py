@@ -51,6 +51,10 @@ class LedgerError(RuntimeError):
     pass
 
 
+class BudgetWarningError(LedgerError):
+    """Paid work must pause for a user report at the ledger's 50% warning."""
+
+
 class Ledger:
     def __init__(self, path):
         self.path = Path(path)
@@ -92,6 +96,7 @@ class Ledger:
     def reserve(self, provider, amount, meta):
         with self._lock():
             data = self._load()
+            self._require_below_warning(data)
             if self._total(data, provider) + amount > CAPS[provider]:
                 raise LedgerError(f"{provider} cap of ${CAPS[provider]} reached; no request sent")
             entry_id = uuid.uuid4().hex
@@ -100,6 +105,16 @@ class Ledger:
                                     "at": datetime.now(timezone.utc).isoformat(), "meta": meta})
             self._save(data)
             return entry_id
+
+    @classmethod
+    def _require_below_warning(cls, data):
+        warned = [p for p in CAPS if cls._total(data, p) >= CAPS[p] / 2]
+        if warned:
+            raise BudgetWarningError(f"{', '.join(warned)} at or above 50% of its cap; stop and report")
+
+    def require_below_warning(self):
+        with self._lock():
+            self._require_below_warning(self._load())
 
     def settle(self, entry_id, actual, usage):
         with self._lock():
@@ -134,8 +149,13 @@ class ModelClient:
         if name == "glimmer-baseten":
             self.spec["url"] = base_url or environ.get("BASETEN_BASE_URL", "").rstrip("/") + "/chat/completions"
             self.spec["model"] = model or environ.get("BASETEN_MODEL")
-            self.spec["input_per_m"] = Decimal(environ.get("BASETEN_INPUT_PER_M", "0"))
-            self.spec["output_per_m"] = Decimal(environ.get("BASETEN_OUTPUT_PER_M", "0"))
+            try:
+                rates = [Decimal(environ[k]) for k in ("BASETEN_INPUT_PER_M", "BASETEN_OUTPUT_PER_M")]
+            except (KeyError, ArithmeticError, ValueError) as exc:
+                raise ValueError("Set verified BASETEN_INPUT_PER_M and BASETEN_OUTPUT_PER_M prices") from exc
+            if any(not rate.is_finite() or rate <= 0 for rate in rates):
+                raise ValueError("Baseten token prices must be finite and positive")
+            self.spec["input_per_m"], self.spec["output_per_m"] = rates
         self.key = next((environ[k] for k in self.spec["key_env"] if environ.get(k)), None)
         if self.spec["key_env"] and not self.key:
             raise ValueError(f"Set one of {self.spec['key_env']} for {name}")
