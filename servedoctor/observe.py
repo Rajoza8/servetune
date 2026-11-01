@@ -18,11 +18,14 @@ WINDOW_BUCKETS = 18
 
 def load_incident(path):
     root = Path(path)
+    recording = json.loads((root / "recording.json").read_text())
+    if recording.get("status") == "failed":
+        raise ValueError("Failed recording cannot be evaluated; retain it and record in a new directory")
     return {"id": root.name, "telemetry": read_jsonl(root / "telemetry.jsonl"),
             "events": json.loads((root / "events.json").read_text()),
             "engine_config": json.loads((root / "engine_config.json").read_text()),
             "slo": json.loads((root / "slo.json").read_text()),
-            "recording": json.loads((root / "recording.json").read_text())}
+            "recording": recording}
 
 
 def _bucket(rows, previous):

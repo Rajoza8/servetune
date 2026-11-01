@@ -7,6 +7,7 @@ marker check). Recovery is measured on the requests themselves.
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 import threading
 import time
@@ -16,7 +17,7 @@ from servetune.artifacts import timestamp, write_json
 from .catalog import validate_action, ActionError
 from .evaluate import _model_decision, _monitor, _rules_decision, expert_of
 from .loadgen import Gateway, LoadGenerator, http_request, summarize
-from .observe import observe
+from .observe import observe, render
 from .record import ContentionJob, engine_knobs, serving_config
 from .scenarios import make_arrivals
 from .telemetry import LogTail, Recorder, read_jsonl
@@ -46,12 +47,21 @@ class EngineSlot:
             started = time.monotonic()
             old = self.engine
             self.engine = None
-            old.stop()
-            write_json(self.run_dir / "engines" / f"engine-{self.generation}" / "engine_metadata.json", old.metadata)
+            if old is not None:
+                old.stop()
+                write_json(self.run_dir / "engines" / f"engine-{self.generation}" / "engine_metadata.json", old.metadata)
             self.knobs[knob] = value
             self.generation += 1
-            self.start()
-            self.restarts.append({"knob": knob, "value": value, "seconds": time.monotonic() - started})
+            restart = {"knob": knob, "value": value}
+            try:
+                self.start()
+                restart["status"] = "completed"
+            except BaseException as exc:
+                restart.update(status="failed", error=type(exc).__name__)
+                raise
+            finally:
+                restart["seconds"] = time.monotonic() - started
+                self.restarts.append(restart)
 
     def stop(self):
         if self.engine is not None:
@@ -87,6 +97,8 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
              checkpoint_s=30, recovery_window_s=60, verify_s=150, lag_s=60, extra_s=300, log=print):
     run = Path(run_dir)
     run.mkdir(parents=True, exist_ok=False)
+    checkpoint_path = run / "checkpoints.jsonl"
+    checkpoint_path.touch(exist_ok=False)
     duration = scenario["duration_s"] + extra_s
     slo = scenario["slo"]
     slot = EngineSlot(engine_factory, serving, engine_knobs(scenario["engine"]), run)
@@ -123,7 +135,7 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
     job = None
     contention = scenario.get("contention")
     result = {"id": scenario["id"], "arm": arm, "decision": None, "actions": [], "executed": [],
-              "recovered": None, "rolled_back": False}
+              "recovered": None, "rolled_back": False, "trail": []}
     recorder.start()
     loadgen.start(start_time=t0)
     timer = None
@@ -153,7 +165,19 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
             incident = {"id": scenario["id"], "telemetry": read_jsonl(telemetry_path), "events": events,
                         "engine_config": dict(slot.knobs), "slo": slo, "recording": {"duration_s": duration}}
             observation = observe(incident, now, profile=profile, reference_config=reference_config)
-            decision = _decide(arm, clients, observation)
+            step = {"t": round(now, 3),
+                    "observation_sha256": hashlib.sha256(render(observation).encode()).hexdigest()}
+            decision = _decide(arm, clients, observation, checkpoint=step)
+            step["decision"] = decision
+            result["trail"].append(step)
+            # Close each append before another call or action: an interrupted run
+            # must retain healthy replies, invalid output and failed calls too.
+            with checkpoint_path.open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps(step) + "\n")
+            for client in clients.values():
+                ledger = getattr(client, "ledger", None)
+                if ledger is not None:
+                    ledger.require_below_warning()
             if not decision.get("incident"):
                 continue
             result["decision"] = {**decision, "t": round(now, 1)}
@@ -166,6 +190,9 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
             events.append({"t": round(acted_at, 1), "kind": "agent_action",
                            "text": json.dumps(decision["actions"])})
         loadgen.wait(drain_timeout_s=timeout + 10)
+    except BaseException as exc:
+        result["failure"] = type(exc).__name__
+        raise
     finally:
         loadgen.stop()
         if timer:
@@ -173,35 +200,41 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
         if job:
             job.stop()
         recorder.stop()
-        slot.stop()
-        if gpu:
-            gpu.stop()
-    onset = answer_onset if answer_onset is not None else 0
-    result["fault_window_before_action"] = summarize(loadgen.outcomes, onset,
-                                                     result.get("acted_at_s") or duration)
-    result["after_action"] = (summarize(loadgen.outcomes, result["acted_at_s"], duration)
-                              if result.get("acted_at_s") else None)
-    result["time_to_recover_s"] = _time_to_recover(loadgen.outcomes, result, onset, duration, slo)
-    result["engine_restarts"] = slot.restarts
-    with (run / "requests.jsonl").open("x") as stream:
-        for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
-            stream.write(json.dumps(row) + "\n")
-    write_json(run / "live_result.json", result)
+        try:
+            slot.stop()
+        finally:
+            if gpu:
+                gpu.stop()
+            onset = answer_onset if answer_onset is not None else 0
+            result["fault_window_before_action"] = summarize(loadgen.outcomes, onset,
+                                                             result.get("acted_at_s") or duration)
+            result["after_action"] = (summarize(loadgen.outcomes, result["acted_at_s"], duration)
+                                      if result.get("acted_at_s") else None)
+            result["time_to_recover_s"] = _time_to_recover(loadgen.outcomes, result, onset, duration, slo)
+            result["engine_restarts"] = slot.restarts
+            with (run / "requests.jsonl").open("x") as stream:
+                for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
+                    stream.write(json.dumps(row) + "\n")
+            write_json(run / "live_result.json", result)
     return result
 
 
-def _decide(arm, clients, observation):
+def _decide(arm, clients, observation, *, checkpoint=None):
+    checkpoint = {} if checkpoint is None else checkpoint
     try:
         if arm == "rules":
             return _rules_decision(observation)
         if arm.startswith("glimmer_to_"):
             monitor = _monitor(clients["glimmer"], observation)
+            checkpoint["monitor"] = monitor
             if monitor["status"] == "healthy":
                 return {"incident": False}
+            checkpoint["escalated"] = True
             return _model_decision(clients[expert_of(arm)], observation)
         return _model_decision(clients[arm], observation)
     except Exception as exc:
-        return {"incident": False, "error": type(exc).__name__}
+        checkpoint["error"] = type(exc).__name__
+        return {"incident": False, "error": type(exc).__name__, "call_failed": True}
 
 
 def _execute(action, slot, gateway, job, log):
@@ -234,9 +267,13 @@ def _execute(action, slot, gateway, job, log):
 
 def _rollback(result, slot, gateway, log):
     for item in reversed(result["executed"]):
-        if item.get("status") != "executed" or "previous" not in item:
-            continue
         action = item["action"]
+        # A restart can stop the old engine and then fail to start the new
+        # config. Its prior value must still be restored in a fresh generation.
+        failed_restart = (action["type"] == "set_engine_config"
+                          and item.get("status", "").startswith("failed:"))
+        if (item.get("status") != "executed" and not failed_restart) or "previous" not in item:
+            continue
         if action["type"].startswith("gateway_"):
             previous = item["previous"]
             gateway.set_policy(max_rps=previous["max_rps"], max_prompt_tokens=previous["max_prompt_tokens"])
