@@ -123,6 +123,12 @@ Prompt bugs (for example JSON that never parses) may be fixed on dev only. If yo
 change prompts, delete `runs/sd-study/decisions/<arm>/` for the dev incidents of
 that arm and rerun, and record the change. Freeze prompts after this step.
 
+The dedicated Glimmer evaluation server defaults to an 8,192-token context
+(`--glimmer-max-model-len`). The November 1 reference diagnosis needed 3,259
+input tokens plus its 2,048-token output allowance. Each evaluation server gets
+a fresh engine directory and retains startup metadata and failures. Incident
+recordings and live runs use the study's engine settings.
+
 **Report to the user here (noon checkpoint).**
 
 ## 6. Record and evaluate test incidents (about 2.5 hours)
