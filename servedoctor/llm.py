@@ -55,6 +55,14 @@ class BudgetWarningError(LedgerError):
     """Paid work must pause for a user report at the ledger's 50% warning."""
 
 
+class PermanentAPIError(RuntimeError):
+    """A paid API rejected the request; retain evidence and require intervention."""
+
+    def __init__(self, provider, http_status):
+        self.provider, self.http_status = provider, http_status
+        super().__init__(f"{provider} returned HTTP {http_status}; stop and report before another paid call")
+
+
 class Ledger:
     def __init__(self, path):
         self.path = Path(path)
@@ -195,6 +203,11 @@ class ModelClient:
         self.calls += 1
         try:
             response = self.transport(body)
+        except urllib.error.HTTPError as exc:
+            self.failures += 1
+            if provider in CAPS and exc.code in (400, 401, 403, 404, 429):
+                raise PermanentAPIError(provider, exc.code) from None
+            raise
         except Exception:
             self.failures += 1
             raise
