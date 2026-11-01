@@ -5,6 +5,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import uuid
 
 from .scenarios import build_prompt_pools, load_questions, write_study
 
@@ -94,6 +95,8 @@ def main(argv=None):
     p.add_argument("--glimmer", choices=["local", "baseten"], default="local")
     p.add_argument("--glimmer-url", default="http://127.0.0.1:8000/v1")
     p.add_argument("--start-glimmer", action="store_true", help="GPU: start a healthy Glimmer server for this run")
+    p.add_argument("--glimmer-max-model-len", type=int, default=8192,
+                   help="Dedicated evaluation server context, including the diagnosis output budget")
     p.add_argument("--model-id", default="meta-models/Muse-Glimmer-30B")
     p.add_argument("--model-revision")
     p.add_argument("--port", type=int, default=8000)
@@ -159,23 +162,33 @@ def main(argv=None):
         root = Path(args.study_dir)
         answers = json.loads((root / "answers" / "answer_keys.json").read_text())["answers"] if args.split else None
         study = _study(root / "study.json") if (root / "study.json").exists() else {"timing": {"checkpoint_s": 30}}
-        engine = None
-        if args.start_glimmer:
-            if not args.model_revision:
-                parser.error("--start-glimmer needs --model-revision")
-            engine = _engine_factory({**{k: v for k, v in _serving(args).items() if k != "dtype"},
-                                      **study.get("engine_base", {}), "use_engine_defaults": False},
-                                     root / "engines" / "evaluation-glimmer", args.dtype)
-            engine.start()
+        engine, engine_dir = None, None
         try:
+            if args.start_glimmer:
+                if not args.model_revision:
+                    parser.error("--start-glimmer needs --model-revision")
+                engine_dir = root / "engines" / f"evaluation-glimmer-{args.split or 'all'}-{uuid.uuid4().hex[:12]}"
+                engine_dir.mkdir(parents=True, exist_ok=False)
+                engine = _engine_factory({**{k: v for k, v in _serving(args).items() if k != "dtype"},
+                                          **study.get("engine_base", {}),
+                                          "max_model_len": args.glimmer_max_model_len,
+                                          "use_engine_defaults": False}, engine_dir, args.dtype)
+                engine.start()
             clients, ledger = _clients(args, arms, glimmer_url=engine.base_url if engine else args.glimmer_url)
             evaluate(root, arms, clients=clients, checkpoint_s=study["timing"]["checkpoint_s"],
                      split=args.split, answers=answers)
             if ledger:
                 print(json.dumps(ledger.summary(), indent=2))
+        except BaseException as exc:
+            if engine_dir:
+                (engine_dir / "failure.json").write_text(json.dumps({"error": type(exc).__name__}) + "\n")
+            raise
         finally:
             if engine:
-                engine.stop()
+                try:
+                    engine.stop()
+                finally:
+                    (engine_dir / "engine_metadata.json").write_text(json.dumps(engine.metadata, indent=2) + "\n")
     elif args.command == "score":
         from .scoring import score_study
         print(json.dumps(score_study(args.study_dir, split=args.split)["by_arm"], indent=2))
