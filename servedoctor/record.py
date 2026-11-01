@@ -79,7 +79,8 @@ def wait_idle(metrics_url, timeout_s=90, scrape=scrape_metrics):
     while time.monotonic() < deadline:
         try:
             row = scrape(metrics_url)
-            busy = row.get("running", 0) + row.get("waiting", 0)
+            # Missing/unrecognized metrics cannot establish an idle engine.
+            busy = row["running"] + row["waiting"]
         except Exception:
             busy = 1
         now = time.monotonic()
@@ -120,9 +121,10 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
     job, job_pid, timer = None, None, None
     contention = scenario.get("contention")
     started_at = timestamp()
-    recorder.start()
-    loadgen.start(start_time=t0)
+    failure = None
     try:
+        recorder.start()
+        loadgen.start(start_time=t0)
         if contention:
             job = job_factory()
 
@@ -135,6 +137,9 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
             timer.start()
         sleeper(max(0.0, scenario["duration_s"] - (time.monotonic() - t0)))
         loadgen.wait(drain_timeout_s)
+    except BaseException as exc:
+        failure = type(exc).__name__
+        raise
     finally:
         loadgen.stop()
         if timer is not None:
@@ -142,14 +147,15 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
         if job is not None:
             job.stop()
         recorder.stop()
-    with (inc / "requests.jsonl").open("x", encoding="utf-8") as stream:
-        for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
-            stream.write(json.dumps(row) + "\n")
-    summary = summarize(loadgen.outcomes)
-    write_json(inc / "recording.json", {"started_at": started_at, "duration_s": scenario["duration_s"],
-                                        "telemetry_rows": recorder.rows, "telemetry_errors": recorder.errors,
-                                        "requests": summary, "mode": "live"})
-    seal(inc)
+        with (inc / "requests.jsonl").open("x", encoding="utf-8") as stream:
+            for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
+                stream.write(json.dumps(row) + "\n")
+        summary = summarize(loadgen.outcomes)
+        write_json(inc / "recording.json", {"started_at": started_at, "duration_s": scenario["duration_s"],
+                                            "telemetry_rows": recorder.rows, "telemetry_errors": recorder.errors,
+                                            "requests": summary, "mode": "live",
+                                            "status": "failed" if failure else "completed", "failure": failure})
+        seal(inc)
     runtime = {"id": scenario["id"], "contention_pids": [job_pid] if job_pid else []}
     answers_dir = Path(out_dir) / "answers" / "runtime"
     answers_dir.mkdir(parents=True, exist_ok=True)
@@ -171,11 +177,15 @@ def record_study(scenarios, *, serving, pools, out_dir, engine_factory, gpu_fact
         engine_dir = Path(out_dir) / "engines" / f"engine-{number:02d}-{group[0]['id']}"
         engine = engine_factory(serving_config(serving, knobs), engine_dir, serving.get("dtype", "bf16"))
         log(f"starting engine {engine_dir.name} for {[s['id'] for s in group]}")
-        engine.start()
+        stage, current_id = "engine_start", None
         try:
+            engine.start()
             metrics_url = engine.base_url[: -len("/v1")] + "/metrics"
             for scenario in group:
-                wait_idle(metrics_url)
+                stage, current_id = "wait_idle", scenario["id"]
+                if not wait_idle(metrics_url):
+                    raise RuntimeError("Engine did not become idle; refusing a contaminated recording")
+                stage = "record_incident"
                 gpu = gpu_factory() if gpu_factory else None
                 try:
                     result = record_incident(scenario, engine=engine, pools=pools, out_dir=out_dir,
@@ -185,9 +195,15 @@ def record_study(scenarios, *, serving, pools, out_dir, engine_factory, gpu_fact
                         gpu.stop()
                 log(f"recorded {scenario['id']}: {result['summary']}")
                 results.append(result)
+        except BaseException as exc:
+            write_json(engine_dir / "failure.json", {"stage": stage, "incident_id": current_id,
+                       "group_ids": [s["id"] for s in group], "error": type(exc).__name__, "at": timestamp()})
+            raise
         finally:
-            engine.stop()
-            write_json(engine_dir / "engine_metadata.json", engine.metadata)
+            try:
+                engine.stop()
+            finally:
+                write_json(engine_dir / "engine_metadata.json", engine.metadata)
     return results
 
 
@@ -198,33 +214,48 @@ def calibrate(*, serving, study, pools, out_dir, engine_factory, rates, seconds=
     out.mkdir(parents=True, exist_ok=False)
     knobs = engine_knobs(study["engine_base"])
     engine = engine_factory(serving_config(serving, knobs), out / "engine", serving.get("dtype", "bf16"))
-    engine.start()
     steps = []
+    result = {"schema_version": 1, "created_at": timestamp(), "steps": steps,
+              "capacity_rps": None, "status": "running",
+              "definition": "highest tested arrival rate whose p95 latency and error rate meet the SLO",
+              "engine": engine.metadata.get("vllm_version")}
     try:
+        engine.start()
         metrics_url = engine.base_url[: -len("/v1")] + "/metrics"
         for index, rate in enumerate(rates):
-            wait_idle(metrics_url)
+            if not wait_idle(metrics_url):
+                raise RuntimeError("Engine did not become idle; refusing contaminated calibration")
             scenario = {"schedule": [_phase(0, rate, study["base_mix"])], "duration_s": seconds,
                         "workload_seed": study["seed"] + index, "max_output_tokens": study["max_output_tokens"]}
             arrivals = make_arrivals(scenario, pools)
             gen = LoadGenerator(arrivals, Gateway(),
                                 lambda row: http_request(engine.base_url, row, study["request_timeout_s"]))
-            gen.start()
-            gen.wait(drain_timeout_s=study["request_timeout_s"] + 30)
+            try:
+                gen.start()
+                gen.wait(drain_timeout_s=study["request_timeout_s"] + 30)
+            finally:
+                gen.stop()
             waiting = scrape_metrics(metrics_url).get("waiting")
             summary = summarize(gen.outcomes)
             ok = (summary["p95_latency_s"] is not None and summary["p95_latency_s"] <= study["slo"]["p95_latency_s"]
                   and summary["error_rate"] <= study["slo"]["max_error_rate"])
             steps.append({"rate_rps": rate, **summary, "within_slo": ok, "waiting_after": waiting})
+            write_json(out / f"calibration-step-{index:02d}.json", steps[-1])
             log(f"rate {rate}: {summary} within_slo={ok}")
             if not ok:
                 break
+        passing = [s["rate_rps"] for s in steps if s["within_slo"]]
+        result.update(status="completed", capacity_rps=max(passing) if passing else None)
+    except BaseException as exc:
+        result.update(status="failed", failure=type(exc).__name__, capacity_rps=None)
+        raise
     finally:
-        engine.stop()
-    passing = [s["rate_rps"] for s in steps if s["within_slo"]]
-    result = {"schema_version": 1, "created_at": timestamp(), "steps": steps,
-              "capacity_rps": max(passing) if passing else None,
-              "definition": "highest tested arrival rate whose p95 latency and error rate meet the SLO",
-              "engine": engine.metadata.get("vllm_version")}
-    write_json(out / "calibration.json", result)
+        try:
+            engine.stop()
+        except BaseException as exc:
+            result.update(status="failed", cleanup_failure=type(exc).__name__, capacity_rps=None)
+            raise
+        finally:
+            write_json(out / "engine" / "engine_metadata.json", engine.metadata)
+            write_json(out / "calibration.json", result)
     return result
