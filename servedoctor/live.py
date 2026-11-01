@@ -17,7 +17,7 @@ from servetune.artifacts import timestamp, write_json
 from .catalog import validate_action, ActionError
 from .evaluate import _model_decision, _monitor, _rules_decision, expert_of
 from .loadgen import Gateway, LoadGenerator, http_request, summarize
-from .llm import PermanentAPIError
+from .llm import PermanentAPIError, PermanentConfigurationError
 from .observe import observe, render
 from .record import ContentionJob, engine_knobs, serving_config
 from .scenarios import make_arrivals
@@ -177,6 +177,8 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
                 stream.write(json.dumps(step) + "\n")
             if step.get("halt_paid_calls"):
                 raise PermanentAPIError(step["provider"], step["http_status"])
+            if step.get("halt_configuration_error"):
+                raise PermanentConfigurationError(step["provider"])
             for client in clients.values():
                 ledger = getattr(client, "ledger", None)
                 if ledger is not None:
@@ -197,6 +199,8 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
         result["failure"] = type(exc).__name__
         if isinstance(exc, PermanentAPIError):
             result.update(provider=exc.provider, http_status=exc.http_status)
+        elif isinstance(exc, PermanentConfigurationError):
+            result["provider"] = exc.provider
         raise
     finally:
         loadgen.stop()
@@ -243,6 +247,8 @@ def _decide(arm, clients, observation, *, checkpoint=None):
         checkpoint["error"] = type(exc).__name__
         if isinstance(exc, PermanentAPIError):
             checkpoint.update(provider=exc.provider, http_status=exc.http_status, halt_paid_calls=True)
+        elif isinstance(exc, PermanentConfigurationError):
+            checkpoint.update(provider=exc.provider, halt_configuration_error=True)
         return {"incident": False, "error": type(exc).__name__, "call_failed": True}
 
 
