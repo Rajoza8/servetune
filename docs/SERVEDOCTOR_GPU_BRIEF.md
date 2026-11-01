@@ -35,6 +35,21 @@ python3 -m servetune prepare-data --out data/gsm8k
 export REV=<exact 40-character Glimmer Hub commit used in v4>
 ```
 
+Prefetch that revision, then restore v4's offline cache resolution for every
+serving, evaluation and live command (including shells receiving the Meta key):
+
+```sh
+export HF_HOME=/workspace/.hf_home
+python3 -c 'import os; from huggingface_hub import snapshot_download; snapshot_download("meta-models/Muse-Glimmer-30B", revision=os.environ["REV"], token=False)'
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1
+export VLLM_NO_USAGE_STATS=1 VLLM_CACHE_ROOT=/workspace/.vllm_cache
+```
+
+The pinned vLLM build resolves offline Hub IDs to local snapshots before spawning
+workers. Without these settings the November 1 preflight worker reset the exact
+revision to `main` and failed tokenizer initialization. Check both model and
+tokenizer paths in the engine log; retain failed attempts in separate directories.
+
 ## 1. Preflight (about 30 minutes)
 
 1. Start Glimmer with the base config through a short calibration step (step
