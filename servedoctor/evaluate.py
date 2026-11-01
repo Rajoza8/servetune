@@ -12,8 +12,8 @@ from pathlib import Path
 
 from . import rules
 from .catalog import ActionError, validate_action
-from .llm import (BudgetWarningError, MONITOR_SYSTEM, PermanentAPIError, diagnose_system,
-                  normalize_decision, parse_json)
+from .llm import (BudgetWarningError, MONITOR_SYSTEM, PermanentAPIError, PermanentConfigurationError,
+                  diagnose_system, normalize_decision, parse_json)
 from .observe import load_incident, normal_profile, observe, render
 
 EXPERTS = ("spark", "wonder")
@@ -115,7 +115,9 @@ def run_incident(arm, incident, *, profile, reference_config, clients, checkpoin
                         "call_failed": True}
             if isinstance(exc, PermanentAPIError):
                 step["http_status"], step["provider"] = exc.http_status, exc.provider
-            if isinstance(exc, (BudgetWarningError, PermanentAPIError)):
+            if isinstance(exc, PermanentConfigurationError):
+                step["provider"] = exc.provider
+            if isinstance(exc, (BudgetWarningError, PermanentAPIError, PermanentConfigurationError)):
                 stopped = exc
         step["decision"] = decision
         trail.append(step)

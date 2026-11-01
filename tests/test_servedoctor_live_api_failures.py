@@ -6,7 +6,7 @@ import unittest
 import urllib.error
 
 from servedoctor.live import run_live
-from servedoctor.llm import Ledger, ModelClient, PermanentAPIError
+from servedoctor.llm import Ledger, ModelClient, PermanentAPIError, PermanentConfigurationError
 from servedoctor.telemetry import read_jsonl
 
 
@@ -35,6 +35,30 @@ def run_stub(run, clients, arm):
 
 
 class LiveApiFailureTests(unittest.TestCase):
+    def test_transport_encoding_error_is_saved_once_then_halts_live(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            ledger = Ledger(root / "ledger.json")
+            ledger.initialize()
+
+            def broken_encoding(body):
+                raise UnicodeEncodeError("latin-1", "invented-\u03a9-value", 9, 10, "test failure")
+
+            expert = ModelClient("spark", ledger=ledger, transport=broken_encoding,
+                                 environ={"MODEL_API_KEY": "dummy-test-key-no-real-credential"})
+            run = root / "run"
+            with self.assertRaises(PermanentConfigurationError):
+                run_stub(run, {"spark": expert}, "spark")
+            self.assertEqual(expert.calls, 1)
+            self.assertEqual(ledger.summary()["calls"], 1)
+            journal = read_jsonl(run / "checkpoints.jsonl")
+            self.assertEqual(len(journal), 1)
+            self.assertEqual(journal[0]["error"], "PermanentConfigurationError")
+            self.assertEqual(journal[0]["provider"], "meta")
+            saved = json.loads((run / "live_result.json").read_text())
+            self.assertEqual(saved["failure"], "PermanentConfigurationError")
+            self.assertNotIn("invented-", json.dumps(saved))
+
     def test_paid_http_rejection_is_journaled_once_then_stops_live_run(self):
         for status in (400, 401, 403, 404, 429):
             with self.subTest(status=status), tempfile.TemporaryDirectory() as tmp:

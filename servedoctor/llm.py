@@ -63,6 +63,14 @@ class PermanentAPIError(RuntimeError):
         super().__init__(f"{provider} returned HTTP {http_status}; stop and report before another paid call")
 
 
+class PermanentConfigurationError(RuntimeError):
+    """A request cannot be encoded; keep one failure and require configuration repair."""
+
+    def __init__(self, provider):
+        self.provider = provider
+        super().__init__(f"{provider} request encoding failed; stop and verify configuration")
+
+
 class Ledger:
     def __init__(self, path):
         self.path = Path(path)
@@ -165,8 +173,9 @@ class ModelClient:
                 raise ValueError("Baseten token prices must be finite and positive")
             self.spec["input_per_m"], self.spec["output_per_m"] = rates
         self.key = next((environ[k] for k in self.spec["key_env"] if environ.get(k)), None)
-        if self.spec["key_env"] and not self.key:
-            raise ValueError(f"Set one of {self.spec['key_env']} for {name}")
+        if self.spec["key_env"] and (not isinstance(self.key, str) or not self.key
+                                    or any(not 33 <= ord(char) <= 126 for char in self.key)):
+            raise ValueError("Paid API credentials must be nonempty ASCII strings without whitespace or control characters")
         self.ledger = ledger
         if self.spec["provider"] in CAPS and ledger is None:
             raise ValueError("Paid providers require the ServeDoctor ledger")
@@ -203,6 +212,9 @@ class ModelClient:
         self.calls += 1
         try:
             response = self.transport(body)
+        except UnicodeEncodeError:
+            self.failures += 1
+            raise PermanentConfigurationError(provider) from None
         except urllib.error.HTTPError as exc:
             self.failures += 1
             if provider in CAPS and exc.code in (400, 401, 403, 404, 429):
