@@ -37,7 +37,7 @@
   "faults": {
     "traffic_surge": {"capacity_multiplier": [1.3, 1.7, 2.2]},
     "long_prompt_flood": {"long_fraction": [0.3, 0.5, 0.8]},
-    "kv_cache_starvation": {"gpu_memory_utilization": [0.727, 0.684, 0.655]},
+    "kv_cache_starvation": {"gpu_memory_utilization": [0.6165, 0.6155, 0.6147]},
     "batch_limit_too_low": {"max_num_seqs": [8, 4, 2]},
     "context_limit_too_small": {"max_model_len": [1536, 1024, 768]},
     "gpu_contention": {"duty": [0.4, 0.7, 1.0], "matrix_size": 8192},
@@ -49,5 +49,5 @@
     "dev_healthy": 1,
     "dev_underutilization": 1
   },
-  "notes": "capacity_rps must be calibrated on the GPU with `python3 -m servedoctor calibrate` before generating scenarios. Fault severities are starting points; calibrate them on dev incidents only, then freeze before recording test incidents. November 1 GPU pre-generation calibration: base KV at utilization 0.9 was 27.35 GiB. Replaced KV utilizations 0.80/0.78/0.76 with 0.727/0.684/0.655: all started and yielded 10.92/6.83/4.08 GiB (40%/25%/15% of base), following the GPU brief. The original values would retain about half or more of base KV. Evidence: runs/sd-kv-probes-attempt1. No dev or test incident had been recorded."
+  "notes": "capacity_rps must be calibrated on the GPU with `python3 -m servedoctor calibrate` before generating scenarios. Fault severities are starting points; calibrate them on dev incidents only, then freeze before recording test incidents. November 1 pre-generation calibration: base KV at utilization 0.9 was 27.35 GiB. Replaced 0.80/0.78/0.76 with 0.727/0.684/0.655, which started with 10.92/6.83/4.08 GiB (40%/25%/15% of base), following the GPU brief; evidence runs/sd-kv-probes-attempt1. Initial dev inc-17 at 0.684 then showed no degradation: p95 6.47 s, zero errors, queueing or preemptions, maximum KV usage 9.59%. Development-only 90-second probes at 0.6165/0.6155/0.6147 all started with 8475/6564/5037 KV tokens and produced 23/45/88 preemptions and successful-request p95 8.54/14.80/33.68 s. Adopted those values to create real cache pressure; evidence runs/sd-kv-dev-refinement-attempt1. Preserve the original study and generate a new directory. No test incident had been recorded or evaluated."
 }
