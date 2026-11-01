@@ -37,7 +37,7 @@
   "faults": {
     "traffic_surge": {"capacity_multiplier": [1.3, 1.7, 2.2]},
     "long_prompt_flood": {"long_fraction": [0.3, 0.5, 0.8]},
-    "kv_cache_starvation": {"gpu_memory_utilization": [0.8, 0.78, 0.76]},
+    "kv_cache_starvation": {"gpu_memory_utilization": [0.727, 0.684, 0.655]},
     "batch_limit_too_low": {"max_num_seqs": [8, 4, 2]},
     "context_limit_too_small": {"max_model_len": [1536, 1024, 768]},
     "gpu_contention": {"duty": [0.4, 0.7, 1.0], "matrix_size": 8192},
@@ -49,5 +49,5 @@
     "dev_healthy": 1,
     "dev_underutilization": 1
   },
-  "notes": "capacity_rps must be calibrated on the GPU with `python3 -m servedoctor calibrate` before generating scenarios. Fault severities are starting points; calibrate them on dev incidents only, then freeze before recording test incidents."
+  "notes": "capacity_rps must be calibrated on the GPU with `python3 -m servedoctor calibrate` before generating scenarios. Fault severities are starting points; calibrate them on dev incidents only, then freeze before recording test incidents. November 1 GPU pre-generation calibration: base KV at utilization 0.9 was 27.35 GiB. Replaced KV utilizations 0.80/0.78/0.76 with 0.727/0.684/0.655: all started and yielded 10.92/6.83/4.08 GiB (40%/25%/15% of base), following the GPU brief. The original values would retain about half or more of base KV. Evidence: runs/sd-kv-probes-attempt1. No dev or test incident had been recorded."
 }
