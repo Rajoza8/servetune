@@ -14,7 +14,7 @@ import time
 from servetune.artifacts import timestamp, write_json
 
 from .catalog import validate_action, ActionError
-from .evaluate import _model_decision, _monitor, _rules_decision
+from .evaluate import _model_decision, _monitor, _rules_decision, expert_of
 from .loadgen import Gateway, LoadGenerator, http_request, summarize
 from .observe import observe
 from .record import ContentionJob, engine_knobs, serving_config
@@ -194,11 +194,11 @@ def _decide(arm, clients, observation):
     try:
         if arm == "rules":
             return _rules_decision(observation)
-        if arm == "glimmer_to_spark":
+        if arm.startswith("glimmer_to_"):
             monitor = _monitor(clients["glimmer"], observation)
             if monitor["status"] == "healthy":
                 return {"incident": False}
-            return _model_decision(clients["spark"], observation)
+            return _model_decision(clients[expert_of(arm)], observation)
         return _model_decision(clients[arm], observation)
     except Exception as exc:
         return {"incident": False, "error": type(exc).__name__}

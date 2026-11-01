@@ -9,7 +9,7 @@ import sys
 from .scenarios import build_prompt_pools, load_questions, write_study
 
 ROOT = Path(__file__).resolve().parents[1]
-ARMS = ["rules", "glimmer", "spark", "glimmer_to_spark"]
+ARMS = ["rules", "glimmer", "spark", "wonder", "glimmer_to_spark", "glimmer_to_wonder"]
 
 
 def _serving(args):
@@ -45,14 +45,14 @@ def _gpu_args(parser):
 
 
 def _clients(args, arms, glimmer_url=None):
+    from .evaluate import expert_of
     from .llm import Ledger, ModelClient
-    clients = {}
-    paid = any(a in ("spark", "glimmer_to_spark") for a in arms) or (
-        args.glimmer == "baseten" and any(a in ("glimmer", "glimmer_to_spark") for a in arms))
+    experts = {expert_of(a) for a in arms} - {None}
+    needs_glimmer = any(a == "glimmer" or a.startswith("glimmer_to_") for a in arms)
+    paid = bool(experts) or (args.glimmer == "baseten" and needs_glimmer)
     ledger = Ledger(args.ledger) if paid else None
-    if any(a in ("spark", "glimmer_to_spark") for a in arms):
-        clients["spark"] = ModelClient("spark", ledger=ledger)
-    if any(a in ("glimmer", "glimmer_to_spark") for a in arms):
+    clients = {expert: ModelClient(expert, ledger=ledger) for expert in experts}
+    if needs_glimmer:
         if args.glimmer == "baseten":
             clients["glimmer"] = ModelClient("glimmer-baseten", ledger=ledger)
         else:

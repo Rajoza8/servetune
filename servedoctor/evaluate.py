@@ -15,7 +15,17 @@ from .catalog import ActionError, validate_action
 from .llm import MONITOR_SYSTEM, diagnose_system, normalize_decision, parse_json
 from .observe import load_incident, normal_profile, observe, render
 
-ARMS = ("rules", "glimmer", "spark", "glimmer_to_spark")
+EXPERTS = ("spark", "wonder")
+ARMS = ("rules", "glimmer", "spark", "wonder", "glimmer_to_spark", "glimmer_to_wonder")
+
+
+def expert_of(arm):
+    """The paid Meta model an arm calls, if any."""
+    if arm in EXPERTS:
+        return arm
+    if arm.startswith("glimmer_to_") and arm[len("glimmer_to_"):] in EXPERTS:
+        return arm[len("glimmer_to_"):]
+    return None
 
 
 def _rules_decision(observation):
@@ -66,16 +76,16 @@ def run_incident(arm, incident, *, profile, reference_config, clients, checkpoin
         try:
             if arm == "rules":
                 decision = _rules_decision(observation)
-            elif arm in ("glimmer", "spark"):
+            elif arm in ("glimmer",) + EXPERTS:
                 decision = _model_decision(clients[arm], observation)
-            elif arm == "glimmer_to_spark":
+            elif arm.startswith("glimmer_to_") and expert_of(arm):
                 monitor = _monitor(clients["glimmer"], observation)
                 step["monitor"] = monitor
                 # An unreadable monitor reply escalates: failing safe costs a Spark call, not an outage.
                 if monitor["status"] == "healthy":
                     decision = {"incident": False, "root_cause": "healthy", "actions": [{"type": "no_action"}]}
                 else:
-                    decision = _model_decision(clients["spark"], observation)
+                    decision = _model_decision(clients[expert_of(arm)], observation)
                     step["escalated"] = True
             else:
                 raise ValueError(f"Unknown arm {arm}")

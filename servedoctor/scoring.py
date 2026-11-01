@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 
 from .catalog import judge_actions
+from .evaluate import expert_of
 from .llm import PROVIDERS
 
 
@@ -40,20 +41,18 @@ def score_one(result, answer, runtime):
                                  if (s.get("decision") or {}).get("valid_output") is False
                                  or (s.get("monitor") or {}).get("valid_output") is False)
     row["call_failures"] = sum(1 for s in result["trail"] if s.get("error"))
-    if result["arm"] in ("spark", "glimmer_to_spark"):
-        cost = Decimal(0)
-        calls = 0
+    expert = expert_of(result["arm"])
+    cost, calls = Decimal(0), 0
+    if expert:
+        spec = PROVIDERS[expert]
         for step in result["trail"]:
-            if result["arm"] == "spark" or step.get("escalated"):
+            if result["arm"] == expert or step.get("escalated"):
                 usage = (step.get("decision") or {}).get("usage") or {}
                 if isinstance(usage.get("prompt_tokens"), int) and isinstance(usage.get("completion_tokens"), int):
-                    spec = PROVIDERS["spark"]
                     cost += (Decimal(usage["prompt_tokens"]) * spec["input_per_m"]
                              + Decimal(usage["completion_tokens"]) * spec["output_per_m"]) / 10**6
                     calls += 1
-        row["spark_calls"], row["spark_cost_usd"] = calls, float(cost)
-    else:
-        row["spark_calls"], row["spark_cost_usd"] = 0, 0.0
+    row["api_calls"], row["api_cost_usd"] = calls, float(cost)
     return row
 
 
@@ -78,8 +77,8 @@ def aggregate(rows):
             "median_time_to_detect_s": ttd[len(ttd) // 2] if ttd else None,
             "invalid_outputs": sum(r["invalid_outputs"] for r in items),
             "call_failures": sum(r["call_failures"] for r in items),
-            "spark_calls": sum(r["spark_calls"] for r in items),
-            "spark_cost_usd": round(sum(r["spark_cost_usd"] for r in items), 4),
+            "api_calls": sum(r["api_calls"] for r in items),
+            "api_cost_usd": round(sum(r["api_cost_usd"] for r in items), 4),
         }
     return table
 

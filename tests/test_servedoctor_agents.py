@@ -137,8 +137,32 @@ class ArmTests(unittest.TestCase):
             self.assertTrue(row["diagnosis_correct"])
             self.assertTrue(row["fix_proposed"])
             self.assertFalse(row["harmful"])
-            self.assertEqual(row["spark_calls"], 1)
-            self.assertGreater(row["spark_cost_usd"], 0)
+            self.assertEqual(row["api_calls"], 1)
+            self.assertGreater(row["api_cost_usd"], 0)
+
+
+class WonderArmTests(unittest.TestCase):
+    def test_glimmer_to_wonder_uses_wonder_rates(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            sim_study(tmp)
+            answers = json.loads((Path(tmp) / "answers" / "answer_keys.json").read_text())["answers"]
+            target = next(a for a in answers if a["root_cause"] == "batch_limit_too_low")
+            ledger = Ledger(Path(tmp) / "ledger.json")
+            ledger.initialize()
+            monitor = ModelClient("glimmer-local", transport=scripted_transport(
+                {"status": "anomaly", "summary": "queue growing"}))
+            wonder = ModelClient("wonder", ledger=ledger, environ={"MODEL_API_KEY": "test-key-0123456789abcdef"},
+                                 transport=scripted_transport({
+                                     "incident": True, "root_cause": "batch_limit_too_low",
+                                     "actions": [{"type": "set_engine_config", "knob": "max_num_seqs",
+                                                  "value": 64}]}))
+            self.assertEqual(wonder.spec["model"], "muse-wonder")
+            evaluate(tmp, ["glimmer_to_wonder"], clients={"glimmer": monitor, "wonder": wonder},
+                     ids={target["id"]}, log=lambda *_: None)
+            row = score_study(tmp)["rows"][0]
+            self.assertTrue(row["fix_proposed"])
+            self.assertEqual(row["api_calls"], 1)
+            self.assertAlmostEqual(row["api_cost_usd"], (1000 * 4 + 200 * 20) / 1e6)
 
 
 class LiveTests(unittest.TestCase):
