@@ -12,7 +12,8 @@ from pathlib import Path
 
 from . import rules
 from .catalog import ActionError, validate_action
-from .llm import BudgetWarningError, MONITOR_SYSTEM, diagnose_system, normalize_decision, parse_json
+from .llm import (BudgetWarningError, MONITOR_SYSTEM, PermanentAPIError, diagnose_system,
+                  normalize_decision, parse_json)
 from .observe import load_incident, normal_profile, observe, render
 
 EXPERTS = ("spark", "wonder")
@@ -54,7 +55,16 @@ def _model_decision(client, observation, max_tokens=2048):
 
 
 def _monitor(client, observation):
-    text, usage = client.chat(MONITOR_SYSTEM, render(observation), max_tokens=600)
+    try:
+        text, usage = client.chat(MONITOR_SYSTEM, render(observation), max_tokens=600)
+    except OSError as exc:
+        if getattr(client, "spec", {}).get("provider") != "local":
+            raise
+        failed = {"status": None, "summary": "", "raw_output": "", "usage": {},
+                  "valid_output": False, "call_failed": True, "error": type(exc).__name__}
+        if isinstance(getattr(exc, "code", None), int):
+            failed["http_status"] = exc.code
+        return failed
     try:
         raw = parse_json(text)
         status = raw.get("status") if raw.get("status") in ("healthy", "anomaly") else None
@@ -87,6 +97,10 @@ def run_incident(arm, incident, *, profile, reference_config, clients, checkpoin
             elif arm.startswith("glimmer_to_") and expert_of(arm):
                 monitor = _monitor(clients["glimmer"], observation)
                 step["monitor"] = monitor
+                if monitor.get("error"):
+                    step["error"] = monitor["error"]
+                    if "http_status" in monitor:
+                        step["http_status"] = monitor["http_status"]
                 # An unreadable monitor reply escalates: failing safe costs a Spark call, not an outage.
                 if monitor["status"] == "healthy":
                     decision = {"incident": False, "root_cause": "healthy", "actions": [{"type": "no_action"}]}
@@ -99,7 +113,9 @@ def run_incident(arm, incident, *, profile, reference_config, clients, checkpoin
             step["error"] = type(exc).__name__
             decision = {"incident": False, "root_cause": "healthy", "actions": [{"type": "no_action"}],
                         "call_failed": True}
-            if isinstance(exc, BudgetWarningError):
+            if isinstance(exc, PermanentAPIError):
+                step["http_status"], step["provider"] = exc.http_status, exc.provider
+            if isinstance(exc, (BudgetWarningError, PermanentAPIError)):
                 stopped = exc
         step["decision"] = decision
         trail.append(step)

@@ -17,6 +17,7 @@ from servetune.artifacts import timestamp, write_json
 from .catalog import validate_action, ActionError
 from .evaluate import _model_decision, _monitor, _rules_decision, expert_of
 from .loadgen import Gateway, LoadGenerator, http_request, summarize
+from .llm import PermanentAPIError
 from .observe import observe, render
 from .record import ContentionJob, engine_knobs, serving_config
 from .scenarios import make_arrivals
@@ -174,6 +175,8 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
             # must retain healthy replies, invalid output and failed calls too.
             with checkpoint_path.open("a", encoding="utf-8") as stream:
                 stream.write(json.dumps(step) + "\n")
+            if step.get("halt_paid_calls"):
+                raise PermanentAPIError(step["provider"], step["http_status"])
             for client in clients.values():
                 ledger = getattr(client, "ledger", None)
                 if ledger is not None:
@@ -192,6 +195,8 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
         loadgen.wait(drain_timeout_s=timeout + 10)
     except BaseException as exc:
         result["failure"] = type(exc).__name__
+        if isinstance(exc, PermanentAPIError):
+            result.update(provider=exc.provider, http_status=exc.http_status)
         raise
     finally:
         loadgen.stop()
@@ -227,6 +232,8 @@ def _decide(arm, clients, observation, *, checkpoint=None):
         if arm.startswith("glimmer_to_"):
             monitor = _monitor(clients["glimmer"], observation)
             checkpoint["monitor"] = monitor
+            if monitor.get("error"):
+                checkpoint["error"] = monitor["error"]
             if monitor["status"] == "healthy":
                 return {"incident": False}
             checkpoint["escalated"] = True
@@ -234,6 +241,8 @@ def _decide(arm, clients, observation, *, checkpoint=None):
         return _model_decision(clients[arm], observation)
     except Exception as exc:
         checkpoint["error"] = type(exc).__name__
+        if isinstance(exc, PermanentAPIError):
+            checkpoint.update(provider=exc.provider, http_status=exc.http_status, halt_paid_calls=True)
         return {"incident": False, "error": type(exc).__name__, "call_failed": True}
 
 
