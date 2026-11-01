@@ -102,45 +102,52 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
     checkpoint_path.touch(exist_ok=False)
     duration = scenario["duration_s"] + extra_s
     slo = scenario["slo"]
-    slot = EngineSlot(engine_factory, serving, engine_knobs(scenario["engine"]), run)
-    slot.start()
-    gateway = Gateway()
-    timeout = scenario["request_timeout_s"]
-
-    def request(row):
-        base = slot.base_url
-        if base is None:
-            return {"status": "connection_error"}
-        return http_request(base, row, timeout)
-
-    live_scenario = dict(scenario, duration_s=duration)
-    loadgen = LoadGenerator(make_arrivals(live_scenario, pools), gateway, request)
-    gpu = gpu_factory() if gpu_factory else None
-    t0 = time.monotonic()
-    telemetry_path = run / "telemetry.jsonl"
-
-    def metrics_url():
-        return slot.base_url[: -len("/v1")] + "/metrics" if slot.base_url else "http://127.0.0.1:9/metrics"
-
-    class _Scrape:
-        def __call__(self, _url):
-            from .telemetry import scrape_metrics
-            return scrape_metrics(metrics_url())
-
-    tail = _SlotTail(slot)
-    recorder = Recorder(telemetry_path, clock_zero=t0, metrics_url="dynamic", gpu=gpu, loadgen=loadgen,
-                        gateway=gateway, log_tail=tail, config_fn=lambda: dict(slot.knobs), scrape=_Scrape())
-    events = list(scenario["events"])
-    write_json(run / "scenario_public.json", {"id": scenario["id"], "slo": slo, "duration_s": duration,
-                                               "arm": arm, "started_at": timestamp()})
-    job = None
-    contention = scenario.get("contention")
+    slot = loadgen = gpu = recorder = job = timer = None
+    primary_error = None
+    stage = "engine_start"
     result = {"id": scenario["id"], "arm": arm, "decision": None, "actions": [], "executed": [],
-              "recovered": None, "rolled_back": False, "trail": []}
-    recorder.start()
-    loadgen.start(start_time=t0)
-    timer = None
+              "recovered": None, "rolled_back": False, "trail": [], "cleanup_errors": []}
     try:
+        slot = EngineSlot(engine_factory, serving, engine_knobs(scenario["engine"]), run)
+        slot.start()
+        stage = "workload_setup"
+        gateway = Gateway()
+        timeout = scenario["request_timeout_s"]
+
+        def request(row):
+            base = slot.base_url
+            if base is None:
+                return {"status": "connection_error"}
+            return http_request(base, row, timeout)
+
+        live_scenario = dict(scenario, duration_s=duration)
+        loadgen = LoadGenerator(make_arrivals(live_scenario, pools), gateway, request)
+        stage = "gpu_setup"
+        gpu = gpu_factory() if gpu_factory else None
+        t0 = time.monotonic()
+        telemetry_path = run / "telemetry.jsonl"
+
+        def metrics_url():
+            return slot.base_url[: -len("/v1")] + "/metrics" if slot.base_url else "http://127.0.0.1:9/metrics"
+
+        class _Scrape:
+            def __call__(self, _url):
+                from .telemetry import scrape_metrics
+                return scrape_metrics(metrics_url())
+
+        stage = "recorder_setup"
+        tail = _SlotTail(slot)
+        recorder = Recorder(telemetry_path, clock_zero=t0, metrics_url="dynamic", gpu=gpu, loadgen=loadgen,
+                            gateway=gateway, log_tail=tail, config_fn=lambda: dict(slot.knobs), scrape=_Scrape())
+        events = list(scenario["events"])
+        write_json(run / "scenario_public.json", {"id": scenario["id"], "slo": slo, "duration_s": duration,
+                                                   "arm": arm, "started_at": timestamp()})
+        contention = scenario.get("contention")
+        stage = "recorder_start"
+        recorder.start()
+        stage = "loadgen_start"
+        loadgen.start(start_time=t0)
+        stage = "run"
         if contention:
             job = job_factory()
             timer = threading.Timer(contention["onset_s"], lambda: job.start(
@@ -196,35 +203,65 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
                            "text": json.dumps(decision["actions"])})
         loadgen.wait(drain_timeout_s=timeout + 10)
     except BaseException as exc:
-        result["failure"] = type(exc).__name__
+        primary_error = exc
+        result.update(failure=type(exc).__name__, failure_stage=stage)
         if isinstance(exc, PermanentAPIError):
             result.update(provider=exc.provider, http_status=exc.http_status)
         elif isinstance(exc, PermanentConfigurationError):
             result["provider"] = exc.provider
         raise
     finally:
-        loadgen.stop()
-        if timer:
-            timer.cancel()
-        if job:
-            job.stop()
-        recorder.stop()
-        try:
-            slot.stop()
-        finally:
-            if gpu:
-                gpu.stop()
-            onset = answer_onset if answer_onset is not None else 0
-            result["fault_window_before_action"] = summarize(loadgen.outcomes, onset,
-                                                             result.get("acted_at_s") or duration)
-            result["after_action"] = (summarize(loadgen.outcomes, result["acted_at_s"], duration)
-                                      if result.get("acted_at_s") else None)
-            result["time_to_recover_s"] = _time_to_recover(loadgen.outcomes, result, onset, duration, slo)
-            result["engine_restarts"] = slot.restarts
+        cleanup_exceptions = []
+
+        def cleanup(resource, callback):
+            try:
+                callback()
+            except BaseException as exc:
+                cleanup_exceptions.append(exc)
+                result["cleanup_errors"].append({"resource": resource, "error": type(exc).__name__})
+
+        if loadgen is not None:
+            cleanup("loadgen", loadgen.stop)
+        if timer is not None:
+            cleanup("timer", timer.cancel)
+        if job is not None:
+            cleanup("job", job.stop)
+        if recorder is not None:
+            def stop_recorder():
+                thread = getattr(recorder, "_thread", None)
+                if isinstance(thread, threading.Thread) and thread.ident is None:
+                    # Recorder.start can fail before Thread.start succeeds.
+                    recorder._stop.set()
+                else:
+                    recorder.stop()
+            cleanup("recorder", stop_recorder)
+        if slot is not None:
+            cleanup("engine", slot.stop)
+        if gpu is not None:
+            cleanup("gpu", gpu.stop)
+        outcomes = getattr(loadgen, "outcomes", []) if loadgen is not None else []
+        onset = answer_onset if answer_onset is not None else 0
+        result["fault_window_before_action"] = summarize(outcomes, onset,
+                                                         result.get("acted_at_s") or duration)
+        result["after_action"] = (summarize(outcomes, result["acted_at_s"], duration)
+                                  if result.get("acted_at_s") else None)
+        result["time_to_recover_s"] = _time_to_recover(outcomes, result, onset, duration, slo)
+        result["engine_restarts"] = slot.restarts if slot is not None else []
+
+        def save_requests():
             with (run / "requests.jsonl").open("x") as stream:
-                for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
+                for row in sorted(outcomes, key=lambda r: r["t_sched"]):
                     stream.write(json.dumps(row) + "\n")
+        cleanup("requests_artifact", save_requests)
+        if primary_error is None and cleanup_exceptions:
+            result.update(failure=type(cleanup_exceptions[0]).__name__, failure_stage="cleanup")
+        try:
             write_json(run / "live_result.json", result)
+        except BaseException:
+            if primary_error is None:
+                raise
+        if primary_error is None and cleanup_exceptions:
+            raise cleanup_exceptions[0]
     return result
 
 
