@@ -173,7 +173,12 @@ class LiveTests(unittest.TestCase):
         scenario_list, answers = scenarios.generate(study)
         target = next(a for a in answers if a["root_cause"] == "context_limit_too_small")
         scenario = next(s for s in scenario_list if s["id"] == target["id"])
-        scenario = dict(scenario, duration_s=6)
+        # Guarantee context failures before the first checkpoint. The original
+        # sparse medium mix put its first oversized arrival at 1.9996s, racing
+        # the 2s telemetry sample and allowing an unrelated low-arrival decision.
+        scenario = dict(scenario, duration_s=6, schedule=[
+            {**phase, "mix": {"short": 0, "medium": 1, "long": 0}}
+            for phase in scenario["schedule"]])
         questions = [f"Question {i}: compute {i} plus {i}." for i in range(300)]
         pools = scenarios.build_prompt_pools(questions, study["prompt_tokens"], 3, per_class=6)
         with tempfile.TemporaryDirectory() as tmp:
