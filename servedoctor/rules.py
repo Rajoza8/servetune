@@ -10,7 +10,7 @@ ENGINE_KNOBS = ("max_num_seqs", "gpu_memory_utilization", "max_model_len", "max_
 THRESHOLDS = {
     "window_buckets": 3,
     "context_error_rate": 0.01,
-    "surge_arrival_ratio": 1.2,
+    "surge_arrival_ratio": 1.5,
     "long_prompt_ratio": 2.0,
     "contention_throughput_ratio": 0.85,
     "latency_slo_fraction": 1.0,
