@@ -24,6 +24,33 @@ from .telemetry import LogTail, Recorder, RecorderError, environment_marker_matc
 
 ENGINE_KNOB_KEYS = ("max_model_len", "max_num_seqs", "max_num_batched_tokens",
                     "gpu_memory_utilization", "enable_chunked_prefill", "enable_prefix_caching")
+DEFAULT_JOB_MODULE = "servedoctor.jobs.embedding_batch"
+JOB_MODULES = ("servedoctor.jobs.embedding_batch", "servedoctor.jobs.reranker_eval",
+               "servedoctor.jobs.thumbnail_index", "servedoctor.jobs.feature_cache_sync")
+
+
+def scenario_jobs(scenario):
+    """Neighbouring GPU jobs for a scenario: v0's single `contention` or the Hard set's `jobs` list.
+
+    Each job has a private role: "contention" (the fault) or "decoy" (a harmless tenant).
+    """
+    if scenario.get("jobs") is not None:
+        return scenario["jobs"]
+    contention = scenario.get("contention")
+    if not contention:
+        return []
+    return [{"role": "contention", "module": DEFAULT_JOB_MODULE, "onset_s": contention["onset_s"],
+             "duty": contention["duty"], "matrix_size": contention["matrix_size"], "period": None}]
+
+
+def start_job(job, spec, seconds):
+    """Start a job; pass module/period only when they differ from v0 defaults."""
+    kwargs = {}
+    if spec.get("module", DEFAULT_JOB_MODULE) != DEFAULT_JOB_MODULE:
+        kwargs["module"] = spec["module"]
+    if spec.get("period") is not None:
+        kwargs["period"] = spec["period"]
+    return job.start(seconds, spec["duty"], spec["matrix_size"], **kwargs)
 
 
 class ContentionJob:
@@ -33,7 +60,9 @@ class ContentionJob:
         self.marker = "SERVEDOCTOR_JOB_OWNER=" + secrets.token_hex(12)
         self.process = None
 
-    def start(self, seconds, duty, size):
+    def start(self, seconds, duty, size, module=DEFAULT_JOB_MODULE, period=None):
+        if module not in JOB_MODULES:
+            raise ValueError("Unknown job module")
         env = dict(os.environ)
         for name in list(env):
             if name.endswith("_API_KEY"):
@@ -41,10 +70,12 @@ class ContentionJob:
         key, value = self.marker.split("=", 1)
         env[key] = value
         env.setdefault("CUDA_VISIBLE_DEVICES", str(self.gpu_index))
-        self.process = subprocess.Popen(
-            [sys.executable, "-m", "servedoctor.jobs.embedding_batch", "--seconds", str(seconds),
-             "--duty", str(duty), "--size", str(size)],
-            env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+        command = [sys.executable, "-m", module, "--seconds", str(seconds),
+                   "--duty", str(duty), "--size", str(size)]
+        if period is not None:
+            command += ["--period", str(period)]
+        self.process = subprocess.Popen(command, env=env, stdout=subprocess.DEVNULL,
+                                        stderr=subprocess.DEVNULL, start_new_session=True)
         return self.process.pid
 
     def owns(self, pid):
@@ -119,8 +150,8 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
     t0 = time.monotonic()
     recorder = Recorder(inc / "telemetry.jsonl", clock_zero=t0, metrics_url=metrics_url, gpu=gpu,
                         loadgen=loadgen, gateway=gateway, log_tail=tail, config_fn=lambda: knobs)
-    job, job_pid, timer = None, None, None
-    contention = scenario.get("contention")
+    jobs, timers, job_pids = [], [], {"contention": [], "decoy": []}
+    job_specs = scenario_jobs(scenario)
     started_at = timestamp()
     primary_error = None
     cleanup_exceptions, cleanup_errors = [], []
@@ -146,15 +177,16 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
         stage = "loadgen_start"
         loadgen.start(start_time=t0)
         stage = "contention_setup"
-        if contention:
+        for spec in job_specs:
             job = job_factory()
+            jobs.append(job)
 
-            def launch():
-                nonlocal job_pid
-                job_pid = job.start(scenario["duration_s"] - contention["onset_s"] + drain_timeout_s,
-                                    contention["duty"], contention["matrix_size"])
+            def launch(job=job, spec=spec):
+                pid = start_job(job, spec, scenario["duration_s"] - spec["onset_s"] + drain_timeout_s)
+                job_pids.setdefault(spec.get("role", "contention"), []).append(pid)
 
-            timer = threading.Timer(contention["onset_s"], launch)
+            timer = threading.Timer(spec["onset_s"], launch)
+            timers.append(timer)
             timer.start()
         stage = "record"
         sleeper(max(0.0, scenario["duration_s"] - (time.monotonic() - t0)))
@@ -165,9 +197,9 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
         raise
     finally:
         cleanup("loadgen", loadgen.stop)
-        if timer is not None:
+        for timer in timers:
             cleanup("timer", timer.cancel)
-        if job is not None:
+        for job in jobs:
             cleanup("job", job.stop)
         cleanup("recorder", recorder.stop)
         thread = getattr(recorder, "_thread", None)
@@ -208,7 +240,9 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
             cleanup("manifest", lambda: seal(inc))
         if primary_error is None and cleanup_exceptions:
             raise cleanup_exceptions[0]
-    runtime = {"id": scenario["id"], "contention_pids": [job_pid] if job_pid else []}
+    runtime = {"id": scenario["id"], "contention_pids": [p for p in job_pids["contention"] if p]}
+    if scenario.get("jobs") is not None:
+        runtime["decoy_pids"] = [p for p in job_pids.get("decoy", []) if p]
     answers_dir = Path(out_dir) / "answers" / "runtime"
     answers_dir.mkdir(parents=True, exist_ok=True)
     write_json(answers_dir / f"{scenario['id']}.json", runtime)

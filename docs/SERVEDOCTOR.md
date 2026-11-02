@@ -92,6 +92,14 @@ Comparing Spark and Wonder as the escalation expert shows whether a stronger
 - Paid calls reserve their worst-case cost in a separate ServeDoctor ledger
   (Meta $50, Baseten $20) before dispatch. Failed calls keep the reservation.
 
+## ServeIncidents-Hard
+
+v0 saturated: three model arms fixed all 13 test incidents. The Hard set is a
+second study with config noise on every deploy, decoy GPU jobs, compound
+two-cause incidents, near-threshold severities and red herrings. Prompts,
+rules, models and scoring rules stay frozen from v0. See
+[SERVEDOCTOR_HARD.md](SERVEDOCTOR_HARD.md).
+
 ## Commands
 
 ```sh

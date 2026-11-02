@@ -82,16 +82,22 @@ def main(argv=None):
     p.add_argument("--calibration")
     p.add_argument("--out", required=True)
 
+    p = sub.add_parser("generate-hard", help="Freeze the ServeIncidents-Hard scenarios and sealed answer keys")
+    p.add_argument("--study", default=str(ROOT / "configs" / "servedoctor-hard.json"))
+    p.add_argument("--capacity-rps", type=float)
+    p.add_argument("--calibration")
+    p.add_argument("--out", required=True)
+
     p = sub.add_parser("record", help="GPU: record incidents (grouped by engine config)")
     _gpu_args(p)
     p.add_argument("--study-dir", required=True)
-    p.add_argument("--split", choices=["dev", "test", "reference"])
+    p.add_argument("--split", choices=["dev", "test", "reference", "hard"])
     p.add_argument("--ids")
 
     p = sub.add_parser("evaluate", help="Replay recorded incidents to agent arms")
     p.add_argument("--study-dir", required=True)
     p.add_argument("--arms", default=",".join(ARMS))
-    p.add_argument("--split", choices=["dev", "test"])
+    p.add_argument("--split", choices=["dev", "test", "hard"])
     p.add_argument("--ledger", default="runs/servedoctor-ledger.json")
     p.add_argument("--glimmer", choices=["local", "baseten"], default="local")
     p.add_argument("--glimmer-url", default="http://127.0.0.1:8000/v1")
@@ -104,9 +110,13 @@ def main(argv=None):
     p.add_argument("--gpu-index", type=int, default=0)
     p.add_argument("--dtype", default="bf16")
 
+    p = sub.add_parser("validate", help="Predeclared symptom check on recordings (run before scoring)")
+    p.add_argument("--study-dir", required=True)
+
     p = sub.add_parser("score", help="Score decisions against sealed answers")
     p.add_argument("--study-dir", required=True)
-    p.add_argument("--split", choices=["dev", "test"])
+    p.add_argument("--split", choices=["dev", "test", "hard"])
+    p.add_argument("--valid-only", action="store_true", help="Skip incidents the symptom check marked invalid")
 
     p = sub.add_parser("report", help="Write report.html and report.json")
     p.add_argument("--study-dir", required=True)
@@ -123,6 +133,7 @@ def main(argv=None):
     p = sub.add_parser("simulate", help="Synthetic rehearsal study (never a result)")
     p.add_argument("--out", required=True)
     p.add_argument("--capacity-rps", type=float, default=10)
+    p.add_argument("--hard", action="store_true", help="Rehearse the Hard set instead of v0")
 
     args = parser.parse_args(argv)
 
@@ -147,6 +158,22 @@ def main(argv=None):
         commitment = write_study(study, out)
         (out / "study.json").write_text(json.dumps(study, indent=2) + "\n")
         print(json.dumps(commitment, indent=2))
+    elif args.command == "generate-hard":
+        from .hard import write_hard_study
+        study = _study(args.study)
+        if args.calibration:
+            study["capacity_rps"] = json.loads(Path(args.calibration).read_text())["capacity_rps"]
+        if args.capacity_rps:
+            study["capacity_rps"] = args.capacity_rps
+        out = Path(args.out)
+        commitment = write_hard_study(study, out)
+        (out / "study.json").write_text(json.dumps(study, indent=2) + "\n")
+        print(json.dumps(commitment, indent=2))
+    elif args.command == "validate":
+        from .validity import validate_study
+        result = validate_study(args.study_dir)
+        print(json.dumps({"valid": result["valid"], "total": result["total"],
+                          "invalid": [r for r in result["incidents"] if not r["valid"]]}, indent=2))
     elif args.command == "record":
         from .record import record_study
         root = Path(args.study_dir)
@@ -192,7 +219,8 @@ def main(argv=None):
                     (engine_dir / "engine_metadata.json").write_text(json.dumps(engine.metadata, indent=2) + "\n")
     elif args.command == "score":
         from .scoring import score_study
-        print(json.dumps(score_study(args.study_dir, split=args.split)["by_arm"], indent=2))
+        print(json.dumps(score_study(args.study_dir, split=args.split, valid_only=args.valid_only)["by_arm"],
+                         indent=2))
     elif args.command == "report":
         from .report import render_report
         print(render_report(args.study_dir))
@@ -219,9 +247,9 @@ def main(argv=None):
                                                  "time_to_recover_s")}, indent=2, default=str))
     elif args.command == "simulate":
         from .simulate import simulate_study
-        study = _study(ROOT / "configs" / "servedoctor.json")
+        study = _study(ROOT / "configs" / ("servedoctor-hard.json" if args.hard else "servedoctor.json"))
         study["capacity_rps"] = args.capacity_rps
-        out = simulate_study(study, args.out)
+        out = simulate_study(study, args.out, hard=args.hard)
         (Path(out) / "study.json").write_text(json.dumps(study, indent=2) + "\n")
         print(out)
     return 0

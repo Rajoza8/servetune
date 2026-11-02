@@ -54,3 +54,14 @@ controls), an observation builder with no look-ahead, four evaluation arms
 (Meta $50, Baseten $20), scoring, an HTML report, a closed-loop live mode with
 verify-or-rollback, and a synthetic rehearsal mode. Tests run offline against a
 fake vLLM server. No GPU recording or ServeIncidents result exists yet.
+
+November 2, 2026, America/New_York: added ServeIncidents-Hard after the v0 test
+split saturated (three model arms fixed 13/13). New `servedoctor/hard.py`
+generator and `configs/servedoctor-hard.json`: 16 incidents with harmless
+engine-knob noise on every deploy, decoy GPU jobs under shared ordinary names,
+four compound two-cause incidents, near-threshold severities chosen from v0
+telemetry only, and red-herring alerts and changes. Added compound judging
+(`complete_fix`), a decoy-stop metric, a predeclared symptom check
+(`servedoctor validate`), multi-job recording and live execution, CLI commands
+and tests. Prompts, rules, models and v0 scoring are unchanged; all 144 v0
+decisions re-score identically. No Hard-set recording or result exists yet.

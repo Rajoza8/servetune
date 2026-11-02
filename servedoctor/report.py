@@ -25,9 +25,33 @@ def _spark(values, width=260, height=46, color="#2a7"):
             f'<path d="{path}" fill="none" stroke="{color}" stroke-width="1.6"/></svg>')
 
 
+def _scoreboard(parts, by_arm, arms, heading):
+    hard = any(a.get("compound_incidents") for a in by_arm.values())
+    extra = "<th>Complete fix (compound)</th><th>Stopped a harmless job</th>" if hard else ""
+    parts.append(f"<h2>{html.escape(heading)}</h2><table><tr><th>Arm</th><th>Detected</th><th>Correct diagnosis</th>"
+                 f"<th>Fix proposed</th>{extra}<th>Harmful actions</th><th>False alarms</th>"
+                 "<th>Median time to detect</th><th>Invalid outputs</th><th>Paid Meta calls / cost</th></tr>")
+    for arm in arms:
+        a = by_arm[arm]
+        extra_cells = (f"<td>{a['compound_complete_fix']}/{a['compound_incidents']}</td><td>{a['stopped_decoy']}</td>"
+                       if hard else "")
+        parts.append(
+            f"<tr><td>{ARM_LABELS[arm]}</td><td>{a['detected']}/{a['incidents']}</td>"
+            f"<td>{a['diagnosis_correct']}/{a['incidents']}</td><td>{a['fix_proposed']}/{a['incidents']}</td>"
+            f"{extra_cells}<td>{a['harmful']}</td>"
+            f"<td>{a['false_alarms']} ({a['healthy_false_alarms']}/{a['healthy_controls']} controls)</td>"
+            f"<td>{a['median_time_to_detect_s'] if a['median_time_to_detect_s'] is not None else '–'} s</td>"
+            f"<td>{a['invalid_outputs']}</td><td>{a['api_calls']} / ${a['api_cost_usd']:.3f}</td></tr>")
+    parts.append("</table>")
+
+
 def render_report(study_dir, out_path=None, title="ServeIncidents scoreboard"):
     root = Path(study_dir)
     scores = score_study(root)
+    validity_path = root / "answers" / "validity.json"
+    if validity_path.exists():
+        scores["by_arm_valid_only"] = score_study(root, valid_only=True)["by_arm"]
+        scores["validity"] = json.loads(validity_path.read_text())
     answers = {a["id"]: a for a in json.loads((root / "answers" / "answer_keys.json").read_text())["answers"]}
     mode = json.loads((root / "answers" / "answer_keys.json").read_text()).get("mode", "live")
     rows = scores["rows"]
@@ -42,19 +66,16 @@ td,th{border-color:#30363d}.muted{color:#8b949e}.banner{background:#2d2008;borde
              f"<h1>{html.escape(title)}</h1>"]
     if mode == "synthetic":
         parts.append('<div class="banner"><b>SYNTHETIC REHEARSAL.</b> Toy-model telemetry, not a result.</div>')
-    parts.append("<h2>Scoreboard</h2><table><tr><th>Arm</th><th>Detected</th><th>Correct diagnosis</th>"
-                 "<th>Fix proposed</th><th>Harmful actions</th><th>False alarms</th>"
-                 "<th>Median time to detect</th><th>Invalid outputs</th><th>Paid Meta calls / cost</th></tr>")
-    for arm in arms:
-        a = scores["by_arm"][arm]
-        parts.append(
-            f"<tr><td>{ARM_LABELS[arm]}</td><td>{a['detected']}/{a['incidents']}</td>"
-            f"<td>{a['diagnosis_correct']}/{a['incidents']}</td><td>{a['fix_proposed']}/{a['incidents']}</td>"
-            f"<td>{a['harmful']}</td><td>{a['false_alarms']} ({a['healthy_false_alarms']}/{a['healthy_controls']} controls)</td>"
-            f"<td>{a['median_time_to_detect_s'] if a['median_time_to_detect_s'] is not None else '–'} s</td>"
-            f"<td>{a['invalid_outputs']}</td><td>{a['api_calls']} / ${a['api_cost_usd']:.3f}</td></tr>")
-    parts.append("</table><p class=muted>Incidents exclude healthy controls. Diagnosis on a control counts as "
-                 "correct only if nothing is flagged. Fixes are judged against sealed per-cause rules.</p>")
+    _scoreboard(parts, scores["by_arm"], arms, "Scoreboard (all incidents)")
+    if "by_arm_valid_only" in scores:
+        validity = scores["validity"]
+        _scoreboard(parts, scores["by_arm_valid_only"], [a for a in arms if a in scores["by_arm_valid_only"]],
+                    f"Scoreboard (incidents passing the predeclared symptom check: {validity['valid']}/{validity['total']})")
+        parts.append(f"<p class=muted>Symptom check: {html.escape(validity['rule'])}.</p>")
+    parts.append("<p class=muted>Incidents exclude healthy controls. Diagnosis on a control counts as "
+                 "correct only if nothing is flagged. Fixes are judged against sealed per-cause rules. "
+                 "For compound incidents, naming either cause counts as a correct diagnosis and a complete "
+                 "fix must address both.</p>")
     parts.append("<h2>Incidents</h2><table><tr><th>Incident</th><th>Split</th><th>Truth</th>"
                  "<th>p95 latency</th><th>arrivals/s</th>" + "".join(f"<th>{ARM_LABELS[a]}</th>" for a in arms) + "</tr>")
     by_incident = {}
@@ -74,9 +95,13 @@ td,th{border-color:#30363d}.muted{color:#8b949e}.banner{background:#2d2008;borde
             label = row["predicted"] + (f" @ {row['flag_t']}s" if row["flagged"] else "")
             if row["harmful"]:
                 label += " · harmful"
+            if row.get("root_causes") and row["complete_fix"]:
+                label += " · complete fix"
             cells.append(f'<td class="{"ok" if ok else "bad"}">{html.escape(label)}</td>')
-        parts.append(f"<tr><td>{incident_id}</td><td>{answer['split']}</td><td>{answer['root_cause']} "
-                     f"<span class=muted>(sev {answer['severity_index']})</span></td>"
+        truth_label = " + ".join(answer.get("root_causes") or [answer["root_cause"]])
+        detail = answer.get("variant") or f"sev {answer['severity_index']}"
+        parts.append(f"<tr><td>{incident_id}</td><td>{answer['split']}</td><td>{html.escape(truth_label)} "
+                     f"<span class=muted>({html.escape(detail)})</span></td>"
                      f"<td>{_spark([b['p95_latency_s'] for b in series], color='#c4432b')}</td>"
                      f"<td>{_spark([b['arrivals_rps'] for b in series])}</td>{''.join(cells)}</tr>")
     parts.append("</table>")

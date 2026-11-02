@@ -19,7 +19,7 @@ from .evaluate import _model_decision, _monitor, _rules_decision, expert_of
 from .loadgen import Gateway, LoadGenerator, http_request, summarize
 from .llm import PermanentAPIError, PermanentConfigurationError
 from .observe import observe, render
-from .record import ContentionJob, engine_knobs, serving_config
+from .record import ContentionJob, engine_knobs, scenario_jobs, serving_config, start_job
 from .scenarios import make_arrivals
 from .telemetry import LogTail, Recorder, read_jsonl
 
@@ -102,7 +102,8 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
     checkpoint_path.touch(exist_ok=False)
     duration = scenario["duration_s"] + extra_s
     slo = scenario["slo"]
-    slot = loadgen = gpu = recorder = job = timer = None
+    slot = loadgen = gpu = recorder = None
+    jobs, timers = [], []
     primary_error = None
     stage = "engine_start"
     result = {"id": scenario["id"], "arm": arm, "decision": None, "actions": [], "executed": [],
@@ -142,16 +143,18 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
         events = list(scenario["events"])
         write_json(run / "scenario_public.json", {"id": scenario["id"], "slo": slo, "duration_s": duration,
                                                    "arm": arm, "started_at": timestamp()})
-        contention = scenario.get("contention")
+        job_specs = scenario_jobs(scenario)
         stage = "recorder_start"
         recorder.start()
         stage = "loadgen_start"
         loadgen.start(start_time=t0)
         stage = "run"
-        if contention:
+        for spec in job_specs:
             job = job_factory()
-            timer = threading.Timer(contention["onset_s"], lambda: job.start(
-                duration - contention["onset_s"] + 60, contention["duty"], contention["matrix_size"]))
+            jobs.append(job)
+            timer = threading.Timer(spec["onset_s"], lambda job=job, spec=spec: start_job(
+                job, spec, duration - spec["onset_s"] + 60))
+            timers.append(timer)
             timer.start()
         acted_at = None
         next_check = checkpoint_s
@@ -196,7 +199,7 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
             log(f"{scenario['id']} {arm}: {decision['root_cause']} at {now:.0f}s -> {decision['actions']}")
             acted_at = time.monotonic() - t0
             for action in decision["actions"]:
-                result["executed"].append(_execute(action, slot, gateway, job, log))
+                result["executed"].append(_execute(action, slot, gateway, jobs, log))
             acted_at = time.monotonic() - t0
             result["acted_at_s"] = round(acted_at, 1)
             events.append({"t": round(acted_at, 1), "kind": "agent_action",
@@ -222,9 +225,9 @@ def run_live(scenario, answer_onset, *, arm, clients, serving, pools, run_dir, e
 
         if loadgen is not None:
             cleanup("loadgen", loadgen.stop)
-        if timer is not None:
+        for timer in timers:
             cleanup("timer", timer.cancel)
-        if job is not None:
+        for job in jobs:
             cleanup("job", job.stop)
         if recorder is not None:
             def stop_recorder():
@@ -289,7 +292,7 @@ def _decide(arm, clients, observation, *, checkpoint=None):
         return {"incident": False, "error": type(exc).__name__, "call_failed": True}
 
 
-def _execute(action, slot, gateway, job, log):
+def _execute(action, slot, gateway, jobs, log):
     record = {"action": action, "at": timestamp()}
     try:
         action = validate_action(action, current_config=slot.knobs)
@@ -304,10 +307,12 @@ def _execute(action, slot, gateway, job, log):
             record["previous"] = {action["knob"]: slot.knobs.get(action["knob"])}
             slot.restart(action["knob"], action["value"])
         elif kind == "stop_gpu_process":
-            if job is None or not job.owns(action["pid"]):
+            candidates = jobs if isinstance(jobs, (list, tuple)) else ([] if jobs is None else [jobs])
+            owner = next((job for job in candidates if job.owns(action["pid"])), None)
+            if owner is None:
                 record["status"] = "refused: process not launched by this run"
                 return record
-            job.stop()
+            owner.stop()
         record["status"] = "executed"
     except ActionError as exc:
         record["status"] = f"rejected: {exc}"

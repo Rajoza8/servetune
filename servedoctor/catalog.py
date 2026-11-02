@@ -160,3 +160,26 @@ def judge_actions(root_cause, actions, *, current_config, contention_pids=()):
         harmful |= is_harm
         detail.append({"action": action, "fix": is_fix, "harmful": is_harm})
     return {"fixes": fixes, "harmful": harmful, "detail": detail}
+
+
+def judge_compound(root_causes, actions, *, current_config, contention_pids=()):
+    """Judge actions when several causes are active at once (Hard set).
+
+    An action is harmful if some cause's rules call it harmful and it fixes none
+    of the causes; stopping any process other than an offending job is always
+    harmful. `fixes_all` requires a fixing action for every cause.
+    """
+    verdicts = {cause: judge_actions(cause, actions, current_config=current_config,
+                                     contention_pids=contention_pids) for cause in root_causes}
+    detail, harmful = [], False
+    for index, action in enumerate(actions):
+        fixes = [cause for cause, verdict in verdicts.items() if verdict["detail"][index]["fix"]]
+        harms = [cause for cause, verdict in verdicts.items() if verdict["detail"][index]["harmful"]]
+        is_harm = bool(harms) and not fixes
+        if action["type"] == "stop_gpu_process" and action["pid"] not in contention_pids:
+            is_harm = True
+        harmful |= is_harm
+        detail.append({"action": action, "fixes": fixes, "harmful": is_harm})
+    fixed = sorted(cause for cause, verdict in verdicts.items() if verdict["fixes"])
+    return {"fixes": bool(fixed), "fixes_all": len(fixed) == len(set(root_causes)), "fixed_causes": fixed,
+            "harmful": harmful, "detail": detail}

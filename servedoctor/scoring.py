@@ -10,30 +10,52 @@ from decimal import Decimal
 import json
 from pathlib import Path
 
-from .catalog import judge_actions
+from .catalog import judge_actions, judge_compound
 from .evaluate import expert_of
 from .llm import PROVIDERS
 
 
 def score_one(result, answer, runtime):
+    """Score one arm on one incident. Single-cause v0 incidents score exactly as before.
+
+    Hard-set incidents may have two causes: naming either cause is a correct
+    diagnosis, a fix for either counts as a fix, and `complete_fix` requires
+    fixes for both with nothing harmful.
+    """
     final = result["final"]
-    truth = answer["root_cause"]
+    causes = answer.get("root_causes") or [answer["root_cause"]]
+    truth = answer["root_cause"] if len(causes) == 1 else "+".join(causes)
     onset = answer["onset_s"]
     flagged = final is not None
     row = {"arm": result["arm"], "incident": answer["id"], "split": answer["split"], "truth": truth,
            "severity_index": answer["severity_index"], "flagged": flagged,
            "predicted": final["root_cause"] if flagged else "healthy",
            "flag_t": final["t"] if flagged else None, "checkpoints": result["checkpoints"]}
+    if "variant" in answer:
+        row["variant"] = answer["variant"]
+    if len(causes) > 1:
+        row["root_causes"] = causes
     early = flagged and onset is not None and final["t"] < onset
     row["false_alarm"] = flagged and (truth == "healthy" or early)
     row["detected"] = flagged and truth != "healthy" and not early
     row["time_to_detect_s"] = final["t"] - onset if row["detected"] else None
-    row["diagnosis_correct"] = (row["detected"] and final["root_cause"] == truth) or (truth == "healthy" and not flagged)
+    row["diagnosis_correct"] = ((row["detected"] and final["root_cause"] in causes)
+                                or (truth == "healthy" and not flagged))
     actions = final["actions"] if flagged else [{"type": "no_action"}]
-    judged = judge_actions(truth if not early else "healthy", actions, current_config=result["engine_config"],
-                           contention_pids=runtime.get("contention_pids", []))
-    row["fix_proposed"] = judged["fixes"] and not judged["harmful"] and (row["detected"] or truth == "healthy")
+    pids = runtime.get("contention_pids", [])
+    if early or len(causes) == 1:
+        judged = judge_actions("healthy" if early else truth, actions, current_config=result["engine_config"],
+                               contention_pids=pids)
+        fixes_all = judged["fixes"]
+    else:
+        judged = judge_compound(causes, actions, current_config=result["engine_config"], contention_pids=pids)
+        fixes_all = judged["fixes_all"]
+    counted = row["detected"] or truth == "healthy"
+    row["fix_proposed"] = judged["fixes"] and not judged["harmful"] and counted
+    row["complete_fix"] = fixes_all and not judged["harmful"] and counted
     row["harmful"] = judged["harmful"]
+    row["stopped_decoy"] = any(a["type"] == "stop_gpu_process" and a["pid"] in runtime.get("decoy_pids", [])
+                               for a in actions)
     row["actions"] = actions
     escalations = sum(1 for s in result["trail"] if s.get("escalated"))
     row["escalations"] = escalations
@@ -73,7 +95,11 @@ def aggregate(rows):
             "healthy_false_alarms": sum(r["false_alarm"] for r in healthy),
             "diagnosis_correct": sum(r["diagnosis_correct"] for r in incidents),
             "fix_proposed": sum(r["fix_proposed"] for r in incidents),
+            "complete_fix": sum(r["complete_fix"] for r in incidents),
+            "compound_incidents": sum(1 for r in incidents if "root_causes" in r),
+            "compound_complete_fix": sum(r["complete_fix"] for r in incidents if "root_causes" in r),
             "harmful": sum(r["harmful"] for r in items),
+            "stopped_decoy": sum(r["stopped_decoy"] for r in items),
             "median_time_to_detect_s": ttd[len(ttd) // 2] if ttd else None,
             "invalid_outputs": sum(r["invalid_outputs"] for r in items),
             "call_failures": sum(r["call_failures"] for r in items),
@@ -83,12 +109,22 @@ def aggregate(rows):
     return table
 
 
-def score_study(study_dir, arms=None, split=None):
+def score_study(study_dir, arms=None, split=None, valid_only=False):
+    """Score every decision file. With valid_only, skip incidents the predeclared
+    symptom check (answers/validity.json) marked invalid."""
     root = Path(study_dir)
     answers = json.loads((root / "answers" / "answer_keys.json").read_text())["answers"]
+    validity_path = root / "answers" / "validity.json"
+    invalid = set()
+    if valid_only:
+        if not validity_path.exists():
+            raise FileNotFoundError("Run `servedoctor validate` before scoring valid incidents only")
+        invalid = {row["id"] for row in json.loads(validity_path.read_text())["incidents"] if not row["valid"]}
     rows = []
     for answer in answers:
         if split and answer["split"] != split:
+            continue
+        if answer["id"] in invalid:
             continue
         runtime_path = root / "answers" / "runtime" / f"{answer['id']}.json"
         runtime = json.loads(runtime_path.read_text()) if runtime_path.exists() else {}
