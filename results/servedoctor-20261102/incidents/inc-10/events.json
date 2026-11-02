@@ -1,0 +1,22 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "max_num_seqs": [
+        64,
+        2
+      ],
+      "request_timeout_s": [
+        120,
+        180
+      ]
+    }
+  },
+  {
+    "t": 230.9,
+    "kind": "note",
+    "text": "Scheduled vulnerability scan completed on the host."
+  }
+]

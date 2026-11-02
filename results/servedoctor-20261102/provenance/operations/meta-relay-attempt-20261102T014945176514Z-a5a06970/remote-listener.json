@@ -1,0 +1,11 @@
+{
+  "listeners": [
+    {
+      "family": "ipv4",
+      "address": "127.0.0.1",
+      "port": 18443
+    }
+  ],
+  "loopback_only": true,
+  "port": 18443
+}

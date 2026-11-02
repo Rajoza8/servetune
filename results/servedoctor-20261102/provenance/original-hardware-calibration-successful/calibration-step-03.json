@@ -1,0 +1,13 @@
+{
+  "rate_rps": 8,
+  "requests": 478,
+  "ok": 478,
+  "shed": 0,
+  "failed": 0,
+  "shed_rate": 0.0,
+  "error_rate": 0.0,
+  "p50_latency_s": 9.232842558529228,
+  "p95_latency_s": 11.359105212542635,
+  "within_slo": false,
+  "waiting_after": 0.0
+}

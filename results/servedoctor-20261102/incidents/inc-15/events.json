@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "log_level": [
+        "INFO",
+        "WARNING"
+      ]
+    }
+  },
+  {
+    "t": 28.8,
+    "kind": "note",
+    "text": "Updated the Grafana serving dashboard layout."
+  }
+]

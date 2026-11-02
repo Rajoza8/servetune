@@ -1,0 +1,43 @@
+{
+  "project": "servedoctor",
+  "created_at_utc": "2026-11-02T04:36:07.393308+00:00",
+  "state": "prepared_offline_not_applied_or_pushed",
+  "frozen_experiment_source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "prepared_commit": "d2632e4ee018aaa9b53275d42e7f704fd36374a8",
+  "parent_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "worktree": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/collector-fix-worktree",
+  "main_checkout": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune",
+  "main_head_at_preparation": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "main_clean_at_preparation": true,
+  "files": {
+    "docs/SERVEDOCTOR_GPU_BRIEF.md": "4a731dcf683ab49a2f8721c304438f489d83417f3353900b3accac5a19050f40",
+    "servedoctor/loadgen.py": "e63a715fedfd19318c0638b6629c0f3e76a26176031e6c94e808ec1271611ebe",
+    "servedoctor/record.py": "1294477e88bdbe2c704f6994695a221a7cc0905798f82b8c3385d450f328b247",
+    "servedoctor/telemetry.py": "3b7c98eb2ca22cd2972d119c03c0535c30029d0c4fe3f81b3f57ddd37f3eb2c0",
+    "tests/test_servedoctor_collector_failures.py": "349dbe44d28bb045772a799efc308a0696bf987fd691d083cdbf17cc3932aa3c"
+  },
+  "patch": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/collector-fix-prepared-d2632e4.patch",
+    "sha256": "4aa065e3b22d7064bf591cb038764177f5ffeffcb0820cf19125987db832ec71"
+  },
+  "validation": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "returncode": 0,
+    "tests": 300,
+    "skipped": 1,
+    "stdout": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/collector-fix-unittest-20261102T043449254785Z.stdout",
+    "stdout_sha256": "c3f7cabb9aeba3abbe2901a3ffc119bab8c9c9ba545c3f55dffd167346a2f406",
+    "diff_check_passed": true,
+    "protected_v4_paths_unchanged": true
+  },
+  "scope": [
+    "Surface safe recorder loop/close failure classes and bounded-stop liveness failures.",
+    "Preserve failed partial recording and requests with a manifest; preserve primary errors across cleanup.",
+    "Propagate safe load dispatch thread failure from wait without changing normalized request outcomes.",
+    "Document inherited ulimit -n 65536 descriptor headroom."
+  ],
+  "application_gate": "Parent will apply only after frozen measurements and package gates; do not deploy to running experiment.",
+  "no_gpu_api_or_model_calls": true,
+  "no_answer_contents_read": true,
+  "scientific_prompts_scoring_thresholds_and_workload_unchanged": true
+}

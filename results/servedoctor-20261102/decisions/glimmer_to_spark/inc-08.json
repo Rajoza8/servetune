@@ -1,0 +1,316 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-08",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": null,
+ "checkpoints": 12,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "2674fe8c782e358216433861270af3579ee5c53766979d2df17e25620bff6b1c",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.5s under 10s SLO, error and shed rates zero, GPU utilization stable with low KV usage.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.5s under 10s SLO, error and shed rates zero, GPU utilization stable with low KV usage.\"}",
+    "usage": {
+     "prompt_tokens": 973,
+     "total_tokens": 1081,
+     "completion_tokens": 108,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "7a067b8a8a29ae067960eb0cbe2e68485960811a9a44affc24db3c19c87c58d6",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.6s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.6s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable.\"}",
+    "usage": {
+     "prompt_tokens": 1438,
+     "total_tokens": 1588,
+     "completion_tokens": 150,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "0f1b25bf0698bb75ac8fd6860386945ec1310d71e87147cce10385da8c0630f1",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.5-6.9s under 10s SLO, zero shed/errors, GPU util stable near 100% with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.5-6.9s under 10s SLO, zero shed/errors, GPU util stable near 100% with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 1907,
+     "total_tokens": 2080,
+     "completion_tokens": 173,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "92d0aa26ec96412488673367d8ec829c7e00bf72311e090ae92c52d5ce2222ed",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.5-6.9s under 10s SLO, zero shed/errors, arrivals ~3.8 rps near normal, GPU util high but stable with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.5-6.9s under 10s SLO, zero shed/errors, arrivals ~3.8 rps near normal, GPU util high but stable with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2374,
+     "total_tokens": 2557,
+     "completion_tokens": 183,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "9ed32e0c5ec1b9fdf7e4701dc55277ec290e63b663a718232d0cf2b4f85890e9",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.5-6.3s under 10s SLO, zero errors and shed, waiting 0, GPU util stable near 100% with normal throughput.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.5-6.3s under 10s SLO, zero errors and shed, waiting 0, GPU util stable near 100% with normal throughput.\"}",
+    "usage": {
+     "prompt_tokens": 2582,
+     "total_tokens": 2737,
+     "completion_tokens": 155,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "0932e7c54c0b6d8a6eb87f1c863c060d7d298d17d83ff1c69aa39295c11fb012",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~6s under 10s SLO, zero shed/errors, GPU util high but stable with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~6s under 10s SLO, zero shed/errors, GPU util high but stable with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2792,
+     "total_tokens": 2937,
+     "completion_tokens": 145,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "adfb6cf09692412e326768b5dfa5b186e44b3fbd56d33027bdee63faa2ca41e8",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~6.2s under 10s SLO, zero shed/errors, no queue buildup, metrics within normal range.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~6.2s under 10s SLO, zero shed/errors, no queue buildup, metrics within normal range.\"}",
+    "usage": {
+     "prompt_tokens": 2795,
+     "total_tokens": 2932,
+     "completion_tokens": 137,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "34844f14dbeeaa4e5aa57aa004caa8ca99850d5b069239d8638a4127461b54ed",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~6.3s under 10s SLO, shed 0, no errors, GPU util stable near normal with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~6.3s under 10s SLO, shed 0, no errors, GPU util stable near normal with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2819,
+     "total_tokens": 2969,
+     "completion_tokens": 150,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "8e707f1e99ca9068ff35f2e9458e073daa2b4eecbfcceaa28241490e3bee59b8",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~6.7s under 10s SLO, zero shed/errors, GPU util high but stable with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~6.7s under 10s SLO, zero shed/errors, GPU util high but stable with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2820,
+     "total_tokens": 2967,
+     "completion_tokens": 147,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 300,
+   "observation_sha256": "4af0fdab7bfd08a18fad6cffc9c447cff4ed4a0fdc510f50422ce3e00a16fff9",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.6-6.7s under 10s SLO, shed and errors zero, GPU util high but stable with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.6-6.7s under 10s SLO, shed and errors zero, GPU util high but stable with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2818,
+     "total_tokens": 2978,
+     "completion_tokens": 160,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 330,
+   "observation_sha256": "1fac62be3ec4c278cf502d7317fe7340a54a4a5bfd520a14cd8ad57c8f8610bb",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.4-6.7s under 10s SLO, shed 0, errors none, GPU util ~99.8% normal, no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.4-6.7s under 10s SLO, shed 0, errors none, GPU util ~99.8% normal, no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2815,
+     "total_tokens": 2989,
+     "completion_tokens": 174,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 360,
+   "observation_sha256": "66379e96d303548d4a38c4b89a36a6406065e610e2a3d3f9eec565e71f498bc9",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.6-6.7s under 10s SLO, zero errors and shed, GPU util ~99.7% with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.6-6.7s under 10s SLO, zero errors and shed, GPU util ~99.7% with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2811,
+     "total_tokens": 2953,
+     "completion_tokens": 142,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  }
+ ]
+}

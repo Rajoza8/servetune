@@ -1,0 +1,10 @@
+{
+  "at_utc": "2026-11-01T20:46:25.654614+00:00",
+  "cause": "Systemic UnicodeEncodeError in paid evaluation; prevent further calls",
+  "remote_evaluate_pid_terminated": 807,
+  "operator_signal_scope": "Tail-argument match also interrupted the outer phase wrapper. Stage cleanup completed without errors; root explicitly requested GPU stop and confirmed actual exited/cur stopped.",
+  "stage_outcome": "sd-study-kv2-dev-evaluation-20261101T203819898496Z/outcome.json",
+  "rental_instance_id": 58690026,
+  "confirmed_stopped": true,
+  "api_ledger_modified": false
+}

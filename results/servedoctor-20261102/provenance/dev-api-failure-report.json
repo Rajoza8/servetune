@@ -1,0 +1,83 @@
+{
+  "at_utc": "2026-11-01T20:44:32.446005+00:00",
+  "status": "blocked on corrected credential; source fail-fast validation being added",
+  "study_dir": "runs/sd-study-kv2",
+  "fresh_evaluation_dir": "runs/sd-study-kv2-api2",
+  "recording_evidence": "dev-symptom-audit-kv2.json",
+  "scoreboard": {
+    "rules": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "spark": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 0,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 0,
+      "fix_proposed": 0,
+      "harmful": 0,
+      "median_time_to_detect_s": null,
+      "invalid_outputs": 0,
+      "call_failures": 96,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "wonder": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 0,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 0,
+      "fix_proposed": 0,
+      "harmful": 0,
+      "median_time_to_detect_s": null,
+      "invalid_outputs": 0,
+      "call_failures": 96,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    }
+  },
+  "ledger_summary": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 9.075474,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 192
+  },
+  "gpu_cost": {
+    "running_hours": 2.802263039747874,
+    "compute_usd_upper": 3.7363507196638315,
+    "disk_usd_upper": 0.12607450725579702,
+    "rental_usd_upper": 3.8624252269196284,
+    "network_reserve_usd": 2.0,
+    "total_projected_usd_upper": 5.862425226919628
+  },
+  "gpu_status": {
+    "actual_status": "exited",
+    "cur_state": "stopped"
+  },
+  "checkpoint_met": false,
+  "test_recording_started": false,
+  "failures": "192 local UnicodeEncodeError failures; no successful API response. Preserve all ledger reservations. Original checkpoint was invalidated; its prior value retained in history. Operator interrupted both stage and parent wrapper; copied all artifacts successfully and explicitly stopped and confirmed GPU.",
+  "changes_path": "changes.json",
+  "user_action": "Reload actual Meta key into MODEL_API_KEY only and restart the private key runner; key must contain visible ASCII without whitespace."
+}

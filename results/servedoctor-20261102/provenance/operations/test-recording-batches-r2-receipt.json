@@ -1,0 +1,33 @@
+{
+  "project": "servedoctor",
+  "created_at_utc": "2026-11-01T23:20:54.160504+00:00",
+  "plan": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/sd-study-r2/test-recording-batches.json",
+    "sha256": "fd0e9ad1fbc954c1c46752f43d2ffc03149b67a86ec8cd9ee294869e478aa182"
+  },
+  "source_commit": "3fea48a84cec07231f3a658f57ccc7b125eda8ae",
+  "batches": {
+    "1": [
+      "inc-01",
+      "inc-02",
+      "inc-04",
+      "inc-05",
+      "inc-06",
+      "inc-09",
+      "inc-10",
+      "inc-11"
+    ],
+    "2": [
+      "inc-14",
+      "inc-15",
+      "inc-16",
+      "inc-19",
+      "inc-21",
+      "inc-22",
+      "inc-23",
+      "inc-24"
+    ]
+  },
+  "created_before_any_test_recording": true,
+  "purpose": "Local predeclared operational batching only; no answer contents, network or GPU operations."
+}

@@ -1,0 +1,44 @@
+{
+ "arm": "rules",
+ "incident": "inc-05",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "other",
+  "actions": [
+   {
+    "type": "escalate_to_human"
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fb7fba4f066480047a02155e4a6ea9b9fb0f5cc8484a3b546b81276aaeeb5ca0",
+   "decision": {
+    "incident": true,
+    "root_cause": "other",
+    "actions": [
+     {
+      "type": "escalate_to_human"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+  "project": "servedoctor",
+  "id": "inc-23",
+  "quality": "UNUSABLE",
+  "excluded_from_all_model_evaluation": true,
+  "reason": "Original collector EMFILE stopped nominal telemetry; completed status and original raw bytes are retained unchanged.",
+  "original_manifest_sha256": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+  "original_quality": {
+    "id": "inc-23",
+    "duration_s": 360,
+    "status_in_recording": "completed",
+    "expected_nominal_and_max_drain_end_s": [
+      360,
+      450.0
+    ],
+    "coverage_slack_s": 3.0,
+    "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+    "complete": false,
+    "issues": [
+      "truncated_nominal_telemetry",
+      "telemetry_ends_before_observed_drain"
+    ],
+    "warnings": [],
+    "sealed": true,
+    "manifest_sha256": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+    "telemetry": {
+      "rows": 232,
+      "metadata_rows": 232,
+      "first_s": 0.0,
+      "last_s": 231.0,
+      "max_gap_s": 1.0910000000000082,
+      "leading_gap_s": 0.0,
+      "trailing_nominal_gap_s": 129.0,
+      "observed_drain_s": 0,
+      "nominal_duration_covered": false,
+      "source_error_counts": {},
+      "metadata_errors": 1,
+      "operational_log_emfile_matches": 0
+    },
+    "requires_resolution_review": false,
+    "outcomes": {
+      "expected": 4667,
+      "observed": 4667,
+      "complete": true,
+      "missing_ids": [],
+      "extra_ids": [],
+      "duplicate_ids": [],
+      "schedule_or_class_mismatch_ids": [],
+      "status_counts": {
+        "ok": 1388,
+        "timeout": 3144,
+        "connection_error": 135
+      },
+      "error_class_counts": {},
+      "last_done_s": 419.8485214887187,
+      "last_scheduled_s": 359.8228,
+      "telemetry_covers_observed_completions": false
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-11-01T20:43:02.164072+00:00",
+  "attempt": 2,
+  "source_study": "runs/sd-study-kv2",
+  "new_study": "runs/sd-study-kv2-api2",
+  "reason": "All first paid dev calls failed locally with UnicodeEncodeError. Preserve original decisions and canonical ledger reservations. This new directory reuses only successfully sealed GPU recordings and the unchanged rules decisions; no failed model decision is overwritten or deleted.",
+  "recordings_rerecorded": false,
+  "original_failed_calls": 192,
+  "ledger_reservations_retained_usd": 9.075474,
+  "test_recording_started": false
+}

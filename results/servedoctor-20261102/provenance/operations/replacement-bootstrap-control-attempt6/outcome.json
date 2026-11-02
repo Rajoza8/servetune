@@ -1,0 +1,22 @@
+{
+  "instance_id": 58716527,
+  "failure": {
+    "error": "RuntimeError",
+    "returncode": null
+  },
+  "cleanup_errors": [
+    {
+      "stage": "sd2-bootstrap-attempt2",
+      "error": "CalledProcessError"
+    },
+    {
+      "stage": "sd2-calibration-attempt1",
+      "error": "CalledProcessError"
+    },
+    {
+      "stage": "sd2-kv-pre-generation-attempt1",
+      "error": "CalledProcessError"
+    }
+  ],
+  "finished_at_utc": "2026-11-01T21:54:38.121326+00:00"
+}

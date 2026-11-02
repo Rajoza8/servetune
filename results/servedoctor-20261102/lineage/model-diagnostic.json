@@ -1,0 +1,62 @@
+{
+  "runner": {
+    "protocol": "servedoctor-key-runner-2-model-diagnostics",
+    "loaded_source_sha256": "ace729b990184e207cb91c46631ca6fbfdca77595729c8b98190d1c2fda64ecd",
+    "remote_code_sha256": "f7360667a37db2f8552c2a3fe8123f6ca0243602de5b1d7e06f54fa4b4c7bc58"
+  },
+  "local": {
+    "clients": {
+      "spark": {
+        "url": "https://api.meta.ai/v1/chat/completions",
+        "model": "muse-spark-1.3",
+        "input_per_m": "1.25",
+        "output_per_m": "4.25"
+      },
+      "wonder": {
+        "url": "https://api.meta.ai/v1/chat/completions",
+        "model": "muse-wonder-1.0",
+        "input_per_m": "4",
+        "output_per_m": "20"
+      }
+    },
+    "catalog": {
+      "http_status": 200,
+      "models": [
+        "muse-spark-1.1",
+        "muse-spark-1.2",
+        "muse-spark-1.2-contributor",
+        "muse-spark-1.3",
+        "muse-spark-1.3-contributor",
+        "muse-wonder-1.0"
+      ]
+    }
+  },
+  "remote": {
+    "clients": {
+      "spark": {
+        "url": "https://api.meta.ai/v1/chat/completions",
+        "model": "muse-spark-1.3",
+        "input_per_m": "1.25",
+        "output_per_m": "4.25"
+      },
+      "wonder": {
+        "url": "https://api.meta.ai/v1/chat/completions",
+        "model": "muse-wonder-1.0",
+        "input_per_m": "4",
+        "output_per_m": "20"
+      }
+    },
+    "catalog": {
+      "http_status": 200,
+      "models": [
+        "muse-spark-1.1",
+        "muse-spark-1.2",
+        "muse-spark-1.2-contributor",
+        "muse-spark-1.3",
+        "muse-spark-1.3-contributor",
+        "muse-wonder-1.0"
+      ]
+    },
+    "git_head": "a0b4deb6e9545b9d21fde472ad4686645b083bc6"
+  }
+}

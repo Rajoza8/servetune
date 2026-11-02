@@ -1,0 +1,21 @@
+Exception in thread servedoctor-recorder:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/workspace/servedoctor-session/servetune/servedoctor/telemetry.py", line 216, in run
+    self._loop(stream)
+  File "/workspace/servedoctor-session/servetune/servedoctor/telemetry.py", line 204, in _loop
+    stream.write(json.dumps(self.snapshot(), allow_nan=False) + "\n")
+                            ^^^^^^^^^^^^^^^
+  File "/workspace/servedoctor-session/servetune/servedoctor/telemetry.py", line 198, in snapshot
+    row["log"] = self.log_tail.read()
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/servedoctor-session/servetune/servedoctor/telemetry.py", line 151, in read
+    with self.path.open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 24] Too many open files: 'runs/sd-study-r2-api2/engines/engine-00-inc-14/engine.log'

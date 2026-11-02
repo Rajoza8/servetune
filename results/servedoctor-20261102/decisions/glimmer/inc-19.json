@@ -1,0 +1,105 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-19",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.88,
+  "evidence": [
+   "arrivals_rps ~0.9-1.3 vs normal_profile 4.0",
+   "p95_latency_s 4.77-5.3 < SLO 10.0 with shed_rps 0",
+   "gpu_util_pct 99.9-100.0 and gpu_power_w ~566-570W while gen_tokens_per_s ~110-145 vs normal 497.6",
+   "running ~4-6 vs normal_profile 21.1",
+   "kv_usage_pct_max 0.23-0.91 vs normal 1.78"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "SLOs are met with low latency and zero shed, but offered load is ~1 rps vs normal 4 rps while GPU stays at ~100% util and ~570W. This is healthy service with poor efficiency, best addressed by consolidating traffic.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.88, \"evidence\": [\"arrivals_rps ~0.9-1.3 vs normal_profile 4.0\", \"p95_latency_s 4.77-5.3 < SLO 10.0 with shed_rps 0\", \"gpu_util_pct 99.9-100.0 and gpu_power_w ~566-570W while gen_tokens_per_s ~110-145 vs normal 497.6\", \"running ~4-6 vs normal_profile 21.1\", \"kv_usage_pct_max 0.23-0.91 vs normal 1.78\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs are met with low latency and zero shed, but offered load is ~1 rps vs normal 4 rps while GPU stays at ~100% util and ~570W. This is healthy service with poor efficiency, best addressed by consolidating traffic.\"}",
+  "usage": {
+   "prompt_tokens": 1939,
+   "total_tokens": 2594,
+   "completion_tokens": 655,
+   "prompt_tokens_details": null
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "4919f690576cafa3624455b7a597d636f3ad13070307ecfd8980989ac20e098f",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.88,
+    "evidence": [
+     "p95_latency_s 4.79-4.99 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "arrivals_rps ~1.0-1.1 vs normal 4.0 but latency and waiting_max 0.0",
+     "GPU KV cache usage 0.26-0.46% and running 4-5 reqs, no queue buildup",
+     "engine config unchanged from reference"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs are met with low latency, zero shed/errors and no queueing. Low arrival rate explains reduced throughput; GPU power/util are within normal range for idle serving. No incident, normal variation only.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.88, \"evidence\": [\"p95_latency_s 4.79-4.99 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"arrivals_rps ~1.0-1.1 vs normal 4.0 but latency and waiting_max 0.0\", \"GPU KV cache usage 0.26-0.46% and running 4-5 reqs, no queue buildup\", \"engine config unchanged from reference\"], \"actions\": [], \"explanation\": \"SLOs are met with low latency, zero shed/errors and no queueing. Low arrival rate explains reduced throughput; GPU power/util are within normal range for idle serving. No incident, normal variation only.\"}",
+    "usage": {
+     "prompt_tokens": 1474,
+     "total_tokens": 2150,
+     "completion_tokens": 676,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "55e0db06b165f33c7132c76502c317fe6ebb5400f30d8cfc394a4f56ff6fdf92",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.88,
+    "evidence": [
+     "arrivals_rps ~0.9-1.3 vs normal_profile 4.0",
+     "p95_latency_s 4.77-5.3 < SLO 10.0 with shed_rps 0",
+     "gpu_util_pct 99.9-100.0 and gpu_power_w ~566-570W while gen_tokens_per_s ~110-145 vs normal 497.6",
+     "running ~4-6 vs normal_profile 21.1",
+     "kv_usage_pct_max 0.23-0.91 vs normal 1.78"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs are met with low latency and zero shed, but offered load is ~1 rps vs normal 4 rps while GPU stays at ~100% util and ~570W. This is healthy service with poor efficiency, best addressed by consolidating traffic.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.88, \"evidence\": [\"arrivals_rps ~0.9-1.3 vs normal_profile 4.0\", \"p95_latency_s 4.77-5.3 < SLO 10.0 with shed_rps 0\", \"gpu_util_pct 99.9-100.0 and gpu_power_w ~566-570W while gen_tokens_per_s ~110-145 vs normal 497.6\", \"running ~4-6 vs normal_profile 21.1\", \"kv_usage_pct_max 0.23-0.91 vs normal 1.78\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs are met with low latency and zero shed, but offered load is ~1 rps vs normal 4 rps while GPU stays at ~100% util and ~570W. This is healthy service with poor efficiency, best addressed by consolidating traffic.\"}",
+    "usage": {
+     "prompt_tokens": 1939,
+     "total_tokens": 2594,
+     "completion_tokens": 655,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

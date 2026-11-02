@@ -1,0 +1,34 @@
+{
+ "arm": "wonder",
+ "incident": "inc-03",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": null,
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "797e06cd1abbb6ba19b6bc21325c86a6daca28d8f9fd1b6adfafa41db6d2f933",
+   "error": "PermanentAPIError",
+   "http_status": 404,
+   "provider": "meta",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  }
+ ],
+ "incomplete": true
+}

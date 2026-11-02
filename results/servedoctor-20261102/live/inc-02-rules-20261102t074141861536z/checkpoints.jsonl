@@ -1,0 +1,1 @@
+{"t": 30.0, "observation_sha256": "f4500aff5deb64ec78b50ad8168f006fc6cf65b10943bce049e715923f0a598e", "decision": {"incident": true, "root_cause": "kv_cache_starvation", "actions": [{"type": "set_engine_config", "knob": "gpu_memory_utilization", "value": 0.9}], "evidence": [], "explanation": "threshold rules", "rejected_actions": []}}

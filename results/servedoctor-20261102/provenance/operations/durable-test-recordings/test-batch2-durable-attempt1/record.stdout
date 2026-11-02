@@ -1,0 +1,11 @@
+starting engine engine-00-inc-14 for ['inc-14', 'inc-15', 'inc-19', 'inc-22', 'inc-23', 'inc-24']
+recorded inc-14: {'requests': 1506, 'ok': 1506, 'shed': 0, 'failed': 0, 'shed_rate': 0.0, 'error_rate': 0.0, 'p50_latency_s': 5.638478287495673, 'p95_latency_s': 6.446723630419001}
+recorded inc-15: {'requests': 1407, 'ok': 589, 'shed': 0, 'failed': 818, 'shed_rate': 0.0, 'error_rate': 0.5813788201847904, 'p50_latency_s': 5.893994954414666, 'p95_latency_s': 51.894602821767336}
+recorded inc-19: {'requests': 340, 'ok': 340, 'shed': 0, 'failed': 0, 'shed_rate': 0.0, 'error_rate': 0.0, 'p50_latency_s': 4.96634205756709, 'p95_latency_s': 5.242423122795299}
+recorded inc-22: {'requests': 1484, 'ok': 1484, 'shed': 0, 'failed': 0, 'shed_rate': 0.0, 'error_rate': 0.0, 'p50_latency_s': 17.418225038796663, 'p95_latency_s': 24.01901735761203}
+recorded inc-23: {'requests': 4667, 'ok': 1388, 'shed': 0, 'failed': 3279, 'shed_rate': 0.0, 'error_rate': 0.7025926719520035, 'p50_latency_s': 19.147815085947514, 'p95_latency_s': 55.49292324781416}
+recorded inc-24: {'requests': 1454, 'ok': 1454, 'shed': 0, 'failed': 0, 'shed_rate': 0.0, 'error_rate': 0.0, 'p50_latency_s': 5.659755270462483, 'p95_latency_s': 6.510266211722046}
+starting engine engine-01-inc-16 for ['inc-16']
+recorded inc-16: {'requests': 1380, 'ok': 918, 'shed': 0, 'failed': 462, 'shed_rate': 0.0, 'error_rate': 0.3347826086956522, 'p50_latency_s': 39.89179166033864, 'p95_latency_s': 59.683048210991544}
+starting engine engine-02-inc-21 for ['inc-21']
+recorded inc-21: {'requests': 1434, 'ok': 1423, 'shed': 0, 'failed': 11, 'shed_rate': 0.0, 'error_rate': 0.007670850767085077, 'p50_latency_s': 5.5574014140293, 'p95_latency_s': 6.140564617142081}

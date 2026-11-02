@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-17",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61613,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.95,
+  "evidence": [
+   "gpu_memory_utilization changed 0.9->0.61613 in deploy, below reference 0.9",
+   "kv_usage_pct_max 83-99.7% vs normal 1.78%, with preemptions 1.1-1.4/s",
+   "waiting_max 8-14 vs normal 0, p95_ttft rising to 2.47s despite normal load",
+   "arrivals 3.6-4.3 rps and prompt_tokens_mean 127-249 match normal 4.0 rps/202",
+   "gpu_mem_used ~60GB vs normal 87634MB; running ~23 < max_num_seqs 64"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Reduced gpu_memory_utilization shrank KV cache, causing saturation, preemptions, queueing and TTFT/latency rise at normal traffic and prompt mix. Restore reference 0.9.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization changed 0.9->0.61613 in deploy, below reference 0.9\", \"kv_usage_pct_max 83-99.7% vs normal 1.78%, with preemptions 1.1-1.4/s\", \"waiting_max 8-14 vs normal 0, p95_ttft rising to 2.47s despite normal load\", \"arrivals 3.6-4.3 rps and prompt_tokens_mean 127-249 match normal 4.0 rps/202\", \"gpu_mem_used ~60GB vs normal 87634MB; running ~23 < max_num_seqs 64\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Reduced gpu_memory_utilization shrank KV cache, causing saturation, preemptions, queueing and TTFT/latency rise at normal traffic and prompt mix. Restore reference 0.9.\"}",
+  "usage": {
+   "completion_tokens": 715,
+   "prompt_tokens": 1473,
+   "total_tokens": 2188,
+   "completion_tokens_details": {
+    "reasoning_tokens": 462
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "77f378d07451a8a52d8379bf1ddd4ae59550c6293c1a1ab7abf586bf9dfe629a",
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.95,
+    "evidence": [
+     "gpu_memory_utilization changed 0.9->0.61613 in deploy, below reference 0.9",
+     "kv_usage_pct_max 83-99.7% vs normal 1.78%, with preemptions 1.1-1.4/s",
+     "waiting_max 8-14 vs normal 0, p95_ttft rising to 2.47s despite normal load",
+     "arrivals 3.6-4.3 rps and prompt_tokens_mean 127-249 match normal 4.0 rps/202",
+     "gpu_mem_used ~60GB vs normal 87634MB; running ~23 < max_num_seqs 64"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Reduced gpu_memory_utilization shrank KV cache, causing saturation, preemptions, queueing and TTFT/latency rise at normal traffic and prompt mix. Restore reference 0.9.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization changed 0.9->0.61613 in deploy, below reference 0.9\", \"kv_usage_pct_max 83-99.7% vs normal 1.78%, with preemptions 1.1-1.4/s\", \"waiting_max 8-14 vs normal 0, p95_ttft rising to 2.47s despite normal load\", \"arrivals 3.6-4.3 rps and prompt_tokens_mean 127-249 match normal 4.0 rps/202\", \"gpu_mem_used ~60GB vs normal 87634MB; running ~23 < max_num_seqs 64\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Reduced gpu_memory_utilization shrank KV cache, causing saturation, preemptions, queueing and TTFT/latency rise at normal traffic and prompt mix. Restore reference 0.9.\"}",
+    "usage": {
+     "completion_tokens": 715,
+     "prompt_tokens": 1473,
+     "total_tokens": 2188,
+     "completion_tokens_details": {
+      "reasoning_tokens": 462
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

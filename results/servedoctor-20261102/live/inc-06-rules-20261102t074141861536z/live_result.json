@@ -1,0 +1,152 @@
+{
+  "id": "inc-06",
+  "arm": "rules",
+  "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "actions": [
+      {
+        "type": "gateway_rate_limit",
+        "max_rps": 6.4
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 150.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "gateway_rate_limit",
+        "max_rps": 6.4
+      },
+      "at": "2026-11-02T08:22:07.059253+00:00",
+      "previous": {
+        "max_rps": null,
+        "max_prompt_tokens": null
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "30917652a297adcf0d678b68f42621d4e1cfb53dee3253b972ec1b63349411e2",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 60.0,
+      "observation_sha256": "be2f2918ecc641b5d17dc3f5529b1a831267be79b142e61c7855e7aaf8a0518a",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 90.0,
+      "observation_sha256": "f026c049424465e534907dfec17dc90411574b915adcd02190c6834c7bb95675",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 120.0,
+      "observation_sha256": "c3e0757a3bfbdff8bed04135fd868b914673c07598de615af0f00bea9280245b",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 150.0,
+      "observation_sha256": "e38ec0b60a429b2808b0c476e5cc4bec2b01b2076972133682f753930f8bc118",
+      "decision": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 6.4
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 150.0,
+  "post_fix_window": {
+    "requests": 604,
+    "ok": 386,
+    "shed": 218,
+    "failed": 0,
+    "shed_rate": 0.3609271523178808,
+    "error_rate": 0.0,
+    "p50_latency_s": 6.3630047757178545,
+    "p95_latency_s": 7.6168604826088995
+  },
+  "fault_window_before_action": {
+    "requests": 303,
+    "ok": 303,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 10.400326213799417,
+    "p95_latency_s": 13.991015902534127
+  },
+  "after_action": {
+    "requests": 5290,
+    "ok": 3265,
+    "shed": 2025,
+    "failed": 0,
+    "shed_rate": 0.3827977315689981,
+    "error_rate": 0.0,
+    "p50_latency_s": 6.365689636208117,
+    "p95_latency_s": 9.135413839481766
+  },
+  "time_to_recover_s": 80.0,
+  "engine_restarts": []
+}

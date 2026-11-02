@@ -1,0 +1,124 @@
+{
+  "source": "dev only; public recordings and reference; no answer files read",
+  "change": {
+    "surge_arrival_ratio": {
+      "old": 1.2,
+      "new": 1.5
+    }
+  },
+  "evidence": [
+    {
+      "id": "inc-03",
+      "checkpoint_s": 30,
+      "reference_arrivals_rps": 2.9,
+      "arrivals_rps": 3.8333333333333335,
+      "arrival_ratio": 1.3218390804597702,
+      "running": 3.8000000000000003,
+      "max_waiting": 89.0,
+      "max_p95_s": 24.7,
+      "max_num_seqs": 4,
+      "reference_max_num_seqs": 64,
+      "generation_tokens_per_s": 101.5,
+      "reference_generation_tokens_per_s": 365.3,
+      "decision_original": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.64
+          }
+        ]
+      },
+      "decision_ratio_1_5": {
+        "incident": true,
+        "root_cause": "batch_limit_too_low",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_num_seqs",
+            "value": 64
+          }
+        ]
+      }
+    },
+    {
+      "id": "inc-20",
+      "checkpoint_s": 150,
+      "reference_arrivals_rps": 2.9,
+      "arrivals_rps": 9.833333333333334,
+      "arrival_ratio": 3.3908045977011496,
+      "running": 56.699999999999996,
+      "max_waiting": 81.0,
+      "max_p95_s": 14.68,
+      "max_num_seqs": 64,
+      "reference_max_num_seqs": 64,
+      "generation_tokens_per_s": 852.4666666666667,
+      "reference_generation_tokens_per_s": 365.3,
+      "decision_original": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.64
+          }
+        ]
+      },
+      "decision_ratio_1_5": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.64
+          }
+        ]
+      }
+    },
+    {
+      "id": "inc-20",
+      "checkpoint_s": 180,
+      "reference_arrivals_rps": 2.9,
+      "arrivals_rps": 11.033333333333333,
+      "arrival_ratio": 3.8045977011494254,
+      "running": 63.5,
+      "max_waiting": 181.0,
+      "max_p95_s": 20.36,
+      "max_num_seqs": 64,
+      "reference_max_num_seqs": 64,
+      "generation_tokens_per_s": 958.8000000000001,
+      "reference_generation_tokens_per_s": 365.3,
+      "decision_original": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.64
+          }
+        ]
+      },
+      "decision_ratio_1_5": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.64
+          }
+        ]
+      }
+    }
+  ],
+  "reason": "On initial dev inc-03 at t=30 s, ordinary noisy arrivals averaged 3.833 rps against reference median 2.9 rps (ratio 1.322), crossing the old 1.2 threshold despite a visible max_num_seqs deploy from 64 to 4, running saturation at 3.8 average, queue reaching 89 and p95 latency 24.7 s. The surge branch preempted the correct batch-limit diagnosis and proposed rate shedding. Raising only surge_arrival_ratio to 1.5 tolerates this dev-only burst while the dev surge inc-20 remains above threshold at t=150 s (9.833 rps, ratio 3.391). No test recording or result has been inspected; all other thresholds, prompts, scoring and catalog rules are unchanged.",
+  "arrival_threshold_rps": {
+    "old": 3.48,
+    "new": 4.35
+  },
+  "verification": {
+    "new_regression_tests": 2,
+    "original_recordings_and_decisions_unchanged": true,
+    "comparison_method": "read-only rules.decide on two dev public observations; no CLI evaluation or scoreboard rewritten"
+  }
+}

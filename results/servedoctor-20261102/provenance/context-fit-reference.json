@@ -1,0 +1,21 @@
+{
+  "source": "runs/sd-study/incidents/reference",
+  "checkpoint_s": 180,
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "model_context_tokens": 4096,
+  "method": "vLLM POST /tokenize; no inference",
+  "prompt_chars": 5726,
+  "bucket_count": 18,
+  "log_lines": 12,
+  "counts": {},
+  "failures": [
+    {
+      "stage": "diagnosis",
+      "error": "URLError"
+    },
+    {
+      "stage": "monitor",
+      "error": "URLError"
+    }
+  ]
+}

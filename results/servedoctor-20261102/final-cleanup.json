@@ -1,0 +1,40 @@
+{
+  "project": "servedoctor",
+  "gpu_instance_id": 58716527,
+  "rental_scope": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/rental-scope.json",
+    "sha256": "06701b0161c21b1b399cc252df9fe2dd2bc4911ec1b7f0056fa47d4e5014db0d"
+  },
+  "observed_stopped_at_utc": "2026-11-02T09:12:35.273595+00:00",
+  "instance_status": {
+    "actual_status": "exited",
+    "cur_state": "stopped",
+    "intended_status": "stopped"
+  },
+  "all_gpu_work_stopped": true,
+  "remote_guards_stopped": true,
+  "no_pending_paid_calls": true,
+  "gpu_hours_log_updated_after_stop": true,
+  "budget_reconciled": true,
+  "canonical_ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "gpu_hours_log_sha256": "baf129ad0a06ea19ca7c921aafd42eb2fb0fa17a2201b4320dde054ac94263f8",
+  "destroy_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-receipt-58716527.json",
+    "sha256": "9c28a7d7b972a89cc9e25f079db45310066afacd4e7d3bd300c4ed87894483de"
+  },
+  "process_cleanup": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/finalization-process-cleanup.json",
+    "sha256": "2a265a3ffff8b3833a0d48b931484c4a3df8a4214b4a4a5e8e5e1bf565bfb945"
+  },
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/final-backup-20261102.json",
+    "sha256": "1ad1f617b0992cecd0b39cfbbf07d2d2b3e5a182b5c44e450da045c269f5b21e"
+  },
+  "retained_failed_reservations": {
+    "entries": 193,
+    "accounted_usd": 9.138778,
+    "active_calls": 0
+  },
+  "confirmed_absent": true,
+  "created_at_utc": "2026-11-02T09:19:08.092275+00:00"
+}

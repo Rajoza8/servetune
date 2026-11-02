@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "log_level": [
+        "INFO",
+        "WARNING"
+      ]
+    }
+  },
+  {
+    "t": 63.9,
+    "kind": "note",
+    "text": "Rotated the gateway TLS certificate."
+  }
+]

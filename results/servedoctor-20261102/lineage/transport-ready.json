@@ -1,0 +1,40 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "origin": "local_mac",
+  "created_at_utc": "2026-11-02T01:49:50.833756+00:00",
+  "allowed_target": "api.meta.ai:443",
+  "tls_end_to_end": true,
+  "keys_visible_to_relay": false,
+  "payload_logging": false,
+  "key_environment_inherited": false,
+  "local_loopback_port": 62629,
+  "remote_loopback_port": 18443,
+  "transport_config_sha256": "62276217beb26abb14e37dffc45c7be471efc6d3aac16441187ed244e55d4e16",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "remote_listener_sha256": "3f72f5cc51b29a4e3c165a793acf67fd932407714057e8c5fa4077149818c7d5",
+  "control_path": "/tmp/sdrelay-2r0khi3u/control.sock",
+  "evidence_sha256": {
+    "runs/servedoctor-ops-20261101/model-diagnostic-20261102-after-ca-repair.json": "c6555b01092c4521c9e93587c608eb19a2de4f4fa6629ce5863e5f3bebd8336a",
+    "runs/servedoctor-ops-20261101/wonder-host-availability-evidence.json": "4300bb8ea23505fdb9788bd2e5d64c118e040c387bc4fd32109e594f0cf58a02"
+  },
+  "relay_code_sha256": "c3aa28f5c5784dbc0afde3a73a7492758432def5a5cc135172e9c16b4c8c9b5d",
+  "launcher_code_sha256": "9de26b0251a568bb94d3062e38b44c396d3d2df42a57f0e23a55ce2656d7722d",
+  "owned_processes": {
+    "relay": {
+      "pid": 74745,
+      "pgid": 74745,
+      "start_identity": "Sun Nov  1 20:49:45 2026",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 /Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/meta_connect_relay.py --receipt-dir /Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/meta-relay-attempt-20261102T014945176514Z-a5a06970"
+    },
+    "ssh": {
+      "pid": 74748,
+      "pgid": 74748,
+      "start_identity": "Sun Nov  1 20:49:45 2026",
+      "command": "ssh -F /dev/null -T -i /Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/vast-preflight-20261029/ssh_ed25519 -p 24185 -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=\"/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/known_hosts\" -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -N -M -S /tmp/sdrelay-2r0khi3u/control.sock -o ControlPersist=no -o ExitOnForwardFailure=yes -R 127.0.0.1:18443:127.0.0.1:62629 root@121.158.120.137"
+    }
+  },
+  "verified": false,
+  "verification": null,
+  "scope": "SSH ready only; separate explicit unauthenticated remote-through-proxy GET proof required"
+}

@@ -1,0 +1,124 @@
+{
+ "arm": "spark",
+ "incident": "inc-02",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61733,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.9,
+  "evidence": [
+   "gpu_memory_utilization lowered 0.9->0.61733 at t=0 deploy",
+   "kv_usage_pct_max 99%+ vs normal 1.78% max",
+   "waiting_max up to 8.0 vs normal 0.0 with preemptions 0.5-0.6/s",
+   "p95_ttft up to 1.71s vs normal 0.42s",
+   "gpu_mem_used_mb ~60362 vs normal 87634"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Memory reservation cut caused KV cache saturation, queueing and preemptions with elevated TTFT. Restoring gpu_memory_utilization to 0.9 reference re-enlarges KV cache, least disruptive restart fix.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.9, \"evidence\": [\"gpu_memory_utilization lowered 0.9->0.61733 at t=0 deploy\", \"kv_usage_pct_max 99%+ vs normal 1.78% max\", \"waiting_max up to 8.0 vs normal 0.0 with preemptions 0.5-0.6/s\", \"p95_ttft up to 1.71s vs normal 0.42s\", \"gpu_mem_used_mb ~60362 vs normal 87634\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Memory reservation cut caused KV cache saturation, queueing and preemptions with elevated TTFT. Restoring gpu_memory_utilization to 0.9 reference re-enlarges KV cache, least disruptive restart fix.\"}",
+  "usage": {
+   "completion_tokens": 953,
+   "prompt_tokens": 1943,
+   "total_tokens": 2896,
+   "completion_tokens_details": {
+    "reasoning_tokens": 737
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "14114cea491680d453a323ca4b53a2c266e75d4b8af2d7661280a76e1e985b54",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.88,
+    "evidence": [
+     "p95_latency 5.49-7.35s < SLO 10.0s",
+     "shed_rps 0.0 and errors 0, within SLO",
+     "arrivals 3.7-5.1 rps vs normal 4.0 rps",
+     "KV 99% transient but recovered to 62.85% with waiting 0",
+     "gpu_util ~99.8% and power ~554W match normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "No SLO breach on latency, errors, or shed. Elevated KV usage and brief waiting/TTFT spike recovered by t=29s. Reduced gpu_memory_utilization has not caused SLO violation; restart would be more disruptive than benefit.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.88, \"evidence\": [\"p95_latency 5.49-7.35s < SLO 10.0s\", \"shed_rps 0.0 and errors 0, within SLO\", \"arrivals 3.7-5.1 rps vs normal 4.0 rps\", \"KV 99% transient but recovered to 62.85% with waiting 0\", \"gpu_util ~99.8% and power ~554W match normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"No SLO breach on latency, errors, or shed. Elevated KV usage and brief waiting/TTFT spike recovered by t=29s. Reduced gpu_memory_utilization has not caused SLO violation; restart would be more disruptive than benefit.\"}",
+    "usage": {
+     "completion_tokens": 1409,
+     "prompt_tokens": 1474,
+     "total_tokens": 2883,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1217
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "0bc5ea5dd6d7fe8cd0f60bbf9c2fdfcd3c1415a41efb7bdfb3e4dcded579cb77",
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.9,
+    "evidence": [
+     "gpu_memory_utilization lowered 0.9->0.61733 at t=0 deploy",
+     "kv_usage_pct_max 99%+ vs normal 1.78% max",
+     "waiting_max up to 8.0 vs normal 0.0 with preemptions 0.5-0.6/s",
+     "p95_ttft up to 1.71s vs normal 0.42s",
+     "gpu_mem_used_mb ~60362 vs normal 87634"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Memory reservation cut caused KV cache saturation, queueing and preemptions with elevated TTFT. Restoring gpu_memory_utilization to 0.9 reference re-enlarges KV cache, least disruptive restart fix.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.9, \"evidence\": [\"gpu_memory_utilization lowered 0.9->0.61733 at t=0 deploy\", \"kv_usage_pct_max 99%+ vs normal 1.78% max\", \"waiting_max up to 8.0 vs normal 0.0 with preemptions 0.5-0.6/s\", \"p95_ttft up to 1.71s vs normal 0.42s\", \"gpu_mem_used_mb ~60362 vs normal 87634\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Memory reservation cut caused KV cache saturation, queueing and preemptions with elevated TTFT. Restoring gpu_memory_utilization to 0.9 reference re-enlarges KV cache, least disruptive restart fix.\"}",
+    "usage": {
+     "completion_tokens": 953,
+     "prompt_tokens": 1943,
+     "total_tokens": 2896,
+     "completion_tokens_details": {
+      "reasoning_tokens": 737
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

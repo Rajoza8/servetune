@@ -1,0 +1,88 @@
+{
+ "arm": "spark",
+ "incident": "inc-05",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "running capped at 8.0 equals max_num_seqs=8 vs normal 21.1",
+   "waiting_max 70 vs normal 0.0, growing 15->44->70",
+   "kv_usage_pct_max ~1% low, no KV pressure",
+   "arrivals 4.2 rps vs normal 4.0, not a surge",
+   "p95_latency 16.91s exceeds SLO 10.0s, TTFT 12.34s"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy cut max_num_seqs 64->8. Load normal but concurrency capped at 8, queue explodes with KV idle. Restore to 64 to clear backlog.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"running capped at 8.0 equals max_num_seqs=8 vs normal 21.1\", \"waiting_max 70 vs normal 0.0, growing 15->44->70\", \"kv_usage_pct_max ~1% low, no KV pressure\", \"arrivals 4.2 rps vs normal 4.0, not a surge\", \"p95_latency 16.91s exceeds SLO 10.0s, TTFT 12.34s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy cut max_num_seqs 64->8. Load normal but concurrency capped at 8, queue explodes with KV idle. Restore to 64 to clear backlog.\"}",
+  "usage": {
+   "completion_tokens": 634,
+   "prompt_tokens": 1465,
+   "total_tokens": 2099,
+   "completion_tokens_details": {
+    "reasoning_tokens": 427
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fb7fba4f066480047a02155e4a6ea9b9fb0f5cc8484a3b546b81276aaeeb5ca0",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "running capped at 8.0 equals max_num_seqs=8 vs normal 21.1",
+     "waiting_max 70 vs normal 0.0, growing 15->44->70",
+     "kv_usage_pct_max ~1% low, no KV pressure",
+     "arrivals 4.2 rps vs normal 4.0, not a surge",
+     "p95_latency 16.91s exceeds SLO 10.0s, TTFT 12.34s"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_num_seqs 64->8. Load normal but concurrency capped at 8, queue explodes with KV idle. Restore to 64 to clear backlog.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"running capped at 8.0 equals max_num_seqs=8 vs normal 21.1\", \"waiting_max 70 vs normal 0.0, growing 15->44->70\", \"kv_usage_pct_max ~1% low, no KV pressure\", \"arrivals 4.2 rps vs normal 4.0, not a surge\", \"p95_latency 16.91s exceeds SLO 10.0s, TTFT 12.34s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy cut max_num_seqs 64->8. Load normal but concurrency capped at 8, queue explodes with KV idle. Restore to 64 to clear backlog.\"}",
+    "usage": {
+     "completion_tokens": 634,
+     "prompt_tokens": 1465,
+     "total_tokens": 2099,
+     "completion_tokens_details": {
+      "reasoning_tokens": 427
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

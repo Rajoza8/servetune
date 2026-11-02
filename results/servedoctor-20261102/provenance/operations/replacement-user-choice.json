@@ -1,0 +1,9 @@
+{
+  "at_utc": "2026-11-01T21:16:19.265850+00:00",
+  "user_choice": "Replace and rerun (Recommended)",
+  "authorized_scope": "Replace stopped unavailable rental, one active GPU only; preserve evidence and ledger, rerun calibration/reference/dev on replacement before test",
+  "proposed_offer": 58349615,
+  "proposed_machine": 18114,
+  "budget_plan": "replacement-budget-plan.json",
+  "gpu_total_cap_usd": 40
+}

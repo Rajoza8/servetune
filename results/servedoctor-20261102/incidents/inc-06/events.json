@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "log_level": [
+        "INFO",
+        "WARNING"
+      ]
+    }
+  },
+  {
+    "t": 202.3,
+    "kind": "note",
+    "text": "Client SDK minor version bump rolled out to 10% of callers."
+  }
+]

@@ -1,0 +1,78 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-03",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.93,
+  "evidence": [
+   "max_num_seqs dropped from 64 to 4 at deploy t=0",
+   "running pinned at 4 reqs while waiting_max grew 45\u219291\u2192126",
+   "p95_latency_s 5.02\u219212.94\u219225.83 exceeds SLO 10.0",
+   "p95_ttft_s 21.32 s with arrivals ~5 rps similar to normal 4.0 rps",
+   "GPU util 100% but kv_usage_pct_max ~0.3% and low ok_rps 1.0 vs arrivals 4.4"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_num_seqs to 4, capping concurrency. Queue builds, latency and TTFT blow up while GPU is saturated. Restoring batch limit to reference 64 unblocks throughput.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.93, \"evidence\": [\"max_num_seqs dropped from 64 to 4 at deploy t=0\", \"running pinned at 4 reqs while waiting_max grew 45\u219291\u2192126\", \"p95_latency_s 5.02\u219212.94\u219225.83 exceeds SLO 10.0\", \"p95_ttft_s 21.32 s with arrivals ~5 rps similar to normal 4.0 rps\", \"GPU util 100% but kv_usage_pct_max ~0.3% and low ok_rps 1.0 vs arrivals 4.4\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy reduced max_num_seqs to 4, capping concurrency. Queue builds, latency and TTFT blow up while GPU is saturated. Restoring batch limit to reference 64 unblocks throughput.\"}",
+  "usage": {
+   "prompt_tokens": 1481,
+   "total_tokens": 2004,
+   "completion_tokens": 523,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "797e06cd1abbb6ba19b6bc21325c86a6daca28d8f9fd1b6adfafa41db6d2f933",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.93,
+    "evidence": [
+     "max_num_seqs dropped from 64 to 4 at deploy t=0",
+     "running pinned at 4 reqs while waiting_max grew 45\u219291\u2192126",
+     "p95_latency_s 5.02\u219212.94\u219225.83 exceeds SLO 10.0",
+     "p95_ttft_s 21.32 s with arrivals ~5 rps similar to normal 4.0 rps",
+     "GPU util 100% but kv_usage_pct_max ~0.3% and low ok_rps 1.0 vs arrivals 4.4"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_num_seqs to 4, capping concurrency. Queue builds, latency and TTFT blow up while GPU is saturated. Restoring batch limit to reference 64 unblocks throughput.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.93, \"evidence\": [\"max_num_seqs dropped from 64 to 4 at deploy t=0\", \"running pinned at 4 reqs while waiting_max grew 45\u219291\u2192126\", \"p95_latency_s 5.02\u219212.94\u219225.83 exceeds SLO 10.0\", \"p95_ttft_s 21.32 s with arrivals ~5 rps similar to normal 4.0 rps\", \"GPU util 100% but kv_usage_pct_max ~0.3% and low ok_rps 1.0 vs arrivals 4.4\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy reduced max_num_seqs to 4, capping concurrency. Queue builds, latency and TTFT blow up while GPU is saturated. Restoring batch limit to reference 64 unblocks throughput.\"}",
+    "usage": {
+     "prompt_tokens": 1481,
+     "total_tokens": 2004,
+     "completion_tokens": 523,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

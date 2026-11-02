@@ -1,0 +1,81 @@
+{
+  "id": "inc-05",
+  "arm": "rules",
+  "decision": {
+    "incident": true,
+    "root_cause": "other",
+    "actions": [
+      {
+        "type": "escalate_to_human"
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 30.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "escalate_to_human"
+      },
+      "at": "2026-11-02T08:07:07.495659+00:00",
+      "status": "executed"
+    }
+  ],
+  "recovered": false,
+  "rolled_back": true,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "c106818d743b2e1d44391ea2f1e8d8841856720659297856d5fe7811f240cb04",
+      "decision": {
+        "incident": true,
+        "root_cause": "other",
+        "actions": [
+          {
+            "type": "escalate_to_human"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 30.0,
+  "post_fix_window": {
+    "requests": 246,
+    "ok": 0,
+    "shed": 0,
+    "failed": 246,
+    "shed_rate": 0.0,
+    "error_rate": 1.0,
+    "p50_latency_s": null,
+    "p95_latency_s": null
+  },
+  "fault_window_before_action": {
+    "requests": 120,
+    "ok": 120,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 24.797542091924697,
+    "p95_latency_s": 46.79614506228827
+  },
+  "after_action": {
+    "requests": 2514,
+    "ok": 28,
+    "shed": 0,
+    "failed": 2486,
+    "shed_rate": 0.0,
+    "error_rate": 0.9888623707239459,
+    "p50_latency_s": 53.95471498463303,
+    "p95_latency_s": 59.72460849876516
+  },
+  "time_to_recover_s": null,
+  "engine_restarts": []
+}

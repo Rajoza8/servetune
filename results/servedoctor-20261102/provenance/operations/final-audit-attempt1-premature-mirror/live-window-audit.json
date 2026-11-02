@@ -1,0 +1,830 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-02T08:57:34.738582+00:00",
+  "study_dir": "runs/sd-study-r2-api2",
+  "plan_sha256": "68d027631715fc7862bc8e2299c8ebfd50d0515ce62bf8536b96cae6a1749fee",
+  "plan_created_at_utc": "2026-11-02T03:55:24.445062+00:00",
+  "scope": "Descriptive public live evidence only. Never used for arm selection, canonical scoring/recovery, prompts, thresholds or answer keys.",
+  "canonical_disclosures": {
+    "fault_window_before_action": "onset through action completion; includes API/action/restart time",
+    "after_action": "action completion through live duration; may include rollback",
+    "post_fix_window": "stored lagged60s online window; exact bounds not persisted; not assumed identical to descriptive post window",
+    "time_to_recover_s": "onset-relative end of first passing retrospective30s window scanned every10s, conditional on canonical recovery; not time since repair"
+  },
+  "runs": [
+    {
+      "id": "inc-02",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-02-glimmer_to_spark-20261102t062614054348z",
+      "anchors": {
+        "public_onset_s": 0.0,
+        "triggering_checkpoint_s": 120.0,
+        "action_completion_s": 173.0,
+        "action_starts_s_approximate": [
+          135.280121
+        ],
+        "action_start_basis": "executed.at minus scenario_public.started_at; t0 offset is not persisted"
+      },
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "pre": {
+        "start_s": 60.0,
+        "end_s": 120.0,
+        "length_s": 60.0,
+        "N": 214,
+        "offered": 214,
+        "ok": 214,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 214,
+        "p95_latency_s": 11.245819673733784,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "post": {
+        "start_s": 203.0,
+        "end_s": 263.0,
+        "length_s": 60.0,
+        "N": 252,
+        "offered": 252,
+        "ok": 252,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 252,
+        "p95_latency_s": 6.427229600818828,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": true,
+        "full_configured_target_met": true,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "canonical": {
+        "recovered": true,
+        "rolled_back": false,
+        "time_to_recover_s": 203.0,
+        "acted_at_s": 173.0,
+        "fault_window_before_action": {
+          "requests": 684,
+          "ok": 484,
+          "shed": 0,
+          "failed": 200,
+          "shed_rate": 0.0,
+          "error_rate": 0.29239766081871343,
+          "p50_latency_s": 5.803542042616755,
+          "p95_latency_s": 10.891690712329
+        },
+        "after_action": {
+          "requests": 1945,
+          "ok": 1945,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.7128557385876775,
+          "p95_latency_s": 6.417596042342484
+        },
+        "post_fix_window": {
+          "requests": 256,
+          "ok": 256,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.853782661724836,
+          "p95_latency_s": 6.4258493857923895
+        },
+        "failure": null,
+        "failure_stage": null,
+        "cleanup_errors": []
+      },
+      "executed": [
+        {
+          "type": "set_engine_config",
+          "status": "executed",
+          "knob": "gpu_memory_utilization",
+          "value": 0.9
+        }
+      ],
+      "restarts": {
+        "entries": [
+          {
+            "knob": "gpu_memory_utilization",
+            "value": 0.9,
+            "status": "completed",
+            "seconds": 37.70984926726669,
+            "phase": "forward"
+          }
+        ],
+        "seconds": {
+          "forward": 37.70984926726669,
+          "rollback": 0.0,
+          "unclassified": 0.0
+        }
+      },
+      "error_classes": {
+        "runtime": [],
+        "calls": [],
+        "actions": []
+      },
+      "flags": {
+        "trigger_pre_onset": false,
+        "action_start_pre_onset_approximate": false,
+        "action_completion_pre_onset": false,
+        "no_executed_change": false,
+        "canonical_verification_missing": false,
+        "partial_jsonl": false,
+        "both_latency_error_windows_met": false,
+        "post_shedding_exceeds_configured_cap": false
+      },
+      "inconclusive": false,
+      "interpretation": "Latency/error target attained in the post window after a pre-window miss; temporal association only, not causal proof.",
+      "public_files_sha256": {
+        "live_result.json": "f4081b5ed6098cc9ed94d55c4cf2b958fa8fce8fe8caf55eef9d90ebca8739ff",
+        "checkpoints.jsonl": "bf24786eeee356523dc58a1b56fdea5fc91bfcd432e3aa5095255cac7df0224b",
+        "requests.jsonl": "8b35b7bffa7a1a07f86a2bf28619c3138e7b97ddd573f05d8fb47bb228d9af1d",
+        "scenario_public.json": "43039476a2f71c736eb99f83ff5259a0ef4ec7c1a8d22cd77da040c0d749c3ac"
+      }
+    },
+    {
+      "id": "inc-04",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-04-glimmer_to_spark-20261102t062614054348z",
+      "anchors": {
+        "public_onset_s": 0.0,
+        "triggering_checkpoint_s": 30.0,
+        "action_completion_s": 72.3,
+        "action_starts_s_approximate": [
+          34.62276
+        ],
+        "action_start_basis": "executed.at minus scenario_public.started_at; t0 offset is not persisted"
+      },
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "pre": {
+        "start_s": 0.0,
+        "end_s": 30.0,
+        "length_s": 30.0,
+        "N": 104,
+        "offered": 104,
+        "ok": 84,
+        "failed": 20,
+        "shed": 0,
+        "admitted": 104,
+        "p95_latency_s": 4.9538529881741855,
+        "error_rate": 0.19230769230769232,
+        "shed_rate": 0.0,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "post": {
+        "start_s": 102.3,
+        "end_s": 162.3,
+        "length_s": 60.000000000000014,
+        "N": 234,
+        "offered": 234,
+        "ok": 234,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 234,
+        "p95_latency_s": 6.260686358995736,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": true,
+        "full_configured_target_met": true,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "canonical": {
+        "recovered": true,
+        "rolled_back": false,
+        "time_to_recover_s": 102.3,
+        "acted_at_s": 72.3,
+        "fault_window_before_action": {
+          "requests": 249,
+          "ok": 86,
+          "shed": 0,
+          "failed": 163,
+          "shed_rate": 0.0,
+          "error_rate": 0.6546184738955824,
+          "p50_latency_s": 4.850101901218295,
+          "p95_latency_s": 4.9555855062790215
+        },
+        "after_action": {
+          "requests": 2292,
+          "ok": 2292,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.704381673131138,
+          "p95_latency_s": 6.39325197506696
+        },
+        "post_fix_window": {
+          "requests": 218,
+          "ok": 218,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.930124916601926,
+          "p95_latency_s": 6.602378861932084
+        },
+        "failure": null,
+        "failure_stage": null,
+        "cleanup_errors": []
+      },
+      "executed": [
+        {
+          "type": "set_engine_config",
+          "status": "executed",
+          "knob": "max_model_len",
+          "value": 4096
+        }
+      ],
+      "restarts": {
+        "entries": [
+          {
+            "knob": "max_model_len",
+            "value": 4096,
+            "status": "completed",
+            "seconds": 37.68654798809439,
+            "phase": "forward"
+          }
+        ],
+        "seconds": {
+          "forward": 37.68654798809439,
+          "rollback": 0.0,
+          "unclassified": 0.0
+        }
+      },
+      "error_classes": {
+        "runtime": [],
+        "calls": [
+          "HTTPError"
+        ],
+        "actions": []
+      },
+      "flags": {
+        "trigger_pre_onset": false,
+        "action_start_pre_onset_approximate": false,
+        "action_completion_pre_onset": false,
+        "no_executed_change": false,
+        "canonical_verification_missing": false,
+        "partial_jsonl": false,
+        "both_latency_error_windows_met": false,
+        "post_shedding_exceeds_configured_cap": false
+      },
+      "inconclusive": false,
+      "interpretation": "Latency/error target attained in the post window after a pre-window miss; temporal association only, not causal proof.",
+      "public_files_sha256": {
+        "live_result.json": "e5eb3947d9f31ed86dae1969a961b38c027d2b98b4e2f7b7da5dc74152f445bc",
+        "checkpoints.jsonl": "f402357e788a1609b6a9e96cb5f631173478ab42f70bfe3bbc89b30cd02e6420",
+        "requests.jsonl": "6e89b7f7f9a8c3929d67d69fd4a167a41352382d5da987bb9b451986809e5d06",
+        "scenario_public.json": "0432341cd1c4d7d83c10eb77c6af28e3d4ec693d21c06066a79845745180fa0a"
+      }
+    },
+    {
+      "id": "inc-05",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-05-glimmer_to_spark-20261102t062614054348z",
+      "anchors": {
+        "public_onset_s": 0.0,
+        "triggering_checkpoint_s": 30.0,
+        "action_completion_s": 78.4,
+        "action_starts_s_approximate": [
+          40.533516
+        ],
+        "action_start_basis": "executed.at minus scenario_public.started_at; t0 offset is not persisted"
+      },
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "pre": {
+        "start_s": 0.0,
+        "end_s": 30.0,
+        "length_s": 30.0,
+        "N": 120,
+        "offered": 120,
+        "ok": 56,
+        "failed": 64,
+        "shed": 0,
+        "admitted": 120,
+        "p95_latency_s": 22.32848303997889,
+        "error_rate": 0.5333333333333333,
+        "shed_rate": 0.0,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "post": {
+        "start_s": 108.4,
+        "end_s": 168.4,
+        "length_s": 60.0,
+        "N": 240,
+        "offered": 240,
+        "ok": 240,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 240,
+        "p95_latency_s": 5.9675158427562565,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": true,
+        "full_configured_target_met": true,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "canonical": {
+        "recovered": true,
+        "rolled_back": false,
+        "time_to_recover_s": 108.4,
+        "acted_at_s": 78.4,
+        "fault_window_before_action": {
+          "requests": 316,
+          "ok": 56,
+          "shed": 0,
+          "failed": 260,
+          "shed_rate": 0.0,
+          "error_rate": 0.8227848101265823,
+          "p50_latency_s": 13.222890559118241,
+          "p95_latency_s": 22.32848303997889
+        },
+        "after_action": {
+          "requests": 2318,
+          "ok": 2318,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.718817459885031,
+          "p95_latency_s": 6.444423217466102
+        },
+        "post_fix_window": {
+          "requests": 226,
+          "ok": 226,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.641135296784341,
+          "p95_latency_s": 5.9607603857293725
+        },
+        "failure": null,
+        "failure_stage": null,
+        "cleanup_errors": []
+      },
+      "executed": [
+        {
+          "type": "set_engine_config",
+          "status": "executed",
+          "knob": "max_num_seqs",
+          "value": 64
+        }
+      ],
+      "restarts": {
+        "entries": [
+          {
+            "knob": "max_num_seqs",
+            "value": 64,
+            "status": "completed",
+            "seconds": 37.90740461368114,
+            "phase": "forward"
+          }
+        ],
+        "seconds": {
+          "forward": 37.90740461368114,
+          "rollback": 0.0,
+          "unclassified": 0.0
+        }
+      },
+      "error_classes": {
+        "runtime": [],
+        "calls": [],
+        "actions": []
+      },
+      "flags": {
+        "trigger_pre_onset": false,
+        "action_start_pre_onset_approximate": false,
+        "action_completion_pre_onset": false,
+        "no_executed_change": false,
+        "canonical_verification_missing": false,
+        "partial_jsonl": false,
+        "both_latency_error_windows_met": false,
+        "post_shedding_exceeds_configured_cap": false
+      },
+      "inconclusive": false,
+      "interpretation": "Latency/error target attained in the post window after a pre-window miss; temporal association only, not causal proof.",
+      "public_files_sha256": {
+        "live_result.json": "d21b6d1c232f260322c1322e74cc88cd9ca4a7bc7dfe1fa5bc31c47b42eddb0a",
+        "checkpoints.jsonl": "3532064bfd0271f23f6993332cf2308f65f7da8648d42ea444bc9b82278bd2d4",
+        "requests.jsonl": "940d540bda30a0f887abb2e91c307c3d74ad1d15071c4ee9ded7ae68f16357ba",
+        "scenario_public.json": "86eaa3d8e43d142b8d3c9c78b6eb88470cc594e57a812c1c9689c4eacb29bf9f"
+      }
+    },
+    {
+      "id": "inc-06",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-06-glimmer_to_spark-20261102t062614054348z",
+      "anchors": {
+        "public_onset_s": 120.0,
+        "triggering_checkpoint_s": 150.0,
+        "action_completion_s": 166.9,
+        "action_starts_s_approximate": [
+          166.93747
+        ],
+        "action_start_basis": "executed.at minus scenario_public.started_at; t0 offset is not persisted"
+      },
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "pre": {
+        "start_s": 120.0,
+        "end_s": 150.0,
+        "length_s": 30.0,
+        "N": 303,
+        "offered": 303,
+        "ok": 303,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 303,
+        "p95_latency_s": 14.723886274266988,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "post": {
+        "start_s": 196.9,
+        "end_s": 256.9,
+        "length_s": 59.99999999999997,
+        "N": 601,
+        "offered": 601,
+        "ok": 240,
+        "failed": 0,
+        "shed": 361,
+        "admitted": 240,
+        "p95_latency_s": 6.410608993889764,
+        "error_rate": 0.0,
+        "shed_rate": 0.6006655574043261,
+        "latency_error_target_met": true,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "canonical": {
+        "recovered": true,
+        "rolled_back": false,
+        "time_to_recover_s": 96.9,
+        "acted_at_s": 166.9,
+        "fault_window_before_action": {
+          "requests": 465,
+          "ok": 465,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 12.993845683522522,
+          "p95_latency_s": 16.55351449474692
+        },
+        "after_action": {
+          "requests": 5128,
+          "ok": 1976,
+          "shed": 3152,
+          "failed": 0,
+          "shed_rate": 0.6146645865834633,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.619250623974949,
+          "p95_latency_s": 6.410708062583581
+        },
+        "post_fix_window": {
+          "requests": 604,
+          "ok": 240,
+          "shed": 364,
+          "failed": 0,
+          "shed_rate": 0.6026490066225165,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.698401402216405,
+          "p95_latency_s": 6.342542470432818
+        },
+        "failure": null,
+        "failure_stage": null,
+        "cleanup_errors": []
+      },
+      "executed": [
+        {
+          "type": "gateway_rate_limit",
+          "status": "executed",
+          "max_rps": 4.0
+        }
+      ],
+      "restarts": {
+        "entries": [],
+        "seconds": {
+          "forward": 0.0,
+          "rollback": 0.0,
+          "unclassified": 0.0
+        }
+      },
+      "error_classes": {
+        "runtime": [],
+        "calls": [],
+        "actions": []
+      },
+      "flags": {
+        "trigger_pre_onset": false,
+        "action_start_pre_onset_approximate": false,
+        "action_completion_pre_onset": false,
+        "no_executed_change": false,
+        "canonical_verification_missing": false,
+        "partial_jsonl": false,
+        "both_latency_error_windows_met": false,
+        "post_shedding_exceeds_configured_cap": true
+      },
+      "inconclusive": false,
+      "interpretation": "Latency/error target attained in the post window after a pre-window miss; temporal association only, not causal proof.",
+      "public_files_sha256": {
+        "live_result.json": "b1ec473eda23f22093796025a4cc198306cd329878d0b4a9cb4c0b8ddaef1dd7",
+        "checkpoints.jsonl": "155418948f5ef8eecf4d9b8f686293f414fe9980ca0a51271982cd2b63edf2b3",
+        "requests.jsonl": "13bbc7844eb0f1ee1f48283dfbde59f6013cc5c08bb3707079627e8f23ec4f08",
+        "scenario_public.json": "e6b15c337bb4136388b151b11a99c25611abe72b9f5043adca06f3aa8819cd5b"
+      }
+    },
+    {
+      "id": "inc-09",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-09-glimmer_to_spark-20261102t062614054348z",
+      "anchors": {
+        "public_onset_s": 120.0,
+        "triggering_checkpoint_s": 150.0,
+        "action_completion_s": 174.0,
+        "action_starts_s_approximate": [
+          173.851103
+        ],
+        "action_start_basis": "executed.at minus scenario_public.started_at; t0 offset is not persisted"
+      },
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "pre": {
+        "start_s": 120.0,
+        "end_s": 150.0,
+        "length_s": 30.0,
+        "N": 129,
+        "offered": 129,
+        "ok": 129,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 129,
+        "p95_latency_s": 14.700017725117505,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "post": {
+        "start_s": 204.0,
+        "end_s": 264.0,
+        "length_s": 60.0,
+        "N": 242,
+        "offered": 242,
+        "ok": 242,
+        "failed": 0,
+        "shed": 0,
+        "admitted": 242,
+        "p95_latency_s": 6.242505383118986,
+        "error_rate": 0.0,
+        "shed_rate": 0.0,
+        "latency_error_target_met": true,
+        "full_configured_target_met": true,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "canonical": {
+        "recovered": true,
+        "rolled_back": false,
+        "time_to_recover_s": 84.0,
+        "acted_at_s": 174.0,
+        "fault_window_before_action": {
+          "requests": 224,
+          "ok": 224,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 13.134021928999573,
+          "p95_latency_s": 15.661682754894718
+        },
+        "after_action": {
+          "requests": 1963,
+          "ok": 1963,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.673656173050404,
+          "p95_latency_s": 6.560827084351331
+        },
+        "post_fix_window": {
+          "requests": 234,
+          "ok": 234,
+          "shed": 0,
+          "failed": 0,
+          "shed_rate": 0.0,
+          "error_rate": 0.0,
+          "p50_latency_s": 5.678922787774354,
+          "p95_latency_s": 6.2495779161341485
+        },
+        "failure": null,
+        "failure_stage": null,
+        "cleanup_errors": []
+      },
+      "executed": [
+        {
+          "type": "stop_gpu_process",
+          "status": "executed",
+          "pid": 30087
+        }
+      ],
+      "restarts": {
+        "entries": [],
+        "seconds": {
+          "forward": 0.0,
+          "rollback": 0.0,
+          "unclassified": 0.0
+        }
+      },
+      "error_classes": {
+        "runtime": [],
+        "calls": [],
+        "actions": []
+      },
+      "flags": {
+        "trigger_pre_onset": false,
+        "action_start_pre_onset_approximate": false,
+        "action_completion_pre_onset": false,
+        "no_executed_change": false,
+        "canonical_verification_missing": false,
+        "partial_jsonl": false,
+        "both_latency_error_windows_met": false,
+        "post_shedding_exceeds_configured_cap": false
+      },
+      "inconclusive": false,
+      "interpretation": "Latency/error target attained in the post window after a pre-window miss; temporal association only, not causal proof.",
+      "public_files_sha256": {
+        "live_result.json": "64197ad93a475dd7817b92977277f9f577d11a05c50b364432ab8465fba6277d",
+        "checkpoints.jsonl": "c0edee7493a26ac8012aad28eda75a9d240d04ad61099858bc4ab445beda3cfb",
+        "requests.jsonl": "a4366bef60b626aaa36ca6a78dbf280bdf1262d356fb2cda4c24053e157a7c99",
+        "scenario_public.json": "f741f7bdf5d7aac0ef6aff8310dfc131c876452d66f804da2a772f16c4499a27"
+      }
+    },
+    {
+      "id": "inc-15",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-15-glimmer_to_spark-20261102t062614054348z",
+      "anchors": {
+        "public_onset_s": 120.0,
+        "triggering_checkpoint_s": 167.751,
+        "action_completion_s": 200.2,
+        "action_starts_s_approximate": [
+          200.238242
+        ],
+        "action_start_basis": "executed.at minus scenario_public.started_at; t0 offset is not persisted"
+      },
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "pre": {
+        "start_s": 120.0,
+        "end_s": 167.751,
+        "length_s": 47.751000000000005,
+        "N": 186,
+        "offered": 186,
+        "ok": 126,
+        "failed": 60,
+        "shed": 0,
+        "admitted": 186,
+        "p95_latency_s": 57.94352083327249,
+        "error_rate": 0.3225806451612903,
+        "shed_rate": 0.0,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "post": {
+        "start_s": 230.2,
+        "end_s": 290.2,
+        "length_s": 60.0,
+        "N": 265,
+        "offered": 265,
+        "ok": 43,
+        "failed": 0,
+        "shed": 222,
+        "admitted": 43,
+        "p95_latency_s": 29.646333278901874,
+        "error_rate": 0.0,
+        "shed_rate": 0.8377358490566038,
+        "latency_error_target_met": false,
+        "full_configured_target_met": false,
+        "count_basis": "persisted request outcomes by scheduled arrival; no missing arrivals inferred"
+      },
+      "canonical": {
+        "recovered": false,
+        "rolled_back": true,
+        "time_to_recover_s": null,
+        "acted_at_s": 200.2,
+        "fault_window_before_action": {
+          "requests": 303,
+          "ok": 126,
+          "shed": 0,
+          "failed": 177,
+          "shed_rate": 0.0,
+          "error_rate": 0.5841584158415841,
+          "p50_latency_s": 44.230811616405845,
+          "p95_latency_s": 57.94352083327249
+        },
+        "after_action": {
+          "requests": 1845,
+          "ok": 230,
+          "shed": 548,
+          "failed": 1067,
+          "shed_rate": 0.2970189701897019,
+          "error_rate": 0.8226676946800309,
+          "p50_latency_s": 36.0060211699456,
+          "p95_latency_s": 54.014486502204086
+        },
+        "post_fix_window": {
+          "requests": 259,
+          "ok": 50,
+          "shed": 209,
+          "failed": 0,
+          "shed_rate": 0.806949806949807,
+          "error_rate": 0.0,
+          "p50_latency_s": 4.8138682073913515,
+          "p95_latency_s": 20.426940206578
+        },
+        "failure": null,
+        "failure_stage": null,
+        "cleanup_errors": []
+      },
+      "executed": [
+        {
+          "type": "gateway_max_prompt_tokens",
+          "status": "executed",
+          "max_prompt_tokens": 1000
+        }
+      ],
+      "restarts": {
+        "entries": [],
+        "seconds": {
+          "forward": 0.0,
+          "rollback": 0.0,
+          "unclassified": 0.0
+        }
+      },
+      "error_classes": {
+        "runtime": [],
+        "calls": [],
+        "actions": []
+      },
+      "flags": {
+        "trigger_pre_onset": false,
+        "action_start_pre_onset_approximate": false,
+        "action_completion_pre_onset": false,
+        "no_executed_change": false,
+        "canonical_verification_missing": false,
+        "partial_jsonl": false,
+        "both_latency_error_windows_met": false,
+        "post_shedding_exceeds_configured_cap": true
+      },
+      "inconclusive": false,
+      "interpretation": "Post window misses the latency/error target.",
+      "public_files_sha256": {
+        "live_result.json": "920e2c7c15c480f79076112449cada49b493198220a27b3224da9bb754f030fd",
+        "checkpoints.jsonl": "7a7212e30b945d44eb11810f11b18a3d1e66424083c62e9743dd60baeda0ed37",
+        "requests.jsonl": "c56d13b8d7f709d05bf3a07727a1e2d8757a3d599cbb3ba159bd353b82f2c0e0",
+        "scenario_public.json": "2baaa8f47c037880a214fb7a728934034b972f061d80b0deb24101aba1cd58ba"
+      }
+    }
+  ],
+  "unavailable_runs": [],
+  "run_counts": {
+    "glimmer_to_spark": 6
+  },
+  "limits": "Descriptive matched cases, not causal inference. Canonical flags/metrics unchanged. N/offered count persisted outcomes; missing arrivals are not inferred. No model text or answers read."
+}

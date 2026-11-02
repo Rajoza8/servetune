@@ -1,0 +1,88 @@
+{
+ "arm": "spark",
+ "incident": "inc-10",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 2,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "max_num_seqs changed 64->2 at deploy",
+   "running capped at 2.0 vs normal 21.1",
+   "waiting_max growing 33->77->110",
+   "kv_usage_pct_max 0.23% vs normal 1.78%",
+   "arrivals_rps 3.8-4.8 matches normal 4.0"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Queue buildup with running pinned at 2 despite low KV usage and normal arrival rate shows concurrency limit is bottleneck. Restore max_num_seqs to reference 64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs changed 64->2 at deploy\", \"running capped at 2.0 vs normal 21.1\", \"waiting_max growing 33->77->110\", \"kv_usage_pct_max 0.23% vs normal 1.78%\", \"arrivals_rps 3.8-4.8 matches normal 4.0\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Queue buildup with running pinned at 2 despite low KV usage and normal arrival rate shows concurrency limit is bottleneck. Restore max_num_seqs to reference 64.\"}",
+  "usage": {
+   "completion_tokens": 488,
+   "prompt_tokens": 1466,
+   "total_tokens": 1954,
+   "completion_tokens_details": {
+    "reasoning_tokens": 310
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "3cf87ad2e04e196412ca4bbb6e83fd1a6f9ffccbd317ecb39cc74bf8002166a0",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "max_num_seqs changed 64->2 at deploy",
+     "running capped at 2.0 vs normal 21.1",
+     "waiting_max growing 33->77->110",
+     "kv_usage_pct_max 0.23% vs normal 1.78%",
+     "arrivals_rps 3.8-4.8 matches normal 4.0"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Queue buildup with running pinned at 2 despite low KV usage and normal arrival rate shows concurrency limit is bottleneck. Restore max_num_seqs to reference 64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs changed 64->2 at deploy\", \"running capped at 2.0 vs normal 21.1\", \"waiting_max growing 33->77->110\", \"kv_usage_pct_max 0.23% vs normal 1.78%\", \"arrivals_rps 3.8-4.8 matches normal 4.0\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Queue buildup with running pinned at 2 despite low KV usage and normal arrival rate shows concurrency limit is bottleneck. Restore max_num_seqs to reference 64.\"}",
+    "usage": {
+     "completion_tokens": 488,
+     "prompt_tokens": 1466,
+     "total_tokens": 1954,
+     "completion_tokens_details": {
+      "reasoning_tokens": 310
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-11-01T22:52:54.909387+00:00",
+  "study_dir": "runs/sd-study-r2",
+  "source_commit": "3fea48a84cec07231f3a658f57ccc7b125eda8ae",
+  "source_branch": "servedoctor",
+  "config_sha256": "bd5637b0e67250b5a3cb8d7904a78b7387c7c7c1df4f6c65f2851b68e211d574",
+  "calibration_path": "runs/servedoctor-ops-20261101/sd2-calibration-attempt1/calibration.json",
+  "calibration_sha256": "c93930a6c8e004dfcb9a9a9e8a9c6ef24839db4347d78a530567edf501c654bd",
+  "calibration_source_commit": "d95f4a6c091e2373565e6eac73069991324772c8",
+  "calibrated_capacity_rps": 8,
+  "base_arrival_rps": 4,
+  "kv_probe_path": "runs/sd2-kv-pre-generation-attempt2",
+  "kv_probe_summary_sha256": "98b423c1c1955e2b03c7b152d6cab5e83fd64b5c4c310b828696fb3300d95b8b",
+  "kv_utilizations": [
+    0.61733,
+    0.61613,
+    0.61508
+  ],
+  "instance_id": 58716527,
+  "machine_id": 140625,
+  "gpu_uuid": "GPU-549b0b27-6ca2-2fca-e5aa-a0f67a43b81b",
+  "driver": "580.159.03",
+  "doctor_evidence_sha256": "ef7c2aacd801328d5f338c5d8c1029d972298d41aa24acee96940a890d113a1d",
+  "rental_scope_sha256": "06701b0161c21b1b399cc252df9fe2dd2bc4911ec1b7f0056fa47d4e5014db0d",
+  "model_id": "meta-models/Muse-Glimmer-30B",
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "vllm_version": "0.26.1rc1.dev608+g99a10304d",
+  "image": "vastai/vllm@sha256:d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843",
+  "commitment": {
+    "answer_keys_sha256": "89af5cbf353c4427b3bacb6b80cef2cacb9b7361db00b21f11a32efeeea7a79a",
+    "scenarios_sha256": "51ef576470c93bb68f7fc2a1d22569356ed8b80f113904a031bcc68501e52ca2"
+  },
+  "opaque_answer_file_sha256": "8d33d9135b65e6ae845f6c33c2ff4aa24ad62faeb7e883d0519cd39a4e092f23",
+  "offline_tests": {
+    "ran": 283,
+    "skipped": 1,
+    "passed": true
+  },
+  "test_recordings_or_results_seen": false,
+  "archive": "runs/servedoctor-ops-20261101/frozen-study-r2.tar",
+  "archive_sha256": "a686fe14161b1a95b4db7098a3a840ee9c3a43291d6914cda634ff3a1708b8c0"
+}

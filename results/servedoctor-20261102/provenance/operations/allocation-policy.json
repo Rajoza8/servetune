@@ -1,0 +1,9 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "keep_allocated": true,
+  "authorized_at_utc": "2026-11-01T22:02:18.569101+00:00",
+  "authorization": "User explicitly authorized keeping this allocated GPU through stage gaps and troubleshooting, accepting approximately 2\u20133 USD additional holding cost. The 40 USD total cap and Nov2 noon fallback remain.",
+  "keepalive_deadline_epoch": 1793585631.573753,
+  "renewed_at_utc": "2026-11-02T08:55:06.627256+00:00"
+}

@@ -1,0 +1,2 @@
+starting engine engine-00-inc-23 for ['inc-23']
+recorded inc-23: {'requests': 4667, 'ok': 1394, 'shed': 0, 'failed': 3273, 'shed_rate': 0.0, 'error_rate': 0.7013070494964645, 'p50_latency_s': 18.8157237614505, 'p95_latency_s': 55.08476345711386}

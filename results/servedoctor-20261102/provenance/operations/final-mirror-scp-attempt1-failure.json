@@ -1,0 +1,15 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "recorded_at_utc": "2026-11-02T09:02:06.206577+00:00",
+  "attempt": "per-file-SCP-attempt1",
+  "status": "failed-transport-timeout",
+  "error": "TimeoutExpired",
+  "timeout_s": 180,
+  "source": "root@121.158.120.137:/workspace/servedoctor-session/servetune/runs/sd-study-r2-api2",
+  "destination": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+  "owned_copy_cleanup": [],
+  "reason_for_new_attempt": "Replace per-file SSH copy latency with one compressed archive transfer; preserve all study bytes and verify full remote/local hashes. No recording, modelcall or scientificparameter repeated/changed."
+}

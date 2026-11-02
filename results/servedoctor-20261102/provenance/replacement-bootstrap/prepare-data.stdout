@@ -1,0 +1,12 @@
+{
+  "out": "/workspace/servedoctor-session/servetune/data/sd2-gsm8k",
+  "upstream_revision": "3101c7d5072418e28b9008a6636bde82a006892c",
+  "license": "MIT",
+  "counts": {
+    "dev": 150,
+    "final": 300,
+    "performance_prompts": 12
+  },
+  "scope": "math-only calibration prompts; not a representative mixed serving workload",
+  "provenance": "data/sd2-gsm8k/provenance.json"
+}

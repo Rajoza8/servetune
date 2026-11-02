@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "request_timeout_s": [
+        120,
+        180
+      ]
+    }
+  },
+  {
+    "t": 164.8,
+    "kind": "note",
+    "text": "Updated the Grafana serving dashboard layout."
+  }
+]

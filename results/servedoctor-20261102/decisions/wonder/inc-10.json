@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-10",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 2,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.97,
+  "evidence": [
+   "max_num_seqs=2 vs reference 64; change_log shows deploy changed 64->2",
+   "running capped at ~2.0 while waiting_max rises to 110",
+   "p95 latency 25.46s and TTFT 20.86s vs SLO 10s",
+   "arrivals ~3.8-4.8 rps and prompt mean ~196-317 similar to normal 4.0 rps/202",
+   "KV usage only 0.09-0.23% and gen throughput ~54/s vs normal 497/s, no KV pressure"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency limit dropped to 2, so requests queue despite normal traffic, low KV use, and idle capacity. Restore reference max_num_seqs=64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.97, \"evidence\": [\"max_num_seqs=2 vs reference 64; change_log shows deploy changed 64->2\", \"running capped at ~2.0 while waiting_max rises to 110\", \"p95 latency 25.46s and TTFT 20.86s vs SLO 10s\", \"arrivals ~3.8-4.8 rps and prompt mean ~196-317 similar to normal 4.0 rps/202\", \"KV usage only 0.09-0.23% and gen throughput ~54/s vs normal 497/s, no KV pressure\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency limit dropped to 2, so requests queue despite normal traffic, low KV use, and idle capacity. Restore reference max_num_seqs=64.\"}",
+  "usage": {
+   "completion_tokens": 542,
+   "prompt_tokens": 1466,
+   "total_tokens": 2008,
+   "completion_tokens_details": {
+    "reasoning_tokens": 319
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "3cf87ad2e04e196412ca4bbb6e83fd1a6f9ffccbd317ecb39cc74bf8002166a0",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.97,
+    "evidence": [
+     "max_num_seqs=2 vs reference 64; change_log shows deploy changed 64->2",
+     "running capped at ~2.0 while waiting_max rises to 110",
+     "p95 latency 25.46s and TTFT 20.86s vs SLO 10s",
+     "arrivals ~3.8-4.8 rps and prompt mean ~196-317 similar to normal 4.0 rps/202",
+     "KV usage only 0.09-0.23% and gen throughput ~54/s vs normal 497/s, no KV pressure"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency limit dropped to 2, so requests queue despite normal traffic, low KV use, and idle capacity. Restore reference max_num_seqs=64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.97, \"evidence\": [\"max_num_seqs=2 vs reference 64; change_log shows deploy changed 64->2\", \"running capped at ~2.0 while waiting_max rises to 110\", \"p95 latency 25.46s and TTFT 20.86s vs SLO 10s\", \"arrivals ~3.8-4.8 rps and prompt mean ~196-317 similar to normal 4.0 rps/202\", \"KV usage only 0.09-0.23% and gen throughput ~54/s vs normal 497/s, no KV pressure\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency limit dropped to 2, so requests queue despite normal traffic, low KV use, and idle capacity. Restore reference max_num_seqs=64.\"}",
+    "usage": {
+     "completion_tokens": 542,
+     "prompt_tokens": 1466,
+     "total_tokens": 2008,
+     "completion_tokens_details": {
+      "reasoning_tokens": 319
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

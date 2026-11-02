@@ -1,0 +1,21 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58690026,
+  "confirmed_absent": true,
+  "destroyed_epoch": 1793568306.326259,
+  "destroyed_at_utc": "2026-11-01T21:25:06.326259+00:00",
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/original-rental-migration-20261101T212204721524Z/migration-backup-receipt.json",
+    "sha256": "788d752ce3898bfb4b07df6f990bb83798ccdde442cef38c47058a3f1e825e3d"
+  },
+  "operation_record_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-instance-58690026.json",
+  "cost": {
+    "running_hours": 2.848502037856314,
+    "compute_usd_upper": 3.7980027171417516,
+    "disk_usd_upper": 0.15424355876114632,
+    "rental_usd_upper": 3.952246275902898,
+    "network_reserve_usd": 2.0,
+    "slack_reserve_usd": 0.0,
+    "total_projected_usd_upper": 5.952246275902898
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "schema_version": 1,
+  "study_sha256": "e469c0aa03abf6cef43cf9c79fe2fa495b14023b264ac90f7808c770f3b1304c",
+  "answers": [
+    {
+      "id": "inc-01",
+      "split": "test",
+      "root_cause": "healthy",
+      "severity_index": 1,
+      "params": {},
+      "onset_s": null,
+      "fault_window_s": null,
+      "description": "No incident. Normal variation only."
+    },
+    {
+      "id": "inc-02",
+      "split": "test",
+      "root_cause": "kv_cache_starvation",
+      "severity_index": 0,
+      "params": {
+        "gpu_memory_utilization": 0.61733
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "Too little GPU memory reserved for the KV cache for the workload."
+    },
+    {
+      "id": "inc-03",
+      "split": "dev",
+      "root_cause": "batch_limit_too_low",
+      "severity_index": 1,
+      "params": {
+        "max_num_seqs": 4
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "The engine's concurrent sequence limit is too low for the offered load."
+    },
+    {
+      "id": "inc-04",
+      "split": "test",
+      "root_cause": "context_limit_too_small",
+      "severity_index": 2,
+      "params": {
+        "max_model_len": 768
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "The engine's maximum context length rejects valid requests."
+    },
+    {
+      "id": "inc-05",
+      "split": "test",
+      "root_cause": "batch_limit_too_low",
+      "severity_index": 0,
+      "params": {
+        "max_num_seqs": 8
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "The engine's concurrent sequence limit is too low for the offered load."
+    },
+    {
+      "id": "inc-06",
+      "split": "test",
+      "root_cause": "traffic_surge",
+      "severity_index": 0,
+      "params": {
+        "capacity_multiplier": 1.3
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "Offered request rate exceeds serving capacity."
+    },
+    {
+      "id": "inc-07",
+      "split": "dev",
+      "root_cause": "long_prompt_flood",
+      "severity_index": 1,
+      "params": {
+        "long_fraction": 0.5
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "The prompt-length mix shifted toward long prompts; prefill dominates."
+    },
+    {
+      "id": "inc-08",
+      "split": "dev",
+      "root_cause": "healthy",
+      "severity_index": 0,
+      "params": {},
+      "onset_s": null,
+      "fault_window_s": null,
+      "description": "No incident. Normal variation only."
+    },
+    {
+      "id": "inc-09",
+      "split": "test",
+      "root_cause": "gpu_contention",
+      "severity_index": 2,
+      "params": {
+        "duty": 1.0
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "Another process on the same GPU competes for compute."
+    },
+    {
+      "id": "inc-10",
+      "split": "test",
+      "root_cause": "batch_limit_too_low",
+      "severity_index": 2,
+      "params": {
+        "max_num_seqs": 2
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "The engine's concurrent sequence limit is too low for the offered load."
+    },
+    {
+      "id": "inc-11",
+      "split": "test",
+      "root_cause": "gpu_contention",
+      "severity_index": 0,
+      "params": {
+        "duty": 0.4
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "Another process on the same GPU competes for compute."
+    },
+    {
+      "id": "inc-12",
+      "split": "dev",
+      "root_cause": "gpu_contention",
+      "severity_index": 1,
+      "params": {
+        "duty": 0.7
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "Another process on the same GPU competes for compute."
+    },
+    {
+      "id": "inc-13",
+      "split": "dev",
+      "root_cause": "context_limit_too_small",
+      "severity_index": 1,
+      "params": {
+        "max_model_len": 1024
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "The engine's maximum context length rejects valid requests."
+    },
+    {
+      "id": "inc-14",
+      "split": "test",
+      "root_cause": "healthy",
+      "severity_index": 2,
+      "params": {},
+      "onset_s": null,
+      "fault_window_s": null,
+      "description": "No incident. Normal variation only."
+    },
+    {
+      "id": "inc-15",
+      "split": "test",
+      "root_cause": "long_prompt_flood",
+      "severity_index": 2,
+      "params": {
+        "long_fraction": 0.8
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "The prompt-length mix shifted toward long prompts; prefill dominates."
+    },
+    {
+      "id": "inc-16",
+      "split": "test",
+      "root_cause": "kv_cache_starvation",
+      "severity_index": 2,
+      "params": {
+        "gpu_memory_utilization": 0.61508
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "Too little GPU memory reserved for the KV cache for the workload."
+    },
+    {
+      "id": "inc-17",
+      "split": "dev",
+      "root_cause": "kv_cache_starvation",
+      "severity_index": 1,
+      "params": {
+        "gpu_memory_utilization": 0.61613
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "Too little GPU memory reserved for the KV cache for the workload."
+    },
+    {
+      "id": "inc-18",
+      "split": "dev",
+      "root_cause": "underutilization",
+      "severity_index": 0,
+      "params": {
+        "load_fraction": 0.08
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "Service is healthy, but the GPU draws high power while serving little traffic; an efficiency issue."
+    },
+    {
+      "id": "inc-19",
+      "split": "test",
+      "root_cause": "underutilization",
+      "severity_index": 1,
+      "params": {
+        "load_fraction": 0.12
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "Service is healthy, but the GPU draws high power while serving little traffic; an efficiency issue."
+    },
+    {
+      "id": "inc-20",
+      "split": "dev",
+      "root_cause": "traffic_surge",
+      "severity_index": 1,
+      "params": {
+        "capacity_multiplier": 1.7
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "Offered request rate exceeds serving capacity."
+    },
+    {
+      "id": "inc-21",
+      "split": "test",
+      "root_cause": "context_limit_too_small",
+      "severity_index": 0,
+      "params": {
+        "max_model_len": 1536
+      },
+      "onset_s": 0,
+      "fault_window_s": [
+        0,
+        360
+      ],
+      "description": "The engine's maximum context length rejects valid requests."
+    },
+    {
+      "id": "inc-22",
+      "split": "test",
+      "root_cause": "long_prompt_flood",
+      "severity_index": 0,
+      "params": {
+        "long_fraction": 0.3
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "The prompt-length mix shifted toward long prompts; prefill dominates."
+    },
+    {
+      "id": "inc-23",
+      "split": "test",
+      "root_cause": "traffic_surge",
+      "severity_index": 2,
+      "params": {
+        "capacity_multiplier": 2.2
+      },
+      "onset_s": 120,
+      "fault_window_s": [
+        120,
+        360
+      ],
+      "description": "Offered request rate exceeds serving capacity."
+    },
+    {
+      "id": "inc-24",
+      "split": "test",
+      "root_cause": "healthy",
+      "severity_index": 3,
+      "params": {},
+      "onset_s": null,
+      "fault_window_s": null,
+      "description": "No incident. Normal variation only."
+    }
+  ]
+}

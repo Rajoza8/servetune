@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "metrics_scrape_interval_s": [
+        15,
+        10
+      ]
+    }
+  },
+  {
+    "t": 117.7,
+    "kind": "note",
+    "text": "Client SDK minor version bump rolled out to 10% of callers."
+  }
+]

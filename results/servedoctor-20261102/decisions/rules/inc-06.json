@@ -1,0 +1,110 @@
+{
+ "arm": "rules",
+ "incident": "inc-06",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "traffic_surge",
+  "actions": [
+   {
+    "type": "gateway_rate_limit",
+    "max_rps": 6.4
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "ff19fa96d3f74a36bf50a48c804cee1c904bd7c4847f36bbb9522a8b8decd94e",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "f58a711ba8725317ffe0c88842b60cac22c615575678402e1914d0afbcd76a62",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "e85c5386ee89427ef9c8dc2ed017dd6460fcdc3746dedbbabf1ba7f4b4828244",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "4ec7d5d3a40a3e5f827e2150ee3358d28f883cfed7ff038dfc73bbed86e266aa",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "a592a96c16a96ca20878792ecbc32cd0749ba7f2793ae53c976776622b42d0fb",
+   "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "actions": [
+     {
+      "type": "gateway_rate_limit",
+      "max_rps": 6.4
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

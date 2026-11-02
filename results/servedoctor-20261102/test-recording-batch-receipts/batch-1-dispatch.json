@@ -1,0 +1,27 @@
+{
+  "project": "servedoctor",
+  "requested_at_utc": "2026-11-02T02:18:17.539329+00:00",
+  "batch": 1,
+  "selected_ids": [
+    "inc-01",
+    "inc-02",
+    "inc-04",
+    "inc-05",
+    "inc-06",
+    "inc-09",
+    "inc-10",
+    "inc-11"
+  ],
+  "engine_directories": [
+    "engine-00-inc-01",
+    "engine-01-inc-02",
+    "engine-02-inc-04",
+    "engine-03-inc-05",
+    "engine-04-inc-10"
+  ],
+  "previous_recordings": [],
+  "plan_sha256": "6ed28c97bd2a330329c091c660c924d0d823ca5176cfc210804986e4b876d6f3",
+  "freeze_sha256": "7428210756fe9d61599d13f2182416b916f1a43627d178030f73f071b6845319",
+  "dev_selection_sha256": "a27674a88a3efd26db8d7506d7499143fd68c5337d5e97f030635559df6c6ad8",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6"
+}

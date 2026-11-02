@@ -1,0 +1,10 @@
+{
+  "at_utc": "2026-11-01T23:24:23.377782+00:00",
+  "instance_id": 58716527,
+  "plan": "runs/sd-study-r2/test-recording-batches.json",
+  "plan_sha256": "fd0e9ad1fbc954c1c46752f43d2ffc03149b67a86ec8cd9ee294869e478aa182",
+  "scp_returncode": 0,
+  "remote_hash_verified": true,
+  "test_recordings_present_at_transfer": 0,
+  "planned_test_incidents": 16
+}

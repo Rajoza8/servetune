@@ -1,0 +1,708 @@
+{
+ "rows": [
+  {
+   "arm": "rules",
+   "incident": "inc-03",
+   "split": "dev",
+   "truth": "batch_limit_too_low",
+   "severity_index": 1,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-03",
+   "split": "dev",
+   "truth": "batch_limit_too_low",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-03",
+   "split": "dev",
+   "truth": "batch_limit_too_low",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-07",
+   "split": "dev",
+   "truth": "long_prompt_flood",
+   "severity_index": 1,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 410
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-07",
+   "split": "dev",
+   "truth": "long_prompt_flood",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-07",
+   "split": "dev",
+   "truth": "long_prompt_flood",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-08",
+   "split": "dev",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-08",
+   "split": "dev",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-08",
+   "split": "dev",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-12",
+   "split": "dev",
+   "truth": "gpu_contention",
+   "severity_index": 1,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 1853
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-12",
+   "split": "dev",
+   "truth": "gpu_contention",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-12",
+   "split": "dev",
+   "truth": "gpu_contention",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-13",
+   "split": "dev",
+   "truth": "context_limit_too_small",
+   "severity_index": 1,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-13",
+   "split": "dev",
+   "truth": "context_limit_too_small",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-13",
+   "split": "dev",
+   "truth": "context_limit_too_small",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-17",
+   "split": "dev",
+   "truth": "kv_cache_starvation",
+   "severity_index": 1,
+   "flagged": true,
+   "predicted": "kv_cache_starvation",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "gpu_memory_utilization",
+     "value": 0.9
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-17",
+   "split": "dev",
+   "truth": "kv_cache_starvation",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-17",
+   "split": "dev",
+   "truth": "kv_cache_starvation",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-18",
+   "split": "dev",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "underutilization",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "recommend_consolidation"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-18",
+   "split": "dev",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-18",
+   "split": "dev",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "inc-20",
+   "split": "dev",
+   "truth": "traffic_surge",
+   "severity_index": 1,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 4.64
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "inc-20",
+   "split": "dev",
+   "truth": "traffic_surge",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "wonder",
+   "incident": "inc-20",
+   "split": "dev",
+   "truth": "traffic_surge",
+   "severity_index": 1,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "harmful": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 12,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  }
+ ],
+ "by_arm": {
+  "rules": {
+   "incidents": 7,
+   "healthy_controls": 1,
+   "detected": 7,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 7,
+   "fix_proposed": 7,
+   "harmful": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  "spark": {
+   "incidents": 7,
+   "healthy_controls": 1,
+   "detected": 0,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 0,
+   "fix_proposed": 0,
+   "harmful": 0,
+   "median_time_to_detect_s": null,
+   "invalid_outputs": 0,
+   "call_failures": 96,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  "wonder": {
+   "incidents": 7,
+   "healthy_controls": 1,
+   "detected": 0,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 0,
+   "fix_proposed": 0,
+   "harmful": 0,
+   "median_time_to_detect_s": null,
+   "invalid_outputs": 0,
+   "call_failures": 96,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  }
+ }
+}

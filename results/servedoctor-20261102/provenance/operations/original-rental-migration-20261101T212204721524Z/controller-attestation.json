@@ -1,0 +1,9 @@
+{
+  "source": "Explicit root-controller instructions in this session; not an independent remote digest.",
+  "user_authorization": "User approved replacement plus a full rerun on new hardware at 2026-11-01T21:14:00Z.",
+  "canonical_source": "GPU58690026:/workspace/servedoctor-session/servetune/runs/servedoctor-ledger.json",
+  "copy_evidence": "Retained final SCP mirror outputs plus stage outcome cleanup_errors=[]; three matching local ledger copies.",
+  "post_copy_ledger_dispatches": 0,
+  "later_start_attempts_failed_before_gpu_readiness": true,
+  "limits": "No independent canonical remote SHA was recorded. No claim is made that unsealed late engine/provider/control logs equal a final post-shutdown byte snapshot."
+}

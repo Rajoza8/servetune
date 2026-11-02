@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-04",
+ "engine_config": {
+  "max_model_len": 768,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.95,
+  "evidence": [
+   "max_model_len=768 vs reference 4096",
+   "change_log deploy changed max_model_len 4096->768",
+   "http_400=5,9,5 per 10s bucket with arrivals ~3 rps, error rate >>1% SLO",
+   "p95_latency ~4.9s <10s SLO, waiting_max=0, KV usage <0.7% - no overload",
+   "prompt_tokens_mean up to 398, valid long prompts exceed 768 limit"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_model_len to 768, causing HTTP 400 rejections of valid requests exceeding it. Restore reference 4096; latency and queues are otherwise healthy.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len=768 vs reference 4096\", \"change_log deploy changed max_model_len 4096->768\", \"http_400=5,9,5 per 10s bucket with arrivals ~3 rps, error rate >>1% SLO\", \"p95_latency ~4.9s <10s SLO, waiting_max=0, KV usage <0.7% - no overload\", \"prompt_tokens_mean up to 398, valid long prompts exceed 768 limit\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len to 768, causing HTTP 400 rejections of valid requests exceeding it. Restore reference 4096; latency and queues are otherwise healthy.\"}",
+  "usage": {
+   "completion_tokens": 500,
+   "prompt_tokens": 1479,
+   "total_tokens": 1979,
+   "completion_tokens_details": {
+    "reasoning_tokens": 293
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "0ea8941af5b058d2c48adf52dc1f1c89f646bc5f2efef93b51fabdf3a33750cf",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "High http_400 error rate ~15-18% after deploy cut max_model_len 4096\u2192768, exceeding max_error_rate 0.01. P95 latency ok but errors threaten SLO.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"High http_400 error rate ~15-18% after deploy cut max_model_len 4096\u2192768, exceeding max_error_rate 0.01. P95 latency ok but errors threaten SLO.\"}",
+    "usage": {
+     "prompt_tokens": 993,
+     "total_tokens": 1215,
+     "completion_tokens": 222,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.95,
+    "evidence": [
+     "max_model_len=768 vs reference 4096",
+     "change_log deploy changed max_model_len 4096->768",
+     "http_400=5,9,5 per 10s bucket with arrivals ~3 rps, error rate >>1% SLO",
+     "p95_latency ~4.9s <10s SLO, waiting_max=0, KV usage <0.7% - no overload",
+     "prompt_tokens_mean up to 398, valid long prompts exceed 768 limit"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_model_len to 768, causing HTTP 400 rejections of valid requests exceeding it. Restore reference 4096; latency and queues are otherwise healthy.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len=768 vs reference 4096\", \"change_log deploy changed max_model_len 4096->768\", \"http_400=5,9,5 per 10s bucket with arrivals ~3 rps, error rate >>1% SLO\", \"p95_latency ~4.9s <10s SLO, waiting_max=0, KV usage <0.7% - no overload\", \"prompt_tokens_mean up to 398, valid long prompts exceed 768 limit\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len to 768, causing HTTP 400 rejections of valid requests exceeding it. Restore reference 4096; latency and queues are otherwise healthy.\"}",
+    "usage": {
+     "completion_tokens": 500,
+     "prompt_tokens": 1479,
+     "total_tokens": 1979,
+     "completion_tokens_details": {
+      "reasoning_tokens": 293
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

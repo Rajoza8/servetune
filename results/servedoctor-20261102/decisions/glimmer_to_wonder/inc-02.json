@@ -1,0 +1,176 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-02",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61733,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.95,
+  "evidence": [
+   "gpu_memory_utilization changed 0.9->0.61733 in deploy config_diff vs reference 0.9",
+   "kv_usage_pct_max repeatedly 99.36-99.96% vs normal 1.78%",
+   "preemptions_per_s 0.2-0.8 and waiting_max up to 20 vs normal 0",
+   "arrivals ~3-5 rps and prompt_tokens_mean ~200 similar to normal, running <33 < max_num_seqs 64",
+   "gpu_mem_used_mb ~60362 vs normal 87634 and p95_ttft up to 3.76s vs normal 0.42s"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization changed 0.9->0.61733 in deploy config_diff vs reference 0.9\", \"kv_usage_pct_max repeatedly 99.36-99.96% vs normal 1.78%\", \"preemptions_per_s 0.2-0.8 and waiting_max up to 20 vs normal 0\", \"arrivals ~3-5 rps and prompt_tokens_mean ~200 similar to normal, running <33 < max_num_seqs 64\", \"gpu_mem_used_mb ~60362 vs normal 87634 and p95_ttft up to 3.76s vs normal 0.42s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.\"}",
+  "usage": {
+   "completion_tokens": 493,
+   "prompt_tokens": 2878,
+   "total_tokens": 3371,
+   "completion_tokens_details": {
+    "reasoning_tokens": 256
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 120
+ },
+ "checkpoints": 4,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "14114cea491680d453a323ca4b53a2c266e75d4b8af2d7661280a76e1e985b54",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.5-7.4s under 10s SLO, shed and errors zero, waiting cleared, GPU util high but stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.5-7.4s under 10s SLO, shed and errors zero, waiting cleared, GPU util high but stable.\"}",
+    "usage": {
+     "prompt_tokens": 988,
+     "total_tokens": 1171,
+     "completion_tokens": 183,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "0bc5ea5dd6d7fe8cd0f60bbf9c2fdfcd3c1415a41efb7bdfb3e4dcded579cb77",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~6-7s under 10s SLO, shed and errors zero, GPU util ~99% with no queue buildup threatening SLO.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~6-7s under 10s SLO, shed and errors zero, GPU util ~99% with no queue buildup threatening SLO.\"}",
+    "usage": {
+     "prompt_tokens": 1457,
+     "total_tokens": 1661,
+     "completion_tokens": 204,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "10e112c7b24249308116bb589dee096c6c06827893eb121f2b3f0401e04f7fab",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.7s under 10s SLO, shed and errors zero, no SLO breach. Recent KV spikes are transient and queue cleared.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.7s under 10s SLO, shed and errors zero, no SLO breach. Recent KV spikes are transient and queue cleared.\"}",
+    "usage": {
+     "prompt_tokens": 1923,
+     "total_tokens": 2204,
+     "completion_tokens": 281,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "ea70222f4f26e9db3f1a8949dc838700df99998fe771ca7356e2fbe5907551f5",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "GPU memory utilization cap lowered from 0.9 to 0.617 on deploy, GPU mem used ~60GB vs normal 87GB. KV cache saturating ~99% with waiting_max 20 and p95 latency rising to 9.3s near 10s SLO, indicating ",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"GPU memory utilization cap lowered from 0.9 to 0.617 on deploy, GPU mem used ~60GB vs normal 87GB. KV cache saturating ~99% with waiting_max 20 and p95 latency rising to 9.3s near 10s SLO, indicating wasteful under-provisioning and queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2392,
+     "total_tokens": 2722,
+     "completion_tokens": 330,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.95,
+    "evidence": [
+     "gpu_memory_utilization changed 0.9->0.61733 in deploy config_diff vs reference 0.9",
+     "kv_usage_pct_max repeatedly 99.36-99.96% vs normal 1.78%",
+     "preemptions_per_s 0.2-0.8 and waiting_max up to 20 vs normal 0",
+     "arrivals ~3-5 rps and prompt_tokens_mean ~200 similar to normal, running <33 < max_num_seqs 64",
+     "gpu_mem_used_mb ~60362 vs normal 87634 and p95_ttft up to 3.76s vs normal 0.42s"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization changed 0.9->0.61733 in deploy config_diff vs reference 0.9\", \"kv_usage_pct_max repeatedly 99.36-99.96% vs normal 1.78%\", \"preemptions_per_s 0.2-0.8 and waiting_max up to 20 vs normal 0\", \"arrivals ~3-5 rps and prompt_tokens_mean ~200 similar to normal, running <33 < max_num_seqs 64\", \"gpu_mem_used_mb ~60362 vs normal 87634 and p95_ttft up to 3.76s vs normal 0.42s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.\"}",
+    "usage": {
+     "completion_tokens": 493,
+     "prompt_tokens": 2878,
+     "total_tokens": 3371,
+     "completion_tokens_details": {
+      "reasoning_tokens": 256
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

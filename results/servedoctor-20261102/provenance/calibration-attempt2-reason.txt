@@ -1,0 +1,1 @@
+Attempt1 retained at remote runs/sd-calibration and local ops/sd-calibration-attempt1. Exact revision became main in worker, causing tokenizer startup failure. Restore v4 HF_HOME and offline cache resolution; no package, model, prompt, scoring, threshold, or engine knob changes. New output runs/sd-calibration-attempt2.

@@ -1,0 +1,36 @@
+{
+  "scope": "replacement bootstrap; no benchmark results or paid model calls",
+  "started_at_utc": "2026-11-01T21:47:34.291887+00:00",
+  "instance_id": 58716527,
+  "guide_sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f",
+  "source_commit": "d95f4a6c091e2373565e6eac73069991324772c8",
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "status": "running",
+  "commands": [
+    {
+      "label": "install-gpu-extra",
+      "started_at_utc": "2026-11-01T21:47:34.291906+00:00",
+      "returncode": 0
+    },
+    {
+      "label": "doctor",
+      "started_at_utc": "2026-11-01T21:47:35.808672+00:00",
+      "returncode": 0
+    },
+    {
+      "label": "prepare-data",
+      "started_at_utc": "2026-11-01T21:47:35.923133+00:00",
+      "returncode": 0
+    },
+    {
+      "label": "public-pinned-model-download",
+      "started_at_utc": "2026-11-01T21:47:37.093044+00:00"
+    }
+  ],
+  "default_data_alias": {
+    "path": "data/gsm8k",
+    "relative_target": "sd2-gsm8k",
+    "prepared_dataset": "data/sd2-gsm8k"
+  }
+}

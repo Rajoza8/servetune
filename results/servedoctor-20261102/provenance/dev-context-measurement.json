@@ -1,0 +1,156 @@
+{
+  "study_dir": "runs/sd-study-r2",
+  "split": "dev",
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "context_tokens": 8192,
+  "method": "offline CPU apply_chat_template; reasoning_strength=low; add_generation_prompt=True",
+  "incidents": 8,
+  "checkpoints": 96,
+  "maximum": {
+    "diagnosis": {
+      "incident": "inc-13",
+      "checkpoint_s": 180,
+      "input_tokens": 3397,
+      "output_budget_tokens": 2048,
+      "total_tokens": 5445
+    },
+    "monitor": {
+      "incident": "inc-13",
+      "checkpoint_s": 180,
+      "input_tokens": 2896,
+      "output_budget_tokens": 600,
+      "total_tokens": 3496
+    }
+  },
+  "per_incident_maximum": {
+    "inc-03": {
+      "diagnosis": {
+        "incident": "inc-03",
+        "checkpoint_s": 180,
+        "input_tokens": 3250,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5298
+      },
+      "monitor": {
+        "incident": "inc-03",
+        "checkpoint_s": 180,
+        "input_tokens": 2749,
+        "output_budget_tokens": 600,
+        "total_tokens": 3349
+      }
+    },
+    "inc-07": {
+      "diagnosis": {
+        "incident": "inc-07",
+        "checkpoint_s": 300,
+        "input_tokens": 3351,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5399
+      },
+      "monitor": {
+        "incident": "inc-07",
+        "checkpoint_s": 300,
+        "input_tokens": 2850,
+        "output_budget_tokens": 600,
+        "total_tokens": 3450
+      }
+    },
+    "inc-08": {
+      "diagnosis": {
+        "incident": "inc-08",
+        "checkpoint_s": 270,
+        "input_tokens": 3321,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5369
+      },
+      "monitor": {
+        "incident": "inc-08",
+        "checkpoint_s": 270,
+        "input_tokens": 2820,
+        "output_budget_tokens": 600,
+        "total_tokens": 3420
+      }
+    },
+    "inc-12": {
+      "diagnosis": {
+        "incident": "inc-12",
+        "checkpoint_s": 180,
+        "input_tokens": 3361,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5409
+      },
+      "monitor": {
+        "incident": "inc-12",
+        "checkpoint_s": 180,
+        "input_tokens": 2860,
+        "output_budget_tokens": 600,
+        "total_tokens": 3460
+      }
+    },
+    "inc-13": {
+      "diagnosis": {
+        "incident": "inc-13",
+        "checkpoint_s": 180,
+        "input_tokens": 3397,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5445
+      },
+      "monitor": {
+        "incident": "inc-13",
+        "checkpoint_s": 180,
+        "input_tokens": 2896,
+        "output_budget_tokens": 600,
+        "total_tokens": 3496
+      }
+    },
+    "inc-17": {
+      "diagnosis": {
+        "incident": "inc-17",
+        "checkpoint_s": 240,
+        "input_tokens": 3333,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5381
+      },
+      "monitor": {
+        "incident": "inc-17",
+        "checkpoint_s": 240,
+        "input_tokens": 2832,
+        "output_budget_tokens": 600,
+        "total_tokens": 3432
+      }
+    },
+    "inc-18": {
+      "diagnosis": {
+        "incident": "inc-18",
+        "checkpoint_s": 180,
+        "input_tokens": 3293,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5341
+      },
+      "monitor": {
+        "incident": "inc-18",
+        "checkpoint_s": 180,
+        "input_tokens": 2792,
+        "output_budget_tokens": 600,
+        "total_tokens": 3392
+      }
+    },
+    "inc-20": {
+      "diagnosis": {
+        "incident": "inc-20",
+        "checkpoint_s": 270,
+        "input_tokens": 3348,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5396
+      },
+      "monitor": {
+        "incident": "inc-20",
+        "checkpoint_s": 270,
+        "input_tokens": 2847,
+        "output_budget_tokens": 600,
+        "total_tokens": 3447
+      }
+    }
+  },
+  "fits_8192": true
+}

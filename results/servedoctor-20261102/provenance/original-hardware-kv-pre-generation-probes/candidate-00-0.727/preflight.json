@@ -1,0 +1,48 @@
+{
+  "requested_job_seconds": 20,
+  "requested_job_duty": 0.5,
+  "baseline_gpu": {
+    "power_w": 99.869,
+    "energy_mj": 48382958443,
+    "temp_c": 54,
+    "sm_clock_mhz": 2700,
+    "util_gpu": 0,
+    "util_mem": 0,
+    "mem_used_mb": 70614,
+    "mem_total_mb": 97887,
+    "processes": [
+      {
+        "pid": 649,
+        "used_mb": 69968,
+        "command": "VLLM::EngineCore"
+      }
+    ]
+  },
+  "job_pid": 877,
+  "job_proc_status": {
+    "Name": "python3",
+    "Pid": "877",
+    "PPid": "575",
+    "NStgid": "877",
+    "NSpid": "877",
+    "NSsid": "877"
+  },
+  "engine_proc_status": {
+    "Name": "vllm",
+    "Pid": "576",
+    "PPid": "575",
+    "NStgid": "576",
+    "NSpid": "576",
+    "NSsid": "576"
+  },
+  "owner_marker_verified": true,
+  "job_returncode": 0,
+  "job_elapsed_s": 21.015,
+  "job_visible_with_local_pid": true,
+  "gpu_samples": 22,
+  "preflight_elapsed_s": 21.016,
+  "job_stopped": true,
+  "status": "completed",
+  "active_3_to_21_samples": 19,
+  "active_3_to_21_mean_gpu_util_pct": 18.736842105263158
+}

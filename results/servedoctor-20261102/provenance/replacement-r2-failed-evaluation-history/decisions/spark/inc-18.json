@@ -1,0 +1,84 @@
+{
+ "arm": "spark",
+ "incident": "inc-18",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.85,
+  "evidence": [
+   "arrivals_rps 0.27-1.2 vs normal 4.0",
+   "gen_tokens_per_s 149.8 max vs normal 497.6",
+   "gpu_power_w 562 vs normal 554 with low traffic",
+   "gpu_util_pct 100% with running 5.5 vs 21.1 normal",
+   "p95_latency 5.02s within SLO 10s, no shed/errors"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "SLOs met but offered load ~1/4 normal while GPU power/util at normal peak levels. No queueing or KV pressure. Efficiency issue, consolidate traffic.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps 0.27-1.2 vs normal 4.0\", \"gen_tokens_per_s 149.8 max vs normal 497.6\", \"gpu_power_w 562 vs normal 554 with low traffic\", \"gpu_util_pct 100% with running 5.5 vs 21.1 normal\", \"p95_latency 5.02s within SLO 10s, no shed/errors\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs met but offered load ~1/4 normal while GPU power/util at normal peak levels. No queueing or KV pressure. Efficiency issue, consolidate traffic.\"}",
+  "usage": {
+   "completion_tokens": 830,
+   "prompt_tokens": 1456,
+   "total_tokens": 2286,
+   "completion_tokens_details": {
+    "reasoning_tokens": 652
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fd38668275e7096476e29f438d9c5d632edb08b9ad36cd5bfd73e432eb907e1b",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.85,
+    "evidence": [
+     "arrivals_rps 0.27-1.2 vs normal 4.0",
+     "gen_tokens_per_s 149.8 max vs normal 497.6",
+     "gpu_power_w 562 vs normal 554 with low traffic",
+     "gpu_util_pct 100% with running 5.5 vs 21.1 normal",
+     "p95_latency 5.02s within SLO 10s, no shed/errors"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs met but offered load ~1/4 normal while GPU power/util at normal peak levels. No queueing or KV pressure. Efficiency issue, consolidate traffic.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps 0.27-1.2 vs normal 4.0\", \"gen_tokens_per_s 149.8 max vs normal 497.6\", \"gpu_power_w 562 vs normal 554 with low traffic\", \"gpu_util_pct 100% with running 5.5 vs 21.1 normal\", \"p95_latency 5.02s within SLO 10s, no shed/errors\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs met but offered load ~1/4 normal while GPU power/util at normal peak levels. No queueing or KV pressure. Efficiency issue, consolidate traffic.\"}",
+    "usage": {
+     "completion_tokens": 830,
+     "prompt_tokens": 1456,
+     "total_tokens": 2286,
+     "completion_tokens_details": {
+      "reasoning_tokens": 652
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

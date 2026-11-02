@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-17",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61613,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.92,
+  "evidence": [
+   "gpu_memory_utilization lowered 0.9->0.61613 at deploy",
+   "kv_usage_pct_max 99.67% vs normal 1.78% at same ~4 rps",
+   "waiting_max 14.0 vs normal 0.0 with preemptions 1.1/s",
+   "p95_ttft 2.47s vs normal 0.42s, p95 latency 8.48s vs 5.72s",
+   "prompt_tokens_mean ~211 vs normal 202, arrivals normal"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Same load as healthy baseline but KV cache full after memory cut, causing queueing and preemptions. Restore reservation to 0.9 to relieve starvation.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.92, \"evidence\": [\"gpu_memory_utilization lowered 0.9->0.61613 at deploy\", \"kv_usage_pct_max 99.67% vs normal 1.78% at same ~4 rps\", \"waiting_max 14.0 vs normal 0.0 with preemptions 1.1/s\", \"p95_ttft 2.47s vs normal 0.42s, p95 latency 8.48s vs 5.72s\", \"prompt_tokens_mean ~211 vs normal 202, arrivals normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Same load as healthy baseline but KV cache full after memory cut, causing queueing and preemptions. Restore reservation to 0.9 to relieve starvation.\"}",
+  "usage": {
+   "completion_tokens": 900,
+   "prompt_tokens": 1473,
+   "total_tokens": 2373,
+   "completion_tokens_details": {
+    "reasoning_tokens": 684
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "77f378d07451a8a52d8379bf1ddd4ae59550c6293c1a1ab7abf586bf9dfe629a",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency rising 5.6\u21928.5s with TTFT spike to 2.47s, waiting max 14 and KV usage ~99.5% after gpu_memory_utilization cut to 0.616. Trending toward p95 SLO 10s.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency rising 5.6\u21928.5s with TTFT spike to 2.47s, waiting max 14 and KV usage ~99.5% after gpu_memory_utilization cut to 0.616. Trending toward p95 SLO 10s.\"}",
+    "usage": {
+     "prompt_tokens": 987,
+     "total_tokens": 1275,
+     "completion_tokens": 288,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.92,
+    "evidence": [
+     "gpu_memory_utilization lowered 0.9->0.61613 at deploy",
+     "kv_usage_pct_max 99.67% vs normal 1.78% at same ~4 rps",
+     "waiting_max 14.0 vs normal 0.0 with preemptions 1.1/s",
+     "p95_ttft 2.47s vs normal 0.42s, p95 latency 8.48s vs 5.72s",
+     "prompt_tokens_mean ~211 vs normal 202, arrivals normal"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Same load as healthy baseline but KV cache full after memory cut, causing queueing and preemptions. Restore reservation to 0.9 to relieve starvation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.92, \"evidence\": [\"gpu_memory_utilization lowered 0.9->0.61613 at deploy\", \"kv_usage_pct_max 99.67% vs normal 1.78% at same ~4 rps\", \"waiting_max 14.0 vs normal 0.0 with preemptions 1.1/s\", \"p95_ttft 2.47s vs normal 0.42s, p95 latency 8.48s vs 5.72s\", \"prompt_tokens_mean ~211 vs normal 202, arrivals normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Same load as healthy baseline but KV cache full after memory cut, causing queueing and preemptions. Restore reservation to 0.9 to relieve starvation.\"}",
+    "usage": {
+     "completion_tokens": 900,
+     "prompt_tokens": 1473,
+     "total_tokens": 2373,
+     "completion_tokens_details": {
+      "reasoning_tokens": 684
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-16",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61508,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.92,
+  "evidence": [
+   "p95_latency_s 11.11 exceeds SLO 10.0 at t=30",
+   "kv_usage_pct_max 100.0 with waiting_max 31 and preemptions_per_s 2.8",
+   "gpu_memory_utilization lowered from 0.9 to 0.61508 in deploy at t=0",
+   "p95_ttft_s rose to 4.86 vs normal 0.42",
+   "engine log shows GPU KV cache usage 88-98.5% and waiting 13-29 reqs"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced gpu_memory_utilization to 0.615, starving KV cache. KV usage is pegged at 100% with growing queue, preemptions and latency SLO breach. Restoring gpu_memory_utilization to reference 0.9 frees KV memory and should relieve starvation.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 11.11 exceeds SLO 10.0 at t=30\", \"kv_usage_pct_max 100.0 with waiting_max 31 and preemptions_per_s 2.8\", \"gpu_memory_utilization lowered from 0.9 to 0.61508 in deploy at t=0\", \"p95_ttft_s rose to 4.86 vs normal 0.42\", \"engine log shows GPU KV cache usage 88-98.5% and waiting 13-29 reqs\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Deploy reduced gpu_memory_utilization to 0.615, starving KV cache. KV usage is pegged at 100% with growing queue, preemptions and latency SLO breach. Restoring gpu_memory_utilization to reference 0.9 frees KV memory and should relieve starvation.\"}",
+  "usage": {
+   "prompt_tokens": 1487,
+   "total_tokens": 2019,
+   "completion_tokens": 532,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c8899f1f965ce9dc1fa1fcf92e544875ef4efcbd070fb6f24ef64bfd0adb6229",
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 11.11 exceeds SLO 10.0 at t=30",
+     "kv_usage_pct_max 100.0 with waiting_max 31 and preemptions_per_s 2.8",
+     "gpu_memory_utilization lowered from 0.9 to 0.61508 in deploy at t=0",
+     "p95_ttft_s rose to 4.86 vs normal 0.42",
+     "engine log shows GPU KV cache usage 88-98.5% and waiting 13-29 reqs"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced gpu_memory_utilization to 0.615, starving KV cache. KV usage is pegged at 100% with growing queue, preemptions and latency SLO breach. Restoring gpu_memory_utilization to reference 0.9 frees KV memory and should relieve starvation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 11.11 exceeds SLO 10.0 at t=30\", \"kv_usage_pct_max 100.0 with waiting_max 31 and preemptions_per_s 2.8\", \"gpu_memory_utilization lowered from 0.9 to 0.61508 in deploy at t=0\", \"p95_ttft_s rose to 4.86 vs normal 0.42\", \"engine log shows GPU KV cache usage 88-98.5% and waiting 13-29 reqs\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Deploy reduced gpu_memory_utilization to 0.615, starving KV cache. KV usage is pegged at 100% with growing queue, preemptions and latency SLO breach. Restoring gpu_memory_utilization to reference 0.9 frees KV memory and should relieve starvation.\"}",
+    "usage": {
+     "prompt_tokens": 1487,
+     "total_tokens": 2019,
+     "completion_tokens": 532,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

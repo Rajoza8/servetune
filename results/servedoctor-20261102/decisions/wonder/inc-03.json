@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-03",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "max_num_seqs=4 vs reference 64; change_log deploy changed 64->4",
+   "running pinned at 4.0 while waiting_max rose 45->126",
+   "p95_latency 25.83s and p95_ttft 21.32s exceed 10s SLO",
+   "arrivals ~4.4-5.5 rps and prompt mean ~149-164 similar to normal profile, not a surge or long prompts",
+   "kv_usage_pct_max ~0.3% and gen_tokens_per_s ~109 vs normal 498, showing concurrency cap not KV limit"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency capped at 4 sequences after deploy, causing queue buildup and latency SLO breach despite normal load and low KV use. Restore reference max_num_seqs=64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs=4 vs reference 64; change_log deploy changed 64->4\", \"running pinned at 4.0 while waiting_max rose 45->126\", \"p95_latency 25.83s and p95_ttft 21.32s exceed 10s SLO\", \"arrivals ~4.4-5.5 rps and prompt mean ~149-164 similar to normal profile, not a surge or long prompts\", \"kv_usage_pct_max ~0.3% and gen_tokens_per_s ~109 vs normal 498, showing concurrency cap not KV limit\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 4 sequences after deploy, causing queue buildup and latency SLO breach despite normal load and low KV use. Restore reference max_num_seqs=64.\"}",
+  "usage": {
+   "completion_tokens": 557,
+   "prompt_tokens": 1466,
+   "total_tokens": 2023,
+   "completion_tokens_details": {
+    "reasoning_tokens": 329
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "797e06cd1abbb6ba19b6bc21325c86a6daca28d8f9fd1b6adfafa41db6d2f933",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "max_num_seqs=4 vs reference 64; change_log deploy changed 64->4",
+     "running pinned at 4.0 while waiting_max rose 45->126",
+     "p95_latency 25.83s and p95_ttft 21.32s exceed 10s SLO",
+     "arrivals ~4.4-5.5 rps and prompt mean ~149-164 similar to normal profile, not a surge or long prompts",
+     "kv_usage_pct_max ~0.3% and gen_tokens_per_s ~109 vs normal 498, showing concurrency cap not KV limit"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency capped at 4 sequences after deploy, causing queue buildup and latency SLO breach despite normal load and low KV use. Restore reference max_num_seqs=64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs=4 vs reference 64; change_log deploy changed 64->4\", \"running pinned at 4.0 while waiting_max rose 45->126\", \"p95_latency 25.83s and p95_ttft 21.32s exceed 10s SLO\", \"arrivals ~4.4-5.5 rps and prompt mean ~149-164 similar to normal profile, not a surge or long prompts\", \"kv_usage_pct_max ~0.3% and gen_tokens_per_s ~109 vs normal 498, showing concurrency cap not KV limit\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 4 sequences after deploy, causing queue buildup and latency SLO breach despite normal load and low KV use. Restore reference max_num_seqs=64.\"}",
+    "usage": {
+     "completion_tokens": 557,
+     "prompt_tokens": 1466,
+     "total_tokens": 2023,
+     "completion_tokens_details": {
+      "reasoning_tokens": 329
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

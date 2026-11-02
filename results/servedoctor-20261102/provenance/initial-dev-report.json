@@ -1,0 +1,191 @@
+{
+  "stage": "Initial development study completed; KV severity revision required before paid model evaluation.",
+  "study_dir": "runs/sd-study",
+  "commitment": {
+    "answer_keys_sha256": "a293aa7747923d23acee578b81cbf977274c3eedea59cedac03b8416acf46eac",
+    "scenarios_sha256": "e9b8e31df52a4a5da9556374f63bd853a4aba6891d4a8b19c4cf20351ed2294d"
+  },
+  "dev_scoreboard": {
+    "rules": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 6,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 5,
+      "fix_proposed": 5,
+      "harmful": 1,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    }
+  },
+  "ledger_summary": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 0.0,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 0
+  },
+  "symptom_audit": "runs/servedoctor-ops-20261101/dev-symptom-audit.json",
+  "changes": {
+    "configuration_changes": [
+      {
+        "name": "META_WONDER_MODEL",
+        "old": "muse-wonder",
+        "new": "muse-wonder-1.0",
+        "reason": "Official Meta model ID verified on dev.meta.ai; prices unchanged at4/20 per million."
+      },
+      {
+        "name": "runtime environment",
+        "old": "online Hub ID resolution",
+        "new": {
+          "HF_HOME": "/workspace/.hf_home",
+          "HF_HUB_OFFLINE": "1",
+          "TRANSFORMERS_OFFLINE": "1",
+          "HF_HUB_DISABLE_TELEMETRY": "1",
+          "VLLM_NO_USAGE_STATS": "1",
+          "VLLM_CACHE_ROOT": "/workspace/.vllm_cache"
+        },
+        "reason": "Restore exact v4 environment; first startup reset pinned revisions to main in worker and failed tokenizer initialization. No package or engine knob change."
+      },
+      {
+        "name": "Dedicated Glimmer evaluation context",
+        "old": 4096,
+        "new": 8192,
+        "scope": "Evaluation server only; incident and live engine settings remain in the frozen study.",
+        "reason": "The actual pinned tokenizer counted 3259 input tokens plus2048 outputtokens for a full reference diagnosis (5307 total), exceeding4096. Input prompts and output caps are unchanged.",
+        "evidence": "context-fit-reference-tokenizer.json"
+      }
+    ],
+    "prompt_changes": [],
+    "threshold_changes": [
+      {
+        "split": "Development only; no test recordings or results.",
+        "name": "surge_arrival_ratio",
+        "old": 1.2,
+        "new": 1.5,
+        "reason": "At t=30 s, dev batch-limit incident inc-03 had arrivals at 1.322 times reference, max_num_seqs 4 versus reference 64, running 3.8, queue 89 and p95 24.7 s. The ordinary Poisson burst took the surge branch and proposed harmful shedding. Raising the arrival-ratio threshold from 1.2 to 1.5 restores batch diagnosis; the actual dev surge ratio of 3.391 still triggers.",
+        "evidence": "rule-surge-threshold-dev-evidence.json",
+        "commit": "1be578f"
+      }
+    ],
+    "severity_changes": [
+      {
+        "split": "pre-generation calibration only; no dev/test recorded",
+        "fault": "kv_cache_starvation",
+        "old": [
+          0.8,
+          0.78,
+          0.76
+        ],
+        "new": [
+          0.727,
+          0.684,
+          0.655
+        ],
+        "reason": "All3starts passed with KV10.92/6.83/4.08GiB, fractions40/25/15%of27.35GiBbase asbriefspecifies; originalvaluesleaveabout50%or more.",
+        "evidence": "runs/sd-kv-probes-attempt1/summary.json"
+      },
+      {
+        "split": "Development only; no test recordings or results.",
+        "fault": "kv_cache_starvation",
+        "old": [
+          0.727,
+          0.684,
+          0.655
+        ],
+        "new": [
+          0.6165,
+          0.6155,
+          0.6147
+        ],
+        "reason": "At 0.684, all 1,105 requests succeeded, p95 was 6.47 s versus the 6.31 s reference, and there was no queueing or preemption; maximum KV use was 9.59%. The injection had no service effect. Three isolated 90-second dev probes started with 8,475 / 6,564 / 5,037 KV tokens, produced 23 / 45 / 88 preemptions, and had successful-request p95 of 8.54 / 14.80 / 33.68 s. Preserve the initial study and record a new one.",
+        "evidence": "runs/sd-kv-dev-refinement-attempt1/summary.json",
+        "commit": "ea9c294"
+      }
+    ],
+    "integration_fixes": [
+      {
+        "commit": "a2cf73e",
+        "reason": "50% warning must stop dispatch, incomplete paid calls must retain checkpoint outputs; reject unpriced Baseten."
+      },
+      {
+        "commit": "b5c2b50",
+        "reason": "Persist live and GPU startup failures, reject contaminated/failed recordings, restore old config after failed engine restart."
+      },
+      {
+        "commit": "9dd15a8",
+        "reason": "Real GPU preflight measured 95.5% mean utilization for nominal50% contention duty because CPU enqueue timing accumulated asynchronous work. Synchronize completed iterations and reusebuffers; all262tests pass, GPUvalidationpending.",
+        "gpu_validation": {
+          "passed": true,
+          "requested_seconds": 20,
+          "wall_seconds_including_startup": 21.015,
+          "nominal_duty": 0.5,
+          "measured_gpu_util_pct": 18.736842105263158,
+          "pid_verified": true,
+          "interpretation": "Duty bounds completed-work windows; NVMLutil depends on kernel and synchronizationoverhead; devsymptomcheckstillrequired."
+        }
+      },
+      {
+        "commit": "ab670de",
+        "reason": "Each dev/test evaluation needs a fresh engine artifact directory; reuse previously failed engine.log exclusive creation. Preserve metadata and startup failures."
+      },
+      {
+        "commit": "aedc7d9",
+        "reason": "A failed local monitor now retains failure evidence and escalates the same observation once. Context-limit incidents can prevent the serving model accepting a monitor request. Permanent paid HTTP rejections halt after journaling and keep reservations."
+      }
+    ],
+    "test_recording_started": false
+  },
+  "failures": [
+    "Initial KV starvation injection produced no service degradation.",
+    "Rules confused a 1.322 times normal arrival burst under batch restriction with a traffic surge, producing one harmful proposal."
+  ],
+  "open_problems": [
+    "Record a new study with validated tighter KV severities and the dev-tuned surge threshold, then evaluate every arm."
+  ],
+  "user_decisions_required": [],
+  "test_recording_started": false,
+  "created_at": "2026-11-01T19:34:04.346271+00:00",
+  "gpu_total_snapshot": {
+    "id": 58690026,
+    "label": "servedoctor-gpu-20261101",
+    "actual_status": "exited",
+    "cur_state": "stopped",
+    "intended_status": "stopped",
+    "status_msg": "success, running vastai/vllm_sha256_d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843/ssh",
+    "ssh_host": "ssh7.vast.ai",
+    "ssh_port": 29574,
+    "public_ipaddr": "54.151.2.77",
+    "dph_total": 1.375,
+    "storage_total_cost": 0.041666666666666664,
+    "gpu_name": "RTX PRO 6000 WS",
+    "gpu_ram": 97887,
+    "machine_id": 149166,
+    "uptime_mins": 74.78484438260396
+  },
+  "gpu_cost_snapshot": {
+    "running_hours": 1.6634372423092525,
+    "compute_usd_upper": 2.2179163230790033,
+    "disk_usd_upper": 0.07999453175950932,
+    "rental_usd_upper": 2.2979108548385128,
+    "network_reserve_usd": 2.0,
+    "total_projected_usd_upper": 4.297910854838513
+  },
+  "gpu_budget_projection": {
+    "updated_at": "2026-11-01T19:38:11.210335+00:00",
+    "remaining_gpu_hours_estimate": 8.0,
+    "basis": "Conservative allowance for the revised dev recordings, all model evaluations, test recordings, six escalation live runs, paired rules live runs if affordable, and cleanup.",
+    "hourly_usd": 1.375,
+    "projected_total_usd_upper": 15.297910854838513,
+    "hard_cap_usd": 40
+  }
+}

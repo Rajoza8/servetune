@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "project": "servedoctor",
+  "study_dir": "runs/sd-study-r2",
+  "created_at_utc": "2026-11-01T23:20:54.160504+00:00",
+  "source_commit": "3fea48a84cec07231f3a658f57ccc7b125eda8ae",
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "files_sha256": {
+    "runs/sd-study-r2/study.json": "22ce43ff844974b6151b59a0cc5659ce147bd52c53cc92d1f03bfa2e5ade4ddb",
+    "runs/sd-study-r2/scenarios.json": "465169059938334ef6296f57a19d579513d77c375cb45b3f424b707d5b569fea",
+    "runs/sd-study-r2/commitment.json": "66396c9d7f7d753e2ce12197e29e5b1da5e8bd867877a4dd29fb9d89e194434c",
+    "configs/servedoctor.json": "bd5637b0e67250b5a3cb8d7904a78b7387c7c7c1df4f6c65f2851b68e211d574"
+  },
+  "policy": "Sort the sixteen pre-shuffled public test IDs lexically, then take first eight and last eight. Declared before any test recording or result. No outcome-based scheduling.",
+  "batches": {
+    "1": [
+      "inc-01",
+      "inc-02",
+      "inc-04",
+      "inc-05",
+      "inc-06",
+      "inc-09",
+      "inc-10",
+      "inc-11"
+    ],
+    "2": [
+      "inc-14",
+      "inc-15",
+      "inc-16",
+      "inc-19",
+      "inc-21",
+      "inc-22",
+      "inc-23",
+      "inc-24"
+    ]
+  },
+  "measurement": "Canonical record --split test --ids selected8; all engine settings, seeds, prompts, rates, durations, idle and drain behavior unchanged."
+}

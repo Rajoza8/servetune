@@ -1,0 +1,35 @@
+{
+  "utilization": 0.655,
+  "started_at": "2026-11-01T18:14:37.386436+00:00",
+  "status": "completed",
+  "startup_s": 27.791,
+  "gpu": {
+    "power_w": 107.259,
+    "energy_mj": 48399372038,
+    "temp_c": 59,
+    "sm_clock_mhz": 2842,
+    "util_gpu": 0,
+    "util_mem": 0,
+    "mem_used_mb": 63620,
+    "mem_total_mb": 97887,
+    "processes": [
+      {
+        "pid": 1297,
+        "used_mb": 62974,
+        "command": "VLLM::EngineCore"
+      }
+    ]
+  },
+  "memory_log_lines": [
+    "(EngineCore pid=1297) INFO 11-01 18:14:48 [core.py:121] Initializing a V1 LLM engine (v0.26.1rc1.dev608+g99a10304d) with config: model='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', speculative_config=None, tokenizer='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', skip_tokenizer_init=False, tokenizer_mode=auto, revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, tokenizer_revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='muse_glimmer', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=servetune-glimmer, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm",
+    "(EngineCore pid=1297) INFO 11-01 18:14:56 [model_runner.py:355] Model loading took 55.83 GiB and 4.585798 seconds",
+    "(EngineCore pid=1297) INFO 11-01 18:14:59 [gpu_worker.py:564] Available KV cache memory: 4.08 GiB",
+    "(EngineCore pid=1297) INFO 11-01 18:14:59 [kv_cache_utils.py:1882] GPU KV cache size: 81,987 tokens, Maximum concurrency for 4,096 tokens per request: 20.02x",
+    "(EngineCore pid=1297) INFO 11-01 18:15:02 [gpu_worker.py:790] Free memory on device (94.42/94.97 GiB) on startup. Desired GPU memory utilization is (0.655, 62.21 GiB). Actual usage is 56.33 GiB for consumed memory (weights + non-torch), 1.8 GiB for peak activation, and 0.32 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=3881614480` (3.62 GiB) to fit into requested memory, or `--kv-cache-memory=38476052992` (35.83 GiB) to fully utilize gpu memory. Current kv cache memory in use is 4.08 GiB.",
+    "(EngineCore pid=1297) INFO 11-01 18:15:03 [core.py:344] init engine (profile, create kv cache, warmup model) took 7.05 s (compilation: 0.15 s)"
+  ],
+  "cuda_total_gib": 94.97,
+  "kv_gib": 4.08,
+  "kv_fraction_of_base": 0.14917733089579524,
+  "elapsed_s": 28.177
+}

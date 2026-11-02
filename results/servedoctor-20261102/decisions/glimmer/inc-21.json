@@ -1,0 +1,76 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-21",
+ "engine_config": {
+  "max_model_len": 1536,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "max_model_len changed from 4096 to 1536 at deploy t=0",
+   "http_400 errors present in recent buckets with arrivals ~3.5-4.7 rps",
+   "p95_latency_s 5.57-6.14 within SLO but error rate exceeds max_error_rate 0.01",
+   "prompt_tokens_mean 208-278 near normal 202, no waiting or KV pressure"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deployment lowered max_model_len to 1536 causing HTTP 400 rejections for valid longer prompts. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 fixes rejections with minimal disruption.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"max_model_len changed from 4096 to 1536 at deploy t=0\", \"http_400 errors present in recent buckets with arrivals ~3.5-4.7 rps\", \"p95_latency_s 5.57-6.14 within SLO but error rate exceeds max_error_rate 0.01\", \"prompt_tokens_mean 208-278 near normal 202, no waiting or KV pressure\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deployment lowered max_model_len to 1536 causing HTTP 400 rejections for valid longer prompts. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 fixes rejections with minimal disruption.\"}",
+  "usage": {
+   "prompt_tokens": 1497,
+   "total_tokens": 2044,
+   "completion_tokens": 547,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "898111e43e84f61c4803c0561f235b5d7409dc411d175174a767dcb3203a6031",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "max_model_len changed from 4096 to 1536 at deploy t=0",
+     "http_400 errors present in recent buckets with arrivals ~3.5-4.7 rps",
+     "p95_latency_s 5.57-6.14 within SLO but error rate exceeds max_error_rate 0.01",
+     "prompt_tokens_mean 208-278 near normal 202, no waiting or KV pressure"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deployment lowered max_model_len to 1536 causing HTTP 400 rejections for valid longer prompts. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 fixes rejections with minimal disruption.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"max_model_len changed from 4096 to 1536 at deploy t=0\", \"http_400 errors present in recent buckets with arrivals ~3.5-4.7 rps\", \"p95_latency_s 5.57-6.14 within SLO but error rate exceeds max_error_rate 0.01\", \"prompt_tokens_mean 208-278 near normal 202, no waiting or KV pressure\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deployment lowered max_model_len to 1536 causing HTTP 400 rejections for valid longer prompts. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 fixes rejections with minimal disruption.\"}",
+    "usage": {
+     "prompt_tokens": 1497,
+     "total_tokens": 2044,
+     "completion_tokens": 547,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

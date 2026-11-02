@@ -1,0 +1,58 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+inc-06 glimmer_to_spark: traffic_surge at 150s -> [{'type': 'gateway_rate_limit', 'max_rps': 4.0}]
+  action {'type': 'gateway_rate_limit', 'max_rps': 4.0} -> executed
+{
+  "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "confidence": 0.9,
+    "evidence": [
+      "arrivals_rps 9.6-11.7 vs normal 4.0 in last 30s",
+      "p95_latency_s 10.91 exceeds SLO 10.0",
+      "waiting_max 50 vs normal 0, running 63.6 capped at 64",
+      "kv_usage_pct_max 4-5% with 0 preemptions, prompt mean ~250 vs 202",
+      "gpu_util 99.5%+ with only VLLM process, no contention"
+    ],
+    "actions": [
+      {
+        "type": "gateway_rate_limit",
+        "max_rps": 4.0
+      }
+    ],
+    "rejected_actions": [],
+    "explanation": "Offered rate ~3x capacity caused queueing and SLO breach. KV and prompts normal, GPU saturated, seq limit at cap. Shedding excess at gateway preserves latency for admitted requests.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.9, \"evidence\": [\"arrivals_rps 9.6-11.7 vs normal 4.0 in last 30s\", \"p95_latency_s 10.91 exceeds SLO 10.0\", \"waiting_max 50 vs normal 0, running 63.6 capped at 64\", \"kv_usage_pct_max 4-5% with 0 preemptions, prompt mean ~250 vs 202\", \"gpu_util 99.5%+ with only VLLM process, no contention\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 4}], \"explanation\": \"Offered rate ~3x capacity caused queueing and SLO breach. KV and prompts normal, GPU saturated, seq limit at cap. Shedding excess at gateway preserves latency for admitted requests.\"}",
+    "usage": {
+      "completion_tokens": 1011,
+      "prompt_tokens": 3081,
+      "total_tokens": 4092,
+      "completion_tokens_details": {
+        "reasoning_tokens": 807
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "t": 150.0
+  },
+  "executed": [
+    {
+      "action": {
+        "type": "gateway_rate_limit",
+        "max_rps": 4.0
+      },
+      "at": "2026-11-02T07:06:07.257041+00:00",
+      "previous": {
+        "max_rps": null,
+        "max_prompt_tokens": null
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "time_to_recover_s": 96.9
+}

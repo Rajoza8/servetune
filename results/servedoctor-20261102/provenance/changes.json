@@ -1,0 +1,360 @@
+{
+  "configuration_changes": [
+    {
+      "name": "META_WONDER_MODEL",
+      "old": "muse-wonder",
+      "new": "muse-wonder-1.0",
+      "reason": "Official Meta model ID verified on dev.meta.ai; prices unchanged at4/20 per million."
+    },
+    {
+      "name": "runtime environment",
+      "old": "online Hub ID resolution",
+      "new": {
+        "HF_HOME": "/workspace/.hf_home",
+        "HF_HUB_OFFLINE": "1",
+        "TRANSFORMERS_OFFLINE": "1",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "VLLM_NO_USAGE_STATS": "1",
+        "VLLM_CACHE_ROOT": "/workspace/.vllm_cache"
+      },
+      "reason": "Restore exact v4 environment; first startup reset pinned revisions to main in worker and failed tokenizer initialization. No package or engine knob change."
+    },
+    {
+      "name": "Dedicated Glimmer evaluation context",
+      "old": 4096,
+      "new": 8192,
+      "scope": "Evaluation server only; incident and live engine settings remain in the frozen study.",
+      "reason": "The actual pinned tokenizer counted 3259 input tokens plus2048 outputtokens for a full reference diagnosis (5307 total), exceeding4096. Input prompts and output caps are unchanged.",
+      "evidence": "context-fit-reference-tokenizer.json"
+    },
+    {
+      "name": "Explicit Meta TLS CONNECT transport",
+      "old": "Direct GPU-host HTTPS egress",
+      "new": "Study-bound http://127.0.0.1:18443 CONNECT tunnel overSSH toMac; fixed api.meta.ai:443 target, end-to-end verifiedTLS",
+      "reason": "FirstWonderrequest404; providerhostSouthKorea andinitialGPUcatalogomittedWonder whilelocalauthenticatedcatalogincluded it. LocalPythonCApathrepairedwithOSbundle. LatestcatalognowincludesWonderbothorigins; exactinitialfailuremechanismnotproven. UseexplicitverifiedMacoriginforremainingcalls; requestbodies/modelIDs/prices/prompts/scoring/ledger unchanged.",
+      "commit": "a0b4deb",
+      "evidence": [
+        "model-diagnostic-20261101-restart1.json",
+        "model-diagnostic-20261102-after-ca-repair.json",
+        "model-diagnostic-20261102-transport-head.json",
+        "wonder-host-availability-evidence.json",
+        "local-python311-ca-repair-20261102T013233326987Z.json",
+        "meta-relay-attempt-20261102T014945176514Z-a5a06970/transport-channel-proof.json"
+      ],
+      "before_test_recording": true
+    }
+  ],
+  "prompt_changes": [],
+  "threshold_changes": [
+    {
+      "split": "Development only; no test recordings or results.",
+      "name": "surge_arrival_ratio",
+      "old": 1.2,
+      "new": 1.5,
+      "reason": "At t=30 s, dev batch-limit incident inc-03 had arrivals at 1.322 times reference, max_num_seqs 4 versus reference 64, running 3.8, queue 89 and p95 24.7 s. The ordinary Poisson burst took the surge branch and proposed harmful shedding. Raising the arrival-ratio threshold from 1.2 to 1.5 restores batch diagnosis; the actual dev surge ratio of 3.391 still triggers.",
+      "evidence": "rule-surge-threshold-dev-evidence.json",
+      "commit": "1be578f"
+    }
+  ],
+  "severity_changes": [
+    {
+      "split": "pre-generation calibration only; no dev/test recorded",
+      "fault": "kv_cache_starvation",
+      "old": [
+        0.8,
+        0.78,
+        0.76
+      ],
+      "new": [
+        0.727,
+        0.684,
+        0.655
+      ],
+      "reason": "All3starts passed with KV10.92/6.83/4.08GiB, fractions40/25/15%of27.35GiBbase asbriefspecifies; originalvaluesleaveabout50%or more.",
+      "evidence": "runs/sd-kv-probes-attempt1/summary.json"
+    },
+    {
+      "split": "Development only; no test recordings or results.",
+      "fault": "kv_cache_starvation",
+      "old": [
+        0.727,
+        0.684,
+        0.655
+      ],
+      "new": [
+        0.6165,
+        0.6155,
+        0.6147
+      ],
+      "reason": "At 0.684, all 1,105 requests succeeded, p95 was 6.47 s versus the 6.31 s reference, and there was no queueing or preemption; maximum KV use was 9.59%. The injection had no service effect. Three isolated 90-second dev probes started with 8,475 / 6,564 / 5,037 KV tokens, produced 23 / 45 / 88 preemptions, and had successful-request p95 of 8.54 / 14.80 / 33.68 s. Preserve the initial study and record a new one.",
+      "evidence": "runs/sd-kv-dev-refinement-attempt1/summary.json",
+      "commit": "ea9c294"
+    },
+    {
+      "split": "Replacement host pre-generation calibration only; no replacement study or test recordings/results yet.",
+      "fault": "kv_cache_starvation",
+      "old": [
+        0.6165,
+        0.6155,
+        0.6147
+      ],
+      "new": [
+        0.61733,
+        0.61613,
+        0.61508
+      ],
+      "reason": "Replacement host pre-generation recalibration on November 1: fresh measured capacity is 8 rps and normal load is 4 rps. Base KV is 27.38 GiB; baseline p95 working set is 0.669 GiB. Utilizations 0.61733/0.61613/0.61508 started with 0.53/0.42/0.32 GiB (10664/8375/6369 tokens), completed all 379 requests per probe without errors, and produced 23/98/113 preemptions with p95 latency 8.21/15.23/37.88 s versus baseline 6.45 s. Use these hardware-calibrated values for the fresh replacement study, following the development finding that base-capacity fractions caused no fault symptom. Evidence runs/sd2-kv-pre-generation-attempt2; failed summary-write attempt1 remains preserved. No replacement study or test incident had been generated or recorded.",
+      "evidence": "runs/sd2-kv-pre-generation-attempt2/summary.json",
+      "at_utc": "2026-11-01T22:43:39.368458+00:00",
+      "commit": "3fea48a"
+    }
+  ],
+  "integration_fixes": [
+    {
+      "commit": "a2cf73e",
+      "reason": "50% warning must stop dispatch, incomplete paid calls must retain checkpoint outputs; reject unpriced Baseten."
+    },
+    {
+      "commit": "b5c2b50",
+      "reason": "Persist live and GPU startup failures, reject contaminated/failed recordings, restore old config after failed engine restart."
+    },
+    {
+      "commit": "9dd15a8",
+      "reason": "Real GPU preflight measured 95.5% mean utilization for nominal50% contention duty because CPU enqueue timing accumulated asynchronous work. Synchronize completed iterations and reusebuffers; all262tests pass, GPUvalidationpending.",
+      "gpu_validation": {
+        "passed": true,
+        "requested_seconds": 20,
+        "wall_seconds_including_startup": 21.015,
+        "nominal_duty": 0.5,
+        "measured_gpu_util_pct": 18.736842105263158,
+        "pid_verified": true,
+        "interpretation": "Duty bounds completed-work windows; NVMLutil depends on kernel and synchronizationoverhead; devsymptomcheckstillrequired."
+      }
+    },
+    {
+      "commit": "ab670de",
+      "reason": "Each dev/test evaluation needs a fresh engine artifact directory; reuse previously failed engine.log exclusive creation. Preserve metadata and startup failures."
+    },
+    {
+      "commit": "aedc7d9",
+      "reason": "A failed local monitor now retains failure evidence and escalates the same observation once. Context-limit incidents can prevent the serving model accepting a monitor request. Permanent paid HTTP rejections halt after journaling and keep reservations."
+    },
+    {
+      "commit": "d95f4a6c091e2373565e6eac73069991324772c8",
+      "at_utc": "2026-11-01T20:45:38.022076+00:00",
+      "change": "Validate paid credentials before reservation and halt transport encoding errors",
+      "reason": "First real dev evaluation produced 192 UnicodeEncodeError failures and retained $9.075474 reservations. Reject missing/non-string/non-ASCII/whitespace/control credentials at client construction, without revealing contents. Journal transport UnicodeEncodeError once and halt both replay and live.",
+      "validation": "278 offline tests pass, one skipped; no prompt/scoring/threshold/pricing/cap changes.",
+      "failed_evidence_preserved": "runs/sd-study-kv2",
+      "fresh_attempt": "runs/sd-study-kv2-api2"
+    },
+    {
+      "commit": "092a5ca",
+      "name": "Deterministic offline context recovery fixture",
+      "reason": "A sparse synthetic medium mix put its first oversized request at1.9996s, on a telemetry sampling boundary. Rules could legitimately select underutilization before the error was visible. The fixture now uses only medium prompts; its diagnosis/action/restart/recovery assertions remain. No benchmark workload, prompt, threshold or scoring change.",
+      "evidence": [
+        "unittest-20261101T2244-failure.json",
+        "unittest-20261101T2252.stdout"
+      ]
+    },
+    {
+      "commit": "cf0d6cb",
+      "name": "Live initialization cleanup and failure evidence",
+      "reason": "Engine startup and workload/GPU/recorder initialization happened before the protected cleanup scope. A setup failure could leave the owned vLLM process running and no live result. Protect all initialization, clean each acquired resource independently, preserve the primary exception, and record only safe exception classes/stages. Successful measured decision and recovery logic is unchanged.",
+      "evidence": [
+        "tests/test_servedoctor_live_initialization.py",
+        "unittest-20261101T2252.stdout"
+      ]
+    }
+  ],
+  "test_recording_started": true,
+  "operational_fixes": [
+    {
+      "name": "Vast startup status and accounting race",
+      "reason": "A stale previous stopped state closed the current running interval after0.48 s and made the local watcher exit. Corrected the entire session charge from original start, retained the invalid observation, restarted watcher, and fixed future interval/watchdog readiness handling. The remote fallback guard stayed armed.",
+      "benchmark_data_changed": false,
+      "api_ledger_changed": false
+    },
+    {
+      "at_utc": "2026-11-01T20:30:57.903682+00:00",
+      "change": "Bound phase cleanup and require confirmed GPU stop",
+      "reason": "Review found that the phase wrapper could return success without confirming a stop, and deadline shutdown could race artifact/ledger copying. Reserve 180 seconds, permit 120 seconds for stage cleanup, make one stop request, reconcile only through bounded read-only status, and fail if stop remains unconfirmed. Current recording process loaded the previous wrapper; verify its final stop directly.",
+      "experimental_effect": "None: ignored operational helper only; no study, prompt, threshold, scoring or API-ledger change.",
+      "validation": "Five fake-clock/process contracts and compilation pass."
+    },
+    {
+      "at_utc": "2026-11-01T20:42:20.922617+00:00",
+      "reason": "Invalid minimum checkpoint: every Spark call failed locally with UnicodeEncodeError; zero successful API outputs. Preserve failed decisions and reservations; fresh evaluation required.",
+      "old_study": "runs/sd-study-kv2",
+      "new_study": "runs/sd-study-kv2-api2",
+      "failed_stage": "sd-study-kv2-dev-evaluation-20261101T203819898496Z",
+      "failed_calls": {
+        "spark": 96,
+        "wonder": 96
+      },
+      "accounted_meta_usd": 9.075474,
+      "ledger_edited": false,
+      "action": "Retain all failed decisions in original study; clone sealed recordings into fresh evaluation directory after credential fix. Do not re-record successful GPU incidents or conceal API failures."
+    },
+    {
+      "at_utc": "2026-11-01T20:59:35.762347+00:00",
+      "change": "Safe runner startup diagnostics and test-recording SIGTERM cleanup",
+      "reason": "User reported restarting the runner, but no process/socket existed; previous startup errors printed only ValueError. Static messages now distinguish missing/invalid export, invocation and socket failures without revealing credentials. Test recording now catches SIGTERM so finally mirrors run before phase shutdown.",
+      "validation": "Six invented-environment/fake-socket runner tests, one fake SIGTERM mirror contract and compilation pass. No actual keys, API calls or GPU lifecycle actions during this preparation.",
+      "experimental_effect": "None; private ignored helpers only."
+    },
+    {
+      "at_utc": "2026-11-01T21:08:18.663646+00:00",
+      "phase": "dev-model-evaluation-api2-attempt1",
+      "failure": "Vast start returned success=false; no engine, upload or API evaluation began. Wrapper erroneously waited for readiness because the CLI exit code stayed zero.",
+      "response_evidence": "operation-events.jsonl",
+      "phase_exit": "dev-model-evaluation-api2-attempt1-exit.json",
+      "operator_action": "Exact phase received SIGINT, caught by wrapper; finally made one stop request and confirmed stopped/exited. No study directory created remotely.",
+      "followup": "Fix helper nonzero exit and safe provider diagnostics; make a separately named, explicitly recorded new start attempt.",
+      "model_calls": 0,
+      "api_ledger_edited": false,
+      "gpu_interval_accounting": "Conservative full start-request to confirmed-stop interval retained even though no actual running state was observed."
+    },
+    {
+      "at_utc": "2026-11-01T21:10:27.246146+00:00",
+      "change": "Fail immediately on rejected Vast mutation; retain redacted provider reason",
+      "reason": "Prior start explicitly returned false and state was reconciled to stopped/exited. Fresh, separately recorded start after fixing failed-mutation exit codes and redacted provider diagnostics. No prior upload, engine or model evaluation began.",
+      "validation": "17 offline helper contracts and compilation pass; no source/config/prompt/scoring/ledger change."
+    },
+    {
+      "at_utc": "2026-11-01T21:31:09.377411+00:00",
+      "new_phase": "replacement-bootstrap-calibration-attempt2",
+      "prior_phase": "replacement-bootstrap-calibration-attempt1",
+      "prior_outcome": "replacement-bootstrap-control-attempt1/outcome.json",
+      "reason": "The API bundle-search id filter does not identify offer IDs; it returned no rows despite the exact approved offer remaining rentable. Removed that server-side id filter, retained machine filter and exact returned-offer binding. No create writeahead marker, rental mutation, or paid GPU session occurred.",
+      "original_deleted_confirmed": true,
+      "one_creation_only": true
+    },
+    {
+      "at_utc": "2026-11-01T21:47:18.611682+00:00",
+      "change": "Preserve failed SSH host-key parsing attempt and resume same replacement",
+      "reason": "ssh-keyscan included standard comment lines on stdout. Filter comments before public-host-key validation; retain raw scan. First attempt stopped before any guide/bootstrap/ledger transfer. New named attempt restarts only existing scoped58716527; no second replacement rental.",
+      "evidence": "replacement-bootstrap-control-attempt4/outcome.json",
+      "new_attempt": "replacement-bootstrap-control-attempt5",
+      "experimental_effect": "None; bootstrap/preflight had not started."
+    },
+    {
+      "at_utc": "2026-11-01T21:57:36.741621+00:00",
+      "change": "Preserve two interrupted replacement bootstraps and fix remote guard recognition",
+      "reason": "First guard upload lacked destination directory; second guard did not recognize the temporary bootstrap path despite active download. mkdir before SCP was fixed. Add exact temporary-path/root-ownership/source-hash trust so the guard recognizes only the uploaded bootstrap, retaining cwd and budget checks. Same rental reused; previous repos and all outcomes retained.",
+      "affected_attempts": [
+        "replacement-bootstrap-control-attempt5",
+        "replacement-bootstrap-control-attempt6"
+      ],
+      "experimental_effect": "No study generated, recordings or paid model calls occurred on replacement. API ledger not modified."
+    },
+    {
+      "at_utc": "2026-11-01T22:00:44.330930+00:00",
+      "change": "User-authorized continuous GPU allocation",
+      "reason": "User explicitly overrides idle shutdown: keep GPU through stage gaps/troubleshooting to avoid loss of availability; accepts extra2\u20133dollars. Overall40dollar cap and noon fallback checkpoint remain.",
+      "policy": "Remove idle/phase-finish shutdowns; maintain budget/deadline guards and bounded no-controller fallback.",
+      "experimental_effect": "None; runtime/benchmark settings unchanged."
+    },
+    {
+      "at_utc": "2026-11-01T22:26:10.023568+00:00",
+      "change": "Fresh KV calibration rerun after progress-summary writer failure",
+      "reason": "Private helper used exclusive-create write_json for repeated summary updates; FileExistsError after successful baseline and candidate00. Keep all original raw records/error logs in attempt1. Use atomic summary plus immutable checkpoints; new outdir attempt2 for full rerun before study generation. No experimental config or threshold has changed.",
+      "old_out": "runs/sd2-kv-pre-generation-attempt1",
+      "new_out": "runs/sd2-kv-pre-generation-attempt2",
+      "gpu_policy": "User-requested keep allocated; no stop requested."
+    },
+    {
+      "name": "Replacement pre-generation KV helper summary progress",
+      "scope": "Ignored operational helper only, before replacement study generation; no prompts/scoring/thresholds changed.",
+      "reason": "Attempt1 completed baseline and candidate00, then exclusive write_json could not overwrite summary.json and raised FileExistsError. Preserved whole attempt1. Use atomic mutable summary plus exclusive numbered history checkpoints, tested full baseline+3candidate flow and injected candidate failure. Fresh attempt2 repeats all probes.",
+      "evidence": [
+        "runs/sd2-kv-pre-generation-attempt1",
+        "runs/sd2-kv-pre-generation-attempt2",
+        "runs/servedoctor-ops-20261101/sd2_kv_pre_generation_stub_test.py"
+      ],
+      "at_utc": "2026-11-01T22:34:04.541127+00:00"
+    },
+    {
+      "name": "Test evaluation genuine-response audit",
+      "scope": "Ignored orchestration helper only; no model input or scoring change.",
+      "reason": "A row-count-only check could treat sixteen failed-call records as a complete model evaluation and advance to the next paid group. Apply the dev genuine-response guard after each non-rules test group, retain failed decisions and finally mirrors, and halt for explicit review on transport/zero-usage failures. Real-usage parse-invalid responses remain valid scored outcomes.",
+      "evidence": "evaluate_test_stage_stub_test.py"
+    },
+    {
+      "name": "Recording order and active progress reader",
+      "scope": "Ignored orchestration helpers only.",
+      "reason": "Record reference separately before dev as required by the brief; create report after rules. Progress reader ignores only an unterminated final JSONL fragment while retaining malformed complete lines as errors. No recordings are retried or altered.",
+      "evidence": [
+        "record_dev_stage_stub_test.py",
+        "dev_symptom_audit.py"
+      ]
+    },
+    {
+      "name": "Predeclared two-batch test recording",
+      "scope": "Scheduling only; canonical record measurement unchanged. Planned before any test recording/results.",
+      "reason": "16x360-second workload consumes96minutes before startup/drain/idle/mirror. With up to90seconds drain per incident, one-shot can exceed117-minute work allowance. Two fixed sorted-ID halves of8 preserve all seeds, prompts, rates, durations, knobs and measurement windows, with one extra base engine startup and one extra mirror. Freeze binds planSHA; batch2 requires sealed successful batch1; all failed dispatches remain and block retries.",
+      "evidence": [
+        "runs/sd-study-r2/test-recording-batches.json",
+        "test-recording-batches-r2-receipt.json",
+        "test-recording-batches-r2-transfer-receipt.json"
+      ],
+      "plan_sha256": "fd0e9ad1fbc954c1c46752f43d2ffc03149b67a86ec8cd9ee294869e478aa182"
+    },
+    {
+      "name": "Wonder first real request404; halt and diagnose",
+      "scope": "No prompt/config/threshold/scoring changes. No retry dispatched.",
+      "reason": "After rules and31genuine validSparkresponses completedall8dev, firstWondercallatinc-03,t30 returnedHTTP404. Source verifiedmuse-wonder-1.0 andofficial4/20rates; runner filemtimepredatesrunningserver. Failedpartial and0.063304USDreservation preserved. Continue independentlocalGlimmer while preparing nonpaid exactspec/catalogdiagnostic.",
+      "evidence": [
+        "sd-study-r2-dev-evaluation-20261101T235703091378Z/wonder-summary.json",
+        "runs/sd-study-r2/decisions/wonder/inc-03.partial.json"
+      ]
+    },
+    {
+      "name": "Keep allocation without idle or holding lease expiry",
+      "reason": "User explicitly requested retaining GPU through gaps/troubleshooting. Remove idle/phase/2hholding expiry under scoped keep policy; reserve full remaining workload in both primary and remote projected-budget guard. Replace only ownwatchdog supervisors, preservingbudget/noonidentityguards andalloldlogs. GPU stop/startnot sent.",
+      "evidence": [
+        "watchdog-no-lease-rearm-plan.json",
+        "keep-allocated-no-lease-20261102t002437z-primary-process.json",
+        "keep-allocated-no-lease-applied.json"
+      ],
+      "source_files": [
+        "vast_ops.py",
+        "phase.py",
+        "remote_guard.py",
+        "arm_remote_guard.py"
+      ]
+    },
+    {
+      "at_utc": "2026-11-02T02:44:51.581525+00:00",
+      "name": "Retain test batch controller interruption and post-seal BrokenPipeError",
+      "reason": "Vast status held the operation lock beyond the phase heartbeat10secondwait, interrupting the local controller. Original GPU recorder completed/sealed inc01 and inc06, then exited BrokenPipeError while printing after stdoutclosed; its engine cleanup completed. Preserve all original failures and both completed recordings. Only six never-startedIDs will be recorded once in a fresh durable attempt with GPU-side file logs and an immutable exit receipt. Heartbeatwait60secondsremainsouterdeadlinebounded. Separate reconciliation preserves originalunknownexit and requires all8seals plus continuationknownexit0. No recordingretry.",
+      "scientific_source_inputs_prompts_thresholds_or_scoring_changed": false,
+      "api_ledger_changed": false,
+      "evidence": [
+        "test-batch1-controller-interruption.json",
+        "test-batch1-recorder-exit.json",
+        "r2-api2-test-batch1-attempt1-exit.json"
+      ],
+      "validation": "28 focused offline contracts passed; source HEAD a0b4deb unchanged."
+    },
+    {
+      "at_utc": "2026-11-02T04:42:52.004416+00:00",
+      "name": "Re-record unusable inc23 collection after descriptor exhaustion",
+      "reason": "At17.6rps with60srequesttimeouts, 1024softFDlimit wasinsufficient; samplerthread diedOSErrorErrno24 openingengine.log at231s of360, whilemainharnessfalselysealedstatuscompleted. Independentpublicstructuralauditfound24/25complete andonlyinc23truncated; allscheduledoutcomeIDs matched. Preserveoldraw/runtime/batch2outcome unchanged asUNUSABLE. Freshscratchsamefrozeninputs/seed/workload/sourcea0b4; raiseONLYnewworker/recorder/engine inheritedsoftnofile1024to65536, hard1048576unchanged. Adoptionrequirescompletecollection/ownedchildlimitproof, notlatency/modelperformance.",
+      "scientific_config_prompts_thresholds_scoring_or_gen_answer_keys_changed": false,
+      "source_measurement_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+      "old_unusable_id": "inc-23",
+      "scratch_study": "runs/sd-study-r2-api2-inc23-fd-repair-attempt1",
+      "prepared_source_fix_not_used_in_experiment": "d2632e4ee018aaa9b53275d42e7f704fd36374a8",
+      "prepared_fix_full_tests": 300,
+      "evidence": [
+        "inc23-emfile-evidence.json",
+        "recording-quality-before-inc23-repair.json",
+        "freeze-count-bookkeeping-correction.json"
+      ],
+      "repair_outcome": "Freshscratchrecordexit0,4667/4667outcomes,424telemetryrows,last423.001s,maxgap1.706s; adoptedonceafterstructuralchecks;oldraw/runtime/outcome retainedbyte-identical asUNUSABLE;all25canonicalrecordings pass,other24manifests unchanged.",
+      "adoption_receipt": "runs/sd-study-r2-api2/test-recording-batch-receipts/inc-23-fd-repair-adoption.json",
+      "quality_after": "recording-quality-after-inc23-repair.json"
+    }
+  ]
+}

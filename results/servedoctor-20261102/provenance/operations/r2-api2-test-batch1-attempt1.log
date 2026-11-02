@@ -1,0 +1,54 @@
+{
+  "instance": {
+    "id": 58716527,
+    "label": "servedoctor-gpu-replacement-20261101",
+    "actual_status": "running",
+    "cur_state": "running",
+    "intended_status": "running",
+    "status_msg": "success, running vastai/vllm_sha256_d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843/ssh",
+    "ssh_host": "ssh4.vast.ai",
+    "ssh_port": 34094,
+    "public_ipaddr": "121.158.120.137",
+    "ports": {
+      "22/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "24185"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "24185"
+        }
+      ]
+    },
+    "dph_total": 1.479,
+    "storage_total_cost": 0.04166666666666668,
+    "gpu_name": "RTX PRO 6000 WS",
+    "gpu_ram": 97887,
+    "machine_id": 140625,
+    "uptime_mins": 259.2385688026746
+  },
+  "cost": {
+    "running_hours": 7.384681491719352,
+    "compute_usd_upper": 10.31800465216089,
+    "disk_usd_upper": 0.3484671845011137,
+    "rental_usd_upper": 10.666471836662005,
+    "network_reserve_usd": 4.0,
+    "slack_reserve_usd": 1.0,
+    "total_projected_usd_upper": 15.666471836662005
+  },
+  "stop_reason": null
+}
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+Remote fallback guard armed for r2-api2-test-batch1-attempt1

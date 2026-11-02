@@ -1,0 +1,1470 @@
+{
+  "schema_version": 1,
+  "study_sha256": "e469c0aa03abf6cef43cf9c79fe2fa495b14023b264ac90f7808c770f3b1304c",
+  "scenarios": [
+    {
+      "id": "inc-01",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 280.2,
+          "rate_rps": 4.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 310.2,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 43.1,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 467787783
+    },
+    {
+      "id": "inc-02",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.61733,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.61733
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 211.4,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 786062479
+    },
+    {
+      "id": "inc-03",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 4,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_num_seqs": [
+              64,
+              4
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 108.4,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 672016098
+    },
+    {
+      "id": "inc-04",
+      "split": "test",
+      "engine": {
+        "max_model_len": 768,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ],
+            "max_model_len": [
+              4096,
+              768
+            ]
+          }
+        },
+        {
+          "t": 254.6,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1464241886
+    },
+    {
+      "id": "inc-05",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ],
+            "max_num_seqs": [
+              64,
+              8
+            ]
+          }
+        },
+        {
+          "t": 89.6,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 206299566
+    },
+    {
+      "id": "inc-06",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 10.4,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 202.3,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 686243372
+    },
+    {
+      "id": "inc-07",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.425,
+            "medium": 0.075,
+            "long": 0.5
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 116.9,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 2134018959
+    },
+    {
+      "id": "inc-08",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 131.6,
+          "rate_rps": 4.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 161.6,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 238.9,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 2092924019
+    },
+    {
+      "id": "inc-09",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": {
+        "onset_s": 120,
+        "duty": 1.0,
+        "matrix_size": 8192
+      },
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 167.4,
+          "kind": "note",
+          "text": "Scheduled vulnerability scan completed on the host."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 17444229
+    },
+    {
+      "id": "inc-10",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 2,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_num_seqs": [
+              64,
+              2
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 230.9,
+          "kind": "note",
+          "text": "Scheduled vulnerability scan completed on the host."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 640478557
+    },
+    {
+      "id": "inc-11",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": {
+        "onset_s": 120,
+        "duty": 0.4,
+        "matrix_size": 8192
+      },
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 285.7,
+          "kind": "note",
+          "text": "On-call handoff: no open incidents."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 900859521
+    },
+    {
+      "id": "inc-12",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": {
+        "onset_s": 120,
+        "duty": 0.7,
+        "matrix_size": 8192
+      },
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 164.8,
+          "kind": "note",
+          "text": "Updated the Grafana serving dashboard layout."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 157673898
+    },
+    {
+      "id": "inc-13",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 1024,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ],
+            "max_model_len": [
+              4096,
+              1024
+            ]
+          }
+        },
+        {
+          "t": 63.4,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1690859101
+    },
+    {
+      "id": "inc-14",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 142.8,
+          "rate_rps": 4.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 172.8,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 322.4,
+          "kind": "note",
+          "text": "Scheduled vulnerability scan completed on the host."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1460265989
+    },
+    {
+      "id": "inc-15",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.16999999999999996,
+            "medium": 0.029999999999999992,
+            "long": 0.8
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 28.8,
+          "kind": "note",
+          "text": "Updated the Grafana serving dashboard layout."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1302978807
+    },
+    {
+      "id": "inc-16",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.61508,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.61508
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 294.8,
+          "kind": "note",
+          "text": "Raised application log retention from 7 to 14 days."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1287105316
+    },
+    {
+      "id": "inc-17",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.61613,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.61613
+            ],
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 120.2,
+          "kind": "note",
+          "text": "Raised application log retention from 7 to 14 days."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1862435407
+    },
+    {
+      "id": "inc-18",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 0.64,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 63.9,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1539644059
+    },
+    {
+      "id": "inc-19",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 0.96,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 72.9,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1874725827
+    },
+    {
+      "id": "inc-20",
+      "split": "dev",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 13.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 50.1,
+          "kind": "note",
+          "text": "Scheduled vulnerability scan completed on the host."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 151619070
+    },
+    {
+      "id": "inc-21",
+      "split": "test",
+      "engine": {
+        "max_model_len": 1536,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_model_len": [
+              4096,
+              1536
+            ],
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 60.1,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 347189176
+    },
+    {
+      "id": "inc-22",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.595,
+            "medium": 0.105,
+            "long": 0.3
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 211.8,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 713392434
+    },
+    {
+      "id": "inc-23",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 17.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 214.4,
+          "kind": "note",
+          "text": "On-call handoff: no open incidents."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1168611698
+    },
+    {
+      "id": "inc-24",
+      "split": "test",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 290.8,
+          "rate_rps": 4.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 320.8,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 117.7,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 777932208
+    },
+    {
+      "id": "reference",
+      "split": "reference",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 4.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 180,
+      "contention": null,
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {}
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 789682185
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-16",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61508,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.9,
+  "evidence": [
+   "p95_latency 11.11s exceeds SLO 10.0s",
+   "kv_usage_pct_max 100% vs normal 1.78%",
+   "waiting_max 31 vs normal 0 with arrivals ~4rps normal",
+   "gpu_memory_utilization 0.615 vs reference 0.9 after deploy",
+   "preemptions 2.8/s and p95_ttft 4.86s vs 0.42s"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Offered load normal but KV cache full causing queueing, preemptions and SLO breach after gpu_memory_utilization cut from 0.9 to 0.615. Restore reservation.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.9, \"evidence\": [\"p95_latency 11.11s exceeds SLO 10.0s\", \"kv_usage_pct_max 100% vs normal 1.78%\", \"waiting_max 31 vs normal 0 with arrivals ~4rps normal\", \"gpu_memory_utilization 0.615 vs reference 0.9 after deploy\", \"preemptions 2.8/s and p95_ttft 4.86s vs 0.42s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Offered load normal but KV cache full causing queueing, preemptions and SLO breach after gpu_memory_utilization cut from 0.9 to 0.615. Restore reservation.\"}",
+  "usage": {
+   "completion_tokens": 620,
+   "prompt_tokens": 1472,
+   "total_tokens": 2092,
+   "completion_tokens_details": {
+    "reasoning_tokens": 417
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c8899f1f965ce9dc1fa1fcf92e544875ef4efcbd070fb6f24ef64bfd0adb6229",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency 11.11s exceeds SLO 10s at t=30s with KV cache saturated at 100%, waiting_max 31, preemptions rising.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency 11.11s exceeds SLO 10s at t=30s with KV cache saturated at 100%, waiting_max 31, preemptions rising.\"}",
+    "usage": {
+     "prompt_tokens": 986,
+     "total_tokens": 1087,
+     "completion_tokens": 101,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.9,
+    "evidence": [
+     "p95_latency 11.11s exceeds SLO 10.0s",
+     "kv_usage_pct_max 100% vs normal 1.78%",
+     "waiting_max 31 vs normal 0 with arrivals ~4rps normal",
+     "gpu_memory_utilization 0.615 vs reference 0.9 after deploy",
+     "preemptions 2.8/s and p95_ttft 4.86s vs 0.42s"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Offered load normal but KV cache full causing queueing, preemptions and SLO breach after gpu_memory_utilization cut from 0.9 to 0.615. Restore reservation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.9, \"evidence\": [\"p95_latency 11.11s exceeds SLO 10.0s\", \"kv_usage_pct_max 100% vs normal 1.78%\", \"waiting_max 31 vs normal 0 with arrivals ~4rps normal\", \"gpu_memory_utilization 0.615 vs reference 0.9 after deploy\", \"preemptions 2.8/s and p95_ttft 4.86s vs 0.42s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Offered load normal but KV cache full causing queueing, preemptions and SLO breach after gpu_memory_utilization cut from 0.9 to 0.615. Restore reservation.\"}",
+    "usage": {
+     "completion_tokens": 620,
+     "prompt_tokens": 1472,
+     "total_tokens": 2092,
+     "completion_tokens_details": {
+      "reasoning_tokens": 417
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

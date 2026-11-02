@@ -1,0 +1,9 @@
+{
+  "resource": "RLIMIT_NOFILE",
+  "old_soft": 1024,
+  "old_hard": 1048576,
+  "new_soft": 65536,
+  "new_hard": 1048576,
+  "captured_at_utc": "2026-11-02T04:40:13.601696+00:00",
+  "inheritance": "Set in worker before canonical recorder subprocess; its engine children inherit it."
+}

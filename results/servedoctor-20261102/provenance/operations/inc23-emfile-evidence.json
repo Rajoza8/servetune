@@ -1,0 +1,64 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "created_at_utc": "2026-11-02T04:17:28.877045+00:00",
+  "study_dir": "runs/sd-study-r2-api2",
+  "incident": "inc-23",
+  "kind": "Data collection failure despite completed status",
+  "recording_status": "completed",
+  "old_manifest_sha256": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+  "durable_stderr_sha256": "58104662f7b234fb0352ce5a5e03638113622f421c67d81d8974019634fdafd2",
+  "collector_trace_tail": [
+    "Exception in thread servedoctor-recorder:",
+    "Traceback (most recent call last):",
+    "  File \"/usr/lib/python3.12/threading.py\", line 1073, in _bootstrap_inner",
+    "    self.run()",
+    "  File \"/usr/lib/python3.12/threading.py\", line 1010, in run",
+    "    self._target(*self._args, **self._kwargs)",
+    "  File \"/workspace/servedoctor-session/servetune/servedoctor/telemetry.py\", line 216, in run",
+    "    self._loop(stream)",
+    "  File \"/workspace/servedoctor-session/servetune/servedoctor/telemetry.py\", line 204, in _loop",
+    "    stream.write(json.dumps(self.snapshot(), allow_nan=False) + \"\\n\")",
+    "                            ^^^^^^^^^^^^^^^",
+    "  File \"/workspace/servedoctor-session/servetune/servedoctor/telemetry.py\", line 198, in snapshot",
+    "    row[\"log\"] = self.log_tail.read()",
+    "                 ^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/workspace/servedoctor-session/servetune/servedoctor/telemetry.py\", line 151, in read",
+    "    with self.path.open(\"rb\") as stream:",
+    "         ^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open",
+    "    return io.open(self, mode, buffering, encoding, errors, newline)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "OSError: [Errno 24] Too many open files: 'runs/sd-study-r2-api2/engines/engine-00-inc-14/engine.log'"
+  ],
+  "known_process_limits": {
+    "17351": {
+      "openfile_limits": [
+        "Max open files            1024                 1048576              files     "
+      ],
+      "fd_count": 5,
+      "status": {
+        "State": "S (sleeping)",
+        "VmRSS": "24192 kB",
+        "Threads": "1"
+      }
+    },
+    "17355": {
+      "openfile_limits": [
+        "Max open files            1024                 1048576              files     "
+      ],
+      "fd_count": 109,
+      "status": {
+        "State": "S (sleeping)",
+        "VmRSS": "861500 kB",
+        "Threads": "101"
+      }
+    }
+  },
+  "new_ssh_process_nofile": [
+    1024,
+    1048576
+  ],
+  "finding": "Sampler thread exited OSErrorErrno24 opening engine.log. Telemetry stopped at231s of360s. Preserve and exclude this attempt from evaluation; exact unchanged-workload new-directory re-record required with resource headroom.",
+  "source_config_prompts_thresholds_scoring_or_answer_keys_changed": false
+}

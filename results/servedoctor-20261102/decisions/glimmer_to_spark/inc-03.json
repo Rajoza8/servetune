@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-03",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "max_num_seqs cut 64->4 at deploy t=0",
+   "running capped at 4.0 vs normal 21.1",
+   "waiting_max grew 45->91->126",
+   "kv_usage_pct_max ~0.3% vs 1.78% normal, no preemptions",
+   "arrivals_rps ~4.4-5.5 similar to normal 4.0"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Queue explodes while running pinned at new limit 4 and KV cache empty, with arrival rate and prompt mix normal. Restore max_num_seqs to reference 64 to unblock concurrency.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs cut 64->4 at deploy t=0\", \"running capped at 4.0 vs normal 21.1\", \"waiting_max grew 45->91->126\", \"kv_usage_pct_max ~0.3% vs 1.78% normal, no preemptions\", \"arrivals_rps ~4.4-5.5 similar to normal 4.0\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Queue explodes while running pinned at new limit 4 and KV cache empty, with arrival rate and prompt mix normal. Restore max_num_seqs to reference 64 to unblock concurrency.\"}",
+  "usage": {
+   "completion_tokens": 722,
+   "prompt_tokens": 1466,
+   "total_tokens": 2188,
+   "completion_tokens_details": {
+    "reasoning_tokens": 528
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "797e06cd1abbb6ba19b6bc21325c86a6daca28d8f9fd1b6adfafa41db6d2f933",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency 25.8s exceeds SLO 10s with growing queue. max_num_seqs cut 64\u21924 at deploy causing backlog, waiting_max 126, throughput collapse.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency 25.8s exceeds SLO 10s with growing queue. max_num_seqs cut 64\u21924 at deploy causing backlog, waiting_max 126, throughput collapse.\"}",
+    "usage": {
+     "prompt_tokens": 980,
+     "total_tokens": 1086,
+     "completion_tokens": 106,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "max_num_seqs cut 64->4 at deploy t=0",
+     "running capped at 4.0 vs normal 21.1",
+     "waiting_max grew 45->91->126",
+     "kv_usage_pct_max ~0.3% vs 1.78% normal, no preemptions",
+     "arrivals_rps ~4.4-5.5 similar to normal 4.0"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Queue explodes while running pinned at new limit 4 and KV cache empty, with arrival rate and prompt mix normal. Restore max_num_seqs to reference 64 to unblock concurrency.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs cut 64->4 at deploy t=0\", \"running capped at 4.0 vs normal 21.1\", \"waiting_max grew 45->91->126\", \"kv_usage_pct_max ~0.3% vs 1.78% normal, no preemptions\", \"arrivals_rps ~4.4-5.5 similar to normal 4.0\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Queue explodes while running pinned at new limit 4 and KV cache empty, with arrival rate and prompt mix normal. Restore max_num_seqs to reference 64 to unblock concurrency.\"}",
+    "usage": {
+     "completion_tokens": 722,
+     "prompt_tokens": 1466,
+     "total_tokens": 2188,
+     "completion_tokens_details": {
+      "reasoning_tokens": 528
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

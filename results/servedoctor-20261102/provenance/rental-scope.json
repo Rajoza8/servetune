@@ -1,0 +1,24 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "offer_id": 46182082,
+  "machine_id": 140625,
+  "image": "vastai/vllm@sha256:d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843",
+  "created_at": "2026-11-01T21:37:51.748706+00:00",
+  "prior_rental": {
+    "instance_id": 58690026,
+    "state_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/rental-history/instance-58690026/session.json",
+    "state_sha256": "4a9f68a02cababc710c8549ef9a35a4dda47df356306d619453a75f3a6b378af",
+    "history_manifest": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/rental-history/instance-58690026/archive-manifest.json",
+    "final_cost": {
+      "running_hours": 2.848502037856314,
+      "compute_usd_upper": 3.7980027171417516,
+      "disk_usd_upper": 0.15424355876114632,
+      "rental_usd_upper": 3.952246275902898,
+      "network_reserve_usd": 2.0,
+      "slack_reserve_usd": 0.0,
+      "total_projected_usd_upper": 5.952246275902898
+    }
+  },
+  "creation_marker_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/replacement-create.json"
+}

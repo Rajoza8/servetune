@@ -1,0 +1,33 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+inc-05 rules: other at 30s -> [{'type': 'escalate_to_human'}]
+  action {'type': 'escalate_to_human'} -> executed
+  not recovered: rolled back and escalated to a human
+{
+  "decision": {
+    "incident": true,
+    "root_cause": "other",
+    "actions": [
+      {
+        "type": "escalate_to_human"
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 30.0
+  },
+  "executed": [
+    {
+      "action": {
+        "type": "escalate_to_human"
+      },
+      "at": "2026-11-02T08:07:07.495659+00:00",
+      "status": "executed"
+    }
+  ],
+  "recovered": false,
+  "rolled_back": true,
+  "time_to_recover_s": null
+}

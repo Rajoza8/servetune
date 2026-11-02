@@ -1,0 +1,22 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "gpu_memory_utilization": [
+        0.9,
+        0.6147
+      ],
+      "log_level": [
+        "INFO",
+        "WARNING"
+      ]
+    }
+  },
+  {
+    "t": 120.2,
+    "kind": "note",
+    "text": "Raised application log retention from 7 to 14 days."
+  }
+]

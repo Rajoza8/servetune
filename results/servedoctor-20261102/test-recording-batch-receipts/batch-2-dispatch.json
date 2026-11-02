@@ -1,0 +1,66 @@
+{
+  "project": "servedoctor",
+  "requested_at_utc": "2026-11-02T03:35:58.637627+00:00",
+  "batch": 2,
+  "selected_ids": [
+    "inc-14",
+    "inc-15",
+    "inc-16",
+    "inc-19",
+    "inc-21",
+    "inc-22",
+    "inc-23",
+    "inc-24"
+  ],
+  "engine_directories": [
+    "engine-00-inc-14",
+    "engine-01-inc-16",
+    "engine-02-inc-21"
+  ],
+  "previous_recordings": [
+    {
+      "id": "inc-01",
+      "manifest_sha256": "9d58484b4dbf18c408d91c93df56614356225e3eac96675df2bdc1216ac44f68",
+      "started_at": "2026-11-02T02:18:53.161681+00:00"
+    },
+    {
+      "id": "inc-02",
+      "manifest_sha256": "fef46470ce9edb7e1621db4b8c232fd97405c6bc8b839fe76e7f68a5a18ae1f4",
+      "started_at": "2026-11-02T02:59:03.795168+00:00"
+    },
+    {
+      "id": "inc-04",
+      "manifest_sha256": "8fbeddd720c98c3143a93a95adfd14952355ff701f775ad40337a6185eb62d1e",
+      "started_at": "2026-11-02T03:06:05.603793+00:00"
+    },
+    {
+      "id": "inc-05",
+      "manifest_sha256": "482a316dfa2f4967d706822278311b20a546c739f0ab331fc65afff087886268",
+      "started_at": "2026-11-02T03:13:06.366158+00:00"
+    },
+    {
+      "id": "inc-06",
+      "manifest_sha256": "cb3fe84a60c2eed012278cac6874d9ed229b0add1f737af3006577da9cc13d82",
+      "started_at": "2026-11-02T02:25:02.830636+00:00"
+    },
+    {
+      "id": "inc-09",
+      "manifest_sha256": "5f58122caa02f75a412f3f10998873d6440a1e02d3b6ea2b996e29c84601102e",
+      "started_at": "2026-11-02T02:46:11.775294+00:00"
+    },
+    {
+      "id": "inc-10",
+      "manifest_sha256": "97f5bf7a8b4b837b353f8b4dbe4f1e6fe2a08044a6de980d94278122c79b0cd0",
+      "started_at": "2026-11-02T03:21:01.407093+00:00"
+    },
+    {
+      "id": "inc-11",
+      "manifest_sha256": "d25d84d1a863202f56add1e9a5dd27f9be0db4b694688a15b502ec9d7a0ffebc",
+      "started_at": "2026-11-02T02:52:24.805055+00:00"
+    }
+  ],
+  "plan_sha256": "6ed28c97bd2a330329c091c660c924d0d823ca5176cfc210804986e4b876d6f3",
+  "freeze_sha256": "7428210756fe9d61599d13f2182416b916f1a43627d178030f73f071b6845319",
+  "dev_selection_sha256": "a27674a88a3efd26db8d7506d7499143fd68c5337d5e97f030635559df6c6ad8",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6"
+}

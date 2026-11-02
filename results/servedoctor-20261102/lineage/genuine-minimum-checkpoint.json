@@ -1,0 +1,100 @@
+{
+  "project": "servedoctor",
+  "complete": true,
+  "scope": "minimum rules/Spark dev checkpoint",
+  "study_dir": "runs/sd-study-r2",
+  "completed_epoch": 1793577558.800687,
+  "completed_at_utc": "2026-11-01T23:59:18.800695+00:00",
+  "dev_ids": [
+    "inc-03",
+    "inc-07",
+    "inc-08",
+    "inc-12",
+    "inc-13",
+    "inc-17",
+    "inc-18",
+    "inc-20"
+  ],
+  "complete_decisions": {
+    "rules": 8,
+    "spark": 8
+  },
+  "decision_paths": [
+    "runs/sd-study-r2/decisions/rules/inc-03.json",
+    "runs/sd-study-r2/decisions/rules/inc-07.json",
+    "runs/sd-study-r2/decisions/rules/inc-08.json",
+    "runs/sd-study-r2/decisions/rules/inc-12.json",
+    "runs/sd-study-r2/decisions/rules/inc-13.json",
+    "runs/sd-study-r2/decisions/rules/inc-17.json",
+    "runs/sd-study-r2/decisions/rules/inc-18.json",
+    "runs/sd-study-r2/decisions/rules/inc-20.json",
+    "runs/sd-study-r2/decisions/spark/inc-03.json",
+    "runs/sd-study-r2/decisions/spark/inc-07.json",
+    "runs/sd-study-r2/decisions/spark/inc-08.json",
+    "runs/sd-study-r2/decisions/spark/inc-12.json",
+    "runs/sd-study-r2/decisions/spark/inc-13.json",
+    "runs/sd-study-r2/decisions/spark/inc-17.json",
+    "runs/sd-study-r2/decisions/spark/inc-18.json",
+    "runs/sd-study-r2/decisions/spark/inc-20.json"
+  ],
+  "spark_successful_response_incidents": 8,
+  "recording_paths": [
+    "runs/sd-study-r2/incidents/reference",
+    "runs/sd-study-r2/incidents/inc-03",
+    "runs/sd-study-r2/incidents/inc-07",
+    "runs/sd-study-r2/incidents/inc-08",
+    "runs/sd-study-r2/incidents/inc-12",
+    "runs/sd-study-r2/incidents/inc-13",
+    "runs/sd-study-r2/incidents/inc-17",
+    "runs/sd-study-r2/incidents/inc-18",
+    "runs/sd-study-r2/incidents/inc-20"
+  ],
+  "git_commit": "3fea48a84cec07231f3a658f57ccc7b125eda8ae",
+  "stage": "spark",
+  "scoreboard": {
+    "rules": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "spark": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 31,
+      "api_cost_usd": 0.1665
+    }
+  },
+  "ledger_summary": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 9.24199725,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 223
+  },
+  "changes_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/changes.json",
+  "gpu_accounting_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-gpu-hours.md"
+}

@@ -1,0 +1,196 @@
+{
+ "arm": "spark",
+ "incident": "inc-17",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.6155,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": null,
+ "checkpoints": 12,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "dc59b9b2feb4e160d301f0c29392c4e2492a6081cd96ebea2b6e34aec4575e22",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "231d9454dad833da8669ec9b6e4bc1513c97cb8f277658af1f21fc90fdd8f815",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "739201ac6855fa483cb043433803ec8a9b7b9767d1aa541d5210b782a330e25f",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "d0a0c8748ad8928f51fb36954a20ea7a650e2c4e0e941b367dfbeccbeb9f6e6e",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "13669cadcc7bbb227af12ef07cd5d6c7d5dcdf76bf1ae5f598c9d973b175b371",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "b756c9abd8ac7a4a21a56b655944c7ac3dee7ca9def749bda657b05bf0ab1d2e",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "2a8b3dd7cbd6ba944a9d7e3273b6027be1d4f2af1900f5fc6f3003ba8050bf0e",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "cd33477a09e49ec850aed72176082195f65796d2452c158cc931f74d48360c0f",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "bd91ba47464850f050b6d38dbf25cc0de1cb087b04459b9b372dbd89cbe5b54e",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 300,
+   "observation_sha256": "9ce00936837ff0f3712d5136ccf57e9129c585ae41c60f6f6970f984a6b9756f",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 330,
+   "observation_sha256": "658ffc9cf1593c735e557b8fadcf4dfc9e84a2bcc9e8db3abbc7eaaae464c399",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  },
+  {
+   "t": 360,
+   "observation_sha256": "15353229ba8b3bd67d87047ff0146015f09c2ef4a24218ad5a98df5eea2f3007",
+   "error": "UnicodeEncodeError",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "call_failed": true
+   }
+  }
+ ]
+}

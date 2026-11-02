@@ -1,0 +1,11 @@
+{
+  "id": "inc-15",
+  "slo": {
+    "p95_latency_s": 10.0,
+    "max_error_rate": 0.01,
+    "max_shed_rate": 0.05
+  },
+  "duration_s": 660,
+  "arm": "glimmer_to_spark",
+  "started_at": "2026-11-02T07:27:27.794849+00:00"
+}

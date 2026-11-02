@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-10",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 2,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.97,
+  "evidence": [
+   "max_num_seqs=2 vs reference 64; change_log deploy changed 64->2",
+   "running pinned at ~2.0 while waiting_max rises 33->77->110",
+   "arrivals ~3.8-4.8 rps and prompt_tokens_mean ~178-317 match normal profile (4.0 rps, 202)",
+   "kv_usage_pct_max only 0.23% and preemptions 0, not KV starvation",
+   "p95_latency 25.46s > SLO 10s; gen_tokens_per_s ~54 vs normal 497.6"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency capped at 2 seqs after deploy, causing queue buildup despite normal load and idle KV cache. Restore reference max_num_seqs=64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.97, \"evidence\": [\"max_num_seqs=2 vs reference 64; change_log deploy changed 64->2\", \"running pinned at ~2.0 while waiting_max rises 33->77->110\", \"arrivals ~3.8-4.8 rps and prompt_tokens_mean ~178-317 match normal profile (4.0 rps, 202)\", \"kv_usage_pct_max only 0.23% and preemptions 0, not KV starvation\", \"p95_latency 25.46s > SLO 10s; gen_tokens_per_s ~54 vs normal 497.6\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 2 seqs after deploy, causing queue buildup despite normal load and idle KV cache. Restore reference max_num_seqs=64.\"}",
+  "usage": {
+   "completion_tokens": 476,
+   "prompt_tokens": 1466,
+   "total_tokens": 1942,
+   "completion_tokens_details": {
+    "reasoning_tokens": 250
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "3cf87ad2e04e196412ca4bbb6e83fd1a6f9ffccbd317ecb39cc74bf8002166a0",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency breached SLO: 17.6s at 19s and 25.5s at 29s. Queue building with waiting_max 110 and running capped at 2 after deploy reduced max_num_seqs from 64 to 2.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency breached SLO: 17.6s at 19s and 25.5s at 29s. Queue building with waiting_max 110 and running capped at 2 after deploy reduced max_num_seqs from 64 to 2.\"}",
+    "usage": {
+     "prompt_tokens": 980,
+     "total_tokens": 1155,
+     "completion_tokens": 175,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.97,
+    "evidence": [
+     "max_num_seqs=2 vs reference 64; change_log deploy changed 64->2",
+     "running pinned at ~2.0 while waiting_max rises 33->77->110",
+     "arrivals ~3.8-4.8 rps and prompt_tokens_mean ~178-317 match normal profile (4.0 rps, 202)",
+     "kv_usage_pct_max only 0.23% and preemptions 0, not KV starvation",
+     "p95_latency 25.46s > SLO 10s; gen_tokens_per_s ~54 vs normal 497.6"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency capped at 2 seqs after deploy, causing queue buildup despite normal load and idle KV cache. Restore reference max_num_seqs=64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.97, \"evidence\": [\"max_num_seqs=2 vs reference 64; change_log deploy changed 64->2\", \"running pinned at ~2.0 while waiting_max rises 33->77->110\", \"arrivals ~3.8-4.8 rps and prompt_tokens_mean ~178-317 match normal profile (4.0 rps, 202)\", \"kv_usage_pct_max only 0.23% and preemptions 0, not KV starvation\", \"p95_latency 25.46s > SLO 10s; gen_tokens_per_s ~54 vs normal 497.6\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 2 seqs after deploy, causing queue buildup despite normal load and idle KV cache. Restore reference max_num_seqs=64.\"}",
+    "usage": {
+     "completion_tokens": 476,
+     "prompt_tokens": 1466,
+     "total_tokens": 1942,
+     "completion_tokens_details": {
+      "reasoning_tokens": 250
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

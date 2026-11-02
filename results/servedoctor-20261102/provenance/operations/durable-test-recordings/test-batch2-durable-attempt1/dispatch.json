@@ -1,0 +1,40 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "study_dir": "runs/sd-study-r2-api2",
+  "batch": 2,
+  "mode": "normal",
+  "selected_ids": [
+    "inc-14",
+    "inc-15",
+    "inc-16",
+    "inc-19",
+    "inc-21",
+    "inc-22",
+    "inc-23",
+    "inc-24"
+  ],
+  "original_selected_ids": [
+    "inc-14",
+    "inc-15",
+    "inc-16",
+    "inc-19",
+    "inc-21",
+    "inc-22",
+    "inc-23",
+    "inc-24"
+  ],
+  "preserved_recordings": [],
+  "preserved_files_sha256": {},
+  "engine_directories": [
+    "engine-00-inc-14",
+    "engine-01-inc-16",
+    "engine-02-inc-21"
+  ],
+  "dispatch_sha256": "c7321991419230f8aad52235287509734ce28c87a7053ac1db356bb7e741a305",
+  "plan_sha256": "6ed28c97bd2a330329c091c660c924d0d823ca5176cfc210804986e4b876d6f3",
+  "freeze_sha256": "7428210756fe9d61599d13f2182416b916f1a43627d178030f73f071b6845319",
+  "dev_selection_sha256": "a27674a88a3efd26db8d7506d7499143fd68c5337d5e97f030635559df6c6ad8",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "requested_at_utc": "2026-11-02T03:36:01.301102+00:00"
+}

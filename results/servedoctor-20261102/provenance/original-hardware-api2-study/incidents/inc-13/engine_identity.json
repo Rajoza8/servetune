@@ -1,0 +1,16 @@
+{
+  "model_id": "meta-models/Muse-Glimmer-30B",
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "vllm_version": "0.26.1rc1.dev608+g99a10304d",
+  "dtype": "bf16",
+  "gpu_uuid": null,
+  "kernel_backend_lines": [
+    "(EngineCore pid=3619) INFO 11-01 20:21:19 [core.py:121] Initializing a V1 LLM engine (v0.26.1rc1.dev608+g99a10304d) with config: model='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', speculative_config=None, tokenizer='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', skip_tokenizer_init=False, tokenizer_mode=auto, revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, tokenizer_revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=1024, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=Struct",
+    "(EngineCore pid=3619) INFO 11-01 20:21:23 [cuda.py:482] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].",
+    "(EngineCore pid=3619) INFO 11-01 20:21:23 [flash_attn.py:825] Using FlashAttention version 2",
+    "(EngineCore pid=3619) INFO 11-01 20:21:23 [cuda.py:541] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention",
+    "(EngineCore pid=3619) INFO 11-01 20:21:23 [mm_encoder_attention.py:375] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.",
+    "(EngineCore pid=3619) INFO 11-01 20:21:27 [topk_topp_sampler.py:62] Using FlashInfer for top-p & top-k sampling.",
+    "(EngineCore pid=3619) INFO 11-01 20:21:31 [kernel_warmup.py:256] Using FlashInfer autotune cache file: /workspace/.vllm_cache/flashinfer_autotune_cache/0.6.16.post3/120f/996bdd7362684c5441880481bd59556db444c85cac10bce05393930991283ee0/autotune_configs.json"
+  ]
+}

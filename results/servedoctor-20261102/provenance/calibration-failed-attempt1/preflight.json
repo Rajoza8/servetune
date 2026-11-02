@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-11-01T17:57:43.073857+00:00",
+  "status": "failed",
+  "stage": "base_engine_start",
+  "requested_job_seconds": 20,
+  "requested_job_duty": 0.5,
+  "gpu_index": 0,
+  "failure": "EngineError",
+  "finished_at": "2026-11-01T17:59:58.001583+00:00"
+}

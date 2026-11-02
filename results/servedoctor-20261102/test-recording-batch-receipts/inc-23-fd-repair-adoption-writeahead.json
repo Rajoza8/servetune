@@ -1,0 +1,43 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "requested_at_utc": "2026-11-02T04:58:01.234890+00:00",
+  "id": "inc-23",
+  "automatic_retry": false,
+  "adoption_plan": {
+    "path": "/workspace/servedoctor-session/servetune/runs/sd-study-r2-api2-inc23-fd-repair-attempt1/repair-ops/adoption-plan.json",
+    "sha256": "70aff185309bf462b2aa19d87cef2a9867b58d4753d66edc4718cc3236610332"
+  },
+  "original_files_sha256": {
+    "runs/sd-study-r2-api2/incidents/inc-23/engine_config.json": "7d25264be16b98b7989a7e0b6a5cd4d3a2395a069717b46ca1c912f5944dc822",
+    "runs/sd-study-r2-api2/incidents/inc-23/events.json": "b4bf44f74ca54aae45505d4b8a3bd6a8b71707d04e94ebdc9c8d3b769d65215c",
+    "runs/sd-study-r2-api2/incidents/inc-23/slo.json": "a952cfa03f2382cc96777d0822c162707d578f247902101653ba5b664585c8d9",
+    "runs/sd-study-r2-api2/incidents/inc-23/engine_identity.json": "edab382528940b89058da52c7ac1372d06f5f159e305ebc3dc6d19f5af3f9821",
+    "runs/sd-study-r2-api2/incidents/inc-23/telemetry.jsonl": "6fc2d8949a778cb68aa992cb1fd08315430f96584c55163a26f29b9c094bbfc1",
+    "runs/sd-study-r2-api2/incidents/inc-23/requests.jsonl": "57e3fdb2af5afaf3737b8ee94cffaccc0f7ec104be19fc6f29ef18e7caa1870a",
+    "runs/sd-study-r2-api2/incidents/inc-23/recording.json": "66c504724f20daaf17ca2bd7978837a4d9b4ec73bd0a6c84a8d6f068f330ce70",
+    "runs/sd-study-r2-api2/incidents/inc-23/manifest.json": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+    "runs/sd-study-r2-api2/answers/runtime/inc-23.json": "f7e9c010aa3affc8221d6964398f1261f6174a41eb4aae3cb0cccbeee1fe8292",
+    "runs/sd-study-r2-api2/test-recording-batch-receipts/batch-2-outcome.json": "7d9cf230fe35c294e9c0d74d19e3bdb831b3ed9cf18f6950834bca785f76c69e",
+    "runs/servedoctor-ops-20261101/test-batch2-durable-attempt1/exit.json": "0e12a67ed0833bb6c6a3d50d5de04a09c818ffb3f96022d4c36a64764d675ce4",
+    "runs/servedoctor-ops-20261101/inc23-emfile-evidence.json": "78e916afe410148816c4ef435ca8aa5e3a986d5e80906047a029bfce0b985dd4",
+    "runs/servedoctor-ops-20261101/test-batch2-durable-attempt1/record.stderr": "58104662f7b234fb0352ce5a5e03638113622f421c67d81d8974019634fdafd2"
+  },
+  "replacement_files_sha256": {
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/engine_config.json": "7d25264be16b98b7989a7e0b6a5cd4d3a2395a069717b46ca1c912f5944dc822",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/events.json": "b4bf44f74ca54aae45505d4b8a3bd6a8b71707d04e94ebdc9c8d3b769d65215c",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/slo.json": "a952cfa03f2382cc96777d0822c162707d578f247902101653ba5b664585c8d9",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/engine_identity.json": "98c4ddb41cadf0a098902809420acee62d1bb273e275faff742349330b650404",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/telemetry.jsonl": "3d2002b735479e707f4d934baf01074e96156d7ec03c469910be125a33d4a192",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/requests.jsonl": "55c237d0f71df6b405fee20c57b7fad0ced8e8e9e100001b1d32c2592f96d9b3",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/recording.json": "5cde859e11fa31ba99e6a6cf08eb09e50b3f761033a717d44e2ea8c05e9b9889",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/incidents/inc-23/manifest.json": "bdbb42d7c9e343460b47e8e6f4d66a99c8ff10fc13ad48d01554e562e0f15deb",
+    "runs/sd-study-r2-api2-inc23-fd-repair-attempt1/answers/runtime/inc-23.json": "f7e9c010aa3affc8221d6964398f1261f6174a41eb4aae3cb0cccbeee1fe8292"
+  },
+  "before_quality": {
+    "path": "/workspace/servedoctor-session/servetune/runs/servedoctor-ops-20261101/recording-quality-before-inc23-repair.json",
+    "sha256": "298c312397b257da9fbe85b61d9778b7029e2ff7978ca78501088cffdc6e3d8d"
+  },
+  "freeze_sha256": "7428210756fe9d61599d13f2182416b916f1a43627d178030f73f071b6845319"
+}

@@ -1,0 +1,22 @@
+{
+  "project": "servedoctor",
+  "created_at_utc": "2026-11-02T03:02:43.860941+00:00",
+  "corrects_receipt": "runs/servedoctor-ops-20261101/test-batch1-controller-interruption.json",
+  "original_receipt_sha256": "f3a110e5391e8ba015fd063ab6f74ac6c8cc2b533356cc8516ac4e8604f95918",
+  "correction": "The original receipt observed_at_utc is its local creation time. Its original_recording_observed_alive field summarizes an earlier remote process query, not a fresh observation at receipt creation. The recorder subsequently exited before that receipt was written.",
+  "authoritative_recorder_failure": {
+    "stage": "record_incident",
+    "incident_id": "inc-06",
+    "group_ids": [
+      "inc-01",
+      "inc-06",
+      "inc-09",
+      "inc-11"
+    ],
+    "error": "BrokenPipeError",
+    "at": "2026-11-02T02:32:02.135108+00:00"
+  },
+  "failure_file_sha256": "1ea24502bcdc0965ddc6556dfb80b48d149b9f5e70217baca5865ef2d539f3a7",
+  "current_state": "Original recorder exited; two sealed recordings retained; six untouched IDs are active in the separate durable continuation.",
+  "original_receipt_preserved": true
+}

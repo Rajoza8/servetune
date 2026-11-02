@@ -1,0 +1,18 @@
+Obtaining file:///workspace/servedoctor-session/servetune
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: nvidia-ml-py>=12 in /usr/local/lib/python3.12/dist-packages (from servetune==0.2.0) (13.610.43)
+Building wheels for collected packages: servetune
+  Building editable for servetune (pyproject.toml): started
+  Building editable for servetune (pyproject.toml): finished with status 'done'
+  Created wheel for servetune: filename=servetune-0.2.0-0.editable-py3-none-any.whl size=3957 sha256=7cbf4e967e7d3e6284f693c65a6da928bade001003b63c20b343fba95178ee43
+  Stored in directory: /tmp/pip-ephem-wheel-cache-1kbqrj3f/wheels/ba/d0/ea/68cde3ca028c7efcd80b843317635a78e1ae79f176614ca044
+Successfully built servetune
+Installing collected packages: servetune
+Successfully installed servetune-0.2.0

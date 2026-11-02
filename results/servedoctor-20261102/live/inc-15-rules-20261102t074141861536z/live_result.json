@@ -1,0 +1,152 @@
+{
+  "id": "inc-15",
+  "arm": "rules",
+  "decision": {
+    "incident": true,
+    "root_cause": "long_prompt_flood",
+    "actions": [
+      {
+        "type": "gateway_max_prompt_tokens",
+        "max_prompt_tokens": 404
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 150.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "gateway_max_prompt_tokens",
+        "max_prompt_tokens": 404
+      },
+      "at": "2026-11-02T08:46:17.299404+00:00",
+      "previous": {
+        "max_rps": null,
+        "max_prompt_tokens": null
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "943f629768333251972b741a720745fd8e96858763ee2a16e28ff0bf974daad8",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 60.0,
+      "observation_sha256": "1f4b706a576ad20ac57b8085361ca156fdc634f99412747fc15cb9ab2e1310d1",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 90.0,
+      "observation_sha256": "9a490afdc01be026186a00cabdec635325f89df651a4a1481841cc1054c027c9",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 120.0,
+      "observation_sha256": "3bccbdf976f7746c80c622acaa7a35a6fbc34f3807dcee22a8e4308fa3dffc3c",
+      "decision": {
+        "incident": false,
+        "root_cause": "healthy",
+        "actions": [
+          {
+            "type": "no_action"
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    },
+    {
+      "t": 150.0,
+      "observation_sha256": "72f04a9e629123dffa92d6c76a5b75a55b851607a9833339e32b8254230881d6",
+      "decision": {
+        "incident": true,
+        "root_cause": "long_prompt_flood",
+        "actions": [
+          {
+            "type": "gateway_max_prompt_tokens",
+            "max_prompt_tokens": 404
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 150.0,
+  "post_fix_window": {
+    "requests": 262,
+    "ok": 40,
+    "shed": 222,
+    "failed": 0,
+    "shed_rate": 0.8473282442748091,
+    "error_rate": 0.0,
+    "p50_latency_s": 4.7310751234181225,
+    "p95_latency_s": 4.757336535165086
+  },
+  "fault_window_before_action": {
+    "requests": 118,
+    "ok": 118,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 36.09199000056833,
+    "p95_latency_s": 41.61463701110333
+  },
+  "after_action": {
+    "requests": 2030,
+    "ok": 329,
+    "shed": 1701,
+    "failed": 0,
+    "shed_rate": 0.8379310344827586,
+    "error_rate": 0.0,
+    "p50_latency_s": 4.7377025950700045,
+    "p95_latency_s": 4.8052569216117265
+  },
+  "time_to_recover_s": 80.0,
+  "engine_restarts": []
+}

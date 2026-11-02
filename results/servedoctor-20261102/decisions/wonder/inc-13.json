@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-13",
+ "engine_config": {
+  "max_model_len": 1024,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.95,
+  "evidence": [
+   "max_model_len changed 4096->1024 in deploy vs reference 4096",
+   "http_400 errors in every bucket: 9, 2, 7 despite normal load",
+   "ok_rps below arrivals_rps while p95 latency ~5s < 10s SLO",
+   "waiting_max=0, KV usage <1%, no preemptions: not capacity/queueing",
+   "arrivals ~4 rps and prompt mean ~200 match normal profile"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Valid requests are rejected with 400s after max_model_len was cut to 1024. Restore reference 4096; no queueing or KV pressure indicates other limits are fine.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len changed 4096->1024 in deploy vs reference 4096\", \"http_400 errors in every bucket: 9, 2, 7 despite normal load\", \"ok_rps below arrivals_rps while p95 latency ~5s < 10s SLO\", \"waiting_max=0, KV usage <1%, no preemptions: not capacity/queueing\", \"arrivals ~4 rps and prompt mean ~200 match normal profile\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Valid requests are rejected with 400s after max_model_len was cut to 1024. Restore reference 4096; no queueing or KV pressure indicates other limits are fine.\"}",
+  "usage": {
+   "completion_tokens": 496,
+   "prompt_tokens": 1481,
+   "total_tokens": 1977,
+   "completion_tokens_details": {
+    "reasoning_tokens": 290
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "01978d6927437fef0aab2ba9e0d918b6c72929b61736d1cfa6bfdeabc1f94faf",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.95,
+    "evidence": [
+     "max_model_len changed 4096->1024 in deploy vs reference 4096",
+     "http_400 errors in every bucket: 9, 2, 7 despite normal load",
+     "ok_rps below arrivals_rps while p95 latency ~5s < 10s SLO",
+     "waiting_max=0, KV usage <1%, no preemptions: not capacity/queueing",
+     "arrivals ~4 rps and prompt mean ~200 match normal profile"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Valid requests are rejected with 400s after max_model_len was cut to 1024. Restore reference 4096; no queueing or KV pressure indicates other limits are fine.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len changed 4096->1024 in deploy vs reference 4096\", \"http_400 errors in every bucket: 9, 2, 7 despite normal load\", \"ok_rps below arrivals_rps while p95 latency ~5s < 10s SLO\", \"waiting_max=0, KV usage <1%, no preemptions: not capacity/queueing\", \"arrivals ~4 rps and prompt mean ~200 match normal profile\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Valid requests are rejected with 400s after max_model_len was cut to 1024. Restore reference 4096; no queueing or KV pressure indicates other limits are fine.\"}",
+    "usage": {
+     "completion_tokens": 496,
+     "prompt_tokens": 1481,
+     "total_tokens": 1977,
+     "completion_tokens_details": {
+      "reasoning_tokens": 290
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

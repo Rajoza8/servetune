@@ -1,0 +1,28 @@
+{
+  "source": "runs/sd-study/incidents/reference",
+  "checkpoint_s": 180,
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "model_context_tokens": 4096,
+  "method": "exact pinned AutoTokenizer offline CPU apply_chat_template reasoning_strength=low; no inference",
+  "prompt_chars": 5726,
+  "bucket_count": 18,
+  "log_lines": 12,
+  "counts": {
+    "diagnosis": {
+      "input_tokens": 2,
+      "output_budget_tokens": 2048,
+      "total_reserved_tokens": 2050,
+      "fits_4096": true,
+      "fits_8192": true
+    },
+    "monitor": {
+      "input_tokens": 2,
+      "output_budget_tokens": 600,
+      "total_reserved_tokens": 602,
+      "fits_4096": true,
+      "fits_8192": true
+    }
+  },
+  "valid": false,
+  "failure": "Measurement counted mapping fields instead of input_ids; retained as invalid attempt, not a context result."
+}

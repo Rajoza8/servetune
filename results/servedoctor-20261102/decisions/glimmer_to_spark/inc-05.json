@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-05",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "arrivals_rps 4.2 matches normal 4.0",
+   "running capped at 8.0 vs normal 21.1",
+   "waiting_max 70 vs normal 0",
+   "kv_usage_pct_max 0.73% low, no preemptions",
+   "p95_latency 16.91s exceeds SLO 10s"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy cut max_num_seqs 64->8. Load unchanged but concurrency capped, queue grows and TTFT/latency breach SLO while KV cache empty. Restore limit to 64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"arrivals_rps 4.2 matches normal 4.0\", \"running capped at 8.0 vs normal 21.1\", \"waiting_max 70 vs normal 0\", \"kv_usage_pct_max 0.73% low, no preemptions\", \"p95_latency 16.91s exceeds SLO 10s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy cut max_num_seqs 64->8. Load unchanged but concurrency capped, queue grows and TTFT/latency breach SLO while KV cache empty. Restore limit to 64.\"}",
+  "usage": {
+   "completion_tokens": 641,
+   "prompt_tokens": 1465,
+   "total_tokens": 2106,
+   "completion_tokens_details": {
+    "reasoning_tokens": 459
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 625
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fb7fba4f066480047a02155e4a6ea9b9fb0f5cc8484a3b546b81276aaeeb5ca0",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency 16.9s exceeds SLO 10s with growing queue; max_num_seqs cut from 64 to 8 causing backlog, waiting_max 70.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency 16.9s exceeds SLO 10s with growing queue; max_num_seqs cut from 64 to 8 causing backlog, waiting_max 70.\"}",
+    "usage": {
+     "prompt_tokens": 979,
+     "total_tokens": 1112,
+     "completion_tokens": 133,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "arrivals_rps 4.2 matches normal 4.0",
+     "running capped at 8.0 vs normal 21.1",
+     "waiting_max 70 vs normal 0",
+     "kv_usage_pct_max 0.73% low, no preemptions",
+     "p95_latency 16.91s exceeds SLO 10s"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_num_seqs 64->8. Load unchanged but concurrency capped, queue grows and TTFT/latency breach SLO while KV cache empty. Restore limit to 64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"arrivals_rps 4.2 matches normal 4.0\", \"running capped at 8.0 vs normal 21.1\", \"waiting_max 70 vs normal 0\", \"kv_usage_pct_max 0.73% low, no preemptions\", \"p95_latency 16.91s exceeds SLO 10s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy cut max_num_seqs 64->8. Load unchanged but concurrency capped, queue grows and TTFT/latency breach SLO while KV cache empty. Restore limit to 64.\"}",
+    "usage": {
+     "completion_tokens": 641,
+     "prompt_tokens": 1465,
+     "total_tokens": 2106,
+     "completion_tokens_details": {
+      "reasoning_tokens": 459
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 625
+     }
+    }
+   }
+  }
+ ]
+}

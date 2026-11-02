@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-21",
+ "engine_config": {
+  "max_model_len": 1536,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.86,
+  "evidence": [
+   "max_model_len is 1536 vs reference 4096",
+   "change log shows deploy changed max_model_len 4096->1536",
+   "http_400=1 in each of first two 10s buckets despite otherwise normal metrics",
+   "p95 latency ~6s, waiting 0, KV usage <2.3% - no overload or cache pressure",
+   "prompt_tokens_mean ~208-278, normal; errors are length rejections not load failures"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_model_len from 4096 to 1536, so valid longer requests now exceed the context limit and return HTTP 400 while load, latency and KV look healthy. Restore 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.86, \"evidence\": [\"max_model_len is 1536 vs reference 4096\", \"change log shows deploy changed max_model_len 4096->1536\", \"http_400=1 in each of first two 10s buckets despite otherwise normal metrics\", \"p95 latency ~6s, waiting 0, KV usage <2.3% - no overload or cache pressure\", \"prompt_tokens_mean ~208-278, normal; errors are length rejections not load failures\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len from 4096 to 1536, so valid longer requests now exceed the context limit and return HTTP 400 while load, latency and KV look healthy. Restore 4096.\"}",
+  "usage": {
+   "completion_tokens": 618,
+   "prompt_tokens": 1482,
+   "total_tokens": 2100,
+   "completion_tokens_details": {
+    "reasoning_tokens": 410
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "898111e43e84f61c4803c0561f235b5d7409dc411d175174a767dcb3203a6031",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.86,
+    "evidence": [
+     "max_model_len is 1536 vs reference 4096",
+     "change log shows deploy changed max_model_len 4096->1536",
+     "http_400=1 in each of first two 10s buckets despite otherwise normal metrics",
+     "p95 latency ~6s, waiting 0, KV usage <2.3% - no overload or cache pressure",
+     "prompt_tokens_mean ~208-278, normal; errors are length rejections not load failures"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_model_len from 4096 to 1536, so valid longer requests now exceed the context limit and return HTTP 400 while load, latency and KV look healthy. Restore 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.86, \"evidence\": [\"max_model_len is 1536 vs reference 4096\", \"change log shows deploy changed max_model_len 4096->1536\", \"http_400=1 in each of first two 10s buckets despite otherwise normal metrics\", \"p95 latency ~6s, waiting 0, KV usage <2.3% - no overload or cache pressure\", \"prompt_tokens_mean ~208-278, normal; errors are length rejections not load failures\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len from 4096 to 1536, so valid longer requests now exceed the context limit and return HTTP 400 while load, latency and KV look healthy. Restore 4096.\"}",
+    "usage": {
+     "completion_tokens": 618,
+     "prompt_tokens": 1482,
+     "total_tokens": 2100,
+     "completion_tokens_details": {
+      "reasoning_tokens": 410
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

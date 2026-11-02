@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-13",
+ "engine_config": {
+  "max_model_len": 1024,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.95,
+  "evidence": [
+   "engine max_model_len=1024 vs reference 4096",
+   "change log at t=0: max_model_len 4096->1024 on deploy",
+   "http_400 errors in every bucket: 9, 2, 7 while ok_rps < arrivals_rps",
+   "p95 latency ~5s < 10s SLO, waiting=0, KV usage <1%",
+   "error rate far exceeds 1% SLO despite normal load ~4 rps"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_model_len to 1024, causing valid longer requests to be rejected with HTTP 400. Latency, queueing and KV are healthy. Restore reference 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"engine max_model_len=1024 vs reference 4096\", \"change log at t=0: max_model_len 4096->1024 on deploy\", \"http_400 errors in every bucket: 9, 2, 7 while ok_rps < arrivals_rps\", \"p95 latency ~5s < 10s SLO, waiting=0, KV usage <1%\", \"error rate far exceeds 1% SLO despite normal load ~4 rps\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len to 1024, causing valid longer requests to be rejected with HTTP 400. Latency, queueing and KV are healthy. Restore reference 4096.\"}",
+  "usage": {
+   "completion_tokens": 629,
+   "prompt_tokens": 1481,
+   "total_tokens": 2110,
+   "completion_tokens_details": {
+    "reasoning_tokens": 422
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "01978d6927437fef0aab2ba9e0d918b6c72929b61736d1cfa6bfdeabc1f94faf",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "High HTTP 400 error rate after max_model_len cut 4096\u21921024 at deploy. Recent 10s buckets show ~0.3 error rate vs SLO 0.01, with 9/2/7 400s. Latency OK but errors threaten SLO.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"High HTTP 400 error rate after max_model_len cut 4096\u21921024 at deploy. Recent 10s buckets show ~0.3 error rate vs SLO 0.01, with 9/2/7 400s. Latency OK but errors threaten SLO.\"}",
+    "usage": {
+     "prompt_tokens": 995,
+     "total_tokens": 1275,
+     "completion_tokens": 280,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.95,
+    "evidence": [
+     "engine max_model_len=1024 vs reference 4096",
+     "change log at t=0: max_model_len 4096->1024 on deploy",
+     "http_400 errors in every bucket: 9, 2, 7 while ok_rps < arrivals_rps",
+     "p95 latency ~5s < 10s SLO, waiting=0, KV usage <1%",
+     "error rate far exceeds 1% SLO despite normal load ~4 rps"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_model_len to 1024, causing valid longer requests to be rejected with HTTP 400. Latency, queueing and KV are healthy. Restore reference 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"engine max_model_len=1024 vs reference 4096\", \"change log at t=0: max_model_len 4096->1024 on deploy\", \"http_400 errors in every bucket: 9, 2, 7 while ok_rps < arrivals_rps\", \"p95 latency ~5s < 10s SLO, waiting=0, KV usage <1%\", \"error rate far exceeds 1% SLO despite normal load ~4 rps\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len to 1024, causing valid longer requests to be rejected with HTTP 400. Latency, queueing and KV are healthy. Restore reference 4096.\"}",
+    "usage": {
+     "completion_tokens": 629,
+     "prompt_tokens": 1481,
+     "total_tokens": 2110,
+     "completion_tokens_details": {
+      "reasoning_tokens": 422
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

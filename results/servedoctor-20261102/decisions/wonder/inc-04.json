@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-04",
+ "engine_config": {
+  "max_model_len": 768,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.95,
+  "evidence": [
+   "max_model_len=768 vs reference 4096",
+   "change_log deploy changed max_model_len 4096->768",
+   "http_400=5,9,5 per bucket despite p95 latency ~4.8s <10s SLO",
+   "error rate ~5/27 arrivals >1% SLO",
+   "waiting=0 and KV usage <0.7%, no capacity saturation"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Recent deploy reduced max_model_len to 768, causing valid longer requests to be rejected with HTTP 400 while latency and queues remain healthy. Restore reference 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len=768 vs reference 4096\", \"change_log deploy changed max_model_len 4096->768\", \"http_400=5,9,5 per bucket despite p95 latency ~4.8s <10s SLO\", \"error rate ~5/27 arrivals >1% SLO\", \"waiting=0 and KV usage <0.7%, no capacity saturation\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Recent deploy reduced max_model_len to 768, causing valid longer requests to be rejected with HTTP 400 while latency and queues remain healthy. Restore reference 4096.\"}",
+  "usage": {
+   "completion_tokens": 432,
+   "prompt_tokens": 1479,
+   "total_tokens": 1911,
+   "completion_tokens_details": {
+    "reasoning_tokens": 247
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "0ea8941af5b058d2c48adf52dc1f1c89f646bc5f2efef93b51fabdf3a33750cf",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.95,
+    "evidence": [
+     "max_model_len=768 vs reference 4096",
+     "change_log deploy changed max_model_len 4096->768",
+     "http_400=5,9,5 per bucket despite p95 latency ~4.8s <10s SLO",
+     "error rate ~5/27 arrivals >1% SLO",
+     "waiting=0 and KV usage <0.7%, no capacity saturation"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Recent deploy reduced max_model_len to 768, causing valid longer requests to be rejected with HTTP 400 while latency and queues remain healthy. Restore reference 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len=768 vs reference 4096\", \"change_log deploy changed max_model_len 4096->768\", \"http_400=5,9,5 per bucket despite p95 latency ~4.8s <10s SLO\", \"error rate ~5/27 arrivals >1% SLO\", \"waiting=0 and KV usage <0.7%, no capacity saturation\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Recent deploy reduced max_model_len to 768, causing valid longer requests to be rejected with HTTP 400 while latency and queues remain healthy. Restore reference 4096.\"}",
+    "usage": {
+     "completion_tokens": 432,
+     "prompt_tokens": 1479,
+     "total_tokens": 1911,
+     "completion_tokens_details": {
+      "reasoning_tokens": 247
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

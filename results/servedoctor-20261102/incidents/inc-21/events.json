@@ -1,0 +1,22 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "max_model_len": [
+        4096,
+        1536
+      ],
+      "metrics_scrape_interval_s": [
+        15,
+        10
+      ]
+    }
+  },
+  {
+    "t": 60.1,
+    "kind": "note",
+    "text": "Alert routing rules re-synced from source control."
+  }
+]

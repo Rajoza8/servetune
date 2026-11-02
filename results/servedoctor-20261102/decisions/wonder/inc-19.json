@@ -1,0 +1,84 @@
+{
+ "arm": "wonder",
+ "incident": "inc-19",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.92,
+  "evidence": [
+   "arrivals 1.0-1.1 rps vs normal 4.0 rps, running 4-5 vs normal 21.1",
+   "p95 latency 4.8-5.0s < SLO 10s, waiting 0, no shed/errors",
+   "gen_tokens_per_s 110-145 vs normal 497.6",
+   "gpu_power_w 559-569 and gpu_util 99.9% similar to normal 554W/99.9%",
+   "KV usage 0.26-0.46%, no preemptions, config matches reference"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Service is healthy with low latency and no queueing, but traffic is ~25% of normal while GPU power/utilization remain at full-load levels. No engine change helps; consolidate traffic onto fewer GPUs.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.92, \"evidence\": [\"arrivals 1.0-1.1 rps vs normal 4.0 rps, running 4-5 vs normal 21.1\", \"p95 latency 4.8-5.0s < SLO 10s, waiting 0, no shed/errors\", \"gen_tokens_per_s 110-145 vs normal 497.6\", \"gpu_power_w 559-569 and gpu_util 99.9% similar to normal 554W/99.9%\", \"KV usage 0.26-0.46%, no preemptions, config matches reference\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Service is healthy with low latency and no queueing, but traffic is ~25% of normal while GPU power/utilization remain at full-load levels. No engine change helps; consolidate traffic onto fewer GPUs.\"}",
+  "usage": {
+   "completion_tokens": 701,
+   "prompt_tokens": 1459,
+   "total_tokens": 2160,
+   "completion_tokens_details": {
+    "reasoning_tokens": 482
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "4919f690576cafa3624455b7a597d636f3ad13070307ecfd8980989ac20e098f",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.92,
+    "evidence": [
+     "arrivals 1.0-1.1 rps vs normal 4.0 rps, running 4-5 vs normal 21.1",
+     "p95 latency 4.8-5.0s < SLO 10s, waiting 0, no shed/errors",
+     "gen_tokens_per_s 110-145 vs normal 497.6",
+     "gpu_power_w 559-569 and gpu_util 99.9% similar to normal 554W/99.9%",
+     "KV usage 0.26-0.46%, no preemptions, config matches reference"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Service is healthy with low latency and no queueing, but traffic is ~25% of normal while GPU power/utilization remain at full-load levels. No engine change helps; consolidate traffic onto fewer GPUs.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.92, \"evidence\": [\"arrivals 1.0-1.1 rps vs normal 4.0 rps, running 4-5 vs normal 21.1\", \"p95 latency 4.8-5.0s < SLO 10s, waiting 0, no shed/errors\", \"gen_tokens_per_s 110-145 vs normal 497.6\", \"gpu_power_w 559-569 and gpu_util 99.9% similar to normal 554W/99.9%\", \"KV usage 0.26-0.46%, no preemptions, config matches reference\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Service is healthy with low latency and no queueing, but traffic is ~25% of normal while GPU power/utilization remain at full-load levels. No engine change helps; consolidate traffic onto fewer GPUs.\"}",
+    "usage": {
+     "completion_tokens": 701,
+     "prompt_tokens": 1459,
+     "total_tokens": 2160,
+     "completion_tokens_details": {
+      "reasoning_tokens": 482
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

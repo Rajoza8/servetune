@@ -1,0 +1,1 @@
+{"t": 30.0, "observation_sha256": "fd11e582bfb2839cc330c01e0ecc34bc241bbc417f7280d06fc937d9995aa077", "decision": {"incident": true, "root_cause": "context_limit_too_small", "actions": [{"type": "set_engine_config", "knob": "max_model_len", "value": 4096}], "evidence": [], "explanation": "threshold rules", "rejected_actions": []}}

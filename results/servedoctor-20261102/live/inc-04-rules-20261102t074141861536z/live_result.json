@@ -1,0 +1,97 @@
+{
+  "id": "inc-04",
+  "arm": "rules",
+  "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "actions": [
+      {
+        "type": "set_engine_config",
+        "knob": "max_model_len",
+        "value": 4096
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 30.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "set_engine_config",
+        "knob": "max_model_len",
+        "value": 4096
+      },
+      "at": "2026-11-02T07:55:02.239802+00:00",
+      "previous": {
+        "max_model_len": 768
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "fd11e582bfb2839cc330c01e0ecc34bc241bbc417f7280d06fc937d9995aa077",
+      "decision": {
+        "incident": true,
+        "root_cause": "context_limit_too_small",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 67.7,
+  "post_fix_window": {
+    "requests": 218,
+    "ok": 218,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.935374732129276,
+    "p95_latency_s": 6.589046542765573
+  },
+  "fault_window_before_action": {
+    "requests": 233,
+    "ok": 73,
+    "shed": 0,
+    "failed": 160,
+    "shed_rate": 0.0,
+    "error_rate": 0.6866952789699571,
+    "p50_latency_s": 4.831419988535345,
+    "p95_latency_s": 4.955782041698694
+  },
+  "after_action": {
+    "requests": 2308,
+    "ok": 2308,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.6960635161958635,
+    "p95_latency_s": 6.3817783743608745
+  },
+  "time_to_recover_s": 97.7,
+  "engine_restarts": [
+    {
+      "knob": "max_model_len",
+      "value": 4096,
+      "status": "completed",
+      "seconds": 37.64894741307944
+    }
+  ]
+}

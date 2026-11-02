@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "files": {
+    "engine_config.json": "7d25264be16b98b7989a7e0b6a5cd4d3a2395a069717b46ca1c912f5944dc822",
+    "engine_identity.json": "d38fc895a7e0a27c7eeaccbbc6c75a77b47bc6295553eb58e05c2998bbcef287",
+    "events.json": "a2e1cf1cf954c5cfee4b193fd223fabfaf7f7c5554a276b88f9aaf195b85ddba",
+    "recording.json": "fdb68fb1de5b6b09c115ec2abd891142e74f983a73b78439ec51a804ed2a860c",
+    "requests.jsonl": "7527162b5da2c2a7813c2bb19f5abf146471ea3dc3a928bb6375270a6411b9e8",
+    "slo.json": "a952cfa03f2382cc96777d0822c162707d578f247902101653ba5b664585c8d9",
+    "telemetry.jsonl": "92c1945fdf332524b11c6c68446f367011f177234231922c6355e4e1f87ecfba"
+  }
+}

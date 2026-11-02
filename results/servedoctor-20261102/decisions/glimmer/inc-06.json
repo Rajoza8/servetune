@@ -1,0 +1,198 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-06",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "traffic_surge",
+  "confidence": 0.85,
+  "evidence": [
+   "p95_latency_s 10.83 at t=149 exceeds SLO 10.0",
+   "arrivals_rps rose from ~4 to 11.7 at t=139 and 9.6 at t=149",
+   "running 63.7 with waiting_max 49.0 near max_num_seqs 64",
+   "ok_rps lagging arrivals, queue building with no shedding"
+  ],
+  "actions": [
+   {
+    "type": "gateway_rate_limit",
+    "max_rps": 6.0
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Offered load ~2-3x normal saturates max_num_seqs, causing queue buildup and p95 latency breach. Shed at gateway to restore SLO with least disruption.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.85, \"evidence\": [\"p95_latency_s 10.83 at t=149 exceeds SLO 10.0\", \"arrivals_rps rose from ~4 to 11.7 at t=139 and 9.6 at t=149\", \"running 63.7 with waiting_max 49.0 near max_num_seqs 64\", \"ok_rps lagging arrivals, queue building with no shedding\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 6}], \"explanation\": \"Offered load ~2-3x normal saturates max_num_seqs, causing queue buildup and p95 latency breach. Shed at gateway to restore SLO with least disruption.\"}",
+  "usage": {
+   "prompt_tokens": 3093,
+   "total_tokens": 3650,
+   "completion_tokens": 557,
+   "prompt_tokens_details": null
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "ff19fa96d3f74a36bf50a48c804cee1c904bd7c4847f36bbb9522a8b8decd94e",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.72 < SLO 10.0",
+     "arrivals_rps 4.1 matches normal profile 4.0",
+     "shed_rps 0.0 and errors absent",
+     "waiting_max 0.0 and kv_usage_pct_max ~1.6%",
+     "gpu_util_pct 99.8 with running ~22.5 within normal"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, throughput and queueing match the healthy reference profile with no shedding or errors. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.72 < SLO 10.0\", \"arrivals_rps 4.1 matches normal profile 4.0\", \"shed_rps 0.0 and errors absent\", \"waiting_max 0.0 and kv_usage_pct_max ~1.6%\", \"gpu_util_pct 99.8 with running ~22.5 within normal\"], \"actions\": [], \"explanation\": \"Latency, throughput and queueing match the healthy reference profile with no shedding or errors. No incident.\"}",
+    "usage": {
+     "prompt_tokens": 1472,
+     "total_tokens": 1748,
+     "completion_tokens": 276,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "f58a711ba8725317ffe0c88842b60cac22c615575678402e1914d0afbcd76a62",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 6.02 < SLO 10.0",
+     "shed_rps 0.0 and waiting_max 0.0 across recent buckets",
+     "arrivals_rps 3.7-4.5 close to normal profile 4.0",
+     "kv_usage_pct_max ~1.6% similar to normal 1.78%",
+     "gpu_util_pct ~99.7% consistent with normal 99.9%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and queue metrics are within SLO and match the healthy reference profile. No overload, cache pressure, or contention is observed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 6.02 < SLO 10.0\", \"shed_rps 0.0 and waiting_max 0.0 across recent buckets\", \"arrivals_rps 3.7-4.5 close to normal profile 4.0\", \"kv_usage_pct_max ~1.6% similar to normal 1.78%\", \"gpu_util_pct ~99.7% consistent with normal 99.9%\"], \"actions\": [], \"explanation\": \"Latency, shed and queue metrics are within SLO and match the healthy reference profile. No overload, cache pressure, or contention is observed.\"}",
+    "usage": {
+     "prompt_tokens": 1942,
+     "total_tokens": 2368,
+     "completion_tokens": 426,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "e85c5386ee89427ef9c8dc2ed017dd6460fcdc3746dedbbabf1ba7f4b4828244",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s ~5.7-6.3 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "arrivals_rps 3.0-4.5 close to normal 4.0",
+     "waiting_max 0.0 and kv_usage_pct_max ~1.5% similar to normal",
+     "gpu_util_pct ~99.8% and power ~570W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs and metrics match the healthy reference profile with no queue buildup or KV pressure.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s ~5.7-6.3 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"arrivals_rps 3.0-4.5 close to normal 4.0\", \"waiting_max 0.0 and kv_usage_pct_max ~1.5% similar to normal\", \"gpu_util_pct ~99.8% and power ~570W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLOs and metrics match the healthy reference profile with no queue buildup or KV pressure.\"}",
+    "usage": {
+     "prompt_tokens": 2412,
+     "total_tokens": 2740,
+     "completion_tokens": 328,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "4ec7d5d3a40a3e5f827e2150ee3358d28f883cfed7ff038dfc73bbed86e266aa",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.88 at t=119 < SLO 10.0",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "arrivals_rps 3.6 near normal profile 4.0 rps",
+     "waiting_max 0.0 and running ~19.6 close to normal 21.1",
+     "kv_usage_pct_max 1.7% similar to normal 1.78%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLO and metrics match the healthy reference profile with no queue buildup or KV pressure.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.88 at t=119 < SLO 10.0\", \"shed_rps 0.0 and errors absent in recent buckets\", \"arrivals_rps 3.6 near normal profile 4.0 rps\", \"waiting_max 0.0 and running ~19.6 close to normal 21.1\", \"kv_usage_pct_max 1.7% similar to normal 1.78%\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLO and metrics match the healthy reference profile with no queue buildup or KV pressure.\"}",
+    "usage": {
+     "prompt_tokens": 2881,
+     "total_tokens": 3296,
+     "completion_tokens": 415,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "a592a96c16a96ca20878792ecbc32cd0749ba7f2793ae53c976776622b42d0fb",
+   "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "confidence": 0.85,
+    "evidence": [
+     "p95_latency_s 10.83 at t=149 exceeds SLO 10.0",
+     "arrivals_rps rose from ~4 to 11.7 at t=139 and 9.6 at t=149",
+     "running 63.7 with waiting_max 49.0 near max_num_seqs 64",
+     "ok_rps lagging arrivals, queue building with no shedding"
+    ],
+    "actions": [
+     {
+      "type": "gateway_rate_limit",
+      "max_rps": 6.0
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Offered load ~2-3x normal saturates max_num_seqs, causing queue buildup and p95 latency breach. Shed at gateway to restore SLO with least disruption.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.85, \"evidence\": [\"p95_latency_s 10.83 at t=149 exceeds SLO 10.0\", \"arrivals_rps rose from ~4 to 11.7 at t=139 and 9.6 at t=149\", \"running 63.7 with waiting_max 49.0 near max_num_seqs 64\", \"ok_rps lagging arrivals, queue building with no shedding\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 6}], \"explanation\": \"Offered load ~2-3x normal saturates max_num_seqs, causing queue buildup and p95 latency breach. Shed at gateway to restore SLO with least disruption.\"}",
+    "usage": {
+     "prompt_tokens": 3093,
+     "total_tokens": 3650,
+     "completion_tokens": 557,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

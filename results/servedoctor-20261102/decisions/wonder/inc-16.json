@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-16",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61508,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.95,
+  "evidence": [
+   "gpu_memory_utilization changed 0.9->0.61508 in deploy vs reference 0.9",
+   "kv_usage_pct_max 92.98-100.0% vs normal 1.78% with preemptions up to 2.8/s",
+   "arrivals ~4.0 rps and prompt_tokens_mean ~130-280 match normal profile, not a surge or long prompts",
+   "waiting_max rose to 31 and p95_latency 11.11s > 10s SLO, p95_ttft 4.86s vs normal 0.42s",
+   "running ~17 < max_num_seqs 64, so sequence limit not binding"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Same load saturates KV cache after gpu_memory_utilization was lowered, causing preemptions and queueing. Restore reference 0.9 to enlarge KV cache.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization changed 0.9->0.61508 in deploy vs reference 0.9\", \"kv_usage_pct_max 92.98-100.0% vs normal 1.78% with preemptions up to 2.8/s\", \"arrivals ~4.0 rps and prompt_tokens_mean ~130-280 match normal profile, not a surge or long prompts\", \"waiting_max rose to 31 and p95_latency 11.11s > 10s SLO, p95_ttft 4.86s vs normal 0.42s\", \"running ~17 < max_num_seqs 64, so sequence limit not binding\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Same load saturates KV cache after gpu_memory_utilization was lowered, causing preemptions and queueing. Restore reference 0.9 to enlarge KV cache.\"}",
+  "usage": {
+   "completion_tokens": 681,
+   "prompt_tokens": 1472,
+   "total_tokens": 2153,
+   "completion_tokens_details": {
+    "reasoning_tokens": 434
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c8899f1f965ce9dc1fa1fcf92e544875ef4efcbd070fb6f24ef64bfd0adb6229",
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.95,
+    "evidence": [
+     "gpu_memory_utilization changed 0.9->0.61508 in deploy vs reference 0.9",
+     "kv_usage_pct_max 92.98-100.0% vs normal 1.78% with preemptions up to 2.8/s",
+     "arrivals ~4.0 rps and prompt_tokens_mean ~130-280 match normal profile, not a surge or long prompts",
+     "waiting_max rose to 31 and p95_latency 11.11s > 10s SLO, p95_ttft 4.86s vs normal 0.42s",
+     "running ~17 < max_num_seqs 64, so sequence limit not binding"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Same load saturates KV cache after gpu_memory_utilization was lowered, causing preemptions and queueing. Restore reference 0.9 to enlarge KV cache.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization changed 0.9->0.61508 in deploy vs reference 0.9\", \"kv_usage_pct_max 92.98-100.0% vs normal 1.78% with preemptions up to 2.8/s\", \"arrivals ~4.0 rps and prompt_tokens_mean ~130-280 match normal profile, not a surge or long prompts\", \"waiting_max rose to 31 and p95_latency 11.11s > 10s SLO, p95_ttft 4.86s vs normal 0.42s\", \"running ~17 < max_num_seqs 64, so sequence limit not binding\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Same load saturates KV cache after gpu_memory_utilization was lowered, causing preemptions and queueing. Restore reference 0.9 to enlarge KV cache.\"}",
+    "usage": {
+     "completion_tokens": 681,
+     "prompt_tokens": 1472,
+     "total_tokens": 2153,
+     "completion_tokens_details": {
+      "reasoning_tokens": 434
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

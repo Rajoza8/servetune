@@ -1,0 +1,32 @@
+{
+  "project": "servedoctor",
+  "created_at_utc": "2026-11-02T06:52:48.105121+00:00",
+  "scope": "Fake filesystem fixtures only; actual live outcomes and final report were not audited.",
+  "helper": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/live_recording_completeness.py",
+    "sha256": "716cb6ef069db6cae65cfc26cdfb26b421ef11a936fceef2b48552530e8bc21d"
+  },
+  "fixture": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/live_recording_completeness_stub_test.py",
+    "sha256": "a13afe46069f4f3aa0c899709f164c08d050729ae2f2a4ccb649a0775a61d4df"
+  },
+  "validation": {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+      "-m",
+      "unittest",
+      "live_recording_completeness_stub_test",
+      "-q"
+    ],
+    "returncode": 0,
+    "tests": 10,
+    "stdout": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/live-recording-quality-helper-validation-20261102.stdout",
+    "stdout_sha256": "74624a92f8437ee9297f6226813b8aafc26383f80ad887ac69293b662796bef6"
+  },
+  "actual_final_report": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/live-recording-quality-final.json",
+    "created": false,
+    "pending": "Run only after all twelve live runs finish and full final mirror exists."
+  },
+  "gpu_api_or_ledger_actions": false
+}

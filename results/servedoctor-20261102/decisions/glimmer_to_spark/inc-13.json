@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-13",
+ "engine_config": {
+  "max_model_len": 1024,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "http_400=9,2,7 vs ok_rps 1.27-3.9, error rate ~30% > SLO 1%",
+   "max_model_len 1024 vs reference 4096",
+   "change_log max_model_len [4096,1024] at deploy",
+   "p95_latency ~5s < SLO 10s, waiting_max 0",
+   "kv_usage_pct_max <0.8% and running normal"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy cut max_model_len 4096->1024 causing 400 rejections despite normal load/latency. Restoring 4096 removes invalid rejections.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"http_400=9,2,7 vs ok_rps 1.27-3.9, error rate ~30% > SLO 1%\", \"max_model_len 1024 vs reference 4096\", \"change_log max_model_len [4096,1024] at deploy\", \"p95_latency ~5s < SLO 10s, waiting_max 0\", \"kv_usage_pct_max <0.8% and running normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096->1024 causing 400 rejections despite normal load/latency. Restoring 4096 removes invalid rejections.\"}",
+  "usage": {
+   "completion_tokens": 711,
+   "prompt_tokens": 1481,
+   "total_tokens": 2192,
+   "completion_tokens_details": {
+    "reasoning_tokens": 513
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "01978d6927437fef0aab2ba9e0d918b6c72929b61736d1cfa6bfdeabc1f94faf",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "High HTTP 400 error rate after max_model_len cut 4096\u21921024 at deploy. Recent 10s buckets show ~0.3 error rate vs SLO 0.01, with 9/2/7 400s. Latency OK but errors threaten SLO.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"High HTTP 400 error rate after max_model_len cut 4096\u21921024 at deploy. Recent 10s buckets show ~0.3 error rate vs SLO 0.01, with 9/2/7 400s. Latency OK but errors threaten SLO.\"}",
+    "usage": {
+     "prompt_tokens": 995,
+     "total_tokens": 1275,
+     "completion_tokens": 280,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "http_400=9,2,7 vs ok_rps 1.27-3.9, error rate ~30% > SLO 1%",
+     "max_model_len 1024 vs reference 4096",
+     "change_log max_model_len [4096,1024] at deploy",
+     "p95_latency ~5s < SLO 10s, waiting_max 0",
+     "kv_usage_pct_max <0.8% and running normal"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_model_len 4096->1024 causing 400 rejections despite normal load/latency. Restoring 4096 removes invalid rejections.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"http_400=9,2,7 vs ok_rps 1.27-3.9, error rate ~30% > SLO 1%\", \"max_model_len 1024 vs reference 4096\", \"change_log max_model_len [4096,1024] at deploy\", \"p95_latency ~5s < SLO 10s, waiting_max 0\", \"kv_usage_pct_max <0.8% and running normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096->1024 causing 400 rejections despite normal load/latency. Restoring 4096 removes invalid rejections.\"}",
+    "usage": {
+     "completion_tokens": 711,
+     "prompt_tokens": 1481,
+     "total_tokens": 2192,
+     "completion_tokens_details": {
+      "reasoning_tokens": 513
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

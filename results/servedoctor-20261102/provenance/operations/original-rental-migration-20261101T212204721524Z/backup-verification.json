@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "mode": "migration",
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/original-rental-migration-20261101T212204721524Z/migration-backup-receipt.json",
+    "sha256": "788d752ce3898bfb4b07df6f990bb83798ccdde442cef38c47058a3f1e825e3d"
+  },
+  "independent_remote_sha256": null,
+  "api_executed": false
+}

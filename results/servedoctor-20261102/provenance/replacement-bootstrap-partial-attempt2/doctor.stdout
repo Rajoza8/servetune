@@ -1,0 +1,44 @@
+{
+  "status": "pass",
+  "platform": "Linux",
+  "machine": "x86_64",
+  "gpu_index": 0,
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-549b0b27-6ca2-2fca-e5aa-a0f67a43b81b",
+    "name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "total_memory_mib": 97887.0,
+    "used_memory_mib": 1.0,
+    "compute_capability": "12.0"
+  },
+  "driver_version": "580.159.03",
+  "vllm_version": "0.26.1rc1.dev608+g99a10304d",
+  "processes": [],
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "0",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,compute_cap",
+        "--format=csv,noheader,nounits"
+      ],
+      "returncode": 0,
+      "stdout": "0, GPU-549b0b27-6ca2-2fca-e5aa-a0f67a43b81b, NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 580.159.03, 97887, 1, 12.0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "0",
+        "--query-compute-apps=pid,process_name,used_memory,gpu_uuid",
+        "--format=csv,noheader,nounits"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "blockers": []
+}

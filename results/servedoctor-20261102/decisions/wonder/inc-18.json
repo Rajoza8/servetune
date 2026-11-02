@@ -1,0 +1,84 @@
+{
+ "arm": "wonder",
+ "incident": "inc-18",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.85,
+  "evidence": [
+   "arrivals 0.27-1.2 rps vs normal 4.0 rps, gen 25-150 tok/s vs normal 497.6 tok/s",
+   "gpu_power 414-563W similar to normal 554W despite little traffic",
+   "p95_latency 5.02s < SLO 10s, waiting_max 0.0, no shed/errors",
+   "kv_usage <=0.54% and running <=5.5 vs normal 21.1",
+   "only engine GPU process present"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Service meets SLO with low load and no queueing, but GPU power/utilization remain at full-load levels. Efficiency issue only; advise consolidating traffic, do not restart or limit engine.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals 0.27-1.2 rps vs normal 4.0 rps, gen 25-150 tok/s vs normal 497.6 tok/s\", \"gpu_power 414-563W similar to normal 554W despite little traffic\", \"p95_latency 5.02s < SLO 10s, waiting_max 0.0, no shed/errors\", \"kv_usage <=0.54% and running <=5.5 vs normal 21.1\", \"only engine GPU process present\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Service meets SLO with low load and no queueing, but GPU power/utilization remain at full-load levels. Efficiency issue only; advise consolidating traffic, do not restart or limit engine.\"}",
+  "usage": {
+   "completion_tokens": 716,
+   "prompt_tokens": 1456,
+   "total_tokens": 2172,
+   "completion_tokens_details": {
+    "reasoning_tokens": 514
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fd38668275e7096476e29f438d9c5d632edb08b9ad36cd5bfd73e432eb907e1b",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.85,
+    "evidence": [
+     "arrivals 0.27-1.2 rps vs normal 4.0 rps, gen 25-150 tok/s vs normal 497.6 tok/s",
+     "gpu_power 414-563W similar to normal 554W despite little traffic",
+     "p95_latency 5.02s < SLO 10s, waiting_max 0.0, no shed/errors",
+     "kv_usage <=0.54% and running <=5.5 vs normal 21.1",
+     "only engine GPU process present"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Service meets SLO with low load and no queueing, but GPU power/utilization remain at full-load levels. Efficiency issue only; advise consolidating traffic, do not restart or limit engine.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals 0.27-1.2 rps vs normal 4.0 rps, gen 25-150 tok/s vs normal 497.6 tok/s\", \"gpu_power 414-563W similar to normal 554W despite little traffic\", \"p95_latency 5.02s < SLO 10s, waiting_max 0.0, no shed/errors\", \"kv_usage <=0.54% and running <=5.5 vs normal 21.1\", \"only engine GPU process present\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Service meets SLO with low load and no queueing, but GPU power/utilization remain at full-load levels. Efficiency issue only; advise consolidating traffic, do not restart or limit engine.\"}",
+    "usage": {
+     "completion_tokens": 716,
+     "prompt_tokens": 1456,
+     "total_tokens": 2172,
+     "completion_tokens_details": {
+      "reasoning_tokens": 514
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-04",
+ "engine_config": {
+  "max_model_len": 768,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "http_400=5,9,5 per 10s bucket ~18% error rate > SLO 0.01",
+   "max_model_len 768 vs reference 4096",
+   "change_log: max_model_len [4096,768] at t=0",
+   "prompt_tokens_mean 182-398 vs normal 202, not a flood",
+   "waiting_max 0.0, running 7-17 <64, kv_usage <0.7%"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy cut max_model_len 4096->768 causing valid prompts to be rejected with 400s while latency/queue/KV healthy. Restoring 4096 restores reference behavior.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"http_400=5,9,5 per 10s bucket ~18% error rate > SLO 0.01\", \"max_model_len 768 vs reference 4096\", \"change_log: max_model_len [4096,768] at t=0\", \"prompt_tokens_mean 182-398 vs normal 202, not a flood\", \"waiting_max 0.0, running 7-17 <64, kv_usage <0.7%\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096->768 causing valid prompts to be rejected with 400s while latency/queue/KV healthy. Restoring 4096 restores reference behavior.\"}",
+  "usage": {
+   "completion_tokens": 865,
+   "prompt_tokens": 1479,
+   "total_tokens": 2344,
+   "completion_tokens_details": {
+    "reasoning_tokens": 659
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "0ea8941af5b058d2c48adf52dc1f1c89f646bc5f2efef93b51fabdf3a33750cf",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "High http_400 error rate ~15-18% after deploy cut max_model_len 4096\u2192768, exceeding max_error_rate 0.01. P95 latency ok but errors threaten SLO.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"High http_400 error rate ~15-18% after deploy cut max_model_len 4096\u2192768, exceeding max_error_rate 0.01. P95 latency ok but errors threaten SLO.\"}",
+    "usage": {
+     "prompt_tokens": 993,
+     "total_tokens": 1215,
+     "completion_tokens": 222,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "http_400=5,9,5 per 10s bucket ~18% error rate > SLO 0.01",
+     "max_model_len 768 vs reference 4096",
+     "change_log: max_model_len [4096,768] at t=0",
+     "prompt_tokens_mean 182-398 vs normal 202, not a flood",
+     "waiting_max 0.0, running 7-17 <64, kv_usage <0.7%"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_model_len 4096->768 causing valid prompts to be rejected with 400s while latency/queue/KV healthy. Restoring 4096 restores reference behavior.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"http_400=5,9,5 per 10s bucket ~18% error rate > SLO 0.01\", \"max_model_len 768 vs reference 4096\", \"change_log: max_model_len [4096,768] at t=0\", \"prompt_tokens_mean 182-398 vs normal 202, not a flood\", \"waiting_max 0.0, running 7-17 <64, kv_usage <0.7%\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096->768 causing valid prompts to be rejected with 400s while latency/queue/KV healthy. Restoring 4096 restores reference behavior.\"}",
+    "usage": {
+     "completion_tokens": 865,
+     "prompt_tokens": 1479,
+     "total_tokens": 2344,
+     "completion_tokens_details": {
+      "reasoning_tokens": 659
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

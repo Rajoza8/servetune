@@ -1,0 +1,12 @@
+{
+  "project": "servedoctor",
+  "verified_at_utc": "2026-11-02T05:49:09.121163+00:00",
+  "purpose": "Fresh official check before final Wonder escalation evaluation arm",
+  "official_source": "https://dev.meta.ai/docs/pricing-rate-limits",
+  "model": "muse-wonder-1.0",
+  "input_usd_per_million": 4,
+  "output_usd_per_million": 20,
+  "matches_frozen_client_and_ledger": true,
+  "price_or_model_change": false,
+  "no_model_call_or_ledger_mutation": true
+}

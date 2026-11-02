@@ -1,0 +1,38 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+inc-06 rules: traffic_surge at 150s -> [{'type': 'gateway_rate_limit', 'max_rps': 6.4}]
+  action {'type': 'gateway_rate_limit', 'max_rps': 6.4} -> executed
+{
+  "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "actions": [
+      {
+        "type": "gateway_rate_limit",
+        "max_rps": 6.4
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 150.0
+  },
+  "executed": [
+    {
+      "action": {
+        "type": "gateway_rate_limit",
+        "max_rps": 6.4
+      },
+      "at": "2026-11-02T08:22:07.059253+00:00",
+      "previous": {
+        "max_rps": null,
+        "max_prompt_tokens": null
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "time_to_recover_s": 80.0
+}

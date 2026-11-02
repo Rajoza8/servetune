@@ -1,0 +1,149 @@
+{
+  "id": "inc-04",
+  "arm": "glimmer_to_spark",
+  "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.95,
+    "evidence": [
+      "max_model_len changed 4096->768 at t=0 deploy",
+      "http_400=5,9,5 errors in 10s buckets",
+      "prompt_tokens_mean 195-398 with max 768 rejects valid prompts",
+      "p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%",
+      "arrivals_rps ~2.7-3.8 normal vs 4.0 reference"
+    ],
+    "actions": [
+      {
+        "type": "set_engine_config",
+        "knob": "max_model_len",
+        "value": 4096
+      }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len changed 4096->768 at t=0 deploy\", \"http_400=5,9,5 errors in 10s buckets\", \"prompt_tokens_mean 195-398 with max 768 rejects valid prompts\", \"p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%\", \"arrivals_rps ~2.7-3.8 normal vs 4.0 reference\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.\"}",
+    "usage": {
+      "completion_tokens": 530,
+      "prompt_tokens": 2065,
+      "total_tokens": 2595,
+      "completion_tokens_details": {
+        "reasoning_tokens": 325
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "t": 30.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "set_engine_config",
+        "knob": "max_model_len",
+        "value": 4096
+      },
+      "at": "2026-11-02T06:39:42.611251+00:00",
+      "previous": {
+        "max_model_len": 768
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "f1b6240a139845a4760909d99ea1f6184c3726deb7eb0a7ae956b686d66ae07f",
+      "monitor": {
+        "status": null,
+        "summary": "",
+        "raw_output": "",
+        "usage": {},
+        "valid_output": false,
+        "call_failed": true,
+        "error": "HTTPError",
+        "http_status": 400
+      },
+      "error": "HTTPError",
+      "escalated": true,
+      "decision": {
+        "incident": true,
+        "root_cause": "context_limit_too_small",
+        "confidence": 0.95,
+        "evidence": [
+          "max_model_len changed 4096->768 at t=0 deploy",
+          "http_400=5,9,5 errors in 10s buckets",
+          "prompt_tokens_mean 195-398 with max 768 rejects valid prompts",
+          "p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%",
+          "arrivals_rps ~2.7-3.8 normal vs 4.0 reference"
+        ],
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len changed 4096->768 at t=0 deploy\", \"http_400=5,9,5 errors in 10s buckets\", \"prompt_tokens_mean 195-398 with max 768 rejects valid prompts\", \"p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%\", \"arrivals_rps ~2.7-3.8 normal vs 4.0 reference\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.\"}",
+        "usage": {
+          "completion_tokens": 530,
+          "prompt_tokens": 2065,
+          "total_tokens": 2595,
+          "completion_tokens_details": {
+            "reasoning_tokens": 325
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 72.3,
+  "post_fix_window": {
+    "requests": 218,
+    "ok": 218,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.930124916601926,
+    "p95_latency_s": 6.602378861932084
+  },
+  "fault_window_before_action": {
+    "requests": 249,
+    "ok": 86,
+    "shed": 0,
+    "failed": 163,
+    "shed_rate": 0.0,
+    "error_rate": 0.6546184738955824,
+    "p50_latency_s": 4.850101901218295,
+    "p95_latency_s": 4.9555855062790215
+  },
+  "after_action": {
+    "requests": 2292,
+    "ok": 2292,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.704381673131138,
+    "p95_latency_s": 6.39325197506696
+  },
+  "time_to_recover_s": 102.3,
+  "engine_restarts": [
+    {
+      "knob": "max_model_len",
+      "value": 4096,
+      "status": "completed",
+      "seconds": 37.68654798809439
+    }
+  ]
+}

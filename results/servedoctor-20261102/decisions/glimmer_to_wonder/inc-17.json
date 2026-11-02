@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-17",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61613,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.95,
+  "evidence": [
+   "gpu_memory_utilization dropped 0.9->0.61613 in deploy at t=0",
+   "kv_usage_pct_max 99.67% vs normal 1.78% at similar arrivals ~4 rps and prompt mean ~211 vs 202",
+   "preemptions 1.1-1.4/s and waiting_max 8-14 vs normal 0",
+   "p95 latency rising to 8.48s and p95 TTFT 2.47s vs normal 5.72s/0.42s",
+   "GPU memory used ~60GB vs normal 87.6GB"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization dropped 0.9->0.61613 in deploy at t=0\", \"kv_usage_pct_max 99.67% vs normal 1.78% at similar arrivals ~4 rps and prompt mean ~211 vs 202\", \"preemptions 1.1-1.4/s and waiting_max 8-14 vs normal 0\", \"p95 latency rising to 8.48s and p95 TTFT 2.47s vs normal 5.72s/0.42s\", \"GPU memory used ~60GB vs normal 87.6GB\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.\"}",
+  "usage": {
+   "completion_tokens": 610,
+   "prompt_tokens": 1473,
+   "total_tokens": 2083,
+   "completion_tokens_details": {
+    "reasoning_tokens": 381
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "77f378d07451a8a52d8379bf1ddd4ae59550c6293c1a1ab7abf586bf9dfe629a",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency rising 5.6\u21928.5s with TTFT spike to 2.47s, waiting max 14 and KV usage ~99.5% after gpu_memory_utilization cut to 0.616. Trending toward p95 SLO 10s.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency rising 5.6\u21928.5s with TTFT spike to 2.47s, waiting max 14 and KV usage ~99.5% after gpu_memory_utilization cut to 0.616. Trending toward p95 SLO 10s.\"}",
+    "usage": {
+     "prompt_tokens": 987,
+     "total_tokens": 1275,
+     "completion_tokens": 288,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.95,
+    "evidence": [
+     "gpu_memory_utilization dropped 0.9->0.61613 in deploy at t=0",
+     "kv_usage_pct_max 99.67% vs normal 1.78% at similar arrivals ~4 rps and prompt mean ~211 vs 202",
+     "preemptions 1.1-1.4/s and waiting_max 8-14 vs normal 0",
+     "p95 latency rising to 8.48s and p95 TTFT 2.47s vs normal 5.72s/0.42s",
+     "GPU memory used ~60GB vs normal 87.6GB"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.95, \"evidence\": [\"gpu_memory_utilization dropped 0.9->0.61613 in deploy at t=0\", \"kv_usage_pct_max 99.67% vs normal 1.78% at similar arrivals ~4 rps and prompt mean ~211 vs 202\", \"preemptions 1.1-1.4/s and waiting_max 8-14 vs normal 0\", \"p95 latency rising to 8.48s and p95 TTFT 2.47s vs normal 5.72s/0.42s\", \"GPU memory used ~60GB vs normal 87.6GB\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Reduced GPU memory utilization shrank KV cache, causing saturation, preemptions and queueing at normal load. Restore reference 0.9.\"}",
+    "usage": {
+     "completion_tokens": 610,
+     "prompt_tokens": 1473,
+     "total_tokens": 2083,
+     "completion_tokens_details": {
+      "reasoning_tokens": 381
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+ "arm": "spark",
+ "incident": "inc-13",
+ "engine_config": {
+  "max_model_len": 1024,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.9,
+  "evidence": [
+   "max_model_len cut 4096->1024 at t=0 deploy",
+   "http_400=9,2,7 vs ~3-4 rps arrivals = high error rate",
+   "prompt_tokens_mean 145-379 similar to normal 202",
+   "p95_latency 4.8-5.07 < SLO 10, TTFT ~0.25 normal",
+   "waiting_max 0, kv_usage <1%, no preemptions"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_model_len causing 400 rejections of previously valid requests. Load, latency, KV and queueing are healthy. Restore to reference 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len cut 4096->1024 at t=0 deploy\", \"http_400=9,2,7 vs ~3-4 rps arrivals = high error rate\", \"prompt_tokens_mean 145-379 similar to normal 202\", \"p95_latency 4.8-5.07 < SLO 10, TTFT ~0.25 normal\", \"waiting_max 0, kv_usage <1%, no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len causing 400 rejections of previously valid requests. Load, latency, KV and queueing are healthy. Restore to reference 4096.\"}",
+  "usage": {
+   "completion_tokens": 817,
+   "prompt_tokens": 1481,
+   "total_tokens": 2298,
+   "completion_tokens_details": {
+    "reasoning_tokens": 618
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "01978d6927437fef0aab2ba9e0d918b6c72929b61736d1cfa6bfdeabc1f94faf",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.9,
+    "evidence": [
+     "max_model_len cut 4096->1024 at t=0 deploy",
+     "http_400=9,2,7 vs ~3-4 rps arrivals = high error rate",
+     "prompt_tokens_mean 145-379 similar to normal 202",
+     "p95_latency 4.8-5.07 < SLO 10, TTFT ~0.25 normal",
+     "waiting_max 0, kv_usage <1%, no preemptions"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_model_len causing 400 rejections of previously valid requests. Load, latency, KV and queueing are healthy. Restore to reference 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len cut 4096->1024 at t=0 deploy\", \"http_400=9,2,7 vs ~3-4 rps arrivals = high error rate\", \"prompt_tokens_mean 145-379 similar to normal 202\", \"p95_latency 4.8-5.07 < SLO 10, TTFT ~0.25 normal\", \"waiting_max 0, kv_usage <1%, no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len causing 400 rejections of previously valid requests. Load, latency, KV and queueing are healthy. Restore to reference 4096.\"}",
+    "usage": {
+     "completion_tokens": 817,
+     "prompt_tokens": 1481,
+     "total_tokens": 2298,
+     "completion_tokens_details": {
+      "reasoning_tokens": 618
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

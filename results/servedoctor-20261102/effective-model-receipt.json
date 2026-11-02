@@ -1,0 +1,65 @@
+{
+  "schema_version": 2,
+  "project": "servedoctor",
+  "available": true,
+  "operator_reviewed_actual_diagnostic": true,
+  "verified_at_utc": "2026-11-02T01:54:29.118495+00:00",
+  "model_id": "muse-wonder-1.0",
+  "configured_model_spec": {
+    "url": "https://api.meta.ai/v1/chat/completions",
+    "model": "muse-wonder-1.0",
+    "input_per_m": "4",
+    "output_per_m": "20"
+  },
+  "runner": {
+    "protocol": "servedoctor-key-runner-2-model-diagnostics",
+    "loaded_source_sha256": "ace729b990184e207cb91c46631ca6fbfdca77595729c8b98190d1c2fda64ecd",
+    "remote_code_sha256": "f7360667a37db2f8552c2a3fe8123f6ca0243602de5b1d7e06f54fa4b4c7bc58"
+  },
+  "remote_git_head": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "effective_source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "official_price_source": "https://dev.meta.ai/docs/pricing-rate-limits",
+  "api_transport_mode": "local_mac_https_connect",
+  "availability_origin": "local_authenticated_catalog",
+  "direct_remote_wonder_available": true,
+  "input_usd_per_million": 4,
+  "output_usd_per_million": 20,
+  "prices_verified_on_dev_meta_ai": true,
+  "proofs": {
+    "diagnostic_proof": {
+      "path": "lineage/model-diagnostic.json",
+      "sha256": "8024972f213192ea7cc2a465a08b6a267a53b8009f319a46b44aa02718501405"
+    },
+    "official_price_proof": {
+      "path": "lineage/official-price-proof.json",
+      "sha256": "b905135ec914b153b69d57577f134417c2c0a3157f2e349a3b05493e70827d2e"
+    },
+    "transport_config": {
+      "path": "api-transport.json",
+      "sha256": "62276217beb26abb14e37dffc45c7be471efc6d3aac16441187ed244e55d4e16"
+    },
+    "transport_ready_proof": {
+      "path": "lineage/transport-ready.json",
+      "sha256": "603fd6093b850de28f12ad59c61247d6469476a46b6be1b6586d5b3ed62fba51"
+    },
+    "transport_channel_proof": {
+      "path": "lineage/transport-channel-proof.json",
+      "sha256": "02f2edb7123734480102a83f0873a40509709fb3dc8bc74e4032a38c22b53ee4"
+    },
+    "diagnostic_ca_proof": {
+      "path": "lineage/diagnostic-ca-proof.json",
+      "sha256": "2ead9ad944fb2b980e880cc71f54da57793d066695a5a1494130405939b773e5"
+    },
+    "diagnostic_ca_repair_proof": {
+      "path": "lineage/diagnostic-ca-repair-proof.json",
+      "sha256": "d41514c9b032a03630c2639122fa35f52dce643282fe2befdbd3505f7d35079c"
+    },
+    "transport_receipt": {
+      "path": "api-transport-receipt.json",
+      "sha256": "7b3724beceab24083393b460313a6e94a1d753b663eaa1c721f42505b3566539"
+    }
+  },
+  "availability_basis": "Local authenticated GET200 catalog contains Wonder; the exact direct-remote catalog result is retained without assuming stability or causality. A TLS-verified unauthenticated proxy GET401 proves only the channel, not completion success.",
+  "paid_calls_dispatched": false,
+  "proxied_completion_verified": false
+}

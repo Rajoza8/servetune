@@ -1,0 +1,1213 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-02T04:35:12.728954+00:00",
+  "study_dir": "/workspace/servedoctor-session/servetune/runs/sd-study-r2-api2",
+  "scope": "Public integrity, collector coverage and exact scheduled outcome completeness only; never selects by fault performance or model scores.",
+  "present_incidents": 25,
+  "all_present_recordings_complete": false,
+  "expected_incidents": 25,
+  "missing_incident_ids": [],
+  "all_expected_recordings_complete": false,
+  "recordings": [
+    {
+      "id": "inc-01",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "9d58484b4dbf18c408d91c93df56614356225e3eac96675df2bdc1216ac44f68",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.0,
+        "last_s": 364.0,
+        "max_gap_s": 1.0020000000000095,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1456,
+        "observed": 1456,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1456
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.54115426074713,
+        "last_scheduled_s": 359.7204,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-02",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "fef46470ce9edb7e1621db4b8c232fd97405c6bc8b839fe76e7f68a5a18ae1f4",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.001,
+        "last_s": 364.001,
+        "max_gap_s": 1.0529999999999973,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1444,
+        "observed": 1444,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1444
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.68394006881863,
+        "last_scheduled_s": 359.9603,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-03",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "ef048cc546fb0f0ccc0705c8553cb437cb47eb634103c15ae18f1d9d54b291dd",
+      "telemetry": {
+        "rows": 419,
+        "metadata_rows": 419,
+        "first_s": 0.001,
+        "last_s": 418.001,
+        "max_gap_s": 1.0289999999999964,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 58.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1490,
+        "observed": 1490,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 56,
+          "timeout": 1434
+        },
+        "error_class_counts": {},
+        "last_done_s": 418.93050197325647,
+        "last_scheduled_s": 358.9006,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-04",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "8fbeddd720c98c3143a93a95adfd14952355ff701f775ad40337a6185eb62d1e",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.0,
+        "last_s": 364.0,
+        "max_gap_s": 1.0529999999999973,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1322,
+        "observed": 1322,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1095,
+          "http_400": 227
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.57324494887143,
+        "last_scheduled_s": 359.8183,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-05",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "482a316dfa2f4967d706822278311b20a546c739f0ab331fc65afff087886268",
+      "telemetry": {
+        "rows": 420,
+        "metadata_rows": 420,
+        "first_s": 0.0,
+        "last_s": 419.001,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 59.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1438,
+        "observed": 1438,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 146,
+          "timeout": 1292
+        },
+        "error_class_counts": {},
+        "last_done_s": 419.3633804721758,
+        "last_scheduled_s": 359.3386,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-06",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "cb3fe84a60c2eed012278cac6874d9ed229b0add1f737af3006577da9cc13d82",
+      "telemetry": {
+        "rows": 420,
+        "metadata_rows": 420,
+        "first_s": 0.001,
+        "last_s": 419.001,
+        "max_gap_s": 1.3170000000000073,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 59.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 2953,
+        "observed": 2953,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 2860,
+          "timeout": 93
+        },
+        "error_class_counts": {},
+        "last_done_s": 419.28371075354517,
+        "last_scheduled_s": 359.9157,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-07",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "f6b75b1fd7cd5c95417abd8e45fc3b481c76a0c9a82da3ec0dbda70f6a7b2400",
+      "telemetry": {
+        "rows": 412,
+        "metadata_rows": 412,
+        "first_s": 0.0,
+        "last_s": 411.0,
+        "max_gap_s": 1.0120000000000005,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 51.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1374,
+        "observed": 1374,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1001,
+          "timeout": 373
+        },
+        "error_class_counts": {},
+        "last_done_s": 411.60467198491096,
+        "last_scheduled_s": 359.6927,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-08",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "d46c914445593fbd35217898a0ee1ac365c562dc8f286a79194cc06c87cd12a7",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.001,
+        "last_s": 364.001,
+        "max_gap_s": 1.0020000000000024,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1406,
+        "observed": 1406,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1406
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.75305480044335,
+        "last_scheduled_s": 359.6343,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-09",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "5f58122caa02f75a412f3f10998873d6440a1e02d3b6ea2b996e29c84601102e",
+      "telemetry": {
+        "rows": 368,
+        "metadata_rows": 368,
+        "first_s": 0.0,
+        "last_s": 367.0,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 7.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1458,
+        "observed": 1458,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1458
+        },
+        "error_class_counts": {},
+        "last_done_s": 367.85317136347294,
+        "last_scheduled_s": 358.6777,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-10",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "97f5bf7a8b4b837b353f8b4dbe4f1e6fe2a08044a6de980d94278122c79b0cd0",
+      "telemetry": {
+        "rows": 420,
+        "metadata_rows": 420,
+        "first_s": 0.001,
+        "last_s": 419.001,
+        "max_gap_s": 1.431999999999988,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 59.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1409,
+        "observed": 1409,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 28,
+          "timeout": 1381
+        },
+        "error_class_counts": {},
+        "last_done_s": 419.5863895183429,
+        "last_scheduled_s": 359.5502,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-11",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "d25d84d1a863202f56add1e9a5dd27f9be0db4b694688a15b502ec9d7a0ffebc",
+      "telemetry": {
+        "rows": 366,
+        "metadata_rows": 366,
+        "first_s": 0.001,
+        "last_s": 365.001,
+        "max_gap_s": 1.0010000000000332,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 5.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1398,
+        "observed": 1398,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1398
+        },
+        "error_class_counts": {},
+        "last_done_s": 365.86530488170683,
+        "last_scheduled_s": 359.9,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-12",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "59add4e729c9b9cd6f23abfc87a3701da19f9ea75d160bae28e8148db24e6971",
+      "telemetry": {
+        "rows": 368,
+        "metadata_rows": 368,
+        "first_s": 0.0,
+        "last_s": 367.0,
+        "max_gap_s": 1.0039999999999907,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 7.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1488,
+        "observed": 1488,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1488
+        },
+        "error_class_counts": {},
+        "last_done_s": 367.2093876330182,
+        "last_scheduled_s": 359.8374,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-13",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "9de723abeedfc96c84d764d8653fc6adf79206c6a1dc09bd90bacb921dc68b39",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.0,
+        "last_s": 364.001,
+        "max_gap_s": 1.2620000000000005,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1411,
+        "observed": 1411,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1226,
+          "http_400": 185
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.5564186964184,
+        "last_scheduled_s": 359.8326,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-14",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "d7f0ab1ae1d4329151a2fb96cdc676e27af9e7e45a716fe81bbbeca8973ecd90",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.0,
+        "last_s": 364.001,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1506,
+        "observed": 1506,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1506
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.9048632616177,
+        "last_scheduled_s": 359.9816,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-15",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "34bb6f7c619441da9e0aa4a7c0d1b2c32eac495bb0fd18895a3ea92edf5a0400",
+      "telemetry": {
+        "rows": 420,
+        "metadata_rows": 420,
+        "first_s": 0.001,
+        "last_s": 419.001,
+        "max_gap_s": 1.1310000000000002,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 59.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1407,
+        "observed": 1407,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 589,
+          "timeout": 818
+        },
+        "error_class_counts": {},
+        "last_done_s": 419.9079323047772,
+        "last_scheduled_s": 359.8881,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-16",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "af73d418989310a8c128323d4d4bcb6b496c9cb5582f7c225fa8f272d51e92f9",
+      "telemetry": {
+        "rows": 417,
+        "metadata_rows": 417,
+        "first_s": 0.0,
+        "last_s": 416.0,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 56.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1380,
+        "observed": 1380,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 918,
+          "timeout": 462
+        },
+        "error_class_counts": {},
+        "last_done_s": 416.48057659342885,
+        "last_scheduled_s": 359.9704,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-17",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "690e4318f3fb6a90732cd9c57d783d1241f0db90bdb66e7cad341551660c1d2a",
+      "telemetry": {
+        "rows": 382,
+        "metadata_rows": 382,
+        "first_s": 0.0,
+        "last_s": 381.0,
+        "max_gap_s": 1.0020000000000095,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 21.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1476,
+        "observed": 1476,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1476
+        },
+        "error_class_counts": {},
+        "last_done_s": 381.74564236868173,
+        "last_scheduled_s": 359.8322,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-18",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "0dfa5ca787654445c72323bdce672d1ddd7539fac204aa0990636f4fd3e4a7a4",
+      "telemetry": {
+        "rows": 360,
+        "metadata_rows": 360,
+        "first_s": 0.0,
+        "last_s": 359.001,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0.9990000000000236,
+        "observed_drain_s": 0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 211,
+        "observed": 211,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 211
+        },
+        "error_class_counts": {},
+        "last_done_s": 359.6871881186962,
+        "last_scheduled_s": 355.0373,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-19",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "62843c9cc83f297c42c3cce5acef61b48f4823004ce91e7034c158f0d1b72881",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.0,
+        "last_s": 364.0,
+        "max_gap_s": 1.0289999999999964,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 340,
+        "observed": 340,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 340
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.5369856376201,
+        "last_scheduled_s": 359.7554,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-20",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "77aeb249d65c6dbacf94d65a701921e178517cfa7eb4d85b3f320977d1024454",
+      "telemetry": {
+        "rows": 420,
+        "metadata_rows": 420,
+        "first_s": 0.0,
+        "last_s": 419.0,
+        "max_gap_s": 1.3829999999999814,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 59.0,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 3735,
+        "observed": 3735,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1608,
+          "timeout": 2127
+        },
+        "error_class_counts": {},
+        "last_done_s": 419.9897059323266,
+        "last_scheduled_s": 359.979,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-21",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "824cf808de5ca41aea1aca799f248c2d39f653131021abc8528633dc08025e5c",
+      "telemetry": {
+        "rows": 366,
+        "metadata_rows": 366,
+        "first_s": 0.0,
+        "last_s": 365.001,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 5.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1434,
+        "observed": 1434,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1423,
+          "http_400": 11
+        },
+        "error_class_counts": {},
+        "last_done_s": 365.05166123621166,
+        "last_scheduled_s": 359.9818,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-22",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "ef50fb82493aef9fee78ba089a6804fa7138c69199b50c73a7f2d3b3b2271948",
+      "telemetry": {
+        "rows": 374,
+        "metadata_rows": 374,
+        "first_s": 0.0,
+        "last_s": 373.001,
+        "max_gap_s": 1.3710000000000022,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 13.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1484,
+        "observed": 1484,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1484
+        },
+        "error_class_counts": {},
+        "last_done_s": 373.76522182207555,
+        "last_scheduled_s": 359.8851,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "inc-23",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": false,
+      "issues": [
+        "truncated_nominal_telemetry",
+        "telemetry_ends_before_observed_drain"
+      ],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+      "telemetry": {
+        "rows": 232,
+        "metadata_rows": 232,
+        "first_s": 0.0,
+        "last_s": 231.0,
+        "max_gap_s": 1.0910000000000082,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 129.0,
+        "observed_drain_s": 0,
+        "nominal_duration_covered": false,
+        "source_error_counts": {},
+        "metadata_errors": 1,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 4667,
+        "observed": 4667,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1388,
+          "timeout": 3144,
+          "connection_error": 135
+        },
+        "error_class_counts": {},
+        "last_done_s": 419.8485214887187,
+        "last_scheduled_s": 359.8228,
+        "telemetry_covers_observed_completions": false
+      }
+    },
+    {
+      "id": "inc-24",
+      "duration_s": 360,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        360,
+        450.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "82f7e8f34a23e5499a6f16da40412e44c1e3a859b2430d500f66193b24b67e00",
+      "telemetry": {
+        "rows": 365,
+        "metadata_rows": 365,
+        "first_s": 0.001,
+        "last_s": 364.001,
+        "max_gap_s": 1.8410000000000082,
+        "leading_gap_s": 0.001,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.000999999999976,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 1454,
+        "observed": 1454,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 1454
+        },
+        "error_class_counts": {},
+        "last_done_s": 364.6369756180793,
+        "last_scheduled_s": 359.7803,
+        "telemetry_covers_observed_completions": true
+      }
+    },
+    {
+      "id": "reference",
+      "duration_s": 180,
+      "status_in_recording": "completed",
+      "expected_nominal_and_max_drain_end_s": [
+        180,
+        270.0
+      ],
+      "coverage_slack_s": 3.0,
+      "coverage_slack_basis": "source1s sampling interval plus2s metrics scrape timeout; operational resolution only",
+      "complete": true,
+      "issues": [],
+      "warnings": [],
+      "sealed": true,
+      "manifest_sha256": "68b8c90a0d80cde2844e6ad733b0ce2124551e45e7142b19ef2b7663e5beb23d",
+      "telemetry": {
+        "rows": 185,
+        "metadata_rows": 185,
+        "first_s": 0.0,
+        "last_s": 184.001,
+        "max_gap_s": 1.0010000000000048,
+        "leading_gap_s": 0.0,
+        "trailing_nominal_gap_s": 0,
+        "observed_drain_s": 4.001000000000005,
+        "nominal_duration_covered": true,
+        "source_error_counts": {},
+        "metadata_errors": 0,
+        "operational_log_emfile_matches": 0
+      },
+      "requires_resolution_review": false,
+      "outcomes": {
+        "expected": 718,
+        "observed": 718,
+        "complete": true,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicate_ids": [],
+        "schedule_or_class_mismatch_ids": [],
+        "status_counts": {
+          "ok": 718
+        },
+        "error_class_counts": {},
+        "last_done_s": 184.73909414745867,
+        "last_scheduled_s": 179.957,
+        "telemetry_covers_observed_completions": true
+      }
+    }
+  ],
+  "source_log_error_evidence": [
+    {
+      "path": "runs/servedoctor-ops-20261101/test-batch2-durable-attempt1/record.stderr",
+      "sha256": "58104662f7b234fb0352ce5a5e03638113622f421c67d81d8974019634fdafd2",
+      "emfile_matches": 2
+    }
+  ],
+  "source_log_errors_require_review": true,
+  "future_source_fix_needed": "Recorder thread exceptions must propagate to recording failure after cleanup; currently a completed status can coexist with a dead collector. Do not modify frozen source during this study."
+}

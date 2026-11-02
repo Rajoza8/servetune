@@ -1,0 +1,13 @@
+{
+  "results": [
+    {
+      "operation": "upload",
+      "returncode": 0
+    },
+    {
+      "operation": "adopt-once",
+      "returncode": 0
+    }
+  ],
+  "automatic_retry": false
+}

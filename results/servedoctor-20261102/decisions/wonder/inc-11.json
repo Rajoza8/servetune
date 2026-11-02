@@ -1,0 +1,230 @@
+{
+ "arm": "wonder",
+ "incident": "inc-11",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.72,
+  "evidence": [
+   "Non-engine GPU process pid 13214 embedding_batch using 1068 MB on same GPU",
+   "GPU util ~99-100% with power ~580-592W vs normal 554W",
+   "p95 latency rose to 8.15s vs normal 5.72s, p95 TTFT up to 0.70s vs 0.42s",
+   "Arrivals ~4 rps, prompt mean ~250 and config match reference, ruling out load/prompt/config causes",
+   "Waiting 0, KV usage ~2% and no preemptions, ruling out KV/batch limits"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 13214
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "A competing embedding batch job shares the GPU, saturating compute and inflating latency despite normal offered load and engine configuration. Removing that process is least disruptive.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.72, \"evidence\": [\"Non-engine GPU process pid 13214 embedding_batch using 1068 MB on same GPU\", \"GPU util ~99-100% with power ~580-592W vs normal 554W\", \"p95 latency rose to 8.15s vs normal 5.72s, p95 TTFT up to 0.70s vs 0.42s\", \"Arrivals ~4 rps, prompt mean ~250 and config match reference, ruling out load/prompt/config causes\", \"Waiting 0, KV usage ~2% and no preemptions, ruling out KV/batch limits\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 13214}], \"explanation\": \"A competing embedding batch job shares the GPU, saturating compute and inflating latency despite normal offered load and engine configuration. Removing that process is least disruptive.\"}",
+  "usage": {
+   "completion_tokens": 1255,
+   "prompt_tokens": 3123,
+   "total_tokens": 4378,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1040
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "3dc896536cc72772e7b7d530c21f8c8771ed7cad2977c70ba931db9970f5c76d",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95 latency 7.04s < 10.0s SLO, no shed/errors",
+     "arrivals 3.2-5.1 rps vs normal 4.0 rps, prompt mean 209-300 vs 202",
+     "waiting_max 0.0, KV usage max 3.34%, preemptions 0",
+     "engine config matches reference, only log-level change",
+     "only VLLM::EngineCore GPU process present, GPU util 99.9%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics within normal/SLO bounds: latency, load, queueing and KV use are healthy with no errors or contention. No intervention needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95 latency 7.04s < 10.0s SLO, no shed/errors\", \"arrivals 3.2-5.1 rps vs normal 4.0 rps, prompt mean 209-300 vs 202\", \"waiting_max 0.0, KV usage max 3.34%, preemptions 0\", \"engine config matches reference, only log-level change\", \"only VLLM::EngineCore GPU process present, GPU util 99.9%\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics within normal/SLO bounds: latency, load, queueing and KV use are healthy with no errors or contention. No intervention needed.\"}",
+    "usage": {
+     "completion_tokens": 579,
+     "prompt_tokens": 1459,
+     "total_tokens": 2038,
+     "completion_tokens_details": {
+      "reasoning_tokens": 395
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "89b07adf0a5209d77b0dda3e38382e339a5a6634bc9758dd214083adf9cf4cf2",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.3-7.0s < 10s SLO across buckets",
+     "arrivals 3.2-5.1 rps near normal 4.0 rps, prompt mean ~202-320 tokens",
+     "waiting_max 0.0, KV usage <=3.34%, preemptions 0.0",
+     "engine config matches reference; only GPU process is VLLM::EngineCore",
+     "no errors/shedding reported"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match healthy profile: latency within SLO, no queueing, low KV use, no preemptions or contention. Normal variation only.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.3-7.0s < 10s SLO across buckets\", \"arrivals 3.2-5.1 rps near normal 4.0 rps, prompt mean ~202-320 tokens\", \"waiting_max 0.0, KV usage <=3.34%, preemptions 0.0\", \"engine config matches reference; only GPU process is VLLM::EngineCore\", \"no errors/shedding reported\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match healthy profile: latency within SLO, no queueing, low KV use, no preemptions or contention. Normal variation only.\"}",
+    "usage": {
+     "completion_tokens": 418,
+     "prompt_tokens": 1928,
+     "total_tokens": 2346,
+     "completion_tokens_details": {
+      "reasoning_tokens": 242
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "3da1f296417afdc6499095f2048aabe7cabcf0790da05a25c64a4325469b104a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "arrivals 3.2-5.1 rps vs normal 4.0 rps",
+     "p95 latency 5.3-7.0s below SLO 10.0s and near normal 5.72s",
+     "waiting_max 0.0, kv_usage_pct_max 1.3-3.3%, preemptions 0",
+     "engine config matches reference config",
+     "no shed or errors reported"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Metrics match the healthy profile: latency within SLO, no queueing, KV pressure, or errors. No change needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"arrivals 3.2-5.1 rps vs normal 4.0 rps\", \"p95 latency 5.3-7.0s below SLO 10.0s and near normal 5.72s\", \"waiting_max 0.0, kv_usage_pct_max 1.3-3.3%, preemptions 0\", \"engine config matches reference config\", \"no shed or errors reported\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Metrics match the healthy profile: latency within SLO, no queueing, KV pressure, or errors. No change needed.\"}",
+    "usage": {
+     "completion_tokens": 324,
+     "prompt_tokens": 2399,
+     "total_tokens": 2723,
+     "completion_tokens_details": {
+      "reasoning_tokens": 159
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "1f229c7910df7f60b660f0f13b4f52a9ba667fc5bb7fa5f45bc86cf86077dc7c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency ~6.2s < 10s SLO",
+     "arrivals ~4 rps matching normal profile 4.0 rps",
+     "waiting_max 0.0 and KV usage ~2% max, no preemptions",
+     "no shed or errors reported",
+     "engine config matches reference config"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Metrics match the healthy normal profile; latency, load, queueing, and KV use are all within SLO with no anomalies.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency ~6.2s < 10s SLO\", \"arrivals ~4 rps matching normal profile 4.0 rps\", \"waiting_max 0.0 and KV usage ~2% max, no preemptions\", \"no shed or errors reported\", \"engine config matches reference config\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Metrics match the healthy normal profile; latency, load, queueing, and KV use are all within SLO with no anomalies.\"}",
+    "usage": {
+     "completion_tokens": 287,
+     "prompt_tokens": 2869,
+     "total_tokens": 3156,
+     "completion_tokens_details": {
+      "reasoning_tokens": 147
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "46ee7dd20ba101df7ae746bcfbb39d3f76df7eef3fc01c001ea8a95deb2e16b3",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.72,
+    "evidence": [
+     "Non-engine GPU process pid 13214 embedding_batch using 1068 MB on same GPU",
+     "GPU util ~99-100% with power ~580-592W vs normal 554W",
+     "p95 latency rose to 8.15s vs normal 5.72s, p95 TTFT up to 0.70s vs 0.42s",
+     "Arrivals ~4 rps, prompt mean ~250 and config match reference, ruling out load/prompt/config causes",
+     "Waiting 0, KV usage ~2% and no preemptions, ruling out KV/batch limits"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 13214
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "A competing embedding batch job shares the GPU, saturating compute and inflating latency despite normal offered load and engine configuration. Removing that process is least disruptive.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.72, \"evidence\": [\"Non-engine GPU process pid 13214 embedding_batch using 1068 MB on same GPU\", \"GPU util ~99-100% with power ~580-592W vs normal 554W\", \"p95 latency rose to 8.15s vs normal 5.72s, p95 TTFT up to 0.70s vs 0.42s\", \"Arrivals ~4 rps, prompt mean ~250 and config match reference, ruling out load/prompt/config causes\", \"Waiting 0, KV usage ~2% and no preemptions, ruling out KV/batch limits\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 13214}], \"explanation\": \"A competing embedding batch job shares the GPU, saturating compute and inflating latency despite normal offered load and engine configuration. Removing that process is least disruptive.\"}",
+    "usage": {
+     "completion_tokens": 1255,
+     "prompt_tokens": 3123,
+     "total_tokens": 4378,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1040
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

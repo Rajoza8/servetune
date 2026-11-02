@@ -1,0 +1,227 @@
+{
+ "arm": "wonder",
+ "incident": "inc-09",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.9,
+  "evidence": [
+   "p95 latency rose to 13.09s and 12.88s at t=140-150, breaching 10s SLO, while arrivals stayed ~4rps normal",
+   "GPU process pid 12735 embedding_batch (1068MB, duty 1.0) co-located with VLLM EngineCore pid 12380",
+   "gpu_mem_used_mb jumped 88164 to 89237 at t=130, matching the extra process, coinciding with latency spike",
+   "prompt_tokens_mean fell to 85-182, KV usage only 3.5%, no preemptions, waiting only 2-4, ruling out long prompts/KV/cache limits"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 12735
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "A non-engine embedding batch process started sharing the GPU around t=130, competing for compute and inflating latency/running requests despite normal load. Stopping it restores sole GPU access without restarting the engine.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.9, \"evidence\": [\"p95 latency rose to 13.09s and 12.88s at t=140-150, breaching 10s SLO, while arrivals stayed ~4rps normal\", \"GPU process pid 12735 embedding_batch (1068MB, duty 1.0) co-located with VLLM EngineCore pid 12380\", \"gpu_mem_used_mb jumped 88164 to 89237 at t=130, matching the extra process, coinciding with latency spike\", \"prompt_tokens_mean fell to 85-182, KV usage only 3.5%, no preemptions, waiting only 2-4, ruling out long prompts/KV/cache limits\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 12735}], \"explanation\": \"A non-engine embedding batch process started sharing the GPU around t=130, competing for compute and inflating latency/running requests despite normal load. Stopping it restores sole GPU access without restarting the engine.\"}",
+  "usage": {
+   "completion_tokens": 600,
+   "prompt_tokens": 3122,
+   "total_tokens": 3722,
+   "completion_tokens_details": {
+    "reasoning_tokens": 356
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "ec28238e21bbed73553511dfc3c93d33595cd89a2530d550a47e696049381592",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.97,
+    "evidence": [
+     "arrivals 3.27-4.18 rps match normal 4.0 rps",
+     "p95 latency 5.57-5.91s below 10.0s SLO and near normal 5.72s",
+     "waiting_max 0.0 and preemptions 0.0 in all buckets",
+     "KV usage 1.55-1.92% near normal 1.78%",
+     "engine config matches reference and no competing GPU processes"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match the healthy profile: latency within SLO, no queueing, no preemptions, low KV use, and normal throughput. No incident or efficiency issue.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.97, \"evidence\": [\"arrivals 3.27-4.18 rps match normal 4.0 rps\", \"p95 latency 5.57-5.91s below 10.0s SLO and near normal 5.72s\", \"waiting_max 0.0 and preemptions 0.0 in all buckets\", \"KV usage 1.55-1.92% near normal 1.78%\", \"engine config matches reference and no competing GPU processes\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match the healthy profile: latency within SLO, no queueing, no preemptions, low KV use, and normal throughput. No incident or efficiency issue.\"}",
+    "usage": {
+     "completion_tokens": 403,
+     "prompt_tokens": 1461,
+     "total_tokens": 1864,
+     "completion_tokens_details": {
+      "reasoning_tokens": 220
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "9241e80d6da23c1d4c019524b77a5c05da551f62545164c96733646ea016de52",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency 5.57-6.15s < SLO 10.0s, similar to normal 5.72s",
+     "arrivals 3.3-5.4 rps near normal 4.0 rps, errors none, shed 0",
+     "waiting_max 0.0, running 17-27 near normal 21.1, preemptions 0",
+     "KV usage 1.5-2.2% max, near normal 1.78%",
+     "engine config matches reference; only GPU process is VLLM::EngineCore"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics within normal profile and SLO: latency, queueing, KV use, and throughput are healthy with no competing GPU process or config drift.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency 5.57-6.15s < SLO 10.0s, similar to normal 5.72s\", \"arrivals 3.3-5.4 rps near normal 4.0 rps, errors none, shed 0\", \"waiting_max 0.0, running 17-27 near normal 21.1, preemptions 0\", \"KV usage 1.5-2.2% max, near normal 1.78%\", \"engine config matches reference; only GPU process is VLLM::EngineCore\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics within normal profile and SLO: latency, queueing, KV use, and throughput are healthy with no competing GPU process or config drift.\"}",
+    "usage": {
+     "completion_tokens": 423,
+     "prompt_tokens": 1931,
+     "total_tokens": 2354,
+     "completion_tokens_details": {
+      "reasoning_tokens": 221
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 756
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "8d3fc3798403a334af037d58b17f34f4654dc70018fd0f9c6910c2be3fd03657",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.6-7.1s < 10s SLO across buckets",
+     "arrivals 3.3-5.8 rps near normal 4.0 rps, prompt mean 152-274 vs 202 normal",
+     "waiting_max 0, KV usage 1.5-3.1%, preemptions 0",
+     "engine config matches reference, only GPU process is VLLM engine"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics within normal profile and SLO; no queueing, errors, or resource starvation. Leave unchanged.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.6-7.1s < 10s SLO across buckets\", \"arrivals 3.3-5.8 rps near normal 4.0 rps, prompt mean 152-274 vs 202 normal\", \"waiting_max 0, KV usage 1.5-3.1%, preemptions 0\", \"engine config matches reference, only GPU process is VLLM engine\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics within normal profile and SLO; no queueing, errors, or resource starvation. Leave unchanged.\"}",
+    "usage": {
+     "completion_tokens": 396,
+     "prompt_tokens": 2402,
+     "total_tokens": 2798,
+     "completion_tokens_details": {
+      "reasoning_tokens": 233
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "adc2c87330462edadadb3a95fd01f462ffe64c72f87834755e2e3eb6a99ec36b",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.4-7.05s < SLO 10s in all buckets",
+     "arrivals ~2.7-5.8 rps vs normal 4.0 rps, prompt_tokens_mean ~150-370 vs normal 202",
+     "waiting_max 0.0, KV usage max ~3.14%, preemptions 0.0, no shed/errors",
+     "running 14-31 < max_num_seqs 64; engine config matches reference",
+     "only GPU process is VLLM::EngineCore, GPU util ~100% consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics within SLO and close to healthy normal profile; no queueing, preemption, errors, or contention. Deploy only changed scrape interval. Leave unchanged.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.4-7.05s < SLO 10s in all buckets\", \"arrivals ~2.7-5.8 rps vs normal 4.0 rps, prompt_tokens_mean ~150-370 vs normal 202\", \"waiting_max 0.0, KV usage max ~3.14%, preemptions 0.0, no shed/errors\", \"running 14-31 < max_num_seqs 64; engine config matches reference\", \"only GPU process is VLLM::EngineCore, GPU util ~100% consistent with normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics within SLO and close to healthy normal profile; no queueing, preemption, errors, or contention. Deploy only changed scrape interval. Leave unchanged.\"}",
+    "usage": {
+     "completion_tokens": 356,
+     "prompt_tokens": 2870,
+     "total_tokens": 3226,
+     "completion_tokens_details": {
+      "reasoning_tokens": 150
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "3210dec8cddcf0793b473d79581b6c0e4d18306de4596798749a87e4691824cd",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.9,
+    "evidence": [
+     "p95 latency rose to 13.09s and 12.88s at t=140-150, breaching 10s SLO, while arrivals stayed ~4rps normal",
+     "GPU process pid 12735 embedding_batch (1068MB, duty 1.0) co-located with VLLM EngineCore pid 12380",
+     "gpu_mem_used_mb jumped 88164 to 89237 at t=130, matching the extra process, coinciding with latency spike",
+     "prompt_tokens_mean fell to 85-182, KV usage only 3.5%, no preemptions, waiting only 2-4, ruling out long prompts/KV/cache limits"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 12735
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "A non-engine embedding batch process started sharing the GPU around t=130, competing for compute and inflating latency/running requests despite normal load. Stopping it restores sole GPU access without restarting the engine.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.9, \"evidence\": [\"p95 latency rose to 13.09s and 12.88s at t=140-150, breaching 10s SLO, while arrivals stayed ~4rps normal\", \"GPU process pid 12735 embedding_batch (1068MB, duty 1.0) co-located with VLLM EngineCore pid 12380\", \"gpu_mem_used_mb jumped 88164 to 89237 at t=130, matching the extra process, coinciding with latency spike\", \"prompt_tokens_mean fell to 85-182, KV usage only 3.5%, no preemptions, waiting only 2-4, ruling out long prompts/KV/cache limits\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 12735}], \"explanation\": \"A non-engine embedding batch process started sharing the GPU around t=130, competing for compute and inflating latency/running requests despite normal load. Stopping it restores sole GPU access without restarting the engine.\"}",
+    "usage": {
+     "completion_tokens": 600,
+     "prompt_tokens": 3122,
+     "total_tokens": 3722,
+     "completion_tokens_details": {
+      "reasoning_tokens": 356
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

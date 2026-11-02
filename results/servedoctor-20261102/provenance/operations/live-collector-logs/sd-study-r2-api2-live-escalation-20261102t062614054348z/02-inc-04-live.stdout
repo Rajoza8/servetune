@@ -1,0 +1,59 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+inc-04 glimmer_to_spark: context_limit_too_small at 30s -> [{'type': 'set_engine_config', 'knob': 'max_model_len', 'value': 4096}]
+  action {'type': 'set_engine_config', 'knob': 'max_model_len', 'value': 4096} -> executed
+{
+  "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.95,
+    "evidence": [
+      "max_model_len changed 4096->768 at t=0 deploy",
+      "http_400=5,9,5 errors in 10s buckets",
+      "prompt_tokens_mean 195-398 with max 768 rejects valid prompts",
+      "p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%",
+      "arrivals_rps ~2.7-3.8 normal vs 4.0 reference"
+    ],
+    "actions": [
+      {
+        "type": "set_engine_config",
+        "knob": "max_model_len",
+        "value": 4096
+      }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len changed 4096->768 at t=0 deploy\", \"http_400=5,9,5 errors in 10s buckets\", \"prompt_tokens_mean 195-398 with max 768 rejects valid prompts\", \"p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%\", \"arrivals_rps ~2.7-3.8 normal vs 4.0 reference\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.\"}",
+    "usage": {
+      "completion_tokens": 530,
+      "prompt_tokens": 2065,
+      "total_tokens": 2595,
+      "completion_tokens_details": {
+        "reasoning_tokens": 325
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "t": 30.0
+  },
+  "executed": [
+    {
+      "action": {
+        "type": "set_engine_config",
+        "knob": "max_model_len",
+        "value": 4096
+      },
+      "at": "2026-11-02T06:39:42.611251+00:00",
+      "previous": {
+        "max_model_len": 768
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "time_to_recover_s": 102.3
+}

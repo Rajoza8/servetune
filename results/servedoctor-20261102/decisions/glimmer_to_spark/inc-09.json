@@ -1,0 +1,199 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-09",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.9,
+  "evidence": [
+   "p95_latency_s 12.88 exceeds SLO 10.0 in last buckets",
+   "arrivals_rps 3.6-5.2 vs normal 4.0, no surge",
+   "prompt_tokens_mean 85-182 vs normal 202, no flood",
+   "non-engine GPU process pid 12735 embedding_batch duty 1.0",
+   "gpu_power_w ~596 vs normal 554 and mem +~1600MB with KV usage only 3.5%"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 12735
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency SLO breach without traffic or prompt shift; KV low. Extra embedding batch process on same GPU raises power/mem and slows engine, causing queueing. Stopping it restores compute.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 12.88 exceeds SLO 10.0 in last buckets\", \"arrivals_rps 3.6-5.2 vs normal 4.0, no surge\", \"prompt_tokens_mean 85-182 vs normal 202, no flood\", \"non-engine GPU process pid 12735 embedding_batch duty 1.0\", \"gpu_power_w ~596 vs normal 554 and mem +~1600MB with KV usage only 3.5%\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 12735}], \"explanation\": \"Latency SLO breach without traffic or prompt shift; KV low. Extra embedding batch process on same GPU raises power/mem and slows engine, causing queueing. Stopping it restores compute.\"}",
+  "usage": {
+   "completion_tokens": 737,
+   "prompt_tokens": 3122,
+   "total_tokens": 3859,
+   "completion_tokens_details": {
+    "reasoning_tokens": 538
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "ec28238e21bbed73553511dfc3c93d33595cd89a2530d550a47e696049381592",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.6-5.9s under 10s SLO, shed rate 0, no errors, waiting 0, GPU util normal.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.6-5.9s under 10s SLO, shed rate 0, no errors, waiting 0, GPU util normal.\"}",
+    "usage": {
+     "prompt_tokens": 975,
+     "total_tokens": 1142,
+     "completion_tokens": 167,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "9241e80d6da23c1d4c019524b77a5c05da551f62545164c96733646ea016de52",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.6-6.2s under 10s SLO, zero shed/errors, GPU util normal, no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.6-6.2s under 10s SLO, zero shed/errors, GPU util normal, no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 1445,
+     "total_tokens": 1579,
+     "completion_tokens": 134,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "8d3fc3798403a334af037d58b17f34f4654dc70018fd0f9c6910c2be3fd03657",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~6.5s under 10s SLO, zero shed/errors, GPU util high but stable, no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~6.5s under 10s SLO, zero shed/errors, GPU util high but stable, no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 1916,
+     "total_tokens": 2060,
+     "completion_tokens": 144,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "adc2c87330462edadadb3a95fd01f462ffe64c72f87834755e2e3eb6a99ec36b",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5-7s under 10s SLO, zero shed/errors, waiting 0, GPU util normal ~99-100%. No anomaly.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5-7s under 10s SLO, zero shed/errors, waiting 0, GPU util normal ~99-100%. No anomaly.\"}",
+    "usage": {
+     "prompt_tokens": 2384,
+     "total_tokens": 2532,
+     "completion_tokens": 148,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "3210dec8cddcf0793b473d79581b6c0e4d18306de4596798749a87e4691824cd",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency 12.9s exceeds SLO 10s with rising queue: waiting_max 4, running 56, p95_ttft 1.23s at t=150s.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency 12.9s exceeds SLO 10s with rising queue: waiting_max 4, running 56, p95_ttft 1.23s at t=150s.\"}",
+    "usage": {
+     "prompt_tokens": 2636,
+     "total_tokens": 2748,
+     "completion_tokens": 112,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.9,
+    "evidence": [
+     "p95_latency_s 12.88 exceeds SLO 10.0 in last buckets",
+     "arrivals_rps 3.6-5.2 vs normal 4.0, no surge",
+     "prompt_tokens_mean 85-182 vs normal 202, no flood",
+     "non-engine GPU process pid 12735 embedding_batch duty 1.0",
+     "gpu_power_w ~596 vs normal 554 and mem +~1600MB with KV usage only 3.5%"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 12735
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency SLO breach without traffic or prompt shift; KV low. Extra embedding batch process on same GPU raises power/mem and slows engine, causing queueing. Stopping it restores compute.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 12.88 exceeds SLO 10.0 in last buckets\", \"arrivals_rps 3.6-5.2 vs normal 4.0, no surge\", \"prompt_tokens_mean 85-182 vs normal 202, no flood\", \"non-engine GPU process pid 12735 embedding_batch duty 1.0\", \"gpu_power_w ~596 vs normal 554 and mem +~1600MB with KV usage only 3.5%\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 12735}], \"explanation\": \"Latency SLO breach without traffic or prompt shift; KV low. Extra embedding batch process on same GPU raises power/mem and slows engine, causing queueing. Stopping it restores compute.\"}",
+    "usage": {
+     "completion_tokens": 737,
+     "prompt_tokens": 3122,
+     "total_tokens": 3859,
+     "completion_tokens_details": {
+      "reasoning_tokens": 538
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

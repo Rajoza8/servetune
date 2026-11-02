@@ -1,0 +1,6325 @@
+{
+  "project": "servedoctor",
+  "caps_usd": {
+    "meta": "50",
+    "baseten": "20"
+  },
+  "entries": [
+    {
+      "id": "ca43abd1274c4107a544780009f0d017",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01568275",
+      "accounted_usd": "0.01568275",
+      "at": "2026-11-01T20:38:31.830871+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9733aeae9ec84e29a23dd7e541b1897f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0169515",
+      "accounted_usd": "0.0169515",
+      "at": "2026-11-01T20:38:31.843405+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "44ee34fae5d7425c91ff42665c7bf13f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0182265",
+      "accounted_usd": "0.0182265",
+      "at": "2026-11-01T20:38:31.855186+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1fba6b1f3c1d421fb7a83490c66574b8",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01960525",
+      "accounted_usd": "0.01960525",
+      "at": "2026-11-01T20:38:31.866887+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1a6d1c1ddee34ca68e4458aab08ad718",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0199515",
+      "accounted_usd": "0.0199515",
+      "at": "2026-11-01T20:38:31.878693+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "d7704571400547e6ab2777f3e3f45399",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02029025",
+      "accounted_usd": "0.02029025",
+      "at": "2026-11-01T20:38:31.891954+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "edb10fea638240158fa27ecb455bb17e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02029275",
+      "accounted_usd": "0.02029275",
+      "at": "2026-11-01T20:38:31.903841+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7991bc9479914baea9a60460ca469945",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02029025",
+      "accounted_usd": "0.02029025",
+      "at": "2026-11-01T20:38:31.915759+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "06e261e98afa45bf816a283ddf42d4c4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0202765",
+      "accounted_usd": "0.0202765",
+      "at": "2026-11-01T20:38:31.927659+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c192dd84c52a467abce062713a600942",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02027775",
+      "accounted_usd": "0.02027775",
+      "at": "2026-11-01T20:38:31.938509+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "f12f00c9678449cabdbbe5999f3a27a4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02027775",
+      "accounted_usd": "0.02027775",
+      "at": "2026-11-01T20:38:31.948488+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "03bd66cd38794748a4c3feb6a54ac040",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02027775",
+      "accounted_usd": "0.02027775",
+      "at": "2026-11-01T20:38:31.958829+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1b4114a176ff478e86366dbad3d14e41",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01566525",
+      "accounted_usd": "0.01566525",
+      "at": "2026-11-01T20:38:31.973587+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "bb696c9dc617414d9a683744bbb220ab",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01692275",
+      "accounted_usd": "0.01692275",
+      "at": "2026-11-01T20:38:31.983247+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b4e6d2ee9a4b40879ecddfc0b7ffd3d5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0181765",
+      "accounted_usd": "0.0181765",
+      "at": "2026-11-01T20:38:31.992966+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "91a0639e1a1b4c51b6f409baf49a9094",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01956775",
+      "accounted_usd": "0.01956775",
+      "at": "2026-11-01T20:38:32.002779+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "323a64d4c837471593590171e626f8de",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.019929",
+      "accounted_usd": "0.019929",
+      "at": "2026-11-01T20:38:32.012706+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9c9a8830b3294bc4b67a700d0eb60126",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02029275",
+      "accounted_usd": "0.02029275",
+      "at": "2026-11-01T20:38:32.022659+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b143c73613a04b0b8b19d78abe12704f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02032525",
+      "accounted_usd": "0.02032525",
+      "at": "2026-11-01T20:38:32.032680+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "626337b428d94d13af94b0574c054dea",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02036025",
+      "accounted_usd": "0.02036025",
+      "at": "2026-11-01T20:38:32.044178+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7af5470e49bf444391b2e66b27e02a72",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020394",
+      "accounted_usd": "0.020394",
+      "at": "2026-11-01T20:38:32.054693+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4975f50689e045b1aceca2ee91161a23",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020424",
+      "accounted_usd": "0.020424",
+      "at": "2026-11-01T20:38:32.064932+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b6174daf4f604341b07862f179e3e08d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02043275",
+      "accounted_usd": "0.02043275",
+      "at": "2026-11-01T20:38:32.075204+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "89bcdb7e855149e8a99c4616e348b3a2",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02044775",
+      "accounted_usd": "0.02044775",
+      "at": "2026-11-01T20:38:32.085586+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "90bacf32242a427bbfdeac68eba4f98c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0156515",
+      "accounted_usd": "0.0156515",
+      "at": "2026-11-01T20:38:32.099692+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "df0d5d4b2eee4b86bcb58f153ed1a4d7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01690775",
+      "accounted_usd": "0.01690775",
+      "at": "2026-11-01T20:38:32.109533+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b3eeda70beea4f19babe4990ff340731",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0181615",
+      "accounted_usd": "0.0181615",
+      "at": "2026-11-01T20:38:32.119521+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8fa7657e38424684a09fe3162a5534ec",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01942275",
+      "accounted_usd": "0.01942275",
+      "at": "2026-11-01T20:38:32.129452+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c500f0446fec4855893d682836513080",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.019764",
+      "accounted_usd": "0.019764",
+      "at": "2026-11-01T20:38:32.139454+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1a09bdadc1a748448aa9612ae326860e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02010525",
+      "accounted_usd": "0.02010525",
+      "at": "2026-11-01T20:38:32.149539+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "dd963b12234e44158ff91a4860b2b10f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020114",
+      "accounted_usd": "0.020114",
+      "at": "2026-11-01T20:38:32.159737+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7f10942e910944b5ae248a7f83b64404",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020219",
+      "accounted_usd": "0.020219",
+      "at": "2026-11-01T20:38:32.171411+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "11954ee196db428a91bd688099d9d78d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02022275",
+      "accounted_usd": "0.02022275",
+      "at": "2026-11-01T20:38:32.181859+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a3fbb29a1c114932a9d0f80e5bcaa3e5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02022775",
+      "accounted_usd": "0.02022775",
+      "at": "2026-11-01T20:38:32.192302+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "5c70d8d230ff49728e5b04b27ac200e9",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0202315",
+      "accounted_usd": "0.0202315",
+      "at": "2026-11-01T20:38:32.202782+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "666b34786f3649ac8dd713a9e660a051",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02023275",
+      "accounted_usd": "0.02023275",
+      "at": "2026-11-01T20:38:32.213262+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "e8136c202fb04d8883cecd02933db1b3",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01566525",
+      "accounted_usd": "0.01566525",
+      "at": "2026-11-01T20:38:32.227027+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "479116dae32640acbed7cbc947e46da9",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.016919",
+      "accounted_usd": "0.016919",
+      "at": "2026-11-01T20:38:32.237048+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "12a1b5c5f7ff444bbd0b27a514e86acb",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01817775",
+      "accounted_usd": "0.01817775",
+      "at": "2026-11-01T20:38:32.247010+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "68661a27d4a944c789c4125512ca4616",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0194365",
+      "accounted_usd": "0.0194365",
+      "at": "2026-11-01T20:38:32.257066+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1cae45f94d9940a691b29afcc759f6ce",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.019964",
+      "accounted_usd": "0.019964",
+      "at": "2026-11-01T20:38:32.267133+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "89d16c4f197a4eb8b2da2adedd735559",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02042525",
+      "accounted_usd": "0.02042525",
+      "at": "2026-11-01T20:38:32.277260+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8e43bd0c25c9457ea59c55f10ebdd0c6",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0204265",
+      "accounted_usd": "0.0204265",
+      "at": "2026-11-01T20:38:32.287519+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c12ab7448f764202aaf3257b71f88312",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020434",
+      "accounted_usd": "0.020434",
+      "at": "2026-11-01T20:38:32.299357+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "64b377058e5f4089886d46f5a90e86de",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020434",
+      "accounted_usd": "0.020434",
+      "at": "2026-11-01T20:38:32.309744+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "212265b5e0414deea8c4117564f7a80e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02043275",
+      "accounted_usd": "0.02043275",
+      "at": "2026-11-01T20:38:32.320210+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "f4198e3df3f74ff3b08d450223d0dd56",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0204365",
+      "accounted_usd": "0.0204365",
+      "at": "2026-11-01T20:38:32.330700+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a1eb3bda36f14f5f9685e0ecc093ab2d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02044525",
+      "accounted_usd": "0.02044525",
+      "at": "2026-11-01T20:38:32.341285+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b084d3ebe4884fe291ca2fbe713e3b6b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.015729",
+      "accounted_usd": "0.015729",
+      "at": "2026-11-01T20:38:32.355774+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a764e1c9f99344e093dfb5479d362be5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01701525",
+      "accounted_usd": "0.01701525",
+      "at": "2026-11-01T20:38:32.365739+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "147d846edb6546a6ae4a1fb9968056c5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0184215",
+      "accounted_usd": "0.0184215",
+      "at": "2026-11-01T20:38:32.375764+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8ec788ae8996407eb5b92c123ed3b3f4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.019714",
+      "accounted_usd": "0.019714",
+      "at": "2026-11-01T20:38:32.385873+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b1ab434d29d34fea9d869ccc7b2e8a22",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020089",
+      "accounted_usd": "0.020089",
+      "at": "2026-11-01T20:38:32.396072+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "3c98cc1a55f44f81848b8655d60d508b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020464",
+      "accounted_usd": "0.020464",
+      "at": "2026-11-01T20:38:32.406286+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "bf5bb009f45d4f3382a3a76f039e6a22",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020464",
+      "accounted_usd": "0.020464",
+      "at": "2026-11-01T20:38:32.418038+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c1e67e7aa9834f1b966aa415acc9b83e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020464",
+      "accounted_usd": "0.020464",
+      "at": "2026-11-01T20:38:32.428527+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8cfbae41a8a0430490fc8c49284e244f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02047025",
+      "accounted_usd": "0.02047025",
+      "at": "2026-11-01T20:38:32.439059+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4b971672c67e475faa959c62419ddc40",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020469",
+      "accounted_usd": "0.020469",
+      "at": "2026-11-01T20:38:32.449559+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7aefa915b3f14b8782eeaa00de65873c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02045775",
+      "accounted_usd": "0.02045775",
+      "at": "2026-11-01T20:38:32.460156+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "18e27e4f232f45f0b1fccdc4df1576dc",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020459",
+      "accounted_usd": "0.020459",
+      "at": "2026-11-01T20:38:32.470794+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "13482193974e4370bf830bef4ac5e8e7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01573025",
+      "accounted_usd": "0.01573025",
+      "at": "2026-11-01T20:38:32.484846+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "e4d810cc155b48008c1c48c40c9977c2",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0169915",
+      "accounted_usd": "0.0169915",
+      "at": "2026-11-01T20:38:32.494924+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ba9bd30e69404b48afbd1595a6ccb330",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01826025",
+      "accounted_usd": "0.01826025",
+      "at": "2026-11-01T20:38:32.504984+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "d2b48ba4dd8c4a9ba3fc0b8c0a78d537",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01954275",
+      "accounted_usd": "0.01954275",
+      "at": "2026-11-01T20:38:32.515129+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "509704e7422945dfac42b95ecb7a8ed5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020024",
+      "accounted_usd": "0.020024",
+      "at": "2026-11-01T20:38:32.525377+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "beea2f6902fb42968011198945115b9c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020384",
+      "accounted_usd": "0.020384",
+      "at": "2026-11-01T20:38:32.535723+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a067693ac8bc475aa6472352d267a241",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02039275",
+      "accounted_usd": "0.02039275",
+      "at": "2026-11-01T20:38:32.547511+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2415ea57b62441c384ec786da3db4194",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02041275",
+      "accounted_usd": "0.02041275",
+      "at": "2026-11-01T20:38:32.558035+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "aa391202f228442b8688881f3de95384",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0204265",
+      "accounted_usd": "0.0204265",
+      "at": "2026-11-01T20:38:32.568567+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "02b0444a309549ea8ca5132970b78fab",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02042775",
+      "accounted_usd": "0.02042775",
+      "at": "2026-11-01T20:38:32.579129+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "f14e2eafbfdb4a3e97056f66e769227a",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02042025",
+      "accounted_usd": "0.02042025",
+      "at": "2026-11-01T20:38:32.589833+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2e5924ecf0b348f8a011e76ff36a23e6",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02041775",
+      "accounted_usd": "0.02041775",
+      "at": "2026-11-01T20:38:32.600646+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "5673c20d160843df9bddca2068e1b14c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01564525",
+      "accounted_usd": "0.01564525",
+      "at": "2026-11-01T20:38:32.614672+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "3b33fa467448429ba5916599500acbfb",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.016874",
+      "accounted_usd": "0.016874",
+      "at": "2026-11-01T20:38:32.624846+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4c62d6ed596543dbad4c3124e92632ed",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0182115",
+      "accounted_usd": "0.0182115",
+      "at": "2026-11-01T20:38:32.635044+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9ec022aecdba4fe5ac048b89bd0ca483",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0194515",
+      "accounted_usd": "0.0194515",
+      "at": "2026-11-01T20:38:32.645220+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "5e34d0ec317642ddb9ede7e0205e65e9",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0197815",
+      "accounted_usd": "0.0197815",
+      "at": "2026-11-01T20:38:32.655495+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c54f92e5aae3452eae47dd67b66226a3",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020104",
+      "accounted_usd": "0.020104",
+      "at": "2026-11-01T20:38:32.665813+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a4319df067104d04989d680d22ebae9c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020099",
+      "accounted_usd": "0.020099",
+      "at": "2026-11-01T20:38:32.677671+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "70505fea3e7f49b89310f4f6313339b7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02010525",
+      "accounted_usd": "0.02010525",
+      "at": "2026-11-01T20:38:32.688184+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "0d3fa0be1794459e8e3469ca7391471b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02010525",
+      "accounted_usd": "0.02010525",
+      "at": "2026-11-01T20:38:32.698723+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a663d156dc79480f904c44be8ffea490",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020104",
+      "accounted_usd": "0.020104",
+      "at": "2026-11-01T20:38:32.709264+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "5050adaf567c4976be64bae08e5fd5d8",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020094",
+      "accounted_usd": "0.020094",
+      "at": "2026-11-01T20:38:32.719911+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1a100ea446de4b18b284e0e880e0f0f7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02011025",
+      "accounted_usd": "0.02011025",
+      "at": "2026-11-01T20:38:32.730547+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a2b67050a8f844958d971d5adf32b0ac",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.015654",
+      "accounted_usd": "0.015654",
+      "at": "2026-11-01T20:38:32.745247+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2ad5dc7cb67641e18345fcfeefb370c6",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0170315",
+      "accounted_usd": "0.0170315",
+      "at": "2026-11-01T20:38:32.755473+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b18934c969c44604adecebdb29a0e4b0",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0182865",
+      "accounted_usd": "0.0182865",
+      "at": "2026-11-01T20:38:32.765642+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1a621762559a4033a3535855d7c7f1aa",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.01954275",
+      "accounted_usd": "0.01954275",
+      "at": "2026-11-01T20:38:32.775899+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a7aeb303c7c54ab2bcb4ad0f64ea48f4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0199015",
+      "accounted_usd": "0.0199015",
+      "at": "2026-11-01T20:38:32.786422+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "6b046c449a5847fc81ff98f488ed3be0",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02027525",
+      "accounted_usd": "0.02027525",
+      "at": "2026-11-01T20:38:32.796926+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "eddb7d7c08414646be156ca7750495f2",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020324",
+      "accounted_usd": "0.020324",
+      "at": "2026-11-01T20:38:32.808731+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b88a4ed9f5d8496dbfa71da999fba94a",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02036275",
+      "accounted_usd": "0.02036275",
+      "at": "2026-11-01T20:38:32.819401+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8fed545fef27499abe654bbad0832b00",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0203965",
+      "accounted_usd": "0.0203965",
+      "at": "2026-11-01T20:38:32.830103+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "af8f89e6c58041c087e21d2afb18b0b5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.020424",
+      "accounted_usd": "0.020424",
+      "at": "2026-11-01T20:38:32.840972+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "936ea1bd8830444a8a49797c95b3fa2a",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0204565",
+      "accounted_usd": "0.0204565",
+      "at": "2026-11-01T20:38:32.851861+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "344c283f2b1544439d774ba7c1d00015",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.02045025",
+      "accounted_usd": "0.02045025",
+      "at": "2026-11-01T20:38:32.862732+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "5bfb8bc87532422cae7944a4612a4d0d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063292",
+      "accounted_usd": "0.063292",
+      "at": "2026-11-01T20:38:43.642808+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "5ddb5e416e3f467ca4d1187c8146f84b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.067352",
+      "accounted_usd": "0.067352",
+      "at": "2026-11-01T20:38:43.655837+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "3ff7aca148684954a94d86d57dbfa28e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.071432",
+      "accounted_usd": "0.071432",
+      "at": "2026-11-01T20:38:43.668096+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "6b45dfff34084dc7bb47ae5dbd0930ce",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.075844",
+      "accounted_usd": "0.075844",
+      "at": "2026-11-01T20:38:43.680366+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9ee9592c5abc4a3382dcc8ea487eaa7a",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.076952",
+      "accounted_usd": "0.076952",
+      "at": "2026-11-01T20:38:43.693400+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "06f6be0a9fdf4da0bbb314936ddecbbd",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078036",
+      "accounted_usd": "0.078036",
+      "at": "2026-11-01T20:38:43.705700+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9407e47575f24e8fb8b9508941b03fbe",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078044",
+      "accounted_usd": "0.078044",
+      "at": "2026-11-01T20:38:43.718019+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "e0dfdf6c39e44fb59d2194691dd36b96",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078036",
+      "accounted_usd": "0.078036",
+      "at": "2026-11-01T20:38:43.730520+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7c1dbd84d3d04ad7a60845377c3ea9d0",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077992",
+      "accounted_usd": "0.077992",
+      "at": "2026-11-01T20:38:43.743029+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8015a9a691314bdc8ddd8211b5f0b587",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077996",
+      "accounted_usd": "0.077996",
+      "at": "2026-11-01T20:38:43.756177+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "109f38c424cf44fea71ca0c26966c199",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077996",
+      "accounted_usd": "0.077996",
+      "at": "2026-11-01T20:38:43.766732+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7fc77f6c448142a6be7dcf52a9799eda",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077996",
+      "accounted_usd": "0.077996",
+      "at": "2026-11-01T20:38:43.777263+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "78d76699aa7f4259a412702c62c01869",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063236",
+      "accounted_usd": "0.063236",
+      "at": "2026-11-01T20:38:43.791240+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7ac527924cb04edcb3ef26bbaafe25b7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.06726",
+      "accounted_usd": "0.06726",
+      "at": "2026-11-01T20:38:43.801382+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "87c544c5dd694f90bbff68860a33984b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.071272",
+      "accounted_usd": "0.071272",
+      "at": "2026-11-01T20:38:43.811546+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "0f9e66c2e9034173b08d2e06db6eb11a",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.075724",
+      "accounted_usd": "0.075724",
+      "at": "2026-11-01T20:38:43.821748+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ddb6c5fb06fd48e3a0c57a22444b90c9",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07688",
+      "accounted_usd": "0.07688",
+      "at": "2026-11-01T20:38:43.832038+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "deb65a6823854f129c21949ae97f9db3",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078044",
+      "accounted_usd": "0.078044",
+      "at": "2026-11-01T20:38:43.843596+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1693fb6c783445bbbde8954b495bd409",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078148",
+      "accounted_usd": "0.078148",
+      "at": "2026-11-01T20:38:43.854078+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "fbb079f1bbc9462a8c09ef28d426f428",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07826",
+      "accounted_usd": "0.07826",
+      "at": "2026-11-01T20:38:43.864636+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "61e60884f5d2466fbd7dacce9a7a7d9e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078368",
+      "accounted_usd": "0.078368",
+      "at": "2026-11-01T20:38:43.875228+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "fe74e3d867da4619b6e337b5243a8040",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078464",
+      "accounted_usd": "0.078464",
+      "at": "2026-11-01T20:38:43.885895+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "3fc9ab9ed5f747988614570806de5df4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078492",
+      "accounted_usd": "0.078492",
+      "at": "2026-11-01T20:38:43.896587+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "603d8e4939764176ada7d35a2fe9a21b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07854",
+      "accounted_usd": "0.07854",
+      "at": "2026-11-01T20:38:43.908558+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8eab7b49b43a4abaae933923b091dec7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063192",
+      "accounted_usd": "0.063192",
+      "at": "2026-11-01T20:38:43.921950+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9b9b3923ac2b4d91b13bcb75e3e0fab1",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.067212",
+      "accounted_usd": "0.067212",
+      "at": "2026-11-01T20:38:43.932173+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "d3c0232f7fc9468487fd3037981f50d3",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.071224",
+      "accounted_usd": "0.071224",
+      "at": "2026-11-01T20:38:43.942398+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c4d4cbc954dd4e62bc3f61185b57d769",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07526",
+      "accounted_usd": "0.07526",
+      "at": "2026-11-01T20:38:43.952710+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2f734a298b154d149fc477e0d7a836dd",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.076352",
+      "accounted_usd": "0.076352",
+      "at": "2026-11-01T20:38:43.963085+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "0d681e6d951344d68231134a2a78aa6e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077444",
+      "accounted_usd": "0.077444",
+      "at": "2026-11-01T20:38:43.974682+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "58db79b594734e9298f7f49b239b5164",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077472",
+      "accounted_usd": "0.077472",
+      "at": "2026-11-01T20:38:43.985439+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "63947e3dabea4c64a7c975ea97016d36",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077808",
+      "accounted_usd": "0.077808",
+      "at": "2026-11-01T20:38:43.996045+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "53f601ed410b40c2919aebee4da024a2",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07782",
+      "accounted_usd": "0.07782",
+      "at": "2026-11-01T20:38:44.006727+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "093805d3405a4a798547aec4edbcf81c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077836",
+      "accounted_usd": "0.077836",
+      "at": "2026-11-01T20:38:44.017483+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "76f8171546c642f894b2c151d8f36e8f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077848",
+      "accounted_usd": "0.077848",
+      "at": "2026-11-01T20:38:44.028267+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "845cd290d47d4852a6a21a0e169018c4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077852",
+      "accounted_usd": "0.077852",
+      "at": "2026-11-01T20:38:44.040315+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "46385aa69bd3469c8421833dca7ba96f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063236",
+      "accounted_usd": "0.063236",
+      "at": "2026-11-01T20:38:44.053681+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "d068cfee295244a7b3e2d313fe644f5d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.067248",
+      "accounted_usd": "0.067248",
+      "at": "2026-11-01T20:38:44.063902+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4fd25b68c7da43c798ee582d35857717",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.071276",
+      "accounted_usd": "0.071276",
+      "at": "2026-11-01T20:38:44.074279+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "99f6c3c11a394a5e8cc2242f6bc3ebba",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.075304",
+      "accounted_usd": "0.075304",
+      "at": "2026-11-01T20:38:44.084621+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "142568b09ec6429d8be62e5baffdcbe1",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.076992",
+      "accounted_usd": "0.076992",
+      "at": "2026-11-01T20:38:44.095061+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "a03da4a45aee4ee4bbc1e51069eff436",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078468",
+      "accounted_usd": "0.078468",
+      "at": "2026-11-01T20:38:44.106582+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "74ef0d46dfb74cf3846a090bf337047f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078472",
+      "accounted_usd": "0.078472",
+      "at": "2026-11-01T20:38:44.117181+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "1ad6a52521db4b89b0a89f6a04d449ec",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078496",
+      "accounted_usd": "0.078496",
+      "at": "2026-11-01T20:38:44.127904+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b5c2e646ab5648de9f590415e706fc09",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078496",
+      "accounted_usd": "0.078496",
+      "at": "2026-11-01T20:38:44.138659+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "d62461fa9fe74eeebac311eb6112a91d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078492",
+      "accounted_usd": "0.078492",
+      "at": "2026-11-01T20:38:44.149406+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4b09341e214943ee92aa1c99ca031e3b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078504",
+      "accounted_usd": "0.078504",
+      "at": "2026-11-01T20:38:44.161458+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ee0d9f88e53f48bf85bd7bfe95dfd154",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078532",
+      "accounted_usd": "0.078532",
+      "at": "2026-11-01T20:38:44.172445+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2367f8d8663b4effb157f1819de4a779",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.06344",
+      "accounted_usd": "0.06344",
+      "at": "2026-11-01T20:38:44.186238+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "bd5d62617b6f4199b17dc0de91987645",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.067556",
+      "accounted_usd": "0.067556",
+      "at": "2026-11-01T20:38:44.196645+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b4a0a78a95394c84bf9d23595f14e8e3",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.072056",
+      "accounted_usd": "0.072056",
+      "at": "2026-11-01T20:38:44.207068+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b287306f804440cd8df08bd2b127d2e5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.076192",
+      "accounted_usd": "0.076192",
+      "at": "2026-11-01T20:38:44.217519+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "00a29a1124df4d9ea1c0d6206270bee0",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077392",
+      "accounted_usd": "0.077392",
+      "at": "2026-11-01T20:38:44.228039+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "7aa58fd3b721401fba6901bae96b579a",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078592",
+      "accounted_usd": "0.078592",
+      "at": "2026-11-01T20:38:44.239662+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "de6a1e2d409f419eb0c74a73903520c5",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078592",
+      "accounted_usd": "0.078592",
+      "at": "2026-11-01T20:38:44.250333+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4ed55c97f24743bb9d7a911882331c1c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078592",
+      "accounted_usd": "0.078592",
+      "at": "2026-11-01T20:38:44.261065+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "bc1a9c9c8eb040f38e616725c767484b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078612",
+      "accounted_usd": "0.078612",
+      "at": "2026-11-01T20:38:44.271902+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ed2674d39ab64bfb8fe19a45d5d77a74",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078608",
+      "accounted_usd": "0.078608",
+      "at": "2026-11-01T20:38:44.283936+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "788f4805b4a540d7858f4bdf16adaf1d",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078572",
+      "accounted_usd": "0.078572",
+      "at": "2026-11-01T20:38:44.294915+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "96d5b8dd30514e8a9197020cafd9c774",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078576",
+      "accounted_usd": "0.078576",
+      "at": "2026-11-01T20:38:44.305935+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2f1f9846857e41a7a1f94a20031b3178",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063444",
+      "accounted_usd": "0.063444",
+      "at": "2026-11-01T20:38:44.319812+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "548dfd8b829f4c26a0a6dd38afe15d67",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.06748",
+      "accounted_usd": "0.06748",
+      "at": "2026-11-01T20:38:44.330192+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "6f83b9d5fb3a481283082814b3e7e2ed",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07154",
+      "accounted_usd": "0.07154",
+      "at": "2026-11-01T20:38:44.340622+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4aff8b2fe36a47458341773fb1f12635",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.075644",
+      "accounted_usd": "0.075644",
+      "at": "2026-11-01T20:38:44.351086+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "e395f7362fb24ad6aa1ff351b027a571",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077184",
+      "accounted_usd": "0.077184",
+      "at": "2026-11-01T20:38:44.362584+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "88f3162e0fba4bc0a93b24ad184b2695",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078336",
+      "accounted_usd": "0.078336",
+      "at": "2026-11-01T20:38:44.373290+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "2c692695c1d045afa48b8ef0d2183e1b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078364",
+      "accounted_usd": "0.078364",
+      "at": "2026-11-01T20:38:44.383980+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "6eda7f5a80bb4e77baafa5faf3c15fea",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078428",
+      "accounted_usd": "0.078428",
+      "at": "2026-11-01T20:38:44.394735+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "93f686d3443140ce9f35f54f721cb07f",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078472",
+      "accounted_usd": "0.078472",
+      "at": "2026-11-01T20:38:44.405610+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c12abd907a7e4e72a9712c0365b6fcc4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078476",
+      "accounted_usd": "0.078476",
+      "at": "2026-11-01T20:38:44.417511+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "3f08bf21431044dd99778beaa6a2f1fc",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078452",
+      "accounted_usd": "0.078452",
+      "at": "2026-11-01T20:38:44.428548+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "37149c3ddea04c11bb09be35f404392b",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078444",
+      "accounted_usd": "0.078444",
+      "at": "2026-11-01T20:38:44.439612+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "4fea93ad25004982a86230dc20a38d39",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063172",
+      "accounted_usd": "0.063172",
+      "at": "2026-11-01T20:38:44.453465+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "3306c4b078d041d89b8a9fbc917117d3",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.067104",
+      "accounted_usd": "0.067104",
+      "at": "2026-11-01T20:38:44.463926+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "449685c0e76f4a5cb3eeccb364a0155c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.071384",
+      "accounted_usd": "0.071384",
+      "at": "2026-11-01T20:38:44.474486+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ae95cb3a333e49d1bc27b7e0d136eaab",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.075352",
+      "accounted_usd": "0.075352",
+      "at": "2026-11-01T20:38:44.485020+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "0a38ca48270f4f7b82ded157293d32e9",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.076408",
+      "accounted_usd": "0.076408",
+      "at": "2026-11-01T20:38:44.496544+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ff357e135826445aa351ca2a0682c0d7",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07744",
+      "accounted_usd": "0.07744",
+      "at": "2026-11-01T20:38:44.507267+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "693edc6bb47a420fa7b1b7aa95c1a7b2",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077424",
+      "accounted_usd": "0.077424",
+      "at": "2026-11-01T20:38:44.517994+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "6a743209683f4eb18ad7142f691a0ae1",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077444",
+      "accounted_usd": "0.077444",
+      "at": "2026-11-01T20:38:44.528746+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "dac23544ebdf48e4995f84732f541cf6",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077444",
+      "accounted_usd": "0.077444",
+      "at": "2026-11-01T20:38:44.539555+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "979d4c476e0143329526e36ea242184e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07744",
+      "accounted_usd": "0.07744",
+      "at": "2026-11-01T20:38:44.551381+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "b1f3c9e5962a4219b4f4297acd54de6c",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077408",
+      "accounted_usd": "0.077408",
+      "at": "2026-11-01T20:38:44.562377+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "d30f8104ba1f40148ab01328d379b5ff",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.07746",
+      "accounted_usd": "0.07746",
+      "at": "2026-11-01T20:38:44.573371+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "9f26374a098c48ee8e7b90bf0439ebe4",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.0632",
+      "accounted_usd": "0.0632",
+      "at": "2026-11-01T20:38:44.587740+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "55eef706e4bf407485ae855dd3c2adbe",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.067608",
+      "accounted_usd": "0.067608",
+      "at": "2026-11-01T20:38:44.598289+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "ad12fadcbb554e2b9a722e4e297845e8",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.071624",
+      "accounted_usd": "0.071624",
+      "at": "2026-11-01T20:38:44.608831+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "73f6a9f40e6240db8af395bffcf666ee",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.075644",
+      "accounted_usd": "0.075644",
+      "at": "2026-11-01T20:38:44.619424+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "78ca23e8bff84f60af1927cef07fc527",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.076792",
+      "accounted_usd": "0.076792",
+      "at": "2026-11-01T20:38:44.630879+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "42a8fadca2654c6e896caacbf723bdac",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.077988",
+      "accounted_usd": "0.077988",
+      "at": "2026-11-01T20:38:44.641681+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "6938d5a77a7c4e9a8f1432c9a5441e94",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078144",
+      "accounted_usd": "0.078144",
+      "at": "2026-11-01T20:38:44.652584+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "72b6869c8c8c40a0957974f7be684cf6",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078268",
+      "accounted_usd": "0.078268",
+      "at": "2026-11-01T20:38:44.663692+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "533090fe8ae44937a6d087fa225e9c2e",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078376",
+      "accounted_usd": "0.078376",
+      "at": "2026-11-01T20:38:44.675887+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "99d19fdb870b4fb8846c9881797b6118",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078464",
+      "accounted_usd": "0.078464",
+      "at": "2026-11-01T20:38:44.687026+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "8c83a54c3a9e4ef382253a10990f8f09",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078568",
+      "accounted_usd": "0.078568",
+      "at": "2026-11-01T20:38:44.698227+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "eb21fb9eb49b41b8a2d8a91e8a27b025",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.078548",
+      "accounted_usd": "0.078548",
+      "at": "2026-11-01T20:38:44.709531+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "64299c8bea7c4935b0f99bd5b102f5c0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0156865",
+      "accounted_usd": "0.00382575",
+      "at": "2026-11-01T23:57:26.726904+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 469
+      }
+    },
+    {
+      "id": "b1b36674ac6842d7943ecff8d066e2a9",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01566525",
+      "accounted_usd": "0.00436775",
+      "at": "2026-11-01T23:57:29.930848+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 598
+      }
+    },
+    {
+      "id": "bfd64bd7e3994e5dae3474291d42f4d1",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0169315",
+      "accounted_usd": "0.0038465",
+      "at": "2026-11-01T23:57:32.936260+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1928,
+        "completion_tokens": 338
+      }
+    },
+    {
+      "id": "0dea87bd6b894ad88d85c09e758b8e9b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.018194",
+      "accounted_usd": "0.00541025",
+      "at": "2026-11-01T23:57:35.317535+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2397,
+        "completion_tokens": 568
+      }
+    },
+    {
+      "id": "7b10d28b05ed4fc2b8959c4bf98cdaab",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019609",
+      "accounted_usd": "0.00515725",
+      "at": "2026-11-01T23:57:39.150378+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2895,
+        "completion_tokens": 362
+      }
+    },
+    {
+      "id": "33cd2423bf7c4c7785e369e1fd5d1918",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01997025",
+      "accounted_usd": "0.00752175",
+      "at": "2026-11-01T23:57:41.670513+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3107,
+        "completion_tokens": 856
+      }
+    },
+    {
+      "id": "fb14238d7fd545a1b76d2173090cc6b7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01565275",
+      "accounted_usd": "0.00397",
+      "at": "2026-11-01T23:57:46.168435+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 505
+      }
+    },
+    {
+      "id": "b79677f71fe04b0d958e174ca19bbd46",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01690525",
+      "accounted_usd": "0.00400725",
+      "at": "2026-11-01T23:57:48.794038+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1924,
+        "completion_tokens": 377
+      }
+    },
+    {
+      "id": "3048f74aa93b444d9f63abefeabffbd3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.018164",
+      "accounted_usd": "0.00527775",
+      "at": "2026-11-01T23:57:50.866905+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2393,
+        "completion_tokens": 538
+      }
+    },
+    {
+      "id": "e02c0e97ed1d41d0b464ea3f15f36e85",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019424",
+      "accounted_usd": "0.005088",
+      "at": "2026-11-01T23:57:54.142516+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2860,
+        "completion_tokens": 356
+      }
+    },
+    {
+      "id": "89964e2bb1ed4cf1b25981a3ed419b8c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01976525",
+      "accounted_usd": "0.00579425",
+      "at": "2026-11-01T23:57:57.444893+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3068,
+        "completion_tokens": 461
+      }
+    },
+    {
+      "id": "33677ec99bb747c280ce31e10c5fd3b5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0201065",
+      "accounted_usd": "0.0059675",
+      "at": "2026-11-01T23:57:59.848270+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3278,
+        "completion_tokens": 440
+      }
+    },
+    {
+      "id": "1341e99800344ffb8c4aa9d3e725c460",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02012025",
+      "accounted_usd": "0.00596275",
+      "at": "2026-11-01T23:58:02.728198+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3281,
+        "completion_tokens": 438
+      }
+    },
+    {
+      "id": "55b40faab2c44934bd3850afabe53303",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02023275",
+      "accounted_usd": "0.00595875",
+      "at": "2026-11-01T23:58:05.495047+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3305,
+        "completion_tokens": 430
+      }
+    },
+    {
+      "id": "3d34ea6a8a584718a33a85b37cfe70b1",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02023275",
+      "accounted_usd": "0.006232",
+      "at": "2026-11-01T23:58:07.830550+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3306,
+        "completion_tokens": 494
+      }
+    },
+    {
+      "id": "ac9d564691ac47beaf11ddea4cf7e7bc",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02022775",
+      "accounted_usd": "0.005932",
+      "at": "2026-11-01T23:58:10.713183+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3304,
+        "completion_tokens": 424
+      }
+    },
+    {
+      "id": "f6bdefb781e5461593fbc12e1f8c8a6a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02022525",
+      "accounted_usd": "0.006094",
+      "at": "2026-11-01T23:58:12.758010+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 463
+      }
+    },
+    {
+      "id": "e3766b1b22514444afc9abaca8c712f2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02022525",
+      "accounted_usd": "0.0062845",
+      "at": "2026-11-01T23:58:15.373049+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3297,
+        "completion_tokens": 509
+      }
+    },
+    {
+      "id": "aeef8d006ac340ebb88cf99b3cd6ed36",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0156615",
+      "accounted_usd": "0.0040295",
+      "at": "2026-11-01T23:58:17.743147+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 519
+      }
+    },
+    {
+      "id": "62081884cc42443399564ae0afeb7d1c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0169315",
+      "accounted_usd": "0.004427",
+      "at": "2026-11-01T23:58:20.512125+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1930,
+        "completion_tokens": 474
+      }
+    },
+    {
+      "id": "5186ad0221ad4685b78985f3a0f40ef2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0182015",
+      "accounted_usd": "0.00509825",
+      "at": "2026-11-01T23:58:23.099995+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 494
+      }
+    },
+    {
+      "id": "99ac5aefec7942e995924c74e71f76ab",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019469",
+      "accounted_usd": "0.0060555",
+      "at": "2026-11-01T23:58:25.639975+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2869,
+        "completion_tokens": 581
+      }
+    },
+    {
+      "id": "0a1e0764ecc44d31bcb1699e7e8b5996",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01999525",
+      "accounted_usd": "0.00699225",
+      "at": "2026-11-01T23:58:29.303498+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 727
+      }
+    },
+    {
+      "id": "f1d75a6fb7874380afce84752ad9781e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01574775",
+      "accounted_usd": "0.0053235",
+      "at": "2026-11-01T23:58:32.606274+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1481,
+        "completion_tokens": 817
+      }
+    },
+    {
+      "id": "7182dbadea02434a8fc9c3b79fd7ba0e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0157365",
+      "accounted_usd": "0.00548775",
+      "at": "2026-11-01T23:58:36.676216+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1473,
+        "completion_tokens": 858
+      }
+    },
+    {
+      "id": "d4e02fcda8be442bbcaf61b8def400b5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01565275",
+      "accounted_usd": "0.0053475",
+      "at": "2026-11-01T23:58:41.622008+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1456,
+        "completion_tokens": 830
+      }
+    },
+    {
+      "id": "d03be504a96146458d9f41631955d722",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0156665",
+      "accounted_usd": "0.00387775",
+      "at": "2026-11-01T23:58:45.935463+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1460,
+        "completion_tokens": 483
+      }
+    },
+    {
+      "id": "487839ead5cb405f984f287d0dc66a5f",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01705525",
+      "accounted_usd": "0.00496325",
+      "at": "2026-11-01T23:58:48.658566+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1951,
+        "completion_tokens": 594
+      }
+    },
+    {
+      "id": "ba4835d34d7641a39525107848ccb088",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.018319",
+      "accounted_usd": "0.00468",
+      "at": "2026-11-01T23:58:51.472248+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2418,
+        "completion_tokens": 390
+      }
+    },
+    {
+      "id": "3e87702c091a4033b62db6e1bc96a6a0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0195815",
+      "accounted_usd": "0.00592925",
+      "at": "2026-11-01T23:58:53.936574+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2887,
+        "completion_tokens": 546
+      }
+    },
+    {
+      "id": "17f3c0b6429040e0a4aa246a9a7e1b8c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0199465",
+      "accounted_usd": "0.00761375",
+      "at": "2026-11-01T23:58:56.578926+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3099,
+        "completion_tokens": 880
+      }
+    },
+    {
+      "id": "ea65170d926c4e1fbf071dec9884ebac",
+      "provider": "meta",
+      "status": "reserved",
+      "reserved_usd": "0.063304",
+      "accounted_usd": "0.063304",
+      "at": "2026-11-01T23:59:24.609372+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      }
+    },
+    {
+      "id": "c786f15264bb45289690bda9b4fbdff1",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063304",
+      "accounted_usd": "0.017004",
+      "at": "2026-11-02T01:56:17.095443+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 557
+      }
+    },
+    {
+      "id": "e8b1e3ecc53049738d8c860126f97ce7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063236",
+      "accounted_usd": "0.013984",
+      "at": "2026-11-02T01:56:23.496387+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 407
+      }
+    },
+    {
+      "id": "01bc253ec1d045d0b64839049a412404",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067288",
+      "accounted_usd": "0.014452",
+      "at": "2026-11-02T01:56:29.398016+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1928,
+        "completion_tokens": 337
+      }
+    },
+    {
+      "id": "3bda296588714fa1a4ccd36472948b0c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071328",
+      "accounted_usd": "0.016028",
+      "at": "2026-11-02T01:56:35.051585+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2397,
+        "completion_tokens": 322
+      }
+    },
+    {
+      "id": "4703171517a84c15b4f16c8b6d4bd019",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075856",
+      "accounted_usd": "0.01768",
+      "at": "2026-11-02T01:56:40.365054+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2895,
+        "completion_tokens": 305
+      }
+    },
+    {
+      "id": "b080059b9f4849e39c49c3536d05c7e6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077012",
+      "accounted_usd": "0.027988",
+      "at": "2026-11-02T01:56:45.464106+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3107,
+        "completion_tokens": 778
+      }
+    },
+    {
+      "id": "95063deca2da49f685dfceae4f72c147",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063196",
+      "accounted_usd": "0.015116",
+      "at": "2026-11-02T01:56:55.906333+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 464
+      }
+    },
+    {
+      "id": "2ee58198edd441419b41c64b14d1d8f6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067204",
+      "accounted_usd": "0.015336",
+      "at": "2026-11-02T01:57:01.991112+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1924,
+        "completion_tokens": 382
+      }
+    },
+    {
+      "id": "e1221a3ebef04eb4aa1de35bb3f08dbe",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071232",
+      "accounted_usd": "0.014972",
+      "at": "2026-11-02T01:57:08.790047+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2393,
+        "completion_tokens": 270
+      }
+    },
+    {
+      "id": "c31d66bf7599431680316cf562f8ce93",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075264",
+      "accounted_usd": "0.01816",
+      "at": "2026-11-02T01:57:13.882315+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2860,
+        "completion_tokens": 336
+      }
+    },
+    {
+      "id": "5126e6640c714fe181535735d90cf312",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076356",
+      "accounted_usd": "0.019132",
+      "at": "2026-11-02T01:57:19.562443+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3068,
+        "completion_tokens": 343
+      }
+    },
+    {
+      "id": "c5aa295401bc4801a19f1775bf6485b3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077448",
+      "accounted_usd": "0.019412",
+      "at": "2026-11-02T01:57:24.694550+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3278,
+        "completion_tokens": 315
+      }
+    },
+    {
+      "id": "be64d0be65dc45b4a82d95b04c5e4a34",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077492",
+      "accounted_usd": "0.022864",
+      "at": "2026-11-02T01:57:30.940974+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3281,
+        "completion_tokens": 487
+      }
+    },
+    {
+      "id": "75d15452eef54c97b458bcd10c2cbe09",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077852",
+      "accounted_usd": "0.02036",
+      "at": "2026-11-02T01:57:37.315316+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3305,
+        "completion_tokens": 357
+      }
+    },
+    {
+      "id": "b510d0a6b20742f895dc9e24f8ed6e6c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077852",
+      "accounted_usd": "0.018984",
+      "at": "2026-11-02T01:57:43.439177+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3306,
+        "completion_tokens": 288
+      }
+    },
+    {
+      "id": "3bb47d439ecb46d2947896c9ffd73e8f",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077836",
+      "accounted_usd": "0.018736",
+      "at": "2026-11-02T01:57:48.067339+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3304,
+        "completion_tokens": 276
+      }
+    },
+    {
+      "id": "7c7d945fc41f4b61a6693ee63121a7e8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077828",
+      "accounted_usd": "0.019804",
+      "at": "2026-11-02T01:57:52.740068+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 330
+      }
+    },
+    {
+      "id": "39053c9bff1440148b5ab6d2b99e8ca5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077828",
+      "accounted_usd": "0.018648",
+      "at": "2026-11-02T01:57:58.212292+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3297,
+        "completion_tokens": 273
+      }
+    },
+    {
+      "id": "af33a9dda01647ee89c7829f19e9e70c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063224",
+      "accounted_usd": "0.012216",
+      "at": "2026-11-02T01:58:03.129509+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 319
+      }
+    },
+    {
+      "id": "11c2f116c42a4df0885fa1ec4ac75545",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067288",
+      "accounted_usd": "0.01522",
+      "at": "2026-11-02T01:58:08.202886+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1930,
+        "completion_tokens": 375
+      }
+    },
+    {
+      "id": "9b8c333246c8403f83187ccaf18838dc",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071352",
+      "accounted_usd": "0.016276",
+      "at": "2026-11-02T01:58:13.508127+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 334
+      }
+    },
+    {
+      "id": "6fcaa5fa442c4642b348734b58ce4ee2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075408",
+      "accounted_usd": "0.019716",
+      "at": "2026-11-02T01:58:18.796932+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2869,
+        "completion_tokens": 412
+      }
+    },
+    {
+      "id": "4abf030587004a698d12bbaf5fb49ffe",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077092",
+      "accounted_usd": "0.025768",
+      "at": "2026-11-02T01:58:24.481362+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 664
+      }
+    },
+    {
+      "id": "8f2f15d218ca4472bd9d2dfa340cf876",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0635",
+      "accounted_usd": "0.015844",
+      "at": "2026-11-02T01:58:33.536556+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1481,
+        "completion_tokens": 496
+      }
+    },
+    {
+      "id": "a71e69288ea84cd6933285a3458cabef",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063464",
+      "accounted_usd": "0.020192",
+      "at": "2026-11-02T01:58:40.322981+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1473,
+        "completion_tokens": 715
+      }
+    },
+    {
+      "id": "70004191faab4a33acbb32ddcf18d50e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063196",
+      "accounted_usd": "0.020144",
+      "at": "2026-11-02T01:58:47.936063+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1456,
+        "completion_tokens": 716
+      }
+    },
+    {
+      "id": "c44010a215d24c6eb5e6beb2b6258b47",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06324",
+      "accounted_usd": "0.01262",
+      "at": "2026-11-02T01:58:56.088781+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1460,
+        "completion_tokens": 339
+      }
+    },
+    {
+      "id": "d5447b4f34e24ae99a4df7a054001a79",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067684",
+      "accounted_usd": "0.014504",
+      "at": "2026-11-02T01:59:00.782544+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1951,
+        "completion_tokens": 335
+      }
+    },
+    {
+      "id": "036cfeaabb944659b80255654fdd5047",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071728",
+      "accounted_usd": "0.016952",
+      "at": "2026-11-02T01:59:05.726073+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2418,
+        "completion_tokens": 364
+      }
+    },
+    {
+      "id": "4f547eac9c90446bb9f5903bc32c2b2f",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075768",
+      "accounted_usd": "0.018048",
+      "at": "2026-11-02T01:59:11.023365+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2887,
+        "completion_tokens": 325
+      }
+    },
+    {
+      "id": "c3817394ae4842f386d5d3086c939db0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076936",
+      "accounted_usd": "0.046096",
+      "at": "2026-11-02T01:59:16.161634+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3099,
+        "completion_tokens": 1685
+      }
+    },
+    {
+      "id": "da9bc3da1a034f03a1b7d8fd4bb72088",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0156865",
+      "accounted_usd": "0.004901",
+      "at": "2026-11-02T02:00:28.398555+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 722
+      }
+    },
+    {
+      "id": "866161b87ea14f86bb312998eb4994c8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01997025",
+      "accounted_usd": "0.00741125",
+      "at": "2026-11-02T02:00:58.261481+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3107,
+        "completion_tokens": 830
+      }
+    },
+    {
+      "id": "435a0c7121a44ee78520e905f6785d85",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01999525",
+      "accounted_usd": "0.007107",
+      "at": "2026-11-02T02:02:49.968900+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 754
+      }
+    },
+    {
+      "id": "5565b76521fe403095911b5ad31f22d4",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01574775",
+      "accounted_usd": "0.004873",
+      "at": "2026-11-02T02:03:06.233255+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1481,
+        "completion_tokens": 711
+      }
+    },
+    {
+      "id": "4fd0b1284e5a48d69fe8722a05b8e304",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0157365",
+      "accounted_usd": "0.00566625",
+      "at": "2026-11-02T02:03:22.217591+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1473,
+        "completion_tokens": 900
+      }
+    },
+    {
+      "id": "2f6bc40c760443289cc5b0e27f34453d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0199465",
+      "accounted_usd": "0.00636425",
+      "at": "2026-11-02T02:05:23.339901+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3099,
+        "completion_tokens": 586
+      }
+    },
+    {
+      "id": "2f5d728fa2dc4089b3a352922f38f5d3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063304",
+      "accounted_usd": "0.015744",
+      "at": "2026-11-02T02:05:31.623172+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 494
+      }
+    },
+    {
+      "id": "073c687cf1134c06a93c36de3d5270a8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077012",
+      "accounted_usd": "0.024828",
+      "at": "2026-11-02T02:06:02.803470+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3107,
+        "completion_tokens": 620
+      }
+    },
+    {
+      "id": "95dcd844a8244ac28f60f7b26cbcfc54",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077092",
+      "accounted_usd": "0.028928",
+      "at": "2026-11-02T02:07:56.725422+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 822
+      }
+    },
+    {
+      "id": "0e02b9e6e55346b4970c527dc15d30c9",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0635",
+      "accounted_usd": "0.018504",
+      "at": "2026-11-02T02:08:18.168943+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1481,
+        "completion_tokens": 629
+      }
+    },
+    {
+      "id": "8414d6b28b7f4afe809f508065a20d3b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063464",
+      "accounted_usd": "0.018092",
+      "at": "2026-11-02T02:08:36.987313+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1473,
+        "completion_tokens": 610
+      }
+    },
+    {
+      "id": "da42729be0b44388965d7f8f696197dc",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076936",
+      "accounted_usd": "0.044776",
+      "at": "2026-11-02T02:10:38.881857+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3099,
+        "completion_tokens": 1619
+      }
+    },
+    {
+      "id": "63c8bff044f44571961f695fd376a1b0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.015684",
+      "accounted_usd": "0.003958",
+      "at": "2026-11-02T05:05:45.461894+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1463,
+        "completion_tokens": 501
+      }
+    },
+    {
+      "id": "56110a18169f48509b61c465a8a6737b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.017049",
+      "accounted_usd": "0.00458925",
+      "at": "2026-11-02T05:05:50.105670+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1951,
+        "completion_tokens": 506
+      }
+    },
+    {
+      "id": "fbff449da8a34061b969511f6a58ebd2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01831775",
+      "accounted_usd": "0.004759",
+      "at": "2026-11-02T05:05:55.149366+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2420,
+        "completion_tokens": 408
+      }
+    },
+    {
+      "id": "9e42c8cf301743f4bbadb714ca017c58",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019589",
+      "accounted_usd": "0.0053835",
+      "at": "2026-11-02T05:05:59.251896+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2889,
+        "completion_tokens": 417
+      }
+    },
+    {
+      "id": "ce4893c824524592a888891ff986a4f0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019949",
+      "accounted_usd": "0.0059075",
+      "at": "2026-11-02T05:06:04.544028+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3094,
+        "completion_tokens": 480
+      }
+    },
+    {
+      "id": "577e5cce2a3b44f783c7ce85d4baa6e7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02028775",
+      "accounted_usd": "0.0060545",
+      "at": "2026-11-02T05:06:09.280462+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3300,
+        "completion_tokens": 454
+      }
+    },
+    {
+      "id": "cf59e1f877bb453db0baa9e60f480cf8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.020279",
+      "accounted_usd": "0.00563925",
+      "at": "2026-11-02T05:06:14.300145+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 356
+      }
+    },
+    {
+      "id": "f75260e640d6425d96f7ef06ebcbf49b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02028775",
+      "accounted_usd": "0.006301",
+      "at": "2026-11-02T05:06:18.466367+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3300,
+        "completion_tokens": 512
+      }
+    },
+    {
+      "id": "f7735ec6a31a47c0914881fe6eacaa3b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.020299",
+      "accounted_usd": "0.006162",
+      "at": "2026-11-02T05:06:23.408272+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 479
+      }
+    },
+    {
+      "id": "9af1ed7fbd6d4924aab63db6cf4f2d77",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02030525",
+      "accounted_usd": "0.006343",
+      "at": "2026-11-02T05:06:27.224619+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3303,
+        "completion_tokens": 521
+      }
+    },
+    {
+      "id": "56aa818775824372ac2ea3afbcc60b82",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02030025",
+      "accounted_usd": "0.00636425",
+      "at": "2026-11-02T05:06:33.334732+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3303,
+        "completion_tokens": 526
+      }
+    },
+    {
+      "id": "b6e947e8dacb4891927bdfb0271215ba",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.020314",
+      "accounted_usd": "0.00603575",
+      "at": "2026-11-02T05:06:38.384735+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3302,
+        "completion_tokens": 449
+      }
+    },
+    {
+      "id": "0e482070997943c3a43d934fa86a53ef",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01572275",
+      "accounted_usd": "0.00783075",
+      "at": "2026-11-02T05:06:42.663453+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1474,
+        "completion_tokens": 1409
+      }
+    },
+    {
+      "id": "35add3399c55471786667adfb2fa828c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0169915",
+      "accounted_usd": "0.006479",
+      "at": "2026-11-02T05:06:52.800074+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1943,
+        "completion_tokens": 953
+      }
+    },
+    {
+      "id": "993bf7c10b2d4355b7a37a1f284a7b38",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01574775",
+      "accounted_usd": "0.00474725",
+      "at": "2026-11-02T05:07:00.489652+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1479,
+        "completion_tokens": 682
+      }
+    },
+    {
+      "id": "21244c0e825b4d6fb70edf39d5ca94a0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.015699",
+      "accounted_usd": "0.00452575",
+      "at": "2026-11-02T05:07:06.480323+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1465,
+        "completion_tokens": 634
+      }
+    },
+    {
+      "id": "2db2ccc977af4c5fb2479a0eda9b9240",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.015664",
+      "accounted_usd": "0.00399725",
+      "at": "2026-11-02T05:07:11.739612+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1457,
+        "completion_tokens": 512
+      }
+    },
+    {
+      "id": "638d47d8149346d9ab903740219877f6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01692525",
+      "accounted_usd": "0.00476325",
+      "at": "2026-11-02T05:07:16.761988+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1927,
+        "completion_tokens": 554
+      }
+    },
+    {
+      "id": "95aea94ac2fd42f5bebb848cedfbf57e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01818525",
+      "accounted_usd": "0.0050065",
+      "at": "2026-11-02T05:07:21.471823+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2397,
+        "completion_tokens": 473
+      }
+    },
+    {
+      "id": "cd37002b7eb94d66a161a7138efe9f7d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01944775",
+      "accounted_usd": "0.005291",
+      "at": "2026-11-02T05:07:25.696176+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2866,
+        "completion_tokens": 402
+      }
+    },
+    {
+      "id": "4a51746582ec4bb7893bc0b99ad5b7d2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01980275",
+      "accounted_usd": "0.00997175",
+      "at": "2026-11-02T05:07:29.765961+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3078,
+        "completion_tokens": 1441
+      }
+    },
+    {
+      "id": "12ee55c81a464bf78972e9d69691b60c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01569275",
+      "accounted_usd": "0.00427",
+      "at": "2026-11-02T05:07:41.755669+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 575
+      }
+    },
+    {
+      "id": "a9238d31840f4c2c9ad6128536c4e934",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01695275",
+      "accounted_usd": "0.00434325",
+      "at": "2026-11-02T05:07:48.050016+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1931,
+        "completion_tokens": 454
+      }
+    },
+    {
+      "id": "605645ee5fbe4a1bb2d431a8b200f50a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01821525",
+      "accounted_usd": "0.00501275",
+      "at": "2026-11-02T05:07:53.370312+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2402,
+        "completion_tokens": 473
+      }
+    },
+    {
+      "id": "447e259fcd2d46008b740be4495ecbd4",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0194915",
+      "accounted_usd": "0.00539375",
+      "at": "2026-11-02T05:07:57.941396+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2870,
+        "completion_tokens": 425
+      }
+    },
+    {
+      "id": "8ac3218579a242eeb3dd381ae3783fd5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02001525",
+      "accounted_usd": "0.00677975",
+      "at": "2026-11-02T05:08:01.743578+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 677
+      }
+    },
+    {
+      "id": "bd613abf87ed4e85be425c49e4fc3052",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01568275",
+      "accounted_usd": "0.0039065",
+      "at": "2026-11-02T05:08:12.265801+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 488
+      }
+    },
+    {
+      "id": "07ff55667dc8452d8844efcb0d4dd673",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0156615",
+      "accounted_usd": "0.00450975",
+      "at": "2026-11-02T05:08:16.963724+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 632
+      }
+    },
+    {
+      "id": "9f3a0430f83b4301b80714eea2341ae9",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.016924",
+      "accounted_usd": "0.004314",
+      "at": "2026-11-02T05:08:22.353502+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1928,
+        "completion_tokens": 448
+      }
+    },
+    {
+      "id": "2a20903bad0f43039e06651d441c2490",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01818275",
+      "accounted_usd": "0.004482",
+      "at": "2026-11-02T05:08:26.876132+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 349
+      }
+    },
+    {
+      "id": "12832561840a45e8b96262234448222b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0194465",
+      "accounted_usd": "0.00551575",
+      "at": "2026-11-02T05:08:30.797913+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2869,
+        "completion_tokens": 454
+      }
+    },
+    {
+      "id": "5a9852516a174365b78d709c8bd8e685",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01997275",
+      "accounted_usd": "0.0089655",
+      "at": "2026-11-02T05:08:36.536250+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3123,
+        "completion_tokens": 1191
+      }
+    },
+    {
+      "id": "fa597615a943449f8fedeb566abc59e4",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01568025",
+      "accounted_usd": "0.0040095",
+      "at": "2026-11-02T05:08:49.479660+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1460,
+        "completion_tokens": 514
+      }
+    },
+    {
+      "id": "e1980663df94419f950d581cf50cb1e1",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01694775",
+      "accounted_usd": "0.00411125",
+      "at": "2026-11-02T05:08:54.769682+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1929,
+        "completion_tokens": 400
+      }
+    },
+    {
+      "id": "6ca376bb2f5e4686b3f35f920c2be98e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.018214",
+      "accounted_usd": "0.00450625",
+      "at": "2026-11-02T05:08:58.428091+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2398,
+        "completion_tokens": 355
+      }
+    },
+    {
+      "id": "001731b9a432464ab55c0af923b69db8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01949775",
+      "accounted_usd": "0.00547975",
+      "at": "2026-11-02T05:09:01.831851+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2864,
+        "completion_tokens": 447
+      }
+    },
+    {
+      "id": "95e94a4e309947f890fc86212254eb3a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01984025",
+      "accounted_usd": "0.005724",
+      "at": "2026-11-02T05:09:06.685098+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3073,
+        "completion_tokens": 443
+      }
+    },
+    {
+      "id": "7cacc387712441dfa60de5204876e032",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0201815",
+      "accounted_usd": "0.005528",
+      "at": "2026-11-02T05:09:10.823938+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 336
+      }
+    },
+    {
+      "id": "13faf0e01ab64e12aa6f814978e2347e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02018275",
+      "accounted_usd": "0.0061455",
+      "at": "2026-11-02T05:09:14.522649+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3281,
+        "completion_tokens": 481
+      }
+    },
+    {
+      "id": "cafb160f4ac3407a80cb3b11482b5ff8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02020025",
+      "accounted_usd": "0.006174",
+      "at": "2026-11-02T05:09:18.926475+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 488
+      }
+    },
+    {
+      "id": "dad9396d776242129ccfdfbaf8f62266",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02021025",
+      "accounted_usd": "0.005766",
+      "at": "2026-11-02T05:09:23.216879+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 392
+      }
+    },
+    {
+      "id": "8a4165686ea04cf2901fef33c6e7db9b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02019275",
+      "accounted_usd": "0.006004",
+      "at": "2026-11-02T05:09:48.713049+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 448
+      }
+    },
+    {
+      "id": "29bb15b879e74fefaca111784fc70561",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02031775",
+      "accounted_usd": "0.00595",
+      "at": "2026-11-02T05:09:52.517070+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3298,
+        "completion_tokens": 430
+      }
+    },
+    {
+      "id": "6b56fc63802c49eabe123f56e5f5a122",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02032775",
+      "accounted_usd": "0.0059325",
+      "at": "2026-11-02T05:09:56.883145+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 425
+      }
+    },
+    {
+      "id": "45f67ac64b3c42de88e542bc0219175b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.015779",
+      "accounted_usd": "0.0046295",
+      "at": "2026-11-02T05:10:02.476358+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1480,
+        "completion_tokens": 654
+      }
+    },
+    {
+      "id": "559bbc0bfe5b4c3abc64ee4d19ad61b0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.017039",
+      "accounted_usd": "0.0045345",
+      "at": "2026-11-02T05:10:07.937371+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1948,
+        "completion_tokens": 494
+      }
+    },
+    {
+      "id": "d370c9fbeb28474388ae8c7736eedaf5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01830025",
+      "accounted_usd": "0.004805",
+      "at": "2026-11-02T05:10:13.838200+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2416,
+        "completion_tokens": 420
+      }
+    },
+    {
+      "id": "cec37f5eb0ff47e38ab614661c80c457",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01956275",
+      "accounted_usd": "0.004976",
+      "at": "2026-11-02T05:10:19.148145+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2886,
+        "completion_tokens": 322
+      }
+    },
+    {
+      "id": "b983cb6d78af484caa64ae919ffa03a5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01992525",
+      "accounted_usd": "0.0068135",
+      "at": "2026-11-02T05:10:22.842138+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3098,
+        "completion_tokens": 692
+      }
+    },
+    {
+      "id": "0922af73b62b4f99b32b92f38dcaea05",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01574025",
+      "accounted_usd": "0.0049",
+      "at": "2026-11-02T05:10:29.069042+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1472,
+        "completion_tokens": 720
+      }
+    },
+    {
+      "id": "088ba1035bba492e99a186ade733a94a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01566025",
+      "accounted_usd": "0.00529175",
+      "at": "2026-11-02T05:10:34.801370+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 816
+      }
+    },
+    {
+      "id": "a6b869c96ab4441f8c07b395a5e7a006",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0157415",
+      "accounted_usd": "0.00478075",
+      "at": "2026-11-02T05:10:42.079332+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1482,
+        "completion_tokens": 689
+      }
+    },
+    {
+      "id": "09ab72f1d941497eadf31ae385f866b3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01567275",
+      "accounted_usd": "0.0041255",
+      "at": "2026-11-02T05:10:47.888022+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 541
+      }
+    },
+    {
+      "id": "d736e0df0fe64928b89f20093c6f5c3d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01663025",
+      "accounted_usd": "0.00434675",
+      "at": "2026-11-02T05:10:52.205822+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1842,
+        "completion_tokens": 481
+      }
+    },
+    {
+      "id": "126cd870fe6a42b9aa1554a0614ad861",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.017909",
+      "accounted_usd": "0.00414925",
+      "at": "2026-11-02T05:10:57.618889+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2313,
+        "completion_tokens": 296
+      }
+    },
+    {
+      "id": "7600f22ac57348b4b12f44943511457b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0194915",
+      "accounted_usd": "0.005347",
+      "at": "2026-11-02T05:11:01.684610+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2870,
+        "completion_tokens": 414
+      }
+    },
+    {
+      "id": "3b1d22e2721b41ef8b27f7425aa21f53",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02017775",
+      "accounted_usd": "0.00885",
+      "at": "2026-11-02T05:11:06.006359+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3170,
+        "completion_tokens": 1150
+      }
+    },
+    {
+      "id": "469636f18d044941a41e1e47e4c66508",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01568775",
+      "accounted_usd": "0.00418075",
+      "at": "2026-11-02T05:11:14.506326+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 554
+      }
+    },
+    {
+      "id": "83851d833e184d93a278a7f8b606094a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01696025",
+      "accounted_usd": "0.00382825",
+      "at": "2026-11-02T05:11:18.871944+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1927,
+        "completion_tokens": 334
+      }
+    },
+    {
+      "id": "6060b144201b4f1da6463ec98eb2999a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.018234",
+      "accounted_usd": "0.004902",
+      "at": "2026-11-02T05:11:22.422036+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2395,
+        "completion_tokens": 449
+      }
+    },
+    {
+      "id": "9dba8dc6f42044b1acc6ab7cec99587e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01950525",
+      "accounted_usd": "0.00568675",
+      "at": "2026-11-02T05:11:26.556302+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2863,
+        "completion_tokens": 496
+      }
+    },
+    {
+      "id": "af08f720e79747b8ab915782ce32e16b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019874",
+      "accounted_usd": "0.00752425",
+      "at": "2026-11-02T05:11:30.282087+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3075,
+        "completion_tokens": 866
+      }
+    },
+    {
+      "id": "12013df5303b48a284b074ace2d8ab8e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.015664",
+      "accounted_usd": "0.0043865",
+      "at": "2026-11-02T05:11:36.402481+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 603
+      }
+    },
+    {
+      "id": "57adade55da94940af4be3c9243c01be",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.016924",
+      "accounted_usd": "0.004334",
+      "at": "2026-11-02T05:11:40.919546+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1927,
+        "completion_tokens": 453
+      }
+    },
+    {
+      "id": "f1faa5a390ef4924b3431119923039dd",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.018184",
+      "accounted_usd": "0.00443025",
+      "at": "2026-11-02T05:11:45.490525+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2395,
+        "completion_tokens": 338
+      }
+    },
+    {
+      "id": "b9c6d540c8374b8fa0ac80ccbdd8437f",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0195815",
+      "accounted_usd": "0.006448",
+      "at": "2026-11-02T05:11:48.944044+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2894,
+        "completion_tokens": 666
+      }
+    },
+    {
+      "id": "fd5bca3821f540feb9fe90bf70b15089",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0199165",
+      "accounted_usd": "0.005544",
+      "at": "2026-11-02T05:11:54.767099+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3099,
+        "completion_tokens": 393
+      }
+    },
+    {
+      "id": "33304ad881b84f059dd60247d8a4e384",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0202565",
+      "accounted_usd": "0.00580275",
+      "at": "2026-11-02T05:11:58.528896+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3306,
+        "completion_tokens": 393
+      }
+    },
+    {
+      "id": "201e545749434a4eacf465dfa90efb8e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.020264",
+      "accounted_usd": "0.0057415",
+      "at": "2026-11-02T05:12:02.227341+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 378
+      }
+    },
+    {
+      "id": "06b8ff0e061d48fc8c7839990195c703",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02026775",
+      "accounted_usd": "0.005543",
+      "at": "2026-11-02T05:12:06.612528+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3309,
+        "completion_tokens": 331
+      }
+    },
+    {
+      "id": "a0a9f3c0153d429db5f6492e48598680",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0202715",
+      "accounted_usd": "0.00567775",
+      "at": "2026-11-02T05:12:10.446222+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 363
+      }
+    },
+    {
+      "id": "ac056cf11426495c8b774f84714bcba4",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02027275",
+      "accounted_usd": "0.005648",
+      "at": "2026-11-02T05:12:14.310710+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 356
+      }
+    },
+    {
+      "id": "3d6c3a6301ff4e92aa4c0f9378148099",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02028025",
+      "accounted_usd": "0.00549025",
+      "at": "2026-11-02T05:12:18.603435+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3311,
+        "completion_tokens": 318
+      }
+    },
+    {
+      "id": "9cd1494fa7614480820e1080c02215d6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.020279",
+      "accounted_usd": "0.006413",
+      "at": "2026-11-02T05:12:21.713025+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 536
+      }
+    },
+    {
+      "id": "36ec8e6040294dabbabc450fc9b206ce",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063296",
+      "accounted_usd": "0.014292",
+      "at": "2026-11-02T05:12:44.548799+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1463,
+        "completion_tokens": 422
+      }
+    },
+    {
+      "id": "1d31864b98fb4bc29cc7a17d10d8e2cc",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067664",
+      "accounted_usd": "0.015604",
+      "at": "2026-11-02T05:12:49.771312+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1951,
+        "completion_tokens": 390
+      }
+    },
+    {
+      "id": "01a5208a7f824c7e9d189e640430c815",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071724",
+      "accounted_usd": "0.01592",
+      "at": "2026-11-02T05:12:55.452085+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2420,
+        "completion_tokens": 312
+      }
+    },
+    {
+      "id": "d333b6c5ab424650b40162cef37c4265",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075792",
+      "accounted_usd": "0.017716",
+      "at": "2026-11-02T05:13:00.673421+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2889,
+        "completion_tokens": 308
+      }
+    },
+    {
+      "id": "606a386973ac4e10829958e5ce4681f6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076944",
+      "accounted_usd": "0.020056",
+      "at": "2026-11-02T05:13:05.876173+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3094,
+        "completion_tokens": 384
+      }
+    },
+    {
+      "id": "4c1c71e6fbb948e8bb5512d76dbccca2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078028",
+      "accounted_usd": "0.01894",
+      "at": "2026-11-02T05:13:11.276029+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3300,
+        "completion_tokens": 287
+      }
+    },
+    {
+      "id": "28285644cb6140b5b9b65ac77ba9ee5f",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078",
+      "accounted_usd": "0.021884",
+      "at": "2026-11-02T05:13:16.136296+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 434
+      }
+    },
+    {
+      "id": "76f3ec0d083445348681ac942a4c8a9c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078028",
+      "accounted_usd": "0.0196",
+      "at": "2026-11-02T05:13:21.420191+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3300,
+        "completion_tokens": 320
+      }
+    },
+    {
+      "id": "941b53aa1a7a4e54ae9d396909db7ce7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078064",
+      "accounted_usd": "0.021624",
+      "at": "2026-11-02T05:13:25.975796+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 421
+      }
+    },
+    {
+      "id": "622e3158effb4c0f9cd94458d8f1d7a6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078084",
+      "accounted_usd": "0.019112",
+      "at": "2026-11-02T05:13:31.845986+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3303,
+        "completion_tokens": 295
+      }
+    },
+    {
+      "id": "52a19234271a45c482565e76759cc07e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078068",
+      "accounted_usd": "0.019512",
+      "at": "2026-11-02T05:13:36.197879+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3303,
+        "completion_tokens": 315
+      }
+    },
+    {
+      "id": "1186f6f3ec10455b994283808d9031ee",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078112",
+      "accounted_usd": "0.020088",
+      "at": "2026-11-02T05:13:40.662327+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3302,
+        "completion_tokens": 344
+      }
+    },
+    {
+      "id": "8b04d4791e89454e854aff29f285b2f7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06342",
+      "accounted_usd": "0.019296",
+      "at": "2026-11-02T05:13:44.928887+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1474,
+        "completion_tokens": 670
+      }
+    },
+    {
+      "id": "02d29a9bc00f418c831fc43a62cfa1c5",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0635",
+      "accounted_usd": "0.014556",
+      "at": "2026-11-02T05:13:51.458459+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1479,
+        "completion_tokens": 432
+      }
+    },
+    {
+      "id": "95978f6484d74314a98310d10b454eba",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063344",
+      "accounted_usd": "0.01526",
+      "at": "2026-11-02T05:13:56.354556+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1465,
+        "completion_tokens": 470
+      }
+    },
+    {
+      "id": "bd328a9d20a2479eb43a97c337856a1c",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063232",
+      "accounted_usd": "0.013128",
+      "at": "2026-11-02T05:14:01.460577+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1457,
+        "completion_tokens": 365
+      }
+    },
+    {
+      "id": "caa606a387834c7ab8956e8479f274c7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067268",
+      "accounted_usd": "0.014608",
+      "at": "2026-11-02T05:14:06.647102+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1927,
+        "completion_tokens": 345
+      }
+    },
+    {
+      "id": "32953cd8041a45aea74282435c30e4ec",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0713",
+      "accounted_usd": "0.017788",
+      "at": "2026-11-02T05:14:11.027066+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2397,
+        "completion_tokens": 410
+      }
+    },
+    {
+      "id": "2bce4741fefa4ffa9b7f6337550beced",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07534",
+      "accounted_usd": "0.017864",
+      "at": "2026-11-02T05:14:15.875106+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2866,
+        "completion_tokens": 320
+      }
+    },
+    {
+      "id": "518f8623b94848618ebdf2d7f78a17a8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076476",
+      "accounted_usd": "0.040452",
+      "at": "2026-11-02T05:14:22.107670+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3078,
+        "completion_tokens": 1407
+      }
+    },
+    {
+      "id": "08cf923008fc48849c48f3002cc8755b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063324",
+      "accounted_usd": "0.013904",
+      "at": "2026-11-02T05:14:38.575175+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 403
+      }
+    },
+    {
+      "id": "6bb61f29aad54de8b8b63cc87f12e709",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067356",
+      "accounted_usd": "0.016184",
+      "at": "2026-11-02T05:14:43.944615+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1931,
+        "completion_tokens": 423
+      }
+    },
+    {
+      "id": "5be4fd7729be4cc8b50d94b112c53ccc",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071396",
+      "accounted_usd": "0.017528",
+      "at": "2026-11-02T05:14:50.853117+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2402,
+        "completion_tokens": 396
+      }
+    },
+    {
+      "id": "1f87c842006a4e0894b076f436e00f84",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07548",
+      "accounted_usd": "0.0186",
+      "at": "2026-11-02T05:14:55.212566+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2870,
+        "completion_tokens": 356
+      }
+    },
+    {
+      "id": "3b5796b4fc4b4596b6498475e5afc2a2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077156",
+      "accounted_usd": "0.024488",
+      "at": "2026-11-02T05:14:59.895286+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 600
+      }
+    },
+    {
+      "id": "5f9087b33aff4f83b9e5d518db81e911",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063292",
+      "accounted_usd": "0.016704",
+      "at": "2026-11-02T05:15:07.286493+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 542
+      }
+    },
+    {
+      "id": "e9adf23b8ccc486b990d50ab3473d4bb",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063224",
+      "accounted_usd": "0.017416",
+      "at": "2026-11-02T05:15:12.506664+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 579
+      }
+    },
+    {
+      "id": "0f55c9af64bd461290e73a2bc40be8c6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067264",
+      "accounted_usd": "0.016072",
+      "at": "2026-11-02T05:15:17.904231+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1928,
+        "completion_tokens": 418
+      }
+    },
+    {
+      "id": "12fec58989e6489b87bbad333eaa13a4",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071292",
+      "accounted_usd": "0.016076",
+      "at": "2026-11-02T05:15:23.370679+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 324
+      }
+    },
+    {
+      "id": "cd5f794f01a2470eb1abc7e4f59708a0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075336",
+      "accounted_usd": "0.017216",
+      "at": "2026-11-02T05:15:27.582291+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2869,
+        "completion_tokens": 287
+      }
+    },
+    {
+      "id": "44d424aecbe245f08d93dcf4c82647b0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07702",
+      "accounted_usd": "0.037592",
+      "at": "2026-11-02T05:15:32.196569+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3123,
+        "completion_tokens": 1255
+      }
+    },
+    {
+      "id": "ac85eb34f545405da1a270690c808b88",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063284",
+      "accounted_usd": "0.01246",
+      "at": "2026-11-02T05:15:47.642562+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1460,
+        "completion_tokens": 331
+      }
+    },
+    {
+      "id": "3fa4ab275391498fa6510f199d5a4c91",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06734",
+      "accounted_usd": "0.016376",
+      "at": "2026-11-02T05:15:51.872501+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1929,
+        "completion_tokens": 433
+      }
+    },
+    {
+      "id": "557e2d86d7a4418a8f3bc314bcb1d6c8",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071392",
+      "accounted_usd": "0.018372",
+      "at": "2026-11-02T05:15:57.709050+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2398,
+        "completion_tokens": 439
+      }
+    },
+    {
+      "id": "3765f192283142ce96d0a1c079642649",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0755",
+      "accounted_usd": "0.016936",
+      "at": "2026-11-02T05:16:02.183083+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2864,
+        "completion_tokens": 274
+      }
+    },
+    {
+      "id": "d7d50ccff3a743288bad26e96cc3da64",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076596",
+      "accounted_usd": "0.018872",
+      "at": "2026-11-02T05:16:06.137234+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3073,
+        "completion_tokens": 329
+      }
+    },
+    {
+      "id": "3b97391e0ddd41f59d5cc328464f7ac3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077688",
+      "accounted_usd": "0.01904",
+      "at": "2026-11-02T05:16:11.338755+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 296
+      }
+    },
+    {
+      "id": "000188178ba1434fb6f0e3b4536f12e3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077692",
+      "accounted_usd": "0.018864",
+      "at": "2026-11-02T05:16:18.207804+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3281,
+        "completion_tokens": 287
+      }
+    },
+    {
+      "id": "4ed2795d60834a8bb951b3011a0745e6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077748",
+      "accounted_usd": "0.01982",
+      "at": "2026-11-02T05:16:22.425501+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 335
+      }
+    },
+    {
+      "id": "e0d127007c174107a7f1672f94c7e28e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07778",
+      "accounted_usd": "0.02026",
+      "at": "2026-11-02T05:16:27.953966+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 357
+      }
+    },
+    {
+      "id": "a4fe720ff279432b9949ddd98913e0ae",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077724",
+      "accounted_usd": "0.0196",
+      "at": "2026-11-02T05:16:33.248263+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3280,
+        "completion_tokens": 324
+      }
+    },
+    {
+      "id": "e617a8cf2d1f42c5b983d0c1fb818e44",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078124",
+      "accounted_usd": "0.019872",
+      "at": "2026-11-02T05:16:38.030028+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3298,
+        "completion_tokens": 334
+      }
+    },
+    {
+      "id": "98645ffe539a462599df9fe903a8efb7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078156",
+      "accounted_usd": "0.020144",
+      "at": "2026-11-02T05:16:42.372658+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3301,
+        "completion_tokens": 347
+      }
+    },
+    {
+      "id": "264dc77449d74bda896b096f3efa4ad6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0636",
+      "accounted_usd": "0.01168",
+      "at": "2026-11-02T05:16:47.655531+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1480,
+        "completion_tokens": 288
+      }
+    },
+    {
+      "id": "032dfcf7f3ec449cb96f63e379490ce0",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067632",
+      "accounted_usd": "0.014312",
+      "at": "2026-11-02T05:16:52.097006+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1948,
+        "completion_tokens": 326
+      }
+    },
+    {
+      "id": "cf6fae8680ef4a289d1706c0bfb4be05",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071668",
+      "accounted_usd": "0.015944",
+      "at": "2026-11-02T05:16:56.415147+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2416,
+        "completion_tokens": 314
+      }
+    },
+    {
+      "id": "f5bac75a95e94594821adbab22b5cd69",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075708",
+      "accounted_usd": "0.018184",
+      "at": "2026-11-02T05:17:01.294994+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2886,
+        "completion_tokens": 332
+      }
+    },
+    {
+      "id": "0990129fe6ad450cb62a4a85216fc21d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076868",
+      "accounted_usd": "0.024672",
+      "at": "2026-11-02T05:17:06.203387+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3098,
+        "completion_tokens": 614
+      }
+    },
+    {
+      "id": "ef739c86a23d456cb1264a9b19d29611",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063476",
+      "accounted_usd": "0.019508",
+      "at": "2026-11-02T05:17:13.640758+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1472,
+        "completion_tokens": 681
+      }
+    },
+    {
+      "id": "2839984030e24771ba30d7ecfa09fadf",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06322",
+      "accounted_usd": "0.019856",
+      "at": "2026-11-02T05:17:19.805143+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 701
+      }
+    },
+    {
+      "id": "cbd05978b0dd44cd980ceb530314fbd6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06348",
+      "accounted_usd": "0.018288",
+      "at": "2026-11-02T05:17:27.438213+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1482,
+        "completion_tokens": 618
+      }
+    },
+    {
+      "id": "762c34940a324f438b1cc47b6882891b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06326",
+      "accounted_usd": "0.012004",
+      "at": "2026-11-02T05:17:34.350678+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 308
+      }
+    },
+    {
+      "id": "cc92c833f5934f978d6ad0b4c5adabd7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.066324",
+      "accounted_usd": "0.014188",
+      "at": "2026-11-02T05:17:39.814791+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1842,
+        "completion_tokens": 341
+      }
+    },
+    {
+      "id": "fc96ff93a10f42ad9f4183814413d741",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.070416",
+      "accounted_usd": "0.014872",
+      "at": "2026-11-02T05:17:45.796501+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2313,
+        "completion_tokens": 281
+      }
+    },
+    {
+      "id": "121db632c1f849a5a8194f16e6b805e4",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07548",
+      "accounted_usd": "0.01746",
+      "at": "2026-11-02T05:17:50.480122+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2870,
+        "completion_tokens": 299
+      }
+    },
+    {
+      "id": "eb7c0cf5f9b348389bd0a2f3e8fdb03d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077676",
+      "accounted_usd": "0.02764",
+      "at": "2026-11-02T05:17:54.177219+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3170,
+        "completion_tokens": 748
+      }
+    },
+    {
+      "id": "447d1e8e723e4f8daad79bbe7f1cfc9d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063308",
+      "accounted_usd": "0.013524",
+      "at": "2026-11-02T05:18:04.192276+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 384
+      }
+    },
+    {
+      "id": "d7ad04fb2c02423eab72c86820558e73",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06738",
+      "accounted_usd": "0.015868",
+      "at": "2026-11-02T05:18:08.635230+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1927,
+        "completion_tokens": 408
+      }
+    },
+    {
+      "id": "6598a57576fe4a709f813ba1c4c61b67",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071456",
+      "accounted_usd": "0.0153",
+      "at": "2026-11-02T05:18:13.503738+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2395,
+        "completion_tokens": 286
+      }
+    },
+    {
+      "id": "4476b8e23f294d888c471fd116243927",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075524",
+      "accounted_usd": "0.017832",
+      "at": "2026-11-02T05:18:17.901225+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2863,
+        "completion_tokens": 319
+      }
+    },
+    {
+      "id": "d38082c1e59f4b71b9d01833f66c1d3a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076704",
+      "accounted_usd": "0.05326",
+      "at": "2026-11-02T05:18:22.713489+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3075,
+        "completion_tokens": 2048
+      }
+    },
+    {
+      "id": "0dda28131ce94a58aea855f87783ceec",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077924",
+      "accounted_usd": "0.038224",
+      "at": "2026-11-02T05:18:49.714097+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3291,
+        "completion_tokens": 1253
+      }
+    },
+    {
+      "id": "0601ad3bfb1e46d880eda0a54b6d6c8d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063232",
+      "accounted_usd": "0.012656",
+      "at": "2026-11-02T05:19:04.395102+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1459,
+        "completion_tokens": 341
+      }
+    },
+    {
+      "id": "dce92457ca6745719bfeef84216538bb",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.067264",
+      "accounted_usd": "0.012988",
+      "at": "2026-11-02T05:19:09.672201+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1927,
+        "completion_tokens": 264
+      }
+    },
+    {
+      "id": "993afb40aa98458a87751d5a7f248497",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.071296",
+      "accounted_usd": "0.01456",
+      "at": "2026-11-02T05:19:14.881319+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2395,
+        "completion_tokens": 249
+      }
+    },
+    {
+      "id": "b879adbf54434830a2abc3f5b0ce0ec6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075768",
+      "accounted_usd": "0.025936",
+      "at": "2026-11-02T05:19:19.135359+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2894,
+        "completion_tokens": 718
+      }
+    },
+    {
+      "id": "a94637451fdb4e27845ec769bb8772b7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07684",
+      "accounted_usd": "0.020476",
+      "at": "2026-11-02T05:19:27.673856+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3099,
+        "completion_tokens": 404
+      }
+    },
+    {
+      "id": "11bd7b19f0c14e4789e1f86fb239da6d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077928",
+      "accounted_usd": "0.018284",
+      "at": "2026-11-02T05:19:33.023923+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3306,
+        "completion_tokens": 253
+      }
+    },
+    {
+      "id": "30949e08beb746769546218afa52d0c3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077952",
+      "accounted_usd": "0.019772",
+      "at": "2026-11-02T05:19:37.223702+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 327
+      }
+    },
+    {
+      "id": "2bb26e824b6946ebb982a64d27aebe39",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077964",
+      "accounted_usd": "0.020276",
+      "at": "2026-11-02T05:19:41.824254+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3309,
+        "completion_tokens": 352
+      }
+    },
+    {
+      "id": "fd66fe29d0324051aa6a530cb25ecf24",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077976",
+      "accounted_usd": "0.018912",
+      "at": "2026-11-02T05:19:46.954030+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 284
+      }
+    },
+    {
+      "id": "5a82ed1d7df942a9a0242bb3122c6159",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.07798",
+      "accounted_usd": "0.019112",
+      "at": "2026-11-02T05:19:52.379612+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 294
+      }
+    },
+    {
+      "id": "60ba6f22682443d995e287c89d2d7f96",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078004",
+      "accounted_usd": "0.019624",
+      "at": "2026-11-02T05:19:57.124209+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3311,
+        "completion_tokens": 319
+      }
+    },
+    {
+      "id": "1d5b1c2a67314410aaaf7247ac1d3c47",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.078",
+      "accounted_usd": "0.020812",
+      "at": "2026-11-02T05:20:03.024277+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 379
+      }
+    },
+    {
+      "id": "ddbee217a00a4771948eabf85aa3afcf",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01953025",
+      "accounted_usd": "0.00774125",
+      "at": "2026-11-02T05:42:06.992235+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2878,
+        "completion_tokens": 975
+      }
+    },
+    {
+      "id": "751d945dce9e43c09e29ee592330064a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01574775",
+      "accounted_usd": "0.005525",
+      "at": "2026-11-02T05:42:21.731439+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1479,
+        "completion_tokens": 865
+      }
+    },
+    {
+      "id": "c25100a6fa6f4d2aae4576b0910ab2de",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.015699",
+      "accounted_usd": "0.0045555",
+      "at": "2026-11-02T05:42:33.035673+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1465,
+        "completion_tokens": 641
+      }
+    },
+    {
+      "id": "3f60715f6aa3497aa04c6e6d27380196",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01980275",
+      "accounted_usd": "0.00805075",
+      "at": "2026-11-02T05:43:07.849738+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3078,
+        "completion_tokens": 989
+      }
+    },
+    {
+      "id": "29abbecfa66542fab28b48cb61d85cf7",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02001525",
+      "accounted_usd": "0.00703475",
+      "at": "2026-11-02T05:43:42.490264+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 737
+      }
+    },
+    {
+      "id": "ca666806402e4c1a9ee7372d6471b9bf",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01568275",
+      "accounted_usd": "0.00446325",
+      "at": "2026-11-02T05:43:56.664573+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 619
+      }
+    },
+    {
+      "id": "28b4d600ba9e4827ae1550b449ffe432",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01992525",
+      "accounted_usd": "0.00641825",
+      "at": "2026-11-02T05:46:59.659308+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3098,
+        "completion_tokens": 599
+      }
+    },
+    {
+      "id": "102d7b2de3034c53b42f71ef40d44397",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01574025",
+      "accounted_usd": "0.004475",
+      "at": "2026-11-02T05:47:07.272774+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1472,
+        "completion_tokens": 620
+      }
+    },
+    {
+      "id": "46e61aa12083453cbcadc96d09f7c5e6",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0157415",
+      "accounted_usd": "0.0056265",
+      "at": "2026-11-02T05:48:48.695090+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1482,
+        "completion_tokens": 888
+      }
+    },
+    {
+      "id": "84beee2e5a774bfbb44b3bef9b72817a",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02017775",
+      "accounted_usd": "0.00666975",
+      "at": "2026-11-02T05:49:23.522589+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3170,
+        "completion_tokens": 637
+      }
+    },
+    {
+      "id": "9471aeb8618e4d98bd284813fa520cde",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.019874",
+      "accounted_usd": "0.00878225",
+      "at": "2026-11-02T05:49:56.748157+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3075,
+        "completion_tokens": 1162
+      }
+    },
+    {
+      "id": "533332cfb4f34313b3ca407b51541b9b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.075604",
+      "accounted_usd": "0.021372",
+      "at": "2026-11-02T05:53:03.555164+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2878,
+        "completion_tokens": 493
+      }
+    },
+    {
+      "id": "205ab16a385e46d79ac0a22b8bf79883",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0635",
+      "accounted_usd": "0.015916",
+      "at": "2026-11-02T05:53:26.107547+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1479,
+        "completion_tokens": 500
+      }
+    },
+    {
+      "id": "6d4d6899a93a4c3d91143689294b2640",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063344",
+      "accounted_usd": "0.014",
+      "at": "2026-11-02T05:53:37.061735+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1465,
+        "completion_tokens": 407
+      }
+    },
+    {
+      "id": "09b3a131a9b04f5d8167e91b2154b63e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076476",
+      "accounted_usd": "0.033672",
+      "at": "2026-11-02T05:54:13.242337+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3078,
+        "completion_tokens": 1068
+      }
+    },
+    {
+      "id": "2765aaf71c21411fa0f1f55377530336",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077156",
+      "accounted_usd": "0.024188",
+      "at": "2026-11-02T05:54:54.552022+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3122,
+        "completion_tokens": 585
+      }
+    },
+    {
+      "id": "c466996af3a941eb840f57afaaed634e",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063292",
+      "accounted_usd": "0.015384",
+      "at": "2026-11-02T05:55:09.525838+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1466,
+        "completion_tokens": 476
+      }
+    },
+    {
+      "id": "e39cef4fcb614bd9a1d6aa534aba4d61",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076868",
+      "accounted_usd": "0.026792",
+      "at": "2026-11-02T05:58:14.973851+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3098,
+        "completion_tokens": 720
+      }
+    },
+    {
+      "id": "8f2809a009644011bac52ac4dce13b34",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.063476",
+      "accounted_usd": "0.016408",
+      "at": "2026-11-02T05:58:28.245217+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1472,
+        "completion_tokens": 526
+      }
+    },
+    {
+      "id": "dab81aa6e6d546ccb9dcbb09f023f7a1",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.06348",
+      "accounted_usd": "0.022088",
+      "at": "2026-11-02T06:00:11.734057+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 1482,
+        "completion_tokens": 808
+      }
+    },
+    {
+      "id": "47c1867983f34cd9acf669d8541a3de3",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.077676",
+      "accounted_usd": "0.03186",
+      "at": "2026-11-02T06:00:49.386172+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3170,
+        "completion_tokens": 959
+      }
+    },
+    {
+      "id": "3f81a64ccba8459b87f373811874b871",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.076704",
+      "accounted_usd": "0.0329",
+      "at": "2026-11-02T06:01:30.839947+00:00",
+      "meta": {
+        "client": "wonder",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3075,
+        "completion_tokens": 1030
+      }
+    },
+    {
+      "id": "ccfba14bd3bc4e8ebe306a755ed93610",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01928525",
+      "accounted_usd": "0.00641225",
+      "at": "2026-11-02T06:29:09.124441+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2794,
+        "completion_tokens": 687
+      }
+    },
+    {
+      "id": "feccd5c7f3a54b809bcf09f2a04993f2",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.01733525",
+      "accounted_usd": "0.00483375",
+      "at": "2026-11-02T06:39:38.047280+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2065,
+        "completion_tokens": 530
+      }
+    },
+    {
+      "id": "359f4bdccdeb477a92b6f1158cc72b2d",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0178165",
+      "accounted_usd": "0.00466825",
+      "at": "2026-11-02T06:51:50.553747+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 2089,
+        "completion_tokens": 484
+      }
+    },
+    {
+      "id": "35369d6e902343a7963c2815352fe613",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0198065",
+      "accounted_usd": "0.008148",
+      "at": "2026-11-02T07:05:59.877364+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3081,
+        "completion_tokens": 1011
+      }
+    },
+    {
+      "id": "6df5896ace1443b0ad979aaa034294fc",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.0199765",
+      "accounted_usd": "0.007815",
+      "at": "2026-11-02T07:18:10.683800+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3124,
+        "completion_tokens": 920
+      }
+    },
+    {
+      "id": "17fefda1637c43c983cc703bf1e3440b",
+      "provider": "meta",
+      "status": "settled",
+      "reserved_usd": "0.02018275",
+      "accounted_usd": "0.00755575",
+      "at": "2026-11-02T07:30:41.729669+00:00",
+      "meta": {
+        "client": "spark",
+        "max_tokens": 2048
+      },
+      "usage": {
+        "prompt_tokens": 3243,
+        "completion_tokens": 824
+      }
+    }
+  ]
+}

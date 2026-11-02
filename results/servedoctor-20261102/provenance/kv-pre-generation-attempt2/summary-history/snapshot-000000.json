@@ -1,0 +1,16 @@
+{
+  "scope": "replacement pre-generation capacity/KV calibration only; not benchmark results",
+  "started_at": "2026-11-01T22:31:51.368984+00:00",
+  "status": "running",
+  "calibration_dir": "runs/sd2-calibration-attempt1",
+  "capacity_rps": 8,
+  "base_arrival_rps": 4.0,
+  "base_kv_gib": 27.38,
+  "cuda_total_gib": 94.97,
+  "base_kv_tokens": 550407,
+  "historical_context_only": "Original host dev cache about 0.33 GiB caused 391 preemptions; original reference p95 working set about 0.53 GiB. New targets use the new host's measurements, not capacity=6 or old utilization constants.",
+  "candidates": [],
+  "progress_stage": "baseline_pending",
+  "snapshot_sequence": 0,
+  "snapshot_at": "2026-11-01T22:31:51.369122+00:00"
+}

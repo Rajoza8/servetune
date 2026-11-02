@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-05",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.97,
+  "evidence": [
+   "max_num_seqs=8 vs reference 64; change_log shows deploy 64->8",
+   "arrivals 4.2 rps similar to normal 4.0 rps, prompt_tokens_mean ~196 vs 202 normal",
+   "running capped at ~8 with waiting_max rising to 70, vs normal running 21.1 waiting 0",
+   "p95_latency 16.91s > SLO 10s and p95_ttft 12.34s vs normal 0.42s",
+   "kv_usage_pct_max 0.73% low, no preemptions, no other GPU processes"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency capped at 8 sequences despite normal load needing ~21 running, causing queueing, high TTFT/latency with idle KV cache. Restore reference max_num_seqs=64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.97, \"evidence\": [\"max_num_seqs=8 vs reference 64; change_log shows deploy 64->8\", \"arrivals 4.2 rps similar to normal 4.0 rps, prompt_tokens_mean ~196 vs 202 normal\", \"running capped at ~8 with waiting_max rising to 70, vs normal running 21.1 waiting 0\", \"p95_latency 16.91s > SLO 10s and p95_ttft 12.34s vs normal 0.42s\", \"kv_usage_pct_max 0.73% low, no preemptions, no other GPU processes\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 8 sequences despite normal load needing ~21 running, causing queueing, high TTFT/latency with idle KV cache. Restore reference max_num_seqs=64.\"}",
+  "usage": {
+   "completion_tokens": 407,
+   "prompt_tokens": 1465,
+   "total_tokens": 1872,
+   "completion_tokens_details": {
+    "reasoning_tokens": 169
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fb7fba4f066480047a02155e4a6ea9b9fb0f5cc8484a3b546b81276aaeeb5ca0",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency 16.9s exceeds SLO 10s with growing queue; max_num_seqs cut from 64 to 8 causing backlog, waiting_max 70.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency 16.9s exceeds SLO 10s with growing queue; max_num_seqs cut from 64 to 8 causing backlog, waiting_max 70.\"}",
+    "usage": {
+     "prompt_tokens": 979,
+     "total_tokens": 1112,
+     "completion_tokens": 133,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.97,
+    "evidence": [
+     "max_num_seqs=8 vs reference 64; change_log shows deploy 64->8",
+     "arrivals 4.2 rps similar to normal 4.0 rps, prompt_tokens_mean ~196 vs 202 normal",
+     "running capped at ~8 with waiting_max rising to 70, vs normal running 21.1 waiting 0",
+     "p95_latency 16.91s > SLO 10s and p95_ttft 12.34s vs normal 0.42s",
+     "kv_usage_pct_max 0.73% low, no preemptions, no other GPU processes"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency capped at 8 sequences despite normal load needing ~21 running, causing queueing, high TTFT/latency with idle KV cache. Restore reference max_num_seqs=64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.97, \"evidence\": [\"max_num_seqs=8 vs reference 64; change_log shows deploy 64->8\", \"arrivals 4.2 rps similar to normal 4.0 rps, prompt_tokens_mean ~196 vs 202 normal\", \"running capped at ~8 with waiting_max rising to 70, vs normal running 21.1 waiting 0\", \"p95_latency 16.91s > SLO 10s and p95_ttft 12.34s vs normal 0.42s\", \"kv_usage_pct_max 0.73% low, no preemptions, no other GPU processes\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 8 sequences despite normal load needing ~21 running, causing queueing, high TTFT/latency with idle KV cache. Restore reference max_num_seqs=64.\"}",
+    "usage": {
+     "completion_tokens": 407,
+     "prompt_tokens": 1465,
+     "total_tokens": 1872,
+     "completion_tokens_details": {
+      "reasoning_tokens": 169
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

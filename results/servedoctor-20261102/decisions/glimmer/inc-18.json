@@ -1,0 +1,105 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-18",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.82,
+  "evidence": [
+   "arrivals_rps 0.27-1.2 vs normal_profile 4.0",
+   "running 1.09-5.5 vs normal 21.1",
+   "kv_usage_pct_max 0.07-0.56 vs normal 1.78",
+   "p95_latency_s 4.59-5.12 < SLO 10.0",
+   "gpu_power_w 414-562 ~ normal 554 with low traffic"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "SLOs are met with low latency and no shedding, but offered load is ~15-30% of normal profile while GPU power/util remain high. This is an efficiency underutilization, best addressed by consolidating traffic.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.82, \"evidence\": [\"arrivals_rps 0.27-1.2 vs normal_profile 4.0\", \"running 1.09-5.5 vs normal 21.1\", \"kv_usage_pct_max 0.07-0.56 vs normal 1.78\", \"p95_latency_s 4.59-5.12 < SLO 10.0\", \"gpu_power_w 414-562 ~ normal 554 with low traffic\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs are met with low latency and no shedding, but offered load is ~15-30% of normal profile while GPU power/util remain high. This is an efficiency underutilization, best addressed by consolidating traffic.\"}",
+  "usage": {
+   "prompt_tokens": 1936,
+   "total_tokens": 2590,
+   "completion_tokens": 654,
+   "prompt_tokens_details": null
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fd38668275e7096476e29f438d9c5d632edb08b9ad36cd5bfd73e432eb907e1b",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.85,
+    "evidence": [
+     "p95_latency_s 5.02 < SLO 10.0 at t=30",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "arrivals_rps 1.2 vs normal 4.0 but ok_rps matches arrivals",
+     "waiting_max 0.0 and running 5.5 with kv_usage_pct_max 0.54%",
+     "gpu_mem_used_mb 89694 stable, no contention processes"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs are met with low latency, zero shed/errors and no queueing. Low arrival rate explains reduced running/KV usage; no incident or corrective change needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.85, \"evidence\": [\"p95_latency_s 5.02 < SLO 10.0 at t=30\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"arrivals_rps 1.2 vs normal 4.0 but ok_rps matches arrivals\", \"waiting_max 0.0 and running 5.5 with kv_usage_pct_max 0.54%\", \"gpu_mem_used_mb 89694 stable, no contention processes\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"SLOs are met with low latency, zero shed/errors and no queueing. Low arrival rate explains reduced running/KV usage; no incident or corrective change needed.\"}",
+    "usage": {
+     "prompt_tokens": 1471,
+     "total_tokens": 2267,
+     "completion_tokens": 796,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "e06dd6ef496442f9c7facb612aa17b55d5729497a95cd941289d63c999f5c5f5",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.82,
+    "evidence": [
+     "arrivals_rps 0.27-1.2 vs normal_profile 4.0",
+     "running 1.09-5.5 vs normal 21.1",
+     "kv_usage_pct_max 0.07-0.56 vs normal 1.78",
+     "p95_latency_s 4.59-5.12 < SLO 10.0",
+     "gpu_power_w 414-562 ~ normal 554 with low traffic"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs are met with low latency and no shedding, but offered load is ~15-30% of normal profile while GPU power/util remain high. This is an efficiency underutilization, best addressed by consolidating traffic.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.82, \"evidence\": [\"arrivals_rps 0.27-1.2 vs normal_profile 4.0\", \"running 1.09-5.5 vs normal 21.1\", \"kv_usage_pct_max 0.07-0.56 vs normal 1.78\", \"p95_latency_s 4.59-5.12 < SLO 10.0\", \"gpu_power_w 414-562 ~ normal 554 with low traffic\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs are met with low latency and no shedding, but offered load is ~15-30% of normal profile while GPU power/util remain high. This is an efficiency underutilization, best addressed by consolidating traffic.\"}",
+    "usage": {
+     "prompt_tokens": 1936,
+     "total_tokens": 2590,
+     "completion_tokens": 654,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

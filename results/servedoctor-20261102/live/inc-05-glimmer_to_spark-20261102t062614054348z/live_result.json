@@ -1,0 +1,150 @@
+{
+  "id": "inc-05",
+  "arm": "glimmer_to_spark",
+  "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+      "change_log max_num_seqs 64->8 at t=0",
+      "running capped at 8 vs normal 21.1",
+      "waiting_max 68 vs normal 0",
+      "p95_latency 16.89s > SLO 10s with arrivals ~4rps normal",
+      "kv_usage 0.7% low, no preemptions"
+    ],
+    "actions": [
+      {
+        "type": "set_engine_config",
+        "knob": "max_num_seqs",
+        "value": 64
+      }
+    ],
+    "rejected_actions": [],
+    "explanation": "Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"change_log max_num_seqs 64->8 at t=0\", \"running capped at 8 vs normal 21.1\", \"waiting_max 68 vs normal 0\", \"p95_latency 16.89s > SLO 10s with arrivals ~4rps normal\", \"kv_usage 0.7% low, no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.\"}",
+    "usage": {
+      "completion_tokens": 484,
+      "prompt_tokens": 2089,
+      "total_tokens": 2573,
+      "completion_tokens_details": {
+        "reasoning_tokens": 302
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "t": 30.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "set_engine_config",
+        "knob": "max_num_seqs",
+        "value": 64
+      },
+      "at": "2026-11-02T06:51:54.932863+00:00",
+      "previous": {
+        "max_num_seqs": 8
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "d8ade36292294059b7a242022ce8f896f6308fbaf91ef535e65bac640db295d1",
+      "monitor": {
+        "status": "anomaly",
+        "summary": "p95 latency breached SLO: 16.9s at t=29s vs 10s limit. max_num_seqs cut 64→8 at deploy causing queue buildup, waiting_max 68, throughput drop.",
+        "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency breached SLO: 16.9s at t=29s vs 10s limit. max_num_seqs cut 64→8 at deploy causing queue buildup, waiting_max 68, throughput drop.\"}",
+        "usage": {
+          "prompt_tokens": 1603,
+          "total_tokens": 1741,
+          "completion_tokens": 138,
+          "prompt_tokens_details": null
+        },
+        "valid_output": true
+      },
+      "escalated": true,
+      "decision": {
+        "incident": true,
+        "root_cause": "batch_limit_too_low",
+        "confidence": 0.95,
+        "evidence": [
+          "change_log max_num_seqs 64->8 at t=0",
+          "running capped at 8 vs normal 21.1",
+          "waiting_max 68 vs normal 0",
+          "p95_latency 16.89s > SLO 10s with arrivals ~4rps normal",
+          "kv_usage 0.7% low, no preemptions"
+        ],
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_num_seqs",
+            "value": 64
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"change_log max_num_seqs 64->8 at t=0\", \"running capped at 8 vs normal 21.1\", \"waiting_max 68 vs normal 0\", \"p95_latency 16.89s > SLO 10s with arrivals ~4rps normal\", \"kv_usage 0.7% low, no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.\"}",
+        "usage": {
+          "completion_tokens": 484,
+          "prompt_tokens": 2089,
+          "total_tokens": 2573,
+          "completion_tokens_details": {
+            "reasoning_tokens": 302
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 78.4,
+  "post_fix_window": {
+    "requests": 226,
+    "ok": 226,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.641135296784341,
+    "p95_latency_s": 5.9607603857293725
+  },
+  "fault_window_before_action": {
+    "requests": 316,
+    "ok": 56,
+    "shed": 0,
+    "failed": 260,
+    "shed_rate": 0.0,
+    "error_rate": 0.8227848101265823,
+    "p50_latency_s": 13.222890559118241,
+    "p95_latency_s": 22.32848303997889
+  },
+  "after_action": {
+    "requests": 2318,
+    "ok": 2318,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.718817459885031,
+    "p95_latency_s": 6.444423217466102
+  },
+  "time_to_recover_s": 108.4,
+  "engine_restarts": [
+    {
+      "knob": "max_num_seqs",
+      "value": 64,
+      "status": "completed",
+      "seconds": 37.90740461368114
+    }
+  ]
+}

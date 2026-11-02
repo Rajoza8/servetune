@@ -1,0 +1,97 @@
+{
+  "id": "inc-02",
+  "arm": "rules",
+  "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "actions": [
+      {
+        "type": "set_engine_config",
+        "knob": "gpu_memory_utilization",
+        "value": 0.9
+      }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": [],
+    "t": 30.0
+  },
+  "actions": [],
+  "executed": [
+    {
+      "action": {
+        "type": "set_engine_config",
+        "knob": "gpu_memory_utilization",
+        "value": 0.9
+      },
+      "at": "2026-11-02T07:42:55.509507+00:00",
+      "previous": {
+        "gpu_memory_utilization": 0.61733
+      },
+      "status": "executed"
+    }
+  ],
+  "recovered": true,
+  "rolled_back": false,
+  "trail": [
+    {
+      "t": 30.0,
+      "observation_sha256": "f4500aff5deb64ec78b50ad8168f006fc6cf65b10943bce049e715923f0a598e",
+      "decision": {
+        "incident": true,
+        "root_cause": "kv_cache_starvation",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "gpu_memory_utilization",
+            "value": 0.9
+          }
+        ],
+        "evidence": [],
+        "explanation": "threshold rules",
+        "rejected_actions": []
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "acted_at_s": 58.0,
+  "post_fix_window": {
+    "requests": 255,
+    "ok": 255,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 6.031878003850579,
+    "p95_latency_s": 6.893637028895318
+  },
+  "fault_window_before_action": {
+    "requests": 241,
+    "ok": 111,
+    "shed": 0,
+    "failed": 130,
+    "shed_rate": 0.0,
+    "error_rate": 0.5394190871369294,
+    "p50_latency_s": 5.789066801778972,
+    "p95_latency_s": 7.0022023394703865
+  },
+  "after_action": {
+    "requests": 2388,
+    "ok": 2388,
+    "shed": 0,
+    "failed": 0,
+    "shed_rate": 0.0,
+    "error_rate": 0.0,
+    "p50_latency_s": 5.7048862599767745,
+    "p95_latency_s": 6.461059292359278
+  },
+  "time_to_recover_s": 88.0,
+  "engine_restarts": [
+    {
+      "knob": "gpu_memory_utilization",
+      "value": 0.9,
+      "status": "completed",
+      "seconds": 27.978855825960636
+    }
+  ]
+}

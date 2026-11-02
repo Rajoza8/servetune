@@ -1,0 +1,88 @@
+{
+ "arm": "spark",
+ "incident": "inc-03",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "max_num_seqs 4 vs reference 64, changed at t=0 deploy",
+   "arrivals_rps ~4.4-5.5 vs normal 4.0, no surge",
+   "running capped at 4.0 vs normal 21.1, waiting_max 126 vs 0",
+   "kv_usage_pct_max 0.3% vs 1.78%, no KV pressure",
+   "p95_latency 25.83s exceeds SLO 10.0s"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy cut max_num_seqs 64->4 while load normal. Running pinned at 4 with waiting queue growing to 126 and KV near empty, proving artificial concurrency limit. Restore to 64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs 4 vs reference 64, changed at t=0 deploy\", \"arrivals_rps ~4.4-5.5 vs normal 4.0, no surge\", \"running capped at 4.0 vs normal 21.1, waiting_max 126 vs 0\", \"kv_usage_pct_max 0.3% vs 1.78%, no KV pressure\", \"p95_latency 25.83s exceeds SLO 10.0s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy cut max_num_seqs 64->4 while load normal. Running pinned at 4 with waiting queue growing to 126 and KV near empty, proving artificial concurrency limit. Restore to 64.\"}",
+  "usage": {
+   "completion_tokens": 469,
+   "prompt_tokens": 1466,
+   "total_tokens": 1935,
+   "completion_tokens_details": {
+    "reasoning_tokens": 255
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "797e06cd1abbb6ba19b6bc21325c86a6daca28d8f9fd1b6adfafa41db6d2f933",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "max_num_seqs 4 vs reference 64, changed at t=0 deploy",
+     "arrivals_rps ~4.4-5.5 vs normal 4.0, no surge",
+     "running capped at 4.0 vs normal 21.1, waiting_max 126 vs 0",
+     "kv_usage_pct_max 0.3% vs 1.78%, no KV pressure",
+     "p95_latency 25.83s exceeds SLO 10.0s"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_num_seqs 64->4 while load normal. Running pinned at 4 with waiting queue growing to 126 and KV near empty, proving artificial concurrency limit. Restore to 64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs 4 vs reference 64, changed at t=0 deploy\", \"arrivals_rps ~4.4-5.5 vs normal 4.0, no surge\", \"running capped at 4.0 vs normal 21.1, waiting_max 126 vs 0\", \"kv_usage_pct_max 0.3% vs 1.78%, no KV pressure\", \"p95_latency 25.83s exceeds SLO 10.0s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy cut max_num_seqs 64->4 while load normal. Running pinned at 4 with waiting queue growing to 126 and KV near empty, proving artificial concurrency limit. Restore to 64.\"}",
+    "usage": {
+     "completion_tokens": 469,
+     "prompt_tokens": 1466,
+     "total_tokens": 1935,
+     "completion_tokens_details": {
+      "reasoning_tokens": 255
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

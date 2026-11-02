@@ -1,0 +1,84 @@
+{
+ "arm": "spark",
+ "incident": "inc-19",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.85,
+  "evidence": [
+   "arrivals_rps 1.0-1.1 vs normal 4.0",
+   "running 4-5 vs normal 21.1",
+   "gen_tokens_per_s ~110-145 vs normal 497.6",
+   "gpu_power_w 558-568 vs normal 554.17",
+   "gpu_util_pct 99.9% despite low load, SLOs met"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "SLOs met with no queueing, but load ~25% of normal while GPU power/util at full-load levels. Inefficient, not a serving failure. Advise consolidation only.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps 1.0-1.1 vs normal 4.0\", \"running 4-5 vs normal 21.1\", \"gen_tokens_per_s ~110-145 vs normal 497.6\", \"gpu_power_w 558-568 vs normal 554.17\", \"gpu_util_pct 99.9% despite low load, SLOs met\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs met with no queueing, but load ~25% of normal while GPU power/util at full-load levels. Inefficient, not a serving failure. Advise consolidation only.\"}",
+  "usage": {
+   "completion_tokens": 816,
+   "prompt_tokens": 1459,
+   "total_tokens": 2275,
+   "completion_tokens_details": {
+    "reasoning_tokens": 644
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 497
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "4919f690576cafa3624455b7a597d636f3ad13070307ecfd8980989ac20e098f",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.85,
+    "evidence": [
+     "arrivals_rps 1.0-1.1 vs normal 4.0",
+     "running 4-5 vs normal 21.1",
+     "gen_tokens_per_s ~110-145 vs normal 497.6",
+     "gpu_power_w 558-568 vs normal 554.17",
+     "gpu_util_pct 99.9% despite low load, SLOs met"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs met with no queueing, but load ~25% of normal while GPU power/util at full-load levels. Inefficient, not a serving failure. Advise consolidation only.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps 1.0-1.1 vs normal 4.0\", \"running 4-5 vs normal 21.1\", \"gen_tokens_per_s ~110-145 vs normal 497.6\", \"gpu_power_w 558-568 vs normal 554.17\", \"gpu_util_pct 99.9% despite low load, SLOs met\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs met with no queueing, but load ~25% of normal while GPU power/util at full-load levels. Inefficient, not a serving failure. Advise consolidation only.\"}",
+    "usage": {
+     "completion_tokens": 816,
+     "prompt_tokens": 1459,
+     "total_tokens": 2275,
+     "completion_tokens_details": {
+      "reasoning_tokens": 644
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 497
+     }
+    }
+   }
+  }
+ ]
+}

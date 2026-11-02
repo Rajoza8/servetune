@@ -1,0 +1,7 @@
+{
+  "python": "3.12.3",
+  "torch": "2.13.0+cu130",
+  "torch_cuda": "13.0",
+  "vllm": "0.26.1rc1.dev608+g99a10304d",
+  "gpu_csv": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, GPU-549b0b27-6ca2-2fca-e5aa-a0f67a43b81b, 580.159.03, 97887 MiB"
+}

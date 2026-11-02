@@ -1,0 +1,76 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-04",
+ "engine_config": {
+  "max_model_len": 768,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "max_model_len changed from 4096 to 768 at deploy t=0",
+   "http_400 errors 5-9 per 10s bucket with ok_rps < arrivals_rps",
+   "prompt_tokens_mean 254-398 with some requests exceeding 768",
+   "p95_latency_s 4.79-4.96 within SLO but error rate elevated"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deployment reduced max_model_len to 768 causing 400 rejections for valid prompts. Restoring max_model_len to reference 4096 removes the artificial context limit while keeping other knobs unchanged.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"max_model_len changed from 4096 to 768 at deploy t=0\", \"http_400 errors 5-9 per 10s bucket with ok_rps < arrivals_rps\", \"prompt_tokens_mean 254-398 with some requests exceeding 768\", \"p95_latency_s 4.79-4.96 within SLO but error rate elevated\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deployment reduced max_model_len to 768 causing 400 rejections for valid prompts. Restoring max_model_len to reference 4096 removes the artificial context limit while keeping other knobs unchanged.\"}",
+  "usage": {
+   "prompt_tokens": 1494,
+   "total_tokens": 2038,
+   "completion_tokens": 544,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "0ea8941af5b058d2c48adf52dc1f1c89f646bc5f2efef93b51fabdf3a33750cf",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "max_model_len changed from 4096 to 768 at deploy t=0",
+     "http_400 errors 5-9 per 10s bucket with ok_rps < arrivals_rps",
+     "prompt_tokens_mean 254-398 with some requests exceeding 768",
+     "p95_latency_s 4.79-4.96 within SLO but error rate elevated"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deployment reduced max_model_len to 768 causing 400 rejections for valid prompts. Restoring max_model_len to reference 4096 removes the artificial context limit while keeping other knobs unchanged.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"max_model_len changed from 4096 to 768 at deploy t=0\", \"http_400 errors 5-9 per 10s bucket with ok_rps < arrivals_rps\", \"prompt_tokens_mean 254-398 with some requests exceeding 768\", \"p95_latency_s 4.79-4.96 within SLO but error rate elevated\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deployment reduced max_model_len to 768 causing 400 rejections for valid prompts. Restoring max_model_len to reference 4096 removes the artificial context limit while keeping other knobs unchanged.\"}",
+    "usage": {
+     "prompt_tokens": 1494,
+     "total_tokens": 2038,
+     "completion_tokens": 544,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

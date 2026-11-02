@@ -1,0 +1,31 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "origin": "local_mac",
+  "created_at_utc": "2026-11-02T01:50:28.981005+00:00",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "transport_ready_sha256": "603fd6093b850de28f12ad59c61247d6469476a46b6be1b6586d5b3ed62fba51",
+  "transport_config_sha256": "62276217beb26abb14e37dffc45c7be471efc6d3aac16441187ed244e55d4e16",
+  "method": "GET",
+  "url": "https://api.meta.ai/v1/models",
+  "authenticated": false,
+  "authorization_sent": false,
+  "body_read": false,
+  "through_configured_transport": true,
+  "proxy_url": "http://127.0.0.1:18443",
+  "http_status": 401,
+  "tls_verified": true,
+  "verified": true,
+  "verification": {
+    "method": "GET",
+    "url": "https://api.meta.ai/v1/models",
+    "authenticated": false,
+    "authorization_sent": false,
+    "body_read": false,
+    "through_configured_transport": true,
+    "proxy_url": "http://127.0.0.1:18443",
+    "http_status": 401,
+    "tls_verified": true,
+    "verified": true
+  }
+}

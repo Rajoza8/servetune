@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "request_timeout_s": [
+        120,
+        180
+      ]
+    }
+  },
+  {
+    "t": 116.9,
+    "kind": "note",
+    "text": "Client SDK minor version bump rolled out to 10% of callers."
+  }
+]

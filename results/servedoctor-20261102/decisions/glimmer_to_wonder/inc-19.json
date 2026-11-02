@@ -1,0 +1,316 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "inc-19",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": null,
+ "checkpoints": 12,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "4919f690576cafa3624455b7a597d636f3ad13070307ecfd8980989ac20e098f",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Load is low (~1 rps vs 4 rps normal) with p95 latency ~4.8s under SLO 10s, zero shed/errors, GPU util stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Load is low (~1 rps vs 4 rps normal) with p95 latency ~4.8s under SLO 10s, zero shed/errors, GPU util stable.\"}",
+    "usage": {
+     "prompt_tokens": 973,
+     "total_tokens": 1134,
+     "completion_tokens": 161,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "55e0db06b165f33c7132c76502c317fe6ebb5400f30d8cfc394a4f56ff6fdf92",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~4.8-5.3s under 10s SLO, zero errors/shed, GPU util normal. Load is low vs profile but no SLO threat.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~4.8-5.3s under 10s SLO, zero errors/shed, GPU util normal. Load is low vs profile but no SLO threat.\"}",
+    "usage": {
+     "prompt_tokens": 1438,
+     "total_tokens": 1595,
+     "completion_tokens": 157,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "2b2d9fffefe3b5ba4032588ae894d0ec48a565a6ab9cff2cb84c5b9779bc62a8",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5s under 10s SLO, zero shed/errors, metrics stable. Load is low vs normal profile but no SLO breach or anomaly.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5s under 10s SLO, zero shed/errors, metrics stable. Load is low vs normal profile but no SLO breach or anomaly.\"}",
+    "usage": {
+     "prompt_tokens": 1926,
+     "total_tokens": 2170,
+     "completion_tokens": 244,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "eeeb84b8f1cac9b76814fd68e2d3acf0aaa9fade109c3cc86895defd1ffea5e0",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5s under 10s SLO, zero errors and shed, low queue with no waiting. Load is below normal profile but stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5s under 10s SLO, zero errors and shed, low queue with no waiting. Load is below normal profile but stable.\"}",
+    "usage": {
+     "prompt_tokens": 2391,
+     "total_tokens": 2557,
+     "completion_tokens": 166,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "89a8611ac3fa18d5b312feca92a652549d791f6c60fcfe144cabea39e358f087",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5.2s under 10s SLO, error and shed rates zero, GPU util normal. Low arrival rate ~1 rps vs normal 4 rps but no SLO threat.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5.2s under 10s SLO, error and shed rates zero, GPU util normal. Low arrival rate ~1 rps vs normal 4 rps but no SLO threat.\"}",
+    "usage": {
+     "prompt_tokens": 2595,
+     "total_tokens": 2758,
+     "completion_tokens": 163,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "b2da6e6bd3a15496724cc3d7f0e8f26ef7004d9dd26f2a69ff24bd249b4b0178",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.0s under 10s SLO, zero errors and shed, GPU util normal. Load is low vs profile but no SLO threat.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.0s under 10s SLO, zero errors and shed, GPU util normal. Load is low vs profile but no SLO threat.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 2979,
+     "completion_tokens": 180,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "5a010d6ca60766baaea6fd8d37a5b36c96cbe3b7eda5f8cc3976d84dee952bdc",
+   "monitor": {
+    "status": "healthy",
+    "summary": "SLOs met: p95 latency ~5s <10s, error and shed rate zero. Low arrivals ~0.4 rps vs normal 4 rps with reduced running and token throughput, but no latency, error or shedding anomaly.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"SLOs met: p95 latency ~5s <10s, error and shed rate zero. Low arrivals ~0.4 rps vs normal 4 rps with reduced running and token throughput, but no latency, error or shedding anomaly.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 3096,
+     "completion_tokens": 297,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "e8285297efda38eb2c4e38b0038ca05795fed19fbd8a90661038980d2ab056f0",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5s under 10s SLO, error and shed rates zero, KV usage low. Load is well below normal profile but metrics stable with no SLO threat.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5s under 10s SLO, error and shed rates zero, KV usage low. Load is well below normal profile but metrics stable with no SLO threat.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 2953,
+     "completion_tokens": 154,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "a8acc2faf1e1288596bc9fcfa692810a4325911a249202e292948391c360e40a",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5s under 10s SLO, error and shed rates zero, GPU utilization down due to low arrivals ~0.5-1.3 rps vs normal 4 rps but no SLO breach or anomalies.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5s under 10s SLO, error and shed rates zero, GPU utilization down due to low arrivals ~0.5-1.3 rps vs normal 4 rps but no SLO breach or anomalies.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 2961,
+     "completion_tokens": 162,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 300,
+   "observation_sha256": "a9f70ada3f01c02be458d27ad363fe65f31f1e10c8010e9779033efeac3d2e1e",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Load is low but stable. p95 latency ~5.1s under 10s SLO, no errors or shedding, GPU util high with low KV usage.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Load is low but stable. p95 latency ~5.1s under 10s SLO, no errors or shedding, GPU util high with low KV usage.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 2954,
+     "completion_tokens": 155,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 330,
+   "observation_sha256": "274b9590e8ca1c8cdbae2fc8abd4f579257fa302b204e28c3bc73570320d4ace",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5s under 10s SLO, error and shed rates zero, no queue buildup. Load is low vs normal profile but metrics stable with no SLO risk.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5s under 10s SLO, error and shed rates zero, no queue buildup. Load is low vs normal profile but metrics stable with no SLO risk.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 2967,
+     "completion_tokens": 168,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 360,
+   "observation_sha256": "3c5500213fb6f7c46ef497af48115dd72a7e4b3bd24a929e66202f3f592c4aed",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5s under 10s SLO, zero shed/errors, low queue and KV usage, GPU stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5s under 10s SLO, zero shed/errors, low queue and KV usage, GPU stable.\"}",
+    "usage": {
+     "prompt_tokens": 2799,
+     "total_tokens": 2952,
+     "completion_tokens": 153,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  }
+ ]
+}

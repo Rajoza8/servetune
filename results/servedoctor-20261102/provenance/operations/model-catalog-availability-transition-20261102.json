@@ -1,0 +1,31 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "recorded_at_utc": "2026-11-02T01:52:48.466226+00:00",
+  "observations_in_order": [
+    {
+      "diagnostic": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/model-diagnostic-20261102-after-ca-repair.json",
+        "sha256": "c6555b01092c4521c9e93587c608eb19a2de4f4fa6629ce5863e5f3bebd8336a"
+      },
+      "remote_git_head": "3fea48a84cec07231f3a658f57ccc7b125eda8ae",
+      "local_http_status": 200,
+      "local_wonder_present": true,
+      "direct_remote_http_status": 200,
+      "direct_remote_wonder_present": false
+    },
+    {
+      "diagnostic": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/model-diagnostic-20261102-transport-head.json",
+        "sha256": "8024972f213192ea7cc2a465a08b6a267a53b8009f319a46b44aa02718501405"
+      },
+      "remote_git_head": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+      "local_http_status": 200,
+      "local_wonder_present": true,
+      "direct_remote_http_status": 200,
+      "direct_remote_wonder_present": true
+    }
+  ],
+  "interpretation": "The earlier successful direct-remote catalog omitted Wonder; the fresh final-source catalog includes it. Catalog availability changed during troubleshooting. These observations do not establish a causal mechanism or stable regional enforcement. Earlier HTTP404/partial decisions and ledger reservations remain preserved. Remaining Meta arms will use the explicitly verified local-Mac-origin CONNECT transport consistently; no direct paid retry is authorized by this receipt.",
+  "actions_performed": "Read existing safe public diagnostic JSON and write this evidence receipt only; no new API, copy, routing, ledger or GPU action."
+}

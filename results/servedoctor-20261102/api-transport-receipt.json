@@ -1,0 +1,18 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "origin": "local_mac",
+  "allowed_target": "api.meta.ai:443",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "transport_config_sha256": "62276217beb26abb14e37dffc45c7be471efc6d3aac16441187ed244e55d4e16",
+  "verified": true,
+  "verification_scope": "Unauthenticated fixed GET401 proves channel only; model availability comes from local authenticated catalog, and first completion is a new recorded attempt.",
+  "ready_proof": {
+    "path": "lineage/transport-ready.json",
+    "sha256": "603fd6093b850de28f12ad59c61247d6469476a46b6be1b6586d5b3ed62fba51"
+  },
+  "channel_proof": {
+    "path": "lineage/transport-channel-proof.json",
+    "sha256": "02f2edb7123734480102a83f0873a40509709fb3dc8bc74e4032a38c22b53ee4"
+  }
+}

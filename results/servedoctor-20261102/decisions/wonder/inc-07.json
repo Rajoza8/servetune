@@ -1,0 +1,230 @@
+{
+ "arm": "wonder",
+ "incident": "inc-07",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "long_prompt_flood",
+  "confidence": 0.92,
+  "evidence": [
+   "Arrivals stable at ~3.3 rps vs 4.0 normal, while prompt_tokens_mean jumped from ~202 to 1718-1729",
+   "prompt_tokens_per_s rose to 5658 vs ~1100 normally, showing prefill dominance",
+   "p95_latency_s rose to 25.19s, exceeding 10s SLO; p95_ttft_s rose to 5.85s",
+   "Running rose to 62.4 near max_num_seqs=64 with waiting_max 11, vs waiting 0 normally",
+   "KV usage rose only to 15.5% with no preemptions, ruling out KV starvation"
+  ],
+  "actions": [
+   {
+    "type": "gateway_max_prompt_tokens",
+    "max_prompt_tokens": 1024
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Traffic rate is unchanged but prompt length surged, saturating prefill and queueing requests. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without an engine restart.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.92, \"evidence\": [\"Arrivals stable at ~3.3 rps vs 4.0 normal, while prompt_tokens_mean jumped from ~202 to 1718-1729\", \"prompt_tokens_per_s rose to 5658 vs ~1100 normally, showing prefill dominance\", \"p95_latency_s rose to 25.19s, exceeding 10s SLO; p95_ttft_s rose to 5.85s\", \"Running rose to 62.4 near max_num_seqs=64 with waiting_max 11, vs waiting 0 normally\", \"KV usage rose only to 15.5% with no preemptions, ruling out KV starvation\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1024}], \"explanation\": \"Traffic rate is unchanged but prompt length surged, saturating prefill and queueing requests. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without an engine restart.\"}",
+  "usage": {
+   "completion_tokens": 778,
+   "prompt_tokens": 3107,
+   "total_tokens": 3885,
+   "completion_tokens_details": {
+    "reasoning_tokens": 538
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "62ac94834f5ce5113b2bdaa9ea738fbe1c86d45c4a536a07fef31f7ec9f90456",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.97-6.79s below 10s SLO",
+     "waiting_max 0.0 and preemptions 0.0 in all buckets",
+     "KV usage max 2.91% similar to normal 1.78%",
+     "arrivals 2.7-4.82 rps near normal 4.0 rps, no shed/errors shown",
+     "engine config matches reference config"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics within normal/SLO bounds: latency low, no queueing, KV or preemption pressure, and GPU utilization consistent with healthy profile.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.97-6.79s below 10s SLO\", \"waiting_max 0.0 and preemptions 0.0 in all buckets\", \"KV usage max 2.91% similar to normal 1.78%\", \"arrivals 2.7-4.82 rps near normal 4.0 rps, no shed/errors shown\", \"engine config matches reference config\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics within normal/SLO bounds: latency low, no queueing, KV or preemption pressure, and GPU utilization consistent with healthy profile.\"}",
+    "usage": {
+     "completion_tokens": 407,
+     "prompt_tokens": 1461,
+     "total_tokens": 1868,
+     "completion_tokens_details": {
+      "reasoning_tokens": 240
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "bc5c03abb89c2b7cd4988168513e0066b8ea42b1772af5761cad024edb78cf2a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.5-6.8s < 10s SLO in all buckets",
+     "arrivals 2.0-4.8 rps near normal 4.0 rps",
+     "waiting_max 0.0 and kv_usage_pct_max <=2.91%",
+     "running ~15-27 near normal 21.1, gen throughput near normal",
+     "only engine GPU process present, config matches reference"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All latency, queueing, KV, throughput and load metrics match the healthy reference and meet SLO; no incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.5-6.8s < 10s SLO in all buckets\", \"arrivals 2.0-4.8 rps near normal 4.0 rps\", \"waiting_max 0.0 and kv_usage_pct_max <=2.91%\", \"running ~15-27 near normal 21.1, gen throughput near normal\", \"only engine GPU process present, config matches reference\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All latency, queueing, KV, throughput and load metrics match the healthy reference and meet SLO; no incident.\"}",
+    "usage": {
+     "completion_tokens": 337,
+     "prompt_tokens": 1928,
+     "total_tokens": 2265,
+     "completion_tokens_details": {
+      "reasoning_tokens": 175
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "dad671dc201e89ae4530ff310ec233d7ebb03d673dd201087c147a48ec55848b",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.5-6.8s below 10s SLO, similar to normal 5.72s",
+     "arrivals ~2-5.2 rps vs normal 4.0 rps, no errors or shedding",
+     "waiting_max 0.0 and kv_usage_pct_max <=2.91, no preemptions",
+     "running ~11-28 and gen_tokens_per_s near normal 497.6",
+     "engine config matches reference; only GPU process is VLLM::EngineCore"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match the healthy profile and meet SLOs; no queuing, KV pressure, errors, or contention. Leave system unchanged.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.5-6.8s below 10s SLO, similar to normal 5.72s\", \"arrivals ~2-5.2 rps vs normal 4.0 rps, no errors or shedding\", \"waiting_max 0.0 and kv_usage_pct_max <=2.91, no preemptions\", \"running ~11-28 and gen_tokens_per_s near normal 497.6\", \"engine config matches reference; only GPU process is VLLM::EngineCore\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match the healthy profile and meet SLOs; no queuing, KV pressure, errors, or contention. Leave system unchanged.\"}",
+    "usage": {
+     "completion_tokens": 322,
+     "prompt_tokens": 2397,
+     "total_tokens": 2719,
+     "completion_tokens_details": {
+      "reasoning_tokens": 136
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "8fcc16fa1253962004faa3191195471f63bb24bc69ffbd7b115f3dbaa815988c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.5-6.8s < SLO 10s in all buckets",
+     "arrivals ~4 rps matching normal profile 4.0 rps, waiting_max 0.0",
+     "KV usage ~2% max, preemptions 0.0, running ~20 vs normal 21.1",
+     "GPU util ~100% and power ~570W matching normal profile",
+     "Engine config identical to reference, no errors or shedding"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match the healthy reference profile: latency within SLO, no queueing, no KV pressure, no errors or shedding. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.5-6.8s < SLO 10s in all buckets\", \"arrivals ~4 rps matching normal profile 4.0 rps, waiting_max 0.0\", \"KV usage ~2% max, preemptions 0.0, running ~20 vs normal 21.1\", \"GPU util ~100% and power ~570W matching normal profile\", \"Engine config identical to reference, no errors or shedding\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match the healthy reference profile: latency within SLO, no queueing, no KV pressure, no errors or shedding. No incident.\"}",
+    "usage": {
+     "completion_tokens": 305,
+     "prompt_tokens": 2895,
+     "total_tokens": 3200,
+     "completion_tokens_details": {
+      "reasoning_tokens": 129
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "0905cfa825a15b5c723b3d70974f20befed644aec8cc4073d5f238b227328169",
+   "decision": {
+    "incident": true,
+    "root_cause": "long_prompt_flood",
+    "confidence": 0.92,
+    "evidence": [
+     "Arrivals stable at ~3.3 rps vs 4.0 normal, while prompt_tokens_mean jumped from ~202 to 1718-1729",
+     "prompt_tokens_per_s rose to 5658 vs ~1100 normally, showing prefill dominance",
+     "p95_latency_s rose to 25.19s, exceeding 10s SLO; p95_ttft_s rose to 5.85s",
+     "Running rose to 62.4 near max_num_seqs=64 with waiting_max 11, vs waiting 0 normally",
+     "KV usage rose only to 15.5% with no preemptions, ruling out KV starvation"
+    ],
+    "actions": [
+     {
+      "type": "gateway_max_prompt_tokens",
+      "max_prompt_tokens": 1024
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Traffic rate is unchanged but prompt length surged, saturating prefill and queueing requests. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without an engine restart.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.92, \"evidence\": [\"Arrivals stable at ~3.3 rps vs 4.0 normal, while prompt_tokens_mean jumped from ~202 to 1718-1729\", \"prompt_tokens_per_s rose to 5658 vs ~1100 normally, showing prefill dominance\", \"p95_latency_s rose to 25.19s, exceeding 10s SLO; p95_ttft_s rose to 5.85s\", \"Running rose to 62.4 near max_num_seqs=64 with waiting_max 11, vs waiting 0 normally\", \"KV usage rose only to 15.5% with no preemptions, ruling out KV starvation\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1024}], \"explanation\": \"Traffic rate is unchanged but prompt length surged, saturating prefill and queueing requests. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without an engine restart.\"}",
+    "usage": {
+     "completion_tokens": 778,
+     "prompt_tokens": 3107,
+     "total_tokens": 3885,
+     "completion_tokens_details": {
+      "reasoning_tokens": 538
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

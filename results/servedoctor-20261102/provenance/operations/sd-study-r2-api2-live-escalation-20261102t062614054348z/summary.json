@@ -1,0 +1,459 @@
+{
+  "mode": "escalation",
+  "study_dir": "runs/sd-study-r2-api2",
+  "phase_name": "r2-api2-live-escalation-attempt1",
+  "git_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "started_at_utc": "2026-11-02T06:26:14.054635+00:00",
+  "completed_runs": [
+    {
+      "run_directory": "runs/sd-study-r2-api2/live/inc-02-glimmer_to_spark-20261102t062614054348z",
+      "id": "inc-02",
+      "arm": "glimmer_to_spark",
+      "decision": {
+        "incident": true,
+        "root_cause": "kv_cache_starvation",
+        "confidence": 0.92,
+        "evidence": [
+          "gpu_memory_utilization cut 0.9->0.61733 at deploy t0",
+          "kv_usage_pct_max 99.96% vs normal 1.78% max",
+          "waiting_max 20 vs normal 0.0 with preemptions 1.33/s",
+          "p95_ttft 3.78s vs normal 0.42s",
+          "gpu_mem_used ~60562MB vs normal 87634MB"
+        ],
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "gpu_memory_utilization",
+            "value": 0.9
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Deploy reduced KV reservation causing cache full, queueing and preemptions despite normal traffic/prompts. Restoring 0.9 fixes starvation with minimal change.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.92, \"evidence\": [\"gpu_memory_utilization cut 0.9->0.61733 at deploy t0\", \"kv_usage_pct_max 99.96% vs normal 1.78% max\", \"waiting_max 20 vs normal 0.0 with preemptions 1.33/s\", \"p95_ttft 3.78s vs normal 0.42s\", \"gpu_mem_used ~60562MB vs normal 87634MB\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Deploy reduced KV reservation causing cache full, queueing and preemptions despite normal traffic/prompts. Restoring 0.9 fixes starvation with minimal change.\"}",
+        "usage": {
+          "completion_tokens": 687,
+          "prompt_tokens": 2794,
+          "total_tokens": 3481,
+          "completion_tokens_details": {
+            "reasoning_tokens": 490
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "t": 120.0
+      },
+      "executed": [
+        {
+          "action": {
+            "type": "set_engine_config",
+            "knob": "gpu_memory_utilization",
+            "value": 0.9
+          },
+          "at": "2026-11-02T06:29:14.288323+00:00",
+          "previous": {
+            "gpu_memory_utilization": 0.61733
+          },
+          "status": "executed"
+        }
+      ],
+      "recovered": true,
+      "rolled_back": false,
+      "time_to_recover_s": 203.0,
+      "engine_restarts": [
+        {
+          "knob": "gpu_memory_utilization",
+          "value": 0.9,
+          "status": "completed",
+          "seconds": 37.70984926726669
+        }
+      ],
+      "checkpoints": 4
+    },
+    {
+      "run_directory": "runs/sd-study-r2-api2/live/inc-04-glimmer_to_spark-20261102t062614054348z",
+      "id": "inc-04",
+      "arm": "glimmer_to_spark",
+      "decision": {
+        "incident": true,
+        "root_cause": "context_limit_too_small",
+        "confidence": 0.95,
+        "evidence": [
+          "max_model_len changed 4096->768 at t=0 deploy",
+          "http_400=5,9,5 errors in 10s buckets",
+          "prompt_tokens_mean 195-398 with max 768 rejects valid prompts",
+          "p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%",
+          "arrivals_rps ~2.7-3.8 normal vs 4.0 reference"
+        ],
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.95, \"evidence\": [\"max_model_len changed 4096->768 at t=0 deploy\", \"http_400=5,9,5 errors in 10s buckets\", \"prompt_tokens_mean 195-398 with max 768 rejects valid prompts\", \"p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%\", \"arrivals_rps ~2.7-3.8 normal vs 4.0 reference\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.\"}",
+        "usage": {
+          "completion_tokens": 530,
+          "prompt_tokens": 2065,
+          "total_tokens": 2595,
+          "completion_tokens_details": {
+            "reasoning_tokens": 325
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "t": 30.0
+      },
+      "executed": [
+        {
+          "action": {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          },
+          "at": "2026-11-02T06:39:42.611251+00:00",
+          "previous": {
+            "max_model_len": 768
+          },
+          "status": "executed"
+        }
+      ],
+      "recovered": true,
+      "rolled_back": false,
+      "time_to_recover_s": 102.3,
+      "engine_restarts": [
+        {
+          "knob": "max_model_len",
+          "value": 4096,
+          "status": "completed",
+          "seconds": 37.68654798809439
+        }
+      ],
+      "checkpoints": 1
+    },
+    {
+      "run_directory": "runs/sd-study-r2-api2/live/inc-05-glimmer_to_spark-20261102t062614054348z",
+      "id": "inc-05",
+      "arm": "glimmer_to_spark",
+      "decision": {
+        "incident": true,
+        "root_cause": "batch_limit_too_low",
+        "confidence": 0.95,
+        "evidence": [
+          "change_log max_num_seqs 64->8 at t=0",
+          "running capped at 8 vs normal 21.1",
+          "waiting_max 68 vs normal 0",
+          "p95_latency 16.89s > SLO 10s with arrivals ~4rps normal",
+          "kv_usage 0.7% low, no preemptions"
+        ],
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_num_seqs",
+            "value": 64
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"change_log max_num_seqs 64->8 at t=0\", \"running capped at 8 vs normal 21.1\", \"waiting_max 68 vs normal 0\", \"p95_latency 16.89s > SLO 10s with arrivals ~4rps normal\", \"kv_usage 0.7% low, no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.\"}",
+        "usage": {
+          "completion_tokens": 484,
+          "prompt_tokens": 2089,
+          "total_tokens": 2573,
+          "completion_tokens_details": {
+            "reasoning_tokens": 302
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "t": 30.0
+      },
+      "executed": [
+        {
+          "action": {
+            "type": "set_engine_config",
+            "knob": "max_num_seqs",
+            "value": 64
+          },
+          "at": "2026-11-02T06:51:54.932863+00:00",
+          "previous": {
+            "max_num_seqs": 8
+          },
+          "status": "executed"
+        }
+      ],
+      "recovered": true,
+      "rolled_back": false,
+      "time_to_recover_s": 108.4,
+      "engine_restarts": [
+        {
+          "knob": "max_num_seqs",
+          "value": 64,
+          "status": "completed",
+          "seconds": 37.90740461368114
+        }
+      ],
+      "checkpoints": 1
+    },
+    {
+      "run_directory": "runs/sd-study-r2-api2/live/inc-06-glimmer_to_spark-20261102t062614054348z",
+      "id": "inc-06",
+      "arm": "glimmer_to_spark",
+      "decision": {
+        "incident": true,
+        "root_cause": "traffic_surge",
+        "confidence": 0.9,
+        "evidence": [
+          "arrivals_rps 9.6-11.7 vs normal 4.0 in last 30s",
+          "p95_latency_s 10.91 exceeds SLO 10.0",
+          "waiting_max 50 vs normal 0, running 63.6 capped at 64",
+          "kv_usage_pct_max 4-5% with 0 preemptions, prompt mean ~250 vs 202",
+          "gpu_util 99.5%+ with only VLLM process, no contention"
+        ],
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.0
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Offered rate ~3x capacity caused queueing and SLO breach. KV and prompts normal, GPU saturated, seq limit at cap. Shedding excess at gateway preserves latency for admitted requests.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.9, \"evidence\": [\"arrivals_rps 9.6-11.7 vs normal 4.0 in last 30s\", \"p95_latency_s 10.91 exceeds SLO 10.0\", \"waiting_max 50 vs normal 0, running 63.6 capped at 64\", \"kv_usage_pct_max 4-5% with 0 preemptions, prompt mean ~250 vs 202\", \"gpu_util 99.5%+ with only VLLM process, no contention\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 4}], \"explanation\": \"Offered rate ~3x capacity caused queueing and SLO breach. KV and prompts normal, GPU saturated, seq limit at cap. Shedding excess at gateway preserves latency for admitted requests.\"}",
+        "usage": {
+          "completion_tokens": 1011,
+          "prompt_tokens": 3081,
+          "total_tokens": 4092,
+          "completion_tokens_details": {
+            "reasoning_tokens": 807
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "t": 150.0
+      },
+      "executed": [
+        {
+          "action": {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.0
+          },
+          "at": "2026-11-02T07:06:07.257041+00:00",
+          "previous": {
+            "max_rps": null,
+            "max_prompt_tokens": null
+          },
+          "status": "executed"
+        }
+      ],
+      "recovered": true,
+      "rolled_back": false,
+      "time_to_recover_s": 96.9,
+      "engine_restarts": [],
+      "checkpoints": 5
+    },
+    {
+      "run_directory": "runs/sd-study-r2-api2/live/inc-09-glimmer_to_spark-20261102t062614054348z",
+      "id": "inc-09",
+      "arm": "glimmer_to_spark",
+      "decision": {
+        "incident": true,
+        "root_cause": "gpu_contention",
+        "confidence": 0.92,
+        "evidence": [
+          "p95_latency_s 13.4-13.51 exceeds SLO 10.0 at t139-149",
+          "arrivals_rps 3.5-5.3 near normal 4.0, no surge",
+          "non-engine GPU process pid 30087 embedding_batch duty 1.0",
+          "kv_usage_pct_max 3.76% low, preemptions 0, waiting 5 from slowdown",
+          "gpu_mem_used_mb 89565 vs normal 87634, power 599W vs 554W"
+        ],
+        "actions": [
+          {
+            "type": "stop_gpu_process",
+            "pid": 30087
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Latency SLO breach with normal arrivals and low KV usage coincides with competing embedding batch on same GPU raising memory/power and TTFT. Stopping it restores compute without engine restart.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 13.4-13.51 exceeds SLO 10.0 at t139-149\", \"arrivals_rps 3.5-5.3 near normal 4.0, no surge\", \"non-engine GPU process pid 30087 embedding_batch duty 1.0\", \"kv_usage_pct_max 3.76% low, preemptions 0, waiting 5 from slowdown\", \"gpu_mem_used_mb 89565 vs normal 87634, power 599W vs 554W\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 30087}], \"explanation\": \"Latency SLO breach with normal arrivals and low KV usage coincides with competing embedding batch on same GPU raising memory/power and TTFT. Stopping it restores compute without engine restart.\"}",
+        "usage": {
+          "completion_tokens": 920,
+          "prompt_tokens": 3124,
+          "total_tokens": 4044,
+          "completion_tokens_details": {
+            "reasoning_tokens": 712
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "t": 150.0
+      },
+      "executed": [
+        {
+          "action": {
+            "type": "stop_gpu_process",
+            "pid": 30087
+          },
+          "at": "2026-11-02T07:18:18.313119+00:00",
+          "status": "executed"
+        }
+      ],
+      "recovered": true,
+      "rolled_back": false,
+      "time_to_recover_s": 84.0,
+      "engine_restarts": [],
+      "checkpoints": 5
+    },
+    {
+      "run_directory": "runs/sd-study-r2-api2/live/inc-15-glimmer_to_spark-20261102t062614054348z",
+      "id": "inc-15",
+      "arm": "glimmer_to_spark",
+      "decision": {
+        "incident": true,
+        "root_cause": "long_prompt_flood",
+        "confidence": 0.92,
+        "evidence": [
+          "arrivals_rps ~3.8 vs normal 4.0, no surge",
+          "prompt_tokens_mean ~2383-2814 vs normal 202",
+          "p95_ttft_s 11.21 vs normal 0.42 with prompt throughput 6373 tokens/s",
+          "waiting_max 69 vs normal 0, running 62 at max_num_seqs 64",
+          "kv_usage_pct_max ~22% with preemptions_per_s 0.0, not KV starvation"
+        ],
+        "actions": [
+          {
+            "type": "gateway_max_prompt_tokens",
+            "max_prompt_tokens": 1000
+          }
+        ],
+        "rejected_actions": [],
+        "explanation": "Arrival rate unchanged but prompt size ~10x normal causing prefill dominance, queueing and p95 37s. KV not full, no preemptions. Gateway cap on prompt tokens sheds abnormal long prompts without engine restart.",
+        "valid_output": true,
+        "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.92, \"evidence\": [\"arrivals_rps ~3.8 vs normal 4.0, no surge\", \"prompt_tokens_mean ~2383-2814 vs normal 202\", \"p95_ttft_s 11.21 vs normal 0.42 with prompt throughput 6373 tokens/s\", \"waiting_max 69 vs normal 0, running 62 at max_num_seqs 64\", \"kv_usage_pct_max ~22% with preemptions_per_s 0.0, not KV starvation\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1000}], \"explanation\": \"Arrival rate unchanged but prompt size ~10x normal causing prefill dominance, queueing and p95 37s. KV not full, no preemptions. Gateway cap on prompt tokens sheds abnormal long prompts without engine restart.\"}",
+        "usage": {
+          "completion_tokens": 824,
+          "prompt_tokens": 3243,
+          "total_tokens": 4067,
+          "completion_tokens_details": {
+            "reasoning_tokens": 611
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "t": 167.8
+      },
+      "executed": [
+        {
+          "action": {
+            "type": "gateway_max_prompt_tokens",
+            "max_prompt_tokens": 1000
+          },
+          "at": "2026-11-02T07:30:48.033091+00:00",
+          "previous": {
+            "max_rps": null,
+            "max_prompt_tokens": null
+          },
+          "status": "executed"
+        }
+      ],
+      "recovered": false,
+      "rolled_back": true,
+      "time_to_recover_s": null,
+      "engine_restarts": [],
+      "checkpoints": 5
+    }
+  ],
+  "attempted_runs": [
+    {
+      "id": "inc-02",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-02-glimmer_to_spark-20261102t062614054348z"
+    },
+    {
+      "id": "inc-04",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-04-glimmer_to_spark-20261102t062614054348z"
+    },
+    {
+      "id": "inc-05",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-05-glimmer_to_spark-20261102t062614054348z"
+    },
+    {
+      "id": "inc-06",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-06-glimmer_to_spark-20261102t062614054348z"
+    },
+    {
+      "id": "inc-09",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-09-glimmer_to_spark-20261102t062614054348z"
+    },
+    {
+      "id": "inc-15",
+      "arm": "glimmer_to_spark",
+      "run_directory": "runs/sd-study-r2-api2/live/inc-15-glimmer_to_spark-20261102t062614054348z"
+    }
+  ],
+  "failure": null,
+  "cleanup_errors": [],
+  "prerequisites": {
+    "selected_arm": "glimmer_to_spark",
+    "live_ids": {
+      "kv_cache_starvation": "inc-02",
+      "context_limit_too_small": "inc-04",
+      "batch_limit_too_low": "inc-05",
+      "traffic_surge": "inc-06",
+      "gpu_contention": "inc-09",
+      "long_prompt_flood": "inc-15"
+    },
+    "duration_s": {
+      "inc-02": 360,
+      "inc-04": 360,
+      "inc-05": 360,
+      "inc-06": 360,
+      "inc-09": 360,
+      "inc-15": 360
+    },
+    "selection_sha256": "a27674a88a3efd26db8d7506d7499143fd68c5337d5e97f030635559df6c6ad8",
+    "git_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+    "frozen_at_utc": "2026-11-02T02:15:20.469452+00:00",
+    "test_decisions_complete": {
+      "rules": 16,
+      "glimmer": 16,
+      "spark": 16,
+      "wonder": 16,
+      "glimmer_to_spark": 16,
+      "glimmer_to_wonder": 16
+    },
+    "paired_escalation_paths": {}
+  },
+  "arm": "glimmer_to_spark",
+  "estimated_seconds": 5040,
+  "estimate_basis": "Six incident durations plus 300 seconds each and 180 seconds per run for startup, drain and API/restart overhead; not a guaranteed maximum.",
+  "final_ledger": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 12.255891,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 443
+  },
+  "finished_at_utc": "2026-11-02T07:40:00.162083+00:00",
+  "evidence_dir": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/sd-study-r2-api2-live-escalation-20261102t062614054348z"
+}

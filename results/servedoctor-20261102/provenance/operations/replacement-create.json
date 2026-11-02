@@ -1,0 +1,22 @@
+{
+  "project": "servedoctor",
+  "operation": "replacement_create",
+  "phase": "bound",
+  "attempt": "replacement-create-attempt3",
+  "requested_at": "2026-11-01T21:37:51.304204+00:00",
+  "offer_id": 46182082,
+  "machine_id": 140625,
+  "old_absence_receipt_sha256": "a5a320e292286acc66d3dbd53cf9b4c404470f47062aea96d4464f83a9b650aa",
+  "budget_plan": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/replacement-create-budget-plan-attempt3.json",
+    "sha256": "181a23f61997829c67e2b5bc5cc54f182d5f7e899dcfe98d8bc3175be26f8d81"
+  },
+  "projected_total_usd_upper": 26.7002462759029,
+  "protected_instance_ids": [],
+  "result": {
+    "success": true,
+    "new_contract": 58716527
+  },
+  "instance_id": 58716527,
+  "bound_at": "2026-11-01T21:37:51.751617+00:00"
+}

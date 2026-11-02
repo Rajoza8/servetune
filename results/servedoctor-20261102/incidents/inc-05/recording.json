@@ -1,0 +1,19 @@
+{
+  "started_at": "2026-11-02T03:13:06.366158+00:00",
+  "duration_s": 360,
+  "telemetry_rows": 420,
+  "telemetry_errors": 0,
+  "requests": {
+    "requests": 1438,
+    "ok": 146,
+    "shed": 0,
+    "failed": 1292,
+    "shed_rate": 0.0,
+    "error_rate": 0.8984700973574409,
+    "p50_latency_s": 30.2911251722835,
+    "p95_latency_s": 56.61763239046559
+  },
+  "mode": "live",
+  "status": "completed",
+  "failure": null
+}

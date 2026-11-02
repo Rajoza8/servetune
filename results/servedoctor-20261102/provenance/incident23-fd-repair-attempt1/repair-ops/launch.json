@@ -1,0 +1,8 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "worker_pid": 23492,
+  "launched_at_utc": "2026-11-02T04:40:13.563964+00:00",
+  "plan_sha256": "e42ac21d0f43da7ecc00308d41e07656b4724b2c3cd91c52a2200a324577a988",
+  "worker_start_ticks": 828710976
+}

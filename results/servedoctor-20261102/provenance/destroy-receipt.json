@@ -1,0 +1,25 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "confirmed_absent": true,
+  "destroyed_epoch": 1793610982.5338151,
+  "destroyed_at_utc": "2026-11-02T09:16:22.533815+00:00",
+  "rental_scope": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/rental-scope.json",
+    "sha256": "06701b0161c21b1b399cc252df9fe2dd2bc4911ec1b7f0056fa47d4e5014db0d"
+  },
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/final-backup-20261102.json",
+    "sha256": "1ad1f617b0992cecd0b39cfbbf07d2d2b3e5a182b5c44e450da045c269f5b21e"
+  },
+  "operation_record_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-instance-58716527.json",
+  "cost": {
+    "running_hours": 14.302194860312673,
+    "compute_usd_upper": 20.260777200619028,
+    "disk_usd_upper": 0.63932723481622,
+    "rental_usd_upper": 20.90010443543525,
+    "network_reserve_usd": 4.0,
+    "slack_reserve_usd": 1.0,
+    "total_projected_usd_upper": 25.90010443543525
+  }
+}

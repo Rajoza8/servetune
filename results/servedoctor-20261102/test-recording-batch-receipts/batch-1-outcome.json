@@ -1,0 +1,58 @@
+{
+  "project": "servedoctor",
+  "batch": 1,
+  "selected_ids": [
+    "inc-01",
+    "inc-02",
+    "inc-04",
+    "inc-05",
+    "inc-06",
+    "inc-09",
+    "inc-10",
+    "inc-11"
+  ],
+  "plan_sha256": "6ed28c97bd2a330329c091c660c924d0d823ca5176cfc210804986e4b876d6f3",
+  "freeze_sha256": "7428210756fe9d61599d13f2182416b916f1a43627d178030f73f071b6845319",
+  "dev_selection_sha256": "a27674a88a3efd26db8d7506d7499143fd68c5337d5e97f030635559df6c6ad8",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "dispatch_sha256": "3b14f73c717bef200707f84ebf364094fb9e6ad64fd5363a2818a086ab74cfc1",
+  "finished_at_utc": "2026-11-02T02:20:30.642947+00:00",
+  "record_returncode": -1,
+  "stage_error_class": "InterruptedError",
+  "completed": false,
+  "recordings": [],
+  "recording_failures": [
+    {
+      "id": "inc-01",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-02",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-04",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-05",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-06",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-09",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-10",
+      "error": "ValueError"
+    },
+    {
+      "id": "inc-11",
+      "error": "ValueError"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"t": 30.0, "observation_sha256": "c106818d743b2e1d44391ea2f1e8d8841856720659297856d5fe7811f240cb04", "decision": {"incident": true, "root_cause": "other", "actions": [{"type": "escalate_to_human"}], "evidence": [], "explanation": "threshold rules", "rejected_actions": []}}

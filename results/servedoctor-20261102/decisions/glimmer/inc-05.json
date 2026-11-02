@@ -1,0 +1,78 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-05",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "max_num_seqs changed 64\u21928 at deploy t=0",
+   "running capped at 8 reqs with waiting_max 70 at t=30",
+   "p95_latency_s 16.91 > SLO 10.0 and p95_ttft_s 12.34",
+   "ok_rps 1.6 vs arrivals_rps 4.2 indicating queue buildup",
+   "GPU util 99.8% with kv_usage_pct_max 0.73% showing headroom"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_num_seqs from 64 to 8, capping concurrency. Arrivals ~4 rps now queue with waiting up to 70, p95 latency and TTFT exceed SLO while GPU is saturated. Restoring max_num_seqs to reference 64 restores concurrency and should clear backlog.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs changed 64\u21928 at deploy t=0\", \"running capped at 8 reqs with waiting_max 70 at t=30\", \"p95_latency_s 16.91 > SLO 10.0 and p95_ttft_s 12.34\", \"ok_rps 1.6 vs arrivals_rps 4.2 indicating queue buildup\", \"GPU util 99.8% with kv_usage_pct_max 0.73% showing headroom\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy reduced max_num_seqs from 64 to 8, capping concurrency. Arrivals ~4 rps now queue with waiting up to 70, p95 latency and TTFT exceed SLO while GPU is saturated. Restoring max_num_seqs to reference 64 restores concurrency and should clear backlog.\"}",
+  "usage": {
+   "prompt_tokens": 1480,
+   "total_tokens": 2007,
+   "completion_tokens": 527,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fb7fba4f066480047a02155e4a6ea9b9fb0f5cc8484a3b546b81276aaeeb5ca0",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "max_num_seqs changed 64\u21928 at deploy t=0",
+     "running capped at 8 reqs with waiting_max 70 at t=30",
+     "p95_latency_s 16.91 > SLO 10.0 and p95_ttft_s 12.34",
+     "ok_rps 1.6 vs arrivals_rps 4.2 indicating queue buildup",
+     "GPU util 99.8% with kv_usage_pct_max 0.73% showing headroom"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_num_seqs from 64 to 8, capping concurrency. Arrivals ~4 rps now queue with waiting up to 70, p95 latency and TTFT exceed SLO while GPU is saturated. Restoring max_num_seqs to reference 64 restores concurrency and should clear backlog.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs changed 64\u21928 at deploy t=0\", \"running capped at 8 reqs with waiting_max 70 at t=30\", \"p95_latency_s 16.91 > SLO 10.0 and p95_ttft_s 12.34\", \"ok_rps 1.6 vs arrivals_rps 4.2 indicating queue buildup\", \"GPU util 99.8% with kv_usage_pct_max 0.73% showing headroom\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy reduced max_num_seqs from 64 to 8, capping concurrency. Arrivals ~4 rps now queue with waiting up to 70, p95 latency and TTFT exceed SLO while GPU is saturated. Restoring max_num_seqs to reference 64 restores concurrency and should clear backlog.\"}",
+    "usage": {
+     "prompt_tokens": 1480,
+     "total_tokens": 2007,
+     "completion_tokens": 527,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

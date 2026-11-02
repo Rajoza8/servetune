@@ -1,0 +1,18 @@
+{
+  "instance_id": 58716527,
+  "failure": {
+    "error": "CalledProcessError",
+    "returncode": 1
+  },
+  "cleanup_errors": [
+    {
+      "stage": "sd2-calibration-attempt1",
+      "error": "CalledProcessError"
+    },
+    {
+      "stage": "sd2-kv-pre-generation-attempt1",
+      "error": "CalledProcessError"
+    }
+  ],
+  "finished_at_utc": "2026-11-01T21:48:06.195468+00:00"
+}

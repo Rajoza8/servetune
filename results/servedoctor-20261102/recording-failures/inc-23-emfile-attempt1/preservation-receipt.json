@@ -1,0 +1,40 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "files_sha256": {
+    "runtime.json": "f7e9c010aa3affc8221d6964398f1261f6174a41eb4aae3cb0cccbeee1fe8292",
+    "original-batch-2-outcome.json": "7d9cf230fe35c294e9c0d74d19e3bdb831b3ed9cf18f6950834bca785f76c69e",
+    "collector.stderr": "58104662f7b234fb0352ce5a5e03638113622f421c67d81d8974019634fdafd2",
+    "emfile-evidence.json": "78e916afe410148816c4ef435ca8aa5e3a986d5e80906047a029bfce0b985dd4",
+    "quality.json": "298c312397b257da9fbe85b61d9778b7029e2ff7978ca78501088cffdc6e3d8d",
+    "durable-exit.json": "0e12a67ed0833bb6c6a3d50d5de04a09c818ffb3f96022d4c36a64764d675ce4",
+    "UNUSABLE.json": "63a1018152eea8323efa3b50392b7e3ebff42921bb80ca2deb045473202c731f",
+    "incident/events.json": "b4bf44f74ca54aae45505d4b8a3bd6a8b71707d04e94ebdc9c8d3b769d65215c",
+    "incident/manifest.json": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+    "incident/recording.json": "66c504724f20daaf17ca2bd7978837a4d9b4ec73bd0a6c84a8d6f068f330ce70",
+    "incident/engine_identity.json": "edab382528940b89058da52c7ac1372d06f5f159e305ebc3dc6d19f5af3f9821",
+    "incident/engine_config.json": "7d25264be16b98b7989a7e0b6a5cd4d3a2395a069717b46ca1c912f5944dc822",
+    "incident/requests.jsonl": "57e3fdb2af5afaf3737b8ee94cffaccc0f7ec104be19fc6f29ef18e7caa1870a",
+    "incident/telemetry.jsonl": "6fc2d8949a778cb68aa992cb1fd08315430f96584c55163a26f29b9c094bbfc1",
+    "incident/slo.json": "a952cfa03f2382cc96777d0822c162707d578f247902101653ba5b664585c8d9"
+  },
+  "original_files_sha256": {
+    "runs/sd-study-r2-api2/incidents/inc-23/engine_config.json": "7d25264be16b98b7989a7e0b6a5cd4d3a2395a069717b46ca1c912f5944dc822",
+    "runs/sd-study-r2-api2/incidents/inc-23/events.json": "b4bf44f74ca54aae45505d4b8a3bd6a8b71707d04e94ebdc9c8d3b769d65215c",
+    "runs/sd-study-r2-api2/incidents/inc-23/slo.json": "a952cfa03f2382cc96777d0822c162707d578f247902101653ba5b664585c8d9",
+    "runs/sd-study-r2-api2/incidents/inc-23/engine_identity.json": "edab382528940b89058da52c7ac1372d06f5f159e305ebc3dc6d19f5af3f9821",
+    "runs/sd-study-r2-api2/incidents/inc-23/telemetry.jsonl": "6fc2d8949a778cb68aa992cb1fd08315430f96584c55163a26f29b9c094bbfc1",
+    "runs/sd-study-r2-api2/incidents/inc-23/requests.jsonl": "57e3fdb2af5afaf3737b8ee94cffaccc0f7ec104be19fc6f29ef18e7caa1870a",
+    "runs/sd-study-r2-api2/incidents/inc-23/recording.json": "66c504724f20daaf17ca2bd7978837a4d9b4ec73bd0a6c84a8d6f068f330ce70",
+    "runs/sd-study-r2-api2/incidents/inc-23/manifest.json": "37b2e767d8627400b28016c6abf9f26e929134b86a81ed4b867cd5a191114317",
+    "runs/sd-study-r2-api2/answers/runtime/inc-23.json": "f7e9c010aa3affc8221d6964398f1261f6174a41eb4aae3cb0cccbeee1fe8292",
+    "runs/sd-study-r2-api2/test-recording-batch-receipts/batch-2-outcome.json": "7d9cf230fe35c294e9c0d74d19e3bdb831b3ed9cf18f6950834bca785f76c69e",
+    "runs/servedoctor-ops-20261101/test-batch2-durable-attempt1/exit.json": "0e12a67ed0833bb6c6a3d50d5de04a09c818ffb3f96022d4c36a64764d675ce4",
+    "runs/servedoctor-ops-20261101/inc23-emfile-evidence.json": "78e916afe410148816c4ef435ca8aa5e3a986d5e80906047a029bfce0b985dd4",
+    "runs/servedoctor-ops-20261101/test-batch2-durable-attempt1/record.stderr": "58104662f7b234fb0352ce5a5e03638113622f421c67d81d8974019634fdafd2"
+  },
+  "canonical_batch2_outcome_unchanged": {
+    "path": "/workspace/servedoctor-session/servetune/runs/sd-study-r2-api2/test-recording-batch-receipts/batch-2-outcome.json",
+    "sha256": "7d9cf230fe35c294e9c0d74d19e3bdb831b3ed9cf18f6950834bca785f76c69e"
+  }
+}

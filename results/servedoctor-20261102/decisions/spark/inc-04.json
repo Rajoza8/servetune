@@ -1,0 +1,88 @@
+{
+ "arm": "spark",
+ "incident": "inc-04",
+ "engine_config": {
+  "max_model_len": 768,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "change_log max_model_len [4096,768] at t=0.0",
+   "http_400=5,9,5 per 10s bucket vs SLO max_error_rate 0.01",
+   "prompt_tokens_mean 254,398,182 vs normal 202, exceeding 768 for tail",
+   "p95_latency_s ~4.8-4.96 < SLO 10.0, waiting_max 0.0",
+   "kv_usage_pct_max 0.39-0.7% running 7-17 normal"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy cut max_model_len 4096->768 causing HTTP 400 rejections on normal prompts while latency/queue/KV healthy. Restore to 4096 to accept valid requests.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"change_log max_model_len [4096,768] at t=0.0\", \"http_400=5,9,5 per 10s bucket vs SLO max_error_rate 0.01\", \"prompt_tokens_mean 254,398,182 vs normal 202, exceeding 768 for tail\", \"p95_latency_s ~4.8-4.96 < SLO 10.0, waiting_max 0.0\", \"kv_usage_pct_max 0.39-0.7% running 7-17 normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096->768 causing HTTP 400 rejections on normal prompts while latency/queue/KV healthy. Restore to 4096 to accept valid requests.\"}",
+  "usage": {
+   "completion_tokens": 682,
+   "prompt_tokens": 1479,
+   "total_tokens": 2161,
+   "completion_tokens_details": {
+    "reasoning_tokens": 461
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "0ea8941af5b058d2c48adf52dc1f1c89f646bc5f2efef93b51fabdf3a33750cf",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "change_log max_model_len [4096,768] at t=0.0",
+     "http_400=5,9,5 per 10s bucket vs SLO max_error_rate 0.01",
+     "prompt_tokens_mean 254,398,182 vs normal 202, exceeding 768 for tail",
+     "p95_latency_s ~4.8-4.96 < SLO 10.0, waiting_max 0.0",
+     "kv_usage_pct_max 0.39-0.7% running 7-17 normal"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy cut max_model_len 4096->768 causing HTTP 400 rejections on normal prompts while latency/queue/KV healthy. Restore to 4096 to accept valid requests.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"change_log max_model_len [4096,768] at t=0.0\", \"http_400=5,9,5 per 10s bucket vs SLO max_error_rate 0.01\", \"prompt_tokens_mean 254,398,182 vs normal 202, exceeding 768 for tail\", \"p95_latency_s ~4.8-4.96 < SLO 10.0, waiting_max 0.0\", \"kv_usage_pct_max 0.39-0.7% running 7-17 normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy cut max_model_len 4096->768 causing HTTP 400 rejections on normal prompts while latency/queue/KV healthy. Restore to 4096 to accept valid requests.\"}",
+    "usage": {
+     "completion_tokens": 682,
+     "prompt_tokens": 1479,
+     "total_tokens": 2161,
+     "completion_tokens_details": {
+      "reasoning_tokens": 461
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

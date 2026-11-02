@@ -1,0 +1,78 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-17",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.61613,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "kv_cache_starvation",
+  "confidence": 0.78,
+  "evidence": [
+   "gpu_memory_utilization reduced from 0.9 to 0.61613 at deploy t0",
+   "kv_usage_pct_max 99.48% at 30s and 99.67% at 20s",
+   "Engine log GPU KV cache usage 71.8% -> 98.5% -> 99.9% over last 30s",
+   "waiting_max grew to 14.0 with preemptions_per_s 1.1",
+   "gpu_mem_used_mb ~60.5GB vs normal profile 87634 MB"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "gpu_memory_utilization",
+    "value": 0.9
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy lowered gpu_memory_utilization, shrinking KV cache budget. KV usage is saturated near 100% with growing queue and preemptions, indicating imminent latency breach. Restoring gpu_memory_utilization to reference 0.9 will increase KV capacity with minimal disruption.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.78, \"evidence\": [\"gpu_memory_utilization reduced from 0.9 to 0.61613 at deploy t0\", \"kv_usage_pct_max 99.48% at 30s and 99.67% at 20s\", \"Engine log GPU KV cache usage 71.8% -> 98.5% -> 99.9% over last 30s\", \"waiting_max grew to 14.0 with preemptions_per_s 1.1\", \"gpu_mem_used_mb ~60.5GB vs normal profile 87634 MB\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Deploy lowered gpu_memory_utilization, shrinking KV cache budget. KV usage is saturated near 100% with growing queue and preemptions, indicating imminent latency breach. Restoring gpu_memory_utilization to reference 0.9 will increase KV capacity with minimal disruption.\"}",
+  "usage": {
+   "prompt_tokens": 1488,
+   "total_tokens": 2103,
+   "completion_tokens": 615,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "77f378d07451a8a52d8379bf1ddd4ae59550c6293c1a1ab7abf586bf9dfe629a",
+   "decision": {
+    "incident": true,
+    "root_cause": "kv_cache_starvation",
+    "confidence": 0.78,
+    "evidence": [
+     "gpu_memory_utilization reduced from 0.9 to 0.61613 at deploy t0",
+     "kv_usage_pct_max 99.48% at 30s and 99.67% at 20s",
+     "Engine log GPU KV cache usage 71.8% -> 98.5% -> 99.9% over last 30s",
+     "waiting_max grew to 14.0 with preemptions_per_s 1.1",
+     "gpu_mem_used_mb ~60.5GB vs normal profile 87634 MB"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "gpu_memory_utilization",
+      "value": 0.9
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy lowered gpu_memory_utilization, shrinking KV cache budget. KV usage is saturated near 100% with growing queue and preemptions, indicating imminent latency breach. Restoring gpu_memory_utilization to reference 0.9 will increase KV capacity with minimal disruption.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"kv_cache_starvation\", \"confidence\": 0.78, \"evidence\": [\"gpu_memory_utilization reduced from 0.9 to 0.61613 at deploy t0\", \"kv_usage_pct_max 99.48% at 30s and 99.67% at 20s\", \"Engine log GPU KV cache usage 71.8% -> 98.5% -> 99.9% over last 30s\", \"waiting_max grew to 14.0 with preemptions_per_s 1.1\", \"gpu_mem_used_mb ~60.5GB vs normal profile 87634 MB\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"gpu_memory_utilization\", \"value\": 0.9}], \"explanation\": \"Deploy lowered gpu_memory_utilization, shrinking KV cache budget. KV usage is saturated near 100% with growing queue and preemptions, indicating imminent latency breach. Restoring gpu_memory_utilization to reference 0.9 will increase KV capacity with minimal disruption.\"}",
+    "usage": {
+     "prompt_tokens": 1488,
+     "total_tokens": 2103,
+     "completion_tokens": 615,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

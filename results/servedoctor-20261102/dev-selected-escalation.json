@@ -1,0 +1,47 @@
+{
+  "selected_at": "2026-11-02T02:15:20.026672+00:00",
+  "arm": "glimmer_to_spark",
+  "dev_scores": {
+    "glimmer_to_spark": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 6,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 6,
+      "fix_proposed": 6,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 6,
+      "api_cost_usd": 0.0363
+    },
+    "glimmer_to_wonder": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 6,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 6,
+      "fix_proposed": 6,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 6,
+      "api_cost_usd": 0.1509
+    }
+  },
+  "policy": "Higher fixes, lower harm, higher diagnosis, lower false alarms, higher detection, lower cost; final tie Spark. Declared before dev results.",
+  "live_ids": {
+    "kv_cache_starvation": "inc-02",
+    "context_limit_too_small": "inc-04",
+    "batch_limit_too_low": "inc-05",
+    "traffic_surge": "inc-06",
+    "gpu_contention": "inc-09",
+    "long_prompt_flood": "inc-15"
+  },
+  "selection_source": "Runner scenarios only; no answer keys used for incident selection.",
+  "must_precede_test_recording": true
+}

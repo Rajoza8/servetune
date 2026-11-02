@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-q"
+  ],
+  "cwd": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/collector-fix-worktree",
+  "returncode": 0,
+  "elapsed_s": 45.276,
+  "output": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/collector-fix-unittest-20261102T043449254785Z.stdout",
+  "sha256": "c3f7cabb9aeba3abbe2901a3ffc119bab8c9c9ba545c3f55dffd167346a2f406"
+}

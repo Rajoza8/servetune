@@ -1,0 +1,200 @@
+{
+ "arm": "glimmer",
+ "incident": "inc-12",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.72,
+  "evidence": [
+   "p95_latency_s 10.27 at t=140 exceeds SLO 10.0 and remains elevated 9.7 at t=150",
+   "p95_ttft_s rose to 1.29 at t=140 vs normal 0.42",
+   "GPU process table shows non-engine process pid 5615 /venv/main/bin/python3 -m servedoctor.jobs.embedding_batch using 1068 MB on same GPU",
+   "gpu_mem_used_mb increased from 89694 to 90767 MB coinciding with latency rise",
+   "engine running 30-41 reqs with waiting_max 0 and kv_usage_pct_max ~2.6% so not batch or KV starvation"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 5615
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency SLO breach with rising TTFT while engine is not queueing and KV usage is low. A second GPU process embedding_batch is co-located with duty 0.7, causing compute/memory contention. Stopping it is least disruptive.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.72, \"evidence\": [\"p95_latency_s 10.27 at t=140 exceeds SLO 10.0 and remains elevated 9.7 at t=150\", \"p95_ttft_s rose to 1.29 at t=140 vs normal 0.42\", \"GPU process table shows non-engine process pid 5615 /venv/main/bin/python3 -m servedoctor.jobs.embedding_batch using 1068 MB on same GPU\", \"gpu_mem_used_mb increased from 89694 to 90767 MB coinciding with latency rise\", \"engine running 30-41 reqs with waiting_max 0 and kv_usage_pct_max ~2.6% so not batch or KV starvation\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 5615}], \"explanation\": \"Latency SLO breach with rising TTFT while engine is not queueing and KV usage is low. A second GPU process embedding_batch is co-located with duty 0.7, causing compute/memory contention. Stopping it is least disruptive.\"}",
+  "usage": {
+   "prompt_tokens": 3137,
+   "total_tokens": 3716,
+   "completion_tokens": 579,
+   "prompt_tokens_details": null
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "110bb2d56944bfb404b9d8afb26076258380fd5ae7d2577d83225b113edcdfae",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 6.03 at t=30 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "waiting_max 0.0 and running 24.3 < max_num_seqs 64",
+     "kv_usage_pct_max 1.92% similar to normal profile 1.78%",
+     "gpu_util_pct 99.7% and gpu_power_w 568.66W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error metrics are within SLO and queueing is zero. Load and GPU utilization match the healthy reference profile with no KV pressure or contention.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 6.03 at t=30 < SLO 10.0\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"waiting_max 0.0 and running 24.3 < max_num_seqs 64\", \"kv_usage_pct_max 1.92% similar to normal profile 1.78%\", \"gpu_util_pct 99.7% and gpu_power_w 568.66W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, shed and error metrics are within SLO and queueing is zero. Load and GPU utilization match the healthy reference profile with no KV pressure or contention.\"}",
+    "usage": {
+     "prompt_tokens": 1474,
+     "total_tokens": 1880,
+     "completion_tokens": 406,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "4d1d975aae303ea51585c9108a9b046338ce3e3edc902441d684d10bc7f68715",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 6.56 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "waiting_max 0.0 with running 31.3 < max_num_seqs 64",
+     "kv_usage_pct_max 2.55% well below saturation",
+     "gpu_util_pct ~99.7% consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, no queue buildup and KV usage is low. Slightly higher arrivals vs normal profile are absorbed without degradation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 6.56 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"waiting_max 0.0 with running 31.3 < max_num_seqs 64\", \"kv_usage_pct_max 2.55% well below saturation\", \"gpu_util_pct ~99.7% consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, no queue buildup and KV usage is low. Slightly higher arrivals vs normal profile are absorbed without degradation.\"}",
+    "usage": {
+     "prompt_tokens": 1945,
+     "total_tokens": 2327,
+     "completion_tokens": 382,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "0dfe2d3c347f2745b82367ea28ffe64d4fe95df13aa2f7106432168024fa3d7b",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.46 at t=90 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "waiting_max 0.0 and running ~18-31 < max_num_seqs 64",
+     "kv_usage_pct_max ~1-2.5% well below saturation",
+     "gpu_util_pct ~99% with normal profile throughput"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs, no queue buildup and KV cache usage is low. Load is normal variation around reference profile.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.46 at t=90 < SLO 10.0\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"waiting_max 0.0 and running ~18-31 < max_num_seqs 64\", \"kv_usage_pct_max ~1-2.5% well below saturation\", \"gpu_util_pct ~99% with normal profile throughput\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLOs, no queue buildup and KV cache usage is low. Load is normal variation around reference profile.\"}",
+    "usage": {
+     "prompt_tokens": 2414,
+     "total_tokens": 2700,
+     "completion_tokens": 286,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "17a631652478062491fd3cb84c67b017e4001fce0a96a08d453ca6ea9f43c995",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s max 6.56 < SLO 10.0",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "waiting_max 0.0 with running ~16-32 reqs under max_num_seqs 64",
+     "kv_usage_pct_max ~1-2.5% well below saturation",
+     "gpu_util_pct ~99.7-99.9% consistent with normal profile 99.9%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs, no queue buildup and KV usage is low. Load is within normal variation of the reference profile.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s max 6.56 < SLO 10.0\", \"shed_rps 0.0 and errors absent in recent buckets\", \"waiting_max 0.0 with running ~16-32 reqs under max_num_seqs 64\", \"kv_usage_pct_max ~1-2.5% well below saturation\", \"gpu_util_pct ~99.7-99.9% consistent with normal profile 99.9%\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency, shed and error rates are within SLOs, no queue buildup and KV usage is low. Load is within normal variation of the reference profile.\"}",
+    "usage": {
+     "prompt_tokens": 2884,
+     "total_tokens": 3248,
+     "completion_tokens": 364,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "638c5dab7e72e54932f7b53e2e4eacb4c44e224e2173d75f4bd2da923fc92577",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.72,
+    "evidence": [
+     "p95_latency_s 10.27 at t=140 exceeds SLO 10.0 and remains elevated 9.7 at t=150",
+     "p95_ttft_s rose to 1.29 at t=140 vs normal 0.42",
+     "GPU process table shows non-engine process pid 5615 /venv/main/bin/python3 -m servedoctor.jobs.embedding_batch using 1068 MB on same GPU",
+     "gpu_mem_used_mb increased from 89694 to 90767 MB coinciding with latency rise",
+     "engine running 30-41 reqs with waiting_max 0 and kv_usage_pct_max ~2.6% so not batch or KV starvation"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 5615
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency SLO breach with rising TTFT while engine is not queueing and KV usage is low. A second GPU process embedding_batch is co-located with duty 0.7, causing compute/memory contention. Stopping it is least disruptive.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.72, \"evidence\": [\"p95_latency_s 10.27 at t=140 exceeds SLO 10.0 and remains elevated 9.7 at t=150\", \"p95_ttft_s rose to 1.29 at t=140 vs normal 0.42\", \"GPU process table shows non-engine process pid 5615 /venv/main/bin/python3 -m servedoctor.jobs.embedding_batch using 1068 MB on same GPU\", \"gpu_mem_used_mb increased from 89694 to 90767 MB coinciding with latency rise\", \"engine running 30-41 reqs with waiting_max 0 and kv_usage_pct_max ~2.6% so not batch or KV starvation\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 5615}], \"explanation\": \"Latency SLO breach with rising TTFT while engine is not queueing and KV usage is low. A second GPU process embedding_batch is co-located with duty 0.7, causing compute/memory contention. Stopping it is least disruptive.\"}",
+    "usage": {
+     "prompt_tokens": 3137,
+     "total_tokens": 3716,
+     "completion_tokens": 579,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

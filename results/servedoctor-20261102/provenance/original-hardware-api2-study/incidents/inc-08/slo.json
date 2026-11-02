@@ -1,0 +1,5 @@
+{
+  "p95_latency_s": 10.0,
+  "max_error_rate": 0.01,
+  "max_shed_rate": 0.05
+}

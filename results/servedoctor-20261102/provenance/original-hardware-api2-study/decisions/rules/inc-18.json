@@ -1,0 +1,44 @@
+{
+ "arm": "rules",
+ "incident": "inc-18",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "205f64537618bbd4f27ab3b7b59026816b969eb97de69652fcbd603acd8d90d2",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

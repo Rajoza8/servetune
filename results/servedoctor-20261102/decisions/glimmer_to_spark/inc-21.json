@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "inc-21",
+ "engine_config": {
+  "max_model_len": 1536,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.85,
+  "evidence": [
+   "max_model_len cut 4096->1536 at t=0 deploy",
+   "http_400=1 in 10s and 20s buckets ~2-3% error rate >1% SLO",
+   "p95_latency 5.6-6.1s within 10s SLO, no queue",
+   "kv_usage 1.4-2.3% and running ~16-22 matches healthy profile",
+   "prompt mean ~208-278 normal, rejections imply valid long tail cut off"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency/queue/KV healthy, but 400 errors after max_model_len reduction indicate valid requests rejected. Restore 4096 to match reference.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"max_model_len cut 4096->1536 at t=0 deploy\", \"http_400=1 in 10s and 20s buckets ~2-3% error rate >1% SLO\", \"p95_latency 5.6-6.1s within 10s SLO, no queue\", \"kv_usage 1.4-2.3% and running ~16-22 matches healthy profile\", \"prompt mean ~208-278 normal, rejections imply valid long tail cut off\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency/queue/KV healthy, but 400 errors after max_model_len reduction indicate valid requests rejected. Restore 4096 to match reference.\"}",
+  "usage": {
+   "completion_tokens": 888,
+   "prompt_tokens": 1482,
+   "total_tokens": 2370,
+   "completion_tokens_details": {
+    "reasoning_tokens": 682
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "898111e43e84f61c4803c0561f235b5d7409dc411d175174a767dcb3203a6031",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Elevated HTTP 400 error rate ~0.2-0.3 vs SLO 0.01 with 1 error per 10s bucket; p95 latency healthy ~6s.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Elevated HTTP 400 error rate ~0.2-0.3 vs SLO 0.01 with 1 error per 10s bucket; p95 latency healthy ~6s.\"}",
+    "usage": {
+     "prompt_tokens": 996,
+     "total_tokens": 1313,
+     "completion_tokens": 317,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.85,
+    "evidence": [
+     "max_model_len cut 4096->1536 at t=0 deploy",
+     "http_400=1 in 10s and 20s buckets ~2-3% error rate >1% SLO",
+     "p95_latency 5.6-6.1s within 10s SLO, no queue",
+     "kv_usage 1.4-2.3% and running ~16-22 matches healthy profile",
+     "prompt mean ~208-278 normal, rejections imply valid long tail cut off"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency/queue/KV healthy, but 400 errors after max_model_len reduction indicate valid requests rejected. Restore 4096 to match reference.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"max_model_len cut 4096->1536 at t=0 deploy\", \"http_400=1 in 10s and 20s buckets ~2-3% error rate >1% SLO\", \"p95_latency 5.6-6.1s within 10s SLO, no queue\", \"kv_usage 1.4-2.3% and running ~16-22 matches healthy profile\", \"prompt mean ~208-278 normal, rejections imply valid long tail cut off\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency/queue/KV healthy, but 400 errors after max_model_len reduction indicate valid requests rejected. Restore 4096 to match reference.\"}",
+    "usage": {
+     "completion_tokens": 888,
+     "prompt_tokens": 1482,
+     "total_tokens": 2370,
+     "completion_tokens_details": {
+      "reasoning_tokens": 682
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

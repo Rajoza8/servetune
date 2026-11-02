@@ -1,0 +1,12 @@
+{
+  "stage": "record_incident",
+  "incident_id": "inc-06",
+  "group_ids": [
+    "inc-01",
+    "inc-06",
+    "inc-09",
+    "inc-11"
+  ],
+  "error": "BrokenPipeError",
+  "at": "2026-11-02T02:32:02.135108+00:00"
+}

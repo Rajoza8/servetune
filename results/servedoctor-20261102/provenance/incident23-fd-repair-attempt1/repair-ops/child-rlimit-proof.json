@@ -1,0 +1,120 @@
+{
+  "project": "servedoctor",
+  "instance_id": 58716527,
+  "scratch_study": "runs/sd-study-r2-api2-inc23-fd-repair-attempt1",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "captured_at_utc": "2026-11-02T04:40:19.703880+00:00",
+  "plan_sha256": "e42ac21d0f43da7ecc00308d41e07656b4724b2c3cd91c52a2200a324577a988",
+  "ownership_verified": true,
+  "worker_identity": {
+    "pid": 23492,
+    "parent_pid": 1,
+    "process_group": 23492,
+    "session": 23492,
+    "start_ticks": 828710976,
+    "state": "S",
+    "uids": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cwd": "/workspace/servedoctor-session/servetune",
+    "argv": [
+      "/venv/main/bin/python3",
+      "/workspace/servedoctor-session/servetune/runs/servedoctor-ops-20261101/repair_inc23.py",
+      "worker"
+    ],
+    "fd_soft": 65536,
+    "fd_hard": 1048576
+  },
+  "processes": [
+    {
+      "role": "recorder",
+      "pid": 23494,
+      "parent_pid": 23492,
+      "process_group": 23492,
+      "session": 23492,
+      "start_ticks": 828710979,
+      "state": "S",
+      "uids": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cwd": "/workspace/servedoctor-session/servetune",
+      "argv": [
+        "/venv/main/bin/python3",
+        "-m",
+        "servedoctor",
+        "record",
+        "--model-revision",
+        "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+        "--study-dir",
+        "runs/sd-study-r2-api2-inc23-fd-repair-attempt1",
+        "--split",
+        "test",
+        "--ids",
+        "inc-23"
+      ],
+      "fd_soft": 65536,
+      "fd_hard": 1048576
+    },
+    {
+      "role": "engine",
+      "pid": 23495,
+      "parent_pid": 23494,
+      "process_group": 23495,
+      "session": 23495,
+      "start_ticks": 828710987,
+      "state": "R",
+      "uids": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cwd": "/workspace/servedoctor-session/servetune",
+      "argv": [
+        "/venv/main/bin/python",
+        "/usr/local/bin/vllm",
+        "serve",
+        "meta-models/Muse-Glimmer-30B",
+        "--revision",
+        "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+        "--served-model-name",
+        "servetune-glimmer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--dtype",
+        "bfloat16",
+        "--tensor-parallel-size",
+        "1",
+        "--generation-config",
+        "auto",
+        "--reasoning-parser",
+        "muse_glimmer",
+        "--seed",
+        "0",
+        "--tokenizer-revision",
+        "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+        "--max-model-len",
+        "4096",
+        "--max-num-seqs",
+        "64",
+        "--max-num-batched-tokens",
+        "8192",
+        "--gpu-memory-utilization",
+        "0.9",
+        "--no-enable-prefix-caching",
+        "--enable-chunked-prefill"
+      ],
+      "fd_soft": 65536,
+      "fd_hard": 1048576
+    }
+  ],
+  "basis": "Read-only /proc root UID, fixed canonical argv, repository cwd, positive start ticks and direct parent chain; no environments read."
+}

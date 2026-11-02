@@ -1,0 +1,45 @@
+{
+  "scope": "replacement pre-generation capacity/KV calibration only; not benchmark results",
+  "scenario": {
+    "id": "sd2-kv-candidate-00",
+    "split": "dev",
+    "engine": {
+      "max_model_len": 4096,
+      "max_num_seqs": 64,
+      "max_num_batched_tokens": 8192,
+      "gpu_memory_utilization": 0.61743,
+      "enable_chunked_prefill": true,
+      "enable_prefix_caching": false
+    },
+    "dtype": "bf16",
+    "schedule": [
+      {
+        "start_s": 0,
+        "rate_rps": 4.0,
+        "mix": {
+          "short": 0.85,
+          "medium": 0.15,
+          "long": 0.0
+        }
+      }
+    ],
+    "duration_s": 90,
+    "contention": null,
+    "events": [
+      {
+        "t": 0,
+        "kind": "deploy",
+        "text": "Private pre-generation KV calibration."
+      }
+    ],
+    "max_output_tokens": 128,
+    "request_timeout_s": 60,
+    "slo": {
+      "p95_latency_s": 10.0,
+      "max_error_rate": 0.01,
+      "max_shed_rate": 0.05
+    },
+    "workload_seed": 21961104
+  },
+  "never_model_input": true
+}

@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "inc-05",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.95,
+  "evidence": [
+   "max_num_seqs=8 vs reference 64; change_log shows 64->8 on deploy",
+   "Running pinned at ~8 while waiting_max rises to 70",
+   "Arrivals ~4.2 rps match normal 4.0 rps and prompt_tokens_mean ~196 vs 202",
+   "KV usage max only 0.73-1.22%, no preemptions, so not KV starvation",
+   "p95 latency 16.91s exceeds SLO 10s and rising"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency capped at 8 sequences despite low KV use, causing queueing at normal load. Restore reference max_num_seqs=64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs=8 vs reference 64; change_log shows 64->8 on deploy\", \"Running pinned at ~8 while waiting_max rises to 70\", \"Arrivals ~4.2 rps match normal 4.0 rps and prompt_tokens_mean ~196 vs 202\", \"KV usage max only 0.73-1.22%, no preemptions, so not KV starvation\", \"p95 latency 16.91s exceeds SLO 10s and rising\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 8 sequences despite low KV use, causing queueing at normal load. Restore reference max_num_seqs=64.\"}",
+  "usage": {
+   "completion_tokens": 470,
+   "prompt_tokens": 1465,
+   "total_tokens": 1935,
+   "completion_tokens_details": {
+    "reasoning_tokens": 268
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 628
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fb7fba4f066480047a02155e4a6ea9b9fb0f5cc8484a3b546b81276aaeeb5ca0",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.95,
+    "evidence": [
+     "max_num_seqs=8 vs reference 64; change_log shows 64->8 on deploy",
+     "Running pinned at ~8 while waiting_max rises to 70",
+     "Arrivals ~4.2 rps match normal 4.0 rps and prompt_tokens_mean ~196 vs 202",
+     "KV usage max only 0.73-1.22%, no preemptions, so not KV starvation",
+     "p95 latency 16.91s exceeds SLO 10s and rising"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency capped at 8 sequences despite low KV use, causing queueing at normal load. Restore reference max_num_seqs=64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.95, \"evidence\": [\"max_num_seqs=8 vs reference 64; change_log shows 64->8 on deploy\", \"Running pinned at ~8 while waiting_max rises to 70\", \"Arrivals ~4.2 rps match normal 4.0 rps and prompt_tokens_mean ~196 vs 202\", \"KV usage max only 0.73-1.22%, no preemptions, so not KV starvation\", \"p95 latency 16.91s exceeds SLO 10s and rising\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 8 sequences despite low KV use, causing queueing at normal load. Restore reference max_num_seqs=64.\"}",
+    "usage": {
+     "completion_tokens": 470,
+     "prompt_tokens": 1465,
+     "total_tokens": 1935,
+     "completion_tokens_details": {
+      "reasoning_tokens": 268
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 628
+     }
+    }
+   }
+  }
+ ]
+}

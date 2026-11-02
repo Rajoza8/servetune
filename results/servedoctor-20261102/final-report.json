@@ -1,0 +1,299 @@
+{
+  "created_at_utc": "2026-11-02T09:19:08.092768+00:00",
+  "study_dir": "runs/sd-study-r2-api2",
+  "status": "Measurements and cleanup complete; immutable inputs for frozen-source result packaging",
+  "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+  "dev_scoreboard": {
+    "glimmer": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "glimmer_to_spark": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 6,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 6,
+      "fix_proposed": 6,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 6,
+      "api_cost_usd": 0.0363
+    },
+    "glimmer_to_wonder": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 6,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 6,
+      "fix_proposed": 6,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 6,
+      "api_cost_usd": 0.1509
+    },
+    "rules": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "spark": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 31,
+      "api_cost_usd": 0.1665
+    },
+    "wonder": {
+      "incidents": 7,
+      "healthy_controls": 1,
+      "detected": 7,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 7,
+      "fix_proposed": 7,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 31,
+      "api_cost_usd": 0.5823
+    }
+  },
+  "test_scoreboard": {
+    "glimmer": {
+      "incidents": 13,
+      "healthy_controls": 3,
+      "detected": 13,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 13,
+      "fix_proposed": 13,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "glimmer_to_spark": {
+      "incidents": 13,
+      "healthy_controls": 3,
+      "detected": 11,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 11,
+      "fix_proposed": 11,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 11,
+      "api_cost_usd": 0.0693
+    },
+    "glimmer_to_wonder": {
+      "incidents": 13,
+      "healthy_controls": 3,
+      "detected": 11,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 11,
+      "fix_proposed": 11,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 11,
+      "api_cost_usd": 0.2546
+    },
+    "rules": {
+      "incidents": 13,
+      "healthy_controls": 3,
+      "detected": 12,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 11,
+      "fix_proposed": 11,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 0,
+      "api_cost_usd": 0.0
+    },
+    "spark": {
+      "incidents": 13,
+      "healthy_controls": 3,
+      "detected": 13,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 13,
+      "fix_proposed": 13,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 0,
+      "call_failures": 0,
+      "api_calls": 74,
+      "api_cost_usd": 0.4021
+    },
+    "wonder": {
+      "incidents": 13,
+      "healthy_controls": 3,
+      "detected": 13,
+      "false_alarms": 0,
+      "healthy_false_alarms": 0,
+      "diagnosis_correct": 13,
+      "fix_proposed": 13,
+      "harmful": 0,
+      "median_time_to_detect_s": 30,
+      "invalid_outputs": 1,
+      "call_failures": 0,
+      "api_calls": 74,
+      "api_cost_usd": 1.4157
+    }
+  },
+  "ledger_summary": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 12.255891,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 443
+  },
+  "ledger_breakdown": {
+    "entry_status_counts": {
+      "reserved": 193,
+      "settled": 250
+    },
+    "accounted_usd_by_status": {
+      "reserved": 9.138778,
+      "settled": 3.117113
+    },
+    "failed_reservations_retained": true,
+    "active_paid_calls": 0
+  },
+  "gpu_accounting": {
+    "running_hours": 14.302194860312673,
+    "compute_usd_upper": 20.260777200619028,
+    "disk_usd_upper": 0.63932723481622,
+    "rental_usd_upper": 20.90010443543525,
+    "network_allowance_usd": 4.0,
+    "slack_reserve_usd": 1.0,
+    "total_usd_upper": 25.90010443543525
+  },
+  "live_runs": {
+    "arm": "glimmer_to_spark",
+    "run_directories": [
+      "runs/sd-study-r2-api2/live/inc-02-glimmer_to_spark-20261102t062614054348z",
+      "runs/sd-study-r2-api2/live/inc-04-glimmer_to_spark-20261102t062614054348z",
+      "runs/sd-study-r2-api2/live/inc-05-glimmer_to_spark-20261102t062614054348z",
+      "runs/sd-study-r2-api2/live/inc-06-glimmer_to_spark-20261102t062614054348z",
+      "runs/sd-study-r2-api2/live/inc-09-glimmer_to_spark-20261102t062614054348z",
+      "runs/sd-study-r2-api2/live/inc-15-glimmer_to_spark-20261102t062614054348z"
+    ],
+    "rules_comparison_directories": [
+      "runs/sd-study-r2-api2/live/inc-02-rules-20261102t074141861536z",
+      "runs/sd-study-r2-api2/live/inc-04-rules-20261102t074141861536z",
+      "runs/sd-study-r2-api2/live/inc-05-rules-20261102t074141861536z",
+      "runs/sd-study-r2-api2/live/inc-06-rules-20261102t074141861536z",
+      "runs/sd-study-r2-api2/live/inc-09-rules-20261102t074141861536z",
+      "runs/sd-study-r2-api2/live/inc-15-rules-20261102t074141861536z"
+    ]
+  },
+  "live_summary": {
+    "glimmer_to_spark": {
+      "canonical_recovered": 5,
+      "full_post_target_met": 4,
+      "canonical_rollback_flags": 1
+    },
+    "rules": {
+      "canonical_recovered": 5,
+      "full_post_target_met": 3,
+      "canonical_rollback_flags": 1
+    }
+  },
+  "validation": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "ran": 289,
+    "skipped": 1,
+    "passed": true,
+    "duration_s": 45.681,
+    "source_commit": "a0b4deb6e9545b9d21fde472ad4686645b083bc6",
+    "output": "runs/servedoctor-ops-20261101/unittest-20261102T0146.stdout",
+    "separately_prepared_post_study_fix": {
+      "commit": "da5596d9595214bd912bf15788d82cf58f5547ea",
+      "ran": 302,
+      "skipped": 1,
+      "passed": true,
+      "used_for_frozen_measurements": false,
+      "evidence": "runs/servedoctor-ops-20261101/collector-fix-prepared-da5596d.json"
+    }
+  },
+  "all25recordings_structurally_complete": true,
+  "all12live_structurally_complete": true,
+  "full_remote_mirror": {
+    "files": 543,
+    "bytes": 51088775,
+    "canonical_ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123"
+  },
+  "scientific_changes_after_freeze": [],
+  "change_inventory": "provenance/changes.json",
+  "failures_and_limitations": [
+    "The original paid development attempt retained192 UnicodeEncodeError failures and$9.075474 conservative reservations, with zero successful token-usage responses. They are not claimed as billed completions. The ledger was never reset, edited or released.",
+    "The original rental was stopped under the initial idle policy and could not restart because its resources were unavailable. The user approved replacement and a complete hardware rerun, then required holding the replacement through stage gaps. Original migration evidence candidly lacks an independently observed remote ledger digest; the final replacement mirror has an independently captured remote digest.",
+    "Replacement bootstrap attempts 1 and 2 retained guard/upload/process-recognition integration failures during public model download; attempt 3 succeeded. Calibration/KV summary-writer failures and all superseded dev studies remain separately labeled provenance. Only development data and pre-generation probes informed severities and the one rule-threshold change.",
+    "Test batch 1 lost its local controller after a heartbeat lock wait, while the remote recorder sealed incidents 01 and 06. The recorder then hit BrokenPipeError while printing; original CLI exit is unknown. A durable continuation recorded only the six previously unstarted IDs. Original failed controller/recorder evidence and reconciliation receipts remain.",
+    "Original test incident 23 hit the 1,024 soft file-descriptor limit and stopped telemetry early, although the old harness falsely marked completion. Before any test model evaluation, one fresh same-workload recording raised only its worker/engine soft limit to 65,536, retained the original failure byte-for-byte, and explicitly adopted the complete 4,667-outcome replacement. All 25 recordings and 175 sealed payload hashes passed structural checks; the other 24 manifests were unchanged.",
+    "The collector failure-propagation fix da5596d9595214bd912bf15788d82cf58f5547ea was prepared and independently tested separately, 302 tests with 1 skip. It was not used for any frozen GPU measurement, and all frozen-source backup/package gates ran on a0b4deb. The earlier d2632e4 candidate had a late-writer race and remains labeled superseded.",
+    "The original replacement Wonder call returned HTTP 404, retained its partial and$0.063304 reservation, and halted. Catalog visibility changed; the evidence does not establish why 404 occurred. API2 copied nine sealed recordings and 24 successful rules/Spark/Glimmer dev decisions on the same replacement GPU, kept the canonical ledger, and used an explicit Mac-origin HTTPS CONNECT route with end-to-end TLS, unchanged model IDs/prices/prompts and no relay payload logging.",
+    "Wonder produced one genuine invalid JSON response on the test split. It remains in the checkpoint journal and API accounting. There were no paid call failures in the completed final dev/test evaluation arms.",
+    "The context-fault live cascade retained a local monitor HTTPError under the restricted context and escalated to Spark under the already frozen fallback. Monitor availability and serving failures during engine restarts are retained, including connection and request errors.",
+    "Both live arms had canonical recovery true in 5 of 6 cases. The cascade failed and rolled back the long-prompt case, which had 813 successes, 1,244 timeouts and 548 shed requests. Rules classified the batch case as other and requested advisory human escalation; it applied no service change, had 148 successes and 2486 timeouts, and its canonical rollback flag is bookkeeping rather than an actual undo.",
+    "Canonical recovery excludes the configured 5% shed cap. The cascade surge post cohort shed 361 of 601 requests (60.07%), and the rules surge post cohort shed 37.58%. Long-prompt post shedding was 83.77% for the cascade and 86.75% for rules. Full latency/error/shedding post targets were met in 4 of 6 cascade cases and 3 of 6 rules cases.",
+    "Pre and post descriptive windows were declared before test evaluation and live outcomes. Membership uses scheduled arrival t_sched; pre-trigger requests can complete during intervention/restart, so their later errors are not a clean completed-before-intervention baseline. Canonical verification uses a distinct lagged online window and onset-relative recovery time. Matched cases are separate temporal runs; these cohorts and six cases do not establish causal or general superiority.",
+    "A premature final audit ran before the full copy completed and correctly rejected missing rules traces. Its two outputs are preserved in final-audit-attempt1-premature-mirror. Fresh audits in a new directory ran only after the verified full mirror, and passing bytes were adopted with an explicit receipt. No recording or model call was repeated.",
+    "The full per-file SCP copy timed out after 180 seconds. A single archive transfer succeeded, then local extraction hit an unsupported Python tarfile filter keyword. Both failures are retained. Fresh validated file-by-file extraction from that same archive produced all 543 files (51,088,775 bytes), matching independent before/after remote hashes and the canonical ledger digest. No scientific input or measurement was changed.",
+    "An early operational note incorrectly counted 201 frozen entries; the actual 169-entry freeze and its hash never changed. The bookkeeping correction is preserved. An earlier offline context-fixture timing failure and the superseded collector-fix candidate remain in provenance.",
+    "The study covers one verified replacement GPU, one pinned engine build and one model revision. The rules were written by fault designers and tuned on dev, making them an optimistic baseline. No statistical-significance or generalization claim is made. API token costs use conservative standard rates without cached-input discounts; retained failed reservations and settled usage are distinct from provider invoices. GPU network and slack amounts are reserves."
+  ],
+  "user_decisions_required": []
+}

@@ -1,0 +1,9 @@
+{
+  "recorded_at_utc": "2026-11-02T09:04:39.968926+00:00",
+  "status": "local-extraction-failed",
+  "error": "TypeError",
+  "reason": "This local Python tarfile.extractall lacks filter keyword; transfer succeeded and archive preserved. Retry extraction only in a fresh directory using explicit safe member copying, no new recording/model/transport call.",
+  "python_version": "3.11.2 (v3.11.2:878ead1ac1, Feb  7 2023, 10:02:41) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "archive_sha256": "b78d7a984154d085dd24bd12fe41c7399cd3f2dbfc4411d9e49495a957322e95",
+  "archive_bytes": 6460758
+}
