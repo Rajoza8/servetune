@@ -52,6 +52,12 @@ tokenizer paths in the engine log; retain failed attempts in separate directorie
 
 ## 1. Preflight (about 30 minutes)
 
+Set `ulimit -n 65536` in the GPU command shell before starting recording workers
+and vLLM, and verify that child processes inherit it. This is descriptor headroom
+for the open-loop client and collectors, not a workload or measurement setting.
+An exhausted descriptor limit can interrupt telemetry while the engine keeps
+serving; retain such a recording as failed and use a new directory for any rerun.
+
 1. Start Glimmer with the base config through a short calibration step (step
    2 does this) and confirm in `runs/sd-calibration/engine/engine.log` that it
    serves, and how much KV-cache memory vLLM reports at

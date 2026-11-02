@@ -1,7 +1,8 @@
 """Record ServeIncidents on the GPU: real vLLM, real faults, once-per-second telemetry.
 
 Agents never read scenarios.json or answers/. Each incident directory holds only
-what an operator could observe, and is sealed with a SHA-256 manifest.
+what an operator could observe. Quiescent recordings are sealed with a SHA-256
+manifest; a failed recording with a live collector stays explicitly unsealed.
 """
 from __future__ import annotations
 
@@ -17,9 +18,9 @@ import time
 
 from servetune.artifacts import seal, timestamp, write_json
 
-from .loadgen import Gateway, LoadGenerator, http_request, summarize
+from .loadgen import Gateway, LoadGenerator, LoadGeneratorError, http_request, summarize
 from .scenarios import make_arrivals
-from .telemetry import LogTail, Recorder, environment_marker_matches, scrape_metrics
+from .telemetry import LogTail, Recorder, RecorderError, environment_marker_matches, scrape_metrics
 
 ENGINE_KNOB_KEYS = ("max_model_len", "max_num_seqs", "max_num_batched_tokens",
                     "gpu_memory_utilization", "enable_chunked_prefill", "enable_prefix_caching")
@@ -121,10 +122,30 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
     job, job_pid, timer = None, None, None
     contention = scenario.get("contention")
     started_at = timestamp()
-    failure = None
+    primary_error = None
+    cleanup_exceptions, cleanup_errors = [], []
+    stage = "recorder_start"
+
+    def error_detail(exc):
+        detail = {"error": type(exc).__name__}
+        if isinstance(exc, RecorderError):
+            detail.update(background_errors=exc.failures, thread_alive=exc.thread_alive)
+        elif isinstance(exc, LoadGeneratorError):
+            detail["background_errors"] = [exc.failure]
+        return detail
+
+    def cleanup(resource, callback):
+        try:
+            callback()
+        except BaseException as exc:
+            cleanup_exceptions.append(exc)
+            cleanup_errors.append({"resource": resource, **error_detail(exc)})
+
     try:
         recorder.start()
+        stage = "loadgen_start"
         loadgen.start(start_time=t0)
+        stage = "contention_setup"
         if contention:
             job = job_factory()
 
@@ -135,27 +156,58 @@ def record_incident(scenario, *, engine, pools, out_dir, gpu=None, job_factory=C
 
             timer = threading.Timer(contention["onset_s"], launch)
             timer.start()
+        stage = "record"
         sleeper(max(0.0, scenario["duration_s"] - (time.monotonic() - t0)))
+        stage = "loadgen_wait"
         loadgen.wait(drain_timeout_s)
     except BaseException as exc:
-        failure = type(exc).__name__
+        primary_error = exc
         raise
     finally:
-        loadgen.stop()
+        cleanup("loadgen", loadgen.stop)
         if timer is not None:
-            timer.cancel()
+            cleanup("timer", timer.cancel)
         if job is not None:
-            job.stop()
-        recorder.stop()
-        with (inc / "requests.jsonl").open("x", encoding="utf-8") as stream:
-            for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
-                stream.write(json.dumps(row) + "\n")
-        summary = summarize(loadgen.outcomes)
-        write_json(inc / "recording.json", {"started_at": started_at, "duration_s": scenario["duration_s"],
-                                            "telemetry_rows": recorder.rows, "telemetry_errors": recorder.errors,
-                                            "requests": summary, "mode": "live",
-                                            "status": "failed" if failure else "completed", "failure": failure})
-        seal(inc)
+            cleanup("job", job.stop)
+        cleanup("recorder", recorder.stop)
+        thread = getattr(recorder, "_thread", None)
+        collector_alive = (isinstance(thread, threading.Thread) and thread.is_alive()) or any(
+            isinstance(exc, RecorderError) and exc.thread_alive for exc in cleanup_exceptions)
+        if collector_alive and not any(isinstance(exc, RecorderError) and exc.thread_alive
+                                       for exc in cleanup_exceptions):
+            exc = RecorderError(getattr(recorder, "failures", []), thread_alive=True)
+            cleanup_exceptions.append(exc)
+            cleanup_errors.append({"resource": "recorder", **error_detail(exc)})
+
+        def save_requests():
+            with (inc / "requests.jsonl").open("x", encoding="utf-8") as stream:
+                for row in sorted(loadgen.outcomes, key=lambda r: r["t_sched"]):
+                    stream.write(json.dumps(row) + "\n")
+        cleanup("requests_artifact", save_requests)
+
+        def save_recording():
+            nonlocal summary
+            summary = summarize(loadgen.outcomes)
+            error = primary_error or (cleanup_exceptions[0] if cleanup_exceptions else None)
+            recording = {"started_at": started_at, "duration_s": scenario["duration_s"],
+                         "telemetry_rows": recorder.rows, "telemetry_errors": recorder.errors,
+                         "requests": summary, "mode": "live",
+                         "status": "failed" if error else "completed",
+                         "failure": type(error).__name__ if error else None}
+            if error:
+                recording.update(failure_stage=stage if primary_error else "cleanup",
+                                 **error_detail(error))
+            if cleanup_errors:
+                recording["cleanup_errors"] = cleanup_errors
+            if collector_alive:
+                recording.update(seal_state="unsealed_collector_alive", telemetry_may_still_change=True)
+            write_json(inc / "recording.json", recording)
+        summary = None
+        cleanup("recording_artifact", save_recording)
+        if not collector_alive:
+            cleanup("manifest", lambda: seal(inc))
+        if primary_error is None and cleanup_exceptions:
+            raise cleanup_exceptions[0]
     runtime = {"id": scenario["id"], "contention_pids": [job_pid] if job_pid else []}
     answers_dir = Path(out_dir) / "answers" / "runtime"
     answers_dir.mkdir(parents=True, exist_ok=True)
@@ -178,6 +230,16 @@ def record_study(scenarios, *, serving, pools, out_dir, engine_factory, gpu_fact
         engine = engine_factory(serving_config(serving, knobs), engine_dir, serving.get("dtype", "bf16"))
         log(f"starting engine {engine_dir.name} for {[s['id'] for s in group]}")
         stage, current_id = "engine_start", None
+        primary_error = None
+        cleanup_exceptions, cleanup_errors = [], []
+
+        def cleanup(resource, callback):
+            try:
+                callback()
+            except BaseException as exc:
+                cleanup_exceptions.append(exc)
+                cleanup_errors.append({"resource": resource, "error": type(exc).__name__})
+
         try:
             engine.start()
             metrics_url = engine.base_url[: -len("/v1")] + "/metrics"
@@ -187,23 +249,35 @@ def record_study(scenarios, *, serving, pools, out_dir, engine_factory, gpu_fact
                     raise RuntimeError("Engine did not become idle; refusing a contaminated recording")
                 stage = "record_incident"
                 gpu = gpu_factory() if gpu_factory else None
+                incident_error = None
                 try:
                     result = record_incident(scenario, engine=engine, pools=pools, out_dir=out_dir,
                                              gpu=gpu, **kwargs)
+                except BaseException as exc:
+                    incident_error = exc
+                    raise
                 finally:
                     if gpu is not None:
-                        gpu.stop()
+                        cleanup("gpu", gpu.stop)
+                        if incident_error is None and cleanup_exceptions:
+                            raise cleanup_exceptions[0]
                 log(f"recorded {scenario['id']}: {result['summary']}")
                 results.append(result)
         except BaseException as exc:
-            write_json(engine_dir / "failure.json", {"stage": stage, "incident_id": current_id,
-                       "group_ids": [s["id"] for s in group], "error": type(exc).__name__, "at": timestamp()})
+            primary_error = exc
             raise
         finally:
-            try:
-                engine.stop()
-            finally:
-                write_json(engine_dir / "engine_metadata.json", engine.metadata)
+            cleanup("engine", engine.stop)
+            cleanup("engine_metadata", lambda: write_json(engine_dir / "engine_metadata.json", engine.metadata))
+            error = primary_error or (cleanup_exceptions[0] if cleanup_exceptions else None)
+            if error:
+                failure = {"stage": stage if primary_error else "cleanup", "incident_id": current_id,
+                           "group_ids": [s["id"] for s in group], "error": type(error).__name__, "at": timestamp()}
+                if cleanup_errors:
+                    failure["cleanup_errors"] = cleanup_errors
+                cleanup("failure_artifact", lambda: write_json(engine_dir / "failure.json", failure))
+            if primary_error is None and cleanup_exceptions:
+                raise cleanup_exceptions[0]
     return results
 
 

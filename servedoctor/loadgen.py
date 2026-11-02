@@ -71,6 +71,13 @@ def http_request(base_url, row, timeout_s):
         return {"status": "error", "error_class": type(exc).__name__}
 
 
+class LoadGeneratorError(RuntimeError):
+    """The dispatch thread failed before completing its arrival schedule."""
+    def __init__(self, failure):
+        self.failure = failure
+        super().__init__("Load dispatch failed: " + failure)
+
+
 class LoadGenerator:
     def __init__(self, arrivals, gateway, request_fn, *, clock=time.monotonic, sleeper=time.sleep,
                  max_workers=1024):
@@ -88,6 +95,7 @@ class LoadGenerator:
         self.start_time = None
         self._pool = None
         self._futures = []
+        self.dispatch_failure = None
 
     def _record_arrival(self, row, admitted, reason):
         with self._lock:
@@ -131,8 +139,20 @@ class LoadGenerator:
     def start(self, start_time=None):
         self.start_time = self.clock() if start_time is None else start_time
         self._pool = ThreadPoolExecutor(max_workers=self.max_workers)
-        self._thread = threading.Thread(target=self._dispatch, name="servedoctor-loadgen", daemon=True)
-        self._thread.start()
+
+        def run():
+            try:
+                self._dispatch()
+            except BaseException as exc:
+                self.dispatch_failure = type(exc).__name__
+                self._stop.set()
+
+        self._thread = threading.Thread(target=run, name="servedoctor-loadgen", daemon=True)
+        try:
+            self._thread.start()
+        except BaseException:
+            self._pool.shutdown(wait=False, cancel_futures=True)
+            raise
         return self
 
     def wait(self, drain_timeout_s=90):
@@ -147,6 +167,8 @@ class LoadGenerator:
             except Exception:
                 pass
         self._pool.shutdown(wait=False, cancel_futures=True)
+        if self.dispatch_failure:
+            raise LoadGeneratorError(self.dispatch_failure)
 
     def stop(self):
         self._stop.set()

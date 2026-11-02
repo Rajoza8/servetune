@@ -159,6 +159,15 @@ class LogTail:
         return [line[:300] for line in lines if self.KEEP.search(line)][:limit]
 
 
+class RecorderError(RuntimeError):
+    """A background collector failed; retain classes, never source messages."""
+    def __init__(self, failures, *, thread_alive=False):
+        self.failures = list(failures)
+        self.thread_alive = thread_alive
+        details = ", ".join(self.failures) or "thread did not stop"
+        super().__init__("Telemetry recorder failed: " + details)
+
+
 class Recorder:
     """Write one JSON line per second until stopped. All sources are optional."""
     def __init__(self, out_path, *, clock_zero, metrics_url=None, gpu=None, loadgen=None,
@@ -172,6 +181,7 @@ class Recorder:
         self._thread = None
         self.rows = 0
         self.errors = 0
+        self.failures = []
 
     def snapshot(self):
         t = time.monotonic() - self.clock_zero
@@ -214,17 +224,32 @@ class Recorder:
         def run():
             try:
                 self._loop(stream)
+            except BaseException as exc:
+                self.failures.append(type(exc).__name__)
             finally:
-                stream.close()
+                try:
+                    stream.close()
+                except BaseException as exc:
+                    self.failures.append(type(exc).__name__)
 
         self._thread = threading.Thread(target=run, name="servedoctor-recorder", daemon=True)
-        self._thread.start()
+        try:
+            self._thread.start()
+        except BaseException:
+            try:
+                stream.close()
+            except BaseException as exc:
+                self.failures.append(type(exc).__name__)
+            raise
         return self
 
-    def stop(self):
+    def stop(self, timeout_s=10):
         self._stop.set()
-        if self._thread is not None:
-            self._thread.join(timeout=10)
+        if self._thread is not None and self._thread.ident is not None:
+            self._thread.join(timeout=timeout_s)
+        alive = self._thread is not None and self._thread.is_alive()
+        if self.failures or alive:
+            raise RecorderError(self.failures, thread_alive=alive)
 
 
 def read_jsonl(path):
