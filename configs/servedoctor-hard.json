@@ -43,7 +43,7 @@
     {"name": "long-prompt-near-threshold", "causes": ["long_prompt_flood"], "long_fraction": 0.15,
      "benign_knobs": 1, "decoy": true},
     {"name": "kv-near-threshold", "causes": ["kv_cache_starvation"],
-     "engine": {"gpu_memory_utilization": 0.61733}, "benign_knobs": 1, "noise_alerts": 1},
+     "engine": {"gpu_memory_utilization": 0.61711}, "benign_knobs": 1, "noise_alerts": 1},
     {"name": "batch-near-threshold", "causes": ["batch_limit_too_low"],
      "engine": {"max_num_seqs": 24}, "benign_knobs": 2},
     {"name": "context-near-threshold", "causes": ["context_limit_too_small"],
@@ -57,7 +57,7 @@
     {"name": "batch-plus-context", "causes": ["batch_limit_too_low", "context_limit_too_small"],
      "engine": {"max_num_seqs": 16, "max_model_len": 1280}, "benign_knobs": 1},
     {"name": "kv-plus-context", "causes": ["kv_cache_starvation", "context_limit_too_small"],
-     "engine": {"gpu_memory_utilization": 0.61613, "max_model_len": 1280}},
+     "engine": {"gpu_memory_utilization": 0.61624, "max_model_len": 1280}},
     {"name": "healthy-with-decoy-and-config-noise", "causes": [], "decoy": true, "benign_knobs": 2,
      "noise_alerts": 2},
     {"name": "healthy-with-burst-and-herring", "causes": [], "spike": {"multiplier": 1.8, "seconds": 25},
@@ -71,5 +71,5 @@
     {"name": "batch-with-noise", "causes": ["batch_limit_too_low"], "engine": {"max_num_seqs": 12},
      "benign_knobs": 2, "decoy": true, "noise_alerts": 2}
   ],
-  "notes": "Hard set: no dev split and nothing tuned on it; prompts, rules, models and scoring rules are frozen from v0. Severities were chosen from v0 recorded telemetry only (no arm outputs): v0 context 1536 gave 0.8% errors, contention duty 0.4 gave no SLO breach and 0.7 breached 7/8 windows, KV 0.61733 breached 3/12 windows, reference concurrency averaged 21 (p95 31). The KV utilizations are specific to the v0 replacement host; on any other host re-probe them before generation. capacity_rps must come from a calibration on the recording host."
+  "notes": "Hard set: no dev split and nothing tuned on it; prompts, rules, models and scoring rules are frozen from v0. Severities were chosen from v0 recorded telemetry only (no arm outputs): v0 context 1536 gave 0.8% errors, contention duty 0.4 gave no SLO breach and 0.7 breached 7/8 windows, KV 0.61733 breached 3/12 windows, reference concurrency averaged 21 (p95 31). The KV utilizations are specific to the v0 replacement host; on any other host re-probe them before generation. capacity_rps must come from a calibration on the recording host. New recording host calibration before generation: Vast instance 58858374, GPU GPU-bca4245b-1348-7ce9-392a-d976e3a9b39e, measured capacity 8 RPS. runs/sd-hard-kv-probes-attempt1/summary.json (SHA256 e152728fca8bfef514a5d3adeae744433e5b90da0ed26f59285987e0e4a14e46) records standalone 4096-context, 90-second probes at 4 RPS: mild utilization 0.61711 gave p95 9.68687555365031 s, KV 0.48 GiB, 46 preemptions; compound-use utilization 0.61624 gave p95 14.192525350011417 s, KV 0.40 GiB, 104 preemptions. Both completed 344/344 requests with no errors. These replace only the host-specific KV values under the authorized new-host procedure; no Hard incidents, answer keys or arm outputs existed or were consulted. Calibration source was d3fe20a07ce9c687e75956200b655c5913021d49."
 }
