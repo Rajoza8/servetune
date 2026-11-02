@@ -10,18 +10,74 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from decimal import Decimal
 import fcntl
+import http.client
+import ipaddress
 import json
 import os
 from pathlib import Path
 import re
+import ssl
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import urlsplit
 import uuid
 
 from .catalog import ACTION_TYPES, ROOT_CAUSES, ActionError, validate_action
 
 CAPS = {"meta": Decimal("50"), "baseten": Decimal("20")}
+META_COMPLETIONS_URL = "https://api.meta.ai/v1/chat/completions"
+
+
+def _meta_proxy_address(value):
+    try:
+        if not isinstance(value, str) or len(value) > 256 or any(ord(c) <= 32 or ord(c) >= 127 for c in value):
+            raise ValueError()
+        parsed = urlsplit(value)
+        if (not value.startswith("http://") or parsed.scheme != "http" or parsed.path or parsed.query
+                or parsed.fragment or "?" in value or "#" in value or parsed.username is not None
+                or parsed.password is not None or parsed.port is None or not 1 <= parsed.port <= 65535
+                or not ipaddress.ip_address(parsed.hostname).is_loopback):
+            raise ValueError()
+        return parsed.hostname, parsed.port
+    except (ValueError, TypeError):
+        raise ValueError("Meta CONNECT proxy must be a numeric loopback HTTP URL with an explicit port and no other fields") from None
+
+
+def load_api_transport(study_dir, *, environ=None):
+    """Read the explicit study transport only; no network or credential access."""
+    path = Path(study_dir) / "api-transport.json"
+    if not path.exists() and not path.is_symlink():
+        return None
+    if path.is_symlink() or not path.is_file() or path.stat().st_size > 4096:
+        raise ValueError("Invalid study API transport file")
+
+    def unique_object(pairs):
+        value = {}
+        for key, item in pairs:
+            if key in value:
+                raise ValueError("Duplicate API transport field")
+            value[key] = item
+        return value
+
+    config = json.loads(path.read_text(), object_pairs_hook=unique_object)
+    if (not isinstance(config, dict) or set(config) != {"project", "instance_id", "meta_https_connect_proxy"}
+            or config["project"] != "servedoctor" or type(config["instance_id"]) is not int
+            or config["instance_id"] <= 0):
+        raise ValueError("Invalid ServeDoctor API transport schema")
+    environ = os.environ if environ is None else environ
+    if environ.get("CONTAINER_ID") != str(config["instance_id"]):
+        raise ValueError("API transport instance does not match CONTAINER_ID")
+    _meta_proxy_address(config["meta_https_connect_proxy"])
+    return config["meta_https_connect_proxy"]
+
+
+class _MetaConnectConnection(http.client.HTTPSConnection):
+    """TLS to the official Meta host after a plaintext loopback CONNECT handshake."""
+    def __init__(self, proxy_address, timeout):
+        host, port = proxy_address
+        super().__init__(host, port=port, timeout=timeout, context=ssl.create_default_context())
+        self.set_tunnel("api.meta.ai", port=443)
 
 PROVIDERS = {
     "spark": {"provider": "meta", "url": "https://api.meta.ai/v1/chat/completions",
@@ -152,11 +208,17 @@ class Ledger:
 
 class ModelClient:
     def __init__(self, name, *, ledger=None, base_url=None, model=None, timeout_s=120, transport=None,
-                 environ=None):
+                 environ=None, meta_https_connect_proxy=None):
         if name not in PROVIDERS:
             raise ValueError(f"Unknown model client {name}")
         self.name = name
         self.spec = dict(PROVIDERS[name])
+        self.meta_https_connect_proxy = meta_https_connect_proxy
+        self._meta_proxy = None
+        if meta_https_connect_proxy is not None:
+            if self.spec["provider"] != "meta" or self.spec["url"] != META_COMPLETIONS_URL:
+                raise ValueError("The explicit Meta CONNECT transport is available only for official Meta clients")
+            self._meta_proxy = _meta_proxy_address(meta_https_connect_proxy)
         environ = os.environ if environ is None else environ
         if name == "glimmer-local":
             self.spec["url"] = (base_url or "http://127.0.0.1:8000/v1").rstrip("/") + "/chat/completions"
@@ -190,6 +252,20 @@ class ModelClient:
         headers = {"Content-Type": "application/json"}
         if self.key:
             headers["Authorization"] = f"Bearer {self.key}"
+        if self._meta_proxy is not None:
+            if self.spec["url"] != META_COMPLETIONS_URL:
+                raise ValueError("Meta CONNECT transport target changed")
+            connection = _MetaConnectConnection(self._meta_proxy, self.timeout_s)
+            try:
+                connection.request("POST", "/v1/chat/completions", body=json.dumps(body).encode(), headers=headers)
+                response = connection.getresponse()
+                if 300 <= response.status < 400:
+                    raise PermanentAPIError("meta", response.status)
+                if not 200 <= response.status < 300:
+                    raise urllib.error.HTTPError(META_COMPLETIONS_URL, response.status, "Meta request failed", None, None)
+                return json.loads(response.read(2_000_000))
+            finally:
+                connection.close()
         request = urllib.request.Request(self.spec["url"], data=json.dumps(body).encode(), headers=headers,
                                          method="POST")
         handlers = [urllib.request.ProxyHandler({})] if self.spec["provider"] == "local" else []

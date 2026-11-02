@@ -47,12 +47,13 @@ def _gpu_args(parser):
 
 def _clients(args, arms, glimmer_url=None):
     from .evaluate import expert_of
-    from .llm import Ledger, ModelClient
+    from .llm import Ledger, ModelClient, load_api_transport
     experts = {expert_of(a) for a in arms} - {None}
     needs_glimmer = any(a == "glimmer" or a.startswith("glimmer_to_") for a in arms)
     paid = bool(experts) or (args.glimmer == "baseten" and needs_glimmer)
     ledger = Ledger(args.ledger) if paid else None
-    clients = {expert: ModelClient(expert, ledger=ledger) for expert in experts}
+    proxy = load_api_transport(args.study_dir) if experts else None
+    clients = {expert: ModelClient(expert, ledger=ledger, meta_https_connect_proxy=proxy) for expert in experts}
     if needs_glimmer:
         if args.glimmer == "baseten":
             clients["glimmer"] = ModelClient("glimmer-baseten", ledger=ledger)
