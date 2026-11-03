@@ -10,9 +10,11 @@ service does not recover.
 **ServeIncidents** is the benchmark used to evaluate it: serving incidents
 recorded on a real GPU, each with a sealed answer key.
 
-Status: the code is complete and tested offline. **No ServeIncidents result
-exists until the GPU recordings are made.** Synthetic rehearsal output is
-labelled as such and must never be reported as a result.
+Status: recorded and evaluated on a real GPU. Results:
+[v0](../results/servedoctor-20261102/README.md) (24 incidents, 12 live repair
+runs) and [Hard set](../results/servedoctor-hard-20261103/README.md) (15 of 16
+frozen incidents; `hard-16` could not start). Synthetic rehearsal output is
+labelled as such and is never reported as a result.
 
 ## What an incident is
 

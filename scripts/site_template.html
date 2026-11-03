@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ServeDoctor results</title>
+<meta name="description" content="ServeDoctor: an on-call agent for LLM serving, and ServeIncidents, a benchmark of real GPU incidents with sealed answers. Results and live-repair replays.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --raised: #ffffff;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+  --series: #2a78d6; --series-wash: rgba(42,120,214,0.10);
+  --good: #0ca30c; --good-text: #006300; --critical: #d03b3b; --warning: #fab219;
+  --accent-bg: #eef4fc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --raised: #222220;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --series: #3987e5; --series-wash: rgba(57,135,229,0.14);
+    --good-text: #0ca30c; --accent-bg: #16202c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --raised: #222220;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --series: #3987e5; --series-wash: rgba(57,135,229,0.14);
+  --good-text: #0ca30c; --accent-bg: #16202c;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--series); }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+header.hero { padding: 40px 0 8px; }
+.tag { display: inline-block; font-size: 13px; color: var(--ink-2); border: 1px solid var(--ring);
+  border-radius: 999px; padding: 2px 10px; background: var(--surface); }
+h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 14px 0 10px; letter-spacing: -0.01em; }
+h2 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.005em; }
+h3 { font-size: 18px; margin: 22px 0 8px; }
+.lead { font-size: 19px; color: var(--ink-2); max-width: 760px; margin: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 16px 0 0; font-size: 15px; }
+section { padding: 36px 0; border-top: 1px solid var(--grid); }
+section > .intro { color: var(--ink-2); max-width: 780px; margin: 0 0 18px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 26px 0 6px; }
+.tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px 18px; }
+.tile .label { font-size: 14px; color: var(--ink-2); }
+.tile .value { font-size: 40px; font-weight: 600; line-height: 1.15; margin: 4px 0 2px; }
+.tile .note { font-size: 14px; color: var(--ink-2); }
+.card { position: relative; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 3px; background: var(--surface);
+  border: 1px solid var(--ring); border-radius: 10px; }
+.seg button { font: inherit; font-size: 14px; border: 0; background: transparent; color: var(--ink-2);
+  padding: 6px 10px; border-radius: 7px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent-bg); color: var(--ink); font-weight: 600; }
+.seg button:focus-visible, .play:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--series); outline-offset: 2px; }
+.play { font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--ring); background: var(--raised);
+  color: var(--ink); border-radius: 8px; padding: 6px 14px; cursor: pointer; min-width: 84px; }
+.scrub { display: flex; align-items: center; gap: 10px; flex: 1 1 260px; min-width: 220px; }
+.scrub input { flex: 1; accent-color: var(--series); }
+.clock { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 14px; min-width: 92px; }
+.replay { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 860px) { .replay { grid-template-columns: 1fr; } }
+.chart { position: relative; }
+.chart + .chart { margin-top: 6px; }
+.chart .title { font-size: 13px; color: var(--ink-2); margin: 0 0 2px 2px; }
+.chart svg { display: block; width: 100%; height: 132px; overflow: visible; touch-action: pan-y; }
+.chart.first svg { height: 176px; }
+.evlegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--ink-2); margin: 8px 2px 0; }
+.evlegend span b { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--axis); align-items: center; justify-content: center; font-size: 11px; margin-right: 5px; font-weight: 600; }
+.evlegend span.good b { border-color: var(--good); color: var(--good-text); }
+.tip { position: absolute; pointer-events: none; background: var(--raised); border: 1px solid var(--ring);
+  border-radius: 8px; padding: 6px 9px; font-size: 13px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  white-space: nowrap; display: none; z-index: 2; }
+.tip strong { font-weight: 600; }
+.tip .row { display: flex; gap: 8px; align-items: center; }
+.tip .key { width: 12px; height: 2px; background: var(--series); display: inline-block; }
+.outcome { margin: 10px 2px 0; font-size: 15px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.badge.good { color: var(--good-text); }
+.badge.bad { color: var(--critical); }
+.story { list-style: none; margin: 0; padding: 0; max-height: 520px; overflow: auto; }
+.story > li { border-left: 2px solid var(--grid); padding: 2px 0 12px 12px; margin-left: 4px; position: relative; }
+.story > li::before { content: ""; position: absolute; left: -6px; top: 7px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--surface); border: 2px solid var(--axis); }
+.story > li.hot::before { border-color: var(--series); background: var(--series); }
+.story > li.ok::before { border-color: var(--good); background: var(--good); }
+.story > li.fail::before { border-color: var(--critical); background: var(--critical); }
+.story .when { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.story .who { font-weight: 600; }
+.story .txt { color: var(--ink-2); font-size: 14px; }
+.story ul { margin: 4px 0 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); }
+.story .act { font-size: 14px; margin-top: 4px; }
+.empty { color: var(--muted); font-size: 14px; }
+details { margin-top: 12px; }
+summary { cursor: pointer; color: var(--ink-2); font-size: 14px; }
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--surface); }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 13px; background: var(--surface); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.em td { background: var(--accent-bg); }
+.matrix td { white-space: nowrap; }
+.yes { color: var(--good-text); }
+.no { color: var(--critical); }
+.half { color: var(--ink-2); }
+.small { font-size: 13px; color: var(--ink-2); }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.step { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px 16px; }
+.step .n { font-size: 13px; color: var(--muted); }
+.step .h { font-weight: 600; margin: 2px 0 4px; }
+.step p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+ul.plain { padding-left: 20px; margin: 8px 0; }
+ul.plain li { margin: 4px 0; }
+pre { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px;
+  overflow-x: auto; line-height: 1.5; }
+footer { padding: 28px 0 48px; color: var(--ink-2); font-size: 14px; border-top: 1px solid var(--grid); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="tag">Meta AI Developer Hackathon · built October 29 – November 3, 2026</span>
+  <h1>ServeDoctor</h1>
+  <p class="lead">An on-call agent for LLM serving. A local Muse Glimmer model watches a live vLLM server,
+    escalates anomalies to Muse Spark or Muse Wonder, and applies a whitelisted fix that is verified on real
+    requests or rolled back. Evaluated on <strong>ServeIncidents</strong>, real GPU incidents with sealed answers.</p>
+  <div class="links">
+    <a href="https://github.com/Rajoza8/servetune">Source code</a>
+    <a href="https://github.com/Rajoza8/servetune/tree/main/results/servedoctor-20261102">v0 results and evidence</a>
+    <a href="https://github.com/Rajoza8/servetune/tree/main/results/servedoctor-hard-20261103">Hard-set results and evidence</a>
+    <a href="https://github.com/Rajoza8/servetune/blob/main/docs/SERVEDOCTOR.md">How it works</a>
+  </div>
+  <div class="tiles" id="tiles"></div>
+</header>
+
+<section id="replay">
+  <h2>Watch a real repair</h2>
+  <p class="intro">Six faults were injected into a live Glimmer server on an RTX PRO 6000 Blackwell. Pick one and press
+    play: the charts are the recorded telemetry, and the timeline shows what the agent actually saw, said and did.
+    Replayed at 30× speed; nothing here calls a model.</p>
+  <div class="controls" role="group" aria-label="Replay controls">
+    <div class="seg" id="runs" role="group" aria-label="Incident"></div>
+    <div class="seg" id="arms" role="group" aria-label="Agent"></div>
+  </div>
+  <div class="controls">
+    <button class="play" id="play" type="button">Play</button>
+    <div class="scrub">
+      <input type="range" id="scrub" min="0" max="660" step="1" value="0" aria-label="Replay time">
+      <span class="clock" id="clock">0:00 / 11:00</span>
+    </div>
+  </div>
+  <div class="replay">
+    <div class="card">
+      <div class="chart first"><div class="title">p95 latency of completed requests, seconds (SLO 10 s)</div><svg id="c-lat" role="img"></svg></div>
+      <div class="chart"><div class="title">Failed requests per second</div><svg id="c-err" role="img"></svg></div>
+      <div class="chart"><div class="title">Requests waiting in the engine queue</div><svg id="c-q" role="img"></svg></div>
+      <div class="evlegend" id="evlegend"></div>
+      <div class="tip" id="tip"></div>
+      <p class="outcome" id="outcome"></p>
+      <details>
+        <summary>Show data table</summary>
+        <div class="tablewrap"><table id="series-table"></table></div>
+      </details>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">What the agent did</h3>
+      <ol class="story" id="story" aria-live="polite"></ol>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>How it works</h2>
+  <p class="intro">Every 30 seconds the agent gets the same snapshot an operator would see, built only from data up to that
+    moment: the SLO, current and normal config, the change log, three minutes of metrics in 10-second steps, the GPU
+    process table and recent engine log lines.</p>
+  <div class="flow">
+    <div class="step"><div class="n">1 · every 30 s</div><div class="h">Glimmer monitors</div>
+      <p>The open-weights 30B model runs on the same GPU and answers "healthy" or "anomaly". It costs nothing per call.</p></div>
+    <div class="step"><div class="n">2 · on an anomaly</div><div class="h">An expert diagnoses</div>
+      <p>Muse Spark or Muse Wonder names one of 9 root causes, cites evidence from the telemetry and proposes at most two fixes.</p></div>
+    <div class="step"><div class="n">3 · whitelist only</div><div class="h">The fix is applied</div>
+      <p>Allowed: one engine setting change (restart), a gateway rate or prompt-length limit, stopping a GPU job this run launched,
+        advice, or escalation. Anything else is rejected.</p></div>
+    <div class="step"><div class="n">4 · 150 s later</div><div class="h">Verify or roll back</div>
+      <p>Requests that arrived 30–90 s after the fix must meet the SLO. If not, the change is undone and a human is paged.</p></div>
+  </div>
+  <h3>Safety boundaries</h3>
+  <ul class="plain">
+    <li>The agent never runs shell commands; every action is validated against fixed bounds before it executes.</li>
+    <li>Engine changes restart only the vLLM process group the harness started; a GPU process can be stopped only if this run launched it.</li>
+    <li>Paid API calls reserve their worst-case cost in a ledger before they are sent and stop at fixed caps.</li>
+  </ul>
+</section>
+
+<section id="benchmark">
+  <h2>The benchmark: ServeIncidents</h2>
+  <p class="intro">Each incident is six minutes of real traffic (GSM8K questions, open-loop arrivals at half of measured capacity)
+    against vLLM serving Muse Glimmer 30B in BF16, with one or two injected faults, recorded once per second. The true cause,
+    onset and allowed fixes are sealed in separate answer keys that no agent sees.</p>
+  <div class="two">
+    <div class="card">
+      <h3 style="margin-top:0">v0: 24 incidents</h3>
+      <p class="small">8 development, 16 held-out test (13 faults, 3 healthy controls). Six fault types at three severities,
+        plus underused-GPU and healthy controls. Tuning was allowed only on development incidents.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Hard: 15 of 16 frozen incidents</h3>
+      <p class="small">Built because v0 saturated. Harmless config changes on every deploy, decoy GPU jobs that share
+        names with real culprits, four two-cause incidents, faults just over the SLO line and red-herring alerts.
+        No tuning at all. <code>hard-16</code> could not start (a generator defect) and was excluded before anything was scored.</p>
+    </div>
+  </div>
+  <div class="tablewrap" style="margin-top:14px">
+    <table>
+      <thead><tr><th>Fault</th><th>How it is injected</th><th>A valid fix</th></tr></thead>
+      <tbody>
+        <tr><td>Traffic surge</td><td>Arrivals rise above capacity</td><td>Gateway rate limit</td></tr>
+        <tr><td>Long-prompt flood</td><td>A share of requests become 2,300–3,500-token prompts</td><td>Gateway prompt cap or rate limit</td></tr>
+        <tr><td>KV-cache starvation</td><td>A deploy lowers the memory reserved for the KV cache</td><td>Raise it</td></tr>
+        <tr><td>Batch limit too low</td><td>A deploy lowers <code>max_num_seqs</code></td><td>Raise it</td></tr>
+        <tr><td>Context limit too small</td><td>A deploy lowers <code>max_model_len</code>, rejecting medium prompts</td><td>Raise it</td></tr>
+        <tr><td>GPU contention</td><td>A neighbouring batch job runs matrix maths on the same GPU</td><td>Stop that job (never a decoy)</td></tr>
+        <tr><td>Underused GPU</td><td>Traffic falls to 8–20% of capacity at high power draw</td><td>Recommend consolidation</td></tr>
+        <tr><td>Healthy control</td><td>Normal traffic, sometimes a harmless spike</td><td>Do nothing</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="results">
+  <h2>Results</h2>
+  <p class="intro">Scores are first decisions on recorded incidents, replayed identically to every agent. Live repairs are
+    separate runs where the fix was really applied. Small samples: a one-incident difference is noise.</p>
+
+  <h3>Hard set (15 of 16 frozen incidents; hard-16 could not start)</h3>
+  <div class="controls"><div class="seg" id="hard-subset" role="group" aria-label="Hard subset"></div></div>
+  <div class="tablewrap"><table id="hard-board"></table></div>
+  <p class="small" id="hard-note"></p>
+
+  <h3>Hard set, case by case</h3>
+  <div class="tablewrap"><table class="matrix" id="hard-matrix"></table></div>
+  <p class="small">✓ correct cause and safe fix · ½ named one of two causes and fixed only that one · ✗ wrong or missed ·
+    ⚠ harmful action · ⊘ stopped a harmless decoy job. Healthy rows: ✓ means nothing was flagged.</p>
+
+  <h3>v0 test set (13 faults, 3 healthy controls)</h3>
+  <div class="tablewrap"><table id="v0-board"></table></div>
+
+  <h3>Live repairs on the GPU (v0)</h3>
+  <div class="tablewrap"><table id="live-table"></table></div>
+  <p class="small">“Recovered” means p95 latency ≤ 10 s and errors ≤ 1% for requests arriving 30–90 s after the fix. It does
+    not count shed requests, so shedding is shown separately.</p>
+</section>
+
+<section id="findings">
+  <h2>What we learned</h2>
+  <div class="two">
+    <div>
+      <ul class="plain" id="findings-list"></ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Limits</h3>
+      <ul class="plain">
+        <li>One GPU type, one engine (vLLM) and one served model; v0 and Hard ran on different hosts (8 vs 6 req/s capacity).</li>
+        <li>Hard-set scores replay recorded incidents; the live evidence is the 12 v0 repair runs.</li>
+        <li>13 and 12 real incidents: differences of one incident are not meaningful.</li>
+        <li>Wonder's six invalid answers hit the fixed 2,048-token output cap while still reasoning.</li>
+        <li>One Hard incident was excluded (generator defect) and one produced no SLO breach; both are reported.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="reproduce">
+  <h2>Check it yourself</h2>
+  <p class="intro">Every decision, answer key and recording is committed with hashes. Re-scoring needs no GPU and no API key.</p>
+<pre>git clone https://github.com/Rajoza8/servetune && cd servetune
+python3 -m unittest discover -s tests -q
+python3 -m servedoctor score --study-dir results/servedoctor-20261102 --split test
+python3 -m servedoctor score --study-dir results/servedoctor-hard-20261103/analysis --split hard
+python3 -m servedoctor score --study-dir results/servedoctor-hard-20261103/analysis --split hard --valid-only
+python3 scripts/build_site.py   # rebuilds this page from the committed results</pre>
+</section>
+
+<footer>
+  ServeDoctor and ServeIncidents were built during the Meta AI Developer Hackathon; see
+  <a href="https://github.com/Rajoza8/servetune/blob/main/BUILT_DURING_HACKATHON.md">the dated build record</a>.
+  MIT license. Muse Glimmer weights are not redistributed; GSM8K is MIT-licensed. Models: Muse Glimmer 30B (open weights,
+  local), Muse Spark 1.3 and Muse Wonder 1.0 (Meta Model API).
+</footer>
+</div>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var CAUSE = { healthy: "Healthy", traffic_surge: "Traffic surge", long_prompt_flood: "Long-prompt flood",
+    kv_cache_starvation: "KV-cache starvation", batch_limit_too_low: "Batch limit too low",
+    context_limit_too_small: "Context limit too small", gpu_contention: "GPU contention",
+    underutilization: "Underused GPU", other: "Other" };
+  var SHORT = { kv_cache_starvation: "KV-cache starvation", context_limit_too_small: "Context limit",
+    batch_limit_too_low: "Batch limit", traffic_surge: "Traffic surge", gpu_contention: "GPU contention",
+    long_prompt_flood: "Long-prompt flood" };
+  var ARM = { glimmer_to_spark: "Glimmer → Spark agent", rules: "Threshold rules" };
+
+  function el(tag, attrs, text) {
+    var n = document.createElement(tag);
+    if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text !== undefined && text !== null) n.textContent = text;
+    return n;
+  }
+  function svgEl(tag, attrs) {
+    var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function num(n) { return n.toLocaleString("en-US"); }
+  function pct(x) { return x === null || x === undefined ? "–" : Math.round(x * 100) + "%"; }
+  function action(a) {
+    if (!a) return "";
+    switch (a.type) {
+      case "set_engine_config": return "Restart the engine with " + a.knob + " = " + num(a.value);
+      case "gateway_rate_limit": return "Rate-limit the gateway to " + a.max_rps + " requests/s";
+      case "gateway_max_prompt_tokens": return "Reject prompts over " + num(a.max_prompt_tokens) + " tokens";
+      case "stop_gpu_process": return "Stop GPU process " + a.pid;
+      case "recommend_consolidation": return "Recommend consolidating traffic";
+      case "escalate_to_human": return "Escalate to a human";
+      default: return "No action";
+    }
+  }
+
+  // ---------- headline tiles (computed from the data, never typed by hand)
+  (function tiles() {
+    var hard = {}; D.hard.all.forEach(function (r) { hard[r.arm] = r; });
+    var g = hard.glimmer, rules = hard.rules;
+    var aiHarm = ["glimmer", "spark", "wonder", "glimmer_to_spark", "glimmer_to_wonder"]
+      .reduce(function (s, a) { return s + (hard[a] ? hard[a].harmful : 0); }, 0);
+    var agentRuns = D.live.filter(function (r) { return r.arm === "glimmer_to_spark"; });
+    var recovered = agentRuns.filter(function (r) { return r.recovered; }).length;
+    var completeAny = D.hard.all.reduce(function (s, r) { return s + r.compound_complete_fix; }, 0);
+    var list = [
+      ["Hard set: correct diagnoses by Glimmer alone (local, free)", g.diagnosis_correct + " of " + g.incidents,
+        "Muse Spark: " + hard.spark.diagnosis_correct + " · Muse Wonder: " + hard.wonder.diagnosis_correct],
+      ["Harmful actions by any AI agent on the Hard set", String(aiHarm),
+        "Threshold rules: " + rules.harmful + ", stopping a harmless GPU job in " + rules.stopped_decoy + " of 5 decoy cases"],
+      ["Live repairs by the agent on a real GPU", recovered + " of " + agentRuns.length,
+        "The one failed fix was rolled back automatically"],
+      ["Two-cause incidents fully fixed, any agent", completeAny + " of " + g.compound_incidents,
+        "Every agent fixed only the loudest cause"]
+    ];
+    var box = document.getElementById("tiles");
+    list.forEach(function (t) {
+      var d = el("div", { "class": "tile" });
+      d.appendChild(el("div", { "class": "label" }, t[0]));
+      d.appendChild(el("div", { "class": "value" }, t[1]));
+      d.appendChild(el("div", { "class": "note" }, t[2]));
+      box.appendChild(d);
+    });
+  })();
+
+  // ---------- replay
+  var order = ["kv_cache_starvation", "context_limit_too_small", "batch_limit_too_low", "traffic_surge",
+    "gpu_contention", "long_prompt_flood"];
+  var state = { cause: "kv_cache_starvation", arm: "glimmer_to_spark", t: 0, playing: false, last: 0 };
+  var charts = [
+    { id: "c-lat", key: "p95", unit: " s", slo: true },
+    { id: "c-err", key: "err", unit: "/s" },
+    { id: "c-q", key: "queue", unit: "" }
+  ];
+  var W = 640, PAD = { l: 34, r: 10, t: 22, b: 20 }, PAD_FIRST = 38;
+
+  function run() {
+    return D.live.filter(function (r) { return r.cause === state.cause && r.arm === state.arm; })[0];
+  }
+  function events(r) {
+    var ev = [];
+    if (r.onset !== null && r.onset !== undefined) ev.push({ t: r.onset, label: r.onset === 0 ? "Bad deploy" : "Fault starts" });
+    if (r.decision_t !== null && r.decision_t !== undefined) ev.push({ t: r.decision_t, label: "Agent acts" });
+    if (r.acted_at && r.acted_at - (r.decision_t || 0) > 8) ev.push({ t: r.acted_at, label: "Fix in place" });
+    if (r.recovered && r.ttr !== null) ev.push({ t: (r.onset || 0) + r.ttr, label: "Recovered", good: true });
+    return ev;
+  }
+  function buttons(boxId, items, current, onPick) {
+    var box = document.getElementById(boxId);
+    box.textContent = "";
+    items.forEach(function (it) {
+      var b = el("button", { type: "button", "aria-pressed": String(it[0] === current) }, it[1]);
+      b.addEventListener("click", function () { onPick(it[0]); });
+      box.appendChild(b);
+    });
+  }
+  function drawControls() {
+    buttons("runs", order.map(function (c) { return [c, SHORT[c]]; }), state.cause, function (c) {
+      state.cause = c; state.t = 0; stop(); drawControls(); drawAll(); });
+    buttons("arms", [["glimmer_to_spark", "Glimmer → Spark agent"], ["rules", "Threshold rules"]], state.arm, function (a) {
+      state.arm = a; state.t = 0; stop(); drawControls(); drawAll(); });
+  }
+
+  function scaleFor(r, spec, h, top) {
+    var max = 0;
+    r.series.forEach(function (p) { if (p[spec.key] !== null && p[spec.key] > max) max = p[spec.key]; });
+    if (spec.slo) max = Math.max(max, 12);
+    if (max <= 0) max = 1;
+    var step = niceStep(max / 3);
+    max = Math.ceil(max / step) * step;
+    return { max: max, step: step,
+      x: function (t) { return PAD.l + (t / r.duration) * (W - PAD.l - PAD.r); },
+      y: function (v) { return top + (1 - v / max) * (h - top - PAD.b); } };
+  }
+  function niceStep(raw) {
+    var p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+  }
+  function pathFor(r, spec, s) {
+    var d = "", pen = false;
+    r.series.forEach(function (p) {
+      var v = p[spec.key];
+      if (v === null || v === undefined) { pen = false; return; }
+      d += (pen ? "L" : "M") + s.x(p.t).toFixed(1) + "," + s.y(v).toFixed(1);
+      pen = true;
+    });
+    return d;
+  }
+  function drawChart(spec, r, first) {
+    var svg = document.getElementById(spec.id);
+    var h = first ? 176 : 132, top = first ? PAD_FIRST : PAD.t;
+    W = Math.max(300, Math.round(svg.getBoundingClientRect().width || 640));
+    svg.setAttribute("viewBox", "0 0 " + W + " " + h);
+    svg.textContent = "";
+    var s = scaleFor(r, spec, h, top);
+    spec.scale = s; spec.h = h;
+    for (var v = 0; v <= s.max + 1e-9; v += s.step) {
+      var y = s.y(v);
+      svg.appendChild(svgEl("line", { x1: PAD.l, x2: W - PAD.r, y1: y, y2: y, stroke: v === 0 ? "var(--axis)" : "var(--grid)", "stroke-width": 1, "vector-effect": "non-scaling-stroke" }));
+      var tx = svgEl("text", { x: PAD.l - 6, y: y + 4, "text-anchor": "end", "font-size": 11, fill: "var(--muted)" });
+      tx.textContent = (Math.round(v * 100) / 100).toString();
+      svg.appendChild(tx);
+    }
+    if (!first) {
+      for (var t = 0; t <= r.duration; t += (W < 520 ? 240 : 120)) {
+        var lx = svgEl("text", { x: s.x(t), y: h - 4, "text-anchor": "middle", "font-size": 11, fill: "var(--muted)" });
+        lx.textContent = mmss(t); svg.appendChild(lx);
+      }
+    }
+    if (spec.slo) {
+      var yy = s.y(r.slo.p95_latency_s);
+      svg.appendChild(svgEl("line", { x1: PAD.l, x2: W - PAD.r, y1: yy, y2: yy, stroke: "var(--critical)", "stroke-width": 1, opacity: 0.7, "vector-effect": "non-scaling-stroke" }));
+      var sl = svgEl("text", { x: W - PAD.r, y: yy - 4, "text-anchor": "end", "font-size": 11, fill: "var(--ink-2)" });
+      sl.textContent = "SLO"; svg.appendChild(sl);
+    }
+    var lastX = -99, lastY = 10;
+    events(r).forEach(function (e, i) {
+      var ex = s.x(e.t);
+      svg.appendChild(svgEl("line", { x1: ex, x2: ex, y1: first ? 16 : top - 4, y2: h - PAD.b, stroke: e.good ? "var(--good)" : "var(--ink-2)", "stroke-width": 1, opacity: 0.55 }));
+      if (first) {
+        var cy = ex - lastX < 20 ? (lastY === 10 ? 26 : 10) : 10;
+        lastX = ex; lastY = cy;
+        svg.appendChild(svgEl("circle", { cx: ex, cy: cy, r: 8, fill: "var(--surface)", stroke: e.good ? "var(--good)" : "var(--axis)", "stroke-width": 1.5 }));
+        var et = svgEl("text", { x: ex, y: cy + 4, "text-anchor": "middle", "font-size": 11, "font-weight": 600, fill: e.good ? "var(--good-text)" : "var(--ink-2)" });
+        et.textContent = String(i + 1); svg.appendChild(et);
+      }
+    });
+    var clipId = spec.id + "-clip";
+    var defs = svgEl("defs", {});
+    var cp = svgEl("clipPath", { id: clipId });
+    var rect = svgEl("rect", { x: 0, y: 0, width: 0, height: h });
+    cp.appendChild(rect); defs.appendChild(cp); svg.appendChild(defs);
+    spec.clip = rect;
+    var d = pathFor(r, spec, s);
+    svg.appendChild(svgEl("path", { d: d, fill: "none", stroke: "var(--series)", "stroke-width": 2, opacity: 0.22, "stroke-linejoin": "round", "stroke-linecap": "round", "vector-effect": "non-scaling-stroke" }));
+    svg.appendChild(svgEl("path", { d: d, fill: "none", stroke: "var(--series)", "stroke-width": 2, "clip-path": "url(#" + clipId + ")", "stroke-linejoin": "round", "stroke-linecap": "round", "vector-effect": "non-scaling-stroke" }));
+    spec.cursor = svgEl("line", { x1: 0, x2: 0, y1: top - 4, y2: h - PAD.b, stroke: "var(--series)", "stroke-width": 1 });
+    svg.appendChild(spec.cursor);
+    spec.hair = svgEl("line", { x1: 0, x2: 0, y1: top - 4, y2: h - PAD.b, stroke: "var(--ink-2)", "stroke-width": 1, opacity: 0 });
+    svg.appendChild(spec.hair);
+    var hit = svgEl("rect", { x: PAD.l, y: 0, width: W - PAD.l - PAD.r, height: h, fill: "transparent" });
+    hit.addEventListener("pointermove", function (ev) { hover(ev, svg); });
+    hit.addEventListener("pointerleave", unhover);
+    svg.appendChild(hit);
+    var label = { "c-lat": "p95 latency", "c-err": "failed requests per second", "c-q": "queued requests" }[spec.id];
+    svg.setAttribute("aria-label", label + " over the " + mmss(r.duration) + " run; see the data table for values");
+  }
+  function nearest(r, t) {
+    var best = null;
+    r.series.forEach(function (p) { if (best === null || Math.abs(p.t - t) < Math.abs(best.t - t)) best = p; });
+    return best;
+  }
+  function hover(ev, svg) {
+    var r = run(), box = svg.getBoundingClientRect();
+    var xView = (ev.clientX - box.left) / box.width * W;
+    var t = (xView - PAD.l) / (W - PAD.l - PAD.r) * r.duration;
+    var p = nearest(r, t);
+    if (!p) return;
+    charts.forEach(function (c) { var x = c.scale.x(p.t); c.hair.setAttribute("x1", x); c.hair.setAttribute("x2", x); c.hair.setAttribute("opacity", 0.8); });
+    var tip = document.getElementById("tip");
+    tip.textContent = "";
+    tip.appendChild(el("div", { "class": "small" }, "at " + mmss(p.t)));
+    [["p95 latency", p.p95 === null ? "–" : p.p95 + " s"], ["failed/s", String(p.err)], ["queued", String(p.queue)],
+     ["shed/s", String(p.shed)]].forEach(function (row) {
+      var d = el("div", { "class": "row" });
+      d.appendChild(el("span", { "class": "key" }));
+      d.appendChild(el("strong", null, row[1]));
+      d.appendChild(el("span", { "class": "small" }, row[0]));
+      tip.appendChild(d);
+    });
+    var card = svg.closest(".card").getBoundingClientRect();
+    tip.style.display = "block";
+    var left = ev.clientX - card.left + 14;
+    if (left + tip.offsetWidth > card.width - 8) left = ev.clientX - card.left - tip.offsetWidth - 14;
+    tip.style.left = left + "px";
+    tip.style.top = (svg.getBoundingClientRect().top - card.top + 8) + "px";
+  }
+  function unhover() {
+    charts.forEach(function (c) { if (c.hair) c.hair.setAttribute("opacity", 0); });
+    document.getElementById("tip").style.display = "none";
+  }
+
+  function storyItems(r) {
+    var items = [];
+    r.checkpoints.forEach(function (c) {
+      if (state.arm === "rules") {
+        if (c.incident && c.diagnosis) items.push({ t: c.t, cls: "hot", who: "Rules flag " + CAUSE[c.diagnosis.root_cause], dx: c.diagnosis });
+        return;
+      }
+      var flagged = c.monitor === "anomaly" || c.monitor === null;
+      items.push({ t: c.t, cls: flagged ? "hot" : "", who: "Glimmer monitor: " + (c.monitor || "no reply") ,
+        txt: c.summary });
+      if (c.escalated && c.diagnosis) items.push({ t: c.t, cls: "hot", who: "Spark diagnoses " + CAUSE[c.diagnosis.root_cause] +
+        (typeof c.diagnosis.confidence === "number" ? " (confidence " + c.diagnosis.confidence + ")" : ""), dx: c.diagnosis });
+    });
+    if (r.acted_at) {
+      var acts = r.executed.map(function (e) { return action(e.action) + (e.status && e.status !== "executed" ? " (" + e.status + ")" : ""); }).join("; ");
+      items.push({ t: r.acted_at, cls: "", who: "Fix in place", txt: acts + (r.restart_s.length ? " · engine restart " + r.restart_s.join(", ") + " s" : "") });
+    }
+    if (r.recovered && r.ttr !== null) {
+      items.push({ t: (r.onset || 0) + r.ttr, cls: "ok", who: "Recovered", txt: "Within SLO " + r.ttr + " s after the fault began." });
+    } else if (r.acted_at) {
+      items.push({ t: r.acted_at + 150, cls: "fail", who: "Not recovered: rolled back",
+        txt: "At the 150 s check the requests still missed the SLO, so the change was undone and a human paged." });
+    }
+    return items.sort(function (a, b) { return a.t - b.t; });
+  }
+  function drawStory(r) {
+    var box = document.getElementById("story");
+    box.textContent = "";
+    var shown = storyItems(r).filter(function (it) { return it.t <= state.t + 1e-6; });
+    if (!shown.length) { box.appendChild(el("li", { "class": "empty" }, "Press play. The first checkpoint is at 0:30.")); return; }
+    shown.forEach(function (it) {
+      var li = el("li", { "class": it.cls });
+      li.appendChild(el("div", { "class": "when" }, mmss(it.t)));
+      li.appendChild(el("div", { "class": "who" }, it.who));
+      if (it.txt) li.appendChild(el("div", { "class": "txt" }, it.txt));
+      if (it.dx) {
+        if (it.dx.evidence && it.dx.evidence.length) {
+          var ul = el("ul");
+          it.dx.evidence.forEach(function (e) { ul.appendChild(el("li", null, e)); });
+          li.appendChild(ul);
+        }
+        if (it.dx.explanation) li.appendChild(el("div", { "class": "txt" }, it.dx.explanation));
+        it.dx.actions.forEach(function (a) { li.appendChild(el("div", { "class": "act" }, "→ " + action(a))); });
+      }
+      box.appendChild(li);
+    });
+    box.scrollTop = box.scrollHeight;
+  }
+  function drawOutcome(r) {
+    var o = document.getElementById("outcome");
+    o.textContent = "";
+    var b = el("span", { "class": "badge " + (r.recovered ? "good" : "bad") }, r.recovered ? "✓ Recovered" : "✗ Not recovered");
+    o.appendChild(b);
+    var parts = [];
+    if (r.recovered && r.ttr !== null) parts.push(r.ttr + " s after the fault began");
+    if (r.rolled_back) parts.push("change rolled back automatically");
+    if (r.post && r.post.requests) parts.push("after the fix: p95 " + (r.post.p95_latency_s === null ? "–" : r.post.p95_latency_s.toFixed(1) + " s") +
+      ", errors " + pct(r.post.error_rate) + ", shed " + pct(r.post.shed_rate));
+    o.appendChild(document.createTextNode(" · " + parts.join(" · ")));
+  }
+  function drawTable(r) {
+    var t = document.getElementById("series-table");
+    t.textContent = "";
+    var head = el("tr");
+    ["Time", "p95 latency (s)", "Failed/s", "Queued", "Shed/s", "OK/s"].forEach(function (h, i) { head.appendChild(el("th", i ? { "class": "num" } : null, h)); });
+    var thead = el("thead"); thead.appendChild(head); t.appendChild(thead);
+    var tb = el("tbody");
+    r.series.forEach(function (p) {
+      var tr = el("tr");
+      [mmss(p.t), p.p95 === null ? "–" : p.p95, p.err, p.queue, p.shed, p.ok].forEach(function (v, i) { tr.appendChild(el("td", i ? { "class": "num" } : null, String(v))); });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  }
+  function setTime(t) {
+    var r = run();
+    state.t = Math.max(0, Math.min(r.duration, t));
+    charts.forEach(function (c) {
+      var x = c.scale.x(state.t);
+      c.clip.setAttribute("width", x);
+      c.cursor.setAttribute("x1", x); c.cursor.setAttribute("x2", x);
+    });
+    document.getElementById("scrub").value = state.t;
+    document.getElementById("clock").textContent = mmss(state.t) + " / " + mmss(r.duration);
+    drawStory(r);
+  }
+  function drawLegend(r) {
+    var box = document.getElementById("evlegend");
+    box.textContent = "";
+    events(r).forEach(function (e, i) {
+      var sp = el("span", e.good ? { "class": "good" } : null);
+      sp.appendChild(el("b", null, String(i + 1)));
+      sp.appendChild(document.createTextNode(e.label + " " + mmss(e.t)));
+      box.appendChild(sp);
+    });
+  }
+  function drawAll() {
+    var r = run();
+    var scrub = document.getElementById("scrub");
+    scrub.max = r.duration;
+    charts.forEach(function (c, i) { drawChart(c, r, i === 0); });
+    drawLegend(r); drawOutcome(r); drawTable(r); setTime(state.t);
+  }
+  var resizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { unhover(); drawAll(); }, 150);
+  });
+  function tick(now) {
+    if (!state.playing) return;
+    var dt = state.last ? (now - state.last) / 1000 : 0;
+    state.last = now;
+    var r = run();
+    var next = state.t + dt * 30;
+    if (next >= r.duration) { setTime(r.duration); stop(); return; }
+    setTime(next);
+    requestAnimationFrame(tick);
+  }
+  function stop() { state.playing = false; state.last = 0; document.getElementById("play").textContent = "Play"; }
+  document.getElementById("play").addEventListener("click", function () {
+    if (state.playing) { stop(); return; }
+    var r = run();
+    if (state.t >= r.duration) setTime(0);
+    state.playing = true; this.textContent = "Pause";
+    requestAnimationFrame(tick);
+  });
+  document.getElementById("scrub").addEventListener("input", function () { stop(); setTime(Number(this.value)); });
+  drawControls(); drawAll();
+
+  // ---------- result tables
+  function board(tableId, rows, cols, emArm) {
+    var t = document.getElementById(tableId);
+    t.textContent = "";
+    var thead = el("thead"), hr = el("tr");
+    hr.appendChild(el("th", null, "Agent"));
+    cols.forEach(function (c) { hr.appendChild(el("th", { "class": "num" }, c[0])); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    rows.forEach(function (r) {
+      var tr = el("tr", r.arm === emArm ? { "class": "em" } : null);
+      tr.appendChild(el("td", null, r.label));
+      cols.forEach(function (c) { tr.appendChild(el("td", { "class": "num" }, c[1](r))); });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  }
+  var hardCols = [
+    ["Correct diagnosis", function (r) { return r.diagnosis_correct + "/" + r.incidents; }],
+    ["Safe fix", function (r) { return r.fix_proposed + "/" + r.incidents; }],
+    ["Both causes fixed", function (r) { return r.compound_complete_fix + "/" + r.compound_incidents; }],
+    ["Harmful actions", function (r) { return String(r.harmful); }],
+    ["Stopped a decoy", function (r) { return String(r.stopped_decoy); }],
+    ["False alarms", function (r) { return String(r.false_alarms); }],
+    ["Invalid outputs", function (r) { return String(r.invalid_outputs); }],
+    ["Paid calls · cost", function (r) { return r.api_calls ? r.api_calls + " · $" + r.api_cost_usd.toFixed(2) : "—"; }]
+  ];
+  var hardSubset = "all";
+  function drawHard() {
+    buttons("hard-subset", [["all", "All 15 incidents"], ["valid", "Passed the symptom check (14)"]], hardSubset, function (s) { hardSubset = s; drawHard(); });
+    board("hard-board", D.hard[hardSubset], hardCols, "glimmer");
+    document.getElementById("hard-note").textContent = hardSubset === "all"
+      ? "12 incidents with a fault and 3 healthy controls. The 4 two-cause incidents count a correct diagnosis if either cause is named."
+      : "Drops hard-12 (a batch limit of 24 that never breached the SLO), per the rule declared before scoring.";
+  }
+  drawHard();
+  board("v0-board", D.v0, [
+    ["Correct diagnosis", function (r) { return r.diagnosis_correct + "/" + r.incidents; }],
+    ["Safe fix", function (r) { return r.fix_proposed + "/" + r.incidents; }],
+    ["Harmful actions", function (r) { return String(r.harmful); }],
+    ["False alarms", function (r) { return String(r.false_alarms); }],
+    ["Paid calls · cost", function (r) { return r.api_calls ? r.api_calls + " · $" + r.api_cost_usd.toFixed(2) : "—"; }]
+  ], "glimmer");
+
+  (function matrix() {
+    var arms = ["glimmer", "spark", "wonder", "glimmer_to_spark", "glimmer_to_wonder", "rules"];
+    var t = document.getElementById("hard-matrix");
+    var thead = el("thead"), hr = el("tr");
+    var shortArm = { glimmer: "Glimmer", spark: "Spark", wonder: "Wonder", glimmer_to_spark: "Glimmer → Spark",
+      glimmer_to_wonder: "Glimmer → Wonder", rules: "Rules" };
+    hr.appendChild(el("th", null, "Incident"));
+    arms.forEach(function (a) { hr.appendChild(el("th", null, shortArm[a])); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    D.hard.cases.forEach(function (c) {
+      var tr = el("tr");
+      var name = el("td", { style: "white-space:normal;min-width:220px" }, c.variant + (c.valid ? "" : " (failed symptom check)"));
+      tr.appendChild(name);
+      arms.forEach(function (a) {
+        var x = c.cells[a], mark, cls;
+        if (!x) { tr.appendChild(el("td", null, "–")); return; }
+        if (x.harmful) { mark = x.decoy_stop ? "⊘ stopped decoy" : "⚠ harmful"; cls = "no"; }
+        else if (c.causes[0] === "healthy") { mark = x.flagged ? "✗ false alarm" : "✓"; cls = x.flagged ? "no" : "yes"; }
+        else if (c.causes.length > 1 && x.diagnosis && !x.complete) { mark = "½ " + (SHORT[x.predicted] || CAUSE[x.predicted]); cls = "half"; }
+        else if (x.diagnosis && x.fix) { mark = "✓"; cls = "yes"; }
+        else if (!x.flagged) { mark = "✗ missed"; cls = "no"; }
+        else { mark = "✗ " + (SHORT[x.predicted] || CAUSE[x.predicted]); cls = "no"; }
+        var td = el("td", { "class": cls }, mark);
+        td.title = (x.actions || []).map(action).join("; ");
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  })();
+
+  (function liveTable() {
+    var t = document.getElementById("live-table");
+    var thead = el("thead"), hr = el("tr");
+    ["Fault", "Glimmer → Spark agent", "Outcome", "Threshold rules", "Outcome"].forEach(function (h) { hr.appendChild(el("th", null, h)); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    order.forEach(function (cause) {
+      var tr = el("tr");
+      tr.appendChild(el("td", null, CAUSE[cause]));
+      ["glimmer_to_spark", "rules"].forEach(function (arm) {
+        var r = D.live.filter(function (x) { return x.cause === cause && x.arm === arm; })[0];
+        var acts = r.executed.map(function (e) { return action(e.action); }).join("; ") || "–";
+        tr.appendChild(el("td", { "class": "small" }, acts));
+        var txt = r.recovered ? "✓ in " + r.ttr + " s" : "✗ rolled back";
+        if (r.post && r.post.shed_rate > 0.05) txt += " (shed " + pct(r.post.shed_rate) + ")";
+        tr.appendChild(el("td", { "class": r.recovered ? "yes" : "no" }, txt));
+      });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  })();
+
+  (function findings() {
+    var hard = {}; D.hard.all.forEach(function (r) { hard[r.arm] = r; });
+    var list = [
+      "AI agents were safe where rules were not: on the Hard set every model agent made zero harmful moves, while the threshold rules stopped a harmless GPU job in all " + hard.rules.stopped_decoy + " cases that had one and raised " + hard.rules.false_alarms + " false alarms.",
+      "The free, local Glimmer 30B matched Muse Spark (" + hard.glimmer.diagnosis_correct + " vs " + hard.spark.diagnosis_correct + " correct diagnoses of " + hard.glimmer.incidents + ") at no API cost; Muse Wonder scored " + hard.wonder.diagnosis_correct + " at $" + hard.wonder.api_cost_usd.toFixed(2) + ".",
+      "No agent fully fixed a two-cause incident: all six fixed the loudest cause and stopped, though two actions were allowed. Verifying after the first fix and continuing is the next step.",
+      "Using Glimmer as a gatekeeper cut paid calls sharply (" + hard.glimmer_to_spark.api_calls + " vs " + hard.spark.api_calls + " for Spark) but its monitor missed an underused GPU, as it did in v0.",
+      "Live, the agent repaired 5 of 6 real faults in 84–203 s from fault start and rolled back the one fix that did not work. Gateway fixes for surges and long prompts recovered latency by shedding a large share of requests, which the table shows."
+    ];
+    var ul = document.getElementById("findings-list");
+    list.forEach(function (f) { ul.appendChild(el("li", null, f)); });
+  })();
+})();
+</script>
+</body>
+</html>

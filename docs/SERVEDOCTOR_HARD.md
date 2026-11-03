@@ -1,5 +1,10 @@
 # ServeIncidents-Hard
 
+> **Results:** [results/servedoctor-hard-20261103](../results/servedoctor-hard-20261103/README.md),
+> labelled "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)". The KV values in
+> `configs/servedoctor-hard.json` were recalibrated for the recording host before generation, and the
+> study was generated at that host's measured capacity of 6 requests/s.
+
 ## Why it exists
 
 The v0 test split (`results/servedoctor-20261102/`) saturated. Glimmer, Spark

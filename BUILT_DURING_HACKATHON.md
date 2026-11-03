@@ -65,3 +65,25 @@ telemetry only, and red-herring alerts and changes. Added compound judging
 (`servedoctor validate`), multi-job recording and live execution, CLI commands
 and tests. Prompts, rules, models and v0 scoring are unchanged; all 144 v0
 decisions re-score identically. No Hard-set recording or result exists yet.
+
+November 1–2, 2026, America/New_York: recorded and evaluated ServeIncidents v0
+on rented RTX PRO 6000 Blackwell GPUs (Vast): capacity calibration, KV-fault
+calibration on development incidents, a healthy reference, 8 development and 16
+test incidents, all six evaluation arms, and 12 live repair runs (Glimmer→Spark
+and threshold rules on six frozen test incidents). Integration fixes made during
+the run are listed with reasons in `results/servedoctor-20261102/README.md`. The
+original host became unavailable and the study was rerun on a replacement host.
+
+November 2–3, 2026, America/New_York: recorded ServeIncidents-Hard on a new host
+(capacity 6 requests/s, KV values recalibrated before generation). `hard-16`
+could not start (generator defect: a benign 12,288-token batch setting left no
+KV-cache memory at the KV-fault setting); with explicit approval, it was
+excluded before validation or scoring, and the original frozen 16-incident
+attempt was preserved. Validated the 15 remaining incidents (14 valid), ran all
+six arms, and published `results/servedoctor-hard-20261103/`.
+
+November 3, 2026, America/New_York: packaged the submission: a README for
+ServeDoctor (the earlier ServeTune README moved to `SERVETUNE.md`), the static
+results and live-repair replay page `docs/index.html` with its builder
+`scripts/build_site.py`, updated docs, and third-party notices. No study,
+decision, answer key or score changed.

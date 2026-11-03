@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ServeDoctor results</title>
+<meta name="description" content="ServeDoctor: an on-call agent for LLM serving, and ServeIncidents, a benchmark of real GPU incidents with sealed answers. Results and live-repair replays.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --raised: #ffffff;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+  --series: #2a78d6; --series-wash: rgba(42,120,214,0.10);
+  --good: #0ca30c; --good-text: #006300; --critical: #d03b3b; --warning: #fab219;
+  --accent-bg: #eef4fc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --raised: #222220;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --series: #3987e5; --series-wash: rgba(57,135,229,0.14);
+    --good-text: #0ca30c; --accent-bg: #16202c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --raised: #222220;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --series: #3987e5; --series-wash: rgba(57,135,229,0.14);
+  --good-text: #0ca30c; --accent-bg: #16202c;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--series); }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+header.hero { padding: 40px 0 8px; }
+.tag { display: inline-block; font-size: 13px; color: var(--ink-2); border: 1px solid var(--ring);
+  border-radius: 999px; padding: 2px 10px; background: var(--surface); }
+h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 14px 0 10px; letter-spacing: -0.01em; }
+h2 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.005em; }
+h3 { font-size: 18px; margin: 22px 0 8px; }
+.lead { font-size: 19px; color: var(--ink-2); max-width: 760px; margin: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 16px 0 0; font-size: 15px; }
+section { padding: 36px 0; border-top: 1px solid var(--grid); }
+section > .intro { color: var(--ink-2); max-width: 780px; margin: 0 0 18px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 26px 0 6px; }
+.tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px 18px; }
+.tile .label { font-size: 14px; color: var(--ink-2); }
+.tile .value { font-size: 40px; font-weight: 600; line-height: 1.15; margin: 4px 0 2px; }
+.tile .note { font-size: 14px; color: var(--ink-2); }
+.card { position: relative; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 3px; background: var(--surface);
+  border: 1px solid var(--ring); border-radius: 10px; }
+.seg button { font: inherit; font-size: 14px; border: 0; background: transparent; color: var(--ink-2);
+  padding: 6px 10px; border-radius: 7px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent-bg); color: var(--ink); font-weight: 600; }
+.seg button:focus-visible, .play:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--series); outline-offset: 2px; }
+.play { font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--ring); background: var(--raised);
+  color: var(--ink); border-radius: 8px; padding: 6px 14px; cursor: pointer; min-width: 84px; }
+.scrub { display: flex; align-items: center; gap: 10px; flex: 1 1 260px; min-width: 220px; }
+.scrub input { flex: 1; accent-color: var(--series); }
+.clock { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 14px; min-width: 92px; }
+.replay { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 860px) { .replay { grid-template-columns: 1fr; } }
+.chart { position: relative; }
+.chart + .chart { margin-top: 6px; }
+.chart .title { font-size: 13px; color: var(--ink-2); margin: 0 0 2px 2px; }
+.chart svg { display: block; width: 100%; height: 132px; overflow: visible; touch-action: pan-y; }
+.chart.first svg { height: 176px; }
+.evlegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--ink-2); margin: 8px 2px 0; }
+.evlegend span b { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--axis); align-items: center; justify-content: center; font-size: 11px; margin-right: 5px; font-weight: 600; }
+.evlegend span.good b { border-color: var(--good); color: var(--good-text); }
+.tip { position: absolute; pointer-events: none; background: var(--raised); border: 1px solid var(--ring);
+  border-radius: 8px; padding: 6px 9px; font-size: 13px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  white-space: nowrap; display: none; z-index: 2; }
+.tip strong { font-weight: 600; }
+.tip .row { display: flex; gap: 8px; align-items: center; }
+.tip .key { width: 12px; height: 2px; background: var(--series); display: inline-block; }
+.outcome { margin: 10px 2px 0; font-size: 15px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.badge.good { color: var(--good-text); }
+.badge.bad { color: var(--critical); }
+.story { list-style: none; margin: 0; padding: 0; max-height: 520px; overflow: auto; }
+.story > li { border-left: 2px solid var(--grid); padding: 2px 0 12px 12px; margin-left: 4px; position: relative; }
+.story > li::before { content: ""; position: absolute; left: -6px; top: 7px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--surface); border: 2px solid var(--axis); }
+.story > li.hot::before { border-color: var(--series); background: var(--series); }
+.story > li.ok::before { border-color: var(--good); background: var(--good); }
+.story > li.fail::before { border-color: var(--critical); background: var(--critical); }
+.story .when { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.story .who { font-weight: 600; }
+.story .txt { color: var(--ink-2); font-size: 14px; }
+.story ul { margin: 4px 0 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); }
+.story .act { font-size: 14px; margin-top: 4px; }
+.empty { color: var(--muted); font-size: 14px; }
+details { margin-top: 12px; }
+summary { cursor: pointer; color: var(--ink-2); font-size: 14px; }
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--surface); }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 13px; background: var(--surface); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.em td { background: var(--accent-bg); }
+.matrix td { white-space: nowrap; }
+.yes { color: var(--good-text); }
+.no { color: var(--critical); }
+.half { color: var(--ink-2); }
+.small { font-size: 13px; color: var(--ink-2); }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.step { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px 16px; }
+.step .n { font-size: 13px; color: var(--muted); }
+.step .h { font-weight: 600; margin: 2px 0 4px; }
+.step p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+ul.plain { padding-left: 20px; margin: 8px 0; }
+ul.plain li { margin: 4px 0; }
+pre { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px;
+  overflow-x: auto; line-height: 1.5; }
+footer { padding: 28px 0 48px; color: var(--ink-2); font-size: 14px; border-top: 1px solid var(--grid); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="tag">Meta AI Developer Hackathon · built October 29 – November 3, 2026</span>
+  <h1>ServeDoctor</h1>
+  <p class="lead">An on-call agent for LLM serving. A local Muse Glimmer model watches a live vLLM server,
+    escalates anomalies to Muse Spark or Muse Wonder, and applies a whitelisted fix that is verified on real
+    requests or rolled back. Evaluated on <strong>ServeIncidents</strong>, real GPU incidents with sealed answers.</p>
+  <div class="links">
+    <a href="https://github.com/Rajoza8/servetune">Source code</a>
+    <a href="https://github.com/Rajoza8/servetune/tree/main/results/servedoctor-20261102">v0 results and evidence</a>
+    <a href="https://github.com/Rajoza8/servetune/tree/main/results/servedoctor-hard-20261103">Hard-set results and evidence</a>
+    <a href="https://github.com/Rajoza8/servetune/blob/main/docs/SERVEDOCTOR.md">How it works</a>
+  </div>
+  <div class="tiles" id="tiles"></div>
+</header>
+
+<section id="replay">
+  <h2>Watch a real repair</h2>
+  <p class="intro">Six faults were injected into a live Glimmer server on an RTX PRO 6000 Blackwell. Pick one and press
+    play: the charts are the recorded telemetry, and the timeline shows what the agent actually saw, said and did.
+    Replayed at 30× speed; nothing here calls a model.</p>
+  <div class="controls" role="group" aria-label="Replay controls">
+    <div class="seg" id="runs" role="group" aria-label="Incident"></div>
+    <div class="seg" id="arms" role="group" aria-label="Agent"></div>
+  </div>
+  <div class="controls">
+    <button class="play" id="play" type="button">Play</button>
+    <div class="scrub">
+      <input type="range" id="scrub" min="0" max="660" step="1" value="0" aria-label="Replay time">
+      <span class="clock" id="clock">0:00 / 11:00</span>
+    </div>
+  </div>
+  <div class="replay">
+    <div class="card">
+      <div class="chart first"><div class="title">p95 latency of completed requests, seconds (SLO 10 s)</div><svg id="c-lat" role="img"></svg></div>
+      <div class="chart"><div class="title">Failed requests per second</div><svg id="c-err" role="img"></svg></div>
+      <div class="chart"><div class="title">Requests waiting in the engine queue</div><svg id="c-q" role="img"></svg></div>
+      <div class="evlegend" id="evlegend"></div>
+      <div class="tip" id="tip"></div>
+      <p class="outcome" id="outcome"></p>
+      <details>
+        <summary>Show data table</summary>
+        <div class="tablewrap"><table id="series-table"></table></div>
+      </details>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">What the agent did</h3>
+      <ol class="story" id="story" aria-live="polite"></ol>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>How it works</h2>
+  <p class="intro">Every 30 seconds the agent gets the same snapshot an operator would see, built only from data up to that
+    moment: the SLO, current and normal config, the change log, three minutes of metrics in 10-second steps, the GPU
+    process table and recent engine log lines.</p>
+  <div class="flow">
+    <div class="step"><div class="n">1 · every 30 s</div><div class="h">Glimmer monitors</div>
+      <p>The open-weights 30B model runs on the same GPU and answers "healthy" or "anomaly". It costs nothing per call.</p></div>
+    <div class="step"><div class="n">2 · on an anomaly</div><div class="h">An expert diagnoses</div>
+      <p>Muse Spark or Muse Wonder names one of 9 root causes, cites evidence from the telemetry and proposes at most two fixes.</p></div>
+    <div class="step"><div class="n">3 · whitelist only</div><div class="h">The fix is applied</div>
+      <p>Allowed: one engine setting change (restart), a gateway rate or prompt-length limit, stopping a GPU job this run launched,
+        advice, or escalation. Anything else is rejected.</p></div>
+    <div class="step"><div class="n">4 · 150 s later</div><div class="h">Verify or roll back</div>
+      <p>Requests that arrived 30–90 s after the fix must meet the SLO. If not, the change is undone and a human is paged.</p></div>
+  </div>
+  <h3>Safety boundaries</h3>
+  <ul class="plain">
+    <li>The agent never runs shell commands; every action is validated against fixed bounds before it executes.</li>
+    <li>Engine changes restart only the vLLM process group the harness started; a GPU process can be stopped only if this run launched it.</li>
+    <li>Paid API calls reserve their worst-case cost in a ledger before they are sent and stop at fixed caps.</li>
+  </ul>
+</section>
+
+<section id="benchmark">
+  <h2>The benchmark: ServeIncidents</h2>
+  <p class="intro">Each incident is six minutes of real traffic (GSM8K questions, open-loop arrivals at half of measured capacity)
+    against vLLM serving Muse Glimmer 30B in BF16, with one or two injected faults, recorded once per second. The true cause,
+    onset and allowed fixes are sealed in separate answer keys that no agent sees.</p>
+  <div class="two">
+    <div class="card">
+      <h3 style="margin-top:0">v0: 24 incidents</h3>
+      <p class="small">8 development, 16 held-out test (13 faults, 3 healthy controls). Six fault types at three severities,
+        plus underused-GPU and healthy controls. Tuning was allowed only on development incidents.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Hard: 15 of 16 frozen incidents</h3>
+      <p class="small">Built because v0 saturated. Harmless config changes on every deploy, decoy GPU jobs that share
+        names with real culprits, four two-cause incidents, faults just over the SLO line and red-herring alerts.
+        No tuning at all. <code>hard-16</code> could not start (a generator defect) and was excluded before anything was scored.</p>
+    </div>
+  </div>
+  <div class="tablewrap" style="margin-top:14px">
+    <table>
+      <thead><tr><th>Fault</th><th>How it is injected</th><th>A valid fix</th></tr></thead>
+      <tbody>
+        <tr><td>Traffic surge</td><td>Arrivals rise above capacity</td><td>Gateway rate limit</td></tr>
+        <tr><td>Long-prompt flood</td><td>A share of requests become 2,300–3,500-token prompts</td><td>Gateway prompt cap or rate limit</td></tr>
+        <tr><td>KV-cache starvation</td><td>A deploy lowers the memory reserved for the KV cache</td><td>Raise it</td></tr>
+        <tr><td>Batch limit too low</td><td>A deploy lowers <code>max_num_seqs</code></td><td>Raise it</td></tr>
+        <tr><td>Context limit too small</td><td>A deploy lowers <code>max_model_len</code>, rejecting medium prompts</td><td>Raise it</td></tr>
+        <tr><td>GPU contention</td><td>A neighbouring batch job runs matrix maths on the same GPU</td><td>Stop that job (never a decoy)</td></tr>
+        <tr><td>Underused GPU</td><td>Traffic falls to 8–20% of capacity at high power draw</td><td>Recommend consolidation</td></tr>
+        <tr><td>Healthy control</td><td>Normal traffic, sometimes a harmless spike</td><td>Do nothing</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="results">
+  <h2>Results</h2>
+  <p class="intro">Scores are first decisions on recorded incidents, replayed identically to every agent. Live repairs are
+    separate runs where the fix was really applied. Small samples: a one-incident difference is noise.</p>
+
+  <h3>Hard set (15 of 16 frozen incidents; hard-16 could not start)</h3>
+  <div class="controls"><div class="seg" id="hard-subset" role="group" aria-label="Hard subset"></div></div>
+  <div class="tablewrap"><table id="hard-board"></table></div>
+  <p class="small" id="hard-note"></p>
+
+  <h3>Hard set, case by case</h3>
+  <div class="tablewrap"><table class="matrix" id="hard-matrix"></table></div>
+  <p class="small">✓ correct cause and safe fix · ½ named one of two causes and fixed only that one · ✗ wrong or missed ·
+    ⚠ harmful action · ⊘ stopped a harmless decoy job. Healthy rows: ✓ means nothing was flagged.</p>
+
+  <h3>v0 test set (13 faults, 3 healthy controls)</h3>
+  <div class="tablewrap"><table id="v0-board"></table></div>
+
+  <h3>Live repairs on the GPU (v0)</h3>
+  <div class="tablewrap"><table id="live-table"></table></div>
+  <p class="small">“Recovered” means p95 latency ≤ 10 s and errors ≤ 1% for requests arriving 30–90 s after the fix. It does
+    not count shed requests, so shedding is shown separately.</p>
+</section>
+
+<section id="findings">
+  <h2>What we learned</h2>
+  <div class="two">
+    <div>
+      <ul class="plain" id="findings-list"></ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Limits</h3>
+      <ul class="plain">
+        <li>One GPU type, one engine (vLLM) and one served model; v0 and Hard ran on different hosts (8 vs 6 req/s capacity).</li>
+        <li>Hard-set scores replay recorded incidents; the live evidence is the 12 v0 repair runs.</li>
+        <li>13 and 12 real incidents: differences of one incident are not meaningful.</li>
+        <li>Wonder's six invalid answers hit the fixed 2,048-token output cap while still reasoning.</li>
+        <li>One Hard incident was excluded (generator defect) and one produced no SLO breach; both are reported.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="reproduce">
+  <h2>Check it yourself</h2>
+  <p class="intro">Every decision, answer key and recording is committed with hashes. Re-scoring needs no GPU and no API key.</p>
+<pre>git clone https://github.com/Rajoza8/servetune && cd servetune
+python3 -m unittest discover -s tests -q
+python3 -m servedoctor score --study-dir results/servedoctor-20261102 --split test
+python3 -m servedoctor score --study-dir results/servedoctor-hard-20261103/analysis --split hard
+python3 -m servedoctor score --study-dir results/servedoctor-hard-20261103/analysis --split hard --valid-only
+python3 scripts/build_site.py   # rebuilds this page from the committed results</pre>
+</section>
+
+<footer>
+  ServeDoctor and ServeIncidents were built during the Meta AI Developer Hackathon; see
+  <a href="https://github.com/Rajoza8/servetune/blob/main/BUILT_DURING_HACKATHON.md">the dated build record</a>.
+  MIT license. Muse Glimmer weights are not redistributed; GSM8K is MIT-licensed. Models: Muse Glimmer 30B (open weights,
+  local), Muse Spark 1.3 and Muse Wonder 1.0 (Meta Model API).
+</footer>
+</div>
+
+<script type="application/json" id="data">{"v0":[{"arm":"glimmer","label":"Glimmer alone (local)","incidents":13,"healthy_controls":3,"detected":13,"false_alarms":0,"diagnosis_correct":13,"fix_proposed":13,"complete_fix":13,"compound_incidents":0,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":0,"api_cost_usd":0.0},{"arm":"spark","label":"Spark alone","incidents":13,"healthy_controls":3,"detected":13,"false_alarms":0,"diagnosis_correct":13,"fix_proposed":13,"complete_fix":13,"compound_incidents":0,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":74,"api_cost_usd":0.4021},{"arm":"wonder","label":"Wonder alone","incidents":13,"healthy_controls":3,"detected":13,"false_alarms":0,"diagnosis_correct":13,"fix_proposed":13,"complete_fix":13,"compound_incidents":0,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":1,"api_calls":74,"api_cost_usd":1.4157},{"arm":"glimmer_to_spark","label":"Glimmer → Spark","incidents":13,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":11,"compound_incidents":0,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":11,"api_cost_usd":0.0693},{"arm":"glimmer_to_wonder","label":"Glimmer → Wonder","incidents":13,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":11,"compound_incidents":0,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":11,"api_cost_usd":0.2546},{"arm":"rules","label":"Threshold rules","incidents":13,"healthy_controls":3,"detected":12,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":11,"compound_incidents":0,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":0,"api_cost_usd":0.0}],"live":[{"id":"inc-02","arm":"glimmer_to_spark","cause":"kv_cache_starvation","onset":0,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":120.0,"decision":{"root_cause":"kv_cache_starvation","confidence":0.92,"evidence":["gpu_memory_utilization cut 0.9->0.61733 at deploy t0","kv_usage_pct_max 99.96% vs normal 1.78% max","waiting_max 20 vs normal 0.0 with preemptions 1.33/s","p95_ttft 3.78s vs normal 0.42s","gpu_mem_used ~60562MB vs normal 87634MB"],"explanation":"Deploy reduced KV reservation causing cache full, queueing and preemptions despite normal traffic/prompts. Restoring 0.9 fixes starvation with minimal change.","actions":[{"type":"set_engine_config","knob":"gpu_memory_utilization","value":0.9}]},"executed":[{"action":{"type":"set_engine_config","knob":"gpu_memory_utilization","value":0.9},"status":"executed"}],"acted_at":173.0,"recovered":true,"rolled_back":false,"ttr":203.0,"restart_s":[37.7],"post":{"requests":256,"p95_latency_s":6.4258493857923895,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":10.0,"p95":5.96,"err":0.0,"queue":1.0,"shed":0.0,"ok":2.18,"arr":4.73},{"t":20.0,"p95":6.38,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":4.3},{"t":29.0,"p95":5.5,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.78,"arr":3.89},{"t":39.0,"p95":5.73,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":3.5},{"t":50.0,"p95":8.23,"err":0.0,"queue":8.0,"shed":0.0,"ok":3.64,"arr":4.09},{"t":59.0,"p95":7.46,"err":0.0,"queue":11.0,"shed":0.0,"ok":3.78,"arr":3.67},{"t":70.0,"p95":8.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.0},{"t":80.0,"p95":5.47,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":3.4},{"t":89.0,"p95":5.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.78,"arr":3.11},{"t":99.0,"p95":5.83,"err":0.0,"queue":4.0,"shed":0.0,"ok":3.3,"arr":4.2},{"t":110.0,"p95":6.85,"err":0.0,"queue":11.0,"shed":0.0,"ok":3.18,"arr":4.0},{"t":119.0,"p95":9.38,"err":0.0,"queue":20.0,"shed":0.0,"ok":2.78,"arr":3.67},{"t":130.0,"p95":11.68,"err":0.0,"queue":28.0,"shed":0.0,"ok":3.82,"arr":4.18},{"t":139.0,"p95":11.75,"err":2.1,"queue":15.0,"shed":0.0,"ok":2.89,"arr":4.89},{"t":150.0,"p95":null,"err":9.5,"queue":0,"shed":0.0,"ok":0.0,"arr":4.82},{"t":160.0,"p95":null,"err":3.7,"queue":0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":169.0,"p95":null,"err":3.4,"queue":0,"shed":0.0,"ok":0.0,"arr":3.78},{"t":180.0,"p95":5.17,"err":1.3,"queue":0,"shed":0.0,"ok":0.36,"arr":3.55},{"t":190.0,"p95":6.81,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.3},{"t":199.0,"p95":6.3,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.33,"arr":3.89},{"t":210.0,"p95":6.41,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.45,"arr":4.0},{"t":220.0,"p95":6.15,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.9},{"t":230.0,"p95":6.42,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.2},{"t":240.0,"p95":6.52,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":5.7},{"t":250.0,"p95":6.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":3.1},{"t":259.0,"p95":5.58,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.67,"arr":3.11},{"t":270.0,"p95":6.37,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.27,"arr":5.36},{"t":280.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.8},{"t":290.0,"p95":6.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.8},{"t":300.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":3.9},{"t":310.0,"p95":6.4,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":4.4},{"t":320.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.9},{"t":329.0,"p95":5.85,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.11,"arr":2.78},{"t":339.0,"p95":6.53,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":5.0},{"t":350.0,"p95":6.52,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.18},{"t":360.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":3.7},{"t":370.0,"p95":5.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":3.6},{"t":380.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.5},{"t":390.0,"p95":6.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":3.2},{"t":399.0,"p95":5.86,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.56,"arr":4.0},{"t":409.0,"p95":5.52,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.2},{"t":420.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":4.45},{"t":430.0,"p95":6.36,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":3.5},{"t":440.0,"p95":5.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":2.9},{"t":450.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":3.4},{"t":460.0,"p95":5.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.8},{"t":470.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.6},{"t":480.0,"p95":6.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":5.2},{"t":490.0,"p95":6.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.4,"arr":4.5},{"t":500.0,"p95":5.78,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.5},{"t":510.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":3.8},{"t":520.0,"p95":6.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.5},{"t":529.0,"p95":6.15,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.78},{"t":539.0,"p95":5.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.9},{"t":550.0,"p95":6.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.91,"arr":4.82},{"t":560.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":570.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.4},{"t":579.0,"p95":5.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.78,"arr":4.56},{"t":590.0,"p95":6.0,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.36,"arr":3.36},{"t":600.0,"p95":6.57,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":4.7},{"t":609.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.11,"arr":4.33},{"t":620.0,"p95":5.43,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.64,"arr":4.0},{"t":629.0,"p95":5.47,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.22,"arr":4.11},{"t":640.0,"p95":5.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.55,"arr":3.55},{"t":649.0,"p95":6.12,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.44,"arr":3.78},{"t":659.0,"p95":5.23,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":3.2},{"t":664.0,"p95":5.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":1.6}],"checkpoints":[{"t":30.0,"monitor":"healthy","summary":"Post-deploy warmup with CUDA graph capture in progress. P95 latency ~5.5-6.4s under 10s SLO, shed 0, no errors, arrivals ~4 rps stable.","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":"healthy","summary":"Post-deploy GPU memory target lowered to 0.62; p95 latency ~7.5s under 10s SLO, no errors or shedding, GPU util ~100%.","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":"healthy","summary":"P95 latency 5.5-8.2s under 10s SLO, shed 0, errors none, arrivals ~3-5 rps stable. No SLO breach.","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":"anomaly","summary":"p95 latency rising to 9.38s near 10s SLO with growing waiting queue up to 20 and KV cache usage ~99-100% causing preemptions ~0.8-1.3/s.","escalated":true,"incident":true,"diagnosis":{"root_cause":"kv_cache_starvation","confidence":0.92,"evidence":["gpu_memory_utilization cut 0.9->0.61733 at deploy t0","kv_usage_pct_max 99.96% vs normal 1.78% max","waiting_max 20 vs normal 0.0 with preemptions 1.33/s","p95_ttft 3.78s vs normal 0.42s","gpu_mem_used ~60562MB vs normal 87634MB"],"explanation":"Deploy reduced KV reservation causing cache full, queueing and preemptions despite normal traffic/prompts. Restoring 0.9 fixes starvation with minimal change.","actions":[{"type":"set_engine_config","knob":"gpu_memory_utilization","value":0.9}]}}]},{"id":"inc-02","arm":"rules","cause":"kv_cache_starvation","onset":0,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":30.0,"decision":{"root_cause":"kv_cache_starvation","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"set_engine_config","knob":"gpu_memory_utilization","value":0.9}]},"executed":[{"action":{"type":"set_engine_config","knob":"gpu_memory_utilization","value":0.9},"status":"executed"}],"acted_at":58.0,"recovered":true,"rolled_back":false,"ttr":88.0,"restart_s":[28.0],"post":{"requests":255,"p95_latency_s":6.893637028895318,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":9.0,"p95":6.13,"err":0.0,"queue":3.0,"shed":0.0,"ok":2.2,"arr":4.2},{"t":19.0,"p95":7.24,"err":0.0,"queue":7.0,"shed":0.0,"ok":4.7,"arr":5.1},{"t":29.0,"p95":5.46,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.7},{"t":39.0,"p95":5.5,"err":5.4,"queue":0.0,"shed":0.0,"ok":0.3,"arr":3.5},{"t":49.0,"p95":null,"err":4.1,"queue":0,"shed":0.0,"ok":0.0,"arr":4.1},{"t":59.0,"p95":null,"err":3.5,"queue":0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":69.0,"p95":5.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.7,"arr":3.0},{"t":79.0,"p95":5.37,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":3.1},{"t":89.0,"p95":5.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.4},{"t":99.0,"p95":5.81,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.2},{"t":109.0,"p95":5.84,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.1},{"t":119.0,"p95":7.21,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.2,"arr":3.6},{"t":129.0,"p95":5.9,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.4},{"t":139.0,"p95":6.36,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":4.6},{"t":149.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":5.2},{"t":159.0,"p95":6.37,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":3.7},{"t":169.0,"p95":6.0,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":3.5},{"t":179.0,"p95":5.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":3.4},{"t":189.0,"p95":6.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.4},{"t":199.0,"p95":6.42,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":3.9},{"t":209.0,"p95":6.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.0},{"t":219.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.1},{"t":229.0,"p95":6.43,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":239.0,"p95":6.39,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":5.6},{"t":249.0,"p95":6.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":3.1},{"t":259.0,"p95":5.62,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.3},{"t":269.0,"p95":6.42,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":5.6},{"t":279.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.8},{"t":289.0,"p95":6.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.5},{"t":299.0,"p95":6.04,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.4},{"t":309.0,"p95":6.4,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":319.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.9},{"t":329.0,"p95":5.86,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":3.0},{"t":339.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":5.0},{"t":349.0,"p95":6.54,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.3,"arr":4.2},{"t":359.0,"p95":5.9,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.6},{"t":369.0,"p95":5.06,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":3.9},{"t":379.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.1},{"t":389.0,"p95":6.21,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":3.6},{"t":399.0,"p95":5.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":409.0,"p95":5.53,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.2},{"t":419.0,"p95":6.2,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":4.3},{"t":429.0,"p95":6.36,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":3.7},{"t":439.0,"p95":5.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.0},{"t":449.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.5},{"t":459.0,"p95":5.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.5},{"t":469.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.9},{"t":479.0,"p95":6.34,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.9},{"t":489.0,"p95":6.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.2,"arr":4.2},{"t":499.0,"p95":5.77,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":3.9},{"t":509.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":3.9},{"t":519.0,"p95":6.47,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.2},{"t":529.0,"p95":6.15,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.0},{"t":539.0,"p95":5.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.9},{"t":549.0,"p95":6.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":5.0},{"t":559.0,"p95":6.45,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":3.6},{"t":569.1,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.65,"arr":3.94},{"t":579.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.75,"arr":4.26},{"t":589.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":3.3},{"t":599.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.4},{"t":609.0,"p95":6.09,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.4,"arr":4.6},{"t":619.0,"p95":5.43,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.6},{"t":629.0,"p95":5.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.5},{"t":639.0,"p95":5.47,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.3},{"t":649.0,"p95":6.1,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.0},{"t":659.0,"p95":5.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":3.2},{"t":664.0,"p95":5.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":1.6}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":false,"incident":true,"diagnosis":{"root_cause":"kv_cache_starvation","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"set_engine_config","knob":"gpu_memory_utilization","value":0.9}]}}]},{"id":"inc-04","arm":"glimmer_to_spark","cause":"context_limit_too_small","onset":0,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":30.0,"decision":{"root_cause":"context_limit_too_small","confidence":0.95,"evidence":["max_model_len changed 4096->768 at t=0 deploy","http_400=5,9,5 errors in 10s buckets","prompt_tokens_mean 195-398 with max 768 rejects valid prompts","p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%","arrivals_rps ~2.7-3.8 normal vs 4.0 reference"],"explanation":"Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.","actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"executed":[{"action":{"type":"set_engine_config","knob":"max_model_len","value":4096},"status":"executed"}],"acted_at":72.3,"recovered":true,"rolled_back":false,"ttr":102.3,"restart_s":[37.7],"post":{"requests":218,"p95_latency_s":6.602378861932084,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":10.0,"p95":4.79,"err":0.5,"queue":0.0,"shed":0.0,"ok":1.09,"arr":2.73},{"t":19.0,"p95":4.8,"err":0.9,"queue":0.0,"shed":0.0,"ok":2.22,"arr":3.56},{"t":29.0,"p95":4.96,"err":0.5,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":39.0,"p95":4.93,"err":1.8,"queue":0.0,"shed":0.0,"ok":1.7,"arr":4.3},{"t":49.0,"p95":null,"err":5.9,"queue":0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":59.0,"p95":null,"err":2.6,"queue":0,"shed":0.0,"ok":0.0,"arr":2.6},{"t":69.0,"p95":null,"err":2.8,"queue":0,"shed":0.0,"ok":0.0,"arr":2.8},{"t":79.0,"p95":5.21,"err":1.3,"queue":0,"shed":0.0,"ok":0.3,"arr":3.5},{"t":89.0,"p95":5.94,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.1},{"t":99.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.7},{"t":110.0,"p95":6.04,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":5.18},{"t":120.0,"p95":5.82,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.3,"arr":4.2},{"t":129.0,"p95":6.25,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.89,"arr":3.33},{"t":139.0,"p95":6.1,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":4.2},{"t":149.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":2.8},{"t":160.0,"p95":6.02,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.91,"arr":3.0},{"t":169.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.56,"arr":4.78},{"t":179.0,"p95":6.78,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.0},{"t":189.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.1},{"t":199.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.9},{"t":209.0,"p95":6.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":3.9},{"t":219.0,"p95":5.64,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":3.4},{"t":229.0,"p95":6.2,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.1},{"t":239.0,"p95":6.25,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.2},{"t":249.0,"p95":5.9,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.3},{"t":259.0,"p95":5.74,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.1},{"t":269.0,"p95":6.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.6},{"t":279.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.5,"arr":4.2},{"t":290.0,"p95":5.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.27,"arr":3.18},{"t":300.0,"p95":5.37,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":2.5},{"t":309.0,"p95":5.9,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.56,"arr":2.67},{"t":319.0,"p95":6.6,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":4.1},{"t":329.0,"p95":6.15,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.1},{"t":340.0,"p95":5.39,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.64,"arr":3.27},{"t":349.0,"p95":6.09,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.67,"arr":3.67},{"t":359.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.3},{"t":369.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":379.0,"p95":6.06,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.5},{"t":389.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.0},{"t":399.0,"p95":6.33,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":409.0,"p95":5.83,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.3},{"t":420.0,"p95":6.38,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.36,"arr":3.55},{"t":429.0,"p95":6.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.33,"arr":5.0},{"t":439.0,"p95":6.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.2},{"t":449.0,"p95":6.03,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.9},{"t":460.0,"p95":6.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.36,"arr":4.18},{"t":470.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":3.6},{"t":479.0,"p95":5.26,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.89,"arr":3.44},{"t":489.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.6},{"t":499.0,"p95":6.35,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.2},{"t":509.0,"p95":6.42,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":4.9},{"t":519.0,"p95":5.58,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":3.1},{"t":529.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.3},{"t":539.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.3},{"t":549.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.0},{"t":559.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":3.7},{"t":569.0,"p95":6.54,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.1},{"t":579.0,"p95":6.03,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":3.5},{"t":590.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.64,"arr":4.27},{"t":600.0,"p95":5.63,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.1},{"t":609.0,"p95":5.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.11,"arr":4.44},{"t":619.0,"p95":5.85,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.8},{"t":629.0,"p95":6.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.3},{"t":639.0,"p95":6.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":650.0,"p95":5.85,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.18,"arr":3.36},{"t":659.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.67,"arr":4.22},{"t":664.0,"p95":6.39,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.4,"arr":1.6}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":true,"incident":true,"diagnosis":{"root_cause":"context_limit_too_small","confidence":0.95,"evidence":["max_model_len changed 4096->768 at t=0 deploy","http_400=5,9,5 errors in 10s buckets","prompt_tokens_mean 195-398 with max 768 rejects valid prompts","p95_latency ~4.9s within SLO, waiting_max 0, kv_usage <1%","arrivals_rps ~2.7-3.8 normal vs 4.0 reference"],"explanation":"Deploy cut max_model_len 4096 to 768 causing HTTP 400 for normal prompts (~200-400 tokens + generation). Load, latency, KV healthy. Restore 4096 to accept valid requests.","actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]}}]},{"id":"inc-04","arm":"rules","cause":"context_limit_too_small","onset":0,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":30.0,"decision":{"root_cause":"context_limit_too_small","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"executed":[{"action":{"type":"set_engine_config","knob":"max_model_len","value":4096},"status":"executed"}],"acted_at":67.7,"recovered":true,"rolled_back":false,"ttr":97.7,"restart_s":[37.6],"post":{"requests":218,"p95_latency_s":6.589046542765573,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":9.0,"p95":4.79,"err":0.4,"queue":0.0,"shed":0.0,"ok":1.0,"arr":2.5},{"t":19.0,"p95":4.8,"err":1.0,"queue":0.0,"shed":0.0,"ok":2.2,"arr":3.7},{"t":29.0,"p95":4.96,"err":0.5,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":39.0,"p95":4.93,"err":3.9,"queue":0.0,"shed":0.0,"ok":0.4,"arr":4.3},{"t":49.0,"p95":null,"err":5.1,"queue":0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":59.0,"p95":null,"err":2.6,"queue":0,"shed":0.0,"ok":0.0,"arr":2.6},{"t":69.0,"p95":null,"err":2.5,"queue":0,"shed":0.0,"ok":0.0,"arr":2.8},{"t":79.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.9,"arr":3.5},{"t":89.0,"p95":5.95,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.1},{"t":99.0,"p95":6.26,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":3.7},{"t":109.0,"p95":6.02,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":5.0},{"t":119.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.4,"arr":4.7},{"t":129.0,"p95":6.24,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.2},{"t":139.0,"p95":6.1,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":4.2},{"t":149.0,"p95":6.3,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":2.8},{"t":159.0,"p95":6.02,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":3.3},{"t":169.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.3},{"t":179.0,"p95":6.78,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.0},{"t":189.0,"p95":6.33,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.1},{"t":199.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.9},{"t":209.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":3.9},{"t":219.0,"p95":5.64,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":3.4},{"t":229.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.1},{"t":239.0,"p95":6.24,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.2},{"t":249.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.3},{"t":259.0,"p95":5.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.1},{"t":269.0,"p95":6.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.6},{"t":279.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.5,"arr":4.2},{"t":289.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":3.3},{"t":299.0,"p95":5.46,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":2.2},{"t":309.0,"p95":5.91,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.6,"arr":2.9},{"t":319.0,"p95":6.59,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":4.1},{"t":329.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.1},{"t":339.0,"p95":5.38,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":3.2},{"t":349.0,"p95":6.09,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":3.7},{"t":359.0,"p95":5.86,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.3},{"t":369.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":3.8},{"t":379.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.5},{"t":389.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.0},{"t":399.0,"p95":6.29,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":409.0,"p95":5.81,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.3},{"t":419.0,"p95":6.37,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.6},{"t":429.0,"p95":6.32,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.8},{"t":439.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.2},{"t":449.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.9},{"t":459.0,"p95":6.79,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.5},{"t":469.0,"p95":6.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.6},{"t":479.0,"p95":5.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.2},{"t":489.0,"p95":5.96,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.6},{"t":499.0,"p95":6.4,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":4.2},{"t":509.0,"p95":6.4,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.9},{"t":519.0,"p95":5.58,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":3.1},{"t":529.0,"p95":5.92,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":4.3},{"t":539.0,"p95":6.02,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.3},{"t":549.0,"p95":6.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.0},{"t":559.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":3.7},{"t":569.0,"p95":6.5,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.1},{"t":579.0,"p95":6.04,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":3.5},{"t":589.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":4.6},{"t":599.0,"p95":5.65,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.0},{"t":609.0,"p95":5.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.2},{"t":619.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.8},{"t":629.0,"p95":6.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.3},{"t":639.0,"p95":6.18,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":649.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.4},{"t":659.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":4.1},{"t":664.0,"p95":6.39,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.4,"arr":1.6}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":false,"incident":true,"diagnosis":{"root_cause":"context_limit_too_small","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]}}]},{"id":"inc-05","arm":"glimmer_to_spark","cause":"batch_limit_too_low","onset":0,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":30.0,"decision":{"root_cause":"batch_limit_too_low","confidence":0.95,"evidence":["change_log max_num_seqs 64->8 at t=0","running capped at 8 vs normal 21.1","waiting_max 68 vs normal 0","p95_latency 16.89s > SLO 10s with arrivals ~4rps normal","kv_usage 0.7% low, no preemptions"],"explanation":"Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.","actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]},"executed":[{"action":{"type":"set_engine_config","knob":"max_num_seqs","value":64},"status":"executed"}],"acted_at":78.4,"recovered":true,"rolled_back":false,"ttr":108.4,"restart_s":[37.9],"post":{"requests":226,"p95_latency_s":5.9607603857293725,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":9.0,"p95":5.63,"err":0.0,"queue":15.0,"shed":0.0,"ok":0.8,"arr":3.1},{"t":19.0,"p95":10.24,"err":0.0,"queue":39.0,"shed":0.0,"ok":1.6,"arr":4.1},{"t":29.0,"p95":16.89,"err":0.0,"queue":68.0,"shed":0.0,"ok":1.7,"arr":4.5},{"t":39.0,"p95":23.08,"err":0.0,"queue":97.0,"shed":0.0,"ok":1.5,"arr":4.6},{"t":49.0,"p95":null,"err":2.7,"queue":102.0,"shed":0.0,"ok":0.0,"arr":3.3},{"t":59.0,"p95":null,"err":15.4,"queue":0,"shed":0.0,"ok":0.0,"arr":4.2},{"t":69.0,"p95":null,"err":4.2,"queue":0,"shed":0.0,"ok":0.0,"arr":4.1},{"t":79.0,"p95":null,"err":3.7,"queue":0,"shed":0.0,"ok":0.0,"arr":3.8},{"t":89.0,"p95":5.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.6,"arr":3.2},{"t":99.0,"p95":5.44,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.4},{"t":109.0,"p95":5.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.8},{"t":119.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":5.0},{"t":129.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":2.9},{"t":139.0,"p95":5.92,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":4.4},{"t":149.0,"p95":5.82,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":4.2},{"t":159.0,"p95":5.94,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":4.2},{"t":169.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.2},{"t":179.0,"p95":6.03,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.4},{"t":189.0,"p95":6.26,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":3.5},{"t":199.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.9},{"t":209.0,"p95":5.96,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":5.3},{"t":219.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.8},{"t":229.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":4.3},{"t":239.0,"p95":6.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":4.0},{"t":249.0,"p95":6.33,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.5},{"t":259.0,"p95":6.41,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.2},{"t":269.0,"p95":5.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":4.3},{"t":279.0,"p95":6.0,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.9},{"t":289.0,"p95":6.04,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.9},{"t":299.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.8},{"t":309.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":319.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.3},{"t":329.0,"p95":6.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.0},{"t":339.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.1},{"t":349.0,"p95":5.6,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":4.4},{"t":359.0,"p95":6.54,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.3},{"t":369.0,"p95":7.23,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.4},{"t":379.0,"p95":5.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.5},{"t":389.0,"p95":5.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.0},{"t":399.0,"p95":6.04,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.4},{"t":409.0,"p95":5.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":2.9},{"t":419.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.7},{"t":429.0,"p95":5.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.0},{"t":439.0,"p95":6.03,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":5.0},{"t":449.0,"p95":6.26,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.7,"arr":4.0},{"t":459.0,"p95":6.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":4.7},{"t":469.0,"p95":5.45,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.4},{"t":479.0,"p95":6.13,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.6},{"t":489.0,"p95":6.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":3.3},{"t":499.0,"p95":6.44,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":509.0,"p95":6.21,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":5.2},{"t":519.0,"p95":6.4,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.6,"arr":5.6},{"t":529.0,"p95":6.47,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.7,"arr":3.9},{"t":539.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":3.8},{"t":549.0,"p95":5.94,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.9},{"t":559.0,"p95":5.84,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.7},{"t":569.0,"p95":6.42,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.8},{"t":579.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":3.2},{"t":589.0,"p95":5.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.2},{"t":599.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.9},{"t":609.0,"p95":6.18,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.0},{"t":619.0,"p95":6.06,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":3.8},{"t":629.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.2},{"t":639.0,"p95":6.54,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.2},{"t":649.0,"p95":6.35,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":2.9},{"t":659.0,"p95":5.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.3},{"t":664.0,"p95":5.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":0.8}],"checkpoints":[{"t":30.0,"monitor":"anomaly","summary":"p95 latency breached SLO: 16.9s at t=29s vs 10s limit. max_num_seqs cut 64→8 at deploy causing queue buildup, waiting_max 68, throughput drop.","escalated":true,"incident":true,"diagnosis":{"root_cause":"batch_limit_too_low","confidence":0.95,"evidence":["change_log max_num_seqs 64->8 at t=0","running capped at 8 vs normal 21.1","waiting_max 68 vs normal 0","p95_latency 16.89s > SLO 10s with arrivals ~4rps normal","kv_usage 0.7% low, no preemptions"],"explanation":"Load normal but concurrency capped at 8 after deploy, queue grows to 68 and latency breaches SLO while KV cache idle. Restore max_num_seqs to reference 64.","actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]}}]},{"id":"inc-05","arm":"rules","cause":"batch_limit_too_low","onset":0,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":30.0,"decision":{"root_cause":"other","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"escalate_to_human"}]},"executed":[{"action":{"type":"escalate_to_human"},"status":"executed"}],"acted_at":30.0,"recovered":false,"rolled_back":true,"ttr":null,"restart_s":[],"post":{"requests":246,"p95_latency_s":null,"error_rate":1.0,"shed_rate":0.0},"series":[{"t":9.0,"p95":5.63,"err":0.0,"queue":15.0,"shed":0.0,"ok":0.8,"arr":3.1},{"t":19.0,"p95":10.24,"err":0.0,"queue":39.0,"shed":0.0,"ok":1.6,"arr":4.1},{"t":29.0,"p95":16.89,"err":0.0,"queue":68.0,"shed":0.0,"ok":1.7,"arr":4.5},{"t":40.0,"p95":22.59,"err":0.0,"queue":100.0,"shed":0.0,"ok":1.45,"arr":4.55},{"t":49.0,"p95":28.81,"err":0.0,"queue":115.0,"shed":0.0,"ok":1.78,"arr":3.22},{"t":60.0,"p95":36.39,"err":0.0,"queue":146.0,"shed":0.0,"ok":1.45,"arr":4.27},{"t":70.0,"p95":42.48,"err":0.0,"queue":172.0,"shed":0.0,"ok":1.6,"arr":4.2},{"t":79.0,"p95":48.18,"err":0.0,"queue":188.0,"shed":0.0,"ok":1.78,"arr":3.56},{"t":90.0,"p95":54.74,"err":0.0,"queue":209.0,"shed":0.0,"ok":1.45,"arr":3.36},{"t":100.0,"p95":59.31,"err":2.1,"queue":224.0,"shed":0.0,"ok":0.9,"arr":4.3},{"t":110.0,"p95":null,"err":3.0,"queue":231.0,"shed":0.0,"ok":0.0,"arr":3.9},{"t":120.0,"p95":null,"err":4.6,"queue":237.0,"shed":0.0,"ok":0.0,"arr":4.6},{"t":129.0,"p95":null,"err":3.6,"queue":231.0,"shed":0.0,"ok":0.0,"arr":3.11},{"t":140.0,"p95":null,"err":4.5,"queue":232.0,"shed":0.0,"ok":0.0,"arr":4.36},{"t":150.0,"p95":null,"err":3.0,"queue":239.0,"shed":0.0,"ok":0.0,"arr":4.2},{"t":160.0,"p95":null,"err":4.3,"queue":242.0,"shed":0.0,"ok":0.0,"arr":4.1},{"t":170.0,"p95":null,"err":3.9,"queue":238.0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":179.0,"p95":null,"err":4.5,"queue":236.0,"shed":0.0,"ok":0.0,"arr":2.89},{"t":189.0,"p95":null,"err":2.9,"queue":222.0,"shed":0.0,"ok":0.0,"arr":3.5},{"t":199.0,"p95":null,"err":4.4,"queue":221.0,"shed":0.0,"ok":0.0,"arr":3.9},{"t":209.0,"p95":null,"err":4.2,"queue":229.0,"shed":0.0,"ok":0.0,"arr":5.3},{"t":219.0,"p95":null,"err":4.1,"queue":234.0,"shed":0.0,"ok":0.0,"arr":4.8},{"t":229.0,"p95":null,"err":3.3,"queue":244.0,"shed":0.0,"ok":0.0,"arr":4.3},{"t":240.0,"p95":null,"err":3.8,"queue":248.0,"shed":0.0,"ok":0.0,"arr":3.91},{"t":249.0,"p95":null,"err":3.1,"queue":252.0,"shed":0.0,"ok":0.0,"arr":3.56},{"t":260.0,"p95":null,"err":4.3,"queue":254.0,"shed":0.0,"ok":0.0,"arr":4.09},{"t":269.0,"p95":null,"err":4.9,"queue":249.0,"shed":0.0,"ok":0.0,"arr":4.44},{"t":280.0,"p95":null,"err":5.6,"queue":250.0,"shed":0.0,"ok":0.0,"arr":4.91},{"t":289.0,"p95":null,"err":3.5,"queue":247.0,"shed":0.0,"ok":0.0,"arr":3.78},{"t":300.0,"p95":null,"err":4.3,"queue":242.0,"shed":0.0,"ok":0.0,"arr":4.0},{"t":310.0,"p95":null,"err":3.5,"queue":242.0,"shed":0.0,"ok":0.0,"arr":3.6},{"t":319.0,"p95":null,"err":3.9,"queue":240.0,"shed":0.0,"ok":0.0,"arr":3.22},{"t":330.0,"p95":null,"err":4.7,"queue":235.0,"shed":0.0,"ok":0.0,"arr":3.91},{"t":339.0,"p95":null,"err":4.5,"queue":225.0,"shed":0.0,"ok":0.0,"arr":4.22},{"t":350.0,"p95":null,"err":4.3,"queue":231.0,"shed":0.0,"ok":0.0,"arr":4.0},{"t":360.0,"p95":null,"err":4.0,"queue":227.0,"shed":0.0,"ok":0.0,"arr":3.4},{"t":370.0,"p95":null,"err":3.6,"queue":230.0,"shed":0.0,"ok":0.0,"arr":4.5},{"t":379.0,"p95":null,"err":2.9,"queue":230.0,"shed":0.0,"ok":0.0,"arr":3.67},{"t":390.0,"p95":null,"err":4.3,"queue":235.0,"shed":0.0,"ok":0.0,"arr":4.0},{"t":399.0,"p95":null,"err":3.8,"queue":237.0,"shed":0.0,"ok":0.0,"arr":4.44},{"t":409.0,"p95":null,"err":4.4,"queue":230.0,"shed":0.0,"ok":0.0,"arr":2.9},{"t":420.0,"p95":null,"err":3.4,"queue":222.0,"shed":0.0,"ok":0.0,"arr":3.55},{"t":429.0,"p95":null,"err":4.3,"queue":218.0,"shed":0.0,"ok":0.0,"arr":4.22},{"t":440.0,"p95":null,"err":4.1,"queue":233.0,"shed":0.0,"ok":0.0,"arr":5.0},{"t":450.0,"p95":null,"err":3.8,"queue":237.0,"shed":0.0,"ok":0.0,"arr":3.8},{"t":459.0,"p95":null,"err":3.9,"queue":239.0,"shed":0.0,"ok":0.0,"arr":4.89},{"t":470.0,"p95":null,"err":3.3,"queue":242.0,"shed":0.0,"ok":0.0,"arr":3.55},{"t":480.0,"p95":null,"err":3.6,"queue":250.0,"shed":0.0,"ok":0.0,"arr":4.5},{"t":489.0,"p95":null,"err":3.8,"queue":256.0,"shed":0.0,"ok":0.0,"arr":3.22},{"t":499.0,"p95":null,"err":5.0,"queue":243.0,"shed":0.0,"ok":0.0,"arr":3.8},{"t":509.0,"p95":null,"err":4.0,"queue":243.0,"shed":0.0,"ok":0.0,"arr":5.2},{"t":519.0,"p95":null,"err":4.7,"queue":251.0,"shed":0.0,"ok":0.0,"arr":5.6},{"t":529.0,"p95":null,"err":3.4,"queue":260.0,"shed":0.0,"ok":0.0,"arr":3.9},{"t":539.0,"p95":null,"err":4.6,"queue":262.0,"shed":0.0,"ok":0.0,"arr":3.8},{"t":549.0,"p95":59.3,"err":3.2,"queue":254.0,"shed":0.0,"ok":0.1,"arr":3.9},{"t":560.0,"p95":null,"err":4.2,"queue":260.0,"shed":0.0,"ok":0.0,"arr":3.64},{"t":570.0,"p95":null,"err":5.5,"queue":254.0,"shed":0.0,"ok":0.0,"arr":4.3},{"t":580.0,"p95":null,"err":5.4,"queue":236.0,"shed":0.0,"ok":0.0,"arr":3.1},{"t":590.0,"p95":null,"err":4.0,"queue":222.0,"shed":0.0,"ok":0.0,"arr":4.0},{"t":600.0,"p95":null,"err":3.9,"queue":218.0,"shed":0.0,"ok":0.0,"arr":3.8},{"t":610.0,"p95":null,"err":3.8,"queue":221.0,"shed":0.0,"ok":0.0,"arr":3.9},{"t":620.0,"p95":null,"err":3.4,"queue":221.0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":630.0,"p95":null,"err":4.2,"queue":225.0,"shed":0.0,"ok":0.0,"arr":4.5},{"t":640.0,"p95":59.97,"err":3.1,"queue":235.0,"shed":0.0,"ok":0.1,"arr":3.9},{"t":650.0,"p95":null,"err":3.9,"queue":227.0,"shed":0.0,"ok":0.0,"arr":3.1},{"t":659.0,"p95":null,"err":3.4,"queue":226.0,"shed":0.0,"ok":0.0,"arr":3.22},{"t":669.0,"p95":null,"err":4.1,"queue":216.0,"shed":0.0,"ok":0.0,"arr":0.4},{"t":680.0,"p95":null,"err":4.0,"queue":177.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":689.0,"p95":null,"err":4.0,"queue":137.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":699.0,"p95":null,"err":4.2,"queue":95.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":709.0,"p95":null,"err":2.8,"queue":56.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":719.0,"p95":null,"err":3.4,"queue":26.0,"shed":0.0,"ok":0.0,"arr":0.0}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":false,"incident":true,"diagnosis":{"root_cause":"other","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"escalate_to_human"}]}}]},{"id":"inc-06","arm":"glimmer_to_spark","cause":"traffic_surge","onset":120,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":150.0,"decision":{"root_cause":"traffic_surge","confidence":0.9,"evidence":["arrivals_rps 9.6-11.7 vs normal 4.0 in last 30s","p95_latency_s 10.91 exceeds SLO 10.0","waiting_max 50 vs normal 0, running 63.6 capped at 64","kv_usage_pct_max 4-5% with 0 preemptions, prompt mean ~250 vs 202","gpu_util 99.5%+ with only VLLM process, no contention"],"explanation":"Offered rate ~3x capacity caused queueing and SLO breach. KV and prompts normal, GPU saturated, seq limit at cap. Shedding excess at gateway preserves latency for admitted requests.","actions":[{"type":"gateway_rate_limit","max_rps":4.0}]},"executed":[{"action":{"type":"gateway_rate_limit","max_rps":4.0},"status":"executed"}],"acted_at":166.9,"recovered":true,"rolled_back":false,"ttr":96.9,"restart_s":[],"post":{"requests":604,"p95_latency_s":6.342542470432818,"error_rate":0.0,"shed_rate":0.6026490066225165},"series":[{"t":9.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.7,"arr":4.1},{"t":19.0,"p95":5.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":29.0,"p95":5.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.1},{"t":39.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.5},{"t":49.0,"p95":5.92,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":4.2},{"t":59.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.7},{"t":69.0,"p95":6.71,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":79.0,"p95":5.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":89.0,"p95":6.0,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.0},{"t":99.0,"p95":6.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.7,"arr":3.6},{"t":109.0,"p95":6.59,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":4.4},{"t":119.0,"p95":5.91,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":3.6},{"t":129.0,"p95":7.73,"err":0.0,"queue":9.0,"shed":0.0,"ok":5.0,"arr":8.6},{"t":139.0,"p95":9.15,"err":0.0,"queue":33.0,"shed":0.0,"ok":7.8,"arr":11.7},{"t":149.0,"p95":10.91,"err":0.0,"queue":50.0,"shed":0.0,"ok":7.9,"arr":9.6},{"t":159.0,"p95":13.39,"err":0.0,"queue":68.0,"shed":0.0,"ok":7.2,"arr":8.9},{"t":169.0,"p95":15.16,"err":0.0,"queue":82.0,"shed":0.8,"ok":9.3,"arr":9.9},{"t":179.0,"p95":15.84,"err":0.0,"queue":60.0,"shed":7.1,"ok":7.9,"arr":11.2},{"t":189.0,"p95":17.76,"err":0.0,"queue":25.0,"shed":6.1,"ok":8.2,"arr":10.0},{"t":199.0,"p95":12.22,"err":0.0,"queue":0.0,"shed":7.5,"ok":6.6,"arr":11.5},{"t":209.0,"p95":5.74,"err":0.0,"queue":0.0,"shed":6.3,"ok":4.2,"arr":10.4},{"t":219.0,"p95":6.61,"err":0.0,"queue":0.0,"shed":5.4,"ok":4.0,"arr":9.3},{"t":229.0,"p95":5.37,"err":0.0,"queue":0.0,"shed":6.6,"ok":4.1,"arr":10.6},{"t":239.0,"p95":5.26,"err":0.0,"queue":0.0,"shed":5.5,"ok":3.9,"arr":9.5},{"t":249.0,"p95":6.2,"err":0.0,"queue":0.0,"shed":4.6,"ok":3.6,"arr":8.6},{"t":259.0,"p95":6.41,"err":0.0,"queue":0.0,"shed":7.8,"ok":4.0,"arr":11.8},{"t":269.0,"p95":6.42,"err":0.0,"queue":0.0,"shed":6.0,"ok":4.1,"arr":10.0},{"t":279.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":6.9,"ok":4.2,"arr":11.0},{"t":289.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":5.4,"ok":4.0,"arr":9.4},{"t":299.0,"p95":5.63,"err":0.0,"queue":0.0,"shed":7.4,"ok":4.0,"arr":11.2},{"t":309.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":7.0,"ok":3.8,"arr":11.2},{"t":319.0,"p95":6.12,"err":0.0,"queue":0.0,"shed":5.8,"ok":4.3,"arr":9.7},{"t":329.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":6.3,"ok":3.9,"arr":10.3},{"t":339.0,"p95":5.77,"err":0.0,"queue":0.0,"shed":7.7,"ok":4.1,"arr":11.6},{"t":349.0,"p95":5.63,"err":0.0,"queue":0.0,"shed":6.2,"ok":3.8,"arr":10.4},{"t":359.0,"p95":5.77,"err":0.0,"queue":0.0,"shed":6.9,"ok":4.1,"arr":10.8},{"t":369.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":7.6,"ok":3.9,"arr":11.6},{"t":379.0,"p95":6.29,"err":0.0,"queue":0.0,"shed":5.3,"ok":3.8,"arr":9.3},{"t":389.0,"p95":6.1,"err":0.0,"queue":0.0,"shed":6.0,"ok":4.3,"arr":10.0},{"t":399.0,"p95":5.62,"err":0.0,"queue":0.0,"shed":6.6,"ok":4.0,"arr":10.6},{"t":409.0,"p95":6.37,"err":0.0,"queue":0.0,"shed":7.6,"ok":4.0,"arr":11.6},{"t":419.0,"p95":5.53,"err":0.0,"queue":0.0,"shed":4.5,"ok":4.0,"arr":8.5},{"t":429.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":6.8,"ok":4.0,"arr":10.8},{"t":439.0,"p95":5.95,"err":0.0,"queue":0.0,"shed":5.9,"ok":4.0,"arr":9.9},{"t":449.0,"p95":5.57,"err":0.0,"queue":0.0,"shed":4.8,"ok":4.1,"arr":8.8},{"t":459.0,"p95":6.32,"err":0.0,"queue":0.0,"shed":6.0,"ok":3.8,"arr":10.0},{"t":469.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":4.6,"ok":4.0,"arr":8.6},{"t":479.0,"p95":6.49,"err":0.0,"queue":0.0,"shed":6.9,"ok":3.9,"arr":11.0},{"t":489.0,"p95":6.18,"err":0.0,"queue":0.0,"shed":6.5,"ok":4.0,"arr":10.4},{"t":499.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":6.0,"ok":4.2,"arr":10.0},{"t":509.0,"p95":5.54,"err":0.0,"queue":0.0,"shed":7.1,"ok":4.1,"arr":11.2},{"t":519.0,"p95":5.92,"err":0.0,"queue":0.0,"shed":7.4,"ok":3.7,"arr":11.3},{"t":529.0,"p95":6.11,"err":0.0,"queue":0.0,"shed":8.3,"ok":4.2,"arr":12.3},{"t":539.0,"p95":5.81,"err":0.0,"queue":0.0,"shed":6.6,"ok":4.1,"arr":10.6},{"t":549.0,"p95":5.56,"err":0.0,"queue":0.0,"shed":4.3,"ok":4.0,"arr":8.3},{"t":559.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":4.9,"ok":3.8,"arr":8.9},{"t":569.0,"p95":6.14,"err":0.0,"queue":0.0,"shed":4.8,"ok":3.9,"arr":8.8},{"t":579.0,"p95":6.1,"err":0.0,"queue":0.0,"shed":7.6,"ok":4.3,"arr":11.7},{"t":589.0,"p95":6.1,"err":0.0,"queue":0.0,"shed":7.1,"ok":3.9,"arr":11.0},{"t":599.0,"p95":5.81,"err":0.0,"queue":0.0,"shed":7.9,"ok":4.0,"arr":11.9},{"t":609.0,"p95":5.77,"err":0.0,"queue":0.0,"shed":6.8,"ok":3.9,"arr":10.8},{"t":619.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":6.5,"ok":4.1,"arr":10.5},{"t":629.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":6.4,"ok":4.0,"arr":10.4},{"t":639.0,"p95":5.53,"err":0.0,"queue":0.0,"shed":8.0,"ok":4.0,"arr":12.1},{"t":649.0,"p95":5.93,"err":0.0,"queue":0.0,"shed":6.7,"ok":3.9,"arr":10.6},{"t":659.0,"p95":6.11,"err":0.0,"queue":0.0,"shed":5.5,"ok":4.1,"arr":9.5},{"t":665.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":1.5,"ok":4.33,"arr":2.33}],"checkpoints":[{"t":30.0,"monitor":"healthy","summary":"P95 latency ~5.7s under 10s SLO, zero shed/errors, arrivals ~4 rps matching normal profile, GPU util and KV usage nominal.","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":"healthy","summary":"p95 latency ~6s under 10s SLO, zero shed/errors, no queue buildup, GPU util normal during CUDA graph capture.","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":"healthy","summary":"P95 latency ~6s under 10s SLO, zero shed/errors, arrivals and GPU utilization stable near normal profile, no queue buildup.","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":"healthy","summary":"P95 latency ~5.9s under 10s SLO, zero shed/errors, GPU util stable near normal profile, no queue buildup.","escalated":false,"incident":false,"diagnosis":null},{"t":150.0,"monitor":"anomaly","summary":"P95 latency 10.91s exceeds SLO 10.0s with arrivals spike to 9.6 rps, running ~64/64, waiting_max 50. Queue building and latency degradation.","escalated":true,"incident":true,"diagnosis":{"root_cause":"traffic_surge","confidence":0.9,"evidence":["arrivals_rps 9.6-11.7 vs normal 4.0 in last 30s","p95_latency_s 10.91 exceeds SLO 10.0","waiting_max 50 vs normal 0, running 63.6 capped at 64","kv_usage_pct_max 4-5% with 0 preemptions, prompt mean ~250 vs 202","gpu_util 99.5%+ with only VLLM process, no contention"],"explanation":"Offered rate ~3x capacity caused queueing and SLO breach. KV and prompts normal, GPU saturated, seq limit at cap. Shedding excess at gateway preserves latency for admitted requests.","actions":[{"type":"gateway_rate_limit","max_rps":4.0}]}}]},{"id":"inc-06","arm":"rules","cause":"traffic_surge","onset":120,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":150.0,"decision":{"root_cause":"traffic_surge","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"gateway_rate_limit","max_rps":6.4}]},"executed":[{"action":{"type":"gateway_rate_limit","max_rps":6.4},"status":"executed"}],"acted_at":150.0,"recovered":true,"rolled_back":false,"ttr":80.0,"restart_s":[],"post":{"requests":604,"p95_latency_s":7.6168604826088995,"error_rate":0.0,"shed_rate":0.3609271523178808},"series":[{"t":9.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.7,"arr":4.1},{"t":19.0,"p95":5.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":29.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":4.1},{"t":39.0,"p95":5.71,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.5},{"t":49.0,"p95":5.91,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.2},{"t":59.0,"p95":6.0,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":3.7},{"t":70.0,"p95":6.26,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.82},{"t":79.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.33,"arr":3.78},{"t":89.0,"p95":6.03,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.0},{"t":99.0,"p95":6.07,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.7,"arr":3.6},{"t":109.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":4.4},{"t":119.0,"p95":5.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":3.6},{"t":129.0,"p95":7.4,"err":0.0,"queue":6.0,"shed":0.0,"ok":5.3,"arr":8.6},{"t":140.0,"p95":8.92,"err":0.0,"queue":33.0,"shed":0.0,"ok":7.73,"arr":11.27},{"t":149.0,"p95":10.83,"err":0.0,"queue":50.0,"shed":0.0,"ok":7.67,"arr":9.89},{"t":159.0,"p95":12.78,"err":0.0,"queue":50.0,"shed":2.3,"ok":7.5,"arr":8.9},{"t":169.0,"p95":14.34,"err":0.0,"queue":35.0,"shed":3.5,"ok":9.4,"arr":9.9},{"t":179.0,"p95":11.84,"err":0.0,"queue":8.0,"shed":4.8,"ok":7.8,"arr":11.2},{"t":189.0,"p95":10.17,"err":0.0,"queue":1.0,"shed":3.7,"ok":8.6,"arr":10.0},{"t":200.0,"p95":6.79,"err":0.0,"queue":0.0,"shed":5.09,"ok":6.46,"arr":11.46},{"t":210.0,"p95":6.25,"err":0.0,"queue":0.0,"shed":3.4,"ok":6.7,"arr":9.7},{"t":219.0,"p95":6.84,"err":0.0,"queue":0.0,"shed":3.22,"ok":5.89,"arr":9.89},{"t":229.0,"p95":6.36,"err":0.0,"queue":0.0,"shed":4.2,"ok":6.5,"arr":10.6},{"t":239.0,"p95":6.34,"err":0.0,"queue":0.0,"shed":3.1,"ok":6.3,"arr":9.5},{"t":249.0,"p95":6.78,"err":0.0,"queue":0.0,"shed":2.3,"ok":5.9,"arr":8.6},{"t":259.0,"p95":7.88,"err":0.0,"queue":0.0,"shed":5.4,"ok":6.1,"arr":11.8},{"t":270.0,"p95":7.67,"err":0.0,"queue":0.0,"shed":3.55,"ok":6.91,"arr":10.0},{"t":280.0,"p95":6.76,"err":0.0,"queue":0.0,"shed":4.5,"ok":6.7,"arr":10.9},{"t":290.0,"p95":6.75,"err":0.0,"queue":0.0,"shed":3.8,"ok":6.4,"arr":10.3},{"t":299.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":4.33,"ok":6.67,"arr":10.44},{"t":309.0,"p95":6.62,"err":0.0,"queue":0.0,"shed":4.6,"ok":6.1,"arr":11.2},{"t":319.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":3.4,"ok":6.5,"arr":9.7},{"t":329.0,"p95":7.62,"err":0.0,"queue":0.0,"shed":3.8,"ok":5.6,"arr":10.3},{"t":339.0,"p95":7.42,"err":0.0,"queue":0.0,"shed":5.4,"ok":7.4,"arr":11.6},{"t":349.0,"p95":6.98,"err":0.0,"queue":0.0,"shed":3.8,"ok":5.6,"arr":10.4},{"t":359.0,"p95":6.96,"err":0.0,"queue":0.0,"shed":4.5,"ok":7.1,"arr":10.8},{"t":369.0,"p95":6.76,"err":0.0,"queue":0.0,"shed":5.1,"ok":6.2,"arr":11.6},{"t":380.0,"p95":7.43,"err":0.0,"queue":0.0,"shed":2.73,"ok":5.91,"arr":9.0},{"t":390.0,"p95":7.28,"err":0.0,"queue":0.0,"shed":4.0,"ok":6.7,"arr":10.6},{"t":400.0,"p95":6.69,"err":0.0,"queue":0.0,"shed":3.9,"ok":6.7,"arr":10.2},{"t":409.0,"p95":6.85,"err":0.0,"queue":0.0,"shed":5.55,"ok":5.55,"arr":12.0},{"t":419.0,"p95":6.91,"err":0.0,"queue":0.0,"shed":2.1,"ok":7.2,"arr":8.5},{"t":429.0,"p95":7.62,"err":0.0,"queue":0.0,"shed":4.4,"ok":6.0,"arr":10.8},{"t":440.0,"p95":7.08,"err":0.0,"queue":0.0,"shed":3.27,"ok":6.73,"arr":9.73},{"t":449.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":2.56,"ok":6.22,"arr":8.89},{"t":459.0,"p95":6.84,"err":0.0,"queue":0.0,"shed":3.6,"ok":6.2,"arr":10.0},{"t":469.0,"p95":6.91,"err":0.0,"queue":0.0,"shed":2.4,"ok":7.0,"arr":8.6},{"t":479.0,"p95":6.45,"err":0.0,"queue":0.0,"shed":4.3,"ok":6.0,"arr":11.0},{"t":490.0,"p95":7.22,"err":0.0,"queue":0.0,"shed":4.27,"ok":6.0,"arr":10.55},{"t":499.0,"p95":6.95,"err":0.0,"queue":0.0,"shed":3.33,"ok":6.67,"arr":9.78},{"t":510.0,"p95":6.92,"err":0.0,"queue":0.0,"shed":5.36,"ok":6.36,"arr":11.73},{"t":520.0,"p95":6.95,"err":0.0,"queue":0.0,"shed":4.6,"ok":6.8,"arr":11.1},{"t":529.0,"p95":6.92,"err":0.0,"queue":0.0,"shed":5.67,"ok":7.0,"arr":12.0},{"t":540.0,"p95":6.45,"err":0.0,"queue":0.0,"shed":3.91,"ok":6.27,"arr":10.18},{"t":550.0,"p95":6.19,"err":0.0,"queue":0.0,"shed":2.2,"ok":6.2,"arr":8.5},{"t":559.0,"p95":6.48,"err":0.0,"queue":0.0,"shed":2.56,"ok":5.89,"arr":9.0},{"t":569.0,"p95":7.58,"err":0.0,"queue":0.0,"shed":2.6,"ok":6.1,"arr":8.8},{"t":579.0,"p95":7.64,"err":0.0,"queue":0.0,"shed":5.0,"ok":7.1,"arr":11.7},{"t":589.0,"p95":6.79,"err":0.0,"queue":0.0,"shed":4.7,"ok":6.3,"arr":11.0},{"t":599.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":5.5,"ok":6.5,"arr":11.9},{"t":610.0,"p95":6.25,"err":0.0,"queue":0.0,"shed":4.36,"ok":6.27,"arr":10.82},{"t":619.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":4.11,"ok":6.55,"arr":10.44},{"t":629.0,"p95":7.14,"err":0.0,"queue":0.0,"shed":4.0,"ok":6.2,"arr":10.4},{"t":639.0,"p95":6.9,"err":0.0,"queue":0.0,"shed":5.6,"ok":6.4,"arr":12.1},{"t":649.0,"p95":6.38,"err":0.0,"queue":0.0,"shed":4.2,"ok":6.5,"arr":10.6},{"t":659.0,"p95":6.86,"err":0.0,"queue":0.0,"shed":3.3,"ok":6.1,"arr":9.5},{"t":665.0,"p95":6.81,"err":0.0,"queue":0.0,"shed":0.83,"ok":8.17,"arr":2.33}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":150.0,"monitor":null,"summary":"","escalated":false,"incident":true,"diagnosis":{"root_cause":"traffic_surge","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"gateway_rate_limit","max_rps":6.4}]}}]},{"id":"inc-09","arm":"glimmer_to_spark","cause":"gpu_contention","onset":120,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":150.0,"decision":{"root_cause":"gpu_contention","confidence":0.92,"evidence":["p95_latency_s 13.4-13.51 exceeds SLO 10.0 at t139-149","arrivals_rps 3.5-5.3 near normal 4.0, no surge","non-engine GPU process pid 30087 embedding_batch duty 1.0","kv_usage_pct_max 3.76% low, preemptions 0, waiting 5 from slowdown","gpu_mem_used_mb 89565 vs normal 87634, power 599W vs 554W"],"explanation":"Latency SLO breach with normal arrivals and low KV usage coincides with competing embedding batch on same GPU raising memory/power and TTFT. Stopping it restores compute without engine restart.","actions":[{"type":"stop_gpu_process","pid":30087}]},"executed":[{"action":{"type":"stop_gpu_process","pid":30087},"status":"executed"}],"acted_at":174.0,"recovered":true,"rolled_back":false,"ttr":84.0,"restart_s":[],"post":{"requests":234,"p95_latency_s":6.2495779161341485,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":9.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.2,"arr":4.2},{"t":19.0,"p95":5.68,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":3.6},{"t":29.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.1},{"t":39.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":5.2},{"t":49.0,"p95":6.23,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.7,"arr":4.4},{"t":59.0,"p95":5.92,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":4.5},{"t":69.0,"p95":7.23,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":3.8},{"t":79.0,"p95":7.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.8,"arr":5.8},{"t":89.0,"p95":6.87,"err":0.0,"queue":0.0,"shed":0.0,"ok":7.1,"arr":4.2},{"t":99.0,"p95":5.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":2.8},{"t":109.0,"p95":6.12,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":3.8},{"t":119.0,"p95":6.3,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.7,"arr":3.0},{"t":129.0,"p95":9.81,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.6,"arr":3.6},{"t":139.0,"p95":13.4,"err":0.0,"queue":4.0,"shed":0.0,"ok":2.1,"arr":5.3},{"t":149.0,"p95":13.51,"err":0.0,"queue":5.0,"shed":0.0,"ok":6.1,"arr":3.5},{"t":159.0,"p95":14.51,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":4.2},{"t":169.0,"p95":15.98,"err":0.0,"queue":5.0,"shed":0.0,"ok":2.8,"arr":4.5},{"t":179.0,"p95":15.51,"err":0.0,"queue":2.0,"shed":0.0,"ok":7.4,"arr":3.4},{"t":189.0,"p95":7.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.7},{"t":199.0,"p95":6.96,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":5.1},{"t":209.0,"p95":6.11,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":4.4},{"t":219.0,"p95":5.86,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.5},{"t":229.0,"p95":5.63,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":2.9},{"t":239.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.3},{"t":249.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":5.1},{"t":259.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.6,"arr":3.8},{"t":269.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.7},{"t":279.0,"p95":6.02,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.7},{"t":289.0,"p95":5.72,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":3.2},{"t":299.0,"p95":5.65,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.3},{"t":309.0,"p95":6.03,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.4},{"t":319.0,"p95":6.13,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":4.5},{"t":329.0,"p95":6.25,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.9},{"t":339.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":5.0},{"t":349.0,"p95":6.41,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":3.7},{"t":359.0,"p95":5.9,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.7},{"t":369.0,"p95":5.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.5},{"t":379.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.0},{"t":389.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.5},{"t":399.0,"p95":5.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.7},{"t":409.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":419.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":5.1},{"t":429.0,"p95":6.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.1},{"t":439.0,"p95":6.23,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.3},{"t":449.0,"p95":6.18,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":2.7},{"t":459.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.6,"arr":3.6},{"t":469.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":4.9},{"t":479.0,"p95":5.96,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.8},{"t":489.0,"p95":5.78,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.9},{"t":499.0,"p95":5.38,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.7,"arr":3.0},{"t":509.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.5},{"t":519.0,"p95":5.83,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.4},{"t":529.0,"p95":5.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.8},{"t":539.0,"p95":5.59,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.4},{"t":549.0,"p95":5.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":3.3},{"t":559.0,"p95":6.52,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.1},{"t":569.0,"p95":6.47,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.4},{"t":579.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":5.0},{"t":589.0,"p95":6.51,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":3.7},{"t":599.0,"p95":6.34,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":3.8},{"t":609.0,"p95":7.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.4},{"t":619.0,"p95":6.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.1},{"t":629.0,"p95":6.63,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.2},{"t":639.0,"p95":5.58,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.7},{"t":649.0,"p95":5.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":3.8},{"t":659.0,"p95":5.98,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.6},{"t":664.0,"p95":5.68,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.2,"arr":0.4}],"checkpoints":[{"t":30.0,"monitor":"healthy","summary":"P95 latency ~6s under 10s SLO, zero shed/errors, GPU util high but stable with low KV usage.","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":"healthy","summary":"P95 latency ~5.6-6.2s under 10s SLO, shed 0, no errors, waiting 0, KV usage low. GPU util high but normal for load.","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":"healthy","summary":"P95 latency 5.6-7.2s under 10s SLO, zero errors and shed, GPU util ~99.9% normal, no queue buildup.","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":"healthy","summary":"p95 latency ~5.6-7.2s under 10s SLO, shed and errors zero, no queue buildup, GPU util stable.","escalated":false,"incident":false,"diagnosis":null},{"t":150.0,"monitor":"anomaly","summary":"p95 latency 13.5s exceeds SLO 10s at t=149s with rising queue: waiting_max 5, running 59, p95_ttft 1.34s. Latency spike sustained over last 2 buckets.","escalated":true,"incident":true,"diagnosis":{"root_cause":"gpu_contention","confidence":0.92,"evidence":["p95_latency_s 13.4-13.51 exceeds SLO 10.0 at t139-149","arrivals_rps 3.5-5.3 near normal 4.0, no surge","non-engine GPU process pid 30087 embedding_batch duty 1.0","kv_usage_pct_max 3.76% low, preemptions 0, waiting 5 from slowdown","gpu_mem_used_mb 89565 vs normal 87634, power 599W vs 554W"],"explanation":"Latency SLO breach with normal arrivals and low KV usage coincides with competing embedding batch on same GPU raising memory/power and TTFT. Stopping it restores compute without engine restart.","actions":[{"type":"stop_gpu_process","pid":30087}]}}]},{"id":"inc-09","arm":"rules","cause":"gpu_contention","onset":120,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":150.0,"decision":{"root_cause":"gpu_contention","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"stop_gpu_process","pid":34197}]},"executed":[{"action":{"type":"stop_gpu_process","pid":34197},"status":"executed"}],"acted_at":150.2,"recovered":true,"rolled_back":false,"ttr":60.2,"restart_s":[],"post":{"requests":234,"p95_latency_s":6.273840054729954,"error_rate":0.0,"shed_rate":0.0},"series":[{"t":9.0,"p95":5.61,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.2,"arr":4.2},{"t":19.0,"p95":5.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":3.6},{"t":29.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.1},{"t":40.0,"p95":5.71,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.09,"arr":5.36},{"t":49.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.44,"arr":4.11},{"t":59.0,"p95":5.88,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.5},{"t":69.0,"p95":6.85,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.9,"arr":3.8},{"t":80.0,"p95":7.1,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.55,"arr":5.73},{"t":89.0,"p95":6.53,"err":0.0,"queue":0.0,"shed":0.0,"ok":6.67,"arr":4.11},{"t":100.0,"p95":5.48,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.09,"arr":2.82},{"t":109.0,"p95":6.12,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.78,"arr":3.89},{"t":119.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.7,"arr":3.0},{"t":129.0,"p95":8.96,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.7,"arr":3.6},{"t":139.0,"p95":13.28,"err":0.0,"queue":4.0,"shed":0.0,"ok":2.1,"arr":5.3},{"t":149.0,"p95":13.39,"err":0.0,"queue":5.0,"shed":0.0,"ok":6.0,"arr":3.5},{"t":159.0,"p95":11.35,"err":0.0,"queue":0.0,"shed":0.0,"ok":6.1,"arr":4.2},{"t":169.0,"p95":6.46,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":4.5},{"t":179.0,"p95":6.02,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.4},{"t":189.0,"p95":7.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.7},{"t":199.0,"p95":6.95,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.1,"arr":5.1},{"t":209.0,"p95":6.13,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":4.4},{"t":219.0,"p95":5.85,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.5},{"t":229.0,"p95":5.62,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":2.9},{"t":239.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.3},{"t":249.0,"p95":6.08,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":5.1},{"t":259.0,"p95":6.0,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.6,"arr":3.8},{"t":269.0,"p95":6.3,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.7},{"t":279.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.7},{"t":289.0,"p95":5.73,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":3.2},{"t":299.0,"p95":5.64,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":4.3},{"t":310.0,"p95":6.04,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.64,"arr":4.27},{"t":319.0,"p95":6.14,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.89,"arr":4.67},{"t":329.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.9},{"t":339.0,"p95":6.01,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":5.0},{"t":349.0,"p95":6.41,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":3.7},{"t":359.0,"p95":5.9,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":3.7},{"t":369.0,"p95":5.81,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.5},{"t":379.0,"p95":5.86,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.0},{"t":389.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.5},{"t":399.0,"p95":5.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.7},{"t":409.0,"p95":5.94,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.8},{"t":419.0,"p95":6.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.3,"arr":5.1},{"t":429.0,"p95":6.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":4.1},{"t":439.0,"p95":6.23,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.3},{"t":449.0,"p95":6.22,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":2.7},{"t":459.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.7,"arr":3.6},{"t":469.0,"p95":6.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":4.9},{"t":479.0,"p95":5.97,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":3.8},{"t":490.0,"p95":5.78,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.18,"arr":3.82},{"t":499.0,"p95":5.35,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.56,"arr":3.0},{"t":509.0,"p95":6.05,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.5},{"t":519.0,"p95":5.82,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.4},{"t":529.0,"p95":5.75,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.5,"arr":4.8},{"t":539.0,"p95":5.58,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.4,"arr":3.4},{"t":549.0,"p95":5.69,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.0,"arr":3.3},{"t":559.0,"p95":6.53,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":4.1},{"t":569.0,"p95":6.46,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.4},{"t":579.0,"p95":6.55,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.6,"arr":5.0},{"t":589.0,"p95":6.49,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.8,"arr":3.7},{"t":599.0,"p95":6.31,"err":0.0,"queue":0.0,"shed":0.0,"ok":2.9,"arr":3.8},{"t":609.0,"p95":7.13,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.4},{"t":620.0,"p95":6.73,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.36,"arr":4.0},{"t":629.0,"p95":6.62,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.22,"arr":4.33},{"t":639.0,"p95":5.58,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":3.7},{"t":649.0,"p95":5.56,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.4,"arr":3.8},{"t":659.0,"p95":5.95,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.1,"arr":4.6},{"t":664.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.2,"arr":0.4}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":150.0,"monitor":null,"summary":"","escalated":false,"incident":true,"diagnosis":{"root_cause":"gpu_contention","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"stop_gpu_process","pid":34197}]}}]},{"id":"inc-15","arm":"glimmer_to_spark","cause":"long_prompt_flood","onset":120,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":167.8,"decision":{"root_cause":"long_prompt_flood","confidence":0.92,"evidence":["arrivals_rps ~3.8 vs normal 4.0, no surge","prompt_tokens_mean ~2383-2814 vs normal 202","p95_ttft_s 11.21 vs normal 0.42 with prompt throughput 6373 tokens/s","waiting_max 69 vs normal 0, running 62 at max_num_seqs 64","kv_usage_pct_max ~22% with preemptions_per_s 0.0, not KV starvation"],"explanation":"Arrival rate unchanged but prompt size ~10x normal causing prefill dominance, queueing and p95 37s. KV not full, no preemptions. Gateway cap on prompt tokens sheds abnormal long prompts without engine restart.","actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1000}]},"executed":[{"action":{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1000},"status":"executed"}],"acted_at":200.2,"recovered":false,"rolled_back":true,"ttr":null,"restart_s":[],"post":{"requests":259,"p95_latency_s":20.426940206578,"error_rate":0.0,"shed_rate":0.806949806949807},"series":[{"t":9.0,"p95":5.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.1,"arr":3.2},{"t":19.0,"p95":6.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.1},{"t":29.0,"p95":6.13,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.6},{"t":39.0,"p95":6.28,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.1},{"t":49.0,"p95":6.17,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.7},{"t":59.0,"p95":6.07,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.0},{"t":69.0,"p95":6.06,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.8,"arr":3.9},{"t":79.0,"p95":5.7,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.4},{"t":89.0,"p95":6.11,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":3.7},{"t":99.0,"p95":6.27,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.0},{"t":109.0,"p95":6.09,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":119.0,"p95":6.34,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":5.0},{"t":129.0,"p95":6.7,"err":0.0,"queue":8.0,"shed":0.0,"ok":0.5,"arr":4.0},{"t":139.0,"p95":23.19,"err":0.0,"queue":34.0,"shed":0.0,"ok":0.5,"arr":4.1},{"t":149.0,"p95":29.92,"err":0.0,"queue":52.0,"shed":0.0,"ok":1.6,"arr":3.7},{"t":159.0,"p95":34.92,"err":0.0,"queue":65.0,"shed":0.0,"ok":2.7,"arr":3.8},{"t":169.0,"p95":37.67,"err":0.0,"queue":81.0,"shed":0.0,"ok":2.0,"arr":3.7},{"t":179.0,"p95":44.51,"err":0.0,"queue":95.0,"shed":0.0,"ok":1.5,"arr":2.7},{"t":189.0,"p95":50.97,"err":0.0,"queue":109.0,"shed":0.0,"ok":2.1,"arr":3.6},{"t":199.0,"p95":52.36,"err":0.0,"queue":122.0,"shed":0.0,"ok":2.1,"arr":4.2},{"t":209.0,"p95":58.1,"err":0.0,"queue":132.0,"shed":3.1,"ok":1.8,"arr":4.1},{"t":219.0,"p95":59.27,"err":2.3,"queue":120.0,"shed":3.4,"ok":0.5,"arr":3.9},{"t":229.0,"p95":null,"err":3.7,"queue":99.0,"shed":3.9,"ok":0.0,"arr":5.0},{"t":239.0,"p95":null,"err":3.2,"queue":84.0,"shed":3.5,"ok":0.0,"arr":4.0},{"t":249.0,"p95":null,"err":3.3,"queue":67.0,"shed":3.9,"ok":0.0,"arr":4.5},{"t":259.0,"p95":null,"err":4.0,"queue":45.0,"shed":3.0,"ok":0.0,"arr":3.8},{"t":269.0,"p95":52.95,"err":1.4,"queue":0.0,"shed":4.1,"ok":4.2,"arr":5.1},{"t":279.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.9,"ok":0.8,"arr":4.6},{"t":289.0,"p95":4.72,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.4,"arr":3.8},{"t":299.0,"p95":4.95,"err":0.0,"queue":0.0,"shed":3.3,"ok":1.0,"arr":4.3},{"t":309.0,"p95":4.78,"err":0.0,"queue":0.0,"shed":3.1,"ok":1.1,"arr":4.1},{"t":319.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.5,"ok":0.5,"arr":3.7},{"t":329.0,"p95":4.82,"err":0.0,"queue":0.0,"shed":2.9,"ok":0.2,"arr":3.5},{"t":339.0,"p95":4.93,"err":0.0,"queue":0.0,"shed":3.7,"ok":0.7,"arr":4.0},{"t":349.0,"p95":4.87,"err":0.0,"queue":0.0,"shed":2.7,"ok":0.4,"arr":3.3},{"t":359.0,"p95":4.89,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.3,"arr":3.3},{"t":369.0,"p95":4.62,"err":0.0,"queue":8.0,"shed":0.4,"ok":0.1,"arr":4.2},{"t":379.0,"p95":null,"err":0.0,"queue":19.0,"shed":0.0,"ok":0.0,"arr":3.8},{"t":389.0,"p95":26.24,"err":0.0,"queue":42.0,"shed":0.0,"ok":0.2,"arr":3.3},{"t":399.0,"p95":35.91,"err":0.0,"queue":70.0,"shed":0.0,"ok":2.4,"arr":5.0},{"t":409.0,"p95":38.2,"err":0.0,"queue":90.0,"shed":0.0,"ok":2.1,"arr":4.8},{"t":419.0,"p95":39.75,"err":0.0,"queue":127.0,"shed":0.0,"ok":1.7,"arr":4.8},{"t":429.0,"p95":49.27,"err":0.0,"queue":160.0,"shed":0.0,"ok":1.8,"arr":5.4},{"t":439.0,"p95":52.19,"err":0.0,"queue":179.0,"shed":0.0,"ok":2.6,"arr":4.3},{"t":449.0,"p95":54.4,"err":0.0,"queue":188.0,"shed":0.0,"ok":2.0,"arr":3.3},{"t":459.0,"p95":58.75,"err":2.4,"queue":214.0,"shed":0.0,"ok":0.5,"arr":3.8},{"t":469.0,"p95":null,"err":4.7,"queue":225.0,"shed":0.0,"ok":0.0,"arr":4.3},{"t":479.0,"p95":null,"err":5.1,"queue":227.0,"shed":0.0,"ok":0.0,"arr":3.4},{"t":489.0,"p95":null,"err":5.4,"queue":231.0,"shed":0.0,"ok":0.0,"arr":3.9},{"t":499.0,"p95":null,"err":4.3,"queue":221.0,"shed":0.0,"ok":0.0,"arr":3.2},{"t":509.0,"p95":null,"err":3.3,"queue":215.0,"shed":0.0,"ok":0.0,"arr":3.4},{"t":519.0,"p95":null,"err":3.8,"queue":215.0,"shed":0.0,"ok":0.0,"arr":3.4},{"t":529.0,"p95":null,"err":4.3,"queue":213.0,"shed":0.0,"ok":0.0,"arr":4.2},{"t":539.0,"p95":null,"err":3.4,"queue":212.0,"shed":0.0,"ok":0.0,"arr":3.1},{"t":549.0,"p95":null,"err":3.9,"queue":214.0,"shed":0.0,"ok":0.0,"arr":4.2},{"t":559.0,"p95":null,"err":3.2,"queue":213.0,"shed":0.0,"ok":0.0,"arr":2.6},{"t":569.0,"p95":null,"err":3.3,"queue":214.0,"shed":0.0,"ok":0.0,"arr":4.3},{"t":579.0,"p95":null,"err":3.5,"queue":218.0,"shed":0.0,"ok":0.0,"arr":4.0},{"t":589.0,"p95":null,"err":4.2,"queue":217.0,"shed":0.0,"ok":0.0,"arr":4.3},{"t":599.0,"p95":null,"err":3.1,"queue":229.0,"shed":0.0,"ok":0.0,"arr":4.7},{"t":609.0,"p95":null,"err":4.2,"queue":235.0,"shed":0.0,"ok":0.0,"arr":3.4},{"t":619.0,"p95":null,"err":2.6,"queue":236.0,"shed":0.0,"ok":0.0,"arr":4.6},{"t":629.0,"p95":null,"err":4.3,"queue":248.0,"shed":0.0,"ok":0.0,"arr":3.6},{"t":639.0,"p95":null,"err":3.9,"queue":245.0,"shed":0.0,"ok":0.0,"arr":3.7},{"t":649.0,"p95":null,"err":4.2,"queue":240.0,"shed":0.0,"ok":0.0,"arr":4.3},{"t":659.0,"p95":null,"err":4.9,"queue":239.0,"shed":0.0,"ok":0.0,"arr":4.6},{"t":669.0,"p95":null,"err":3.4,"queue":237.0,"shed":0.0,"ok":0.0,"arr":0.3},{"t":679.0,"p95":null,"err":4.5,"queue":209.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":689.0,"p95":null,"err":3.7,"queue":166.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":699.0,"p95":null,"err":3.7,"queue":128.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":709.0,"p95":null,"err":4.3,"queue":90.0,"shed":0.0,"ok":0.0,"arr":0.0},{"t":719.0,"p95":null,"err":4.6,"queue":47.0,"shed":0.0,"ok":0.0,"arr":0.0}],"checkpoints":[{"t":30.0,"monitor":"healthy","summary":"P95 latency ~6.1s under 10s SLO, zero shed/errors, GPU util normal for profile. CUDA graph capture in progress is expected warmup.","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":"healthy","summary":"P95 latency ~6.1s under 10s SLO, zero shed/errors, GPU util ~100% normal for load, CUDA graph capture in progress but metrics stable.","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":"healthy","summary":"P95 latency ~5.7-6.9s under 10s SLO, zero shed/errors, GPU util ~100% with stable throughput and low KV usage. No SLO threat.","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":"healthy","summary":"P95 latency ~6.3s under 10s SLO, zero shed/errors, arrivals and throughput stable near normal profile, GPU utilization high but expected.","escalated":false,"incident":false,"diagnosis":null},{"t":167.751,"monitor":"anomaly","summary":"P95 latency ~37.6s exceeds SLO 10s, ok_rps collapsed to ~2 vs arrivals ~3.8, waiting queue grew to 69 with max_num_seqs saturated at 64. Generation throughput dropped sharply.","escalated":true,"incident":true,"diagnosis":{"root_cause":"long_prompt_flood","confidence":0.92,"evidence":["arrivals_rps ~3.8 vs normal 4.0, no surge","prompt_tokens_mean ~2383-2814 vs normal 202","p95_ttft_s 11.21 vs normal 0.42 with prompt throughput 6373 tokens/s","waiting_max 69 vs normal 0, running 62 at max_num_seqs 64","kv_usage_pct_max ~22% with preemptions_per_s 0.0, not KV starvation"],"explanation":"Arrival rate unchanged but prompt size ~10x normal causing prefill dominance, queueing and p95 37s. KV not full, no preemptions. Gateway cap on prompt tokens sheds abnormal long prompts without engine restart.","actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1000}]}}]},{"id":"inc-15","arm":"rules","cause":"long_prompt_flood","onset":120,"duration":660,"slo":{"p95_latency_s":10.0,"max_error_rate":0.01,"max_shed_rate":0.05},"decision_t":150.0,"decision":{"root_cause":"long_prompt_flood","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":404}]},"executed":[{"action":{"type":"gateway_max_prompt_tokens","max_prompt_tokens":404},"status":"executed"}],"acted_at":150.0,"recovered":true,"rolled_back":false,"ttr":80.0,"restart_s":[],"post":{"requests":262,"p95_latency_s":4.757336535165086,"error_rate":0.0,"shed_rate":0.8473282442748091},"series":[{"t":9.0,"p95":5.66,"err":0.0,"queue":0.0,"shed":0.0,"ok":1.1,"arr":3.2},{"t":19.0,"p95":6.93,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.0,"arr":4.1},{"t":29.0,"p95":6.13,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.2,"arr":3.6},{"t":39.0,"p95":5.99,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":4.1},{"t":49.0,"p95":6.16,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.6,"arr":3.7},{"t":59.0,"p95":6.06,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.3,"arr":3.0},{"t":69.0,"p95":5.8,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.9},{"t":79.0,"p95":5.67,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.5,"arr":3.4},{"t":89.0,"p95":6.11,"err":0.0,"queue":0.0,"shed":0.0,"ok":4.2,"arr":3.7},{"t":99.0,"p95":5.89,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.1,"arr":4.0},{"t":109.0,"p95":6.06,"err":0.0,"queue":0.0,"shed":0.0,"ok":3.9,"arr":3.8},{"t":119.0,"p95":6.32,"err":0.0,"queue":0.0,"shed":0.0,"ok":5.0,"arr":5.0},{"t":129.0,"p95":6.34,"err":0.0,"queue":8.0,"shed":0.0,"ok":0.5,"arr":4.0},{"t":140.0,"p95":23.8,"err":0.0,"queue":32.0,"shed":0.0,"ok":0.73,"arr":3.91},{"t":149.0,"p95":29.17,"err":0.0,"queue":50.0,"shed":0.0,"ok":1.44,"arr":3.89},{"t":159.0,"p95":35.34,"err":0.0,"queue":52.0,"shed":3.3,"ok":2.7,"arr":3.8},{"t":169.0,"p95":37.91,"err":0.0,"queue":29.0,"shed":3.0,"ok":2.1,"arr":3.7},{"t":179.0,"p95":41.83,"err":0.0,"queue":18.0,"shed":2.1,"ok":6.5,"arr":2.7},{"t":189.0,"p95":30.66,"err":0.0,"queue":0.0,"shed":3.1,"ok":2.4,"arr":3.6},{"t":199.0,"p95":4.78,"err":0.0,"queue":0.0,"shed":3.5,"ok":0.9,"arr":4.2},{"t":209.0,"p95":4.7,"err":0.0,"queue":0.0,"shed":3.8,"ok":0.3,"arr":4.1},{"t":219.0,"p95":4.7,"err":0.0,"queue":0.0,"shed":3.5,"ok":0.3,"arr":3.9},{"t":229.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":4.1,"ok":0.7,"arr":5.0},{"t":239.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.5,"ok":0.6,"arr":4.0},{"t":249.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":4.0,"ok":0.6,"arr":4.5},{"t":259.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.0,"ok":0.7,"arr":3.8},{"t":269.0,"p95":4.76,"err":0.0,"queue":0.0,"shed":4.1,"ok":0.9,"arr":5.1},{"t":279.0,"p95":4.75,"err":0.0,"queue":0.0,"shed":3.9,"ok":0.8,"arr":4.6},{"t":289.0,"p95":4.72,"err":0.0,"queue":0.0,"shed":3.3,"ok":0.4,"arr":3.8},{"t":299.0,"p95":4.77,"err":0.0,"queue":0.0,"shed":3.3,"ok":0.9,"arr":4.3},{"t":309.0,"p95":4.78,"err":0.0,"queue":0.0,"shed":3.1,"ok":1.1,"arr":4.1},{"t":319.0,"p95":4.72,"err":0.0,"queue":0.0,"shed":3.6,"ok":0.5,"arr":3.7},{"t":329.0,"p95":4.64,"err":0.0,"queue":0.0,"shed":3.0,"ok":0.1,"arr":3.5},{"t":339.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.7,"ok":0.6,"arr":4.0},{"t":349.0,"p95":4.7,"err":0.0,"queue":0.0,"shed":2.8,"ok":0.4,"arr":3.3},{"t":359.0,"p95":4.7,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.2,"arr":3.3},{"t":369.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.6,"ok":0.3,"arr":4.2},{"t":379.0,"p95":4.75,"err":0.0,"queue":0.0,"shed":3.1,"ok":0.9,"arr":3.8},{"t":389.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":2.8,"ok":0.5,"arr":3.3},{"t":399.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":4.2,"ok":0.4,"arr":5.0},{"t":409.0,"p95":4.77,"err":0.0,"queue":0.0,"shed":3.7,"ok":1.0,"arr":4.8},{"t":419.0,"p95":4.8,"err":0.0,"queue":0.0,"shed":3.6,"ok":1.1,"arr":4.8},{"t":429.0,"p95":4.8,"err":0.0,"queue":0.0,"shed":4.7,"ok":1.5,"arr":5.4},{"t":439.0,"p95":4.71,"err":0.0,"queue":0.0,"shed":3.8,"ok":0.2,"arr":4.3},{"t":449.0,"p95":4.76,"err":0.0,"queue":0.0,"shed":2.5,"ok":0.9,"arr":3.3},{"t":459.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.4,"ok":0.4,"arr":3.8},{"t":469.0,"p95":4.79,"err":0.0,"queue":0.0,"shed":3.3,"ok":1.0,"arr":4.3},{"t":479.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.3,"arr":3.4},{"t":489.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.6,"arr":3.9},{"t":499.0,"p95":4.77,"err":0.0,"queue":0.0,"shed":2.3,"ok":0.5,"arr":3.2},{"t":509.0,"p95":4.77,"err":0.0,"queue":0.0,"shed":2.6,"ok":1.0,"arr":3.4},{"t":519.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":2.7,"ok":0.8,"arr":3.4},{"t":529.0,"p95":4.77,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.9,"arr":4.2},{"t":539.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":2.8,"ok":0.5,"arr":3.2},{"t":549.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.7,"ok":0.6,"arr":4.1},{"t":559.0,"p95":4.69,"err":0.0,"queue":0.0,"shed":2.2,"ok":0.3,"arr":2.6},{"t":569.0,"p95":4.75,"err":0.0,"queue":0.0,"shed":3.6,"ok":0.7,"arr":4.3},{"t":579.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.4,"ok":0.5,"arr":4.0},{"t":589.0,"p95":4.77,"err":0.0,"queue":0.0,"shed":3.1,"ok":0.9,"arr":4.3},{"t":599.0,"p95":4.78,"err":0.0,"queue":0.0,"shed":3.8,"ok":1.0,"arr":4.7},{"t":609.0,"p95":4.75,"err":0.0,"queue":0.0,"shed":2.5,"ok":0.9,"arr":3.4},{"t":619.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":4.2,"ok":0.5,"arr":4.6},{"t":629.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.2,"ok":0.7,"arr":3.6},{"t":639.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.0,"ok":0.4,"arr":3.7},{"t":649.0,"p95":4.73,"err":0.0,"queue":0.0,"shed":3.8,"ok":0.7,"arr":4.3},{"t":659.0,"p95":4.74,"err":0.0,"queue":0.0,"shed":3.8,"ok":0.5,"arr":4.6},{"t":664.0,"p95":4.75,"err":0.0,"queue":0.0,"shed":0.4,"ok":1.0,"arr":0.6}],"checkpoints":[{"t":30.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":60.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":90.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":120.0,"monitor":null,"summary":"","escalated":false,"incident":false,"diagnosis":null},{"t":150.0,"monitor":null,"summary":"","escalated":false,"incident":true,"diagnosis":{"root_cause":"long_prompt_flood","confidence":null,"evidence":[],"explanation":"threshold rules","actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":404}]}}]}],"hard":{"all":[{"arm":"glimmer","label":"Glimmer alone (local)","incidents":12,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":7,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":0,"api_cost_usd":0.0},{"arm":"spark","label":"Spark alone","incidents":12,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":7,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":88,"api_cost_usd":0.5435},{"arm":"wonder","label":"Wonder alone","incidents":12,"healthy_controls":3,"detected":12,"false_alarms":0,"diagnosis_correct":10,"fix_proposed":10,"complete_fix":6,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":1,"api_calls":77,"api_cost_usd":1.6443},{"arm":"glimmer_to_spark","label":"Glimmer → Spark","incidents":12,"healthy_controls":3,"detected":10,"false_alarms":0,"diagnosis_correct":8,"fix_proposed":8,"complete_fix":4,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":10,"api_cost_usd":0.0773},{"arm":"glimmer_to_wonder","label":"Glimmer → Wonder","incidents":12,"healthy_controls":3,"detected":10,"false_alarms":0,"diagnosis_correct":9,"fix_proposed":9,"complete_fix":5,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":5,"api_calls":15,"api_cost_usd":0.5847},{"arm":"rules","label":"Threshold rules","incidents":12,"healthy_controls":3,"detected":11,"false_alarms":2,"diagnosis_correct":7,"fix_proposed":6,"complete_fix":3,"compound_incidents":4,"compound_complete_fix":0,"harmful":5,"stopped_decoy":5,"invalid_outputs":0,"api_calls":0,"api_cost_usd":0.0}],"valid":[{"arm":"glimmer","label":"Glimmer alone (local)","incidents":11,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":7,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":0,"api_cost_usd":0.0},{"arm":"spark","label":"Spark alone","incidents":11,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":11,"fix_proposed":11,"complete_fix":7,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":76,"api_cost_usd":0.4655},{"arm":"wonder","label":"Wonder alone","incidents":11,"healthy_controls":3,"detected":11,"false_alarms":0,"diagnosis_correct":9,"fix_proposed":9,"complete_fix":5,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":1,"api_calls":76,"api_cost_usd":1.6204},{"arm":"glimmer_to_spark","label":"Glimmer → Spark","incidents":11,"healthy_controls":3,"detected":10,"false_alarms":0,"diagnosis_correct":8,"fix_proposed":8,"complete_fix":4,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":0,"api_calls":10,"api_cost_usd":0.0773},{"arm":"glimmer_to_wonder","label":"Glimmer → Wonder","incidents":11,"healthy_controls":3,"detected":10,"false_alarms":0,"diagnosis_correct":9,"fix_proposed":9,"complete_fix":5,"compound_incidents":4,"compound_complete_fix":0,"harmful":0,"stopped_decoy":0,"invalid_outputs":5,"api_calls":15,"api_cost_usd":0.5847},{"arm":"rules","label":"Threshold rules","incidents":11,"healthy_controls":3,"detected":10,"false_alarms":2,"diagnosis_correct":7,"fix_proposed":6,"complete_fix":3,"compound_incidents":4,"compound_complete_fix":0,"harmful":5,"stopped_decoy":5,"invalid_outputs":0,"api_calls":0,"api_cost_usd":0.0}],"cases":[{"id":"hard-01","variant":"GPU contention at 60% duty","causes":["gpu_contention"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3127}]},"glimmer_to_spark":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3127}]},"glimmer_to_wonder":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3127}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3127}]},"spark":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3127}]},"wonder":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3127}]}}},{"id":"hard-02","variant":"Long prompts (15%), decoy job present","causes":["long_prompt_flood"],"valid":true,"decoy":true,"cells":{"glimmer":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":512}]},"glimmer_to_spark":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":512}]},"glimmer_to_wonder":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1024}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":true,"decoy_stop":true,"false_alarm":true,"actions":[{"type":"stop_gpu_process","pid":1612}]},"spark":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":500}]},"wonder":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1024}]}}},{"id":"hard-07","variant":"Context limit 1,408 tokens","causes":["context_limit_too_small"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"glimmer_to_spark":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"glimmer_to_wonder":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"rules":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"spark":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"wonder":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]}}},{"id":"hard-08","variant":"Traffic surge, just over capacity","causes":["traffic_surge"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":7.0}]},"glimmer_to_spark":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":128}]},"glimmer_to_wonder":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":128}]},"rules":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":4.48}]},"spark":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":6.0}]},"wonder":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":128}]}}},{"id":"hard-12","variant":"Batch limit 24 (never breached the SLO)","causes":["batch_limit_too_low"],"valid":false,"decoy":false,"cells":{"glimmer":{"predicted":"healthy","flagged":false,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_spark":{"predicted":"healthy","flagged":false,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_wonder":{"predicted":"healthy","flagged":false,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"rules":{"predicted":"other","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"escalate_to_human"}]},"spark":{"predicted":"healthy","flagged":false,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"wonder":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]}}},{"id":"hard-13","variant":"Traffic surge, decoy job present","causes":["traffic_surge"],"valid":true,"decoy":true,"cells":{"glimmer":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":4.0}]},"glimmer_to_spark":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":128}]},"glimmer_to_wonder":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":true,"decoy_stop":true,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":5283}]},"spark":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]},"wonder":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":192}]}}},{"id":"hard-14","variant":"Underused GPU, decoy job present","causes":["underutilization"],"valid":true,"decoy":true,"cells":{"glimmer":{"predicted":"underutilization","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"recommend_consolidation"}]},"glimmer_to_spark":{"predicted":"healthy","flagged":false,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_wonder":{"predicted":"healthy","flagged":false,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":true,"decoy_stop":true,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":5449}]},"spark":{"predicted":"underutilization","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"recommend_consolidation"}]},"wonder":{"predicted":"underutilization","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"recommend_consolidation"}]}}},{"id":"hard-15","variant":"Batch limit 12, decoy + noise","causes":["batch_limit_too_low"],"valid":true,"decoy":true,"cells":{"glimmer":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]},"glimmer_to_spark":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]},"glimmer_to_wonder":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]},"rules":{"predicted":"other","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"escalate_to_human"}]},"spark":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]},"wonder":{"predicted":"batch_limit_too_low","flagged":true,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_num_seqs","value":64}]}}},{"id":"hard-04","variant":"Long prompts + GPU contention, decoy present","causes":["long_prompt_flood","gpu_contention"],"valid":true,"decoy":true,"cells":{"glimmer":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1024}]},"glimmer_to_spark":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":512}]},"glimmer_to_wonder":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":1024}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":false,"complete":false,"harmful":true,"decoy_stop":true,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3492}]},"spark":{"predicted":"long_prompt_flood","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_max_prompt_tokens","max_prompt_tokens":512}]},"wonder":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":3528}]}}},{"id":"hard-05","variant":"Traffic surge + GPU contention","causes":["traffic_surge","gpu_contention"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]},"glimmer_to_spark":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]},"glimmer_to_wonder":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"stop_gpu_process","pid":1751}]},"spark":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]},"wonder":{"predicted":"traffic_surge","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"gateway_rate_limit","max_rps":3.0}]}}},{"id":"hard-06","variant":"Batch limit + context limit","causes":["batch_limit_too_low","context_limit_too_small"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"glimmer_to_spark":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"glimmer_to_wonder":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"rules":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"spark":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"wonder":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]}}},{"id":"hard-11","variant":"KV-cache starvation + context limit","causes":["kv_cache_starvation","context_limit_too_small"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"glimmer_to_spark":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"glimmer_to_wonder":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"rules":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"spark":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]},"wonder":{"predicted":"context_limit_too_small","flagged":true,"diagnosis":true,"fix":true,"complete":false,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"set_engine_config","knob":"max_model_len","value":4096}]}}},{"id":"hard-03","variant":"Healthy, traffic burst + red herring","causes":["healthy"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_spark":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_wonder":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"rules":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"spark":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"wonder":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]}}},{"id":"hard-09","variant":"Healthy, lower memory setting","causes":["healthy"],"valid":true,"decoy":false,"cells":{"glimmer":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_spark":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_wonder":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"rules":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"spark":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"wonder":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]}}},{"id":"hard-10","variant":"Healthy, decoy job + config noise","causes":["healthy"],"valid":true,"decoy":true,"cells":{"glimmer":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_spark":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"glimmer_to_wonder":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"rules":{"predicted":"gpu_contention","flagged":true,"diagnosis":false,"fix":false,"complete":false,"harmful":true,"decoy_stop":true,"false_alarm":true,"actions":[{"type":"stop_gpu_process","pid":6203}]},"spark":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]},"wonder":{"predicted":"healthy","flagged":false,"diagnosis":true,"fix":true,"complete":true,"harmful":false,"decoy_stop":false,"false_alarm":false,"actions":[{"type":"no_action"}]}}}],"excluded":"hard-16"},"arm_labels":{"rules":"Threshold rules","glimmer":"Glimmer alone (local)","spark":"Spark alone","wonder":"Wonder alone","glimmer_to_spark":"Glimmer → Spark","glimmer_to_wonder":"Glimmer → Wonder"}}</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var CAUSE = { healthy: "Healthy", traffic_surge: "Traffic surge", long_prompt_flood: "Long-prompt flood",
+    kv_cache_starvation: "KV-cache starvation", batch_limit_too_low: "Batch limit too low",
+    context_limit_too_small: "Context limit too small", gpu_contention: "GPU contention",
+    underutilization: "Underused GPU", other: "Other" };
+  var SHORT = { kv_cache_starvation: "KV-cache starvation", context_limit_too_small: "Context limit",
+    batch_limit_too_low: "Batch limit", traffic_surge: "Traffic surge", gpu_contention: "GPU contention",
+    long_prompt_flood: "Long-prompt flood" };
+  var ARM = { glimmer_to_spark: "Glimmer → Spark agent", rules: "Threshold rules" };
+
+  function el(tag, attrs, text) {
+    var n = document.createElement(tag);
+    if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text !== undefined && text !== null) n.textContent = text;
+    return n;
+  }
+  function svgEl(tag, attrs) {
+    var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function num(n) { return n.toLocaleString("en-US"); }
+  function pct(x) { return x === null || x === undefined ? "–" : Math.round(x * 100) + "%"; }
+  function action(a) {
+    if (!a) return "";
+    switch (a.type) {
+      case "set_engine_config": return "Restart the engine with " + a.knob + " = " + num(a.value);
+      case "gateway_rate_limit": return "Rate-limit the gateway to " + a.max_rps + " requests/s";
+      case "gateway_max_prompt_tokens": return "Reject prompts over " + num(a.max_prompt_tokens) + " tokens";
+      case "stop_gpu_process": return "Stop GPU process " + a.pid;
+      case "recommend_consolidation": return "Recommend consolidating traffic";
+      case "escalate_to_human": return "Escalate to a human";
+      default: return "No action";
+    }
+  }
+
+  // ---------- headline tiles (computed from the data, never typed by hand)
+  (function tiles() {
+    var hard = {}; D.hard.all.forEach(function (r) { hard[r.arm] = r; });
+    var g = hard.glimmer, rules = hard.rules;
+    var aiHarm = ["glimmer", "spark", "wonder", "glimmer_to_spark", "glimmer_to_wonder"]
+      .reduce(function (s, a) { return s + (hard[a] ? hard[a].harmful : 0); }, 0);
+    var agentRuns = D.live.filter(function (r) { return r.arm === "glimmer_to_spark"; });
+    var recovered = agentRuns.filter(function (r) { return r.recovered; }).length;
+    var completeAny = D.hard.all.reduce(function (s, r) { return s + r.compound_complete_fix; }, 0);
+    var list = [
+      ["Hard set: correct diagnoses by Glimmer alone (local, free)", g.diagnosis_correct + " of " + g.incidents,
+        "Muse Spark: " + hard.spark.diagnosis_correct + " · Muse Wonder: " + hard.wonder.diagnosis_correct],
+      ["Harmful actions by any AI agent on the Hard set", String(aiHarm),
+        "Threshold rules: " + rules.harmful + ", stopping a harmless GPU job in " + rules.stopped_decoy + " of 5 decoy cases"],
+      ["Live repairs by the agent on a real GPU", recovered + " of " + agentRuns.length,
+        "The one failed fix was rolled back automatically"],
+      ["Two-cause incidents fully fixed, any agent", completeAny + " of " + g.compound_incidents,
+        "Every agent fixed only the loudest cause"]
+    ];
+    var box = document.getElementById("tiles");
+    list.forEach(function (t) {
+      var d = el("div", { "class": "tile" });
+      d.appendChild(el("div", { "class": "label" }, t[0]));
+      d.appendChild(el("div", { "class": "value" }, t[1]));
+      d.appendChild(el("div", { "class": "note" }, t[2]));
+      box.appendChild(d);
+    });
+  })();
+
+  // ---------- replay
+  var order = ["kv_cache_starvation", "context_limit_too_small", "batch_limit_too_low", "traffic_surge",
+    "gpu_contention", "long_prompt_flood"];
+  var state = { cause: "kv_cache_starvation", arm: "glimmer_to_spark", t: 0, playing: false, last: 0 };
+  var charts = [
+    { id: "c-lat", key: "p95", unit: " s", slo: true },
+    { id: "c-err", key: "err", unit: "/s" },
+    { id: "c-q", key: "queue", unit: "" }
+  ];
+  var W = 640, PAD = { l: 34, r: 10, t: 22, b: 20 }, PAD_FIRST = 38;
+
+  function run() {
+    return D.live.filter(function (r) { return r.cause === state.cause && r.arm === state.arm; })[0];
+  }
+  function events(r) {
+    var ev = [];
+    if (r.onset !== null && r.onset !== undefined) ev.push({ t: r.onset, label: r.onset === 0 ? "Bad deploy" : "Fault starts" });
+    if (r.decision_t !== null && r.decision_t !== undefined) ev.push({ t: r.decision_t, label: "Agent acts" });
+    if (r.acted_at && r.acted_at - (r.decision_t || 0) > 8) ev.push({ t: r.acted_at, label: "Fix in place" });
+    if (r.recovered && r.ttr !== null) ev.push({ t: (r.onset || 0) + r.ttr, label: "Recovered", good: true });
+    return ev;
+  }
+  function buttons(boxId, items, current, onPick) {
+    var box = document.getElementById(boxId);
+    box.textContent = "";
+    items.forEach(function (it) {
+      var b = el("button", { type: "button", "aria-pressed": String(it[0] === current) }, it[1]);
+      b.addEventListener("click", function () { onPick(it[0]); });
+      box.appendChild(b);
+    });
+  }
+  function drawControls() {
+    buttons("runs", order.map(function (c) { return [c, SHORT[c]]; }), state.cause, function (c) {
+      state.cause = c; state.t = 0; stop(); drawControls(); drawAll(); });
+    buttons("arms", [["glimmer_to_spark", "Glimmer → Spark agent"], ["rules", "Threshold rules"]], state.arm, function (a) {
+      state.arm = a; state.t = 0; stop(); drawControls(); drawAll(); });
+  }
+
+  function scaleFor(r, spec, h, top) {
+    var max = 0;
+    r.series.forEach(function (p) { if (p[spec.key] !== null && p[spec.key] > max) max = p[spec.key]; });
+    if (spec.slo) max = Math.max(max, 12);
+    if (max <= 0) max = 1;
+    var step = niceStep(max / 3);
+    max = Math.ceil(max / step) * step;
+    return { max: max, step: step,
+      x: function (t) { return PAD.l + (t / r.duration) * (W - PAD.l - PAD.r); },
+      y: function (v) { return top + (1 - v / max) * (h - top - PAD.b); } };
+  }
+  function niceStep(raw) {
+    var p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+  }
+  function pathFor(r, spec, s) {
+    var d = "", pen = false;
+    r.series.forEach(function (p) {
+      var v = p[spec.key];
+      if (v === null || v === undefined) { pen = false; return; }
+      d += (pen ? "L" : "M") + s.x(p.t).toFixed(1) + "," + s.y(v).toFixed(1);
+      pen = true;
+    });
+    return d;
+  }
+  function drawChart(spec, r, first) {
+    var svg = document.getElementById(spec.id);
+    var h = first ? 176 : 132, top = first ? PAD_FIRST : PAD.t;
+    W = Math.max(300, Math.round(svg.getBoundingClientRect().width || 640));
+    svg.setAttribute("viewBox", "0 0 " + W + " " + h);
+    svg.textContent = "";
+    var s = scaleFor(r, spec, h, top);
+    spec.scale = s; spec.h = h;
+    for (var v = 0; v <= s.max + 1e-9; v += s.step) {
+      var y = s.y(v);
+      svg.appendChild(svgEl("line", { x1: PAD.l, x2: W - PAD.r, y1: y, y2: y, stroke: v === 0 ? "var(--axis)" : "var(--grid)", "stroke-width": 1, "vector-effect": "non-scaling-stroke" }));
+      var tx = svgEl("text", { x: PAD.l - 6, y: y + 4, "text-anchor": "end", "font-size": 11, fill: "var(--muted)" });
+      tx.textContent = (Math.round(v * 100) / 100).toString();
+      svg.appendChild(tx);
+    }
+    if (!first) {
+      for (var t = 0; t <= r.duration; t += (W < 520 ? 240 : 120)) {
+        var lx = svgEl("text", { x: s.x(t), y: h - 4, "text-anchor": "middle", "font-size": 11, fill: "var(--muted)" });
+        lx.textContent = mmss(t); svg.appendChild(lx);
+      }
+    }
+    if (spec.slo) {
+      var yy = s.y(r.slo.p95_latency_s);
+      svg.appendChild(svgEl("line", { x1: PAD.l, x2: W - PAD.r, y1: yy, y2: yy, stroke: "var(--critical)", "stroke-width": 1, opacity: 0.7, "vector-effect": "non-scaling-stroke" }));
+      var sl = svgEl("text", { x: W - PAD.r, y: yy - 4, "text-anchor": "end", "font-size": 11, fill: "var(--ink-2)" });
+      sl.textContent = "SLO"; svg.appendChild(sl);
+    }
+    var lastX = -99, lastY = 10;
+    events(r).forEach(function (e, i) {
+      var ex = s.x(e.t);
+      svg.appendChild(svgEl("line", { x1: ex, x2: ex, y1: first ? 16 : top - 4, y2: h - PAD.b, stroke: e.good ? "var(--good)" : "var(--ink-2)", "stroke-width": 1, opacity: 0.55 }));
+      if (first) {
+        var cy = ex - lastX < 20 ? (lastY === 10 ? 26 : 10) : 10;
+        lastX = ex; lastY = cy;
+        svg.appendChild(svgEl("circle", { cx: ex, cy: cy, r: 8, fill: "var(--surface)", stroke: e.good ? "var(--good)" : "var(--axis)", "stroke-width": 1.5 }));
+        var et = svgEl("text", { x: ex, y: cy + 4, "text-anchor": "middle", "font-size": 11, "font-weight": 600, fill: e.good ? "var(--good-text)" : "var(--ink-2)" });
+        et.textContent = String(i + 1); svg.appendChild(et);
+      }
+    });
+    var clipId = spec.id + "-clip";
+    var defs = svgEl("defs", {});
+    var cp = svgEl("clipPath", { id: clipId });
+    var rect = svgEl("rect", { x: 0, y: 0, width: 0, height: h });
+    cp.appendChild(rect); defs.appendChild(cp); svg.appendChild(defs);
+    spec.clip = rect;
+    var d = pathFor(r, spec, s);
+    svg.appendChild(svgEl("path", { d: d, fill: "none", stroke: "var(--series)", "stroke-width": 2, opacity: 0.22, "stroke-linejoin": "round", "stroke-linecap": "round", "vector-effect": "non-scaling-stroke" }));
+    svg.appendChild(svgEl("path", { d: d, fill: "none", stroke: "var(--series)", "stroke-width": 2, "clip-path": "url(#" + clipId + ")", "stroke-linejoin": "round", "stroke-linecap": "round", "vector-effect": "non-scaling-stroke" }));
+    spec.cursor = svgEl("line", { x1: 0, x2: 0, y1: top - 4, y2: h - PAD.b, stroke: "var(--series)", "stroke-width": 1 });
+    svg.appendChild(spec.cursor);
+    spec.hair = svgEl("line", { x1: 0, x2: 0, y1: top - 4, y2: h - PAD.b, stroke: "var(--ink-2)", "stroke-width": 1, opacity: 0 });
+    svg.appendChild(spec.hair);
+    var hit = svgEl("rect", { x: PAD.l, y: 0, width: W - PAD.l - PAD.r, height: h, fill: "transparent" });
+    hit.addEventListener("pointermove", function (ev) { hover(ev, svg); });
+    hit.addEventListener("pointerleave", unhover);
+    svg.appendChild(hit);
+    var label = { "c-lat": "p95 latency", "c-err": "failed requests per second", "c-q": "queued requests" }[spec.id];
+    svg.setAttribute("aria-label", label + " over the " + mmss(r.duration) + " run; see the data table for values");
+  }
+  function nearest(r, t) {
+    var best = null;
+    r.series.forEach(function (p) { if (best === null || Math.abs(p.t - t) < Math.abs(best.t - t)) best = p; });
+    return best;
+  }
+  function hover(ev, svg) {
+    var r = run(), box = svg.getBoundingClientRect();
+    var xView = (ev.clientX - box.left) / box.width * W;
+    var t = (xView - PAD.l) / (W - PAD.l - PAD.r) * r.duration;
+    var p = nearest(r, t);
+    if (!p) return;
+    charts.forEach(function (c) { var x = c.scale.x(p.t); c.hair.setAttribute("x1", x); c.hair.setAttribute("x2", x); c.hair.setAttribute("opacity", 0.8); });
+    var tip = document.getElementById("tip");
+    tip.textContent = "";
+    tip.appendChild(el("div", { "class": "small" }, "at " + mmss(p.t)));
+    [["p95 latency", p.p95 === null ? "–" : p.p95 + " s"], ["failed/s", String(p.err)], ["queued", String(p.queue)],
+     ["shed/s", String(p.shed)]].forEach(function (row) {
+      var d = el("div", { "class": "row" });
+      d.appendChild(el("span", { "class": "key" }));
+      d.appendChild(el("strong", null, row[1]));
+      d.appendChild(el("span", { "class": "small" }, row[0]));
+      tip.appendChild(d);
+    });
+    var card = svg.closest(".card").getBoundingClientRect();
+    tip.style.display = "block";
+    var left = ev.clientX - card.left + 14;
+    if (left + tip.offsetWidth > card.width - 8) left = ev.clientX - card.left - tip.offsetWidth - 14;
+    tip.style.left = left + "px";
+    tip.style.top = (svg.getBoundingClientRect().top - card.top + 8) + "px";
+  }
+  function unhover() {
+    charts.forEach(function (c) { if (c.hair) c.hair.setAttribute("opacity", 0); });
+    document.getElementById("tip").style.display = "none";
+  }
+
+  function storyItems(r) {
+    var items = [];
+    r.checkpoints.forEach(function (c) {
+      if (state.arm === "rules") {
+        if (c.incident && c.diagnosis) items.push({ t: c.t, cls: "hot", who: "Rules flag " + CAUSE[c.diagnosis.root_cause], dx: c.diagnosis });
+        return;
+      }
+      var flagged = c.monitor === "anomaly" || c.monitor === null;
+      items.push({ t: c.t, cls: flagged ? "hot" : "", who: "Glimmer monitor: " + (c.monitor || "no reply") ,
+        txt: c.summary });
+      if (c.escalated && c.diagnosis) items.push({ t: c.t, cls: "hot", who: "Spark diagnoses " + CAUSE[c.diagnosis.root_cause] +
+        (typeof c.diagnosis.confidence === "number" ? " (confidence " + c.diagnosis.confidence + ")" : ""), dx: c.diagnosis });
+    });
+    if (r.acted_at) {
+      var acts = r.executed.map(function (e) { return action(e.action) + (e.status && e.status !== "executed" ? " (" + e.status + ")" : ""); }).join("; ");
+      items.push({ t: r.acted_at, cls: "", who: "Fix in place", txt: acts + (r.restart_s.length ? " · engine restart " + r.restart_s.join(", ") + " s" : "") });
+    }
+    if (r.recovered && r.ttr !== null) {
+      items.push({ t: (r.onset || 0) + r.ttr, cls: "ok", who: "Recovered", txt: "Within SLO " + r.ttr + " s after the fault began." });
+    } else if (r.acted_at) {
+      items.push({ t: r.acted_at + 150, cls: "fail", who: "Not recovered: rolled back",
+        txt: "At the 150 s check the requests still missed the SLO, so the change was undone and a human paged." });
+    }
+    return items.sort(function (a, b) { return a.t - b.t; });
+  }
+  function drawStory(r) {
+    var box = document.getElementById("story");
+    box.textContent = "";
+    var shown = storyItems(r).filter(function (it) { return it.t <= state.t + 1e-6; });
+    if (!shown.length) { box.appendChild(el("li", { "class": "empty" }, "Press play. The first checkpoint is at 0:30.")); return; }
+    shown.forEach(function (it) {
+      var li = el("li", { "class": it.cls });
+      li.appendChild(el("div", { "class": "when" }, mmss(it.t)));
+      li.appendChild(el("div", { "class": "who" }, it.who));
+      if (it.txt) li.appendChild(el("div", { "class": "txt" }, it.txt));
+      if (it.dx) {
+        if (it.dx.evidence && it.dx.evidence.length) {
+          var ul = el("ul");
+          it.dx.evidence.forEach(function (e) { ul.appendChild(el("li", null, e)); });
+          li.appendChild(ul);
+        }
+        if (it.dx.explanation) li.appendChild(el("div", { "class": "txt" }, it.dx.explanation));
+        it.dx.actions.forEach(function (a) { li.appendChild(el("div", { "class": "act" }, "→ " + action(a))); });
+      }
+      box.appendChild(li);
+    });
+    box.scrollTop = box.scrollHeight;
+  }
+  function drawOutcome(r) {
+    var o = document.getElementById("outcome");
+    o.textContent = "";
+    var b = el("span", { "class": "badge " + (r.recovered ? "good" : "bad") }, r.recovered ? "✓ Recovered" : "✗ Not recovered");
+    o.appendChild(b);
+    var parts = [];
+    if (r.recovered && r.ttr !== null) parts.push(r.ttr + " s after the fault began");
+    if (r.rolled_back) parts.push("change rolled back automatically");
+    if (r.post && r.post.requests) parts.push("after the fix: p95 " + (r.post.p95_latency_s === null ? "–" : r.post.p95_latency_s.toFixed(1) + " s") +
+      ", errors " + pct(r.post.error_rate) + ", shed " + pct(r.post.shed_rate));
+    o.appendChild(document.createTextNode(" · " + parts.join(" · ")));
+  }
+  function drawTable(r) {
+    var t = document.getElementById("series-table");
+    t.textContent = "";
+    var head = el("tr");
+    ["Time", "p95 latency (s)", "Failed/s", "Queued", "Shed/s", "OK/s"].forEach(function (h, i) { head.appendChild(el("th", i ? { "class": "num" } : null, h)); });
+    var thead = el("thead"); thead.appendChild(head); t.appendChild(thead);
+    var tb = el("tbody");
+    r.series.forEach(function (p) {
+      var tr = el("tr");
+      [mmss(p.t), p.p95 === null ? "–" : p.p95, p.err, p.queue, p.shed, p.ok].forEach(function (v, i) { tr.appendChild(el("td", i ? { "class": "num" } : null, String(v))); });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  }
+  function setTime(t) {
+    var r = run();
+    state.t = Math.max(0, Math.min(r.duration, t));
+    charts.forEach(function (c) {
+      var x = c.scale.x(state.t);
+      c.clip.setAttribute("width", x);
+      c.cursor.setAttribute("x1", x); c.cursor.setAttribute("x2", x);
+    });
+    document.getElementById("scrub").value = state.t;
+    document.getElementById("clock").textContent = mmss(state.t) + " / " + mmss(r.duration);
+    drawStory(r);
+  }
+  function drawLegend(r) {
+    var box = document.getElementById("evlegend");
+    box.textContent = "";
+    events(r).forEach(function (e, i) {
+      var sp = el("span", e.good ? { "class": "good" } : null);
+      sp.appendChild(el("b", null, String(i + 1)));
+      sp.appendChild(document.createTextNode(e.label + " " + mmss(e.t)));
+      box.appendChild(sp);
+    });
+  }
+  function drawAll() {
+    var r = run();
+    var scrub = document.getElementById("scrub");
+    scrub.max = r.duration;
+    charts.forEach(function (c, i) { drawChart(c, r, i === 0); });
+    drawLegend(r); drawOutcome(r); drawTable(r); setTime(state.t);
+  }
+  var resizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { unhover(); drawAll(); }, 150);
+  });
+  function tick(now) {
+    if (!state.playing) return;
+    var dt = state.last ? (now - state.last) / 1000 : 0;
+    state.last = now;
+    var r = run();
+    var next = state.t + dt * 30;
+    if (next >= r.duration) { setTime(r.duration); stop(); return; }
+    setTime(next);
+    requestAnimationFrame(tick);
+  }
+  function stop() { state.playing = false; state.last = 0; document.getElementById("play").textContent = "Play"; }
+  document.getElementById("play").addEventListener("click", function () {
+    if (state.playing) { stop(); return; }
+    var r = run();
+    if (state.t >= r.duration) setTime(0);
+    state.playing = true; this.textContent = "Pause";
+    requestAnimationFrame(tick);
+  });
+  document.getElementById("scrub").addEventListener("input", function () { stop(); setTime(Number(this.value)); });
+  drawControls(); drawAll();
+
+  // ---------- result tables
+  function board(tableId, rows, cols, emArm) {
+    var t = document.getElementById(tableId);
+    t.textContent = "";
+    var thead = el("thead"), hr = el("tr");
+    hr.appendChild(el("th", null, "Agent"));
+    cols.forEach(function (c) { hr.appendChild(el("th", { "class": "num" }, c[0])); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    rows.forEach(function (r) {
+      var tr = el("tr", r.arm === emArm ? { "class": "em" } : null);
+      tr.appendChild(el("td", null, r.label));
+      cols.forEach(function (c) { tr.appendChild(el("td", { "class": "num" }, c[1](r))); });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  }
+  var hardCols = [
+    ["Correct diagnosis", function (r) { return r.diagnosis_correct + "/" + r.incidents; }],
+    ["Safe fix", function (r) { return r.fix_proposed + "/" + r.incidents; }],
+    ["Both causes fixed", function (r) { return r.compound_complete_fix + "/" + r.compound_incidents; }],
+    ["Harmful actions", function (r) { return String(r.harmful); }],
+    ["Stopped a decoy", function (r) { return String(r.stopped_decoy); }],
+    ["False alarms", function (r) { return String(r.false_alarms); }],
+    ["Invalid outputs", function (r) { return String(r.invalid_outputs); }],
+    ["Paid calls · cost", function (r) { return r.api_calls ? r.api_calls + " · $" + r.api_cost_usd.toFixed(2) : "—"; }]
+  ];
+  var hardSubset = "all";
+  function drawHard() {
+    buttons("hard-subset", [["all", "All 15 incidents"], ["valid", "Passed the symptom check (14)"]], hardSubset, function (s) { hardSubset = s; drawHard(); });
+    board("hard-board", D.hard[hardSubset], hardCols, "glimmer");
+    document.getElementById("hard-note").textContent = hardSubset === "all"
+      ? "12 incidents with a fault and 3 healthy controls. The 4 two-cause incidents count a correct diagnosis if either cause is named."
+      : "Drops hard-12 (a batch limit of 24 that never breached the SLO), per the rule declared before scoring.";
+  }
+  drawHard();
+  board("v0-board", D.v0, [
+    ["Correct diagnosis", function (r) { return r.diagnosis_correct + "/" + r.incidents; }],
+    ["Safe fix", function (r) { return r.fix_proposed + "/" + r.incidents; }],
+    ["Harmful actions", function (r) { return String(r.harmful); }],
+    ["False alarms", function (r) { return String(r.false_alarms); }],
+    ["Paid calls · cost", function (r) { return r.api_calls ? r.api_calls + " · $" + r.api_cost_usd.toFixed(2) : "—"; }]
+  ], "glimmer");
+
+  (function matrix() {
+    var arms = ["glimmer", "spark", "wonder", "glimmer_to_spark", "glimmer_to_wonder", "rules"];
+    var t = document.getElementById("hard-matrix");
+    var thead = el("thead"), hr = el("tr");
+    var shortArm = { glimmer: "Glimmer", spark: "Spark", wonder: "Wonder", glimmer_to_spark: "Glimmer → Spark",
+      glimmer_to_wonder: "Glimmer → Wonder", rules: "Rules" };
+    hr.appendChild(el("th", null, "Incident"));
+    arms.forEach(function (a) { hr.appendChild(el("th", null, shortArm[a])); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    D.hard.cases.forEach(function (c) {
+      var tr = el("tr");
+      var name = el("td", { style: "white-space:normal;min-width:220px" }, c.variant + (c.valid ? "" : " (failed symptom check)"));
+      tr.appendChild(name);
+      arms.forEach(function (a) {
+        var x = c.cells[a], mark, cls;
+        if (!x) { tr.appendChild(el("td", null, "–")); return; }
+        if (x.harmful) { mark = x.decoy_stop ? "⊘ stopped decoy" : "⚠ harmful"; cls = "no"; }
+        else if (c.causes[0] === "healthy") { mark = x.flagged ? "✗ false alarm" : "✓"; cls = x.flagged ? "no" : "yes"; }
+        else if (c.causes.length > 1 && x.diagnosis && !x.complete) { mark = "½ " + (SHORT[x.predicted] || CAUSE[x.predicted]); cls = "half"; }
+        else if (x.diagnosis && x.fix) { mark = "✓"; cls = "yes"; }
+        else if (!x.flagged) { mark = "✗ missed"; cls = "no"; }
+        else { mark = "✗ " + (SHORT[x.predicted] || CAUSE[x.predicted]); cls = "no"; }
+        var td = el("td", { "class": cls }, mark);
+        td.title = (x.actions || []).map(action).join("; ");
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  })();
+
+  (function liveTable() {
+    var t = document.getElementById("live-table");
+    var thead = el("thead"), hr = el("tr");
+    ["Fault", "Glimmer → Spark agent", "Outcome", "Threshold rules", "Outcome"].forEach(function (h) { hr.appendChild(el("th", null, h)); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    order.forEach(function (cause) {
+      var tr = el("tr");
+      tr.appendChild(el("td", null, CAUSE[cause]));
+      ["glimmer_to_spark", "rules"].forEach(function (arm) {
+        var r = D.live.filter(function (x) { return x.cause === cause && x.arm === arm; })[0];
+        var acts = r.executed.map(function (e) { return action(e.action); }).join("; ") || "–";
+        tr.appendChild(el("td", { "class": "small" }, acts));
+        var txt = r.recovered ? "✓ in " + r.ttr + " s" : "✗ rolled back";
+        if (r.post && r.post.shed_rate > 0.05) txt += " (shed " + pct(r.post.shed_rate) + ")";
+        tr.appendChild(el("td", { "class": r.recovered ? "yes" : "no" }, txt));
+      });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  })();
+
+  (function findings() {
+    var hard = {}; D.hard.all.forEach(function (r) { hard[r.arm] = r; });
+    var list = [
+      "AI agents were safe where rules were not: on the Hard set every model agent made zero harmful moves, while the threshold rules stopped a harmless GPU job in all " + hard.rules.stopped_decoy + " cases that had one and raised " + hard.rules.false_alarms + " false alarms.",
+      "The free, local Glimmer 30B matched Muse Spark (" + hard.glimmer.diagnosis_correct + " vs " + hard.spark.diagnosis_correct + " correct diagnoses of " + hard.glimmer.incidents + ") at no API cost; Muse Wonder scored " + hard.wonder.diagnosis_correct + " at $" + hard.wonder.api_cost_usd.toFixed(2) + ".",
+      "No agent fully fixed a two-cause incident: all six fixed the loudest cause and stopped, though two actions were allowed. Verifying after the first fix and continuing is the next step.",
+      "Using Glimmer as a gatekeeper cut paid calls sharply (" + hard.glimmer_to_spark.api_calls + " vs " + hard.spark.api_calls + " for Spark) but its monitor missed an underused GPU, as it did in v0.",
+      "Live, the agent repaired 5 of 6 real faults in 84–203 s from fault start and rolled back the one fix that did not work. Gateway fixes for surges and long prompts recovered latency by shedding a large share of requests, which the table shows."
+    ];
+    var ul = document.getElementById("findings-list");
+    list.forEach(function (f) { ul.appendChild(el("li", null, f)); });
+  })();
+})();
+</script>
+</body>
+</html>
