@@ -1555,10 +1555,6 @@
       "package_path": "provenance/failures/final--stopped-inference-recovery-attempt2--response.json",
       "sha256": "b12aa3ff9de207555f62c3a559406ff0bbaba98afedabc0bd0c64a0d27a395ba"
     },
-    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/official-vast-copy-source.py": {
-      "package_path": "provenance/failures/final--stopped-inference-recovery-attempt2--official-vast-copy-source.py",
-      "sha256": "41c530fc2f8c4b17c9fb8555f7c275fe23c4cf5ac99bc77245a91944a11eed5b"
-    },
     "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync-intent.json": {
       "package_path": "provenance/failures/final--stopped-inference-recovery-attempt2--rsync-intent.json",
       "sha256": "e7409575184bd774c33244dc86c47688fc844c9919abfbfaf6b7009707972bf0"

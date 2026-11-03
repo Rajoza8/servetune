@@ -1,0 +1,15 @@
+{
+  "removed": [
+    {
+      "package_path": "provenance/failures/final--stopped-inference-recovery-attempt2--official-vast-copy-source.py",
+      "sha256": "41c530fc2f8c4b17c9fb8555f7c275fe23c4cf5ac99bc77245a91944a11eed5b",
+      "reason": "Unmodified copy of a third-party command-line client, kept only as provenance for a failed recovery attempt and not needed for any result. Removed from the public package to avoid redistributing third-party code.",
+      "removed_at_utc": "2026-11-03T18:07:36+00:00",
+      "index_entries_removed": {
+        "artifact-index.json": 1,
+        "provenance/published-allowlist.json": 1
+      }
+    }
+  ],
+  "unchanged": "No study input, recording, decision, answer key, validity verdict or score changed."
+}

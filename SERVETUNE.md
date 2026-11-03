@@ -83,7 +83,7 @@ for the later confirmation; preparing data does not run it.
 ## On the NVIDIA host
 
 You can execute the commands yourself; SSH access for the assistant is optional.
-A Vast instance can also run the same bundle. A rental requires a separate
+A rented GPU instance can also run the same bundle. A rental requires a separate
 user-selected budget; the API caps below do not authorize GPU rental spending.
 
 Required: exclusive measurement access to one RTX PRO 6000 Blackwell 96 GB,
@@ -364,7 +364,7 @@ Set `MODEL_API_KEY` or `META_API_KEY` only in the controller environment for Spa
 The owned inference subprocess strips provider keys. `study-run` uses the same
 single ServeTune ledger; copying a session never resets its spending history.
 The CLI time bound controls experiment execution and cleanup; a separately
-authorized rental guard controls Vast billing and lifecycle. Never infer rental
+authorized rental guard controls GPU rental billing and lifecycle. Never infer rental
 authorization from a CLI option. Baseten has no planned use.
 
 The controller performs calibration, freezes and hashes its comparison traces,

@@ -19,12 +19,6 @@ datasets, dependencies, or cited research.
 - Models via the Meta Model API: Muse Spark 1.3 and Muse Wonder 1.0. Their outputs
   appear in the published decision files as evaluation evidence, under the Meta
   Model API terms.
-- Vast.ai CLI: `results/servedoctor-hard-20261103/provenance/failures/final--stopped-inference-recovery-attempt2--official-vast-copy-source.py`
-  is an unmodified copy of Vast.ai's command-line client
-  ([vast-ai/vast-cli](https://github.com/vast-ai/vast-cli)), kept only as provenance for
-  a failed recovery attempt. It remains under its upstream license (the vast-ai
-  organization's projects are MIT-licensed unless stated otherwise); copyright
-  belongs to its authors.
 - Prior work: [InferenceBench](https://arxiv.org/abs/2607.20468) and
   [AutoTuneBench](https://arxiv.org/abs/2609.18123). Their code or data are not
   copied into ServeTune. ServeDoctor's related-work search (SREGym, AIOpsLab, ITBench,

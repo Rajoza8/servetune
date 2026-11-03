@@ -872,7 +872,6 @@
     "provenance/failures/final--stopped-inference-recovery-attempt1--response.json": "a4ddea30690d34d7957459bdc86c8aad7fbffd97b1b7469dfa35db45132987e0",
     "provenance/failures/final--stopped-inference-recovery-attempt2--intent.json": "8f5ec5cf1a9b73e2ca3674d8419daba00e2f34803aade7883fbab2ca458244a8",
     "provenance/failures/final--stopped-inference-recovery-attempt2--response.json": "b12aa3ff9de207555f62c3a559406ff0bbaba98afedabc0bd0c64a0d27a395ba",
-    "provenance/failures/final--stopped-inference-recovery-attempt2--official-vast-copy-source.py": "41c530fc2f8c4b17c9fb8555f7c275fe23c4cf5ac99bc77245a91944a11eed5b",
     "provenance/failures/final--stopped-inference-recovery-attempt2--rsync-intent.json": "e7409575184bd774c33244dc86c47688fc844c9919abfbfaf6b7009707972bf0",
     "provenance/failures/final--stopped-inference-recovery-attempt2--rsync-outcome.json": "cf6d93e0c7c62ea43b9bfde92b63b68a5ccdbcb0b282cd789bec1df42e1da4fe",
     "provenance/failures/final--stopped-inference-recovery-attempt2--rsync.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -949,7 +948,7 @@
     "servedoctor-gpu-hours.md": "94bce6012494b12e5b6b574f8f9946425f0f947382859f02c2a7b360147f550e",
     "final-cleanup.json": "15ea4621bc71d30370816ed7a254dbc51015377b0c77b9a417e2e9547d1b451b",
     "provenance/scoring/hard15-score-projection-final.json": "77286752ca7fd8ce60b080b825b3ac024242cb3627bcf1b6734e7b4bc455b765",
-    "provenance/published-allowlist.json": "b4671724350c0a53913b81fc40a83230271a01328e60c895077ac5b978f7d638",
+    "provenance/published-allowlist.json": "08a861567ba4efd1bb0ca22186ebe02549bdb273d33d72b06b4b5c0b8f6cd9b9",
     "README.md": "9a1ed162a2b322d9edd8dd2f07e7ac9ade9b4a6a79bd38ddca2b9fb8e0b158f4",
     "provenance/helpers/package_inference_offline_results.py": "9edacefb99d466629671e51e8f264b747690500bcb0ad60a0ba6b395e76f9b4f",
     "provenance/helpers/inference_descriptor_adapter.py": "fdaf66af25327c4501c8e66b2fa56708600d4c4acc8b5585a32724d3b5f0ae91",
@@ -964,7 +963,8 @@
     "provenance/evaluation/final-score-valid_only.stderr": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
     "provenance/evaluation/mirror-manifest.json": "807e92fc4d019e5ec52f0cc1491a75717671eccf8f49f02d35b43ea00d3aff8c",
     "provenance/evaluation/final-ledger.stdout": "cd4e7a8920f46212ab14958667e5f589d2ad04a201edac3df77212b5c73d8bbf",
-    "artifact-index.json": "88705543797004fe092314d8d46ba7b570c219e3ee32dc67b0f407ec4d0a3a15"
+    "artifact-index.json": "2e991ee592d85ece322657837fa78426f6393f36e0606a2e27e85a44c768d34e",
+    "provenance/post-publication-removals.json": "a4dfe0d932787447cb4d5cacb2db2f3893917e18164314d860df019e39342ab5"
   },
   "source_paths": {
     "analysis/analysis-label.txt": "runs/servedoctor-hard15-ops-20261102/inference-final-study/analysis-label.txt",
@@ -1833,7 +1833,6 @@
     "provenance/failures/final--stopped-inference-recovery-attempt1--response.json": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt1/response.json",
     "provenance/failures/final--stopped-inference-recovery-attempt2--intent.json": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/intent.json",
     "provenance/failures/final--stopped-inference-recovery-attempt2--response.json": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/response.json",
-    "provenance/failures/final--stopped-inference-recovery-attempt2--official-vast-copy-source.py": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/official-vast-copy-source.py",
     "provenance/failures/final--stopped-inference-recovery-attempt2--rsync-intent.json": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync-intent.json",
     "provenance/failures/final--stopped-inference-recovery-attempt2--rsync-outcome.json": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync-outcome.json",
     "provenance/failures/final--stopped-inference-recovery-attempt2--rsync.stdout": "runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync.stdout",

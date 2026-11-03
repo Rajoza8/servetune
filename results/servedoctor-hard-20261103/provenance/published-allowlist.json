@@ -2766,14 +2766,6 @@
     },
     {
       "source": {
-        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/official-vast-copy-source.py",
-        "sha256": "41c530fc2f8c4b17c9fb8555f7c275fe23c4cf5ac99bc77245a91944a11eed5b"
-      },
-      "destination": "provenance/failures/final--stopped-inference-recovery-attempt2--official-vast-copy-source.py",
-      "group": "failures"
-    },
-    {
-      "source": {
         "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync-intent.json",
         "sha256": "e7409575184bd774c33244dc86c47688fc844c9919abfbfaf6b7009707972bf0"
       },

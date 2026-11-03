@@ -23,7 +23,7 @@ this repository and is tested offline (`python3 -m unittest discover -s tests -q
 
 ## 0. Machine
 
-Same as ServeTune v4: one RTX PRO 6000 Blackwell 96 GB on Vast, on-demand
+Same as ServeTune v4: one rented RTX PRO 6000 Blackwell 96 GB, on-demand
 (not interruptible), verified host, ≥150 GB disk. Install the Glimmer-capable
 vLLM as in the README, then:
 

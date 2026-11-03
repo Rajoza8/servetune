@@ -15,7 +15,7 @@ experiments were not yet implemented. Public repository publication and deployme
 occurred. No commit was fabricated or dated retroactively;
 actual commit history can be added when this work is committed for release.
 
-October 29, 2026, America/New_York: verified the pinned Vast Muse Glimmer wrapper
+October 29, 2026, America/New_York: verified the pinned Muse Glimmer wrapper
 on a rented RTX PRO 6000 Blackwell. The first live attempt recorded one complete
 trace and a 138/150 bf16 dev baseline (zero failed or truncated requests). It
 stopped before repeat two because the port precheck rejected TCP TIME_WAIT;
@@ -67,7 +67,7 @@ and tests. Prompts, rules, models and v0 scoring are unchanged; all 144 v0
 decisions re-score identically. No Hard-set recording or result exists yet.
 
 November 1–2, 2026, America/New_York: recorded and evaluated ServeIncidents v0
-on rented RTX PRO 6000 Blackwell GPUs (Vast): capacity calibration, KV-fault
+on rented RTX PRO 6000 Blackwell GPUs: capacity calibration, KV-fault
 calibration on development incidents, a healthy reference, 8 development and 16
 test incidents, all six evaluation arms, and 12 live repair runs (Glimmer→Spark
 and threshold rules on six frozen test incidents). Integration fixes made during
