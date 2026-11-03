@@ -1,0 +1,1274 @@
+{
+  "schema_version": 1,
+  "artifact_scope": "curated_public_scientific_package",
+  "curated_at_utc": "2026-11-03T22:19:52.038728+00:00",
+  "previous_public_commit": "2fff127a95e6ba77ea25c9c50b44f14ae7cee000",
+  "original_package_manifest_sha256": "379cdf7deac5809f77c10bd3e2c511f73391ad5c39761918b3af1202c197eef0",
+  "reason": "Internal development, host orchestration and operator notes archived separately.",
+  "historical_git_commits_rewritten": false,
+  "original_experimental_commitments_changed": false,
+  "retained_scientific_and_provenance_payloads_byte_identical": 747,
+  "publication_metadata_refreshed": [
+    "README.md",
+    "artifact-index.json",
+    "package-manifest.json",
+    "provenance/published-allowlist.json"
+  ],
+  "removed_operator_files": [
+    {
+      "path": "analysis/inference-analysis-protocol.json",
+      "sha256": "c5750faf63511320424d40791f645ffc891f4d1cb814315d5aab0b6b3fd24cef",
+      "bytes": 54975,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "analysis/inference-validation-dispatch.json",
+      "sha256": "ec4bdeaee1c792249db58775cc059570cc7bddb7fb0310fcc7f47a806660a93a",
+      "bytes": 370,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "final-cleanup.json",
+      "sha256": "15ea4621bc71d30370816ed7a254dbc51015377b0c77b9a417e2e9547d1b451b",
+      "bytes": 5083,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/final--inference-rental-attempt1--meta-relay-attempt-20261103T021838890612Z-74dc5730--transport-ready.json",
+      "sha256": "7f621bba74903754b149159957449c352a3db4aa9779e415d42c295e8b42cabb",
+      "bytes": 2606,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/final--inference-runner-ready-attestation.json",
+      "sha256": "1cb904cba8894330505ae4ea700ee8901d8c7d7dabee00f93633c6de87bcc432",
+      "bytes": 831,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/final--inference-transport-attempt1--guardian-process.json",
+      "sha256": "288be8615da9a28fbe4430d184563a0878b901896a42283676248d01254c7ff4",
+      "bytes": 291,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/final--inference-transport-attempt1--relay-pointer.json",
+      "sha256": "4e3b963499649c7b253d87a9304d2bc302a7530d8d6404974e0d461776774d81",
+      "bytes": 1031,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/inference-transport-attempt1--api-transport-channel-proof.json",
+      "sha256": "af78f89377e6524a335ff4e7b844f47c9075ca6e5d78e61ada92795e2ccbe962",
+      "bytes": 1013,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/inference-transport-attempt1--api-transport-receipt.json",
+      "sha256": "7f621bba74903754b149159957449c352a3db4aa9779e415d42c295e8b42cabb",
+      "bytes": 2606,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/inference-transport-attempt1--api-transport.json",
+      "sha256": "fb76885a8fc5fdb2ab498dd129f641c5cfbfd3cf5e3426496a673b64c9df03a2",
+      "bytes": 114,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/inference-transport-attempt1--result.json",
+      "sha256": "dce5e05cf80f85022879f85bddf696ac27e158bfcecf7ee2bba271fbcb5774a7",
+      "bytes": 1088,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/prepare-next-attempt1--model-catalog-dispatch.json",
+      "sha256": "c15d63dfc222d8c10138290fc76476798cbc3163aca77ca236f263bac6ee4021",
+      "bytes": 244,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/servedoctor-hard15-ops-20261102--inference_meta_tunnel.py",
+      "sha256": "499b6ccacef24ec6df41d6600429f8bc9b92eccf621adf3a0972321d8889bdc6",
+      "bytes": 8604,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/servedoctor-hard15-ops-20261102--inference_model_catalog_preflight.py",
+      "sha256": "71ecaf8100242d81e6a9195ce218ebb6d4dcf9fff1a7a47570ad9f4159a752f2",
+      "bytes": 1669,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/api-access/servedoctor-hard15-ops-20261102--model_catalog_preflight.py",
+      "sha256": "450d25101fe3729636ca11076420b4e183e5b5451d51800bcc6af9c0126d90ed",
+      "bytes": 1659,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/bootstrap-calibration-controller-attempt8--mirror--runs--sd-hard-bootstrap-attempt2--bootstrap.json",
+      "sha256": "6f706d43c618e11ae04fe707e1a6dedbb5205e6e483aa22c27261fe56a7d291b",
+      "bytes": 1905,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--final-evidence-additions-checklist.json",
+      "sha256": "1341153c97741f9305c20384b09872cb8475929085cc2ddba0fe2f6f81304450",
+      "bytes": 13236,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--finalize_inference_offline_rental.py",
+      "sha256": "4b46b8042871b4d86ba631e3e816c47a6087e4a516962f11cf69f5d823c59475",
+      "bytes": 22069,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--finalize_inference_offline_rental_v2.py",
+      "sha256": "309faa6208e0cc414d295e99a51ac12b8a4997a846fab4f590af314c803de223",
+      "bytes": 22155,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--finalize_inference_provenance.py",
+      "sha256": "cccff348b9a1d3c582c0cc4f079ee86d8c32e683c6764dc796b2046e853c342e",
+      "bytes": 12787,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--finalize_inference_recovered_rental.py",
+      "sha256": "b3f5c3cb32c2adca4e2e0c2baa2c09c99fbc563748c177a0f6abb8dc65b57c39",
+      "bytes": 5474,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--hard_vast-before-partial-policy.py",
+      "sha256": "9e5098aa02d76272b3cfba532bb6d5a2e217d6a321b4e7470ad973fe33e6b377",
+      "bytes": 65072,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inactive_partial_host_cleanup.py",
+      "sha256": "91fbfb00e1ebac6108f4da7d442598c3909f988c6911762f85b19e43adb48f8f",
+      "bytes": 17156,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference-README.offline-recovery-template.md",
+      "sha256": "ee551012dd18bced363d4698a9aaf9fbbbf400bc02d7fb75ae18b7cb65353bac",
+      "bytes": 9627,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference-README.offline-recovery-v2-template.md",
+      "sha256": "e9afd2126e8ce15fdd5487b7a13c604cc81a58559a480214d3bdfa27142dd774",
+      "bytes": 10125,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference-offline-finalization-runbook.json",
+      "sha256": "f7eb1f6fc39f0972c4d6b2997d925da874beb1eac26cf859fdc216a15a0b2974",
+      "bytes": 6195,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference-preparation-attempt1--outcome.json",
+      "sha256": "96c227ba1053632a97c62b441bdf0f65265aae7ed2c88ce5a84ac737f5d94ea0",
+      "bytes": 4562,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference-progress-attempt1--snapshot-0001.stdout",
+      "sha256": "01eac40e019c271d85eeb8e65505ef2d1ae5e50aff2abfb66f659b771cd96185",
+      "bytes": 227,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference_copy_recovery_gate.py",
+      "sha256": "1da8a1bdd10a6f96ecc36aa7de05b89dc1d5441a6bbb2301dee73e4c9ba5f128",
+      "bytes": 7005,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference_descriptor_adapter.py",
+      "sha256": "fdaf66af25327c4501c8e66b2fa56708600d4c4acc8b5585a32724d3b5f0ae91",
+      "bytes": 3030,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference_offline_recovery_gate.py",
+      "sha256": "625eeabd3035ac61f70b25409df1a227cd479138155d12a441af17f4ab28db2c",
+      "bytes": 7804,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--inference_progress.py",
+      "sha256": "7c1013ab6b4d5662692949baa0a355a05b08e2e2d6ad8925b199af3b781d5db8",
+      "bytes": 2028,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--local-preflight-before-rental-restart.json",
+      "sha256": "0505ebc56d420d4c21c171326ec140b63340239d003f697cbce15481b9acb98a",
+      "bytes": 2017,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--materialize_inference_offline.py",
+      "sha256": "7b28620f6e598f38e96d749cea9bc2b992ffd6194f425017fa9cff00e71d54f1",
+      "bytes": 12908,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--materialize_inference_offline_v2.py",
+      "sha256": "2031c610756d1dd59351fcbced1d06a79756a1631b0b6282ddd79165a1f3d602",
+      "bytes": 12998,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--package_inference_offline_results.py",
+      "sha256": "9edacefb99d466629671e51e8f264b747690500bcb0ad60a0ba6b395e76f9b4f",
+      "bytes": 54896,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--post-run-verification-checklist.md",
+      "sha256": "5738f25fd74e1dcd25cf6c379ba59a6d9744f0e638be97eebbdfe9ebf454a7db",
+      "bytes": 13538,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--sync_inference_ledger.py",
+      "sha256": "08bb5d9dd68376ba8fc601be57aa32c623db420918ea5fbde66b160f68a71e0e",
+      "bytes": 12174,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--sync_inference_offline_ledger.py",
+      "sha256": "f103d68ed31e5d9cf40526f9461a5e669a9ba065057ed3d7cddf4d439a9f17bc",
+      "bytes": 13282,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--sync_inference_offline_ledger_v2.py",
+      "sha256": "51f2c2e0df20d9738e5dbc7133c6b823f91781425fbb49a8e02b6fe2de7740df",
+      "bytes": 13282,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/final--sync_inference_recovered_ledger.py",
+      "sha256": "ee9faa1022fc452fd9ac5f1636ed2fd899bc97f7cb09173315edc51e91a969b2",
+      "bytes": 2470,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/hard15--final-provenance-checklist.json",
+      "sha256": "519c15401f8f31d4637c045b0ff9da087b05f1df066f3ed3f90823da585f2145",
+      "bytes": 4611,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/hard15--finalize_partial_rental.py",
+      "sha256": "c5a58f5f79cc36552c8553febf126f2e025bba3a832a2c00509260f68949e3fd",
+      "bytes": 32097,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/hard15--local-preflight-before-rental-restart-v2.json",
+      "sha256": "d474281b505268a9d7f158a331a168b527212f5261beaaec855b6ee3ff375c89",
+      "bytes": 3803,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/hard15--package_partial_results.py",
+      "sha256": "a183e08da6dbf174e2a8f632afb84b5285939ea0357bfedc6cb59f12b9a617b0",
+      "bytes": 47939,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/hard15--partial-resume-pipeline-queue-attempt2.json",
+      "sha256": "def1cb24841d32359d8350904b9383764c47336e060174da06b5fc15a1478630",
+      "bytes": 6647,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/hard15--render_partial_readme.py",
+      "sha256": "c60740d0761bf672294f14df62a3dcd44aab44ab216203ce4b911ff0d87bcaeb",
+      "bytes": 12521,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/inference--inference-README.template.md",
+      "sha256": "68df6f64d812cb2035715622e67e5dfcb52530e2e0c1b62e4558eb03476e7552",
+      "bytes": 7806,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/inference-doc-progress-validation14of15.json",
+      "sha256": "5029c4e6587e6fc51e9205dea6ffd227ab6dab228aacdaae347625a007e9a64f",
+      "bytes": 1825,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard-ops-20261102--hard_partial_resume_pipeline.py",
+      "sha256": "d4cc636d4ff018da4b8e07834bbf765c56a0777049d755ab7da3a5013185fda6",
+      "bytes": 24039,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard-ops-20261102--partial_analysis_ssh_window.py",
+      "sha256": "0ea1154f84c92f313c7914e68fb43d0aaa622a1b905b86e299d3dc4d45e5046f",
+      "bytes": 19178,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard-ops-20261102--rearm_partial_remote_guard.py",
+      "sha256": "a8f223cf7f0f8afb5aeeeb47c74b27395b115fb40e600ce6950e8ffaedb8f6c2",
+      "bytes": 34279,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard-ops-20261102--remote_guard_partial.py",
+      "sha256": "95fd839de039206460055da889a574a4a9846b85e5dde9c482d251d44eec40eb",
+      "bytes": 20000,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference-launch-readiness-v2.json",
+      "sha256": "2bd7364f6a1129e962c662b36c04548b55ec16edc162805f38d45f683ec46f28",
+      "bytes": 5204,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference-launch-readiness.json",
+      "sha256": "15a1ce1957baf8bc483b917c3a5a0096a50a3a1b2dec0ca20e93f1a42e981166",
+      "bytes": 4832,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_cold_bootstrap.py",
+      "sha256": "7e4d2ed48f6d80987de867de645be2fe74e1792feb4fd8339d39da44280b92cb",
+      "bytes": 5354,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_pipeline.py",
+      "sha256": "63280c0256f3c18f432378e20ef924b88b325a932e45e019ca6aab6af2819ad4",
+      "bytes": 18745,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_prepare_stage.py",
+      "sha256": "2c4b7e1424b4ede5570523a6690c9bb460a3b1a2ef51d001ac3562a060bb6eb1",
+      "bytes": 14639,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_remote.py",
+      "sha256": "e7e88a24b285edf8071c39331ddb016e418aaa6396d09f9c0c5aad1a41117ea5",
+      "bytes": 4002,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_remote_guard.py",
+      "sha256": "efd4cb8ab23b342cff78e18107dbf30a11674b6d716d6856b91474b0fe5ae76e",
+      "bytes": 19950,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_startup_window.py",
+      "sha256": "f211650bbb9b1c0824d905dbc295ccfb0028b8af276081bb7f29da94889f2d76",
+      "bytes": 23534,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/environment/servedoctor-hard15-ops-20261102--inference_vast.py",
+      "sha256": "0a6c1f45d6dddd5f9273d21aeb6323e482dde84dd85a209c63dc201508ef239b",
+      "bytes": 23167,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/failures/servedoctor-hard-ops-20261102--blocked-hard-report-20261102.md",
+      "sha256": "373fb2ab5c409bf8f42281acfeb0dddeef93df5d588db06cdea27e9b67012a7e",
+      "bytes": 3862,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--actual-additions-selection-receipt.json",
+      "sha256": "ef3d6a62b62bff28de06619916def9498bcde3fc429881e57ace036867fca6ae",
+      "bytes": 1304,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-evaluation-attempt1--final-ledger.stdout",
+      "sha256": "cd4e7a8920f46212ab14958667e5f589d2ad04a201edac3df77212b5c73d8bbf",
+      "bytes": 221,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-evaluation-attempt1--mirror-manifest.json",
+      "sha256": "807e92fc4d019e5ec52f0cc1491a75717671eccf8f49f02d35b43ea00d3aff8c",
+      "bytes": 30768,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-evaluation-attempt1--outcome.json",
+      "sha256": "c41ada9e338f4a0ca4a9365c811b12ca356c9c6a1598f6a7700b652cade48d88",
+      "bytes": 1302,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--backup-manifest.json",
+      "sha256": "343acec6fa86155bb67c705fe66bb3f05213e451b80b19cf0b7845a4d2930e9d",
+      "bytes": 148329,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--backup-receipt.json",
+      "sha256": "21dab147b93c3b72f41f05843aeec89140f1d551d78f43627702c626c12c4cf8",
+      "bytes": 3975,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--cleanup.json",
+      "sha256": "15ea4621bc71d30370816ed7a254dbc51015377b0c77b9a417e2e9547d1b451b",
+      "bytes": 5083,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--delete-dispatch.json",
+      "sha256": "2832f16d7df7e984e7a53db971a53d8afa909e8b2f017ccfa2363296e9963124",
+      "bytes": 597,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--delete-reconciliation.json",
+      "sha256": "7799ada44968b2f291b85b7c57ef70cf7b34867a6ebcb447ddea38ec926f8d06",
+      "bytes": 125,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--final-state.json",
+      "sha256": "207e7227843ce8b3f7c12978274d6b0af806af56844acebb2fd6bc86789cd43a",
+      "bytes": 2148,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--gpu-hours-before-delete.md",
+      "sha256": "ed85d084bdaf9b1835ff55cff2a757b160b28c658e349f5d35e4c43dcf5490a6",
+      "bytes": 4636,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--readiness.json",
+      "sha256": "88a46312c08f29c53016ffc3868561d990517d990b2ce8ecff8d3372feecf698",
+      "bytes": 103124,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-final-cleanup-attempt1--stopped-state.json",
+      "sha256": "2bf78a61211c4c78485a51a7bbdfc98b8a80ad09f9a00da4645a47cf7b9fbea7",
+      "bytes": 2107,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-ledger-sync-attempt1--intent.json",
+      "sha256": "b9623e546b3723108abd01c2c84bd6d84095de4ab359ce137dc0961f4b96a077",
+      "bytes": 2995,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-ledger-sync-attempt1--outcome.json",
+      "sha256": "c75791facf165c22f7102fa728a3e94abd1a7e1b03936cd14f82b7f76160932a",
+      "bytes": 3280,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-offline-materialization-attempt2--intent.json",
+      "sha256": "a8317e9c77b4609fff6e097025799a0f6cd8b1e1ac56aed6490bb3d038bd7fd3",
+      "bytes": 212641,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-offline-materialization-attempt2--receipt.json",
+      "sha256": "8ae16d76ae4c7ff9829282f93d31fcdd6f9140e3f59b7965d07ceaa84fa1f97a",
+      "bytes": 386935,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--attach-result.json",
+      "sha256": "8372fc71f75094690c222d9959508690c3eecaf7185b1a5e35ffc4282458324c",
+      "bytes": 551,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--create-owner.json",
+      "sha256": "776239a1532cd05d311bfa50efb20d8cc5f67136091fbc45e3862c9e08584b59",
+      "bytes": 145,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--create-result.json",
+      "sha256": "9008ccd83c82bd10cc37185397d0012da7f74a05307265464ca904eb6df7cb63",
+      "bytes": 439,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--guide-ready.json",
+      "sha256": "0c483aac55badf16452e87f671d7abdc36e4fc973967b20a46975e771cb4ecbf",
+      "bytes": 507,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--guide-reviewed.json",
+      "sha256": "4832afd02b7ca7ae3b5fef437e89aacf08ae99e85b2796b535df31dbe67ba7b9",
+      "bytes": 291,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0001-create-outcome.json",
+      "sha256": "9008ccd83c82bd10cc37185397d0012da7f74a05307265464ca904eb6df7cb63",
+      "bytes": 439,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0001-create-reconciled.json",
+      "sha256": "2bf501d45b3a027d56370c70d21f21f91a3314e494e49c03fd030cb39e9da106",
+      "bytes": 652,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0001-create.json",
+      "sha256": "7226ddabd299a01922598856fa0087dd0245bbf71bf69f41b39597560c78d0c6",
+      "bytes": 369,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0003-attach-outcome.json",
+      "sha256": "8372fc71f75094690c222d9959508690c3eecaf7185b1a5e35ffc4282458324c",
+      "bytes": 551,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0003-attach.json",
+      "sha256": "b548983a092c7127e802a916d4ce11ed63bef57ee312fda3fbaab665be184523",
+      "bytes": 455,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0006-stop-outcome.json",
+      "sha256": "0497cf93461e7892d28f6b6444c3119fe2a24a3355894ed8499b13c9ecb25149",
+      "bytes": 488,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0006-stop-reconciled.json",
+      "sha256": "0e70a2be32457d883669d87099e302697c4585c4e205e504a22e0919867d382f",
+      "bytes": 542,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0006-stop.json",
+      "sha256": "65b6ff7a222d59fbbdf596ece605d2c60dd5b53035f68271c0b1ba76aa506bf3",
+      "bytes": 446,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0009-delete-outcome.json",
+      "sha256": "44ca326637b5f99cbf02494a1ae2c8340907fb3827868058f9900167de06ff88",
+      "bytes": 461,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--intent-0009-delete.json",
+      "sha256": "b759bb35824b30d491bd9ef389c040966897b99fa98fdda8322872e5b1cd2bb0",
+      "bytes": 419,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--transport-cleanup.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--transport-cleanup.stdout",
+      "sha256": "5894005ddd4481cd6c88818dded557cab1bfd1fcda1d0f260fd1b36fed3bbaa6",
+      "bytes": 221,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-rental-attempt1--watchdog-process.json",
+      "sha256": "428f960150249a065111382b1a933c1261ee9774a407227c53410d19241c2051",
+      "bytes": 125,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--inference-transport-attempt1--stop-1793677675018019000.json",
+      "sha256": "8c3463e7dd18c7972512aef3411d634090dc82e86e792be884bfe3e27a93880e",
+      "bytes": 311,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-finalizer-v2-verify.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-finalizer-v2-verify.stdout",
+      "sha256": "ff49631c53c2965d42eb76bb20d20ec8aaa44073d2afbf062afb6f30d818b09d",
+      "bytes": 99133,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-inference-recovery-coverage.json",
+      "sha256": "d96433c46a48507beb9ee8c17fcfa5a4301de65d93f2a5d00cc760d0a0e03420",
+      "bytes": 1127234,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-ledger-sync-v2-verify.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-ledger-sync-v2-verify.stdout",
+      "sha256": "6b383cd3f35644b286c3e6a7812f8560f895b86360d90c58f9bfc83d60841dc4",
+      "bytes": 2592,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-ledger-sync-v2.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/final--offline-ledger-sync-v2.stdout",
+      "sha256": "32ecb2a8928a6f09b4e036584771fe357543acda7a1ecb1485ffa16f63d64f33",
+      "bytes": 3076,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/optional-live-skipped-budget-attempt1.json",
+      "sha256": "f3188b357b142f290a08bd3dacfdbf0026a8a52d75fd743c411c3ea01237aa1b",
+      "bytes": 938,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/reviewed243-allowlist-draft.json",
+      "sha256": "4b74c1b135c49e4d4ba174e4fc947419e3136d32dbbe39dbcdb0581c60ec0f7c",
+      "bytes": 100416,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/finalization/reviewed29-failure-index-draft.json",
+      "sha256": "c1bb7bd8006a36fcde4e326406d09f0b51e81959dc8853bc1ec7c3c0758be488",
+      "bytes": 56865,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/finalize_inference_rental.py",
+      "sha256": "fcbb55ca1b58a810ac87f9991cf5961b5f139f633ecaa10736696495ba5a553c",
+      "bytes": 20187,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/inference_descriptor_adapter.py",
+      "sha256": "fdaf66af25327c4501c8e66b2fa56708600d4c4acc8b5585a32724d3b5f0ae91",
+      "bytes": 3030,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/inference_offline_recovery_gate.py",
+      "sha256": "625eeabd3035ac61f70b25409df1a227cd479138155d12a441af17f4ab28db2c",
+      "bytes": 7804,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/library/recording-hard_vast.py",
+      "sha256": "38e82c37863d2847cae7ff9e6f46978ba0e68b75a4be52e7a82adbbd69b824a5",
+      "bytes": 65462,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/package_inference_offline_results.py",
+      "sha256": "9edacefb99d466629671e51e8f264b747690500bcb0ad60a0ba6b395e76f9b4f",
+      "bytes": 54896,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/package_inference_results.py",
+      "sha256": "c98b3fc35f111ce4b852d04dfd362687e5b37aa230c7a2165438f1ef8b8386fc",
+      "bytes": 52054,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/helpers/render_inference_readme.py",
+      "sha256": "e3f888e3d5b1a7d3360ea046abf8880f707af298dfc07c12207f1511ae4988bf",
+      "bytes": 8342,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--inference-offer-discovery-attempt1-outcome.json",
+      "sha256": "63263344da7b54dc2d087d0781dc7b956afed789c16867ad2d9ef83035724369",
+      "bytes": 951,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--inference-offer-discovery-attempt1.json",
+      "sha256": "a6807af54f76b4f2ba68e9167e3884ff29531ffd7fab5110e0e940e6743540f4",
+      "bytes": 7330,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--inference-offer-discovery-attempt2.json",
+      "sha256": "721d009e993cab40491ed442ee4143ee17ecbe2412a4c667c88ea89a272c8bd4",
+      "bytes": 6796,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--inference-offer-selection-attempt2.json",
+      "sha256": "890092c40df756b158731e20431e07aba54554678e19a5ff3a966f3d630b3371",
+      "bytes": 825,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--inference-pipeline-queue-attempt1.json",
+      "sha256": "758755c465125c61313600f5f8803814f0f293c7a4e1cd937c50c9103849b601",
+      "bytes": 5498,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--replacement-evaluation-machine135236-detail-attempt2.json",
+      "sha256": "4a5d5924cd6c1593d919cbe6cc5ccbadcf4f765d4e5398668c44d3ab3fd75e9d",
+      "bytes": 4343,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--replacement-evaluation-offer54078995-detail-attempt1.json",
+      "sha256": "7b4d57b910b7c9f7040076b5c139d52fbdf316ec2e21a5ed739c9e7cc5774d6e",
+      "bytes": 384,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/final--replacement-evaluation-offers-attempt1.json",
+      "sha256": "9be603ad799f00404cbded075cb9089472813a398e1479739cd3ade38365dfc8",
+      "bytes": 9353,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/host1-archive-complete.json",
+      "sha256": "2f13273fa8571a34c0a038bcefe2633f21552a0d8cbd5bfd0154d843b46b30d0",
+      "bytes": 3954,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/host2-archive-complete.json",
+      "sha256": "0cb78d45a44cb9a8a586f512b05ed63ab41ce94f106921e6a50170266e61c910",
+      "bytes": 2204,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/host3-archive-complete.json",
+      "sha256": "cd4c8a4fbfb14aac44c18d6161a3990fd2f3ef6747522ad7b286602737dfe647",
+      "bytes": 3531,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/host4-archive-complete.json",
+      "sha256": "ca5bf911199dee0b77fe5523f620a3f81eb734fa590c08f9f16481419b0b732d",
+      "bytes": 3920,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/prior-hard-hosts-2.json",
+      "sha256": "4316435b5518c6f883fab4d0fa2f9c94d6464755ef1d32200e08f7acf88d3dac",
+      "bytes": 982,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/prior-hard-hosts-3.json",
+      "sha256": "c1d3900117e4cff6445827a646539315e364258ad436d96c47c3da8e884240e1",
+      "bytes": 1302,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/prior-hard-hosts-4.json",
+      "sha256": "e1ceee7ae844dec2783f4a102c130e1c5eb03ad8d7a1c086066a9af1d2c63d87",
+      "bytes": 1620,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/prior-hard-hosts.json",
+      "sha256": "48f74f32cd07d12b9f5a34f06dbbb0ad98c52de9f4fca9f4f1c98dd77f272b7f",
+      "bytes": 419,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/rental-history--host1-58843932--billing-receipt.json",
+      "sha256": "e77d30f3e736967c0aa2a43b5123e4234acf5718ce2c95ad2f5874551841c52d",
+      "bytes": 1213,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/rental-history--host2-58848277--billing-receipt.json",
+      "sha256": "59f41544e793cc19f39b6d410a266c5c7167c0e7a02a1019665b1edae25bb092",
+      "bytes": 1346,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/rental-history--host3-58851643--billing-receipt.json",
+      "sha256": "657745db426aab46a48dfd183552ccef11e5f7287817a1ef3aeef867f401ce79",
+      "bytes": 1212,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/rental-history/rental-history--host4-58858374--billing-receipt.json",
+      "sha256": "491204dcf6015a9eb96f8701ccc8f9f3285afea414502d938e93ccae9927187d",
+      "bytes": 1562,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--inactive-host-cleanup-fixtures.json",
+      "sha256": "c52e609e9a46af64055b8c5dbfb56d89f758f7f379dcf7bc94f27b054ccf4335",
+      "bytes": 1586,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--inference-offline-finalization-fixtures.json",
+      "sha256": "4efde22271aa1bde87bd9927c8420eb00f5c070386bd9302b162c0a302a2686d",
+      "bytes": 4514,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--inference-offline-finalization-v2-fixtures.json",
+      "sha256": "4dc8db646a20c904edcaa722e1b4f212ff9caa04a485ace97511e8cd9632b47d",
+      "bytes": 4264,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--inference-provenance-finalizer-fixtures-v2.json",
+      "sha256": "61f27de4ba9bed94c0af908616f3ec37605ec3909f8f7fd830431c1133894ba0",
+      "bytes": 1463,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--inference-provenance-finalizer-fixtures-v3.json",
+      "sha256": "4a9cf5a5c23476d19df3fce17a8b2c05b7e72c18e14a5713d25e9192b3d9b49e",
+      "bytes": 1318,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--inference-provenance-finalizer-fixtures.json",
+      "sha256": "4d7f98d24ab4bb66d81b91f1e9f8a746764377e6c8001fd51b5aa3fc3bfd95fb",
+      "bytes": 3301,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--offline-materializer-fixtures.json",
+      "sha256": "2f5b755a004315f16e82972b84687078689e71bd4a3c2dc3f23656b8c62f8090",
+      "bytes": 1001,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--offline-materializer-v2-fixtures.json",
+      "sha256": "c4d669a01f1aca5e23e0b54617b44f569f27d78de39eec464b91a73b236a125a",
+      "bytes": 2170,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--package-inference-offline-results-fixtures.json",
+      "sha256": "883b845e189b8d012019dfa2476664350f50319bf246601655f5cda1011f5fa1",
+      "bytes": 2463,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--public-suite-before-publication.stderr",
+      "sha256": "b3fbff51d6eb0c75e0c45be9f12bdb4537f7601f49e076995f273ed60c459aed",
+      "bytes": 112,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--public-suite-before-publication.stdout",
+      "sha256": "1167c594d30dbbac51fe3c97183a1fc0b3874e5f3aa681540efe51951947d2e8",
+      "bytes": 1245,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--sync-inference-ledger-fixtures.json",
+      "sha256": "b0b1aef25e15aee8ce8dd5ef35c72a629ab41f8faea8f68cf35e71b56b1ecad7",
+      "bytes": 1925,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_finalize_inference_offline_rental.py",
+      "sha256": "1bb328e36392eabbcbc50261a251890473e505cd1a3f952098b46f610de3db5e",
+      "bytes": 2126,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_finalize_inference_offline_rental_v2.py",
+      "sha256": "0716890ee94e61ac33295c9dca40abf04be37cb094d8e0929cc7cb2cc7818375",
+      "bytes": 1265,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_finalize_inference_provenance.py",
+      "sha256": "a103748d91a178c3ab4376bfb484ccaa46cfc5537785809afc684de1f976e6e6",
+      "bytes": 9038,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_finalize_partial_rental.py",
+      "sha256": "75586c95d92c70b0997d02004a6adff5496cdd916b9e83094bf0678f676978d7",
+      "bytes": 22996,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inactive_partial_host_cleanup.py",
+      "sha256": "471182761daa93109b76bb9db772fa98ae81b0e93652867b88bcbba3b86dd8c0",
+      "bytes": 8287,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_descriptor_adapter.py",
+      "sha256": "5f3602b72e3049032b01e64559b14bb68da14cc57eac18d076128a01369a82bb",
+      "bytes": 3831,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_evaluation_stage.py",
+      "sha256": "5066943bbe0db7e6615ac4e5de257c5f174f6ff635a26d5430bcd323a57854cd",
+      "bytes": 13871,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_integrity.py",
+      "sha256": "fb493a167c3ba777a6852a5ffd47436481cc8f225ace62e8626635fb5591fbc2",
+      "bytes": 11446,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_key_runner.py",
+      "sha256": "3bdc1e542a2eed3b0c7d04ad733e58384afc1ad1a5b18e3c081fd85e41f2f0b3",
+      "bytes": 28796,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_meta_tunnel.py",
+      "sha256": "f24f3c4152acd911dafc91df32584fda49cf93d324c998a4b3078b27a780949a",
+      "bytes": 6429,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_offline_recovery_gate.py",
+      "sha256": "9acdf454ce4e97a4580656f422bac2a12132d05612d549faa9435b30e6d075ef",
+      "bytes": 6100,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_pipeline.py",
+      "sha256": "3f30ff153c9ec575a5a02a2bda91aaab358d44a2875509f7e50c42a272b4ca7a",
+      "bytes": 9069,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_remote.py",
+      "sha256": "613052d7791b6fb635b5c719eeca696a8451bf8cc6f66d1047cb18666578d12b",
+      "bytes": 3101,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_remote_guard.py",
+      "sha256": "e5e7a1d245769447b1b3f277442717b494ac0a1f6d921b072f4466391d8d8237",
+      "bytes": 6530,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_report_helpers.py",
+      "sha256": "5e56923d79e67d1caec3b66f5e2e88a6cc1cbe0a6595e8985933b96e6ca49ec3",
+      "bytes": 12227,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_setup.py",
+      "sha256": "681d5dc0b757224c8df368ef3c6a0d430b1a753af638a52a85b60683a3fff4e2",
+      "bytes": 6023,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_startup_window.py",
+      "sha256": "65e69923e4d4a6867365990c120d899d0cf67c016095a29488b29cbd0ff073e3",
+      "bytes": 14188,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_inference_vast.py",
+      "sha256": "2eef569550750f44496be3e5b957c1c59413d745e7aab16f29482eff582b033e",
+      "bytes": 9112,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_materialize_inference_offline.py",
+      "sha256": "b544704551a44b7728f2410bd433e65354dad952a60352b7ed4df7daea7ffab3",
+      "bytes": 7859,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_materialize_inference_offline_v2.py",
+      "sha256": "bd0d25fc9edca6ca92ea5e6ced049e2db1d85cd2141cace292dcb273f3bf82f1",
+      "bytes": 7952,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_package_inference_offline_results.py",
+      "sha256": "09ecb486e04d284520842fa676f4b14a6c80e72d87dc4eca07c1e0d4b509b9cd",
+      "bytes": 23402,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_package_partial_results.py",
+      "sha256": "933535956f2569b544d4826354cdea0fe4e68516f9713d89fa3fa70c0711d04d",
+      "bytes": 41682,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_sync_inference_ledger.py",
+      "sha256": "e8a7e856c72bb48291681b914e43cb5bf186312aaae17806ada1c37878d4f7d5",
+      "bytes": 10035,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_sync_inference_offline_ledger.py",
+      "sha256": "692ea63963c7834c2bc5b215ebf0a91e01a23532245adb766374f0240edbedb7",
+      "bytes": 2492,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/final--test_sync_inference_offline_ledger_v2.py",
+      "sha256": "cc174537b874f04c0abc19da839d1d66176b4b3c4139c760e45f1b91f8b2387b",
+      "bytes": 480,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/finalize-hard-rental-fixtures-20261102.json",
+      "sha256": "1c810903302e2a7d49e4b18dc7a934dcc04f5dc7156e2dc5a53ecd0e2e820603",
+      "bytes": 2366,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/finalize-inference-rental-fixtures.json",
+      "sha256": "3b1ed24b758ac029b7e614754b4af574ce52656045081193e691ff909a1b2923",
+      "bytes": 2990,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/frozen-host5-ssh-window-fixtures-20261102.json",
+      "sha256": "2e3ef706694f2b431ece81bb074eb397dfb706a9c3f36abc075219acaacdd448",
+      "bytes": 2283,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/hard-integrity-fixtures-v4.json",
+      "sha256": "7aee8cee2018a979c15dfb51eec535ba92bd62accbf9d51f738996d6708fdf5b",
+      "bytes": 750,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/hard-worker-and-report-fixtures-final-20261102.json",
+      "sha256": "ac3eed01d81e5b913032a379c560810a699a75c539cc1ae705ac73c168098c96",
+      "bytes": 1777,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/hard15--finalize-partial-rental-fixtures.json",
+      "sha256": "4f20a09bb02c067e29543ca18b8d01103864f87488be5606cc79b26118835ab6",
+      "bytes": 2495,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/hard15--package-partial-results-fixtures.json",
+      "sha256": "09be686efeebe2e3fb854cf44b82747eaf61288894523765cfd016cf2d7cebe2",
+      "bytes": 1598,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/hard15--partial-readme-fixtures.json",
+      "sha256": "8b6409eea5dc6a4b91f315a0855f8f107dafd15d5d60f0ee79079c4f860d56ca",
+      "bytes": 954,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/hard15--test_render_partial_readme.py",
+      "sha256": "317f4f5b91f5e0f7e51c16af7c4e4926c0f744c44e0ba4785d085aa71f5475e2",
+      "bytes": 3919,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/inference-readme-renderer-fixtures.json",
+      "sha256": "eb90e14f6ac21a728c589dd552a124a32fc25239af572588754380beb29a9fe3",
+      "bytes": 782,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/package-hard-results-fixtures-20261102.json",
+      "sha256": "8a6af1c4d9c63782a24e64a478df9c8c3a46450a17c0f260447e9d17948473d8",
+      "bytes": 2206,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/package-inference-results-fixtures.json",
+      "sha256": "19cd5157f8a5f14dd83566e9d3cc2fa27cf3e0c00cb4a4c1d1a858e56abcfef4",
+      "bytes": 1091,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/post-refined-calibration-attempt1--official-unittest-receipt.json",
+      "sha256": "9c7aa328d5329827d19f217240722c84a249246f4f66db974eb0bbab5e68764e",
+      "bytes": 143,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/rearm-frozen-remote-guard-fixtures-20261102.json",
+      "sha256": "6d0bee1f85bd428818615ebef05f0d5c0fce7cbf94d57db205e79ac105d1c901",
+      "bytes": 2234,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard-ops-20261102--hard-partial-resume-pipeline-fixtures.json",
+      "sha256": "42b5a2c5541427a44b0c43db3b0b94e5400fc535c9d314c2bb90e711ad9627c6",
+      "bytes": 722,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard-ops-20261102--test_partial_analysis_ssh_window.py",
+      "sha256": "dcc4f68fc7c66f3cd982b788724e266c58979517a2c7648fbe6e0911ba0fd00c",
+      "bytes": 8377,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard-ops-20261102--test_rearm_partial_remote_guard.py",
+      "sha256": "c59adb23e4a3816d12307542ee57f6dd336a40131a6ada8b69d4d1147032375e",
+      "bytes": 4473,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard-ops-20261102--test_remote_guard_partial.py",
+      "sha256": "f58793d0165e5dceda655045c989132a9bf3f237b233f53e85f154f41fdb7b8a",
+      "bytes": 3404,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--inference-control-fixtures.json",
+      "sha256": "6590e9d15f07da2c0606204be8fd7001ede597e049040032a88305a78737add2",
+      "bytes": 5589,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--inference-evaluation-stage-fixtures.json",
+      "sha256": "704ea2b0f40b18b1d606a9c91c8fc66dea4e566149d79f6e5e47b3cfad03e186",
+      "bytes": 2404,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--inference-portable-setup-fixtures.stderr",
+      "sha256": "8c43c379b7194c1f4a8a9370ce38f576cd5f1b0426cbb9493c9301c2d925e348",
+      "bytes": 98,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--inference-portable-setup-fixtures.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--key-runner-fixtures.stderr",
+      "sha256": "225874cf9629a99e4a9a234a22536f8e924d736afde74a61e09e81cf5d75edc7",
+      "bytes": 98,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--key-runner-fixtures.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--key_runner_stub_test.py",
+      "sha256": "c5f1952a1fa10abc7f166ea1f76027d5f00705ed1aabbfa944f89d79fdcba047",
+      "bytes": 23762,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--partial-integrity-fixtures.stderr",
+      "sha256": "f89768c374f9cd39fc3d6e536dd561d2c09b0b89eaeea4e7d7e62686bfebc2a4",
+      "bytes": 98,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--partial-integrity-fixtures.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--test_hard_partial_integrity.py",
+      "sha256": "c95d4d1d7e749484617bb598ece22c73c7d00ba84c57274e0437c74caa2ead8c",
+      "bytes": 10994,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--test_partial_evaluation_stage.py",
+      "sha256": "ff6e43815d5c4adb3a5d602981f8a0dbf67c800b4d2094a4f26989565e1be9f3",
+      "bytes": 12440,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/servedoctor-hard15-ops-20261102--test_partial_report_helpers.py",
+      "sha256": "8baf41ecb4a0e6b40808bf62f52112ffb93f9cc521baf1f96a2a969e99cee113",
+      "bytes": 11454,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/test_finalize_inference_rental.py",
+      "sha256": "0931d91c2a43791c67bbc6ea9e13139d6aac5d217878e8d3e9fb8ad3c9992f70",
+      "bytes": 19000,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/test_package_inference_results.py",
+      "sha256": "4adf89da9352ba2194e842f293a7c8b1863fbebd9507fb741f7b770027a647b0",
+      "bytes": 19525,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/test_render_inference_readme.py",
+      "sha256": "7674a5bfdec92253567af432d6480ac85fee2048256dac027a6adbb2bd0d8eb4",
+      "bytes": 3401,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/unittest-20261102T144954Z.json",
+      "sha256": "002b1374805b0c00506fa3448545463b72364cd62baae198c53176a7fceab429",
+      "bytes": 260,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/tests/unittest-after-host-kv-20261102.json",
+      "sha256": "ebe55f953db0fdbaf53aefc4d2045ded0d56bf8997a4ffc8a4007e36c885078e",
+      "bytes": 226,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "servedoctor-gpu-hours.md",
+      "sha256": "94bce6012494b12e5b6b574f8f9946425f0f947382859f02c2a7b360147f550e",
+      "bytes": 4637,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    }
+  ],
+  "full_historical_operator_package_claimed": false
+}

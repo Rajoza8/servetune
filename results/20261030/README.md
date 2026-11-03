@@ -2,7 +2,7 @@
 
 **Neither Spark-guided tuning nor random search found an accepted energy improvement over their shared FP8 starting configuration.** Both retained FP8 defaults. This is a completed experiment with a negative tuning result.
 
-The study is sealed and verified: **111 live trial observations**, including failures, with **zero synthetic observations**. All five phases—calibration, performance map, BF16/FP8 comparison, tuning, and fresh confirmation—are complete.
+The original study was sealed and verified: **111 live trial observations**, including failures, with **zero synthetic observations**. All five phases—calibration, performance map, BF16/FP8 comparison, tuning, and fresh confirmation—are complete. The current download is a **curated public snapshot** with internal setup material archived privately and a new publication manifest. Every retained scientific payload and all trial and preflight seals are unchanged.
 
 ## Fresh confirmation
 
@@ -26,7 +26,7 @@ Energy means **GPU energy measured through NVML**. These observations apply to o
 
 Both arms had the same starting configuration, finite search space, fixed workload, acceptance gates, and allocated time. Allocated time includes planning, engine startup, warmup, measurements, quality evaluation and failures. The admission rule stopped search before another complete candidate could fit while preserving final confirmation. Failed and rejected attempts remain in the evidence.
 
-The completed v4 measurement deliverable includes the three-load energy map, BF16/FP8 comparison, sealed raw records, and offline replay. Its completion does not mean that tuning produced energy savings or that Spark beat random search.
+The completed v4 measurement deliverable includes the three-load energy map, BF16/FP8 comparison, sealed trial records, and offline replay. Its completion does not mean that tuning produced energy savings or that Spark beat random search.
 
 ## Reports and replay
 
@@ -38,18 +38,35 @@ The completed v4 measurement deliverable includes the three-load energy map, BF1
 - [Three-minute demo video](report/demo/servetune-demo.mp4) and [narration](report/demo/narration.md)
 - [Provider API accounting summary](provider-ledger-summary.json)
 - [Archive hashes and per-member inventory](evidence/archive-manifest.json)
+- [Public curation receipt and exact exclusions](evidence/curation-receipt.json)
 
-Meta API accounting is **$0.059826** for one preflight call and eight tuning calls. Baseten accounting is **$0**. These are token-based estimates with no unresolved reservations; they are not provider invoices. GPU rental spending has a separate cumulative $60 authorization.
+Meta API accounting is **$0.059826** for one preflight call and eight tuning calls. Baseten accounting is **$0**. These are token-based estimates with no unresolved reservations; they are not provider invoices.
 
-The original evidence archive is split into three parts because its compressed size exceeds 90 MB. Reassemble the parts in the order listed in `evidence/archive-manifest.json`, verify the SHA256 below, and extract into an empty directory. From a ServeTune source checkout, replay with `python3 -m servetune study-replay /path/to/extracted/study`. Replay requires no GPU or API calls.
+From the repository root, verify the current download, its retained original payload hashes, and the native scores:
 
 ```sh
-cat evidence/sealed-evidence.tar.gz.part001 evidence/sealed-evidence.tar.gz.part002 evidence/sealed-evidence.tar.gz.part003 > sealed-evidence.tar.gz
-shasum -a 256 sealed-evidence.tar.gz
+python3 scripts/verify_public_evidence.py
 ```
 
-Archive SHA256: `1cc4cbfd6f0b128374a6968228a69e719ce37a62a3d0ef04d776d18594f634e8`.
+This uses temporary disk space of approximately 1.2 GB and requires no GPU, credentials or API calls. It verifies **111 live trials and 10 fresh confirmation observations**, with the same decisions, quality results and measured comparisons as the original full study.
+
+For a persistent local extraction, concatenate the three **public-evidence** parts in the order listed in `evidence/archive-manifest.json`, verify the SHA256 below, and extract into an empty directory. From this results directory:
+
+```sh
+cat evidence/public-evidence.tar.gz.part001 evidence/public-evidence.tar.gz.part002 evidence/public-evidence.tar.gz.part003 > public-evidence.tar.gz
+shasum -a 256 public-evidence.tar.gz
+```
+
+Current curated archive SHA256: `6092c154c99a6ff3a3768795165bdfef7e9d19af85e47e80ee79247eeae9511f`.
+
+After extraction, run `python3 -m servetune study-replay /path/to/extracted/study` from a ServeTune source checkout. This checks the new publication manifest and the unchanged trial seals. It does not verify the historical original root seal against the curated file set.
+
+Derived study manifest SHA256: `baa2517258aba5d120c231546c3760fe470dfb018979548b7ae05ecdd9f0fd5b`.
+
+Historical original archive SHA256: `1cc4cbfd6f0b128374a6968228a69e719ce37a62a3d0ef04d776d18594f634e8`.
 
 Original sealed study manifest SHA256: `f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29`.
 
-The archive retains the original sealed study bytes, allowlisted implementation source, licensed frozen public data, and a derived provider-accounting summary. Weight caches, SSH keys, credentials, and private operational sessions are excluded. The publication packaging bound was raised from 500 MB to 1.5 GB after the expanded study exceeded the original limit; scientific sources, original evidence and seals were not changed.
+The [original member inventory](evidence/original-archive-manifest.json) and [original study manifest](evidence/original-study-manifest.json) remain public as historical commitments outside the extracted study. The complete original package is retained in the private `servetune-internal` archive and in unchanged historical Git commits. Current-public cleanup does not erase those historical commits.
+
+The curated archive omits ten internal setup, build-note and recovery-helper files. It retains all trials, requests, energy readings, quality outcomes, search histories, frozen protocols, licensed public data, and sealed scientific source snapshots byte for byte. Only the outer `study/manifest.json` is replaced to describe this narrower publication. The curation receipt records every exclusion and its original hash, the new identities, and the successful original and derived native replay checks. This packaging work adds no measurements or model calls.

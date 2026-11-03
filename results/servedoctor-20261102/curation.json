@@ -1,0 +1,972 @@
+{
+  "schema_version": 1,
+  "artifact_scope": "curated_public_scientific_package",
+  "curated_at_utc": "2026-11-03T22:19:52.038728+00:00",
+  "previous_public_commit": "2fff127a95e6ba77ea25c9c50b44f14ae7cee000",
+  "original_package_manifest_sha256": "dcccd85a378d18d58b8d01954f12f70cb6f81de51dcc81780c76199fb40bbbe2",
+  "reason": "Internal development, host orchestration and operator notes archived separately.",
+  "historical_git_commits_rewritten": false,
+  "original_experimental_commitments_changed": false,
+  "retained_scientific_and_provenance_payloads_byte_identical": 1236,
+  "publication_metadata_refreshed": [
+    "README.md",
+    "package-manifest.json"
+  ],
+  "removed_operator_files": [
+    {
+      "path": "api-transport-receipt.json",
+      "sha256": "7b3724beceab24083393b460313a6e94a1d753b663eaa1c721f42505b3566539",
+      "bytes": 794,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "api-transport.json",
+      "sha256": "62276217beb26abb14e37dffc45c7be471efc6d3aac16441187ed244e55d4e16",
+      "bytes": 114,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "final-cleanup.json",
+      "sha256": "6ec4407c89141b271c3a69a905df621bbc9a9681d6585ae927d424c2f492acbe",
+      "bytes": 1756,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "lineage/diagnostic-ca-proof.json",
+      "sha256": "2ead9ad944fb2b980e880cc71f54da57793d066695a5a1494130405939b773e5",
+      "bytes": 1629,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "lineage/diagnostic-ca-repair-proof.json",
+      "sha256": "d41514c9b032a03630c2639122fa35f52dce643282fe2befdbd3505f7d35079c",
+      "bytes": 1577,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "lineage/model-diagnostic.json",
+      "sha256": "8024972f213192ea7cc2a465a08b6a267a53b8009f319a46b44aa02718501405",
+      "bytes": 1644,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "lineage/transport-channel-proof.json",
+      "sha256": "02f2edb7123734480102a83f0873a40509709fb3dc8bc74e4032a38c22b53ee4",
+      "bytes": 1013,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "lineage/transport-ready.json",
+      "sha256": "603fd6093b850de28f12ad59c61247d6469476a46b6be1b6586d5b3ed62fba51",
+      "bytes": 2499,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/allocation-policy.json",
+      "sha256": "b529a8e147f85c6d9a9fe93ba7f21768111bf77f6efb112ddd1dbbc797487e04",
+      "bytes": 478,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-prepared-d2632e4.json",
+      "sha256": "4beb64277a8f043c06c1243bb5a1fc554b4a28449cca5103cf08d8c41ff1746f",
+      "bytes": 2562,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-prepared-d2632e4.patch",
+      "sha256": "4aa065e3b22d7064bf591cb038764177f5ffeffcb0820cf19125987db832ec71",
+      "bytes": 27723,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-prepared-da5596d.json",
+      "sha256": "cde0c6925e366a242979b4ffaad3a72fb84d14d5549ffcafbf518ae461cb5d84",
+      "bytes": 2883,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-prepared-da5596d.patch",
+      "sha256": "1a7d5bb991d8cbdc5099562949256e45626ce56232f26db4eda880d50a6476c4",
+      "bytes": 34234,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-superseded-d2632e4.json",
+      "sha256": "f00c7d80d37d84020a45bc83d60936191669b806d8180700fdbb9246fae44480",
+      "bytes": 1042,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-unittest-20261102T043449254785Z.json",
+      "sha256": "e0b04a5f4ae95fb0bca0dfffada7d3cfb0e8ce554621f2d21745a2b82b00b169",
+      "bytes": 566,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-unittest-20261102T043449254785Z.stdout",
+      "sha256": "c3f7cabb9aeba3abbe2901a3ffc119bab8c9c9ba545c3f55dffd167346a2f406",
+      "bytes": 112,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-unittest-20261102T051300601880Z.json",
+      "sha256": "cc35ab3490c3762427f445efe90f6536c153c015e5063a865af6d8bbe7802961",
+      "bytes": 566,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/collector-fix-unittest-20261102T051300601880Z.stdout",
+      "sha256": "136213dd1894309cbf161b5b5a54a1033dc267814b44a470cea5d4a76a569d7a",
+      "bytes": 112,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/destroy-instance-58690026.json",
+      "sha256": "4b987c7f49d9c29a4eb71aaf8114763518b1c2f63cd970705ac69febceec15c5",
+      "bytes": 493,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/dispatch.json",
+      "sha256": "3e29dbeb432b3ee96979f7b25db46dfd09d65de64381862ebdac8a81e176899f",
+      "bytes": 3967,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/exit.json",
+      "sha256": "e9e451a3c1e8eeefb34918b0dd0211242452ca2efee521fe4ecf6d3fc388f116",
+      "bytes": 376,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/launch.json",
+      "sha256": "01ab82da8c25ad2bb0ddd8a95cdfcad26a1f9f8a930d30ef5a542569cd0a1d98",
+      "bytes": 277,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/record.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/record.stdout",
+      "sha256": "8fa72b1667088b064fc9e43f6ff9839105b1bf12e3baa29ec7b4ce0a8c0cd39c",
+      "bytes": 1385,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/worker.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch1-continuation-attempt1/worker.stdout",
+      "sha256": "e9e451a3c1e8eeefb34918b0dd0211242452ca2efee521fe4ecf6d3fc388f116",
+      "bytes": 376,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/dispatch.json",
+      "sha256": "75e79f917361eed6b88aa263874e0d1940cb9dd6b2a7f8105db4884c2c77344f",
+      "bytes": 1053,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/exit.json",
+      "sha256": "0e12a67ed0833bb6c6a3d50d5de04a09c818ffb3f96022d4c36a64764d675ce4",
+      "bytes": 371,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/launch.json",
+      "sha256": "c7511e8c16d43e92dc1bb4fa3fa73682055fee8faf1030aee8f977cfdbd8a237",
+      "bytes": 272,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/record.stderr",
+      "sha256": "58104662f7b234fb0352ce5a5e03638113622f421c67d81d8974019634fdafd2",
+      "bytes": 1236,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/record.stdout",
+      "sha256": "91cff55faffc1bfd85ecd66d1e5285b264f6ec9436ba797c1bc9292128df4772",
+      "bytes": 1709,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/worker.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/durable-test-recordings/test-batch2-durable-attempt1/worker.stdout",
+      "sha256": "0e12a67ed0833bb6c6a3d50d5de04a09c818ffb3f96022d4c36a64764d675ce4",
+      "bytes": 371,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-audit-adoption.json",
+      "sha256": "7f7ee0a0b58cb7b2377253af0419929bbdf0b8fb845367cac376c09df9a73931",
+      "bytes": 1053,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-audit-attempt1-premature-mirror/quality.json",
+      "sha256": "fb0730cc4108e8fd0c91cfe8189f3bf0c21b16195e45ab9d326ab9c925590b80",
+      "bytes": 25063,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-audit-attempt1-premature-mirror/receipt.json",
+      "sha256": "8a32f2bb14c642482535fdcfa4da78c2328d9364e6425ca64dbebcecbd2cf117",
+      "bytes": 1017,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-audit-attempt2-after-mirror/quality.json",
+      "sha256": "caffe278fd89e542e7a9e80583ef4d83fa9e446dc54dc413cd227a4941ebcfe0",
+      "bytes": 43113,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-backup-20261102-gpu-hours.md",
+      "sha256": "169b745156d1a71895d776324a26dc505911f10440f74fae61184843d1e9bcf3",
+      "bytes": 3019,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-backup-20261102-manifest.json",
+      "sha256": "a0bfeaae95abd2e605c3f510e1420ae3fb8e3ceaf948bcba82cb7e4a343e2705",
+      "bytes": 197080,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-backup-20261102.json",
+      "sha256": "1ad1f617b0992cecd0b39cfbbf07d2d2b3e5a182b5c44e450da045c269f5b21e",
+      "bytes": 2002,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-mirror-archive-attempt2/extraction-failure.json",
+      "sha256": "6c7026eae643f3c03dc8b0d9072d3fc45688cc73521180e94f0628a1fa773c54",
+      "bytes": 583,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-mirror-archive-attempt2/receipt.json",
+      "sha256": "091b15b0b1fc71f80512a714198d77eccb0d5bb28f124200cd80b7c7bab87074",
+      "bytes": 1871,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-mirror-extraction-attempt3/receipt.json",
+      "sha256": "091b15b0b1fc71f80512a714198d77eccb0d5bb28f124200cd80b7c7bab87074",
+      "bytes": 1871,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-mirror-scp-attempt1-failure.json",
+      "sha256": "08f1a736ac720d555549dc535bc386039c758b3e6b7042874cc84945326a9bcb",
+      "bytes": 855,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-mirror-verification.json",
+      "sha256": "091b15b0b1fc71f80512a714198d77eccb0d5bb28f124200cd80b7c7bab87074",
+      "bytes": 1871,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-remote-guard-evidence/cleanup-proof.json",
+      "sha256": "894c7f744d7ea67c8b182771fca390f1ccac343089b0fc454d81cd31a40cfc86",
+      "bytes": 807,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-remote-guard-evidence/guard.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-remote-guard-evidence/process.json",
+      "sha256": "690ebc053a663c273579b3ef120d5acdfbfca66bc717964add8e04f94eb258ac",
+      "bytes": 120,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-remote-guard-evidence/state.json",
+      "sha256": "90b5934caa174fcd5564f0e84f7d7543d14791e4f4fcf17beacdb6af9e54ade3",
+      "bytes": 620,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-remote-snapshot-after.json",
+      "sha256": "7a121d40edde32b1eb0e8afd939d2ab8c21bfb05e7396faa98c1f6003b444ab8",
+      "bytes": 87916,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-remote-snapshot-before.json",
+      "sha256": "fc36f2831bd44d60ac9ac2b60bd17ad13e692553af6ac1c6592f41ada8e28e20",
+      "bytes": 87916,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-report-generation.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-report-generation.stdout",
+      "sha256": "f0185edb42652ace33a036b3ad2b4b5c6d1b3d1d6e57b07b5f4960de790372e1",
+      "bytes": 34,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-study-mirror.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/final-study-mirror.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/finalization-awake-hold.json",
+      "sha256": "c0297d5383f2d69df1f0c5a4df13edd2fe0ce3a2ceabac77dbe7eb19d80fe0de",
+      "bytes": 433,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/finalization-process-cleanup.json",
+      "sha256": "2a265a3ffff8b3833a0d48b931484c4a3df8a4214b4a4a5e8e5e1bf565bfb945",
+      "bytes": 2677,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/freeze-count-bookkeeping-correction.json",
+      "sha256": "0d8846b18fadf97b662a83630021e4d3c06d153df0dabb4d660e63098681d579",
+      "bytes": 480,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-attempt1-journal/006-all25-quality-verified.json",
+      "sha256": "78ef6d0a97d65550e9840ed640c28342ed015e8eccb0c1e1904a1c05ce09b2b8",
+      "bytes": 88,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-execution-20261102T045754276790Z/adopt-once.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-execution-20261102T045754276790Z/adopt-once.stdout",
+      "sha256": "23fd3c901f5f36398d11a6531cb80840eaf6d02769331706d03aa9a32a82ed1c",
+      "bytes": 363,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-execution-20261102T045754276790Z/outcome.json",
+      "sha256": "b2d14c552be050e29b1020120f0d7dd6b6b62d7bc7edaa74af2c1ac170ed1d31",
+      "bytes": 182,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-execution-20261102T045754276790Z/upload.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-execution-20261102T045754276790Z/upload.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-adoption-mirror-20261102T050001271537Z/outcome.json",
+      "sha256": "676260500f3af19bca66f907ae4c10fc8757a0f41ce38e2ec41c95a6fe65301b",
+      "bytes": 624,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-emfile-evidence.json",
+      "sha256": "78e916afe410148816c4ef435ca8aa5e3a986d5e80906047a029bfce0b985dd4",
+      "bytes": 2866,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/adoption-plan.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/adoption-plan.stdout",
+      "sha256": "70aff185309bf462b2aa19d87cef2a9867b58d4753d66edc4718cc3236610332",
+      "bytes": 30905,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/ledger-mirror.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/ledger-mirror.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/outcome.json",
+      "sha256": "6590f0f908286d0b10856418da8af9e08230ed3f20e615b55a7c2bac4825b2bb",
+      "bytes": 32885,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/primary-mirror.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/primary-mirror.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/scratch-mirror.stderr",
+      "sha256": "777392f295aa88fd7bdad22f8f083fe2bc377be97871026ff68f71c807484ebb",
+      "bytes": 321,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/inc23-fd-repair-attempt1-controller/scratch-mirror.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-escalation-20261102t062614054348z/01-inc-02-live.stdout",
+      "sha256": "c7b6592b88719e7ae518161b2b484f81f14280393250080a395f0c31e7ce14d2",
+      "bytes": 2637,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-escalation-20261102t062614054348z/02-inc-04-live.stdout",
+      "sha256": "229192ff04ce2c08d49c656b7f0e6fb5c29ee7aea2273bdd96cf6708b51a1d03",
+      "bytes": 2674,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-escalation-20261102t062614054348z/03-inc-05-live.stdout",
+      "sha256": "cb92454bd389255a36933b87131f9ede84011aaffdaf0c844ed16128dba70b0d",
+      "bytes": 2494,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-escalation-20261102t062614054348z/04-inc-06-live.stdout",
+      "sha256": "80fe81edfd4bbdab43d3e2a5937150e8b98e8350e21919a3b04385fcf96142cb",
+      "bytes": 2579,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-escalation-20261102t062614054348z/05-inc-09-live.stdout",
+      "sha256": "942e5c21149b4c0a13523c39278307eb15b702c0803898b68e3033c7b4d56da5",
+      "bytes": 2551,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-escalation-20261102t062614054348z/06-inc-15-live.stdout",
+      "sha256": "7058147eded299b1a6d303887b3f899234f027b38efda028f44c98e2a020c4d3",
+      "bytes": 2838,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-rules-20261102t074141861536z/01-inc-02-live.stdout",
+      "sha256": "9cd9f150ed00d0d0a044940ae0d9fbd8939e7fea273d0ccf3324760eb59f2655",
+      "bytes": 1251,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-rules-20261102t074141861536z/02-inc-04-live.stdout",
+      "sha256": "98c51551172c14954f5be1b8f231a51fb2ccaa2704490784091c48cf3172764c",
+      "bytes": 1214,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-rules-20261102t074141861536z/03-inc-05-live.stdout",
+      "sha256": "257c0210378c754f5af499a638825dbac524e71431a8d7b5a434c7eb473e566d",
+      "bytes": 982,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-rules-20261102t074141861536z/04-inc-06-live.stdout",
+      "sha256": "d639b41404a8e6f39cae62e72b5bb6b448db34abaa389f274c7cf39055fb922c",
+      "bytes": 1118,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-rules-20261102t074141861536z/05-inc-09-live.stdout",
+      "sha256": "ca9d7ef902c5575a1e2e2323405ee2ee99cc9ecd7b65e46f892dccabe4e78467",
+      "bytes": 1016,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-collector-logs/sd-study-r2-api2-live-rules-20261102t074141861536z/06-inc-15-live.stdout",
+      "sha256": "9cb9db087335c493384b229e7101ef4bfad03d6c3e56bbf897dcd6d5b34f70b7",
+      "bytes": 1194,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-escalation-checkpoint-report.json",
+      "sha256": "e9bd63e761ece029c5a3eb71faf94d3913e7817c09f90178c1db9c8435628246",
+      "bytes": 7170,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-escalation-local-mirror.json",
+      "sha256": "dc45cfcca9b8660876710d6d24193f3e44d8f8c79324f19c91d40cbff4fda37c",
+      "bytes": 6779,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-recording-quality-helper-validation-20261102.json",
+      "sha256": "be11e16455e1a73e77071ca2ce3adbb4eb44533897629fd75e0081413734c5b7",
+      "bytes": 1477,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-recording-quality-helper-validation-20261102.stdout",
+      "sha256": "74624a92f8437ee9297f6226813b8aafc26383f80ad887ac69293b662796bef6",
+      "bytes": 98,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live-window-reporting-plan.json",
+      "sha256": "68d027631715fc7862bc8e2299c8ebfd50d0515ce62bf8536b96cae6a1749fee",
+      "bytes": 4963,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/live_recording_completeness_stub_test.py",
+      "sha256": "a13afe46069f4f3aa0c899709f164c08d050729ae2f2a4ccb649a0775a61d4df",
+      "bytes": 9115,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/local-python311-ca-repair-20261102T013233326987Z.json",
+      "sha256": "d41514c9b032a03630c2639122fa35f52dce643282fe2befdbd3505f7d35079c",
+      "bytes": 1577,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/local-tls-probe-20261102T013024356543Z.json",
+      "sha256": "2ead9ad944fb2b980e880cc71f54da57793d066695a5a1494130405939b773e5",
+      "bytes": 1629,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-docs-reverified-20261101T2234Z.json",
+      "sha256": "5cee5625c919161c34b9f2e4d7008fc4e08dcc23c11183df49e0c15821b522ff",
+      "bytes": 705,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-docs-reverified-20261101T234652Z.json",
+      "sha256": "521484ff30cb8daf7d025d5ce68e70183f3c44cf6172eb328bfbca11ec0d923b",
+      "bytes": 529,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-docs-reverified-20261102T0150Z.json",
+      "sha256": "b905135ec914b153b69d57577f134417c2c0a3157f2e349a3b05493e70827d2e",
+      "bytes": 534,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-docs-reverified-before-test-20261102.json",
+      "sha256": "d90bd29d8c148bec1831bb9a2740ddb528e3a29dcea514ec9124795afe069212",
+      "bytes": 1073,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-docs-reverified-before-test-cascade-wonder-20261102.json",
+      "sha256": "8fded45c3e2ba4f42447e4a6c87f6d3c25af74782b58ff1b2031096c78005e4e",
+      "bytes": 454,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-relay-attempt-20261102T014945176514Z-a5a06970/cleanup-20261102T091039380620Z.json",
+      "sha256": "ad4682a5223c64af6c7f71d7bfd4ca18e60baabf20bef79c253a4444c9f3c147",
+      "bytes": 312,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-relay-attempt-20261102T014945176514Z-a5a06970/relay-exit.json",
+      "sha256": "f1ddcc74155ef99290034f20e3db475f7552ba213ffe6dd465c285e9a2233256",
+      "bytes": 152,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-relay-attempt-20261102T014945176514Z-a5a06970/relay-ready.json",
+      "sha256": "957f5c7912be56b24e1e17703256f75cc87980f258c1bd3cdb89a266a04540ba",
+      "bytes": 315,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/meta-relay-attempt-20261102T014945176514Z-a5a06970/remote-listener.json",
+      "sha256": "3f72f5cc51b29a4e3c165a793acf67fd932407714057e8c5fa4077149818c7d5",
+      "bytes": 153,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/model-catalog-availability-transition-20261102.json",
+      "sha256": "04efddf25a64499499a6c0dbae61c5038df2d35d86349d27f722bbb206779e6c",
+      "bytes": 1805,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/model-diagnostic-20261101-restart1.json",
+      "sha256": "7ed8e77e4f6b3b9bdeae1933599d3d99effb147da493948397b1b7a25d87956f",
+      "bytes": 1438,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/model-diagnostic-20261102-after-ca-repair.json",
+      "sha256": "c6555b01092c4521c9e93587c608eb19a2de4f4fa6629ce5863e5f3bebd8336a",
+      "bytes": 1617,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/model-diagnostic-20261102-transport-head.json",
+      "sha256": "8024972f213192ea7cc2a465a08b6a267a53b8009f319a46b44aa02718501405",
+      "bytes": 1644,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/model-diagnostic-before-test-20261102.json",
+      "sha256": "6f312e17dc5917c7c011c31a6bc773ebcbb9161925fb7b6f8de546df62d654e8",
+      "bytes": 1617,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-hardware-retirement-note.json",
+      "sha256": "793a527263a926781982320747b4260eccd448be92c820ec0ed51d71d3ad71e0",
+      "bytes": 1207,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-rental-migration-20261101T212204721524Z/backup-verification.json",
+      "sha256": "d8220e327122dbd0e14a53ede281c1cc18984386d8bebda3d100e9c73de39c81",
+      "bytes": 397,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-rental-migration-20261101T212204721524Z/canonical-ledger-snapshot.json",
+      "sha256": "7b62e721e8e275099e56b19c5d66d46a3ef1246e4e39589743bc36d5a3051204",
+      "bytes": 59925,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-rental-migration-20261101T212204721524Z/controller-attestation.json",
+      "sha256": "e1e4aaa0cd665b8ce1a59387683cfb64810cb9b3753bb7dfc0199b1eb6036bb7",
+      "bytes": 725,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-rental-migration-20261101T212204721524Z/migration-backup-receipt.json",
+      "sha256": "788d752ce3898bfb4b07df6f990bb83798ccdde442cef38c47058a3f1e825e3d",
+      "bytes": 6240,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-rental-migration-20261101T212204721524Z/migration-evidence-manifest.json",
+      "sha256": "4888e72cc5b4a32905c63699a72b953bc709693167b0b89a8037ce0f4de02fc2",
+      "bytes": 68860,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/original-rental-migration-20261101T212204721524Z/original-gpu-hours-snapshot.md",
+      "sha256": "a104b6a5498ff6306f715fdb8ee0789ee8c58bcb8c1b7eb599ba4d68b930738e",
+      "bytes": 2162,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/package-notes.json",
+      "sha256": "aa6c6fe2a0d77eb63ed7a1dfe22424ab1658b8b48250ecabc1bf7532fd95177c",
+      "bytes": 83463,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/r2-api2-inc23-fd-repair-attempt1-exit.json",
+      "sha256": "4452079330ad2ab424ea67d09797d72a39ddfb160dd5cf8b302998075b505100",
+      "bytes": 341,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/r2-api2-inc23-fd-repair-attempt1.log",
+      "sha256": "fe7c909f1dc9ea2985c511d2b7f8d19f8bc8a8af6b9b2e35d8c530067e57b3a8",
+      "bytes": 35368,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/r2-api2-test-batch1-attempt1-exit.json",
+      "sha256": "f7ae609f8b51dfef854b94f6fb9fa245abf8338c1c17490ca5f1c421f918a449",
+      "bytes": 524,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/r2-api2-test-batch1-attempt1.log",
+      "sha256": "8ecb3ae8d8164e35f314560ba9290583d52148dbfde457354227c0c23b71827d",
+      "bytes": 2478,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-attempts/replacement-create-attempt1/replacement-create.json",
+      "sha256": "f1e59d0962bcaa36e8e5cac0e128b244b7442684dd14a5866f799e95ebbefa0c",
+      "bytes": 682,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-attempts/replacement-create-attempt2/replacement-create.json",
+      "sha256": "ccbc8afbae71d0b4fc90a2a70ce492fe40b01a96421b6c189230fe5ac604c570",
+      "bytes": 879,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-calibration-attempt5-exit.json",
+      "sha256": "cafa1eddff729cb80de85597bd258ffd1a03127abbaa199f7aaa093f28243a3d",
+      "bytes": 373,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-calibration-attempt6-exit.json",
+      "sha256": "55f46914ef683d5db58f2646394e32507b80c3041751df94935e0f887a1058e4",
+      "bytes": 373,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-calibration-attempt7-exit.json",
+      "sha256": "24aa9a1714426a171d941e6d61d227c13e2830af550feb0118439d0cd64f46d6",
+      "bytes": 459,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-control-attempt5/arm-remote-guard.stderr",
+      "sha256": "56c649b7c36d7043a5a8c1aeaa65d8d61ea7d7bda8c07553de2aa03faa7796d4",
+      "bytes": 1637,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-control-attempt5/outcome.json",
+      "sha256": "0eb4923b973193c01e81642404b299d06416e7a20f23c88eeac4c7e8c81c7b15",
+      "bytes": 378,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-control-attempt6/arm-remote-guard.stdout",
+      "sha256": "9f83b63833e92f77eee95a6a17333be21a4172825827fb9fea05e72b99879088",
+      "bytes": 75,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-control-attempt6/outcome.json",
+      "sha256": "f441fe0a493f2a303ab26db0d8c42434342987e665576db0dbb2267382c2a69e",
+      "bytes": 465,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-control-attempt7/ledger-verify.stdout",
+      "sha256": "b1a401ef7c54160bfbd70b4c188b5a171cd598db9dca57b8d566dc04fcf1897a",
+      "bytes": 67,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-bootstrap-control-attempt7/previous-guard-outcome.stdout",
+      "sha256": "6ac7c2576040f3c8d1e4ebc3283c520752705636127b20d869427121126c1361",
+      "bytes": 174,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-create-budget-plan-attempt3.json",
+      "sha256": "181a23f61997829c67e2b5bc5cc54f182d5f7e899dcfe98d8bc3175be26f8d81",
+      "bytes": 990,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-create.json",
+      "sha256": "b476b029f3d41822d1b14f604a621add6965e9736a672676a5791c6166fa3162",
+      "bytes": 813,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-host-location-provider-receipt.json",
+      "sha256": "8070a2aaa44340af4a3b3760790d0422002248c2c9d586888f34c4e1e8ea09b8",
+      "bytes": 639,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-provenance-summary.json",
+      "sha256": "8b34c14aade52f49900548ac46dbca98496de547b80080ff169798f0a3369b96",
+      "bytes": 25657,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-runtime-probe.stdout",
+      "sha256": "3ec5e817fdbb72e8fa6a189f4edc814a4896a0134fab69404f557436abf87c0d",
+      "bytes": 248,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/replacement-user-choice.json",
+      "sha256": "45c7528afdeafeaeaf9c26a5116f04aabecfce2a0863f6f705bbc20a9fd971ea",
+      "bytes": 408,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/sd-study-r2-api2-live-escalation-20261102t062614054348z/final-ledger-summary.json",
+      "sha256": "f16be2b8eda234b354971537a31f45730c7aaf4d699dc01a7202e1bb5f7db8bc",
+      "bytes": 164,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/sd-study-r2-api2-live-escalation-20261102t062614054348z/summary.json",
+      "sha256": "9501bd189188de09276f623871365f604dee2af6327eee5d5534a26bfa5e6232",
+      "bytes": 18464,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/test-batch1-controller-interruption.json",
+      "sha256": "f3a110e5391e8ba015fd063ab6f74ac6c8cc2b533356cc8516ac4e8604f95918",
+      "bytes": 1334,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/test-batch1-process-observation-correction.json",
+      "sha256": "2e9a7c7d6b0c00902a33c35ba56fd2ef3ea88404f2486885c7fa935962c1963c",
+      "bytes": 1111,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/test-batch1-recorder-exit.json",
+      "sha256": "64c48c983b19b06ae812b17fce27ecb84b512549700675e72aaa4b0d871661f2",
+      "bytes": 1472,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/test-recording-batches-r2-receipt.json",
+      "sha256": "2f49d064924b0a702ddd4bdeeb9a7914af67534017c866ad830b8be56a743745",
+      "bytes": 827,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/test-recording-batches-r2-transfer-receipt.json",
+      "sha256": "2d2b93c04d1f6d140150dcb93cbbd5a00fedbdc2c67082e1b7632cb02d86edcd",
+      "bytes": 351,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/unittest-20261101T2244-failure.json",
+      "sha256": "e21c650268ef4cee172d0a6e11a3f7be7bd41cae9e74f281b6f8e87bff117170",
+      "bytes": 663,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/unittest-20261101T2252.stdout",
+      "sha256": "33e650f1cb3af329ccbcde7d2a452dfa30a2477dadf97b63d6f21fea82300a55",
+      "bytes": 112,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/unittest-20261102T0146.stdout",
+      "sha256": "3b10d62db18eb208d14310641803e5cb01734c6ac2055e8d0ba17dc093317739",
+      "bytes": 112,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "provenance/operations/wonder-host-availability-evidence.json",
+      "sha256": "4300bb8ea23505fdb9788bd2e5d64c118e040c387bc4fd32109e594f0cf58a02",
+      "bytes": 2089,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "servedoctor-gpu-hours.md",
+      "sha256": "baf129ad0a06ea19ca7c921aafd42eb2fb0fa17a2201b4320dde054ac94263f8",
+      "bytes": 3019,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-1-continuation-dispatch.json",
+      "sha256": "51f1be07a304774335f8eab8161c9df3b8ebcf99595c3f8554545ee5c6e37553",
+      "bytes": 269,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-1-dispatch.json",
+      "sha256": "3b14f73c717bef200707f84ebf364094fb9e6ad64fd5363a2818a086ab74cfc1",
+      "bytes": 747,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-1-outcome.json",
+      "sha256": "95d606b9bb6078a30b299c0b642603562dea626b36ea8499690b0877a96b26da",
+      "bytes": 1302,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-1-reconciled-completion.json",
+      "sha256": "e5959abe9ed7b55cdcb19d52207243f2c15a16ae6b7e75b39053368d8f1ec016",
+      "bytes": 6528,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-2-dispatch.json",
+      "sha256": "c7321991419230f8aad52235287509734ce28c87a7053ac1db356bb7e741a305",
+      "bytes": 2165,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-2-durable-dispatch.json",
+      "sha256": "fb97887b153935ec5a7550e9d99cc7a941af47670429700a46ea4cd5813b2c37",
+      "bytes": 264,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/batch-2-outcome.json",
+      "sha256": "7d9cf230fe35c294e9c0d74d19e3bdb831b3ed9cf18f6950834bca785f76c69e",
+      "bytes": 2246,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/inc-23-fd-repair-adoption-writeahead.json",
+      "sha256": "f06a46590e707d640b4cff9bb868fd1d801fd71853ee7a5d6c3b85885bda7eaf",
+      "bytes": 3971,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    },
+    {
+      "path": "test-recording-batch-receipts/inc-23-fd-repair-adoption.json",
+      "sha256": "45d70fa12b32bf35e24df402b42a7891b6e7e993fe44af8e5d0e85a086f0be85",
+      "bytes": 11161,
+      "action": "removed_from_current_public_tree; original_preserved_in_private_repository"
+    }
+  ],
+  "full_historical_operator_package_claimed": false
+}

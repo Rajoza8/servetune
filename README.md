@@ -17,8 +17,8 @@ Built during the Meta AI Developer Hackathon (Push the Frontier), October 29 –
 | | Result |
 | --- | --- |
 | **Hard set, correct diagnoses** (12 faulty incidents) | Glimmer alone (local, free) **11**, Muse Spark **11**, Muse Wonder 10, Glimmer→Wonder 9, Glimmer→Spark 8, threshold rules 7 |
-| **Hard set, harmful actions** | **0** for every AI agent; threshold rules **5**, each one stopping a harmless GPU job (all 5 decoy cases) |
-| **Two-cause incidents fully fixed** | **0 of 4** for every agent: each fixed only the loudest cause |
+| **Hard set, harmful actions** | **0** for every AI agent; threshold rules **5**, each one stopping a harmless GPU job (5 of 6 cases with decoys) |
+| **Two-cause incidents, safe complete fix proposed** | **0 of 4** for every agent |
 | **v0 test set** (13 faults, 3 healthy) | Glimmer, Spark and Wonder 13/13; rules, Glimmer→Spark and Glimmer→Wonder 11/13; no harmful actions |
 | **Live repairs on the GPU** | The agent (Glimmer→Spark) recovered **5 of 6** injected faults in 84–203 s from fault start; its one failed fix was rolled back automatically. The rules baseline also recovered 5 of 6, failing a different incident. |
 | **Cost** | Hard set: Spark $0.54, Wonder $1.64, Glimmer→Spark $0.08, Glimmer $0. |
@@ -100,7 +100,7 @@ python3 -m servedoctor report --study-dir runs/sd-hard-sim
 ```
 
 Recording new incidents needs an NVIDIA GPU, a Glimmer-capable vLLM and the pinned model revision; see
-[docs/SERVEDOCTOR_GPU_BRIEF.md](docs/SERVEDOCTOR_GPU_BRIEF.md).
+[docs/RUNNING_ON_GPU.md](docs/RUNNING_ON_GPU.md).
 
 ## Limits
 

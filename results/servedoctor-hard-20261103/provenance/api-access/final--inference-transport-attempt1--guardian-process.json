@@ -1,6 +1,0 @@
-{
-  "pid": 61674,
-  "pgid": 61674,
-  "start_identity": "Mon Nov  2 21:18:42 2026",
-  "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 /Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_meta_tunnel.py guardian"
-}

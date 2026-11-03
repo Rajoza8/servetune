@@ -1,9 +1,0 @@
-{
-  "returncode": 0,
-  "stop_confirmed": false,
-  "outer_deadline_utc": "2026-11-02T05:39:44.272108+00:00",
-  "work_deadline_utc": "2026-11-02T05:36:44.272108+00:00",
-  "rental_kept_running": true,
-  "allocation_policy": "explicit keep allocated; remaining-work budget and noon guards",
-  "finished_at": "2026-11-02T04:55:04.754477+00:00"
-}

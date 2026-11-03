@@ -1,8 +1,0 @@
-{
-  "command": "python3 -m unittest discover -s tests -q",
-  "returncode": 0,
-  "tests_run": 319,
-  "skipped": 1,
-  "duration_s": 54.738,
-  "config_sha256": "72b461527ac451409fdc282d2a12a18c32676c150332341221374940b23766eb"
-}

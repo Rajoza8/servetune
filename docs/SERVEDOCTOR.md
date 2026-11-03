@@ -110,7 +110,7 @@ python3 -m servedoctor evaluate --study-dir runs/sd-sim --arms rules
 python3 -m servedoctor report --study-dir runs/sd-sim
 ```
 
-The GPU procedure is in [SERVEDOCTOR_GPU_BRIEF.md](SERVEDOCTOR_GPU_BRIEF.md).
+The GPU procedure is in [RUNNING_ON_GPU.md](RUNNING_ON_GPU.md).
 
 ## Prior work and the claim
 

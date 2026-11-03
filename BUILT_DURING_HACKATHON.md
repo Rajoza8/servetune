@@ -1,89 +1,51 @@
 # Build record
 
-October 29, 2026, America/New_York: started the standalone ServeTune preflight
-harness from the user-approved v4 brief. Work includes frozen public-data
-preparation, streamed workload accounting, GPU/runtime probes, owned vLLM
-lifecycle, NVML energy capture, noise gating, source-hashed evidence and offline
-replay, cumulative API budgets, quality scoring, and allocated arm clocks.
+Dates use America/New_York. The result packages retain the exact source
+revisions, frozen inputs, measurements and limitations for each study.
 
-The preflight snapshot records the exact source used for each run. Tests use
-offline fixtures. Simulated metrics are explicitly labeled and cannot satisfy
-live GPU gates. No energy saving has been established.
+**October 29, 2026:** implemented ServeTune's public-data preparation, pinned
+vLLM lifecycle, streamed workload accounting, NVML energy measurement, quality
+scoring, source-hashed artifacts and offline replay. Live preflight established
+a frozen 138/150 BF16 development reference. After preserving the initial port
+check and measurement-noise failures, three fresh 480-second traces passed:
+GPU J/token CV 0.6034% and p95 latency CV 2.2965%. Online FP8 serving also passed
+its startup and completion checks.
 
-At this first milestone the energy-map and controlled agent-vs-random
-experiments were not yet implemented. Public repository publication and deployment have not
-occurred. No commit was fabricated or dated retroactively;
-actual commit history can be added when this work is committed for release.
+**October 30, 2026:** completed the v4 study controller, finite tuning space,
+separate random/Spark histories and allocated clocks, quality gates, final
+confirmation, dashboard, CSV/SVG reports and demo renderer. The GPU study
+completed 111 verified live trials. Neither search arm found an accepted energy
+improvement over its shared FP8 starting configuration. Five fresh confirmation
+repeats per precision measured 0.471% less GPU energy per output token and
+49.54% lower p95 latency for FP8 than BF16, within the declared quality tolerance.
+See [the v4 results](results/20261030/README.md).
 
-October 29, 2026, America/New_York: verified the pinned Muse Glimmer wrapper
-on a rented RTX PRO 6000 Blackwell. The first live attempt recorded one complete
-trace and a 138/150 bf16 dev baseline (zero failed or truncated requests). It
-stopped before repeat two because the port precheck rejected TCP TIME_WAIT;
-a real-socket regression reproduced that harness defect and a narrow reuse
-check fix was implemented. The initial failed attempt remains sealed. The
-reference score stays frozen; full measurement gates are pending verification.
+**October 31–November 1, 2026:** implemented ServeDoctor and ServeIncidents:
+seeded serving faults with sealed answers, an adjustable gateway, one-second
+telemetry, observations without look-ahead, model and threshold-rule arms,
+cost accounting, scoring, reports and a live verify-or-rollback loop. Added
+Muse Wonder alongside Spark. Offline tests use a fake vLLM server and explicitly
+label synthetic rehearsal data.
 
-October 29, 2026, America/New_York: completed live preflight after preserving the
-initial port-guard failure and the 120-second noise failure. Three fresh
-480-second arrival-window traces passed: GPU J/token CV 0.6034%, p95 latency
-CV 2.2965%. The original 138/150 quality reference was imported without new
-quality calls. Online FP8 serving smoke selected CUTLASS FP8 and FlashAttention 2,
-reported 32.41 GiB model loading memory, and returned ready. No FP8 energy or
-quality benefit is claimed. Offline replay verified the final seal.
+**November 1–2, 2026:** recorded and evaluated ServeIncidents v0: a healthy
+reference, 8 development incidents, 16 test incidents, six evaluation arms and
+12 live repair runs. Rules and Glimmer→Spark each recovered in 5 of 6 live runs;
+gateway shedding and the distinct recovery criteria are reported separately.
+Development calibration, integration fixes and failed attempts are documented
+in [the v0 results](results/servedoctor-20261102/README.md).
 
-October 30, 2026 12:07 AM EDT: implemented the v4 study controller, finite search schema,
-history-isolated Spark planner, complete-workload trial runner, equal allocated
-arm budgets, numerical quality gates and final confirmation guard. Added a
-standalone offline dashboard, CSV/SVG reports, and three-minute video renderer.
-A complete synthetic rehearsal produced 237 verified fixture trials and zero
-live headline results. Synthetic output does not establish the conditional floor.
-The rented GPU was stopped with user approval; a later resume was unavailable
-and its queued request was cancelled. Full measurement results are pending a
-confirmed GPU allocation. The approved cumulative rental limit is $60 with up
-to 35 additional GPU hours; Meta $15 and Baseten $5 remain unchanged.
+**November 2–3, 2026:** built and recorded ServeIncidents-Hard with config noise,
+decoy GPU jobs, four compound faults and a predeclared symptom check. The
+recording host was calibrated before generation. Of 16 frozen incidents,
+`hard-16` could not start because a generated batch setting left insufficient
+KV-cache memory; its exclusion preceded validation and scoring. All six arms
+were evaluated on the 15 completed incidents, of which 14 passed symptom
+validation. No model agent proposed a harmful action, rules stopped a harmless
+job in 5 of 6 cases containing decoys, and no arm proposed a safe complete fix
+for any compound incident. See [the Hard results](results/servedoctor-hard-20261103/README.md).
 
-October 31, 2026, America/New_York: started ServeDoctor, a separate package
-(`servedoctor/`) built on ServeTune's engine lifecycle, NVML and workload code.
-Implemented the ServeIncidents fault catalog and seeded scenario generator with
-sealed answer keys, an open-loop load generator behind a live-adjustable
-gateway, once-per-second Prometheus/NVML/client telemetry recording, fault
-injectors (traffic surge, long-prompt flood, KV-cache starvation, low batch
-limit, small context limit, GPU contention, underutilization, healthy
-controls), an observation builder with no look-ahead, four evaluation arms
-(threshold rules, Glimmer, Spark, Glimmer→Spark), a separate API ledger
-(Meta $50, Baseten $20), scoring, an HTML report, a closed-loop live mode with
-verify-or-rollback, and a synthetic rehearsal mode. Tests run offline against a
-fake vLLM server. No GPU recording or ServeIncidents result exists yet.
-
-November 2, 2026, America/New_York: added ServeIncidents-Hard after the v0 test
-split saturated (three model arms fixed 13/13). New `servedoctor/hard.py`
-generator and `configs/servedoctor-hard.json`: 16 incidents with harmless
-engine-knob noise on every deploy, decoy GPU jobs under shared ordinary names,
-four compound two-cause incidents, near-threshold severities chosen from v0
-telemetry only, and red-herring alerts and changes. Added compound judging
-(`complete_fix`), a decoy-stop metric, a predeclared symptom check
-(`servedoctor validate`), multi-job recording and live execution, CLI commands
-and tests. Prompts, rules, models and v0 scoring are unchanged; all 144 v0
-decisions re-score identically. No Hard-set recording or result exists yet.
-
-November 1–2, 2026, America/New_York: recorded and evaluated ServeIncidents v0
-on rented RTX PRO 6000 Blackwell GPUs: capacity calibration, KV-fault
-calibration on development incidents, a healthy reference, 8 development and 16
-test incidents, all six evaluation arms, and 12 live repair runs (Glimmer→Spark
-and threshold rules on six frozen test incidents). Integration fixes made during
-the run are listed with reasons in `results/servedoctor-20261102/README.md`. The
-original host became unavailable and the study was rerun on a replacement host.
-
-November 2–3, 2026, America/New_York: recorded ServeIncidents-Hard on a new host
-(capacity 6 requests/s, KV values recalibrated before generation). `hard-16`
-could not start (generator defect: a benign 12,288-token batch setting left no
-KV-cache memory at the KV-fault setting); with explicit approval, it was
-excluded before validation or scoring, and the original frozen 16-incident
-attempt was preserved. Validated the 15 remaining incidents (14 valid), ran all
-six arms, and published `results/servedoctor-hard-20261103/`.
-
-November 3, 2026, America/New_York: packaged the submission: a README for
-ServeDoctor (the earlier ServeTune README moved to `SERVETUNE.md`), the static
-results and live-repair replay page `docs/index.html` with its builder
-`scripts/build_site.py`, updated docs, and third-party notices. No study,
-decision, answer key or score changed.
+**November 3, 2026:** packaged the ServeDoctor submission with a results README,
+the static results and live-repair replay page, its reproducible builder and
+third-party notices. The earlier ServeTune documentation remains in
+[SERVETUNE.md](SERVETUNE.md). Public documentation and packaging changes do not
+change the frozen decisions, answer keys or scores.

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "artifact_scope": "curated_public_snapshot",
+  "curated_at_utc": "2026-11-03T22:13:48Z",
+  "reason": "Internal development notes and host-execution controllers were moved to the private servetune-internal archive. Current public history is preserved.",
+  "original_archive_sha256": "1cc4cbfd6f0b128374a6968228a69e719ce37a62a3d0ef04d776d18594f634e8",
+  "original_archive_inventory_sha256": "dc5a462778168c912439ffd94a99f8fddb60b824cfd7c1e453b877e38a86e67c",
+  "original_study_manifest_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+  "derived_archive_sha256": "6092c154c99a6ff3a3768795165bdfef7e9d19af85e47e80ee79247eeae9511f",
+  "derived_study_manifest_sha256": "baa2517258aba5d120c231546c3760fe470dfb018979548b7ae05ecdd9f0fd5b",
+  "original_members": 1710,
+  "derived_members": 1700,
+  "unchanged_original_members": 1699,
+  "removed_original_members": {
+    "source/BUILD_BRIEF_V4.txt": {
+      "bytes": 17862,
+      "sha256": "bf754d360d75fb2a0f0a6edadf6d0bb648fc75a9a48604e560b1c0139d3bbecb",
+      "reason": "Internal implementation brief."
+    },
+    "source/BUILT_DURING_HACKATHON.md": {
+      "bytes": 2780,
+      "sha256": "6d39443f6764bc26ec27758c023392daaa5fd6fe2c90bf2542ef373b856cc41f",
+      "reason": "Historical build narrative; public product and methods documentation is retained."
+    },
+    "source/servetune/recovery.py": {
+      "bytes": 15029,
+      "sha256": "838c9d8b6f2b31055e7f8bad285f253966417c62eec208f12e605f66baced64e",
+      "reason": "Internal interrupted-preflight recovery helper; the sealed measurement source snapshots remain unchanged."
+    },
+    "source/tests/test_recovery.py": {
+      "bytes": 9788,
+      "sha256": "36ad05e1c01d5af5315cb1d2ccc0cd164e98e03ad35c3be5324241c81c4dc9e1",
+      "reason": "Tests of the internal recovery helper."
+    },
+    "study/setup/environment.json": {
+      "bytes": 1652,
+      "sha256": "c7653c3bab83ea1e37ccb155ebf2da194c730b809e7088c63877114006859cd2",
+      "reason": "Internal host setup, rental/deadline control or execution controller."
+    },
+    "study/setup/full_v4_pipeline.py": {
+      "bytes": 5958,
+      "sha256": "c03375a89e1309ecd6438198f33957d78bfbeda4257f23bb639ea65466b63b82",
+      "reason": "Internal host setup, rental/deadline control or execution controller."
+    },
+    "study/setup/full_v4_study_controller.py": {
+      "bytes": 4497,
+      "sha256": "7933871a03c977869672c152830358a87a317dfc20d9b6d7a7ae6310a9fe98ad",
+      "reason": "Internal host setup, rental/deadline control or execution controller."
+    },
+    "study/setup/model-cache-manifest.json": {
+      "bytes": 2333,
+      "sha256": "2794dee9439af8b58c457c9a682e399cd5805e6bcb0553793659de5ab151425a",
+      "reason": "Internal host setup, rental/deadline control or execution controller."
+    },
+    "study/setup/remote_study_guard.py": {
+      "bytes": 17444,
+      "sha256": "81073e1caa8898eed1f5c50b606b4aa3a03d3f80b37f55f37a41206ae5a4e3ba",
+      "reason": "Internal host setup, rental/deadline control or execution controller."
+    },
+    "study/setup/resource-deadline.json": {
+      "bytes": 1034,
+      "sha256": "41d9596e64802e79908c0a3c6d09c3c66f2bad48a0534947f9b10502fb6523e0",
+      "reason": "Internal host setup, rental/deadline control or execution controller."
+    }
+  },
+  "changed_original_members": {
+    "study/manifest.json": {
+      "original_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+      "derived_sha256": "baa2517258aba5d120c231546c3760fe470dfb018979548b7ae05ecdd9f0fd5b",
+      "reason": "Publication manifest for the explicitly curated file set; not an experimental record."
+    }
+  },
+  "original_full_study_verified_before_curation": true,
+  "original_root_seal_applies_to_derived_package": false,
+  "all_retained_payload_hashes_match_original_inventory": true,
+  "all_trial_seals_and_preflight_seal_unchanged": true,
+  "native_scientific_replay_identical": true,
+  "scientific_comparison_sha256": "16670579abf3fe241b4a295e4cd2c8ea84d4cce82cb1b8255c105895eb761731",
+  "comparison_fields": [
+    "status",
+    "rows",
+    "headline_rows",
+    "timeline",
+    "final_paired_quality",
+    "confirmation",
+    "floor",
+    "warnings"
+  ],
+  "live_trial_observations": 111,
+  "fresh_confirmation_observations": 10,
+  "scientific_source_snapshots_changed": false,
+  "provider_calls": 0,
+  "gpu_required": false,
+  "private_archive_repository": "Rajoza8/servetune-internal",
+  "historical_public_commits_rewritten": false
+}

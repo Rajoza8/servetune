@@ -135,7 +135,7 @@ def main(argv=None):
             args.out.parent.mkdir(parents=True, exist_ok=True)
             names = ["servetune", "configs", "tests", "scripts", "docs", ".github", ".gitignore",
                      "pyproject.toml", "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md",
-                     "BUILT_DURING_HACKATHON.md", "BUILD_BRIEF_V4.txt"]
+                     "BUILT_DURING_HACKATHON.md"]
             with tarfile.open(args.out, "x:gz") as archive:
                 for name in names:
                     path = PROJECT / name

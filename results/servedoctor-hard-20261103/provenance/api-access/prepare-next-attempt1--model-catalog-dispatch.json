@@ -1,7 +1,0 @@
-{
-  "get_only": true,
-  "paid_model_call": false,
-  "returncode": 0,
-  "stdout_sha256": "b9d56bf65ae7d914a5b0ec98dd01deaad5b88d72897533f1e7210ecc560365e9",
-  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-}

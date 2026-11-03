@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "study_status": "complete",
-  "study_manifest_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+  "study_manifest_sha256": "baa2517258aba5d120c231546c3760fe470dfb018979548b7ae05ecdd9f0fd5b",
   "live_trial_observations": 111,
   "synthetic_observations": 0,
   "fresh_confirmation_observations": 10,
@@ -26,7 +26,7 @@
     "bf16-default": 284,
     "fp8-default": 285
   },
-  "archive_sha256": "1cc4cbfd6f0b128374a6968228a69e719ce37a62a3d0ef04d776d18594f634e8",
+  "archive_sha256": "6092c154c99a6ff3a3768795165bdfef7e9d19af85e47e80ee79247eeae9511f",
   "scope": "One physical GPU, pinned model/engine, frozen math workload; GPU energy through NVML",
   "prepared_at": "2026-10-31T05:29:26.953823+00:00",
   "report_demo_pending": false,
@@ -38,35 +38,55 @@
     "height": 720,
     "fps": 12
   },
-  "portable_report_note": "Local delivery receipt and encoder log are excluded; derived storyboard study_dir is portable. Original sealed study bytes are unchanged.",
+  "portable_report_note": "Historical reports and measurements are unchanged. The current evidence download is an explicitly curated publication snapshot with a new outer study manifest; its science matches the original inventory byte for byte. The original complete package remains private and in unchanged public Git history.",
   "public_files_sha256": {
+    ".DS_Store": {
+      "sha256": "53e5dab13a0b253a5d5de030092bba2c012661f40245114e2e343f52a4f4a34f",
+      "bytes": 8196
+    },
     "README.md": {
-      "sha256": "0b67655bf1075fd0095cfd4ac763ad8f0fc61764b97db6804e679725097cd7e7",
-      "bytes": 4782
+      "sha256": "40e64bfced605b321c5c6fe21f035cd0278e401d6428c66df914e517bf7447fb",
+      "bytes": 6339
     },
     "evidence/archive-manifest.json": {
+      "sha256": "52467c5a70b1ccf7981aed7f4980899c37cad0630d51eec9ed445f45756b1666",
+      "bytes": 285474
+    },
+    "evidence/curation-receipt.json": {
+      "sha256": "a1ec9c251142a74f2d70c513de174a6bcdcd0e0e87008f766dd6b6918cb3dd4d",
+      "bytes": 4507
+    },
+    "evidence/original-archive-manifest.json": {
       "sha256": "dc5a462778168c912439ffd94a99f8fddb60b824cfd7c1e453b877e38a86e67c",
       "bytes": 286666
     },
-    "evidence/sealed-evidence.tar.gz.part001": {
-      "sha256": "783643216e5a126ac25b68ef04e67e55619d3aaa80bc8bb9dacf826a1e15a635",
+    "evidence/original-study-manifest.json": {
+      "sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+      "bytes": 190258
+    },
+    "evidence/public-evidence.tar.gz.part001": {
+      "sha256": "6f1d03e0de50be8b3b25b72ba483ee2f13596acd4472241cfebb11e9e9e0d46f",
       "bytes": 40000000
     },
-    "evidence/sealed-evidence.tar.gz.part002": {
-      "sha256": "7e7cfb6fceb902798445bf92cbb1e4752862f7078ffd46092f0e9e390f5358ea",
+    "evidence/public-evidence.tar.gz.part002": {
+      "sha256": "cfd3f5a30f06149d964390441e61872e18676823835f7a2ddee2408e3f405d0b",
       "bytes": 40000000
     },
-    "evidence/sealed-evidence.tar.gz.part003": {
-      "sha256": "f4ed38854282d1e4a74d81393a38d8c2a5bc0b525ca6c7dfb489fdfba7b80b3e",
-      "bytes": 26765582
+    "evidence/public-evidence.tar.gz.part003": {
+      "sha256": "caf9128398887cebe13bd43f3e150c2080d925b2ac112cb50a8215edc754e074",
+      "bytes": 31949207
     },
     "packaging-receipt.json": {
-      "sha256": "182e33adf30160131160bcd0d053e0c65dafae8683cb7e2d1e341fb7ba7c2329",
-      "bytes": 1510
+      "sha256": "cb8275654ffc1b203f7a0ba2c5540e2f67f267086cca91471820fda48ccc608b",
+      "bytes": 1612
     },
     "provider-ledger-summary.json": {
       "sha256": "71155940348866ad1504371b5a780e7ed2bfe7cdf438a48d6e9d280db6c5d56a",
       "bytes": 508
+    },
+    "report/.DS_Store": {
+      "sha256": "c8369be16674669b5c6ae865b77ad996fdd5889a86f491df48c2d3a36cf18666",
+      "bytes": 8196
     },
     "report/dashboard.html": {
       "sha256": "36f5fb0bf54c9e744c4a70d68d4f55ea167064fc567fc22b8aedae8f71803ac6",
@@ -157,6 +177,10 @@
       "bytes": 458
     }
   },
-  "public_file_count_excluding_this_manifest": 29,
-  "public_artifact_secret_scan": "passed"
+  "public_file_count_excluding_this_manifest": 34,
+  "artifact_scope": "curated_public_snapshot",
+  "original_archive_sha256": "1cc4cbfd6f0b128374a6968228a69e719ce37a62a3d0ef04d776d18594f634e8",
+  "original_study_manifest_sha256": "f2361671b3e32f6d3b0ca3ffceacd18f470bce0164e73ba3c0e1ae7293f9ef29",
+  "original_root_seal_applies_to_derived_package": false,
+  "curation_receipt": "evidence/curation-receipt.json"
 }

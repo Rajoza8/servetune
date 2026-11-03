@@ -1,7 +1,0 @@
-{
-  "stopped_at_utc": "2026-11-02T09:10:39.290974+00:00",
-  "aggregate_counts_only": {
-    "tunnels_established": 220
-  },
-  "payload_logging": false
-}

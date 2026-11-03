@@ -357,11 +357,11 @@ python3 scripts/build_site.py   # rebuilds this page from the committed results<
       ["Hard set: correct diagnoses by Glimmer alone (local, free)", g.diagnosis_correct + " of " + g.incidents,
         "Muse Spark: " + hard.spark.diagnosis_correct + " · Muse Wonder: " + hard.wonder.diagnosis_correct],
       ["Harmful actions by any AI agent on the Hard set", String(aiHarm),
-        "Threshold rules: " + rules.harmful + ", stopping a harmless GPU job in " + rules.stopped_decoy + " of 5 decoy cases"],
+        "Threshold rules: " + rules.harmful + ", stopping a harmless GPU job in " + rules.stopped_decoy + " of " + D.hard.cases.filter(function (c) { return c.decoy; }).length + " decoy cases"],
       ["Live repairs by the agent on a real GPU", recovered + " of " + agentRuns.length,
         "The one failed fix was rolled back automatically"],
-      ["Two-cause incidents fully fixed, any agent", completeAny + " of " + g.compound_incidents,
-        "Every agent fixed only the loudest cause"]
+      ["Two-cause incidents with a safe complete fix proposed, any agent", completeAny + " of " + g.compound_incidents,
+        "No agent proposed a safe fix for both causes"]
     ];
     var box = document.getElementById("tiles");
     list.forEach(function (t) {
@@ -760,9 +760,9 @@ python3 scripts/build_site.py   # rebuilds this page from the committed results<
   (function findings() {
     var hard = {}; D.hard.all.forEach(function (r) { hard[r.arm] = r; });
     var list = [
-      "AI agents were safe where rules were not: on the Hard set every model agent made zero harmful moves, while the threshold rules stopped a harmless GPU job in all " + hard.rules.stopped_decoy + " cases that had one and raised " + hard.rules.false_alarms + " false alarms.",
+      "On the Hard set every model agent proposed zero harmful moves, while the threshold rules proposed stopping a harmless GPU job in " + hard.rules.stopped_decoy + " of " + D.hard.cases.filter(function (c) { return c.decoy; }).length + " decoy cases and raised " + hard.rules.false_alarms + " false alarms.",
       "The free, local Glimmer 30B matched Muse Spark (" + hard.glimmer.diagnosis_correct + " vs " + hard.spark.diagnosis_correct + " correct diagnoses of " + hard.glimmer.incidents + ") at no API cost; Muse Wonder scored " + hard.wonder.diagnosis_correct + " at $" + hard.wonder.api_cost_usd.toFixed(2) + ".",
-      "No agent fully fixed a two-cause incident: all six fixed the loudest cause and stopped, though two actions were allowed. Verifying after the first fix and continuing is the next step.",
+      "No agent proposed a safe complete fix for both causes of a compound incident, though two actions were allowed. Hard-set results score proposed actions; applied live repairs were evaluated separately on v0.",
       "Using Glimmer as a gatekeeper cut paid calls sharply (" + hard.glimmer_to_spark.api_calls + " vs " + hard.spark.api_calls + " for Spark) but its monitor missed an underused GPU, as it did in v0.",
       "Live, the agent repaired 5 of 6 real faults in 84–203 s from fault start and rolled back the one fix that did not work. Gateway fixes for surges and long prompts recovered latency by shedding a large share of requests, which the table shows."
     ];

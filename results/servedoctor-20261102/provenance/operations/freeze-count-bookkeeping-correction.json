@@ -1,9 +1,0 @@
-{
-  "project": "servedoctor",
-  "created_at_utc": "2026-11-02T04:18:21.314344+00:00",
-  "previous_operational_file_count": 201,
-  "actual_frozen_hash_entries": 169,
-  "freeze_sha256": "7428210756fe9d61599d13f2182416b916f1a43627d178030f73f071b6845319",
-  "correction": "Earlier operational summaries overstated the count; the immutable freeze itself neverchanged. All verification iterates its169actualhashentries, not the mistaken reported201count.",
-  "scientific_changes": []
-}

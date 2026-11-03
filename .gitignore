@@ -17,3 +17,14 @@ known_hosts*
 *.aiff
 *.mp4
 *.webm
+
+# Local development instructions and operator sessions are kept separately.
+/.claude/
+/.codex/
+/AGENTS.md
+/CLAUDE.md
+/BUILD_BRIEF*
+/internal/
+/ops/
+/handoffs/
+/CLAUDE_HANDOFF*

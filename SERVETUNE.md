@@ -11,9 +11,9 @@ sealed evidence, offline replay, and a dashboard. The GPU study produces the
 results; implementing a controller does not establish an energy saving or an
 agent advantage.
 
-This is a standalone Python 3.11+ project inside the existing workspace. It does
-not import or modify Verifier Forge. Its ledger is separate. The accepted scope
-is preserved verbatim in `BUILD_BRIEF_V4.txt`.
+ServeTune requires Python 3.11 or later. Its measurement and decision protocol
+is documented in [docs/METHODS.md](docs/METHODS.md), with the frozen study
+configuration in [configs/study-v4.json](configs/study-v4.json).
 
 ## Completed v4 study
 
@@ -64,27 +64,20 @@ This explicit command downloads a few MB of licensed public data, not weights:
 python3 -m servetune prepare-data --out data/gsm8k
 ```
 
-If a python.org macOS installation reports a certificate verification error,
-configure its trusted CA bundle. On this Mac, the system bundle works without
-changing the machine or disabling TLS verification:
-`SSL_CERT_FILE=/etc/ssl/cert.pem python3 -m servetune prepare-data --out data/gsm8k`.
+If a Python installation reports a certificate verification error, configure its
+trusted CA bundle with `SSL_CERT_FILE`; keep TLS verification enabled.
 
 It resolves the official [GSM8K repository](https://github.com/openai/grade-school-math)
 to an exact commit and retains its MIT license, raw files, selected indices, and
 hashes. A fixed seed chooses 12 performance-calibration prompts, 150 dev items,
 and 300 final items with disjoint questions. The preflight workload is explicitly
 **math-only calibration**, not a representative chat/code/long-context mix.
-Broader workloads and saturation sweeps belong to the energy-map milestone.
 
 Final items are checked locally for split integrity and hashed. Preflight never
 sends them to the model or scores them. The final evaluation remains reserved
 for the later confirmation; preparing data does not run it.
 
 ## On the NVIDIA host
-
-You can execute the commands yourself; SSH access for the assistant is optional.
-A rented GPU instance can also run the same bundle. A rental requires a separate
-user-selected budget; the API caps below do not authorize GPU rental spending.
 
 Required: exclusive measurement access to one RTX PRO 6000 Blackwell 96 GB,
 compatible NVIDIA drivers and Glimmer-capable vLLM build, readable NVML energy
@@ -107,15 +100,14 @@ python3 -m servetune preflight --data-dir data/gsm8k \
 ```
 
 Use the actual immutable commit from the Glimmer model repository, not `main`.
-Set `--max-hours` to your available after-hours allocation. The deadline reserves
+Set `--max-hours` to the available execution time. The deadline reserves
 30 seconds for cleanup, bounds startup/request timeouts to remaining time, and
 refuses a new phase that cannot fit. Partial work remains recorded as incomplete;
-it cannot pass a gate. Leave additional time before the machine's business-use
-handoff for a human check that the owned server has exited. This is an application
-deadline, not a host administrator's hard resource-revocation mechanism.
+it cannot pass a gate. The bound controls the experiment process; it does not
+release a GPU allocation or stop rental billing.
 
-After-hours/weekend sessions can use separate output directories on the same
-GPU. Preserve all evidence and the single API ledger. An interrupted preflight
+Separate sessions can use different output directories on the same GPU.
+Preserve all evidence and the single API ledger. An interrupted preflight
 remeasures all three performance repeats in a fresh output directory. It never
 merges partial noise repeats or selects a replacement quality score.
 
@@ -211,8 +203,8 @@ python3 -m servetune init
 python3 -m servetune budget
 ```
 
-`runs/ledger.json` caps ServeTune at **Meta $15 / Baseten $5**, separately from
-Verifier Forge. It refuses reinitialization. Preserve and transfer this ledger
+`runs/ledger.json` caps ServeTune at **Meta $15 / Baseten $5**. It refuses
+reinitialization. Preserve and transfer this ledger
 if moving the project between machines; never initialize a second live allowance.
 Public-data fetching, simulation and GPU serving do not make provider API calls.
 
@@ -267,12 +259,11 @@ validated/redacted proposal, and result. Official model/endpoint/rates were chec
 October 29, 2026: [Meta Chat Completions](https://dev.meta.ai/docs/protocols/chat-completions),
 [Meta pricing](https://dev.meta.ai/docs/pricing-rate-limits).
 
-## The two v4 clarifications
+## Timing and quality gates
 
 `timing.ArmClock` accumulates allocated wall-clock intervals. Each arm's planning,
 load, warmup, measurements, quality checks, failures, and unfinished trials count
-while its clock runs. Pause it while the other arm runs. Search orchestration is
-not implemented yet; the tested clock is ready for it.
+while its clock runs. The study controller pauses it while the other arm runs.
 
 `quality.evaluate_gate` uses exact item counts and the same fixed bf16 reference:
 150 dev items with at most 3 fewer correct; 300 final items with at most 6 fewer.
@@ -295,7 +286,7 @@ weights, prepared datasets, or run ledgers. Extract on the target host, enter th
 run elsewhere, transfer the existing ledger separately before any paid command.
 Bring the full preflight run directory back for offline replay/inspection.
 
-For a copy-and-run after-hours entry point on the GPU host (after preparing its
+For a script entry point on the GPU host (after preparing its
 Python/vLLM environment):
 
 ```sh
@@ -317,7 +308,7 @@ and a fresh run. You can also export manually:
 python3 -m servetune export-run runs/gpu-preflight --out reports/gpu-results.tar.gz
 ```
 
-Existing prior work is acknowledged in the brief: [InferenceBench](https://arxiv.org/abs/2607.20468)
+Prior work includes [InferenceBench](https://arxiv.org/abs/2607.20468)
 and [AutoTuneBench](https://arxiv.org/abs/2609.18123). No novelty, whole-system
 energy, or general speedup claim is made.
 
@@ -355,7 +346,7 @@ python3 -m servetune study-init \
   --preflight runs/live-preflight-20261029-3 \
   --data-dir data/gsm8k-20261029 \
   --config configs/study-v4.json --out runs/full-v4-20261030
-python3 -m servetune study-run runs/full-v4-20261030 --max-hours REMAINING_APPROVED_HOURS
+python3 -m servetune study-run runs/full-v4-20261030 --max-hours 6
 python3 -m servetune study-report runs/full-v4-20261030 --out reports/full-v4-20261030
 python3 -m servetune study-replay runs/full-v4-20261030
 ```
@@ -363,9 +354,8 @@ python3 -m servetune study-replay runs/full-v4-20261030
 Set `MODEL_API_KEY` or `META_API_KEY` only in the controller environment for Spark.
 The owned inference subprocess strips provider keys. `study-run` uses the same
 single ServeTune ledger; copying a session never resets its spending history.
-The CLI time bound controls experiment execution and cleanup; a separately
-authorized rental guard controls GPU rental billing and lifecycle. Never infer rental
-authorization from a CLI option. Baseten has no planned use.
+The CLI time bound controls experiment execution and cleanup. GPU allocation
+and billing are managed outside the CLI. The study does not use Baseten.
 
 The controller performs calibration, freezes and hashes its comparison traces,
 then runs the map, alternating bf16/FP8 A/B, isolated random/Spark search, and

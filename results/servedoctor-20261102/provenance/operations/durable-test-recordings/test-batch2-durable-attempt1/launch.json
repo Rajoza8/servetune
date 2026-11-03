@@ -1,8 +1,0 @@
-{
-  "project": "servedoctor",
-  "instance_id": 58716527,
-  "attempt": "test-batch2-durable-attempt1",
-  "worker_pid": 17351,
-  "dispatch_sha256": "75e79f917361eed6b88aa263874e0d1940cb9dd6b2a7f8105db4884c2c77344f",
-  "launched_at_utc": "2026-11-02T03:36:01.301562+00:00"
-}
