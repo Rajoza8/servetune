@@ -29,6 +29,8 @@ actions by every model agent against five by the rules, and the universal failur
 
 Full packages, with every decision, answer key, recording and hash:
 [v0](results/servedoctor-20261102/README.md) · [Hard set (15 of 16 frozen incidents)](results/servedoctor-hard-20261103/README.md).
+Evidence files cite commit hashes from before a November 3 metadata cleanup;
+[results/COMMIT_MAP.md](results/COMMIT_MAP.md) maps them to current commits with identical file trees.
 
 ## How Meta's models are used
 
