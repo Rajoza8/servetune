@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-11-02T20:17:34+00:00",
+  "sources": [
+    "https://dev.meta.ai/docs/models",
+    "https://dev.meta.ai/docs/pricing-rate-limits"
+  ],
+  "wonder_model_id": "muse-wonder-1.0",
+  "wonder_input_per_million_usd": 4,
+  "wonder_output_per_million_usd": 20,
+  "spark_model_id": "muse-spark-1.3",
+  "spark_input_per_million_usd": 1.25,
+  "spark_output_per_million_usd": 4.25,
+  "prices_match_frozen_profiles": true,
+  "paid_model_call_dispatched": false
+}

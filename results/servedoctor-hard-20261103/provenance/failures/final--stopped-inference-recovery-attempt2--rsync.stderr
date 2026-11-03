@@ -1,0 +1,3 @@
+Warning: Permanently added '[208.68.65.246]:4999' (ED25519) to the list of known hosts.
+@ERROR: Unknown module '58905385'
+rsync error: error starting client-server protocol (code 5) at main.c(1874) [Receiver=3.4.4]

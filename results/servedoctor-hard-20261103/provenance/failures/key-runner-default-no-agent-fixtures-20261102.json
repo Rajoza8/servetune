@@ -1,0 +1,18 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "created_at_utc": "2026-11-02T17:01:54.366280+00:00",
+  "scope": "New worker explicit default-associated identity plus IdentityAgent=none; invented process/key fixtures only.",
+  "identity_path_expression": "Path.home() / '.ssh/gemma_vast_pilot_ed25519'",
+  "identity_agent": "none",
+  "tests": 19,
+  "returncode": 0,
+  "py_compile": "passed",
+  "files_sha256": {
+    "key_runner.py": "75f739a411b9fa7444eb7729c5b51214f027db89b4209855cd5d4416a4f13a29",
+    "key_runner_stub_test.py": "7e716be98aded54b3580113c606b2a698c41241d629d6cc64475bbe57e2026bb"
+  },
+  "stdout_sha256": "50b4eb55429d7bd839da991d45542124bc71a3efd32c01bb24b3b5e66c5e924b",
+  "private_key_contents_metadata_or_environment_inspected": false,
+  "actual_network_ssh_gpu_provider_model_calls": 0,
+  "supersedes_worker_proof": "key-runner-default-associated-key-fixtures-20261102.json"
+}

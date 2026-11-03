@@ -1,0 +1,1 @@
+{"frozen": true, "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7", "incidents": 17, "capacity_rps": 6, "freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68", "route": "direct", "transport_sha256": {}, "initial_ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123"}

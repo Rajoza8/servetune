@@ -1,0 +1,35 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-02T23:55:40.341650+00:00",
+  "returncode": 0,
+  "tests": 24,
+  "py_compile": "passed",
+  "fake_only": true,
+  "actual_study_answer_ledger_data_read": false,
+  "network_model_gpu_provider_actions": false,
+  "files_sha256": {
+    "package_partial_results.py": "a183e08da6dbf174e2a8f632afb84b5285939ea0357bfedc6cb59f12b9a617b0",
+    "test_package_partial_results.py": "933535956f2569b544d4826354cdea0fe4e68516f9713d89fa3fa70c0711d04d"
+  },
+  "old_full_packager_sha256": "dc6c92814f44e3f7e8ecbf018cc22afb9a36b75b360a1ed3827d42060cc1d0b6",
+  "coverage": [
+    "verify-only writes nothing",
+    "fresh package only and failed copies retained",
+    "15 native verdicts and90 decisions with genuine usage",
+    "all/valid canonical scores and native aggregates",
+    "8192 context bound including output",
+    "exact178 original bytes and hard16 failure",
+    "timestamped exclusion before protocol/validation",
+    "immutable prior18 failure entries",
+    "original16 scenario/key commitments unchanged",
+    "strict7 helper namespace hashes",
+    "confirmed stopped/deleted and exact rental history/cost<=40",
+    "canonicalGPUledger immutable prefix",
+    "immutable hours before DELETE and stable OPS/control backup coverage",
+    "explicit final-study mirror equals backed canonical bytes",
+    "labels/native report hashes",
+    "private keys/credential patterns/symlinks denied",
+    "invalid model JSON remains a measured result"
+  ]
+}

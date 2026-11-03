@@ -1,0 +1,84 @@
+{
+ "arm": "wonder",
+ "incident": "hard-14",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 96,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.72,
+  "evidence": [
+   "Arrivals ~0.9-1.2 rps vs normal 2.8 rps; running ~5 vs normal 15",
+   "Generation throughput ~115-141 tok/s vs normal 367.6 tok/s",
+   "GPU power remains 389-450W and util 90-100% despite low traffic",
+   "p95 latency ~5.45s within 10s SLO, no waiting, errors, shedding, or preemptions",
+   "KV usage <0.8%, so no resource starvation"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Service meets SLO with no queueing or errors, but serves about one-third of normal traffic while GPU power stays near maximum. This is an efficiency issue; consolidate traffic onto fewer GPUs rather than changing engine configuration.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.72, \"evidence\": [\"Arrivals ~0.9-1.2 rps vs normal 2.8 rps; running ~5 vs normal 15\", \"Generation throughput ~115-141 tok/s vs normal 367.6 tok/s\", \"GPU power remains 389-450W and util 90-100% despite low traffic\", \"p95 latency ~5.45s within 10s SLO, no waiting, errors, shedding, or preemptions\", \"KV usage <0.8%, so no resource starvation\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Service meets SLO with no queueing or errors, but serves about one-third of normal traffic while GPU power stays near maximum. This is an efficiency issue; consolidate traffic onto fewer GPUs rather than changing engine configuration.\"}",
+  "usage": {
+   "completion_tokens": 1176,
+   "prompt_tokens": 1466,
+   "total_tokens": 2642,
+   "completion_tokens_details": {
+    "reasoning_tokens": 972
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 628
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "1762bcdb27caec4a95c2a75b0ff1c7ca16a0268353dd10e800c48c9de5facd9e",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.72,
+    "evidence": [
+     "Arrivals ~0.9-1.2 rps vs normal 2.8 rps; running ~5 vs normal 15",
+     "Generation throughput ~115-141 tok/s vs normal 367.6 tok/s",
+     "GPU power remains 389-450W and util 90-100% despite low traffic",
+     "p95 latency ~5.45s within 10s SLO, no waiting, errors, shedding, or preemptions",
+     "KV usage <0.8%, so no resource starvation"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Service meets SLO with no queueing or errors, but serves about one-third of normal traffic while GPU power stays near maximum. This is an efficiency issue; consolidate traffic onto fewer GPUs rather than changing engine configuration.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.72, \"evidence\": [\"Arrivals ~0.9-1.2 rps vs normal 2.8 rps; running ~5 vs normal 15\", \"Generation throughput ~115-141 tok/s vs normal 367.6 tok/s\", \"GPU power remains 389-450W and util 90-100% despite low traffic\", \"p95 latency ~5.45s within 10s SLO, no waiting, errors, shedding, or preemptions\", \"KV usage <0.8%, so no resource starvation\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Service meets SLO with no queueing or errors, but serves about one-third of normal traffic while GPU power stays near maximum. This is an efficiency issue; consolidate traffic onto fewer GPUs rather than changing engine configuration.\"}",
+    "usage": {
+     "completion_tokens": 1176,
+     "prompt_tokens": 1466,
+     "total_tokens": 2642,
+     "completion_tokens_details": {
+      "reasoning_tokens": 972
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 628
+     }
+    }
+   }
+  }
+ ]
+}

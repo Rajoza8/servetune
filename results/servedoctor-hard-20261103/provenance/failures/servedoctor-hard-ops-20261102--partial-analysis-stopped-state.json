@@ -1,0 +1,105 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "label": "servedoctor-hard-20261102",
+  "offer_id": 49799372,
+  "machine_id": 141678,
+  "image": "vastai/vllm@sha256:d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843",
+  "prior_baseline": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-receipt-58716527.json",
+    "sha256": "9c28a7d7b972a89cc9e25f079db45310066afacd4e7d3bd300c4ed87894483de",
+    "usd_upper": 25.90010443543525
+  },
+  "created_epoch": 1793647153.180324,
+  "dph_total": 1.603333333333333,
+  "storage_dph": 0.08333333333333333,
+  "inet_down_cost": 0.013333333333333334,
+  "inet_up_cost": 0.013333333333333334,
+  "remaining_gpu_hours": 1.3,
+  "selected_offer_identifiers": {
+    "id": 49799372,
+    "ask_contract_id": 49799372,
+    "bundle_id": 1075359197,
+    "external": null
+  },
+  "running_intervals": [
+    {
+      "start_epoch": 1793647153.180324,
+      "reason": "create including provisioning",
+      "running_seen_epoch": 1793647439.244701,
+      "stop_epoch": 1793647565.95489
+    },
+    {
+      "start_epoch": 1793648789.5341492,
+      "reason": "resume pipeline resume-pipeline-attempt1",
+      "running_seen_epoch": 1793648795.417546,
+      "stop_epoch": 1793650769.018605
+    },
+    {
+      "start_epoch": 1793652379.3306298,
+      "reason": "resume pipeline calibrated-resume-pipeline-attempt1",
+      "running_seen_epoch": 1793652390.39192,
+      "stop_epoch": 1793652829.02126
+    },
+    {
+      "start_epoch": 1793653188.7274098,
+      "reason": "resume pipeline frozen-resume-pipeline-attempt1",
+      "running_seen_epoch": 1793653222.3555598,
+      "stop_epoch": 1793660015.621821
+    }
+  ],
+  "existing_instance_ids": [],
+  "prior_hard_hosts": [
+    {
+      "instance_id": 58843932,
+      "receipt": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host1-58843932/billing-receipt.json",
+        "sha256": "e77d30f3e736967c0aa2a43b5123e4234acf5718ce2c95ad2f5874551841c52d"
+      }
+    },
+    {
+      "instance_id": 58848277,
+      "receipt": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host2-58848277/billing-receipt.json",
+        "sha256": "59f41544e793cc19f39b6d410a266c5c7167c0e7a02a1019665b1edae25bb092"
+      }
+    },
+    {
+      "instance_id": 58851643,
+      "receipt": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host3-58851643/billing-receipt.json",
+        "sha256": "657745db426aab46a48dfd183552ccef11e5f7287817a1ef3aeef867f401ce79"
+      }
+    },
+    {
+      "instance_id": 58858374,
+      "receipt": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host4-58858374/billing-receipt.json",
+        "sha256": "491204dcf6015a9eb96f8701ccc8f9f3285afea414502d938e93ccae9927187d"
+      }
+    }
+  ],
+  "prior_hard_history": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prior-hard-hosts-4.json",
+    "sha256": "e1ceee7ae844dec2783f4a102c130e1c5eb03ad8d7a1c086066a9af1d2c63d87"
+  },
+  "offer_selection_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/offer-selection-attempt16.json",
+    "sha256": "afdb59ad2b90f83354a7778d9ee4f9a3d0dddf270b20cbac9351dfa75b642d48",
+    "at_utc": "2026-11-02T19:19:13.048002+00:00"
+  },
+  "live_action_attempted": true,
+  "instance_id": 58866756,
+  "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "last_status": {
+    "id": 58866756,
+    "label": "servedoctor-hard-20261102",
+    "machine_id": 141678,
+    "actual_status": "exited",
+    "cur_state": "stopped",
+    "intended_status": "stopped",
+    "status_msg": "success, running vastai/vllm_sha256_d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843/ssh",
+    "public_ipaddr": "75.166.187.44",
+    "ports": null,
+    "image_uuid": "vastai/vllm@sha256:d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843"
+  }
+}

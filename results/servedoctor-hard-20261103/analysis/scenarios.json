@@ -1,0 +1,1186 @@
+{
+  "schema_version": 1,
+  "set": "hard",
+  "study_sha256": "5fb3e1b838586411afafd61f1b9ce90e8d3202a92e5ed58a2327f657c0fb4b19",
+  "scenarios": [
+    {
+      "id": "hard-01",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 12288,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "contention",
+          "module": "servedoctor.jobs.embedding_batch",
+          "onset_s": 120,
+          "duty": 0.6,
+          "matrix_size": 8192,
+          "period": 0.2
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ],
+            "max_num_batched_tokens": [
+              8192,
+              12288
+            ]
+          }
+        },
+        {
+          "t": 108.2,
+          "kind": "change",
+          "text": "Feature flag `verbose_answers` enabled for internal users."
+        },
+        {
+          "t": 247.3,
+          "kind": "note",
+          "text": "Raised application log retention from 7 to 14 days."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1042330962
+    },
+    {
+      "id": "hard-02",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 96,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.7224999999999999,
+            "medium": 0.1275,
+            "long": 0.15
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "decoy",
+          "module": "servedoctor.jobs.thumbnail_index",
+          "onset_s": 17.5,
+          "duty": 0.02,
+          "matrix_size": 1024,
+          "period": 1.0
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_num_seqs": [
+              64,
+              96
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 137.4,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 365116116
+    },
+    {
+      "id": "hard-03",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 255.5,
+          "rate_rps": 5.4,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 280.5,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 24.8,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        },
+        {
+          "t": 109.9,
+          "kind": "change",
+          "text": "Gateway connection-pool size raised from 200 to 400."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 992251535
+    },
+    {
+      "id": "hard-04",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.6375,
+            "medium": 0.11249999999999999,
+            "long": 0.25
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "contention",
+          "module": "servedoctor.jobs.feature_cache_sync",
+          "onset_s": 120,
+          "duty": 0.7,
+          "matrix_size": 8192,
+          "period": 0.2
+        },
+        {
+          "role": "decoy",
+          "module": "servedoctor.jobs.reranker_eval",
+          "onset_s": 45.3,
+          "duty": 0.02,
+          "matrix_size": 1024,
+          "period": 1.0
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ]
+          }
+        },
+        {
+          "t": 22.7,
+          "kind": "note",
+          "text": "Alert routing rules re-synced from source control."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 577038168
+    },
+    {
+      "id": "hard-05",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 96,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 7.2,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "contention",
+          "module": "servedoctor.jobs.reranker_eval",
+          "onset_s": 120,
+          "duty": 0.7,
+          "matrix_size": 8192,
+          "period": 0.2
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_num_seqs": [
+              64,
+              96
+            ],
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 308.9,
+          "kind": "note",
+          "text": "Updated the Grafana serving dashboard layout."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 758701274
+    },
+    {
+      "id": "hard-06",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 1280,
+        "max_num_seqs": 16,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "max_model_len": [
+              4096,
+              1280
+            ],
+            "max_num_seqs": [
+              64,
+              16
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 26.8,
+          "kind": "note",
+          "text": "Raised application log retention from 7 to 14 days."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1074735821
+    },
+    {
+      "id": "hard-07",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 1408,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "max_model_len": [
+              4096,
+              1408
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 195.4,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1055209879
+    },
+    {
+      "id": "hard-08",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 6.6,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 100.9,
+          "kind": "change",
+          "text": "Web tier autoscaler policy updated."
+        },
+        {
+          "t": 229.1,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1578200689
+    },
+    {
+      "id": "hard-09",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 48.1,
+          "kind": "note",
+          "text": "On-call handoff: no open incidents."
+        },
+        {
+          "t": 98.0,
+          "kind": "alert",
+          "text": "Disk usage on /var/log reached 81% on the serving host (warning, non-paging)."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1501479106
+    },
+    {
+      "id": "hard-10",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 6144,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "decoy",
+          "module": "servedoctor.jobs.thumbnail_index",
+          "onset_s": 39.9,
+          "duty": 0.02,
+          "matrix_size": 1024,
+          "period": 1.0
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "log_level": [
+              "INFO",
+              "WARNING"
+            ],
+            "max_model_len": [
+              4096,
+              6144
+            ]
+          }
+        },
+        {
+          "t": 71.4,
+          "kind": "alert",
+          "text": "Prometheus remote-write queue lag 30 s (non-paging)."
+        },
+        {
+          "t": 118.7,
+          "kind": "note",
+          "text": "Client SDK minor version bump rolled out to 10% of callers."
+        },
+        {
+          "t": 294.2,
+          "kind": "alert",
+          "text": "One synthetic probe from a remote region timed out (single occurrence)."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 841964508
+    },
+    {
+      "id": "hard-11",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 1280,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.6152,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.6152
+            ],
+            "max_model_len": [
+              4096,
+              1280
+            ],
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 263.2,
+          "kind": "note",
+          "text": "Updated the Grafana serving dashboard layout."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1846220818
+    },
+    {
+      "id": "hard-12",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 6144,
+        "max_num_seqs": 24,
+        "max_num_batched_tokens": 12288,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_model_len": [
+              4096,
+              6144
+            ],
+            "max_num_batched_tokens": [
+              8192,
+              12288
+            ],
+            "max_num_seqs": [
+              64,
+              24
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 218.5,
+          "kind": "note",
+          "text": "Updated the Grafana serving dashboard layout."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 480094138
+    },
+    {
+      "id": "hard-13",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 96,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        },
+        {
+          "start_s": 120,
+          "rate_rps": 8.4,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "decoy",
+          "module": "servedoctor.jobs.thumbnail_index",
+          "onset_s": 27.2,
+          "duty": 0.02,
+          "matrix_size": 1024,
+          "period": 1.0
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_num_seqs": [
+              64,
+              96
+            ],
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 163.5,
+          "kind": "note",
+          "text": "Rotated the gateway TLS certificate."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1259869403
+    },
+    {
+      "id": "hard-14",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 96,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 1.2,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "decoy",
+          "module": "servedoctor.jobs.embedding_batch",
+          "onset_s": 50.6,
+          "duty": 0.02,
+          "matrix_size": 1024,
+          "period": 1.0
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "max_num_seqs": [
+              64,
+              96
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 182.8,
+          "kind": "note",
+          "text": "Scheduled vulnerability scan completed on the host."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 516699011
+    },
+    {
+      "id": "hard-15",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 12,
+        "max_num_batched_tokens": 12288,
+        "gpu_memory_utilization": 0.86,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [
+        {
+          "role": "decoy",
+          "module": "servedoctor.jobs.reranker_eval",
+          "onset_s": 38.3,
+          "duty": 0.02,
+          "matrix_size": 1024,
+          "period": 1.0
+        }
+      ],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.86
+            ],
+            "max_num_batched_tokens": [
+              8192,
+              12288
+            ],
+            "max_num_seqs": [
+              64,
+              12
+            ],
+            "metrics_scrape_interval_s": [
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "t": 190.3,
+          "kind": "alert",
+          "text": "Disk usage on /var/log reached 81% on the serving host (warning, non-paging)."
+        },
+        {
+          "t": 280.4,
+          "kind": "note",
+          "text": "Updated the Grafana serving dashboard layout."
+        },
+        {
+          "t": 323.7,
+          "kind": "alert",
+          "text": "NTP offset 12 ms on the serving host (threshold 50 ms)."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 383126876
+    },
+    {
+      "id": "hard-16",
+      "split": "hard",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 12288,
+        "gpu_memory_utilization": 0.61632,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 360,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {
+            "gpu_memory_utilization": [
+              0.9,
+              0.61632
+            ],
+            "max_num_batched_tokens": [
+              8192,
+              12288
+            ],
+            "request_timeout_s": [
+              120,
+              180
+            ]
+          }
+        },
+        {
+          "t": 152.8,
+          "kind": "note",
+          "text": "On-call handoff: no open incidents."
+        },
+        {
+          "t": 192.6,
+          "kind": "alert",
+          "text": "One synthetic probe from a remote region timed out (single occurrence)."
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 1864545195
+    },
+    {
+      "id": "reference",
+      "split": "reference",
+      "engine": {
+        "max_model_len": 4096,
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 8192,
+        "gpu_memory_utilization": 0.9,
+        "enable_chunked_prefill": true,
+        "enable_prefix_caching": false
+      },
+      "dtype": "bf16",
+      "schedule": [
+        {
+          "start_s": 0,
+          "rate_rps": 3.0,
+          "mix": {
+            "short": 0.85,
+            "medium": 0.15,
+            "long": 0.0
+          }
+        }
+      ],
+      "duration_s": 180,
+      "contention": null,
+      "jobs": [],
+      "events": [
+        {
+          "t": 0.0,
+          "kind": "deploy",
+          "text": "Serving deployment rolled out.",
+          "config_diff": {}
+        }
+      ],
+      "max_output_tokens": 128,
+      "request_timeout_s": 60,
+      "slo": {
+        "p95_latency_s": 10.0,
+        "max_error_rate": 0.01,
+        "max_shed_rate": 0.05
+      },
+      "workload_seed": 785716198
+    }
+  ]
+}

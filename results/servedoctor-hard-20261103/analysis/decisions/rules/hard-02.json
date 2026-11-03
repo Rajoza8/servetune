@@ -1,0 +1,78 @@
+{
+ "arm": "rules",
+ "incident": "hard-02",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 96,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 1612
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 90
+ },
+ "checkpoints": 3,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fd3a19dfa4cf031dd379faa18bfd564a0fbdca3ec8d6b539ffe42ac05136607c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "0be41a079220872d8208ffdc1fb2c616fa536127b034fb3c4cdb8c9b7e0bf7e6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "29529da3f120121fad6e7b7a6cd2189ab4cc41984b1f79bf55d1038283ed994b",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 1612
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

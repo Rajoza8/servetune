@@ -1,0 +1,72 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "started_at_utc": "2026-11-02T19:24:15.456710+00:00",
+  "scope": "Setup and pre-generation host calibration only",
+  "attempt": 7,
+  "controller_source_sha256": "560176144b585001c6c3c6225ebfd10134705968a24f09322969438cbaded7ca",
+  "commands": [
+    {
+      "label": "create-control-path",
+      "started_at_utc": "2026-11-02T19:25:44.218077+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:45.056793+00:00"
+    },
+    {
+      "label": "put-1",
+      "started_at_utc": "2026-11-02T19:25:45.058003+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:46.452035+00:00"
+    },
+    {
+      "label": "put-2",
+      "started_at_utc": "2026-11-02T19:25:46.453804+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:47.875515+00:00"
+    },
+    {
+      "label": "put-3",
+      "started_at_utc": "2026-11-02T19:25:47.876871+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:49.340918+00:00"
+    },
+    {
+      "label": "put-4",
+      "started_at_utc": "2026-11-02T19:25:49.341683+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:50.720591+00:00"
+    },
+    {
+      "label": "put-guard-state",
+      "started_at_utc": "2026-11-02T19:25:50.727843+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:52.135429+00:00"
+    },
+    {
+      "label": "arm-remote-guard",
+      "started_at_utc": "2026-11-02T19:25:52.137113+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:25:53.016859+00:00"
+    },
+    {
+      "label": "bootstrap",
+      "started_at_utc": "2026-11-02T19:25:53.021066+00:00",
+      "returncode": 1,
+      "finished_at_utc": "2026-11-02T19:25:59.315577+00:00"
+    }
+  ],
+  "status": "failed",
+  "local_controller_source_commit": "973bdd9ef96b4087845fc83f3e4ebcaa2ad3a4d4",
+  "remote_calibration_source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "instance_id": 58866756,
+  "reason_receipt_sha256": "8d17752dbcf47f1ca88fb021be726234ad3dbbe4abbde4112efdf5550bd9c5a8",
+  "stage": "bootstrap",
+  "ssh_window_out": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/startup-ssh-window-attempt3",
+  "guide_sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f",
+  "guard_source": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt7/remote-guard-source.py",
+    "sha256": "d7bae662c2a9ac709ab25a81c6180172795f02f0ef999ea014590a455c3edbed"
+  },
+  "error_class": "RuntimeError",
+  "finished_at_utc": "2026-11-02T19:25:59.317552+00:00"
+}

@@ -1,0 +1,22 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58858374,
+  "confirmed_absent": true,
+  "destroyed_epoch": 1793646195.603001,
+  "rental_scope_sha256": "20243ea647f4b77e472b38a2cafdafdb8d74a3f5a4bd1c23edba7bc6fa9fef70",
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-queued-restart-host4-backup-attempt1/backup-receipt.json",
+    "sha256": "38aa6a8f38986b908ac873a050f538b5286244879654bba5b663c794d0f17463"
+  },
+  "final_state": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-queued-restart-host4-backup-attempt1/final-state.json",
+    "sha256": "5c02a6090c7720f72a5e4c786f72a8d37cbe5483c2ba1b6137e4a12b540ebca1"
+  },
+  "host_cost": {
+    "running_hours": 0.5256512888934877,
+    "compute_usd_upper": 0.911128900748712,
+    "disk_usd_upper": 0.08183791670534345
+  },
+  "network_slack_reserved_once": true,
+  "mode": "pre_generation_calibration_preserved_failed_queued_restart"
+}

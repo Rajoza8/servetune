@@ -1,0 +1,76 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-15",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 12,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.88,
+  "evidence": [
+   "max_num_seqs dropped from 64 to 12 in deploy at t0",
+   "running pinned at 12 reqs with waiting_max 29 at t29",
+   "arrivals_rps 5.0 vs normal 2.8 while ok_rps stuck ~2.4",
+   "engine log shows Running: 12 reqs, Waiting: 18 reqs"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_num_seqs to 12, capping concurrency. Queue is building with waiting_max 29 and throughput flat despite arrivals rising. Restoring max_num_seqs to reference 64 relieves the batch limit without shedding.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.88, \"evidence\": [\"max_num_seqs dropped from 64 to 12 in deploy at t0\", \"running pinned at 12 reqs with waiting_max 29 at t29\", \"arrivals_rps 5.0 vs normal 2.8 while ok_rps stuck ~2.4\", \"engine log shows Running: 12 reqs, Waiting: 18 reqs\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy reduced max_num_seqs to 12, capping concurrency. Queue is building with waiting_max 29 and throughput flat despite arrivals rising. Restoring max_num_seqs to reference 64 relieves the batch limit without shedding.\"}",
+  "usage": {
+   "prompt_tokens": 1508,
+   "total_tokens": 2155,
+   "completion_tokens": 647,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "9042000c4cb569a064db1ea80726c3d6c4cfe14c09d65de9ab59893d4b401c1f",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.88,
+    "evidence": [
+     "max_num_seqs dropped from 64 to 12 in deploy at t0",
+     "running pinned at 12 reqs with waiting_max 29 at t29",
+     "arrivals_rps 5.0 vs normal 2.8 while ok_rps stuck ~2.4",
+     "engine log shows Running: 12 reqs, Waiting: 18 reqs"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_num_seqs to 12, capping concurrency. Queue is building with waiting_max 29 and throughput flat despite arrivals rising. Restoring max_num_seqs to reference 64 relieves the batch limit without shedding.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.88, \"evidence\": [\"max_num_seqs dropped from 64 to 12 in deploy at t0\", \"running pinned at 12 reqs with waiting_max 29 at t29\", \"arrivals_rps 5.0 vs normal 2.8 while ok_rps stuck ~2.4\", \"engine log shows Running: 12 reqs, Waiting: 18 reqs\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Deploy reduced max_num_seqs to 12, capping concurrency. Queue is building with waiting_max 29 and throughput flat despite arrivals rising. Restoring max_num_seqs to reference 64 relieves the batch limit without shedding.\"}",
+    "usage": {
+     "prompt_tokens": 1508,
+     "total_tokens": 2155,
+     "completion_tokens": 647,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

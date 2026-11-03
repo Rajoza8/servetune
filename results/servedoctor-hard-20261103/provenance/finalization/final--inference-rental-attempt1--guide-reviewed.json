@@ -1,0 +1,7 @@
+{
+  "guide_sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f",
+  "reviewed_at_utc": "2026-11-03T02:18:38.386270+00:00",
+  "reviewed_complete": true,
+  "same_pinned_image_guide_as_original": true,
+  "user_key_environment_rule_overrides_generic_dotenv_advice": true
+}

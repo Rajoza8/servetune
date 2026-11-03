@@ -1,0 +1,17 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "split": "reference",
+  "ids": [
+    "reference"
+  ],
+  "completed": true,
+  "record_returncode": 0,
+  "observer_returncode": 0,
+  "failure_class": null,
+  "cleanup_errors": [],
+  "owned_observer_proof": {
+    "path": "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/record-stages/record-first9-attempt1/00-reference/owned-observer.json",
+    "sha256": "66ae5ba53254dd4ea925196a88166f3a42de6b86afcd9e3e1713a349f0cf337c"
+  },
+  "finished_at_utc": "2026-11-02T21:04:44.900864+00:00"
+}

@@ -1,0 +1,76 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-11",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.6152,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.72,
+  "evidence": [
+   "max_model_len reduced from 4096 to 1280 in deploy at t=0",
+   "recent buckets show http_400=1 at 19s and http_400=2 at 29s",
+   "p95_latency_s ~5.2-5.3 within SLO but error rate exceeds max_error_rate 0.01",
+   "prompt_tokens_mean 106-218 <1280 so rejections not from current mean but from tail requests"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deployment lowered max_model_len to 1280, causing HTTP 400 rejections for valid longer requests. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 removes the artificial context limit with minimal disruption.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.72, \"evidence\": [\"max_model_len reduced from 4096 to 1280 in deploy at t=0\", \"recent buckets show http_400=1 at 19s and http_400=2 at 29s\", \"p95_latency_s ~5.2-5.3 within SLO but error rate exceeds max_error_rate 0.01\", \"prompt_tokens_mean 106-218 <1280 so rejections not from current mean but from tail requests\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deployment lowered max_model_len to 1280, causing HTTP 400 rejections for valid longer requests. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 removes the artificial context limit with minimal disruption.\"}",
+  "usage": {
+   "prompt_tokens": 1509,
+   "total_tokens": 2346,
+   "completion_tokens": 837,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "f4abd90ed632956628c22d876ab05b8e40182dd8d829d4c420d3309a646f03bc",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.72,
+    "evidence": [
+     "max_model_len reduced from 4096 to 1280 in deploy at t=0",
+     "recent buckets show http_400=1 at 19s and http_400=2 at 29s",
+     "p95_latency_s ~5.2-5.3 within SLO but error rate exceeds max_error_rate 0.01",
+     "prompt_tokens_mean 106-218 <1280 so rejections not from current mean but from tail requests"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deployment lowered max_model_len to 1280, causing HTTP 400 rejections for valid longer requests. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 removes the artificial context limit with minimal disruption.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.72, \"evidence\": [\"max_model_len reduced from 4096 to 1280 in deploy at t=0\", \"recent buckets show http_400=1 at 19s and http_400=2 at 29s\", \"p95_latency_s ~5.2-5.3 within SLO but error rate exceeds max_error_rate 0.01\", \"prompt_tokens_mean 106-218 <1280 so rejections not from current mean but from tail requests\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deployment lowered max_model_len to 1280, causing HTTP 400 rejections for valid longer requests. Latency is fine but error rate violates SLO. Restoring max_model_len to reference 4096 removes the artificial context limit with minimal disruption.\"}",
+    "usage": {
+     "prompt_tokens": 1509,
+     "total_tokens": 2346,
+     "completion_tokens": 837,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58866756,
+  "operation": "start",
+  "method": "PUT",
+  "path": "/api/v0/instances/58866756/",
+  "requested_epoch": 1793668283.340939,
+  "phase": "response",
+  "reason": "resume pipeline partial-resume-pipeline-attempt1",
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "offer_selection_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/offer-selection-attempt16.json",
+    "sha256": "afdb59ad2b90f83354a7778d9ee4f9a3d0dddf270b20cbac9351dfa75b642d48",
+    "at_utc": "2026-11-02T19:19:13.048002+00:00"
+  },
+  "payload_sha256": "276fa79aee70a0d0c559aff82be805e6c4cddb9d374f9b444919c3118665e38a",
+  "payload_bytes": 20,
+  "success": false,
+  "safe_error_code": "resources_unavailable",
+  "safe_error_message": "Required resources are currently unavailable, state change queued."
+}

@@ -1,0 +1,16 @@
+{
+  "operation": "stop",
+  "confirmed_epoch": 1793660015.621862,
+  "status": {
+    "id": 58866756,
+    "label": "servedoctor-hard-20261102",
+    "machine_id": 141678,
+    "actual_status": "exited",
+    "cur_state": "stopped",
+    "intended_status": "stopped",
+    "status_msg": "success, running vastai/vllm_sha256_d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843/ssh",
+    "public_ipaddr": "75.166.187.44",
+    "ports": null,
+    "image_uuid": "vastai/vllm@sha256:d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843"
+  }
+}

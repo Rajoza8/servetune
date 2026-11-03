@@ -1,0 +1,16 @@
+rules hard-01: gpu_contention at t=150 [{'type': 'stop_gpu_process', 'pid': 4242}]
+rules hard-02: no incident flagged
+rules hard-03: other at t=270 [{'type': 'escalate_to_human'}]
+rules hard-04: gpu_contention at t=150 [{'type': 'stop_gpu_process', 'pid': 4242}]
+rules hard-05: gpu_contention at t=150 [{'type': 'stop_gpu_process', 'pid': 4242}]
+rules hard-06: context_limit_too_small at t=30 [{'type': 'set_engine_config', 'knob': 'max_model_len', 'value': 4096}]
+rules hard-07: context_limit_too_small at t=30 [{'type': 'set_engine_config', 'knob': 'max_model_len', 'value': 4096}]
+rules hard-08: traffic_surge at t=150 [{'type': 'gateway_rate_limit', 'max_rps': 6.08}]
+rules hard-09: no incident flagged
+rules hard-10: no incident flagged
+rules hard-11: context_limit_too_small at t=30 [{'type': 'set_engine_config', 'knob': 'max_model_len', 'value': 4096}]
+rules hard-12: no incident flagged
+rules hard-13: gpu_contention at t=120 [{'type': 'stop_gpu_process', 'pid': 4242}]
+rules hard-14: gpu_contention at t=60 [{'type': 'stop_gpu_process', 'pid': 4242}]
+rules hard-15: other at t=30 [{'type': 'escalate_to_human'}]
+rules hard-16: kv_cache_starvation at t=30 [{'type': 'set_engine_config', 'knob': 'gpu_memory_utilization', 'value': 0.9}]

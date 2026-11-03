@@ -1,0 +1,164 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58866756,
+  "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "rental_binding": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/create-pipeline-attempt1/binding.json",
+    "sha256": "8217d408e7edc0f91997ee3c9844ee8b9177004fa719b33f292d08fdd2474fa1"
+  },
+  "helper_sha256": "dde0cd76dfc059b0419d6bb3898c9016d0507cdc6a4c447dcbf6794eb217f7ee",
+  "remote_code_sha256": "6041fd6291632452b1eca977c56a94efa45a9d05f88a1956b13cd16c33168ab8",
+  "prior": {
+    "kind": "rearm",
+    "proof": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rearm-calibrated-attempt1/receipt.json",
+      "sha256": "2410e889a2adb81df14def6800b9a1e46e93458c1cac7fb7bc28aba844eecd6e"
+    },
+    "old_guard": {
+      "pid": 547,
+      "start_ticks": "44488133",
+      "uid": 0,
+      "cwd": "/workspace/servedoctor-hard",
+      "argv_sha256": "ab75ea67ff04b5192ae8dbc0728773ef8cdfa4c64cf284f7d74bce5c751963b6"
+    },
+    "old_state_sha256": "a37ef55dfcf202e080b04e6304ebf994239a42674d46940efb194a117d70af12",
+    "old_source_sha256": "d7bae662c2a9ac709ab25a81c6180172795f02f0ef999ea014590a455c3edbed"
+  },
+  "completed": true,
+  "failure": null,
+  "remote_command_dispatched": true,
+  "remote_returncode": 0,
+  "remote": {
+    "project": "servedoctor-hard-20261102",
+    "instance_id": 58866756,
+    "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+    "nonce": "1eb1305c461e483bb44d84562ceb4054",
+    "completed": true,
+    "old_guard_retired": true,
+    "guard_state_installed": true,
+    "new_guard_started": true,
+    "new_source_sha256": "d7bae662c2a9ac709ab25a81c6180172795f02f0ef999ea014590a455c3edbed",
+    "new_state_sha256": "b6f71e6a7481e38efa11bc6fcd08ac0af42921f28fe01a1782b9c1a479024db0",
+    "failure": null,
+    "after_restart": {
+      "project": "servedoctor-hard-20261102",
+      "instance_id": 58866756,
+      "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+      "stopped_state": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host5-frozen-stopped-state.json",
+        "sha256": "f8c3424237ad69dcb4b5d1867544dcfa98075c0d254869dc6015d0b7b278220c"
+      },
+      "closed_interval": {
+        "start_epoch": 1793652379.3306298,
+        "running_seen_epoch": 1793652390.39192,
+        "stop_epoch": 1793652829.02126
+      },
+      "open_interval": {
+        "start_epoch": 1793653188.7274098,
+        "running_seen_epoch": 1793653222.3555598
+      },
+      "start": {
+        "requested_epoch": 1793653188.7280362,
+        "confirmed_epoch": 1793653222.3556218,
+        "intent": {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0014-start.json",
+          "sha256": "e1bf078a938bc88d2ba55b4cc32525686e1714c14f04c195fafa3219f849e313"
+        },
+        "outcome": {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0014-start-outcome.json",
+          "sha256": "619561c62e92d6a53652cff770e4bde237e093575e0942ead4c11ffaa8ad942c"
+        },
+        "reconciled": {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0014-start-reconciled.json",
+          "sha256": "52bc2cec4afc114abbee018b24601a68c0d2446f42781b3fcf02867f3e67992d"
+        }
+      }
+    },
+    "eligible_stop_records": {
+      "guard-stop-intent.json": {
+        "sha256": "802a3731d39d86708c1374b80cb7e9d88e8bd0b7d48715788de9566ca0198ea9",
+        "reason": "idle",
+        "requested_epoch": 1793652821.2465,
+        "record": {
+          "project": "servedoctor-hard-20261102",
+          "instance_id": 58866756,
+          "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+          "operation": "stop",
+          "method": "PUT",
+          "requested_epoch": 1793652821.2465,
+          "reason": "idle"
+        }
+      },
+      "guard-stop-outcome.json": {
+        "sha256": "71cbd599416c083c8b3dff8d7aab43abb9eb244b5efc54a8190982c8dfd11be6",
+        "reason": "idle",
+        "requested_epoch": 1793652821.2465,
+        "record": {
+          "project": "servedoctor-hard-20261102",
+          "instance_id": 58866756,
+          "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+          "operation": "stop",
+          "method": "PUT",
+          "requested_epoch": 1793652821.2465,
+          "reason": "idle",
+          "phase": "response",
+          "http_status": 200,
+          "success": true
+        }
+      }
+    },
+    "old_guard_already_quiescent": true,
+    "retired_stop_records": {
+      "guard-stop-intent.json": {
+        "sha256": "802a3731d39d86708c1374b80cb7e9d88e8bd0b7d48715788de9566ca0198ea9",
+        "reason": "idle",
+        "requested_epoch": 1793652821.2465,
+        "record": {
+          "project": "servedoctor-hard-20261102",
+          "instance_id": 58866756,
+          "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+          "operation": "stop",
+          "method": "PUT",
+          "requested_epoch": 1793652821.2465,
+          "reason": "idle"
+        },
+        "archived_path": "/workspace/servedoctor-hard/control/guard-rearm-1eb1305c461e483bb44d84562ceb4054/retired-guard-stop-intent.json"
+      },
+      "guard-stop-outcome.json": {
+        "sha256": "71cbd599416c083c8b3dff8d7aab43abb9eb244b5efc54a8190982c8dfd11be6",
+        "reason": "idle",
+        "requested_epoch": 1793652821.2465,
+        "record": {
+          "project": "servedoctor-hard-20261102",
+          "instance_id": 58866756,
+          "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+          "operation": "stop",
+          "method": "PUT",
+          "requested_epoch": 1793652821.2465,
+          "reason": "idle",
+          "phase": "response",
+          "http_status": 200,
+          "success": true
+        },
+        "archived_path": "/workspace/servedoctor-hard/control/guard-rearm-1eb1305c461e483bb44d84562ceb4054/retired-guard-stop-outcome.json"
+      }
+    },
+    "new_guard_pid": 543,
+    "new_guard": {
+      "pid": 543,
+      "start_ticks": "44571215",
+      "uid": 0,
+      "cwd": "/workspace/servedoctor-hard",
+      "argv_sha256": "ab75ea67ff04b5192ae8dbc0728773ef8cdfa4c64cf284f7d74bce5c751963b6"
+    },
+    "remote_log": "/workspace/servedoctor-hard/control/guard-rearm-1eb1305c461e483bb44d84562ceb4054/guard.log",
+    "remote_attempt": "/workspace/servedoctor-hard/control/guard-rearm-1eb1305c461e483bb44d84562ceb4054",
+    "old_guard": {
+      "pid": 547,
+      "start_ticks": "44488133",
+      "uid": 0,
+      "cwd": "/workspace/servedoctor-hard",
+      "argv_sha256": "ab75ea67ff04b5192ae8dbc0728773ef8cdfa4c64cf284f7d74bce5c751963b6"
+    }
+  }
+}

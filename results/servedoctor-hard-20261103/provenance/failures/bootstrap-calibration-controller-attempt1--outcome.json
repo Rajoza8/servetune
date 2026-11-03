@@ -1,0 +1,25 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "started_at_utc": "2026-11-02T15:47:24.014830+00:00",
+  "scope": "Setup and pre-generation host calibration only",
+  "commands": [
+    {
+      "label": "host-key-readiness",
+      "started_at_utc": "2026-11-02T15:47:24.255011+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T15:47:27.022866+00:00"
+    },
+    {
+      "label": "read-instance-guide",
+      "started_at_utc": "2026-11-02T15:47:27.029608+00:00",
+      "returncode": 255,
+      "finished_at_utc": "2026-11-02T15:47:28.767846+00:00"
+    }
+  ],
+  "status": "failed",
+  "instance_id": 58843932,
+  "stage": "read-instance-guide",
+  "error_class": "RuntimeError",
+  "finished_at_utc": "2026-11-02T15:47:28.770030+00:00"
+}

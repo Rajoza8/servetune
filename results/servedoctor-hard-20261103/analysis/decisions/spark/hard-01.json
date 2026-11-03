@@ -1,0 +1,230 @@
+{
+ "arm": "spark",
+ "incident": "hard-01",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.9,
+  "evidence": [
+   "p95_latency_s 11.07 exceeds SLO 10.0 at t=149",
+   "non-engine GPU process pid 3127 embedding_batch using GPU",
+   "gpu_mem_used_mb jumped ~1100MB at t=129 matching that process",
+   "arrivals_rps ~3.2 stable vs normal 2.8, waiting 0, KV usage 3%",
+   "running 36 elevated while throughput normal, TTFT 0.92 vs 0.46"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 3127
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency SLO breach with stable load and low KV/waiting, but a competing embedding batch process on same GPU explains slowdown. Stopping it removes contention without engine restart.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 11.07 exceeds SLO 10.0 at t=149\", \"non-engine GPU process pid 3127 embedding_batch using GPU\", \"gpu_mem_used_mb jumped ~1100MB at t=129 matching that process\", \"arrivals_rps ~3.2 stable vs normal 2.8, waiting 0, KV usage 3%\", \"running 36 elevated while throughput normal, TTFT 0.92 vs 0.46\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"Latency SLO breach with stable load and low KV/waiting, but a competing embedding batch process on same GPU explains slowdown. Stopping it removes contention without engine restart.\"}",
+  "usage": {
+   "completion_tokens": 691,
+   "prompt_tokens": 3157,
+   "total_tokens": 3848,
+   "completion_tokens_details": {
+    "reasoning_tokens": 497
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "29f54bdf01859a965b786201d01b74cf2d03b1bf8d775a30673b566490ee35f8",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 6.2-7.6s < SLO 10.0s",
+     "shed_rps 0.0 and waiting_max 0.0",
+     "kv_usage_pct_max 1.7-2.8% with 0 preemptions",
+     "arrivals 3.5-3.9 rps vs normal 2.8 rps",
+     "single GPU process VLLM::EngineCore only"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency within SLO, no shedding/errors/queueing. Slightly higher RPS and prompt length vs normal profile explains small latency/gen increase. GPU power/util matches healthy reference. Config change is benign.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 6.2-7.6s < SLO 10.0s\", \"shed_rps 0.0 and waiting_max 0.0\", \"kv_usage_pct_max 1.7-2.8% with 0 preemptions\", \"arrivals 3.5-3.9 rps vs normal 2.8 rps\", \"single GPU process VLLM::EngineCore only\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency within SLO, no shedding/errors/queueing. Slightly higher RPS and prompt length vs normal profile explains small latency/gen increase. GPU power/util matches healthy reference. Config change is benign.\"}",
+    "usage": {
+     "completion_tokens": 724,
+     "prompt_tokens": 1472,
+     "total_tokens": 2196,
+     "completion_tokens_details": {
+      "reasoning_tokens": 540
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "a1f8ad076838ee510f2ef5f328b6c6287338b14233571161a7535e99cc201abe",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency 5.86-7.58s < SLO 10.0s",
+     "shed_rps 0 and errors 0",
+     "waiting_max 0, preemptions 0",
+     "kv_usage_pct_max ~2% vs normal 1.26%",
+     "arrivals 2.4-3.9 rps vs normal 2.8 rps"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLOs met, queue empty, KV cache nearly empty, throughput and latency near healthy profile. Batched-tokens increase did not cause harm. Normal variation only.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency 5.86-7.58s < SLO 10.0s\", \"shed_rps 0 and errors 0\", \"waiting_max 0, preemptions 0\", \"kv_usage_pct_max ~2% vs normal 1.26%\", \"arrivals 2.4-3.9 rps vs normal 2.8 rps\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met, queue empty, KV cache nearly empty, throughput and latency near healthy profile. Batched-tokens increase did not cause harm. Normal variation only.\"}",
+    "usage": {
+     "completion_tokens": 433,
+     "prompt_tokens": 1941,
+     "total_tokens": 2374,
+     "completion_tokens_details": {
+      "reasoning_tokens": 267
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "d4c08b6600522a4cc5dc9be7595e35c5ef69ce009ece6acc845a9c1ab2839406",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.94,
+    "evidence": [
+     "p95_latency_s 5.76-7.58 below SLO 10.0",
+     "shed_rps 0.0 and errors 0, within SLO",
+     "waiting_max 0.0 with running ~13-23 vs normal 15",
+     "kv_usage_pct_max 0.83-2.78% vs normal 1.26%, no preemptions",
+     "arrivals_rps 2.4-4.0 near normal 2.8, throughput normal"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLOs met, queue empty, KV cache minimal, throughput matches healthy profile. Higher batched tokens config and prompt mean variation are within normal tolerance.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.94, \"evidence\": [\"p95_latency_s 5.76-7.58 below SLO 10.0\", \"shed_rps 0.0 and errors 0, within SLO\", \"waiting_max 0.0 with running ~13-23 vs normal 15\", \"kv_usage_pct_max 0.83-2.78% vs normal 1.26%, no preemptions\", \"arrivals_rps 2.4-4.0 near normal 2.8, throughput normal\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met, queue empty, KV cache minimal, throughput matches healthy profile. Higher batched tokens config and prompt mean variation are within normal tolerance.\"}",
+    "usage": {
+     "completion_tokens": 392,
+     "prompt_tokens": 2409,
+     "total_tokens": 2801,
+     "completion_tokens_details": {
+      "reasoning_tokens": 207
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "7224fcc45c0f1e13a39a2a0c8f608701066d5dc016327dc2f31265f0a3deff29",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.4-7.58 < SLO 10.0",
+     "shed_rps 0.0 and waiting_max 0.0",
+     "kv_usage_pct_max 0.83-2.78% no pressure",
+     "arrivals_rps 2.4-4.0 ~ normal 2.8",
+     "p95_ttft_s 0.29-0.78 ~ normal 0.46"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, errors and shed within SLO. Queue empty, KV <3%, TTFT normal. Slight arrival/prompt variation is normal. Config change to 12288 batched tokens is helping, no fix needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.4-7.58 < SLO 10.0\", \"shed_rps 0.0 and waiting_max 0.0\", \"kv_usage_pct_max 0.83-2.78% no pressure\", \"arrivals_rps 2.4-4.0 ~ normal 2.8\", \"p95_ttft_s 0.29-0.78 ~ normal 0.46\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency, errors and shed within SLO. Queue empty, KV <3%, TTFT normal. Slight arrival/prompt variation is normal. Config change to 12288 batched tokens is helping, no fix needed.\"}",
+    "usage": {
+     "completion_tokens": 690,
+     "prompt_tokens": 2900,
+     "total_tokens": 3590,
+     "completion_tokens_details": {
+      "reasoning_tokens": 502
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "d441d3695094e91e7906ffcec4337a818569a31813e5b386ca896706e86677dc",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.9,
+    "evidence": [
+     "p95_latency_s 11.07 exceeds SLO 10.0 at t=149",
+     "non-engine GPU process pid 3127 embedding_batch using GPU",
+     "gpu_mem_used_mb jumped ~1100MB at t=129 matching that process",
+     "arrivals_rps ~3.2 stable vs normal 2.8, waiting 0, KV usage 3%",
+     "running 36 elevated while throughput normal, TTFT 0.92 vs 0.46"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 3127
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency SLO breach with stable load and low KV/waiting, but a competing embedding batch process on same GPU explains slowdown. Stopping it removes contention without engine restart.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 11.07 exceeds SLO 10.0 at t=149\", \"non-engine GPU process pid 3127 embedding_batch using GPU\", \"gpu_mem_used_mb jumped ~1100MB at t=129 matching that process\", \"arrivals_rps ~3.2 stable vs normal 2.8, waiting 0, KV usage 3%\", \"running 36 elevated while throughput normal, TTFT 0.92 vs 0.46\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"Latency SLO breach with stable load and low KV/waiting, but a competing embedding batch process on same GPU explains slowdown. Stopping it removes contention without engine restart.\"}",
+    "usage": {
+     "completion_tokens": 691,
+     "prompt_tokens": 3157,
+     "total_tokens": 3848,
+     "completion_tokens_details": {
+      "reasoning_tokens": 497
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

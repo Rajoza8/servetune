@@ -1,0 +1,11 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+Traceback (most recent call last):
+  File "<string>", line 6, in <module>
+  File "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/hard_integrity.py", line 211, in verify_freeze
+    if value.get('project')!=PROJECT or value.get('study_dir')!=root.relative_to(repo).as_posix() or commit(repo)!=value['source_commit']:
+                                                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'runs/sd-hard' is not in the subpath of '/workspace/servedoctor-hard/servetune'

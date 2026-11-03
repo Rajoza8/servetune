@@ -1,0 +1,8 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58851643,
+  "historical_evidence_directory": "container-logs-58851643-attempt1",
+  "observed_original_receipt_sha256": "048548c13b857e4068d496b56948604df4829425361c89b5eb5c075776dfdf11",
+  "log_format": "fixed_category_projection_v1",
+  "clarification": "This historical container-sanitized.log contains only structured category/path findings, not full redacted text. All original bytes remain unchanged. Raw log was discarded from memory and cannot be reconstructed without another request; no extra request is authorized or made. Future collections usefull_redacted_text_v2."
+}

@@ -1,0 +1,3236 @@
+{
+ "rows": [
+  {
+   "arm": "glimmer",
+   "incident": "hard-01",
+   "split": "hard",
+   "truth": "gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "contention-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3127
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-01",
+   "split": "hard",
+   "truth": "gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "contention-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3127
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.00710825
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-01",
+   "split": "hard",
+   "truth": "gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "contention-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3127
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.042108
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-01",
+   "split": "hard",
+   "truth": "gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "contention-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3127
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-01",
+   "split": "hard",
+   "truth": "gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "contention-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3127
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.02730125
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-01",
+   "split": "hard",
+   "truth": "gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "contention-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3127
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.095996
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-02",
+   "split": "hard",
+   "truth": "long_prompt_flood",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 512
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-02",
+   "split": "hard",
+   "truth": "long_prompt_flood",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 512
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.008179
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-02",
+   "split": "hard",
+   "truth": "long_prompt_flood",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 1024
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.02956
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-02",
+   "split": "hard",
+   "truth": "long_prompt_flood",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 90,
+   "checkpoints": 3,
+   "variant": "long-prompt-near-threshold",
+   "false_alarm": true,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": true,
+   "stopped_decoy": true,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 1612
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-02",
+   "split": "hard",
+   "truth": "long_prompt_flood",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 500
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.030623
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-02",
+   "split": "hard",
+   "truth": "long_prompt_flood",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 1024
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.097196
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-03",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-burst-and-herring",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-03",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-burst-and-herring",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-03",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-burst-and-herring",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-03",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-burst-and-herring",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-03",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-burst-and-herring",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.072926
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-03",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-burst-and-herring",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.23514
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-04",
+   "split": "hard",
+   "truth": "long_prompt_flood+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-plus-contention",
+   "root_causes": [
+    "long_prompt_flood",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 1024
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-04",
+   "split": "hard",
+   "truth": "long_prompt_flood+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-plus-contention",
+   "root_causes": [
+    "long_prompt_flood",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 512
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.0078205
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-04",
+   "split": "hard",
+   "truth": "long_prompt_flood+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 180,
+   "checkpoints": 6,
+   "variant": "long-prompt-plus-contention",
+   "root_causes": [
+    "long_prompt_flood",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 1024
+    }
+   ],
+   "escalations": 2,
+   "invalid_outputs": 1,
+   "call_failures": 0,
+   "api_calls": 2,
+   "api_cost_usd": 0.08518
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-04",
+   "split": "hard",
+   "truth": "long_prompt_flood+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-plus-contention",
+   "root_causes": [
+    "long_prompt_flood",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": true,
+   "stopped_decoy": true,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3492
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-04",
+   "split": "hard",
+   "truth": "long_prompt_flood+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "long_prompt_flood",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-plus-contention",
+   "root_causes": [
+    "long_prompt_flood",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_max_prompt_tokens",
+     "max_prompt_tokens": 512
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.0297695
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-04",
+   "split": "hard",
+   "truth": "long_prompt_flood+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "long-prompt-plus-contention",
+   "root_causes": [
+    "long_prompt_flood",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 3528
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.110468
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-05",
+   "split": "hard",
+   "truth": "traffic_surge+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-plus-contention",
+   "root_causes": [
+    "traffic_surge",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-05",
+   "split": "hard",
+   "truth": "traffic_surge+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-plus-contention",
+   "root_causes": [
+    "traffic_surge",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.01075975
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-05",
+   "split": "hard",
+   "truth": "traffic_surge+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 180,
+   "checkpoints": 6,
+   "variant": "surge-plus-contention",
+   "root_causes": [
+    "traffic_surge",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 2,
+   "invalid_outputs": 1,
+   "call_failures": 0,
+   "api_calls": 2,
+   "api_cost_usd": 0.087008
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-05",
+   "split": "hard",
+   "truth": "traffic_surge+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-plus-contention",
+   "root_causes": [
+    "traffic_surge",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 1751
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-05",
+   "split": "hard",
+   "truth": "traffic_surge+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-plus-contention",
+   "root_causes": [
+    "traffic_surge",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.0276205
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-05",
+   "split": "hard",
+   "truth": "traffic_surge+gpu_contention",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-plus-contention",
+   "root_causes": [
+    "traffic_surge",
+    "gpu_contention"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.098944
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-06",
+   "split": "hard",
+   "truth": "batch_limit_too_low+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-plus-context",
+   "root_causes": [
+    "batch_limit_too_low",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-06",
+   "split": "hard",
+   "truth": "batch_limit_too_low+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-plus-context",
+   "root_causes": [
+    "batch_limit_too_low",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.0060735
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-06",
+   "split": "hard",
+   "truth": "batch_limit_too_low+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-plus-context",
+   "root_causes": [
+    "batch_limit_too_low",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.02994
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-06",
+   "split": "hard",
+   "truth": "batch_limit_too_low+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-plus-context",
+   "root_causes": [
+    "batch_limit_too_low",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-06",
+   "split": "hard",
+   "truth": "batch_limit_too_low+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-plus-context",
+   "root_causes": [
+    "batch_limit_too_low",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.005912
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-06",
+   "split": "hard",
+   "truth": "batch_limit_too_low+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-plus-context",
+   "root_causes": [
+    "batch_limit_too_low",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.02004
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-07",
+   "split": "hard",
+   "truth": "context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "context-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-07",
+   "split": "hard",
+   "truth": "context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "context-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.00610025
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-07",
+   "split": "hard",
+   "truth": "context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "context-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.033488
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-07",
+   "split": "hard",
+   "truth": "context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "context-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-07",
+   "split": "hard",
+   "truth": "context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 60,
+   "checkpoints": 2,
+   "variant": "context-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 2,
+   "api_cost_usd": 0.01215025
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-07",
+   "split": "hard",
+   "truth": "context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 60,
+   "checkpoints": 2,
+   "variant": "context-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 2,
+   "api_cost_usd": 0.050996
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-08",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 270,
+   "checkpoints": 9,
+   "variant": "surge-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 150,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 7.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-08",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 270,
+   "checkpoints": 9,
+   "variant": "surge-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 150,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 128
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.00855675
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-08",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 270,
+   "checkpoints": 9,
+   "variant": "surge-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 150,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 128
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.03384
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-08",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 270,
+   "checkpoints": 9,
+   "variant": "surge-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 150,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 4.48
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-08",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 270,
+   "checkpoints": 9,
+   "variant": "surge-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 150,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 6.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 9,
+   "api_cost_usd": 0.05893825
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-08",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 240,
+   "checkpoints": 8,
+   "variant": "surge-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 120,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 128
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 8,
+   "api_cost_usd": 0.195332
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-09",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-lower-memory-setting",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-09",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-lower-memory-setting",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-09",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-lower-memory-setting",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-09",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-lower-memory-setting",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-09",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-lower-memory-setting",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.07112975
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-09",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-lower-memory-setting",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.241544
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-10",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-decoy-and-config-noise",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-10",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-decoy-and-config-noise",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-10",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-decoy-and-config-noise",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-10",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 180,
+   "checkpoints": 6,
+   "variant": "healthy-with-decoy-and-config-noise",
+   "false_alarm": true,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": true,
+   "stopped_decoy": true,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 6203
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-10",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-decoy-and-config-noise",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.08171
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-10",
+   "split": "hard",
+   "truth": "healthy",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "healthy-with-decoy-and-config-noise",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.24532
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-11",
+   "split": "hard",
+   "truth": "kv_cache_starvation+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "kv-plus-context",
+   "root_causes": [
+    "kv_cache_starvation",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-11",
+   "split": "hard",
+   "truth": "kv_cache_starvation+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "kv-plus-context",
+   "root_causes": [
+    "kv_cache_starvation",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.007248
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-11",
+   "split": "hard",
+   "truth": "kv_cache_starvation+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 120,
+   "checkpoints": 4,
+   "variant": "kv-plus-context",
+   "root_causes": [
+    "kv_cache_starvation",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 120,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 4,
+   "invalid_outputs": 3,
+   "call_failures": 0,
+   "api_calls": 4,
+   "api_cost_usd": 0.191684
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-11",
+   "split": "hard",
+   "truth": "kv_cache_starvation+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "kv-plus-context",
+   "root_causes": [
+    "kv_cache_starvation",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-11",
+   "split": "hard",
+   "truth": "kv_cache_starvation+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "kv-plus-context",
+   "root_causes": [
+    "kv_cache_starvation",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.00633425
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-11",
+   "split": "hard",
+   "truth": "kv_cache_starvation+context_limit_too_small",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "context_limit_too_small",
+   "flag_t": 60,
+   "checkpoints": 2,
+   "variant": "kv-plus-context",
+   "root_causes": [
+    "kv_cache_starvation",
+    "context_limit_too_small"
+   ],
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_model_len",
+     "value": 4096
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 1,
+   "call_failures": 0,
+   "api_calls": 2,
+   "api_cost_usd": 0.074372
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-12",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "batch-near-threshold",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-12",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "batch-near-threshold",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-12",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "batch-near-threshold",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-12",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "other",
+   "flag_t": 270,
+   "checkpoints": 9,
+   "variant": "batch-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 270,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "escalate_to_human"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-12",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "batch-near-threshold",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 12,
+   "api_cost_usd": 0.0780565
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-12",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-near-threshold",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.023852
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-13",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 4.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-13",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 128
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.00937925
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-13",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.033224
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-13",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": true,
+   "stopped_decoy": true,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 5283
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-13",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "traffic_surge",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "gateway_rate_limit",
+     "max_rps": 3.0
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.02933825
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-13",
+   "split": "hard",
+   "truth": "traffic_surge",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 150,
+   "checkpoints": 5,
+   "variant": "surge-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 192
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 5,
+   "api_cost_usd": 0.107884
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-14",
+   "split": "hard",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "underutilization",
+   "flag_t": 60,
+   "checkpoints": 2,
+   "variant": "underutilization-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "recommend_consolidation"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-14",
+   "split": "hard",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "underutilization-with-decoy",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-14",
+   "split": "hard",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": false,
+   "predicted": "healthy",
+   "flag_t": null,
+   "checkpoints": 12,
+   "variant": "underutilization-with-decoy",
+   "false_alarm": false,
+   "detected": false,
+   "time_to_detect_s": null,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "no_action"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-14",
+   "split": "hard",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "gpu_contention",
+   "flag_t": 60,
+   "checkpoints": 2,
+   "variant": "underutilization-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 60,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": true,
+   "stopped_decoy": true,
+   "actions": [
+    {
+     "type": "stop_gpu_process",
+     "pid": 5449
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-14",
+   "split": "hard",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "underutilization",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "underutilization-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "recommend_consolidation"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.0055045
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-14",
+   "split": "hard",
+   "truth": "underutilization",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "underutilization",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "underutilization-with-decoy",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "recommend_consolidation"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.029384
+  },
+  {
+   "arm": "glimmer",
+   "incident": "hard-15",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-with-noise",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "glimmer_to_spark",
+   "incident": "hard-15",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-with-noise",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.00605675
+  },
+  {
+   "arm": "glimmer_to_wonder",
+   "incident": "hard-15",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-with-noise",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 1,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.018632
+  },
+  {
+   "arm": "rules",
+   "incident": "hard-15",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "other",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-with-noise",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": false,
+   "fix_proposed": false,
+   "complete_fix": false,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "escalate_to_human"
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  {
+   "arm": "spark",
+   "incident": "hard-15",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-with-noise",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.006231
+  },
+  {
+   "arm": "wonder",
+   "incident": "hard-15",
+   "split": "hard",
+   "truth": "batch_limit_too_low",
+   "severity_index": 0,
+   "flagged": true,
+   "predicted": "batch_limit_too_low",
+   "flag_t": 30,
+   "checkpoints": 1,
+   "variant": "batch-with-noise",
+   "false_alarm": false,
+   "detected": true,
+   "time_to_detect_s": 30,
+   "diagnosis_correct": true,
+   "fix_proposed": true,
+   "complete_fix": true,
+   "harmful": false,
+   "stopped_decoy": false,
+   "actions": [
+    {
+     "type": "set_engine_config",
+     "knob": "max_num_seqs",
+     "value": 64
+    }
+   ],
+   "escalations": 0,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 1,
+   "api_cost_usd": 0.017832
+  }
+ ],
+ "by_arm": {
+  "glimmer": {
+   "incidents": 12,
+   "healthy_controls": 3,
+   "detected": 11,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 11,
+   "fix_proposed": 11,
+   "complete_fix": 7,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  "glimmer_to_spark": {
+   "incidents": 12,
+   "healthy_controls": 3,
+   "detected": 10,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 8,
+   "fix_proposed": 8,
+   "complete_fix": 4,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 10,
+   "api_cost_usd": 0.0773
+  },
+  "glimmer_to_wonder": {
+   "incidents": 12,
+   "healthy_controls": 3,
+   "detected": 10,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 9,
+   "fix_proposed": 9,
+   "complete_fix": 5,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 5,
+   "call_failures": 0,
+   "api_calls": 15,
+   "api_cost_usd": 0.5847
+  },
+  "rules": {
+   "incidents": 12,
+   "healthy_controls": 3,
+   "detected": 11,
+   "false_alarms": 2,
+   "healthy_false_alarms": 1,
+   "diagnosis_correct": 7,
+   "fix_proposed": 6,
+   "complete_fix": 3,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 5,
+   "stopped_decoy": 5,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  "spark": {
+   "incidents": 12,
+   "healthy_controls": 3,
+   "detected": 11,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 11,
+   "fix_proposed": 11,
+   "complete_fix": 7,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 88,
+   "api_cost_usd": 0.5435
+  },
+  "wonder": {
+   "incidents": 12,
+   "healthy_controls": 3,
+   "detected": 12,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 10,
+   "fix_proposed": 10,
+   "complete_fix": 6,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 1,
+   "call_failures": 0,
+   "api_calls": 77,
+   "api_cost_usd": 1.6443
+  }
+ },
+ "by_arm_valid_only": {
+  "glimmer": {
+   "incidents": 11,
+   "healthy_controls": 3,
+   "detected": 11,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 11,
+   "fix_proposed": 11,
+   "complete_fix": 7,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  "glimmer_to_spark": {
+   "incidents": 11,
+   "healthy_controls": 3,
+   "detected": 10,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 8,
+   "fix_proposed": 8,
+   "complete_fix": 4,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 10,
+   "api_cost_usd": 0.0773
+  },
+  "glimmer_to_wonder": {
+   "incidents": 11,
+   "healthy_controls": 3,
+   "detected": 10,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 9,
+   "fix_proposed": 9,
+   "complete_fix": 5,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 5,
+   "call_failures": 0,
+   "api_calls": 15,
+   "api_cost_usd": 0.5847
+  },
+  "rules": {
+   "incidents": 11,
+   "healthy_controls": 3,
+   "detected": 10,
+   "false_alarms": 2,
+   "healthy_false_alarms": 1,
+   "diagnosis_correct": 7,
+   "fix_proposed": 6,
+   "complete_fix": 3,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 5,
+   "stopped_decoy": 5,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 0,
+   "api_cost_usd": 0.0
+  },
+  "spark": {
+   "incidents": 11,
+   "healthy_controls": 3,
+   "detected": 11,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 11,
+   "fix_proposed": 11,
+   "complete_fix": 7,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 0,
+   "call_failures": 0,
+   "api_calls": 76,
+   "api_cost_usd": 0.4655
+  },
+  "wonder": {
+   "incidents": 11,
+   "healthy_controls": 3,
+   "detected": 11,
+   "false_alarms": 0,
+   "healthy_false_alarms": 0,
+   "diagnosis_correct": 9,
+   "fix_proposed": 9,
+   "complete_fix": 5,
+   "compound_incidents": 4,
+   "compound_complete_fix": 0,
+   "harmful": 0,
+   "stopped_decoy": 0,
+   "median_time_to_detect_s": 30,
+   "invalid_outputs": 1,
+   "call_failures": 0,
+   "api_calls": 76,
+   "api_cost_usd": 1.6204
+  }
+ },
+ "validity": {
+  "created_at": "2026-11-03T02:26:40.290234+00:00",
+  "rule": "fault incidents: >=1 30-s window (by scheduled arrival, from onset) with successful-request p95 above the SLO or admitted error rate above the SLO; healthy and underutilization incidents: no such window anywhere",
+  "incidents": [
+   {
+    "id": "hard-01",
+    "valid": true,
+    "breach_windows": 8,
+    "windows": 8,
+    "reason": null
+   },
+   {
+    "id": "hard-02",
+    "valid": true,
+    "breach_windows": 6,
+    "windows": 8,
+    "reason": null
+   },
+   {
+    "id": "hard-03",
+    "valid": true,
+    "breach_windows": 0,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-04",
+    "valid": true,
+    "breach_windows": 8,
+    "windows": 8,
+    "reason": null
+   },
+   {
+    "id": "hard-05",
+    "valid": true,
+    "breach_windows": 8,
+    "windows": 8,
+    "reason": null
+   },
+   {
+    "id": "hard-06",
+    "valid": true,
+    "breach_windows": 12,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-07",
+    "valid": true,
+    "breach_windows": 12,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-08",
+    "valid": true,
+    "breach_windows": 4,
+    "windows": 8,
+    "reason": null
+   },
+   {
+    "id": "hard-09",
+    "valid": true,
+    "breach_windows": 0,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-10",
+    "valid": true,
+    "breach_windows": 0,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-11",
+    "valid": true,
+    "breach_windows": 12,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-12",
+    "valid": false,
+    "breach_windows": 0,
+    "windows": 12,
+    "reason": "no observable SLO breach"
+   },
+   {
+    "id": "hard-13",
+    "valid": true,
+    "breach_windows": 8,
+    "windows": 8,
+    "reason": null
+   },
+   {
+    "id": "hard-14",
+    "valid": true,
+    "breach_windows": 0,
+    "windows": 12,
+    "reason": null
+   },
+   {
+    "id": "hard-15",
+    "valid": true,
+    "breach_windows": 12,
+    "windows": 12,
+    "reason": null
+   }
+  ],
+  "valid": 14,
+  "total": 15
+ }
+}

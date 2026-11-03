@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "set": "hard",
+  "seed": 20261103,
+  "dtype": "bf16",
+  "engine_base": {
+    "max_model_len": 4096,
+    "max_num_seqs": 64,
+    "max_num_batched_tokens": 8192,
+    "gpu_memory_utilization": 0.9,
+    "enable_chunked_prefill": true,
+    "enable_prefix_caching": false
+  },
+  "capacity_rps": 6.0,
+  "base_load_fraction": 0.5,
+  "max_output_tokens": 128,
+  "request_timeout_s": 60,
+  "slo": {
+    "p95_latency_s": 10.0,
+    "max_error_rate": 0.01,
+    "max_shed_rate": 0.05
+  },
+  "timing": {
+    "pre_onset_s": 120,
+    "fault_s": 240,
+    "checkpoint_s": 30,
+    "settle_s": 15
+  },
+  "prompt_tokens": {
+    "medium": [
+      700,
+      1300
+    ],
+    "long": [
+      2300,
+      3500
+    ]
+  },
+  "base_mix": {
+    "short": 0.85,
+    "medium": 0.15,
+    "long": 0.0
+  },
+  "contention": {
+    "matrix_size": 8192,
+    "period": 0.2
+  },
+  "decoy": {
+    "duty": 0.02,
+    "matrix_size": 1024,
+    "period": 1.0
+  },
+  "hard_incidents": [
+    {
+      "name": "surge-near-threshold",
+      "causes": [
+        "traffic_surge"
+      ],
+      "surge_multiplier": 1.1,
+      "benign_knobs": 1,
+      "herring_change": true
+    },
+    {
+      "name": "long-prompt-near-threshold",
+      "causes": [
+        "long_prompt_flood"
+      ],
+      "long_fraction": 0.15,
+      "benign_knobs": 1,
+      "decoy": true
+    },
+    {
+      "name": "kv-near-threshold",
+      "causes": [
+        "kv_cache_starvation"
+      ],
+      "engine": {
+        "gpu_memory_utilization": 0.61632
+      },
+      "benign_knobs": 1,
+      "noise_alerts": 1
+    },
+    {
+      "name": "batch-near-threshold",
+      "causes": [
+        "batch_limit_too_low"
+      ],
+      "engine": {
+        "max_num_seqs": 24
+      },
+      "benign_knobs": 2
+    },
+    {
+      "name": "context-near-threshold",
+      "causes": [
+        "context_limit_too_small"
+      ],
+      "engine": {
+        "max_model_len": 1408
+      },
+      "benign_knobs": 1
+    },
+    {
+      "name": "contention-near-threshold",
+      "causes": [
+        "gpu_contention"
+      ],
+      "contention_duty": 0.6,
+      "benign_knobs": 1,
+      "herring_change": true
+    },
+    {
+      "name": "surge-plus-contention",
+      "causes": [
+        "traffic_surge",
+        "gpu_contention"
+      ],
+      "surge_multiplier": 1.2,
+      "contention_duty": 0.7,
+      "benign_knobs": 1
+    },
+    {
+      "name": "long-prompt-plus-contention",
+      "causes": [
+        "long_prompt_flood",
+        "gpu_contention"
+      ],
+      "long_fraction": 0.25,
+      "contention_duty": 0.7,
+      "decoy": true
+    },
+    {
+      "name": "batch-plus-context",
+      "causes": [
+        "batch_limit_too_low",
+        "context_limit_too_small"
+      ],
+      "engine": {
+        "max_num_seqs": 16,
+        "max_model_len": 1280
+      },
+      "benign_knobs": 1
+    },
+    {
+      "name": "kv-plus-context",
+      "causes": [
+        "kv_cache_starvation",
+        "context_limit_too_small"
+      ],
+      "engine": {
+        "gpu_memory_utilization": 0.6152,
+        "max_model_len": 1280
+      }
+    },
+    {
+      "name": "healthy-with-decoy-and-config-noise",
+      "causes": [],
+      "decoy": true,
+      "benign_knobs": 2,
+      "noise_alerts": 2
+    },
+    {
+      "name": "healthy-with-burst-and-herring",
+      "causes": [],
+      "spike": {
+        "multiplier": 1.8,
+        "seconds": 25
+      },
+      "benign_knobs": 1,
+      "herring_change": true
+    },
+    {
+      "name": "healthy-with-lower-memory-setting",
+      "causes": [],
+      "benign_knobs_forced": [
+        "gpu_memory_utilization"
+      ],
+      "noise_alerts": 1
+    },
+    {
+      "name": "surge-with-decoy",
+      "causes": [
+        "traffic_surge"
+      ],
+      "surge_multiplier": 1.4,
+      "decoy": true,
+      "benign_knobs": 1
+    },
+    {
+      "name": "underutilization-with-decoy",
+      "causes": [
+        "underutilization"
+      ],
+      "load_fraction": 0.2,
+      "decoy": true,
+      "benign_knobs": 1
+    },
+    {
+      "name": "batch-with-noise",
+      "causes": [
+        "batch_limit_too_low"
+      ],
+      "engine": {
+        "max_num_seqs": 12
+      },
+      "benign_knobs": 2,
+      "decoy": true,
+      "noise_alerts": 2
+    }
+  ],
+  "notes": "Hard set: no dev split and nothing tuned on it; prompts, rules, models and scoring rules are frozen from v0. Severities were chosen from v0 recorded telemetry only (no arm outputs): v0 context 1536 gave 0.8% errors, contention duty 0.4 gave no SLO breach and 0.7 breached 7/8 windows, KV 0.61733 breached 3/12 windows, reference concurrency averaged 21 (p95 31). The KV utilizations are specific to the v0 replacement host; on any other host re-probe them before generation. capacity_rps must come from a calibration on the recording host. New recording host calibration before generation: Vast instance 58858374, GPU GPU-bca4245b-1348-7ce9-392a-d976e3a9b39e, measured capacity 8 RPS. runs/sd-hard-kv-probes-attempt1/summary.json (SHA256 e152728fca8bfef514a5d3adeae744433e5b90da0ed26f59285987e0e4a14e46) records standalone 4096-context, 90-second probes at 4 RPS: mild utilization 0.61711 gave p95 9.68687555365031 s, KV 0.48 GiB, 46 preemptions; compound-use utilization 0.61624 gave p95 14.192525350011417 s, KV 0.40 GiB, 104 preemptions. Both completed 344/344 requests with no errors. These replace only the host-specific KV values under the authorized new-host procedure; no Hard incidents, answer keys or arm outputs existed or were consulted. Calibration source was d3fe20a07ce9c687e75956200b655c5913021d49. New recording host 58866756 (Colorado, US), GPU GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681: measured capacity 6 RPS. Pre-generation standalone4096-context90s KV evidence runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror/refinement/selected-kv-summary.json SHA256 068d81e181520a2b08cb56748502614d578634facdc7d577366d639b1b63654b: mild utilization 0.61632 p95 10.004323831864165s; compound-use utilization 0.6152 p95 15.239633663152924s. Both probes completed all requests without errors. The original standalone compound probe0.61559/p9511.71s is retained. A predeclared fresh standalone calibration refined that hostKV value toward15s before any Hard generation; only hostKV values and notes change. Remote calibration source d3fe20a07ce9c687e75956200b655c5913021d49; no Hard study or arm output existed or was consulted."
+}

@@ -1,0 +1,13 @@
+{
+  "index": 5,
+  "name": "prepare-study",
+  "argv_sha256": "54ea299503649b6c5905c2eba2923237b1d48fadea3415facd43ea8c9be0a405",
+  "started_epoch": 1793652772.997323,
+  "owner_deadline_epoch": 1793659972.9972851,
+  "returncode": 1,
+  "pid": 24710,
+  "birth": "Mon Nov  2 15:52:53 2026",
+  "error_class": "CalledProcessError",
+  "outcome_recorded_epoch": 1793652813.227354,
+  "finished_epoch": 1793652813.227357
+}

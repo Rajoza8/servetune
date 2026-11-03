@@ -1,0 +1,27 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T04:26:49.805724+00:00",
+  "failed_attempt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-offline-materialization-attempt1/failure.json",
+    "sha256": "13ad5ff5f789a63375efbcc2b64ecc990a080a67dbf62e7582349399be395418"
+  },
+  "materializer_source": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/materialize_inference_offline.py",
+    "sha256": "7b28620f6e598f38e96d749cea9bc2b992ffd6194f425017fa9cff00e71d54f1"
+  },
+  "packager_source": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/package_inference_results.py",
+    "sha256": "c98b3fc35f111ce4b852d04dfd362687e5b37aa230c7a2165438f1ef8b8386fc"
+  },
+  "gate_error": "unsafe-original-descriptor-path",
+  "cause": "The frozen native LABEL_REPORT emitted relative descriptors for its native HTML, native JSON and safe projection. The reviewed publication resolver admitted only absolute descriptors. The files and descriptor hashes were already correct.",
+  "fix_scope": "Accept only the three frozen relative descriptors through an explicit hash-bound local alias mapping; keep all report, decision, scoring, validation, prompt, key and incident bytes unchanged. Retain attempt1 and use a new attempt2 directory.",
+  "scientific_functions_changed": false,
+  "model_validation_or_recording_rerun": false,
+  "new_gpu_start": false,
+  "report_wrapper": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-final-study/analysis-report.json",
+    "sha256": "7d4cb6df7d1369ed9e50516bb4bb3b2990bd91387a274c4c0b983aa9bd6b697b"
+  }
+}

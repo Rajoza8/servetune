@@ -1,0 +1,28 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "study_dir": "runs/sd-hard-partial-attempt1",
+  "completed": true,
+  "failure": null,
+  "cleanup_errors": [],
+  "groups": [
+    "rules-spark-wonder",
+    "glimmer-cascades"
+  ],
+  "work_deadline_epoch": 1793680690.875992,
+  "evidence_directory": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1",
+  "cleanup_deadline_epoch": 1793680870.875992,
+  "max_model_work_seconds": 7800,
+  "inference_only": true,
+  "recording_instance_id": 58866756,
+  "opaque_mirror": {
+    "archive": "runs/servedoctor-hard15-ops-20261102/evaluation-stages/inference-evaluation-attempt1/study-ledger.tar.gz",
+    "archive_sha256": "f6a57fc04dda93d59a2f68f2beab27c73009bfd355ce0c29322fd2fe7e2744fa",
+    "manifest": "runs/servedoctor-hard15-ops-20261102/evaluation-stages/inference-evaluation-attempt1/mirror-manifest.json",
+    "manifest_sha256": "807e92fc4d019e5ec52f0cc1491a75717671eccf8f49f02d35b43ea00d3aff8c",
+    "ledger_sha256": "7c5fa20826516ae5dc6a17ca92a603516c85eda92248ebf9acfe7ed8d96a8385",
+    "study_file_count": 281,
+    "stable": true
+  },
+  "finished_at_utc": "2026-11-03T03:46:05.586297+00:00"
+}

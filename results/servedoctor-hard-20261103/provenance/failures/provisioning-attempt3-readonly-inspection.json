@@ -1,0 +1,23 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "operation": "inspect-rejected-create",
+  "inspected_epoch": 1793634272.572361,
+  "instance_id": null,
+  "offer_id": 47655764,
+  "machine_id": 140879,
+  "complete_inventory": true,
+  "inventory_count": 0,
+  "safe_inventory": [],
+  "http_400_success_false": true,
+  "confirmed_no_instances": true,
+  "prior_baseline": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-receipt-58716527.json",
+    "sha256": "9c28a7d7b972a89cc9e25f079db45310066afacd4e7d3bd300c4ed87894483de",
+    "usd_upper": 25.90010443543525
+  },
+  "source_files_sha256": {
+    "session.json": "e2ebee07ca0d7fd493a1e16bbcec808bd6cca863217e4cf8f6eacf94093e9820",
+    "intent-0000-create.json": "6c6877eeaaf7c4847330fe7b52fb8d7cf7558f2660885c6b70ef7ccf7c598604",
+    "intent-0000-create-outcome.json": "2dda7daaba3267007258d8a9d6e8a2a3ec6dceb2c2cfb3a2eab7b82f8373b049"
+  }
+}

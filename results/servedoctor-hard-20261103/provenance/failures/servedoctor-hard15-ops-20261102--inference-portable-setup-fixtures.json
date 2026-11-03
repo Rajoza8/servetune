@@ -1,0 +1,29 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T02:07:15.352123+00:00",
+  "returncode": 0,
+  "tests": 32,
+  "py_compile": "passed",
+  "files_sha256": {
+    "inference_integrity.py": "2a564fcea530f2d1005a0e68924024b11b56ae35dd9ab8655b75867a9bbb37e4",
+    "inference_report_common.py": "cacb1fafe9b79cddfc80c079678d6d4bfee053fc80d1ccd8a56e363ebae5e943",
+    "inference_measure_contexts.py": "9b3747ca0650792a06121ff6e42d26b169dd17dae27ccd9c95d12a45b26f5bb4",
+    "inference_response_guard.py": "207fdc6a7dd2dcda9c526d9aa4c1bf023f8663ccfd09310fc674a99e02b131ce",
+    "inference_export_scores.py": "6150a236da4070ae5745d70661836e79ec4fdf5e7955c6bd29110dfe58835dec",
+    "inference_cold_bootstrap.py": "7e4d2ed48f6d80987de867de645be2fe74e1792feb4fd8339d39da44280b92cb",
+    "inference_prepare_stage.py": "2c4b7e1424b4ede5570523a6690c9bb460a3b1a2ef51d001ac3562a060bb6eb1",
+    "cpu_rules_adapter.py": "26f175ab374416f2147ea085f1de7c18c5bb440ada93361c0790148d51e95c97",
+    "package_partial_results.py": "a183e08da6dbf174e2a8f632afb84b5285939ea0357bfedc6cb59f12b9a617b0",
+    "test_inference_integrity.py": "fb493a167c3ba777a6852a5ffd47436481cc8f225ace62e8626635fb5591fbc2",
+    "test_inference_report_helpers.py": "5e56923d79e67d1caec3b66f5e2e88a6cc1cbe0a6595e8985933b96e6ca49ec3",
+    "test_inference_setup.py": "681d5dc0b757224c8df368ef3c6a0d430b1a753af638a52a85b60683a3fff4e2"
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "8c43c379b7194c1f4a8a9370ce38f576cd5f1b0426cbb9493c9301c2d925e348",
+  "fixtures_only": true,
+  "actual_native_validation_or_evaluation": false,
+  "actual_network_gpu_provider_or_ledger_calls": false,
+  "unchanged_native_scientific_source": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "unmodified_original_recording_verifier": "68ba481d4c0ce457179fb5d2f69c2b33e729215052003b4e4e4ad3d548ea3933"
+}

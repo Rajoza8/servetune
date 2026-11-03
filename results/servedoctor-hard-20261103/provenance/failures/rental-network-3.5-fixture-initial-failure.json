@@ -1,0 +1,7 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T17:51:06.549496+00:00",
+  "scope": "Offline fake rental transfer-boundary fixture",
+  "failure": "Invalid-input example2.51USD didnotexceednewdeclared3.50transferreserve; implementationcorrectlyacceptedthatfakeinput.",
+  "fix": "Changeout-of-budget exampleto3.51USD; cap40/otherguards/scienceunchanged. No actualprovider mutation occurred."
+}

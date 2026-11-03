@@ -1,0 +1,39 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T23:21:55.020989+00:00",
+  "passed": true,
+  "returncode": 0,
+  "tests": 8,
+  "fake_only": true,
+  "py_compile": "passed",
+  "files_sha256": {
+    "partial_analysis_ssh_window.py": "0ea1154f84c92f313c7914e68fb43d0aaa622a1b905b86e299d3dc4d45e5046f",
+    "test_partial_analysis_ssh_window.py": "dcc4f68fc7c66f3cd982b788724e266c58979517a2c7648fbe6e0911ba0fd00c",
+    "startup_ssh_window.py": "26098421e24ae19f1b217a63929ac4c15a1b64a2a64d4b8be1bebd0502df519e",
+    "restart_ssh_window.py": "237f9661378aafb495c8a2f45cd6e507ac2f28c4d7f31d59f86d1bd7e59991da",
+    "frozen_host5_ssh_window.py": "7371f152c13ac653ef7f20be43af7a5a99504f89934b1df06e97e273a0d0468f"
+  },
+  "mode": "partial-analysis-host5-restart",
+  "class": "PartialAnalysisWindow",
+  "instance_id": 58866756,
+  "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "window_seconds": 600,
+  "logs_at_seconds": 300,
+  "local_recorded_coverage": 16,
+  "completed_hard_incidents": 15,
+  "remote_tail_after_partial_mirror_verified": false,
+  "independent_review": {
+    "agent": "/root/audit_runtime",
+    "result": "CLEAR"
+  },
+  "actual_local_only_precondition_check": "PASS all20 known descriptor bindings plus full preserved partial mirror hashes; provider callbacks blocked, no plan/state creation",
+  "known_pins": {
+    "stopped_snapshot": "4b01fa0a1789447c916ad323fc12ee18ff9d54d285e2d81029b53c7edebeb4b6",
+    "exclusion": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9",
+    "preservation": "0bb31a20b50ebb5db6c7680f54b22849c76cf007c9b0aa99f6d68bd4dfeb5af8",
+    "preserved_manifest": "505d7d74d4a978f1de9058380c3d38b85826d7c06affe1d7cffcabe16032d068"
+  },
+  "old_helpers_and_scientific_inputs_modified": false,
+  "actual_provider_ssh_gpu_model_api_lifecycle_actions": false
+}

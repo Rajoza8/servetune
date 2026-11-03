@@ -1,0 +1,78 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T04:32:28.948127+00:00",
+  "sources": {
+    "inference_offline_recovery_gate.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_offline_recovery_gate.py",
+      "sha256": "625eeabd3035ac61f70b25409df1a227cd479138155d12a441af17f4ab28db2c"
+    },
+    "inference_descriptor_adapter.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_descriptor_adapter.py",
+      "sha256": "fdaf66af25327c4501c8e66b2fa56708600d4c4acc8b5585a32724d3b5f0ae91"
+    },
+    "finalize_inference_offline_rental_v2.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_inference_offline_rental_v2.py",
+      "sha256": "309faa6208e0cc414d295e99a51ac12b8a4997a846fab4f590af314c803de223"
+    },
+    "sync_inference_offline_ledger_v2.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/sync_inference_offline_ledger_v2.py",
+      "sha256": "51f2c2e0df20d9738e5dbc7133c6b823f91781425fbb49a8e02b6fe2de7740df"
+    },
+    "test_finalize_inference_offline_rental_v2.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_finalize_inference_offline_rental_v2.py",
+      "sha256": "0716890ee94e61ac33295c9dca40abf04be37cb094d8e0929cc7cb2cc7818375"
+    },
+    "test_sync_inference_offline_ledger_v2.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_sync_inference_offline_ledger_v2.py",
+      "sha256": "cc174537b874f04c0abc19da839d1d66176b4b3c4139c760e45f1b91f8b2387b"
+    }
+  },
+  "synthetic_tests": {
+    "shared_gate_unchanged": 8,
+    "financial_v2": 18,
+    "sync_v2": 17,
+    "total": 43,
+    "result": "passed"
+  },
+  "compile": "passed",
+  "independent_review": {
+    "reviewer": "gpu_setup",
+    "result": "clear",
+    "v2_tests_rerun": 35
+  },
+  "financial_ast_invariants": {
+    "finalizer.execute": true,
+    "finalizer.scope": true,
+    "finalizer.stopped": true,
+    "finalizer.process_identity": true,
+    "finalizer.transport_quiescent": true,
+    "finalizer.intents": true,
+    "sync.ReadOnlyLedger": true,
+    "sync.execute": true
+  },
+  "scientific_verifier": "Original c98 functions/bytecode and source unchanged; exact fdaf Evidence adapter maps only the three literal relative native report paths with fixed actual SHA256 values. No native file/descriptor/scoring rule is rewritten.",
+  "prior_proof": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-offline-finalization-fixtures.json",
+    "sha256": "4efde22271aa1bde87bd9927c8420eb00f5c070386bd9302b162c0a302a2686d"
+  },
+  "scope": {
+    "original_parent_rc1_retained": true,
+    "all_required_scientific_artifacts_backed_up": true,
+    "all_remote_artifacts_backed_up": false,
+    "remote_ops_control_tail_unverified": true,
+    "new_start_performed": false,
+    "model_or_native_decision_rerun": false,
+    "gpu_total_cap_usd": 43
+  },
+  "source_pin_reason": "Native frozen LABEL_REPORT emitted three relative descriptors; original c98 correctly refused its absolute-only resolver after materialization1. That failed attempt and original native bytes remain retained; new strict path adapter is operator-only.",
+  "old_helper_hashes": {
+    "finalize_inference_rental.py": "fcbb55ca1b58a810ac87f9991cf5961b5f139f633ecaa10736696495ba5a553c",
+    "sync_inference_ledger.py": "08bb5d9dd68376ba8fc601be57aa32c623db420918ea5fbde66b160f68a71e0e",
+    "package_inference_results.py": "c98b3fc35f111ce4b852d04dfd362687e5b37aa230c7a2165438f1ef8b8386fc",
+    "finalize_inference_offline_rental.py": "4b46b8042871b4d86ba631e3e816c47a6087e4a516962f11cf69f5d823c59475",
+    "sync_inference_offline_ledger.py": "f103d68ed31e5d9cf40526f9461a5e669a9ba065057ed3d7cddf4d439a9f17bc"
+  },
+  "actual_finalization_or_provider_or_sync_invoked_by_this_agent": false,
+  "active_writers": false
+}

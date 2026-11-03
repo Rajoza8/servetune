@@ -1,0 +1,199 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "hard-01",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.78,
+  "evidence": [
+   "p95 latency rose to 11.07s at t=149, exceeding 10s SLO",
+   "Arrivals ~3.2 rps and prompt mean ~239 tokens are near normal profile",
+   "Waiting is 0 and KV usage only ~3%, ruling out queueing/KV limits",
+   "GPU has non-engine process pid 3127 (embedding_batch) using 1102 MB alongside VLLM::EngineCore",
+   "Running requests climbed to 36.2 while generation throughput stayed near normal"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 3127
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "A competing embedding batch process is sharing the GPU and degrading generation latency despite stable offered load. Stopping that process is less disruptive than restarting or reconfiguring the engine.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.78, \"evidence\": [\"p95 latency rose to 11.07s at t=149, exceeding 10s SLO\", \"Arrivals ~3.2 rps and prompt mean ~239 tokens are near normal profile\", \"Waiting is 0 and KV usage only ~3%, ruling out queueing/KV limits\", \"GPU has non-engine process pid 3127 (embedding_batch) using 1102 MB alongside VLLM::EngineCore\", \"Running requests climbed to 36.2 while generation throughput stayed near normal\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"A competing embedding batch process is sharing the GPU and degrading generation latency despite stable offered load. Stopping that process is less disruptive than restarting or reconfiguring the engine.\"}",
+  "usage": {
+   "completion_tokens": 1474,
+   "prompt_tokens": 3157,
+   "total_tokens": 4631,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1276
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "29f54bdf01859a965b786201d01b74cf2d03b1bf8d775a30673b566490ee35f8",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~6.2-7.6s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable at 100% with normal throughput.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~6.2-7.6s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable at 100% with normal throughput.\"}",
+    "usage": {
+     "prompt_tokens": 986,
+     "total_tokens": 1167,
+     "completion_tokens": 181,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "a1f8ad076838ee510f2ef5f328b6c6287338b14233571161a7535e99cc201abe",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~6.8s under 10s SLO, zero shed/errors, no queue buildup, metrics within normal profile.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~6.8s under 10s SLO, zero shed/errors, no queue buildup, metrics within normal profile.\"}",
+    "usage": {
+     "prompt_tokens": 1455,
+     "total_tokens": 1608,
+     "completion_tokens": 153,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "d4c08b6600522a4cc5dc9be7595e35c5ef69ce009ece6acc845a9c1ab2839406",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.8-7.1s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable at 100% with normal throughput.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.8-7.1s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable at 100% with normal throughput.\"}",
+    "usage": {
+     "prompt_tokens": 1923,
+     "total_tokens": 2086,
+     "completion_tokens": 163,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "7224fcc45c0f1e13a39a2a0c8f608701066d5dc016327dc2f31265f0a3deff29",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.4-7.2s under 10s SLO, shed 0, no errors, waiting 0, GPU util stable at 100% with normal KV usage.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.4-7.2s under 10s SLO, shed 0, no errors, waiting 0, GPU util stable at 100% with normal KV usage.\"}",
+    "usage": {
+     "prompt_tokens": 2414,
+     "total_tokens": 2573,
+     "completion_tokens": 159,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "d441d3695094e91e7906ffcec4337a818569a31813e5b386ca896706e86677dc",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency breached SLO: 11.07s at 149s vs 10.0s limit, rising trend with running 36.2 vs normal 15.0, TTFT elevated.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency breached SLO: 11.07s at 149s vs 10.0s limit, rising trend with running 36.2 vs normal 15.0, TTFT elevated.\"}",
+    "usage": {
+     "prompt_tokens": 2671,
+     "total_tokens": 2821,
+     "completion_tokens": 150,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.78,
+    "evidence": [
+     "p95 latency rose to 11.07s at t=149, exceeding 10s SLO",
+     "Arrivals ~3.2 rps and prompt mean ~239 tokens are near normal profile",
+     "Waiting is 0 and KV usage only ~3%, ruling out queueing/KV limits",
+     "GPU has non-engine process pid 3127 (embedding_batch) using 1102 MB alongside VLLM::EngineCore",
+     "Running requests climbed to 36.2 while generation throughput stayed near normal"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 3127
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "A competing embedding batch process is sharing the GPU and degrading generation latency despite stable offered load. Stopping that process is less disruptive than restarting or reconfiguring the engine.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.78, \"evidence\": [\"p95 latency rose to 11.07s at t=149, exceeding 10s SLO\", \"Arrivals ~3.2 rps and prompt mean ~239 tokens are near normal profile\", \"Waiting is 0 and KV usage only ~3%, ruling out queueing/KV limits\", \"GPU has non-engine process pid 3127 (embedding_batch) using 1102 MB alongside VLLM::EngineCore\", \"Running requests climbed to 36.2 while generation throughput stayed near normal\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"A competing embedding batch process is sharing the GPU and degrading generation latency despite stable offered load. Stopping that process is less disruptive than restarting or reconfiguring the engine.\"}",
+    "usage": {
+     "completion_tokens": 1474,
+     "prompt_tokens": 3157,
+     "total_tokens": 4631,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1276
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

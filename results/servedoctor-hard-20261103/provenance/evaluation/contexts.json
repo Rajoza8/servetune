@@ -1,0 +1,300 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "split": "hard",
+  "study_dir": "/workspace/servedoctor-hard/servetune/runs/sd-hard-partial-attempt1",
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "context_tokens": 8192,
+  "incidents": 15,
+  "checkpoints": 180,
+  "maximum": {
+    "diagnosis": {
+      "incident": "hard-15",
+      "checkpoint_s": 360,
+      "input_tokens": 3461,
+      "output_budget_tokens": 2048,
+      "total_tokens": 5509
+    },
+    "monitor": {
+      "incident": "hard-15",
+      "checkpoint_s": 360,
+      "input_tokens": 2960,
+      "output_budget_tokens": 600,
+      "total_tokens": 3560
+    }
+  },
+  "per_incident_maximum": {
+    "hard-01": {
+      "diagnosis": {
+        "incident": "hard-01",
+        "checkpoint_s": 270,
+        "input_tokens": 3396,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5444
+      },
+      "monitor": {
+        "incident": "hard-01",
+        "checkpoint_s": 270,
+        "input_tokens": 2895,
+        "output_budget_tokens": 600,
+        "total_tokens": 3495
+      }
+    },
+    "hard-02": {
+      "diagnosis": {
+        "incident": "hard-02",
+        "checkpoint_s": 300,
+        "input_tokens": 3386,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5434
+      },
+      "monitor": {
+        "incident": "hard-02",
+        "checkpoint_s": 300,
+        "input_tokens": 2885,
+        "output_budget_tokens": 600,
+        "total_tokens": 3485
+      }
+    },
+    "hard-03": {
+      "diagnosis": {
+        "incident": "hard-03",
+        "checkpoint_s": 360,
+        "input_tokens": 3351,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5399
+      },
+      "monitor": {
+        "incident": "hard-03",
+        "checkpoint_s": 360,
+        "input_tokens": 2850,
+        "output_budget_tokens": 600,
+        "total_tokens": 3450
+      }
+    },
+    "hard-04": {
+      "diagnosis": {
+        "incident": "hard-04",
+        "checkpoint_s": 300,
+        "input_tokens": 3438,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5486
+      },
+      "monitor": {
+        "incident": "hard-04",
+        "checkpoint_s": 300,
+        "input_tokens": 2937,
+        "output_budget_tokens": 600,
+        "total_tokens": 3537
+      }
+    },
+    "hard-05": {
+      "diagnosis": {
+        "incident": "hard-05",
+        "checkpoint_s": 270,
+        "input_tokens": 3361,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5409
+      },
+      "monitor": {
+        "incident": "hard-05",
+        "checkpoint_s": 270,
+        "input_tokens": 2860,
+        "output_budget_tokens": 600,
+        "total_tokens": 3460
+      }
+    },
+    "hard-06": {
+      "diagnosis": {
+        "incident": "hard-06",
+        "checkpoint_s": 330,
+        "input_tokens": 3419,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5467
+      },
+      "monitor": {
+        "incident": "hard-06",
+        "checkpoint_s": 330,
+        "input_tokens": 2918,
+        "output_budget_tokens": 600,
+        "total_tokens": 3518
+      }
+    },
+    "hard-07": {
+      "diagnosis": {
+        "incident": "hard-07",
+        "checkpoint_s": 330,
+        "input_tokens": 3410,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5458
+      },
+      "monitor": {
+        "incident": "hard-07",
+        "checkpoint_s": 330,
+        "input_tokens": 2909,
+        "output_budget_tokens": 600,
+        "total_tokens": 3509
+      }
+    },
+    "hard-08": {
+      "diagnosis": {
+        "incident": "hard-08",
+        "checkpoint_s": 300,
+        "input_tokens": 3358,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5406
+      },
+      "monitor": {
+        "incident": "hard-08",
+        "checkpoint_s": 300,
+        "input_tokens": 2857,
+        "output_budget_tokens": 600,
+        "total_tokens": 3457
+      }
+    },
+    "hard-09": {
+      "diagnosis": {
+        "incident": "hard-09",
+        "checkpoint_s": 210,
+        "input_tokens": 3352,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5400
+      },
+      "monitor": {
+        "incident": "hard-09",
+        "checkpoint_s": 210,
+        "input_tokens": 2851,
+        "output_budget_tokens": 600,
+        "total_tokens": 3451
+      }
+    },
+    "hard-10": {
+      "diagnosis": {
+        "incident": "hard-10",
+        "checkpoint_s": 360,
+        "input_tokens": 3439,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5487
+      },
+      "monitor": {
+        "incident": "hard-10",
+        "checkpoint_s": 360,
+        "input_tokens": 2938,
+        "output_budget_tokens": 600,
+        "total_tokens": 3538
+      }
+    },
+    "hard-11": {
+      "diagnosis": {
+        "incident": "hard-11",
+        "checkpoint_s": 270,
+        "input_tokens": 3408,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5456
+      },
+      "monitor": {
+        "incident": "hard-11",
+        "checkpoint_s": 270,
+        "input_tokens": 2907,
+        "output_budget_tokens": 600,
+        "total_tokens": 3507
+      }
+    },
+    "hard-12": {
+      "diagnosis": {
+        "incident": "hard-12",
+        "checkpoint_s": 270,
+        "input_tokens": 3330,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5378
+      },
+      "monitor": {
+        "incident": "hard-12",
+        "checkpoint_s": 270,
+        "input_tokens": 2829,
+        "output_budget_tokens": 600,
+        "total_tokens": 3429
+      }
+    },
+    "hard-13": {
+      "diagnosis": {
+        "incident": "hard-13",
+        "checkpoint_s": 330,
+        "input_tokens": 3411,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5459
+      },
+      "monitor": {
+        "incident": "hard-13",
+        "checkpoint_s": 330,
+        "input_tokens": 2910,
+        "output_budget_tokens": 600,
+        "total_tokens": 3510
+      }
+    },
+    "hard-14": {
+      "diagnosis": {
+        "incident": "hard-14",
+        "checkpoint_s": 210,
+        "input_tokens": 3358,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5406
+      },
+      "monitor": {
+        "incident": "hard-14",
+        "checkpoint_s": 210,
+        "input_tokens": 2857,
+        "output_budget_tokens": 600,
+        "total_tokens": 3457
+      }
+    },
+    "hard-15": {
+      "diagnosis": {
+        "incident": "hard-15",
+        "checkpoint_s": 360,
+        "input_tokens": 3461,
+        "output_budget_tokens": 2048,
+        "total_tokens": 5509
+      },
+      "monitor": {
+        "incident": "hard-15",
+        "checkpoint_s": 360,
+        "input_tokens": 2960,
+        "output_budget_tokens": 600,
+        "total_tokens": 3560
+      }
+    }
+  },
+  "public_manifests_sha256": {
+    "reference": "254eb5359f1ce98b9c17c146ea5216209a9e44f62ccbb15d5dd9f05e590d50eb",
+    "hard-01": "632f8ba95ef44f593863006cf4bc238e70671c05ce489e6d06780a03322bdb5d",
+    "hard-02": "5dcec5ff6801f1d00c33d25420f7690cacc292a3746f9f54a50072b2c0fe7732",
+    "hard-03": "67b71de3416fb3af0efc02fc1b8af192fb14e29f84ecadd216455c9d24f3908a",
+    "hard-04": "c5890165fd21080bd6249cdf4e90be06a3c588e64a26cf066ee1f96b408a45c9",
+    "hard-05": "9a46d6484c318309b806c91e553bcdaa6f173f22fc62eef92a8d7ac5a864f621",
+    "hard-06": "8bf22b23a76d034f7d912e7f1002192934b2bd0ce9fe6f37b85188316d3ad120",
+    "hard-07": "0d18865dbf083071ddee8bb1b2b769a3331fc44033b4da8b354fee93acc91efd",
+    "hard-08": "3ba34df313814160f9157a4aed45dc64be0e71714e9be67227ce7d12e501c651",
+    "hard-09": "2410779c939c38eb837e4ee62fef838f54f51371d64612fdcc9771d635c8d6f0",
+    "hard-10": "2148ff5e8a927c1423302aeae6396472d928d7054a49a9737d3daf9b62567b02",
+    "hard-11": "e6d460cb578234c8c7544980b56e0d54977c8a11c1b69887a6699447a748daa5",
+    "hard-12": "2202cae6a329de1bdf11ee377a6c88524e7c439d83bed8a0e5c23f2fef49b993",
+    "hard-13": "4bcf35d8084b933a4ce30c4d6f78b4c147b8064223d8fc1800df36a830bacf3a",
+    "hard-14": "46ad77972e2b8791ee5f8499bae8481dc269d9b67a798febf9aab0d748cdaef1",
+    "hard-15": "8ef100ff45ab6fc2d30575a9ed6acda0fc578e365658c1625a531ce021f4aa4d"
+  },
+  "method": "offline CPU apply_chat_template; reasoning_strength=low; add_generation_prompt=True",
+  "fits_8192": true,
+  "validation": {
+    "project": "servedoctor-hard15-20261102",
+    "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+    "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+    "evaluation_ready": true,
+    "total": 15,
+    "protocol_sha256": "c5750faf63511320424d40791f645ffc891f4d1cb814315d5aab0b6b3fd24cef",
+    "validation_sha256": "bbb6b2cb9604411b6226eb66c55b9acd22fb642e531d451f65f2cdb4d39a07b9",
+    "inference_binding_sha256": "7f50f4693e5fa4774c9538b7274c241923a67d75e2c24b679d9a50e6f8bbc5c9"
+  },
+  "freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "helper_sha256": "9b3747ca0650792a06121ff6e42d26b169dd17dae27ccd9c95d12a45b26f5bb4"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-02T17:57:56.859761+00:00",
+  "steps": [
+    {
+      "rate_rps": 2,
+      "requests": 103,
+      "ok": 103,
+      "shed": 0,
+      "failed": 0,
+      "shed_rate": 0.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 4.949323678854853,
+      "p95_latency_s": 5.16294053287711,
+      "within_slo": true,
+      "waiting_after": 0.0
+    },
+    {
+      "rate_rps": 4,
+      "requests": 228,
+      "ok": 228,
+      "shed": 0,
+      "failed": 0,
+      "shed_rate": 0.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 5.709016434964724,
+      "p95_latency_s": 6.619541934668086,
+      "within_slo": true,
+      "waiting_after": 0.0
+    },
+    {
+      "rate_rps": 6,
+      "requests": 382,
+      "ok": 382,
+      "shed": 0,
+      "failed": 0,
+      "shed_rate": 0.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 6.268399536260404,
+      "p95_latency_s": 7.875913701963145,
+      "within_slo": true,
+      "waiting_after": 0.0
+    },
+    {
+      "rate_rps": 8,
+      "requests": 480,
+      "ok": 480,
+      "shed": 0,
+      "failed": 0,
+      "shed_rate": 0.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 7.831071443972178,
+      "p95_latency_s": 8.828797463444062,
+      "within_slo": true,
+      "waiting_after": 0.0
+    },
+    {
+      "rate_rps": 10,
+      "requests": 560,
+      "ok": 560,
+      "shed": 0,
+      "failed": 0,
+      "shed_rate": 0.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 13.721254041534849,
+      "p95_latency_s": 15.765115576761309,
+      "within_slo": false,
+      "waiting_after": 0.0
+    }
+  ],
+  "capacity_rps": 8,
+  "status": "completed",
+  "definition": "highest tested arrival rate whose p95 latency and error rate meet the SLO",
+  "engine": "0.26.1rc1.dev608+g99a10304d"
+}

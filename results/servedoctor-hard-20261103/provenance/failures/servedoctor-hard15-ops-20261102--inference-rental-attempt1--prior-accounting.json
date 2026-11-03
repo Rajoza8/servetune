@@ -1,0 +1,37 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/destroy-receipt.json",
+    "sha256": "57b61384c4494633266c2f5f6fca1fa12f238d118ae08c9901a91df4a49cd76a"
+  },
+  "final_state": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/final-state.json",
+    "sha256": "d083e975fa152c8e927f75eece5141ef8cf0729450eb413b01b7951e61337dd5"
+  },
+  "prior_hard_receipts": [
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host1-58843932/billing-receipt.json",
+      "sha256": "e77d30f3e736967c0aa2a43b5123e4234acf5718ce2c95ad2f5874551841c52d"
+    },
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host2-58848277/billing-receipt.json",
+      "sha256": "59f41544e793cc19f39b6d410a266c5c7167c0e7a02a1019665b1edae25bb092"
+    },
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host3-58851643/billing-receipt.json",
+      "sha256": "657745db426aab46a48dfd183552ccef11e5f7287817a1ef3aeef867f401ce79"
+    },
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host4-58858374/billing-receipt.json",
+      "sha256": "491204dcf6015a9eb96f8701ccc8f9f3285afea414502d938e93ccae9927187d"
+    }
+  ],
+  "prior_v0_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-receipt-58716527.json",
+    "sha256": "9c28a7d7b972a89cc9e25f079db45310066afacd4e7d3bd300c4ed87894483de"
+  },
+  "total_usd_upper": 37.552391290596844,
+  "network_and_slack_already_reserved_once": true,
+  "recording_instance_id": 58866756,
+  "destroyed_epoch": 1793669977.389961
+}

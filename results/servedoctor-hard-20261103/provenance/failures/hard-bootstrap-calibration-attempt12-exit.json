@@ -1,0 +1,30 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "phase": "hard-bootstrap-calibration-attempt12",
+  "returncode": 1,
+  "stop_confirmed": false,
+  "deadline_epoch": 1793647352.9664168,
+  "work_deadline_epoch": 1793647172.9664168,
+  "command_sha256": "73496242cdeebf10976566353b93bace42cbc6e03c78478a06e7e11a13f214da",
+  "expected_offer_id": 57298697,
+  "expected_machine_id": 142177,
+  "offer_selection_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/offer-selection-attempt11.json",
+    "sha256": "a52d8263c556c9b28ecb749d7254ac8b3adccac29acbfb38eeb7406307f830be"
+  },
+  "key_attach_requested": true,
+  "key_attach_timing": "immediately_after_create_ack_before_running_wait",
+  "key_attach_returncode": 0,
+  "watchdog_pid": 12914,
+  "startup_plan_preparer_pid": 12941,
+  "startup_plan_prepare_returncode": 0,
+  "startup_plan": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/startup-ssh-window-attempt1/plan.json",
+    "sha256": "8f03d5416826c097a221cd50fd231e96d4ec073dcdcf4717bb9fcc8c634c95d7"
+  },
+  "child_pid": 12956,
+  "stop_error_class": "CalledProcessError",
+  "reconcile_error_class": "CalledProcessError",
+  "stop_failure": "Read-only reconciliation required; no mutation retry",
+  "finished_epoch": 1793643634.198199
+}

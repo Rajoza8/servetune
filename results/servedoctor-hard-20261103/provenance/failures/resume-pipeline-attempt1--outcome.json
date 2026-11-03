@@ -1,0 +1,73 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "rental_proof": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/create-pipeline-attempt1/binding.json",
+    "sha256": "8217d408e7edc0f91997ee3c9844ee8b9177004fa719b33f292d08fdd2474fa1"
+  },
+  "returncode": 1,
+  "stop_confirmed": true,
+  "started_epoch": 1793648788.9129658,
+  "commands": [
+    {
+      "index": 0,
+      "name": "restart-ssh-window",
+      "argv_sha256": "6a070bf3476dd7c6037be5dfb6d2200ed5c04b3a461e49b88a3f161c167f6145",
+      "started_epoch": 1793648795.987991,
+      "owner_deadline_epoch": 1793655995.987979,
+      "returncode": 0,
+      "pid": 20634,
+      "birth": "Mon Nov  2 14:46:35 2026",
+      "outcome_recorded_epoch": 1793648801.0212522,
+      "finished_epoch": 1793648801.02126
+    },
+    {
+      "index": 1,
+      "name": "bootstrap-repair-calibrate",
+      "argv_sha256": "4f6ef301c813ebb44f6893641182d4bb46e0407f8a56178f43cd3ab8fbb0a603",
+      "started_epoch": 1793648801.024252,
+      "owner_deadline_epoch": 1793652281.0241568,
+      "returncode": 0,
+      "pid": 20653,
+      "birth": "Mon Nov  2 14:46:41 2026",
+      "outcome_recorded_epoch": 1793650650.06516,
+      "finished_epoch": 1793650650.065173
+    },
+    {
+      "index": 2,
+      "name": "post-calibration-config-and-queue",
+      "argv_sha256": "30679450fa680d83350845b19b5db56f6fb12f66241bf7afbf6fce910f689712",
+      "started_epoch": 1793650650.0745971,
+      "owner_deadline_epoch": 1793651130.074344,
+      "returncode": 1,
+      "remaining_work": {
+        "before_hours": 3.3,
+        "hours": 3.1,
+        "reason": "Actual complete capacity/KV calibration and model/data setup finished; timed17recordings, validation,6arms andbackup remain."
+      },
+      "pid": 22265,
+      "birth": "Mon Nov  2 15:17:30 2026",
+      "error_class": "CalledProcessError",
+      "outcome_recorded_epoch": 1793650655.133705,
+      "finished_epoch": 1793650655.133826
+    }
+  ],
+  "queue_source": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/resume-pipeline-queue-attempt1.json",
+  "no_intermediate_stop": true,
+  "deadline_epoch": 1793663188.912968,
+  "latest_queue": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/resume-pipeline-attempt1/queue-snapshot-0000.json",
+    "sha256": "33be6f9878aaac4702f916c8f1dd280c8c1b1d75f7922fc9f9f5db352ca5b8a5"
+  },
+  "watchdog_pid": 20619,
+  "start_request_returncode": 0,
+  "startup_window_plan": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/startup-ssh-window-attempt4/plan.json",
+    "sha256": "9699c5cc4e99d3153eab5cbdf276545ec32684f0c7969fca1c10b81273266589"
+  },
+  "error_class": "RuntimeError",
+  "stop_request_returncode": 0,
+  "cleanup_confirmed": true,
+  "finished_epoch": 1793650771.7696059
+}

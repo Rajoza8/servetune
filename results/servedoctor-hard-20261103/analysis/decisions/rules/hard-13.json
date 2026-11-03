@@ -1,0 +1,110 @@
+{
+ "arm": "rules",
+ "incident": "hard-13",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 96,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 5283
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "db3311cd29d315142de3f362d792758fe730ae21f60f63ff6c3aa782205f4d9d",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "5bc31cad91c50987bc937ef768856551d297d830243033ab6b1d12246ba1738a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "e31361fdc73e93df20e74127f22c697d4df313cff213f832e0f949bf28c048d7",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "de460dbbd20e30003de74d9c0b3470711a504992cff2902ebfa0127efa070c5b",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "410f95b080c2cad0634e71d6f974defb4df0a2bcf57472a347af9d86a9bbf59c",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 5283
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

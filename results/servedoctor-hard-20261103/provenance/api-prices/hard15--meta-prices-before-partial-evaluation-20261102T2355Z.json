@@ -1,0 +1,27 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "verified_at_utc": "2026-11-02T23:52:11.680754+00:00",
+  "sources": [
+    "https://dev.meta.ai/docs/models",
+    "https://dev.meta.ai/docs/pricing-rate-limits"
+  ],
+  "verification_method": "official pages fetched with web tool; visible model IDs and Standard mode token rates",
+  "model_ids": {
+    "wonder": "muse-wonder-1.0",
+    "spark": "muse-spark-1.3"
+  },
+  "standard_usd_per_million_tokens": {
+    "wonder": {
+      "input": 4.0,
+      "output": 20.0
+    },
+    "spark": {
+      "input": 1.25,
+      "output": 4.25
+    }
+  },
+  "prices_match_frozen_study": true,
+  "cached_input_discount_not_assumed": true,
+  "paid_call_made": false
+}

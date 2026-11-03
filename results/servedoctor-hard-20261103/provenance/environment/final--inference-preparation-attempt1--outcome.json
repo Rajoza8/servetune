@@ -1,0 +1,135 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "completed": true,
+  "failure": null,
+  "cleanup_errors": [],
+  "commands": [
+    {
+      "label": "make-bootstrap-control",
+      "started_at_utc": "2026-11-03T02:18:43.168115+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:44.110388+00:00"
+    },
+    {
+      "label": "upload-inference_cold_bootstrap.py",
+      "started_at_utc": "2026-11-03T02:18:44.117636+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:45.652033+00:00"
+    },
+    {
+      "label": "upload-binding.json",
+      "started_at_utc": "2026-11-03T02:18:45.660037+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:47.137631+00:00"
+    },
+    {
+      "label": "upload-scope.json",
+      "started_at_utc": "2026-11-03T02:18:47.144498+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:48.621825+00:00"
+    },
+    {
+      "label": "upload-control-inference-remote-guard.py",
+      "started_at_utc": "2026-11-03T02:18:48.626324+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:50.221082+00:00"
+    },
+    {
+      "label": "upload-control-inference-guard-state.json",
+      "started_at_utc": "2026-11-03T02:18:50.225084+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:51.712312+00:00"
+    },
+    {
+      "label": "upload-control-rental-scope.json",
+      "started_at_utc": "2026-11-03T02:18:51.720712+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:53.198734+00:00"
+    },
+    {
+      "label": "upload-control-inference_cold_bootstrap.py",
+      "started_at_utc": "2026-11-03T02:18:53.203664+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:54.668429+00:00"
+    },
+    {
+      "label": "arm-fallback-guard",
+      "started_at_utc": "2026-11-03T02:18:54.669293+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:18:55.863737+00:00"
+    },
+    {
+      "label": "cold-bootstrap",
+      "started_at_utc": "2026-11-03T02:18:55.864711+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:33.916386+00:00"
+    },
+    {
+      "label": "upload-portable-inputs",
+      "started_at_utc": "2026-11-03T02:26:33.932851+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:36.216395+00:00"
+    },
+    {
+      "label": "install-portable-inputs",
+      "started_at_utc": "2026-11-03T02:26:36.222612+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:37.383951+00:00"
+    },
+    {
+      "label": "prepare-opaque-study",
+      "started_at_utc": "2026-11-03T02:26:37.391752+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:38.951728+00:00"
+    },
+    {
+      "label": "validate-once",
+      "started_at_utc": "2026-11-03T02:26:38.957468+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:40.546796+00:00"
+    },
+    {
+      "label": "verify-evaluation",
+      "started_at_utc": "2026-11-03T02:26:40.554746+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:42.008422+00:00"
+    },
+    {
+      "label": "mirror-bootstrap-evidence",
+      "started_at_utc": "2026-11-03T02:26:42.013227+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:46.899625+00:00"
+    },
+    {
+      "label": "mirror-fallback-guard-proof",
+      "started_at_utc": "2026-11-03T02:26:46.907002+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:48.491609+00:00"
+    },
+    {
+      "label": "mirror-validation-evidence",
+      "started_at_utc": "2026-11-03T02:26:48.494120+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:51.295882+00:00"
+    },
+    {
+      "label": "mirror-inference-hardware",
+      "started_at_utc": "2026-11-03T02:26:51.301776+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:26:52.921669+00:00"
+    },
+    {
+      "label": "mirror-partial-study",
+      "started_at_utc": "2026-11-03T02:26:52.927445+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-03T02:28:07.527607+00:00"
+    }
+  ],
+  "fallback_guard": {
+    "guard_sha256": "efd4cb8ab23b342cff78e18107dbf30a11674b6d716d6856b91474b0fe5ae76e",
+    "state_sha256": "0f29cd3b3ab814091b71de38ec0578502e19bb12f81febe96e2ed53a490302e6",
+    "scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7"
+  },
+  "finished_at_utc": "2026-11-03T02:28:07.528150+00:00"
+}

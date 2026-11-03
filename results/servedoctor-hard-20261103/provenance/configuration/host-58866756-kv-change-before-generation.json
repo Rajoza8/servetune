@@ -1,0 +1,16 @@
+{
+  "source_commit": "973bdd9ef96b4087845fc83f3e4ebcaa2ad3a4d4",
+  "calibration_source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "config_before_sha256": "72b461527ac451409fdc282d2a12a18c32676c150332341221374940b23766eb",
+  "config_after_sha256": "0cc70e7ec4cbb0b26c6e13a4b9311dedf6dd05a862d9c0d9d2934ec25a017014",
+  "reason": " New recording host 58866756 (Colorado, US), GPU GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681: measured capacity 6 RPS. Pre-generation standalone4096-context90s KV evidence runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror/refinement/selected-kv-summary.json SHA256 068d81e181520a2b08cb56748502614d578634facdc7d577366d639b1b63654b: mild utilization 0.61632 p95 10.004323831864165s; compound-use utilization 0.6152 p95 15.239633663152924s. Both probes completed all requests without errors. The original standalone compound probe0.61559/p9511.71s is retained. A predeclared fresh standalone calibration refined that hostKV value toward15s before any Hard generation; only hostKV values and notes change. Remote calibration source d3fe20a07ce9c687e75956200b655c5913021d49; no Hard study or arm output existed or was consulted.",
+  "study_generated": false,
+  "decision_outputs_consulted": false,
+  "gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+  "capacity_rps": 6,
+  "probe_summary_sha256": "068d81e181520a2b08cb56748502614d578634facdc7d577366d639b1b63654b",
+  "metrics": {
+    "mild_p95_s": 10.004323831864165,
+    "compound_p95_s": 15.239633663152924
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58851643,
+  "intent_sha256": "2fc4ce09b8d14c84dbbd7d537c92d5960ad97f04f412b7313fb1e14e982a6c15",
+  "archived_files_sha256": {
+    "rental-history/host3-58851643/intent-0003-attach.json": "96587ad4f8cc9c2e54fdf0a91f06c8f375c79d9a5cd5e596a565270b9f19a353",
+    "rental-history/host3-58851643/intent-0005-stop.json": "2a5bf8d578619dab69f3e9639a1ce91e2b298e93a217e57866d5a09b484c633a",
+    "rental-history/host3-58851643/intent-0003-attach-outcome.json": "64a64aa933815e2e31d007cfce023727f369aa4c766e3292c0ea362504787639",
+    "rental-history/host3-58851643/session.json": "ccccb96a22c95c019b7bf5fa4ce86f51f3f10452837e1abf1bd10704ee25c337",
+    "rental-history/host3-58851643/active-command.json": "e961f26b1a38cb3fda39de0bdc978f8c9f84a2036da48908a1e4b7298ed1ec0b",
+    "rental-history/host3-58851643/intent-0013-delete-outcome.json": "757029efca7371758a1e44abda8ce1fda62993e1113eeec7c12960363113ab8b",
+    "rental-history/host3-58851643/intent-0013-delete.json": "13155f098cf16fb115192653ce40061400eb8d5b62234670b8a97ae73abe4169",
+    "rental-history/host3-58851643/intent-0010-stop.json": "63d3be6531fcd135690a078ccb45a94019f444ebba04dd01816e4da29bc013c0",
+    "rental-history/host3-58851643/intent-0005-stop-outcome.json": "9b5caee1e9882cb883804ea1db20102f0024700f986e2f97d6c123c95f43e1e5",
+    "rental-history/host3-58851643/intent-0008-start-outcome.json": "fe9eb761f910d0207a52222da4c784698b857cc5ed64da08764e9d278bc9409b",
+    "rental-history/host3-58851643/rental-scope.json": "fd9cf107da4639f2abbf1cba1e38115e56ea8ef7f24f231e7b84e8bb2c212f49",
+    "rental-history/host3-58851643/intent-0005-stop-reconciled.json": "1a8485e39582f89653020396dab67ae1244e1f430732b5a8e156c99fd4aa6a97",
+    "rental-history/host3-58851643/billing-receipt.json": "657745db426aab46a48dfd183552ccef11e5f7287817a1ef3aeef867f401ce79",
+    "rental-history/host3-58851643/intent-0008-start.json": "55f9beeca6f3f795caf0fff11df1109d4b874f610d459f33dfd6b5346f46848c",
+    "rental-history/host3-58851643/intent-0010-stop-outcome.json": "0d5a8e6f4c1975e7f1bc2b66d12cf719a4860f9b10a2edb27991502a99a86a7e",
+    "rental-history/host3-58851643/intent-0000-create.json": "9a2c7e2cf4ff929e4e3936bc9d155e1a528dce01019d7104ce17cf0887857e8e",
+    "rental-history/host3-58851643/intent-0000-create-reconciled.json": "f0637b3a9139678863be95fc5c479e7f6fa815390dd5d64c620026b430d53d91",
+    "rental-history/host3-58851643/final-state.json": "ccccb96a22c95c019b7bf5fa4ce86f51f3f10452837e1abf1bd10704ee25c337",
+    "rental-history/host3-58851643/destroy-receipt.json": "3df9e93f0877ddfd8ef457ec99e0d6d8939531461bad395ce01d7b143f607cd0",
+    "rental-history/host3-58851643/intent-0010-stop-reconciled.json": "6f14218d313d63918280e8fd7776beeb40e20ab570d49a2f29880ac8ef49e164",
+    "rental-history/host3-58851643/intent-0000-create-outcome.json": "e6da0a6ca29273216585c4e3a8c2b74646eb172ef0e5e92e460911a2c475db1c",
+    "rental-history/host3-58851643/known_hosts": "bde786bf06c42e1f58810b3f43adad7c858bdc824fbb62cefd3e6898bec4beb9"
+  },
+  "history_manifest": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prior-hard-hosts-3.json",
+    "sha256": "c1d3900117e4cff6445827a646539315e364258ad436d96c47c3da8e884240e1"
+  },
+  "parent_history": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prior-hard-hosts-2.json",
+    "sha256": "4316435b5518c6f883fab4d0fa2f9c94d6464755ef1d32200e08f7acf88d3dac"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "method": "PUT",
+  "endpoint": "/api/v0/commands/rsync/",
+  "at_epoch": 1793678898.017162,
+  "instance_id": 58905385,
+  "reason": "Fresh copy-only attempt after previous explicit invalid_args Invalid dst_path; use no-space absolute temporary destination. No START, GPU or model calls. Prior failure retained.",
+  "payload": {
+    "client_id": "me",
+    "src_id": 58905385,
+    "dst_id": null,
+    "src_path": "/workspace/servedoctor-hard/",
+    "dst_path": "/tmp/sd-hard15-copy-58905385-attempt2"
+  }
+}

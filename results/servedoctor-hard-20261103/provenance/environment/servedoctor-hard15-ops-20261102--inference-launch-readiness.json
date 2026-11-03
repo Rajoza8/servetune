@@ -1,0 +1,76 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T02:10:49.600757+00:00",
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "budget_amendment_sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a",
+  "prior_accounting": {
+    "project": "servedoctor-hard15-inference-20261103",
+    "receipt": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/destroy-receipt.json",
+      "sha256": "57b61384c4494633266c2f5f6fca1fa12f238d118ae08c9901a91df4a49cd76a"
+    },
+    "final_state": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/final-state.json",
+      "sha256": "d083e975fa152c8e927f75eece5141ef8cf0729450eb413b01b7951e61337dd5"
+    },
+    "prior_hard_receipts": [
+      {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host1-58843932/billing-receipt.json",
+        "sha256": "e77d30f3e736967c0aa2a43b5123e4234acf5718ce2c95ad2f5874551841c52d"
+      },
+      {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host2-58848277/billing-receipt.json",
+        "sha256": "59f41544e793cc19f39b6d410a266c5c7167c0e7a02a1019665b1edae25bb092"
+      },
+      {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host3-58851643/billing-receipt.json",
+        "sha256": "657745db426aab46a48dfd183552ccef11e5f7287817a1ef3aeef867f401ce79"
+      },
+      {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host4-58858374/billing-receipt.json",
+        "sha256": "491204dcf6015a9eb96f8701ccc8f9f3285afea414502d938e93ccae9927187d"
+      }
+    ],
+    "prior_v0_receipt": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-ops-20261101/destroy-receipt-58716527.json",
+      "sha256": "9c28a7d7b972a89cc9e25f079db45310066afacd4e7d3bd300c4ed87894483de"
+    },
+    "total_usd_upper": 37.552391290596844,
+    "network_and_slack_already_reserved_once": true,
+    "recording_instance_id": 58866756,
+    "destroyed_epoch": 1793669977.389961
+  },
+  "maximum_allocation_hours": 3,
+  "maximum_accepted_rate_usd_hour": 1.55,
+  "maximum_forecast_including_shutdown_usd": 42.24114129059684,
+  "focused_synthetic_tests": 145,
+  "focused_synthetic_tests_passed": true,
+  "independent_reviews": "control/root; runtime/API; worker/runtime; relay/API all CLEAR",
+  "files_sha256": {
+    "inference_vast.py": "0cbe32e3ffcdddbceb64cfbe4ed1e3f08934da299450dac40ffad586a890ea71",
+    "inference_remote.py": "e7e88a24b285edf8071c39331ddb016e418aaa6396d09f9c0c5aad1a41117ea5",
+    "inference_pipeline.py": "63280c0256f3c18f432378e20ef924b88b325a932e45e019ca6aab6af2819ad4",
+    "inference_startup_window.py": "f211650bbb9b1c0824d905dbc295ccfb0028b8af276081bb7f29da94889f2d76",
+    "inference_request_logs.py": "87cbc1531ac2b51246e5f3337cc697158aa638a7d2c42ee300239ad39fc9520c",
+    "inference_remote_guard.py": "f95bc25f2cbac6cd6796cbc03062652864c7bd6c96d4b62bc967c438d80f1903",
+    "inference_key_runner.py": "059fd8eb6ffb7e3e41cbb5f3ff47476df30b112a6917edbe382e7388fe1f27d1",
+    "inference_evaluation_stage.py": "3544ff9f637b093500c31cf59ecfae69c5d4c59fc16be6f46c166d340a865d36",
+    "inference_integrity.py": "2a564fcea530f2d1005a0e68924024b11b56ae35dd9ab8655b75867a9bbb37e4",
+    "inference_cold_bootstrap.py": "7e4d2ed48f6d80987de867de645be2fe74e1792feb4fd8339d39da44280b92cb",
+    "inference_prepare_stage.py": "2c4b7e1424b4ede5570523a6690c9bb460a3b1a2ef51d001ac3562a060bb6eb1",
+    "inference_report_common.py": "cacb1fafe9b79cddfc80c079678d6d4bfee053fc80d1ccd8a56e363ebae5e943",
+    "inference_measure_contexts.py": "9b3747ca0650792a06121ff6e42d26b169dd17dae27ccd9c95d12a45b26f5bb4",
+    "inference_response_guard.py": "207fdc6a7dd2dcda9c526d9aa4c1bf023f8663ccfd09310fc674a99e02b131ce",
+    "inference_export_scores.py": "6150a236da4070ae5745d70661836e79ec4fdf5e7955c6bd29110dfe58835dec",
+    "inference_meta_tunnel.py": "499b6ccacef24ec6df41d6600429f8bc9b92eccf621adf3a0972321d8889bdc6",
+    "inference_model_catalog_preflight.py": "71ecaf8100242d81e6a9195ce218ebb6d4dcf9fff1a7a47570ad9f4159a752f2"
+  },
+  "queue_sha256": "758755c465125c61313600f5f8803814f0f293c7a4e1cd937c50c9103849b601",
+  "native_validation_or_hard_arms_already_run": false,
+  "hard_paid_calls": 0,
+  "missing_historical_metadata_disclosed": [
+    "142e readiness raw JSON",
+    "8b55 declaration raw JSON"
+  ]
+}

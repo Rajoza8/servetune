@@ -1,0 +1,320 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-08",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "traffic_surge",
+  "confidence": 0.72,
+  "evidence": [
+   "arrivals_rps rose from normal 2.8 to 8.4 at 269s",
+   "p95_latency_s 10.19 exceeds SLO 10.0 at 269s",
+   "running ~63-64 with waiting_max 18 at 269s, max_num_seqs is 64",
+   "ok_rps ~7.2 while arrivals 8.4 indicating backlog"
+  ],
+  "actions": [
+   {
+    "type": "gateway_rate_limit",
+    "max_rps": 7.0
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Offered load ~3x normal saturates max_num_seqs 64, queue builds and p95 latency breaches SLO. Shed excess at gateway to restore latency.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.72, \"evidence\": [\"arrivals_rps rose from normal 2.8 to 8.4 at 269s\", \"p95_latency_s 10.19 exceeds SLO 10.0 at 269s\", \"running ~63-64 with waiting_max 18 at 269s, max_num_seqs is 64\", \"ok_rps ~7.2 while arrivals 8.4 indicating backlog\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 7}], \"explanation\": \"Offered load ~3x normal saturates max_num_seqs 64, queue builds and p95 latency breaches SLO. Shed excess at gateway to restore latency.\"}",
+  "usage": {
+   "prompt_tokens": 3355,
+   "total_tokens": 4032,
+   "completion_tokens": 677,
+   "prompt_tokens_details": null
+  },
+  "t": 270
+ },
+ "checkpoints": 9,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "be02d017517e2b80bbc79d920bef955bb197edc3ff1dd363521e6ca9917001bf",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.73-6.11 < SLO 10.0",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "waiting_max 0.0 and running ~11-18 vs normal 15",
+     "kv_usage_pct_max ~0.9-1.9% well below saturation",
+     "arrivals_rps 2.6-3.2 close to normal profile 2.8"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and queue metrics are within SLO and match normal profile. No contention or overload observed; recent config change to gpu_memory_utilization 0.86 is not causing degradation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.73-6.11 < SLO 10.0\", \"shed_rps 0.0 and errors absent in recent buckets\", \"waiting_max 0.0 and running ~11-18 vs normal 15\", \"kv_usage_pct_max ~0.9-1.9% well below saturation\", \"arrivals_rps 2.6-3.2 close to normal profile 2.8\"], \"actions\": [], \"explanation\": \"Latency, shed and queue metrics are within SLO and match normal profile. No contention or overload observed; recent config change to gpu_memory_utilization 0.86 is not causing degradation.\"}",
+    "usage": {
+     "prompt_tokens": 1485,
+     "total_tokens": 1872,
+     "completion_tokens": 387,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "5dcdac66861bb365abc5cafb00954709e4b8332eaab34299b5313cb8c35615f9",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 7.06 < SLO 10.0 in latest bucket",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "waiting_max 0.0 and kv_usage_pct_max 2.76% with no preemptions",
+     "gpu_util_pct 100.0 and gpu_power_w ~450W consistent with normal profile",
+     "arrivals_rps ~3.5 vs normal 2.8 with running ~20 vs normal 15.0"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, queue is empty and KV usage is low. Recent traffic increase is modest and absorbed without degradation. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 7.06 < SLO 10.0 in latest bucket\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"waiting_max 0.0 and kv_usage_pct_max 2.76% with no preemptions\", \"gpu_util_pct 100.0 and gpu_power_w ~450W consistent with normal profile\", \"arrivals_rps ~3.5 vs normal 2.8 with running ~20 vs normal 15.0\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, queue is empty and KV usage is low. Recent traffic increase is modest and absorbed without degradation. No incident.\"}",
+    "usage": {
+     "prompt_tokens": 1952,
+     "total_tokens": 2321,
+     "completion_tokens": 369,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "ddf5f2eba287f95753011b3708ee266a2e87f967c4f0941aa84e7a283d20edb6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.73-7.06 < SLO 10.0",
+     "shed_rps 0.0 and errors absent across 10s buckets",
+     "arrivals_rps 2.5-3.8 close to normal_profile 2.8 rps",
+     "waiting_max 0.0 and kv_usage_pct_max ~1-2.8% with no preemptions",
+     "gpu_util_pct 90-100% and power ~450W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs and workload matches the healthy reference profile. Recent deploy only lowered gpu_memory_utilization slightly with no adverse effect.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.73-7.06 < SLO 10.0\", \"shed_rps 0.0 and errors absent across 10s buckets\", \"arrivals_rps 2.5-3.8 close to normal_profile 2.8 rps\", \"waiting_max 0.0 and kv_usage_pct_max ~1-2.8% with no preemptions\", \"gpu_util_pct 90-100% and power ~450W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLOs and workload matches the healthy reference profile. Recent deploy only lowered gpu_memory_utilization slightly with no adverse effect.\"}",
+    "usage": {
+     "prompt_tokens": 2418,
+     "total_tokens": 2799,
+     "completion_tokens": 381,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "4a71ed7118c0d61894d21491d41b0b88f1119433fac6e21cf30b9d292ce40fd3",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s ~5.7-7.1 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "arrivals_rps 2.5-3.8 close to normal 2.8",
+     "waiting_max 0.0 and running ~14-21 vs normal 15.0",
+     "kv_usage_pct_max ~1.2-2.8% low with GPU util 100%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs and load matches the healthy reference profile. No queue buildup or KV pressure is observed, so no incident is present.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s ~5.7-7.1 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"arrivals_rps 2.5-3.8 close to normal 2.8\", \"waiting_max 0.0 and running ~14-21 vs normal 15.0\", \"kv_usage_pct_max ~1.2-2.8% low with GPU util 100%\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLOs and load matches the healthy reference profile. No queue buildup or KV pressure is observed, so no incident is present.\"}",
+    "usage": {
+     "prompt_tokens": 2903,
+     "total_tokens": 3257,
+     "completion_tokens": 354,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2437ff115414196d453dd4c8456ab82bb1a4c6234c721a11f8d35f9c17e13523",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.85,
+    "evidence": [
+     "p95_latency_s 7.8 at t=149s is below SLO 10.0",
+     "shed_rps 0.0 and errors absent in recent 10s buckets",
+     "running 51.3 < max_num_seqs 64 with waiting_max 0.0",
+     "kv_usage_pct_max 3.63% well below saturation",
+     "gpu_util_pct 100.0 with power ~450W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Arrivals rose to ~6.9 rps vs normal 2.8 rps but p95 latency remains under SLO, no shedding or errors, running sequences stay below limit and KV usage is low. No incident requiring change.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.85, \"evidence\": [\"p95_latency_s 7.8 at t=149s is below SLO 10.0\", \"shed_rps 0.0 and errors absent in recent 10s buckets\", \"running 51.3 < max_num_seqs 64 with waiting_max 0.0\", \"kv_usage_pct_max 3.63% well below saturation\", \"gpu_util_pct 100.0 with power ~450W consistent with normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Arrivals rose to ~6.9 rps vs normal 2.8 rps but p95 latency remains under SLO, no shedding or errors, running sequences stay below limit and KV usage is low. No incident requiring change.\"}",
+    "usage": {
+     "prompt_tokens": 3112,
+     "total_tokens": 3614,
+     "completion_tokens": 502,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "81d40eddfb99c66395ef636c8d484f4cff1ff14c83b012686eb556101eb86868",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.82,
+    "evidence": [
+     "p95_latency_s 8.28 at t=179 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "arrivals_rps ~5.5-6.9 vs normal 2.8 but running 37.9 < max_num_seqs 64 with waiting_max 0.0",
+     "kv_usage_pct_max 3.73% well below capacity and GPU util 100% with no preemptions"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency is elevated with ~2x arrival rate but p95 remains under 10s SLO, no shedding or errors, queue is empty and KV usage is low. No incident requiring change.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.82, \"evidence\": [\"p95_latency_s 8.28 at t=179 < SLO 10.0\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"arrivals_rps ~5.5-6.9 vs normal 2.8 but running 37.9 < max_num_seqs 64 with waiting_max 0.0\", \"kv_usage_pct_max 3.73% well below capacity and GPU util 100% with no preemptions\"], \"actions\": [], \"explanation\": \"Latency is elevated with ~2x arrival rate but p95 remains under 10s SLO, no shedding or errors, queue is empty and KV usage is low. No incident requiring change.\"}",
+    "usage": {
+     "prompt_tokens": 3321,
+     "total_tokens": 3832,
+     "completion_tokens": 511,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "f74ffa0365674c4779d29da843452bca7133bdf6d4504c7379bbff5ed2dc23ba",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.82,
+    "evidence": [
+     "p95_latency_s 8.15 < SLO 10.0 in latest bucket",
+     "shed_rps 0.0 and errors '-' across recent 10s buckets",
+     "waiting_max 0.0 with running up to 48.3",
+     "gpu_util_pct 100.0 and gpu_power_w ~450W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Arrivals are ~2.5x normal but p95 latency stays under SLO, no shedding or errors, and queue remains empty. Current load is absorbed with higher throughput; no incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.82, \"evidence\": [\"p95_latency_s 8.15 < SLO 10.0 in latest bucket\", \"shed_rps 0.0 and errors '-' across recent 10s buckets\", \"waiting_max 0.0 with running up to 48.3\", \"gpu_util_pct 100.0 and gpu_power_w ~450W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Arrivals are ~2.5x normal but p95 latency stays under SLO, no shedding or errors, and queue remains empty. Current load is absorbed with higher throughput; no incident.\"}",
+    "usage": {
+     "prompt_tokens": 3326,
+     "total_tokens": 3801,
+     "completion_tokens": 475,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "b3c60a30c7d6d769ee02986f7773ac19be7cbc4b672bfe62afb17653a263d2af",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.72,
+    "evidence": [
+     "p95_latency_s 7.44 at 239s is below SLO 10.0",
+     "shed_rps is 0.0 across recent buckets",
+     "errors column is '-' with no error rate reported",
+     "gpu_util_pct is 100.0 and kv_usage_pct_max ~3-5% indicating headroom",
+     "running peaks at 57.1 < max_num_seqs 64 with waiting_max mostly 0"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency and error metrics remain within SLO despite higher arrivals. No shedding or queue buildup persists, and GPU is saturated but KV usage is low. No corrective action needed now.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.72, \"evidence\": [\"p95_latency_s 7.44 at 239s is below SLO 10.0\", \"shed_rps is 0.0 across recent buckets\", \"errors column is '-' with no error rate reported\", \"gpu_util_pct is 100.0 and kv_usage_pct_max ~3-5% indicating headroom\", \"running peaks at 57.1 < max_num_seqs 64 with waiting_max mostly 0\"], \"actions\": [], \"explanation\": \"Latency and error metrics remain within SLO despite higher arrivals. No shedding or queue buildup persists, and GPU is saturated but KV usage is low. No corrective action needed now.\"}",
+    "usage": {
+     "prompt_tokens": 3351,
+     "total_tokens": 3931,
+     "completion_tokens": 580,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "02e43de93aad79d8fd3eca7ec78263af4434f470c483b230a28d8ddaeea8db99",
+   "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "confidence": 0.72,
+    "evidence": [
+     "arrivals_rps rose from normal 2.8 to 8.4 at 269s",
+     "p95_latency_s 10.19 exceeds SLO 10.0 at 269s",
+     "running ~63-64 with waiting_max 18 at 269s, max_num_seqs is 64",
+     "ok_rps ~7.2 while arrivals 8.4 indicating backlog"
+    ],
+    "actions": [
+     {
+      "type": "gateway_rate_limit",
+      "max_rps": 7.0
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Offered load ~3x normal saturates max_num_seqs 64, queue builds and p95 latency breaches SLO. Shed excess at gateway to restore latency.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.72, \"evidence\": [\"arrivals_rps rose from normal 2.8 to 8.4 at 269s\", \"p95_latency_s 10.19 exceeds SLO 10.0 at 269s\", \"running ~63-64 with waiting_max 18 at 269s, max_num_seqs is 64\", \"ok_rps ~7.2 while arrivals 8.4 indicating backlog\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 7}], \"explanation\": \"Offered load ~3x normal saturates max_num_seqs 64, queue builds and p95 latency breaches SLO. Shed excess at gateway to restore latency.\"}",
+    "usage": {
+     "prompt_tokens": 3355,
+     "total_tokens": 4032,
+     "completion_tokens": 677,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

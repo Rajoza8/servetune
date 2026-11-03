@@ -1,0 +1,95 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "checked_at_utc": "2026-11-02T16:39:08.833843+00:00",
+  "model_id": "meta-models/Muse-Glimmer-30B",
+  "requested_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "metadata": {
+    "id": "meta-models/Muse-Glimmer-30B",
+    "sha": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+    "private": false,
+    "gated": false,
+    "disabled": false,
+    "library_name": "transformers",
+    "pipeline_tag": "image-text-to-text"
+  },
+  "revision_matches": true,
+  "requests": [
+    {
+      "url": "https://huggingface.co/api/models/meta-models/Muse-Glimmer-30B/revision/cec94fcfd6512f2cfe708138c32533b346ea4f69?blobs=true",
+      "method": "GET",
+      "authenticated": false,
+      "http_status": 200,
+      "content_length": "14972",
+      "etag": "W/\"3a7c-5QaZhPOipx/UtKIDJu5fwXOBo88\"",
+      "bytes": 14972,
+      "body_sha256": "0669f41c5b3b6ea3165c42a25ad8393cf59d8cfbbd2cede2d2a52bae43e0326b"
+    },
+    {
+      "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/resolve/cec94fcfd6512f2cfe708138c32533b346ea4f69/config.json",
+      "method": "GET",
+      "authenticated": false,
+      "http_status": 307,
+      "redirect_host": null,
+      "redirect_path": "/api/resolve-cache/models/meta-models/Muse-Glimmer-30B/cec94fcfd6512f2cfe708138c32533b346ea4f69/config.json"
+    },
+    {
+      "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/resolve/cec94fcfd6512f2cfe708138c32533b346ea4f69/tokenizer_config.json",
+      "method": "GET",
+      "authenticated": false,
+      "http_status": 307,
+      "redirect_host": null,
+      "redirect_path": "/api/resolve-cache/models/meta-models/Muse-Glimmer-30B/cec94fcfd6512f2cfe708138c32533b346ea4f69/tokenizer_config.json"
+    },
+    {
+      "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/resolve/cec94fcfd6512f2cfe708138c32533b346ea4f69/tokenizer.json",
+      "method": "HEAD",
+      "authenticated": false,
+      "http_status": 302,
+      "redirect_host": "us.aws.cdn.hf.co",
+      "redirect_path": "/xet-bridge-us/6a78be27e8cfa31c8b543588/f89930c709b5f7103e260b59259e1197c070b4905f44d102d859b81c3d662f83"
+    }
+  ],
+  "files": {
+    "config.json": {
+      "listed": true,
+      "metadata_bytes": 5109,
+      "http_status": 307,
+      "body_sha256": null
+    },
+    "tokenizer_config.json": {
+      "listed": true,
+      "metadata_bytes": 79936,
+      "http_status": 307,
+      "body_sha256": null
+    },
+    "tokenizer.json": {
+      "listed": true,
+      "metadata_bytes": 28129897,
+      "http_status": 302,
+      "repo_commit": null,
+      "etag": null,
+      "redirect_host": "us.aws.cdn.hf.co",
+      "body_downloaded": false
+    }
+  },
+  "weight_files": [
+    {
+      "path": "model-00001-of-00002.safetensors",
+      "bytes": 49950112952,
+      "lfs_sha256": "8eef61530e1283642c77ce2e6721feb5c6f348fa055c00e90f2844a136372694"
+    },
+    {
+      "path": "model-00002-of-00002.safetensors",
+      "bytes": 9603322320,
+      "lfs_sha256": "b58cc2144ba1ba1af4420f67f4ca3ced7f09298510b80464cc75018a0be14381"
+    }
+  ],
+  "weight_file_count": 2,
+  "total_weight_bytes": 59553435272,
+  "total_weight_gib": 55.463459,
+  "weights_downloaded": 0,
+  "tokenizer_blob_downloaded": false,
+  "credentials_or_environment_inspected": false,
+  "scope": "Bounded public unauthenticated repository metadata, small configuration JSON and tokenizer HEAD only. No weight/model/Meta/ledger/GPU calls. Redirect queries are never retained; no external/authentication redirects followed.",
+  "config_and_tokenizer_config_available_without_auth": false
+}

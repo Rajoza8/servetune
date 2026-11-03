@@ -1,0 +1,51 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T01:19:50.637226+00:00",
+  "paid_work_stopped": true,
+  "reason": "Existing recording host unavailable; one queued START cancelled and GET-confirmed stopped. A fresh inference host needs model setup plus the frozen workload; conservative data-based plan would exceed shared $40 cap.",
+  "failed_pipeline": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/outcome.json",
+    "sha256": "17430d395755150bfaf43723ecabcc3618f588681126933726ccbe5bc8590183"
+  },
+  "budget": {
+    "prior_v0_usd_upper": 25.90010443543525,
+    "hard_running_hours": 3.806694845689668,
+    "hard_compute_usd_upper": 5.9761605365664865,
+    "hard_disk_usd_upper": 0.6486551098902652,
+    "current_host_cost": {
+      "running_hours": 2.7350119388103487,
+      "compute_usd_upper": 4.157218146991729,
+      "disk_usd_upper": 0.5008669773351263
+    },
+    "prior_hard_host_cost": {
+      "running_hours": 1.071682906879319,
+      "compute_usd_upper": 1.8189423895747572,
+      "disk_usd_upper": 0.1477881325551389
+    },
+    "new_network_reserve_usd": 4.0,
+    "new_slack_reserve_usd": 1.0,
+    "total_usd_upper": 37.524920081892,
+    "remaining_gpu_hours": 0,
+    "forecast_usd_upper": 37.524920081892,
+    "shutdown_margin_usd": 0.04008333333333333
+  },
+  "replacement_plan": {
+    "rate_usd_hour": 1.4704666666666668,
+    "historical_glimmer_minutes_264_calls": 42.55,
+    "hard_maximum_glimmer_calls": 540,
+    "scaled_glimmer_minutes": 87.03,
+    "fresh_model_setup_minutes_observed": 15.22,
+    "ssh_allowance_minutes": 10,
+    "other_setup_and_transfer_minutes": 5,
+    "planned_minutes": 117,
+    "projected_total_usd_upper": 40.42909174855866,
+    "cap_usd": 40,
+    "not_a_completion_guarantee": true
+  },
+  "native_validation_or_arms_run": false,
+  "hard_paid_calls": 0,
+  "ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "next_allowed_unpaid_work": "Mapped proof audit, unchanged native validation once and rules-only replay; all unrun arms explicitly reported as NOT_RUN. Original authorized all-six analysis remains incomplete.",
+  "scientific_settings_unchanged": true
+}

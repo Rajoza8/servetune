@@ -1,0 +1,64 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "completed": true,
+  "created_at_utc": "2026-11-02T23:35:15.751305+00:00",
+  "purpose": "Exact OPS15 CPU helper and key-runner recognition; pinned same-rental restart rearm for approved fifteen-case partial analysis",
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "files": {
+    "remote_guard_partial.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/remote_guard_partial.py",
+      "sha256": "95fd839de039206460055da889a574a4a9846b85e5dde9c482d251d44eec40eb"
+    },
+    "rearm_partial_remote_guard.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rearm_partial_remote_guard.py",
+      "sha256": "a8f223cf7f0f8afb5aeeeb47c74b27395b115fb40e600ce6950e8ffaedb8f6c2"
+    },
+    "test_remote_guard_partial.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/test_remote_guard_partial.py",
+      "sha256": "f58793d0165e5dceda655045c989132a9bf3f237b233f53e85f154f41fdb7b8a"
+    },
+    "test_rearm_partial_remote_guard.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/test_rearm_partial_remote_guard.py",
+      "sha256": "c59adb23e4a3816d12307542ee57f6dd336a40131a6ada8b69d4d1147032375e"
+    }
+  },
+  "test_command": "python3 -m unittest -q test_remote_guard_partial test_rearm_partial_remote_guard",
+  "tests": 36,
+  "test_result": "PASS",
+  "compile_result": "PASS",
+  "independent_reviews": {
+    "guard": [
+      "root",
+      "audit_runtime"
+    ],
+    "rearm": [
+      "audit_api"
+    ]
+  },
+  "stopped_state": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-stopped-state.json",
+    "sha256": "4b01fa0a1789447c916ad323fc12ee18ff9d54d285e2d81029b53c7edebeb4b6"
+  },
+  "initial_prior_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rearm-frozen-attempt2/receipt.json",
+    "sha256": "1d7e30a42b3a791df7362ee8e21b19af2fa89dc4bc6617b6c6168503c8a35714"
+  },
+  "ancestor_rearm": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rearm_frozen_remote_guard.py",
+    "sha256": "dde0cd76dfc059b0419d6bb3898c9016d0507cdc6a4c447dcbf6794eb217f7ee"
+  },
+  "unchanged_original_guard": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/remote_guard.py",
+    "sha256": "d7bae662c2a9ac709ab25a81c6180172795f02f0ef999ea014590a455c3edbed"
+  },
+  "partial_integrity": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/hard_partial_integrity.py",
+    "sha256": "eca7c03250aa7b75439ce9b6505c648d4584c3f5fbdba48b341d42ab78b813c5"
+  },
+  "key_child_sha256": "e016fa0da62bf796c5e830b51e7c5196f2ff0cdd5041d23bb1f69d6b2a8bd23e",
+  "idle_seconds_unchanged": 120,
+  "hard_cutoff_utc_unchanged": "2026-11-03T23:00:00+00:00",
+  "provider_ssh_gpu_model_ledger_actions": false,
+  "old_frozen_sources_modified": false
+}

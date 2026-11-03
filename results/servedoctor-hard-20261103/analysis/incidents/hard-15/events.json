@@ -1,0 +1,40 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "gpu_memory_utilization": [
+        0.9,
+        0.86
+      ],
+      "max_num_batched_tokens": [
+        8192,
+        12288
+      ],
+      "max_num_seqs": [
+        64,
+        12
+      ],
+      "metrics_scrape_interval_s": [
+        15,
+        10
+      ]
+    }
+  },
+  {
+    "t": 190.3,
+    "kind": "alert",
+    "text": "Disk usage on /var/log reached 81% on the serving host (warning, non-paging)."
+  },
+  {
+    "t": 280.4,
+    "kind": "note",
+    "text": "Updated the Grafana serving dashboard layout."
+  },
+  {
+    "t": 323.7,
+    "kind": "alert",
+    "text": "NTP offset 12 ms on the serving host (threshold 50 ms)."
+  }
+]

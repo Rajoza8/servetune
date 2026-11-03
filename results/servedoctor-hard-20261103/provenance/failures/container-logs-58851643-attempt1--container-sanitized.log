@@ -1,0 +1,4 @@
+{"line_number": 29, "category": "ssh_startup_marker", "known_paths": []}
+{"line_number": 30, "category": "ssh_startup_marker", "known_paths": []}
+{"line_number": 164, "category": "entrypoint_marker", "known_paths": []}
+{"line_number": 173, "category": "entrypoint_marker", "known_paths": []}

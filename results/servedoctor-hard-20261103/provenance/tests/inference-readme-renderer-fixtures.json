@@ -1,0 +1,16 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T03:20:14.264751+00:00",
+  "tests": 5,
+  "passed": true,
+  "compile": "passed",
+  "synthetic_only": true,
+  "model_answer_provider_credential_data_read": false,
+  "files_sha256": {
+    "render_inference_readme.py": "e3f888e3d5b1a7d3360ea046abf8880f707af298dfc07c12207f1511ae4988bf",
+    "test_render_inference_readme.py": "7674a5bfdec92253567af432d6480ac85fee2048256dac027a6adbb2bd0d8eb4"
+  },
+  "independent_review": "audit_api CLEAR; independently repeated5synthetic fixtures",
+  "purpose": "Final prose from safe score projection/confirmed cleanup/public hardware only; no scientific decisions changed"
+}

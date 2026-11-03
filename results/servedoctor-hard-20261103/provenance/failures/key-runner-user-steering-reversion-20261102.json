@@ -1,0 +1,19 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "created_at_utc": "2026-11-02T17:03:25.142431+00:00",
+  "reason": "Explicit new user steering cancels proposed default-associated-key experiment; restore only NEW worker to original pre-default study-key transport. Future auth changes require container-log evidence.",
+  "worker_sha256": "97b6d359fa1bb6330921d5834e5e22a1f5ef4082842fd422a6d017165825c143",
+  "expected_pre_default_sha256": "97b6d359fa1bb6330921d5834e5e22a1f5ef4082842fd422a6d017165825c143",
+  "exact_original_worker_bytes_restored": true,
+  "tests": 19,
+  "returncode": 0,
+  "py_compile": "passed",
+  "test_sha256": "df321019584a07b8242c7e96e9f48307c4606c9e81c2e466bbf85348eacfcd44",
+  "stdout_sha256": "cf84154830c7359d454e5665c26c1edc82f8658ca6f6b8ecdc009877c43e6813",
+  "retained_proposal_proofs": [
+    "key-runner-default-associated-key-fixtures-20261102.json",
+    "key-runner-default-no-agent-fixtures-20261102.json"
+  ],
+  "real_worker_started": false,
+  "actual_key_private_env_network_provider_model_gpu_actions": 0
+}

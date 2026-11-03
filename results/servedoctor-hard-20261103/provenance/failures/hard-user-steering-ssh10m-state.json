@@ -1,0 +1,42 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T17:20:29.308648+00:00",
+  "user_steering": "Do not treat early SSH denial as failed rental. Attach original study key immediately after CREATE, before provisioning readiness. Keep next instance running for full600s read-only SSH readiness; at300s if still denied request_logs/save; fix only based on logs. At600s stilldenied backup+DELETE, neverSTOP. Shared40cap and frozenHard/allotherinstances unchanged.",
+  "current_instances": {
+    "host1_58843932": "deleted GETconfirmed,historyv1",
+    "host2_58848277": "deleted GETconfirmed,historyv2",
+    "host3_58851643": "queued START cancelled with STOP16:56UTC, freshGET stopped/pendingnone, then DELETED GETconfirmed andhistoryv3"
+  },
+  "history_latest": {
+    "path": "prior-hard-hosts-3.json",
+    "sha256": "c1d3900117e4cff6445827a646539315e364258ad436d96c47c3da8e884240e1"
+  },
+  "canonical_state_present": false,
+  "canonical_scope_present": false,
+  "scientific_source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "hard_generated": false,
+  "hard_recordings": 0,
+  "hard_decisions": 0,
+  "canonical_ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "meta_accounted_usd": 12.255891,
+  "baseten_accounted_usd": 0,
+  "prior_v0_gpu_usd_upper": 25.90010443543525,
+  "new_hard_failed_rentals_compute_disk_usd_upper": 0.9737637046758408,
+  "new_hard_network_reserve_usd": 2.5,
+  "new_hard_slack_reserve_usd": 1,
+  "planned_remaining_gpu_hours": 4,
+  "shared_gpu_cap_usd": 40,
+  "no_speculative_auth_fix": "Default-account identity proposal reverted BEFORE any SSH use; original identity/options retained. No permission changes. Public/private study keypair matches; per-instance controlplane lists correctkey. Current logproject showsstartup/entrypoint evidence, no badownership/modes, no supportedfix.",
+  "current_log_projection": "container-logs-58851643-attempt1/receipt.json",
+  "next_log_requirement": "Full sanitized containertext artifact PLUS fixed structured findings to model; raw/signedURL/key neverpersist. APIagent updatingcollector.",
+  "pending_code_owners": {
+    "gpu_setup": "startup_ssh_window.py: plan before probes,600s,log300,backup+oneDELETE after600,terminalreceipt; remote/tunnel original restored",
+    "audit_runtime": "hard_vast/hard_phase earlyattach preservingpendingCREATE,phase resume ifearlychildfailure,terminalreceipt noSTOP,explicitremaining4; startupscript publicBEGIN/DONEmarkers",
+    "audit_api": "request_logs_safe.py full sanitizedtext+structuredprojection, no actualrequests"
+  },
+  "root_pending": "Integrate bootstrap_stage --ssh-window-out calling read_guide before all TCP/keyscan/auth readiness; next bootstrapattempt6 and guide-ready-attempt6/ACK6, new startupwindowattempt1; next phase12. Wait finalhelpertests before newrental. Snapshot receiptfresh<=10s/sourceSHA andcheckedhashpycache; exactexpectedoffer; remaining4 atcreate; earlyattach; startupplan/terminal flags.",
+  "key_runner_final_sha256": "97b6d359fa1bb6330921d5834e5e22a1f5ef4082842fd422a6d017165825c143",
+  "key_runner_restart_requested": false,
+  "paid_cutoff_utc": "2026-11-04T04:59:59Z",
+  "hard_cutoff_utc": "2026-11-03T23:00:00Z"
+}

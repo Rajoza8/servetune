@@ -1,0 +1,138 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "rental_proof": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/create-pipeline-attempt1/binding.json",
+    "sha256": "8217d408e7edc0f91997ee3c9844ee8b9177004fa719b33f292d08fdd2474fa1"
+  },
+  "returncode": 1,
+  "stop_confirmed": true,
+  "started_epoch": 1793653188.336988,
+  "commands": [
+    {
+      "index": 0,
+      "name": "frozen-ssh-window",
+      "argv_sha256": "27e14b1a1e65a5e328bcf0dcb2287e0800f184634797bcb5e22c3af8cb86dcc3",
+      "started_epoch": 1793653224.292827,
+      "owner_deadline_epoch": 1793660424.292812,
+      "returncode": 0,
+      "pid": 25560,
+      "birth": "Mon Nov  2 16:00:24 2026",
+      "outcome_recorded_epoch": 1793653229.320823,
+      "finished_epoch": 1793653229.320844
+    },
+    {
+      "index": 1,
+      "name": "rearm-frozen",
+      "argv_sha256": "113717969a724b44d23cee9c4547d82aefcb109774355ef0777be10181cab6bc",
+      "started_epoch": 1793653229.325839,
+      "owner_deadline_epoch": 1793660429.32575,
+      "returncode": 0,
+      "pid": 25590,
+      "birth": "Mon Nov  2 16:00:29 2026",
+      "outcome_recorded_epoch": 1793653234.374283,
+      "finished_epoch": 1793653234.374284
+    },
+    {
+      "index": 2,
+      "name": "fresh-hardware-proof",
+      "argv_sha256": "36b522db78e5553e36297bae3f8ce528ba3bc530ebfb2093374a39a2b0c8be8e",
+      "started_epoch": 1793653234.376555,
+      "owner_deadline_epoch": 1793660434.376524,
+      "returncode": 0,
+      "pid": 25611,
+      "birth": "Mon Nov  2 16:00:34 2026",
+      "outcome_recorded_epoch": 1793653239.431865,
+      "finished_epoch": 1793653239.431891
+    },
+    {
+      "index": 3,
+      "name": "verify-existing-freeze",
+      "argv_sha256": "fdc89144e83c8a37d563f75d99fb986851b90a3f249f71b7155ec7b020e9e8ae",
+      "started_epoch": 1793653239.435406,
+      "owner_deadline_epoch": 1793660439.435316,
+      "returncode": 0,
+      "pid": 25617,
+      "birth": "Mon Nov  2 16:00:39 2026",
+      "outcome_recorded_epoch": 1793653244.482112,
+      "finished_epoch": 1793653244.482116
+    },
+    {
+      "index": 4,
+      "name": "frozen-study-backup",
+      "argv_sha256": "c5db5191cba4d999a2d27d9555c36a89efa175903e140a48379e7fc963753f1f",
+      "started_epoch": 1793653244.485067,
+      "owner_deadline_epoch": 1793660444.485031,
+      "returncode": 0,
+      "pid": 25623,
+      "birth": "Mon Nov  2 16:00:44 2026",
+      "outcome_recorded_epoch": 1793653249.5306802,
+      "finished_epoch": 1793653249.5306811
+    },
+    {
+      "index": 5,
+      "name": "record-first9",
+      "argv_sha256": "3508156ac402f98a217f830758048ec452938841b8f0d69d346ba3f73fe7e5d4",
+      "started_epoch": 1793653249.53354,
+      "owner_deadline_epoch": 1793658529.533503,
+      "returncode": 0,
+      "remaining_work": {
+        "before_hours": 3.0,
+        "hours": 3,
+        "reason": "Calibration/setup completed; reference plus16 timed incidents, evaluation and backup remain."
+      },
+      "pid": 25631,
+      "birth": "Mon Nov  2 16:00:49 2026",
+      "outcome_recorded_epoch": 1793656863.3304389,
+      "finished_epoch": 1793656863.331787
+    },
+    {
+      "index": 6,
+      "name": "rearm-second",
+      "argv_sha256": "009ca8a19f8d400dee10c7b8685f5b4af66b2339ba11e73e90346dad8f91764a",
+      "started_epoch": 1793656863.340099,
+      "owner_deadline_epoch": 1793664063.3400571,
+      "returncode": 0,
+      "remaining_work": {
+        "before_hours": 2.2,
+        "hours": 2,
+        "reason": "First9 recordings completed; last8, validation, evaluation and backup remain."
+      },
+      "pid": 30078,
+      "birth": "Mon Nov  2 17:01:03 2026",
+      "outcome_recorded_epoch": 1793656868.639615,
+      "finished_epoch": 1793656868.63962
+    },
+    {
+      "index": 7,
+      "name": "record-last8",
+      "argv_sha256": "a0e203e5c93b4cee22fdbdcd8ee930820ff527f64f39ffc924d3f823ea2be621",
+      "started_epoch": 1793656868.642325,
+      "owner_deadline_epoch": 1793662148.642297,
+      "returncode": 1,
+      "pid": 30100,
+      "birth": "Mon Nov  2 17:01:08 2026",
+      "error_class": "CalledProcessError",
+      "outcome_recorded_epoch": 1793659878.884237,
+      "finished_epoch": 1793659878.884816
+    }
+  ],
+  "queue_source": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-resume-pipeline-queue-attempt1.json",
+  "no_intermediate_stop": true,
+  "deadline_epoch": 1793665788.336989,
+  "latest_queue": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-resume-pipeline-attempt1/queue-snapshot-0000.json",
+    "sha256": "3189042158e1513b39154c88ca64cd86e348cc588cea042ae18c595bbf246727"
+  },
+  "watchdog_pid": 25504,
+  "start_request_returncode": 0,
+  "startup_window_plan": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/startup-ssh-window-attempt6/plan.json",
+    "sha256": "4c538c85a928841ed613586a6fa03a7f4eefb4ed8d3642afb03b7d78018b9c0a"
+  },
+  "error_class": "KeyboardInterrupt",
+  "stop_request_returncode": 0,
+  "cleanup_confirmed": true,
+  "finished_epoch": 1793660015.981525
+}

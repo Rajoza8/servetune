@@ -1,0 +1,9 @@
+{
+  "reason": "Preserve exact immutable guard-source bytes before uploading; generic first rearm binds source snapshot alongside actual process/state proofs. Local cfg-descendant gate remains; actual remote calibration source d3fe unchanged.",
+  "bootstrap_stage_sha256": "560176144b585001c6c3c6225ebfd10134705968a24f09322969438cbaded7ca",
+  "bootstrap_entry_sha256": "7ac9c0ecfcd924df014eea3b3936bb77596548aad240602a52ff44853cc0be81",
+  "guard_source_sha256": "d7bae662c2a9ac709ab25a81c6180172795f02f0ef999ea014590a455c3edbed",
+  "guard_snapshot_path": "bootstrap-calibration-controller-attempt7/remote-guard-source.py",
+  "compile": "passed",
+  "actual_actions": false
+}

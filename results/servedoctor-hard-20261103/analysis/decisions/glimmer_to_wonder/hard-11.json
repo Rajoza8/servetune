@@ -1,0 +1,227 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "hard-11",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.6152,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.82,
+  "evidence": [
+   "max_model_len is 1280 vs reference 4096 after deploy at t=0",
+   "Persistent http_400 errors in nearly every bucket, totaling about 6% of requests vs 1% SLO",
+   "Highest prompt-mean bucket (445 tokens) also has most http_400 errors (5)",
+   "Arrivals ~2.8-3.3 rps and prompt mix near normal 184 tokens, not a surge or long-prompt flood",
+   "p95 latency remains below 10s SLO, so errors are the main SLO breach"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy reduced max_model_len from 4096 to 1280, causing valid longer requests to be rejected with http_400 and breaching the error-rate SLO. Restoring the reference context length is the safest targeted fix.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.82, \"evidence\": [\"max_model_len is 1280 vs reference 4096 after deploy at t=0\", \"Persistent http_400 errors in nearly every bucket, totaling about 6% of requests vs 1% SLO\", \"Highest prompt-mean bucket (445 tokens) also has most http_400 errors (5)\", \"Arrivals ~2.8-3.3 rps and prompt mix near normal 184 tokens, not a surge or long-prompt flood\", \"p95 latency remains below 10s SLO, so errors are the main SLO breach\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len from 4096 to 1280, causing valid longer requests to be rejected with http_400 and breaching the error-rate SLO. Restoring the reference context length is the safest targeted fix.\"}",
+  "usage": {
+   "completion_tokens": 1669,
+   "prompt_tokens": 2934,
+   "total_tokens": 4603,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1441
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 120
+ },
+ "checkpoints": 4,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "f4abd90ed632956628c22d876ab05b8e40182dd8d829d4c420d3309a646f03bc",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Error rate exceeds SLO: http_400 errors in recent buckets ~2.9-7.7% vs max 1%. p95 latency OK but errors likely from config rollback reducing max_model_len to 1280 and GPU mem util.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Error rate exceeds SLO: http_400 errors in recent buckets ~2.9-7.7% vs max 1%. p95 latency OK but errors likely from config rollback reducing max_model_len to 1280 and GPU mem util.\"}",
+    "usage": {
+     "prompt_tokens": 1008,
+     "total_tokens": 1270,
+     "completion_tokens": 262,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "valid_output": false,
+    "evidence": [],
+    "explanation": "",
+    "rejected_actions": [],
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence",
+    "usage": {
+     "completion_tokens": 2048,
+     "prompt_tokens": 1494,
+     "total_tokens": 3542,
+     "completion_tokens_details": {
+      "reasoning_tokens": 2021
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "94b674b143a0381341f35678be86e6c3f74c5b40279a7c07a71eb2a01c80bd0c",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Elevated http_400 error rate ~3-8% over recent 10s buckets exceeds max_error_rate 0.01 SLO; p95 latency healthy but errors persist after config rollback reducing max_model_len and GPU memory utilizati",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Elevated http_400 error rate ~3-8% over recent 10s buckets exceeds max_error_rate 0.01 SLO; p95 latency healthy but errors persist after config rollback reducing max_model_len and GPU memory utilization.\"}",
+    "usage": {
+     "prompt_tokens": 1488,
+     "total_tokens": 1850,
+     "completion_tokens": 362,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "valid_output": false,
+    "evidence": [],
+    "explanation": "",
+    "rejected_actions": [],
+    "raw_output": "",
+    "usage": {
+     "completion_tokens": 2048,
+     "prompt_tokens": 1974,
+     "total_tokens": 4022,
+     "completion_tokens_details": {
+      "reasoning_tokens": 2046
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 1908
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "e48427e0d2cc48afcba093bec356535709231be31093ce76d29e8f2a0ab70ac4",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Elevated http_400 errors after deploy reducing max_model_len to 1280. Error rate well above 1% SLO with waiting queue appearing, p95 latency still within SLO but rejections indicate config regression.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Elevated http_400 errors after deploy reducing max_model_len to 1280. Error rate well above 1% SLO with waiting queue appearing, p95 latency still within SLO but rejections indicate config regression.\"}",
+    "usage": {
+     "prompt_tokens": 1968,
+     "total_tokens": 2322,
+     "completion_tokens": 354,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "valid_output": false,
+    "evidence": [],
+    "explanation": "",
+    "rejected_actions": [],
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.74, \"evidence\": [\"max_model_len is 1280 vs 4096 in reference config after deploy\", \"http_400 errors in nearly every bucket, totaling 15 errors for about 279 arrivals, above 1% SLO\", \"p95 latency about",
+    "usage": {
+     "completion_tokens": 2048,
+     "prompt_tokens": 2454,
+     "total_tokens": 4502,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1963
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "d9a0901fed47e900d527a575f80fae90f6d3d004a5a824406f652c34b746c719",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Error rate elevated with repeated http_400 after deploy cut max_model_len to 1280; p95 latency still under SLO but 400s exceed max_error_rate 1%.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Error rate elevated with repeated http_400 after deploy cut max_model_len to 1280; p95 latency still under SLO but 400s exceed max_error_rate 1%.\"}",
+    "usage": {
+     "prompt_tokens": 2448,
+     "total_tokens": 2795,
+     "completion_tokens": 347,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.82,
+    "evidence": [
+     "max_model_len is 1280 vs reference 4096 after deploy at t=0",
+     "Persistent http_400 errors in nearly every bucket, totaling about 6% of requests vs 1% SLO",
+     "Highest prompt-mean bucket (445 tokens) also has most http_400 errors (5)",
+     "Arrivals ~2.8-3.3 rps and prompt mix near normal 184 tokens, not a surge or long-prompt flood",
+     "p95 latency remains below 10s SLO, so errors are the main SLO breach"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy reduced max_model_len from 4096 to 1280, causing valid longer requests to be rejected with http_400 and breaching the error-rate SLO. Restoring the reference context length is the safest targeted fix.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.82, \"evidence\": [\"max_model_len is 1280 vs reference 4096 after deploy at t=0\", \"Persistent http_400 errors in nearly every bucket, totaling about 6% of requests vs 1% SLO\", \"Highest prompt-mean bucket (445 tokens) also has most http_400 errors (5)\", \"Arrivals ~2.8-3.3 rps and prompt mix near normal 184 tokens, not a surge or long-prompt flood\", \"p95 latency remains below 10s SLO, so errors are the main SLO breach\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy reduced max_model_len from 4096 to 1280, causing valid longer requests to be rejected with http_400 and breaching the error-rate SLO. Restoring the reference context length is the safest targeted fix.\"}",
+    "usage": {
+     "completion_tokens": 1669,
+     "prompt_tokens": 2934,
+     "total_tokens": 4603,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1441
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

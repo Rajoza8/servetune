@@ -1,0 +1,113 @@
+{
+  "created_at": "2026-11-03T02:26:40.290234+00:00",
+  "rule": "fault incidents: >=1 30-s window (by scheduled arrival, from onset) with successful-request p95 above the SLO or admitted error rate above the SLO; healthy and underutilization incidents: no such window anywhere",
+  "incidents": [
+    {
+      "id": "hard-01",
+      "valid": true,
+      "breach_windows": 8,
+      "windows": 8,
+      "reason": null
+    },
+    {
+      "id": "hard-02",
+      "valid": true,
+      "breach_windows": 6,
+      "windows": 8,
+      "reason": null
+    },
+    {
+      "id": "hard-03",
+      "valid": true,
+      "breach_windows": 0,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-04",
+      "valid": true,
+      "breach_windows": 8,
+      "windows": 8,
+      "reason": null
+    },
+    {
+      "id": "hard-05",
+      "valid": true,
+      "breach_windows": 8,
+      "windows": 8,
+      "reason": null
+    },
+    {
+      "id": "hard-06",
+      "valid": true,
+      "breach_windows": 12,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-07",
+      "valid": true,
+      "breach_windows": 12,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-08",
+      "valid": true,
+      "breach_windows": 4,
+      "windows": 8,
+      "reason": null
+    },
+    {
+      "id": "hard-09",
+      "valid": true,
+      "breach_windows": 0,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-10",
+      "valid": true,
+      "breach_windows": 0,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-11",
+      "valid": true,
+      "breach_windows": 12,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-12",
+      "valid": false,
+      "breach_windows": 0,
+      "windows": 12,
+      "reason": "no observable SLO breach"
+    },
+    {
+      "id": "hard-13",
+      "valid": true,
+      "breach_windows": 8,
+      "windows": 8,
+      "reason": null
+    },
+    {
+      "id": "hard-14",
+      "valid": true,
+      "breach_windows": 0,
+      "windows": 12,
+      "reason": null
+    },
+    {
+      "id": "hard-15",
+      "valid": true,
+      "breach_windows": 12,
+      "windows": 12,
+      "reason": null
+    }
+  ],
+  "valid": 14,
+  "total": 15
+}

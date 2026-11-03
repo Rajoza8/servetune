@@ -1,0 +1,13 @@
+{
+  "index": 7,
+  "name": "record-last8",
+  "argv_sha256": "a0e203e5c93b4cee22fdbdcd8ee930820ff527f64f39ffc924d3f823ea2be621",
+  "started_epoch": 1793656868.642325,
+  "owner_deadline_epoch": 1793662148.642297,
+  "returncode": 1,
+  "pid": 30100,
+  "birth": "Mon Nov  2 17:01:08 2026",
+  "error_class": "CalledProcessError",
+  "outcome_recorded_epoch": 1793659878.884237,
+  "finished_epoch": 1793659878.884816
+}

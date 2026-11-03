@@ -1,0 +1,9 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T16:45:34.723914+00:00",
+  "scope": "Offline fake rental fixture only",
+  "failed_test": "test_region_cpu_reliability_and_full_transfer_allowance_are_enforced",
+  "failure": "Existing fixture assumed2USD transfer reserve; root intentionally raised internal whole-Hard reserve to2.50 while keeping40cap. Old2.01USD overrun fixture no longer exceeded reserve.",
+  "fix": "Use2.51USD down-transfer fixture and add0.50 to the explicit expected budget total. No provider mutation, public scientific code, study config, ledger or decision changed.",
+  "phase10_launched": false
+}

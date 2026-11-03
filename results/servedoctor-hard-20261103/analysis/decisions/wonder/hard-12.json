@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "hard-12",
+ "engine_config": {
+  "max_model_len": 6144,
+  "max_num_seqs": 24,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.86,
+  "evidence": [
+   "Deploy lowered max_num_seqs from 64 to 24",
+   "Running rose to 21.9, near the 24 sequence cap",
+   "Waiting appeared at 4.0 despite prior buckets at 0",
+   "KV usage is only 1.43%, so memory is not limiting concurrency",
+   "p95 TTFT rose to 0.98s from 0.46s normal profile"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency is capped by the reduced max_num_seqs: running is approaching 24, queueing has begun, and KV headroom is ample. Restoring the reference limit of 64 removes the artificial bottleneck.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.86, \"evidence\": [\"Deploy lowered max_num_seqs from 64 to 24\", \"Running rose to 21.9, near the 24 sequence cap\", \"Waiting appeared at 4.0 despite prior buckets at 0\", \"KV usage is only 1.43%, so memory is not limiting concurrency\", \"p95 TTFT rose to 0.98s from 0.46s normal profile\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency is capped by the reduced max_num_seqs: running is approaching 24, queueing has begun, and KV headroom is ample. Restoring the reference limit of 64 removes the artificial bottleneck.\"}",
+  "usage": {
+   "completion_tokens": 895,
+   "prompt_tokens": 1488,
+   "total_tokens": 2383,
+   "completion_tokens_details": {
+    "reasoning_tokens": 700
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 628
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "8b32e50ac182a759eb90a59a44ec2fc9d2038ba5ceb9ef31115535f7b714609c",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.86,
+    "evidence": [
+     "Deploy lowered max_num_seqs from 64 to 24",
+     "Running rose to 21.9, near the 24 sequence cap",
+     "Waiting appeared at 4.0 despite prior buckets at 0",
+     "KV usage is only 1.43%, so memory is not limiting concurrency",
+     "p95 TTFT rose to 0.98s from 0.46s normal profile"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency is capped by the reduced max_num_seqs: running is approaching 24, queueing has begun, and KV headroom is ample. Restoring the reference limit of 64 removes the artificial bottleneck.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.86, \"evidence\": [\"Deploy lowered max_num_seqs from 64 to 24\", \"Running rose to 21.9, near the 24 sequence cap\", \"Waiting appeared at 4.0 despite prior buckets at 0\", \"KV usage is only 1.43%, so memory is not limiting concurrency\", \"p95 TTFT rose to 0.98s from 0.46s normal profile\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency is capped by the reduced max_num_seqs: running is approaching 24, queueing has begun, and KV headroom is ample. Restoring the reference limit of 64 removes the artificial bottleneck.\"}",
+    "usage": {
+     "completion_tokens": 895,
+     "prompt_tokens": 1488,
+     "total_tokens": 2383,
+     "completion_tokens_details": {
+      "reasoning_tokens": 700
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 628
+     }
+    }
+   }
+  }
+ ]
+}

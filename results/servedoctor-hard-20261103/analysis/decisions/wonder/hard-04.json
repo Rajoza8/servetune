@@ -1,0 +1,229 @@
+{
+ "arm": "wonder",
+ "incident": "hard-04",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.78,
+  "evidence": [
+   "p95 latency rose from ~5.9s to 24.98s after t=130 while arrivals stayed ~2.6-3.1 rps vs normal 2.8 rps",
+   "running rose from ~15 to 62.3 with waiting appearing, while KV usage was only 8.13% and preemptions were 0",
+   "GPU memory rose from 88584 MB to 91231 MB, matching non-engine processes using 738 MB and 1102 MB",
+   "pid 3528 feature_cache_sync has high duty 0.7 and size 8192, unlike the low-duty reranker job",
+   "engine logs show running climbing to 62 reqs with degraded generation throughput"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 3528
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "A heavy non-engine GPU job started contending with the engine around t=130, slowing service and causing requests to accumulate despite normal offered load and ample KV cache. Stopping that process is the least disruptive fix.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.78, \"evidence\": [\"p95 latency rose from ~5.9s to 24.98s after t=130 while arrivals stayed ~2.6-3.1 rps vs normal 2.8 rps\", \"running rose from ~15 to 62.3 with waiting appearing, while KV usage was only 8.13% and preemptions were 0\", \"GPU memory rose from 88584 MB to 91231 MB, matching non-engine processes using 738 MB and 1102 MB\", \"pid 3528 feature_cache_sync has high duty 0.7 and size 8192, unlike the low-duty reranker job\", \"engine logs show running climbing to 62 reqs with degraded generation throughput\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3528}], \"explanation\": \"A heavy non-engine GPU job started contending with the engine around t=130, slowing service and causing requests to accumulate despite normal offered load and ample KV cache. Stopping that process is the least disruptive fix.\"}",
+  "usage": {
+   "completion_tokens": 1502,
+   "prompt_tokens": 3193,
+   "total_tokens": 4695,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1250
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "66acb01edca0555adb493aad2711f91629cd159752fbfbb58a14f9de9bb1c34a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.95s < 10.0s SLO in latest bucket",
+     "arrivals 2.64 rps vs normal 2.8 rps, waiting_max 0.0",
+     "kv_usage_pct_max 1.52% with 0 preemptions/s",
+     "engine config matches reference config",
+     "no shed/error signal and gen_tokens_per_s near normal"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match healthy profile: latency within SLO, no queueing, low KV use, no preemptions. No intervention needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.95s < 10.0s SLO in latest bucket\", \"arrivals 2.64 rps vs normal 2.8 rps, waiting_max 0.0\", \"kv_usage_pct_max 1.52% with 0 preemptions/s\", \"engine config matches reference config\", \"no shed/error signal and gen_tokens_per_s near normal\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match healthy profile: latency within SLO, no queueing, low KV use, no preemptions. No intervention needed.\"}",
+    "usage": {
+     "completion_tokens": 392,
+     "prompt_tokens": 1480,
+     "total_tokens": 1872,
+     "completion_tokens_details": {
+      "reasoning_tokens": 233
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "7d11bfc7e0c2eaeffc6e172b2faaeafabe7b730e21ae0d7e86580b5c829fbdd6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.15-6.30s < 10.0s SLO in all buckets",
+     "arrivals 2.09-3.44 rps vs normal 2.8 rps, ok_rps similar",
+     "waiting_max 0.0, kv_usage_pct_max <=1.67%, no preemptions",
+     "engine_config matches reference_engine_config",
+     "running/gen_tokens_per_s near normal profile (15 / 367.6)"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Metrics match healthy reference: latency within SLO, no queueing, low KV usage, normal load. Extra GPU process uses only 738MB with no performance impact. No action needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.15-6.30s < 10.0s SLO in all buckets\", \"arrivals 2.09-3.44 rps vs normal 2.8 rps, ok_rps similar\", \"waiting_max 0.0, kv_usage_pct_max <=1.67%, no preemptions\", \"engine_config matches reference_engine_config\", \"running/gen_tokens_per_s near normal profile (15 / 367.6)\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Metrics match healthy reference: latency within SLO, no queueing, low KV usage, normal load. Extra GPU process uses only 738MB with no performance impact. No action needed.\"}",
+    "usage": {
+     "completion_tokens": 442,
+     "prompt_tokens": 2001,
+     "total_tokens": 2443,
+     "completion_tokens_details": {
+      "reasoning_tokens": 257
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "a621fab8623b265e7d9c89e74e1b42a695f9962e31c25d67d23acaaad8f4e4a3",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.15-6.30s below 10s SLO across buckets",
+     "waiting_max 0.0, kv_usage_pct_max <=1.67%, no preemptions or shedding",
+     "arrivals ~2.5-3.9 rps and prompt mean ~129-284 match normal profile 2.8 rps / 184 tokens",
+     "engine config matches reference; running 8-21 reqs similar to normal 15"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Metrics match the healthy reference profile with latency within SLO, no queueing, low KV use, and no errors. The small co-located process is not degrading performance. No change needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.15-6.30s below 10s SLO across buckets\", \"waiting_max 0.0, kv_usage_pct_max <=1.67%, no preemptions or shedding\", \"arrivals ~2.5-3.9 rps and prompt mean ~129-284 match normal profile 2.8 rps / 184 tokens\", \"engine config matches reference; running 8-21 reqs similar to normal 15\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Metrics match the healthy reference profile with latency within SLO, no queueing, low KV use, and no errors. The small co-located process is not degrading performance. No change needed.\"}",
+    "usage": {
+     "completion_tokens": 424,
+     "prompt_tokens": 2466,
+     "total_tokens": 2890,
+     "completion_tokens_details": {
+      "reasoning_tokens": 238
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "bb0a133da071d588dd1ff53379471f593a486b72c093fb5cf0fd601a0fa70e17",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.15-6.89 < SLO 10.0 in all buckets",
+     "arrivals_rps 2.1-3.9 near normal 2.8, waiting_max 0.0, no shed/errors",
+     "kv_usage_pct_max 0.7-2.2% and preemptions 0, running ~15 as normal",
+     "engine_config matches reference_engine_config",
+     "extra GPU process pid 3492 uses only 738 MB with no latency/throughput degradation"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLO and engine metrics match the healthy profile; no queueing, KV pressure, or errors. The small co-located process has negligible impact.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.15-6.89 < SLO 10.0 in all buckets\", \"arrivals_rps 2.1-3.9 near normal 2.8, waiting_max 0.0, no shed/errors\", \"kv_usage_pct_max 0.7-2.2% and preemptions 0, running ~15 as normal\", \"engine_config matches reference_engine_config\", \"extra GPU process pid 3492 uses only 738 MB with no latency/throughput degradation\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLO and engine metrics match the healthy profile; no queueing, KV pressure, or errors. The small co-located process has negligible impact.\"}",
+    "usage": {
+     "completion_tokens": 349,
+     "prompt_tokens": 2932,
+     "total_tokens": 3281,
+     "completion_tokens_details": {
+      "reasoning_tokens": 159
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2ffa301c6669b6b555eded67c0479a58ce4ae7b43a89428774a67eee63abe662",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.78,
+    "evidence": [
+     "p95 latency rose from ~5.9s to 24.98s after t=130 while arrivals stayed ~2.6-3.1 rps vs normal 2.8 rps",
+     "running rose from ~15 to 62.3 with waiting appearing, while KV usage was only 8.13% and preemptions were 0",
+     "GPU memory rose from 88584 MB to 91231 MB, matching non-engine processes using 738 MB and 1102 MB",
+     "pid 3528 feature_cache_sync has high duty 0.7 and size 8192, unlike the low-duty reranker job",
+     "engine logs show running climbing to 62 reqs with degraded generation throughput"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 3528
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "A heavy non-engine GPU job started contending with the engine around t=130, slowing service and causing requests to accumulate despite normal offered load and ample KV cache. Stopping that process is the least disruptive fix.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.78, \"evidence\": [\"p95 latency rose from ~5.9s to 24.98s after t=130 while arrivals stayed ~2.6-3.1 rps vs normal 2.8 rps\", \"running rose from ~15 to 62.3 with waiting appearing, while KV usage was only 8.13% and preemptions were 0\", \"GPU memory rose from 88584 MB to 91231 MB, matching non-engine processes using 738 MB and 1102 MB\", \"pid 3528 feature_cache_sync has high duty 0.7 and size 8192, unlike the low-duty reranker job\", \"engine logs show running climbing to 62 reqs with degraded generation throughput\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3528}], \"explanation\": \"A heavy non-engine GPU job started contending with the engine around t=130, slowing service and causing requests to accumulate despite normal offered load and ample KV cache. Stopping that process is the least disruptive fix.\"}",
+    "usage": {
+     "completion_tokens": 1502,
+     "prompt_tokens": 3193,
+     "total_tokens": 4695,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1250
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

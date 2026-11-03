@@ -1,0 +1,109 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "completed": true,
+  "created_at_utc": "2026-11-03T02:13:59.348547+00:00",
+  "test_result": "PASS",
+  "test_count": 63,
+  "py_compile": "passed",
+  "test_command": "python3 -m unittest -q test_inference_vast test_inference_pipeline test_inference_startup_window test_inference_request_logs test_inference_remote_guard test_inference_remote",
+  "files": {
+    "inference_vast.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_vast.py",
+      "sha256": "0a6c1f45d6dddd5f9273d21aeb6323e482dde84dd85a209c63dc201508ef239b"
+    },
+    "inference_pipeline.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_pipeline.py",
+      "sha256": "63280c0256f3c18f432378e20ef924b88b325a932e45e019ca6aab6af2819ad4"
+    },
+    "inference_remote.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_remote.py",
+      "sha256": "e7e88a24b285edf8071c39331ddb016e418aaa6396d09f9c0c5aad1a41117ea5"
+    },
+    "inference_startup_window.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_startup_window.py",
+      "sha256": "f211650bbb9b1c0824d905dbc295ccfb0028b8af276081bb7f29da94889f2d76"
+    },
+    "inference_request_logs.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_request_logs.py",
+      "sha256": "87cbc1531ac2b51246e5f3337cc697158aa638a7d2c42ee300239ad39fc9520c"
+    },
+    "inference_remote_guard.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_remote_guard.py",
+      "sha256": "efd4cb8ab23b342cff78e18107dbf30a11674b6d716d6856b91474b0fe5ae76e"
+    },
+    "test_inference_vast.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_vast.py",
+      "sha256": "2eef569550750f44496be3e5b957c1c59413d745e7aab16f29482eff582b033e"
+    },
+    "test_inference_pipeline.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_pipeline.py",
+      "sha256": "3f30ff153c9ec575a5a02a2bda91aaab358d44a2875509f7e50c42a272b4ca7a"
+    },
+    "test_inference_remote.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_remote.py",
+      "sha256": "613052d7791b6fb635b5c719eeca696a8451bf8cc6f66d1047cb18666578d12b"
+    },
+    "test_inference_startup_window.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_startup_window.py",
+      "sha256": "65e69923e4d4a6867365990c120d899d0cf67c016095a29488b29cbd0ff073e3"
+    },
+    "test_inference_request_logs.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_request_logs.py",
+      "sha256": "6a5f888332f966b4732e5180219d36804811a8d10095794d5cfb93322b0d3b28"
+    },
+    "test_inference_remote_guard.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_remote_guard.py",
+      "sha256": "e5e7a1d245769447b1b3f277442717b494ac0a1f6d921b072f4466391d8d8237"
+    }
+  },
+  "independent_review": "Root narrow diff review CLEAR: MAX_RATE1.65 and exact E016 scope allocation deadline; basecontrol review retained",
+  "budget_amendment": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/gpu-budget-amendment-43-20261102.json",
+    "sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a"
+  },
+  "prior_final_host": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/destroy-receipt.json",
+    "sha256": "57b61384c4494633266c2f5f6fca1fa12f238d118ae08c9901a91df4a49cd76a"
+  },
+  "final_worker": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_key_runner.py",
+    "sha256": "059fd8eb6ffb7e3e41cbb5f3ff47476df30b112a6917edbe382e7388fe1f27d1"
+  },
+  "queue": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-pipeline-queue-attempt1.json",
+    "sha256": "758755c465125c61313600f5f8803814f0f293c7a4e1cd937c50c9103849b601"
+  },
+  "fixed_allocation_seconds": 10800,
+  "total_gpu_cap_usd": 43,
+  "prior_total_usd_upper": 37.552391290596844,
+  "remote_code_sha256": "bac8f8dc247342cee0c7631b5a2a7840f87383a6ca89bdbe390915abb8487caa",
+  "remote_diagnostic_sha256": "73b1663b7b035dd161e10125d8e537edceac7907269eeda82704a2fb83bd3894",
+  "remote_child_sha256": "e016fa0da62bf796c5e830b51e7c5196f2ff0cdd5041d23bb1f69d6b2a8bd23e",
+  "startup_policy": {
+    "window_seconds": 600,
+    "request_logs_second": 300,
+    "remote_argv": [
+      "cat",
+      "/etc/vast-agents-guide.md"
+    ],
+    "no_nonbudget_stop_during_unauthenticated_window": true
+  },
+  "mutations_automatic_retry": false,
+  "unknown_create_no_match_absence_or_cost_closure_claimed": false,
+  "actual_provider_ssh_gpu_api_model_ledger_actions": false,
+  "old_frozen_files_modified": false,
+  "prior_proof": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-control-fixtures.json",
+    "sha256": "6590e9d15f07da2c0606204be8fd7001ede597e049040032a88305a78737add2"
+  },
+  "change_reason": "Explicit operator revision after read-only offer discovery found no compliant quote below1.55; user total43 and fixed3h unchanged. Bind orphan native-child deadline to the actual frozen worker Popen allocation value.",
+  "maximum_offer_rate_usd_per_hour": 1.65,
+  "changes": [
+    "Only inference_vast.MAX_RATE1.55\u21921.65",
+    "E016 matcher receives exact verified scope allocation deadline and rejects old PAID-only deadline"
+  ],
+  "first_read_only_discovery": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-offer-discovery-attempt1.json",
+    "sha256": "a6807af54f76b4f2ba68e9167e3884ff29531ffd7fab5110e0e940e6743540f4"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "failed_index": 5,
+  "failed_outcome": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/calibrated-resume-pipeline-attempt1/prepare-study.json",
+    "sha256": "50a30f01d19567bb48869ccd72febb212fa180f61ac5656cb2cf7a44de1bcbb2"
+  },
+  "started_epoch": 1793652813.240169,
+  "deadline_epoch": 1793652933.240169,
+  "no_retry_of_failed_index": true
+}

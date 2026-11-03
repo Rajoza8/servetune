@@ -1,0 +1,38 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T01:48:37.575714+00:00",
+  "returncode": 0,
+  "py_compile": "passed",
+  "budget_amendment_sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a",
+  "scope": "Invented credentials/transport/process/command fixtures only; no real key/env/provider/SSH/GPU/model/ledger/native-study actions.",
+  "old_seven_helpers_sha256": {
+    "hard_partial_integrity.py": "eca7c03250aa7b75439ce9b6505c648d4584c3f5fbdba48b341d42ab78b813c5",
+    "key_runner.py": "d262566e97f06691cbcedf1ac2b93d5df23f5b3f54be91007a0bd4cfdcc04689",
+    "hard_report_common.py": "8c01113fe02b335979807a516e9a5678a34feb87259006d9891aff6a21c8499e",
+    "measure_contexts.py": "a2d366f8470a31f07f1da88f8bbc0e2899f7e387bc981f388d0669f91b3a90dc",
+    "model_response_guard.py": "68602959e499804a33d28751153347d06973a39361c525587885f150e7c6b92a",
+    "export_hard_scores.py": "daf5a37ee9f40356c203cf4a0711b115a272c13d5e281a970b082f96ee3317d3",
+    "partial_evaluation_stage.py": "00c07e59a5170812b92f25539c277e175ce23dfd81a9043439a0b44208b3334e"
+  },
+  "native_child_sha256": "e016fa0da62bf796c5e830b51e7c5196f2ff0cdd5041d23bb1f69d6b2a8bd23e",
+  "frozen": true,
+  "tests": 14,
+  "helper_sha256": "3544ff9f637b093500c31cf59ecfae69c5d4c59fc16be6f46c166d340a865d36",
+  "test_sha256": "5066943bbe0db7e6615ac4e5de257c5f174f6ff635a26d5430bcd323a57854cd",
+  "files_sha256": {
+    "inference_report_common.py": "cacb1fafe9b79cddfc80c079678d6d4bfee053fc80d1ccd8a56e363ebae5e943",
+    "inference_measure_contexts.py": "9b3747ca0650792a06121ff6e42d26b169dd17dae27ccd9c95d12a45b26f5bb4",
+    "inference_response_guard.py": "207fdc6a7dd2dcda9c526d9aa4c1bf023f8663ccfd09310fc674a99e02b131ce",
+    "inference_export_scores.py": "6150a236da4070ae5745d70661836e79ec4fdf5e7955c6bd29110dfe58835dec"
+  },
+  "fixed_code_sha256": {
+    "PREPARE": "aed2b5f93b3b22dfd247da94c2d80fe13af5a70fdc2223107288f8ad0e68f746",
+    "LEDGER": "86bc7f46b799b8a3aa50c4795ef00fe6e57899d9f24a8b1e3177b49696a31852",
+    "ARCHIVE": "07930ba4cb81063aaee213f99c2108107087590b301e054e41673ceae3652fa9",
+    "LABEL_REPORT": "c1af8efa27cee0e479b964a350443d3cba2a14464afde64fe00cf2f9232beb58"
+  },
+  "maximum_model_work_seconds": 9000,
+  "default_model_work_seconds": 7800,
+  "root_allocation_seconds": 10800
+}

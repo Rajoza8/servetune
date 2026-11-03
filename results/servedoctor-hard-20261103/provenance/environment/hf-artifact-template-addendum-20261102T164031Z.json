@@ -1,0 +1,54 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "checked_at_utc": "2026-11-02T16:40:30.948517+00:00",
+  "reason": "Tokenizer config has no embedded chat_template; check public pinned metadata for separate template/support files.",
+  "url": "https://huggingface.co/api/models/meta-models/Muse-Glimmer-30B/revision/cec94fcfd6512f2cfe708138c32533b346ea4f69?blobs=true",
+  "method": "GET",
+  "authenticated": false,
+  "revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "http_status": 200,
+  "body_sha256": "0669f41c5b3b6ea3165c42a25ad8393cf59d8cfbbd2cede2d2a52bae43e0326b",
+  "revision_matches": true,
+  "support_files": [
+    {
+      "path": "chat_template.jinja",
+      "bytes": 9992,
+      "git_blob_sha1": "7507f3c9f38809152732c045df3977848f3916a6",
+      "lfs_sha256": null
+    },
+    {
+      "path": "generation_config.json",
+      "bytes": 202,
+      "git_blob_sha1": "b69a50a4239f42707d54a479e0143b8ee56c8bcc",
+      "lfs_sha256": null
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "bytes": 132674,
+      "git_blob_sha1": "00b257ef0c8bce1b001a6266f6b1f66f4fe16a6b",
+      "lfs_sha256": null
+    },
+    {
+      "path": "processor_config.json",
+      "bytes": 1084,
+      "git_blob_sha1": "ec9a07be13ea1dadf7395131871753b13f406c26",
+      "lfs_sha256": null
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 28129897,
+      "git_blob_sha1": "9489d8dc16cfee56aab409ad31c1796b71f81a13",
+      "lfs_sha256": "c9dbee66967b58f31a7c27f723c3760da3526ccd0427578e8905b0abb0031c4d"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 79936,
+      "git_blob_sha1": "fe7f0bb90fb0d0288e3a505974ae0e4baf1d3e61",
+      "lfs_sha256": null
+    }
+  ],
+  "separate_chat_template_listed": true,
+  "weights_downloaded": 0,
+  "tokenizer_blob_downloaded": false,
+  "credentials_or_environment_inspected": false
+}

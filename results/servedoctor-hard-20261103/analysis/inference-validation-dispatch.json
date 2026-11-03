@@ -1,0 +1,8 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "dispatch": {
+    "path": "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard15-ops-20261102/inference-validation-attempt1/dispatch.json",
+    "sha256": "254289e499b325a93d0eb0aad18ea674363f988672da7c3d8545fd1de0d2ecbf"
+  }
+}

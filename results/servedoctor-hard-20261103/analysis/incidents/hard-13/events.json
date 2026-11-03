@@ -1,0 +1,22 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "max_num_seqs": [
+        64,
+        96
+      ],
+      "metrics_scrape_interval_s": [
+        15,
+        10
+      ]
+    }
+  },
+  {
+    "t": 163.5,
+    "kind": "note",
+    "text": "Rotated the gateway TLS certificate."
+  }
+]

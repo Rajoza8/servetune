@@ -1,0 +1,36 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "prepared_at_utc": "2026-11-03T02:31:54.508220+00:00",
+  "status": "DRAFT PROGRESS ONLY; final model scoreboards/ledger/cost/cleanup remain pending",
+  "root_reported_aggregate": {
+    "native_validation_once_completed": true,
+    "retained_hard_incidents": 15,
+    "valid_cases": 14,
+    "invalid_cases": 1,
+    "context_incidents": 15,
+    "context_tokens": 8192,
+    "all_contexts_fit": true,
+    "all_six_evaluation_complete": false,
+    "scoreboard_not_claimed": true
+  },
+  "evidence_source": "Root operator message reporting completed native validation/context preflight; no answers/modeloutputs read for this receipt.",
+  "inference_hardware": {
+    "project": "servedoctor-hard15-inference-20261103",
+    "instance_id": 58905385,
+    "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+    "container_id_matches_scope": true,
+    "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+    "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+    "dtype": "bf16",
+    "vllm_version": "0.26.1rc1.dev608+g99a10304d",
+    "gpu_uuid": "GPU-a38fda97-350c-5724-46e6-82b87f985a96",
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "gpu_memory_mib": 97887.0
+  },
+  "hardware_source_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-preparation-attempt1/inference-hardware",
+  "hardware_source_sha256": "02c84b7e660733c9d50ee1e1d839c2601df0d6a5dd59f618c384a4e9f9e7c71a",
+  "recording_instance_id": 58866756,
+  "recording_gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+  "scientific_source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7"
+}

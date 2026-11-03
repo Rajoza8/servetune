@@ -1,0 +1,17 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "operation": "archive-definitively-rejected-create",
+  "at_epoch": 1793633995.991414,
+  "inspection": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/provisioning-attempt2-readonly-inspection.json",
+    "sha256": "e40bf4efce10e06d85e403a0b40b4b3539963338d0c9bdccc395c38c789baae0"
+  },
+  "archive_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/provisioning-attempt2-rejected",
+  "source_files_sha256": {
+    "session.json": "7d933dc2003fb147e862cd2b84174caa673abc30d4d0c7ba577ee9d33d89be52",
+    "intent-0000-create.json": "4158afe1a231cd912e2966261a058d9ef6d08574105f802199dd29bfa24c1229",
+    "intent-0000-create-outcome.json": "5853d28a38a86f488eb828fc6e5348e4c00f1e80f85c268e9748d52db71ec8d3"
+  },
+  "failed_rental_cost_usd": 0.0,
+  "reason": "HTTP400 successfalse and two complete zero-inventory observations; no confirmed rental"
+}

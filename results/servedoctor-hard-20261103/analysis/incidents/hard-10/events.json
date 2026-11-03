@@ -1,0 +1,36 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "gpu_memory_utilization": [
+        0.9,
+        0.86
+      ],
+      "log_level": [
+        "INFO",
+        "WARNING"
+      ],
+      "max_model_len": [
+        4096,
+        6144
+      ]
+    }
+  },
+  {
+    "t": 71.4,
+    "kind": "alert",
+    "text": "Prometheus remote-write queue lag 30 s (non-paging)."
+  },
+  {
+    "t": 118.7,
+    "kind": "note",
+    "text": "Client SDK minor version bump rolled out to 10% of callers."
+  },
+  {
+    "t": 294.2,
+    "kind": "alert",
+    "text": "One synthetic probe from a remote region timed out (single occurrence)."
+  }
+]

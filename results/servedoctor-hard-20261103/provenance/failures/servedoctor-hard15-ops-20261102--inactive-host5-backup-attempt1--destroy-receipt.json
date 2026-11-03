@@ -1,0 +1,47 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "mode": "recorded_original15_preserved_failed_inference_restart",
+  "confirmed_absent": true,
+  "destroyed_epoch": 1793669977.389961,
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/backup-receipt.json",
+    "sha256": "974298fba8f56f968cea494aff87b97e163391a7a85eaa3fdc7c86ba98a57566"
+  },
+  "final_state": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/final-state.json",
+    "sha256": "d083e975fa152c8e927f75eece5141ef8cf0729450eb413b01b7951e61337dd5"
+  },
+  "host_cost": {
+    "running_hours": 2.7350119388103487,
+    "compute_usd_upper": 4.157218146991729,
+    "disk_usd_upper": 0.5283381860399687
+  },
+  "network_slack_reserved_once": true,
+  "all_remote_artifacts_backed_up": false,
+  "remote_ops_control_tail_unverified": true,
+  "gpu_accounting": {
+    "prior_v0_usd_upper": 25.90010443543525,
+    "hard_running_hours": 3.806694845689668,
+    "hard_compute_usd_upper": 5.9761605365664865,
+    "hard_disk_usd_upper": 0.6761263185951076,
+    "current_host_cost": {
+      "running_hours": 2.7350119388103487,
+      "compute_usd_upper": 4.157218146991729,
+      "disk_usd_upper": 0.5283381860399687
+    },
+    "prior_hard_host_cost": {
+      "running_hours": 1.071682906879319,
+      "compute_usd_upper": 1.8189423895747572,
+      "disk_usd_upper": 0.1477881325551389
+    },
+    "new_network_reserve_usd": 4.0,
+    "new_slack_reserve_usd": 1.0,
+    "total_usd_upper": 37.552391290596844,
+    "remaining_gpu_hours": 1.469184076918496,
+    "forecast_usd_upper": 39.90798309392283,
+    "shutdown_margin_usd": 0.04008333333333333
+  },
+  "gpu_hours_log_sha256": "64b08961f6d1d8e337d0d44bd1787f5a422e7f01ff53d445e3e6de7e5cbd1c4b"
+}

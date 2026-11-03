@@ -1,0 +1,31 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "completed": true,
+  "created_at_utc": "2026-11-03T01:37:54.774550+00:00",
+  "tests": 12,
+  "test_result": "PASS",
+  "py_compile": "passed",
+  "independent_review": "audit_api CLEAR exact91fbfb00e1ebac6108f4da7d442598c3909f988c6911762f85b19e43adb48f8f",
+  "files": {
+    "inactive_partial_host_cleanup.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive_partial_host_cleanup.py",
+      "sha256": "91fbfb00e1ebac6108f4da7d442598c3909f988c6911762f85b19e43adb48f8f"
+    },
+    "test_inactive_partial_host_cleanup.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inactive_partial_host_cleanup.py",
+      "sha256": "471182761daa93109b76bb9db772fa98ae81b0e93652867b88bcbba3b86dd8c0"
+    }
+  },
+  "failed_pipeline": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/outcome.json",
+    "sha256": "17430d395755150bfaf43723ecabcc3618f588681126933726ccbe5bc8590183"
+  },
+  "authorization": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-exclusion-20261102T2306Z.json",
+    "sha256": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9"
+  },
+  "all_remote_artifacts_backed_up": false,
+  "remote_ops_control_tail_unverified": true,
+  "provider_ssh_gpu_api_model_ledger_actions": false,
+  "old_frozen_files_modified": false
+}

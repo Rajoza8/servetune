@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "hard-07",
+ "engine_config": {
+  "max_model_len": 1408,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.68,
+  "evidence": [
+   "max_model_len changed 4096->1408 in deploy at t=0 versus reference 4096",
+   "http_400=1 appeared in the 19s bucket after the change",
+   "p95 latency 5.37-6.57s remains below 10s SLO",
+   "waiting_max=0 and running 9-21 below max_num_seqs=64",
+   "KV usage only 0.96-2.43%, ruling out capacity/cache pressure"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "A valid-request rejection appeared after max_model_len was sharply reduced, while latency, queueing, and KV use remain healthy. Restore the reference 4096 context limit.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.68, \"evidence\": [\"max_model_len changed 4096->1408 in deploy at t=0 versus reference 4096\", \"http_400=1 appeared in the 19s bucket after the change\", \"p95 latency 5.37-6.57s remains below 10s SLO\", \"waiting_max=0 and running 9-21 below max_num_seqs=64\", \"KV usage only 0.96-2.43%, ruling out capacity/cache pressure\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"A valid-request rejection appeared after max_model_len was sharply reduced, while latency, queueing, and KV use remain healthy. Restore the reference 4096 context limit.\"}",
+  "usage": {
+   "completion_tokens": 1377,
+   "prompt_tokens": 1487,
+   "total_tokens": 2864,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1175
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c9abcc651e2128a8798f6d5c50ad23359b9c601b16125d7f27dd6bedb8625034",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Error rate exceeds SLO: 1 http_400 in 19s bucket with ~4 rps arrivals (~0.25 error rate >0.01 max). Likely due to recent max_model_len cut 4096\u21921408 causing rejections. Latency OK, no shedding.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Error rate exceeds SLO: 1 http_400 in 19s bucket with ~4 rps arrivals (~0.25 error rate >0.01 max). Likely due to recent max_model_len cut 4096\u21921408 causing rejections. Latency OK, no shedding.\"}",
+    "usage": {
+     "prompt_tokens": 1001,
+     "total_tokens": 1243,
+     "completion_tokens": 242,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.68,
+    "evidence": [
+     "max_model_len changed 4096->1408 in deploy at t=0 versus reference 4096",
+     "http_400=1 appeared in the 19s bucket after the change",
+     "p95 latency 5.37-6.57s remains below 10s SLO",
+     "waiting_max=0 and running 9-21 below max_num_seqs=64",
+     "KV usage only 0.96-2.43%, ruling out capacity/cache pressure"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "A valid-request rejection appeared after max_model_len was sharply reduced, while latency, queueing, and KV use remain healthy. Restore the reference 4096 context limit.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.68, \"evidence\": [\"max_model_len changed 4096->1408 in deploy at t=0 versus reference 4096\", \"http_400=1 appeared in the 19s bucket after the change\", \"p95 latency 5.37-6.57s remains below 10s SLO\", \"waiting_max=0 and running 9-21 below max_num_seqs=64\", \"KV usage only 0.96-2.43%, ruling out capacity/cache pressure\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"A valid-request rejection appeared after max_model_len was sharply reduced, while latency, queueing, and KV use remain healthy. Restore the reference 4096 context limit.\"}",
+    "usage": {
+     "completion_tokens": 1377,
+     "prompt_tokens": 1487,
+     "total_tokens": 2864,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1175
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

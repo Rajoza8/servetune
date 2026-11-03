@@ -1,0 +1,40 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58858374,
+  "intent_sha256": "7e8f911ec9890e70068a9fffca91913ffafa507ac3c81d713ad3d53e627d4225",
+  "archived_files_sha256": {
+    "rental-history/host4-58858374/inventory-read-error-window.json": "f413dc8f4a010778a0a3c1b57c9c0653414add8e1f048ea545c5ea0b2e36c934",
+    "rental-history/host4-58858374/intent-0005-stop.json": "999fc4ec341ad296547cdd59f2f6e854d60ca80a74b419b3bfaa70acd13a0af7",
+    "rental-history/host4-58858374/session.json": "5c02a6090c7720f72a5e4c786f72a8d37cbe5483c2ba1b6137e4a12b540ebca1",
+    "rental-history/host4-58858374/active-command.json": "d68d9a80f242090899a9d90279a8b3b7fea188b036c66764a9f07edf7eefb983",
+    "rental-history/host4-58858374/intent-0013-delete-outcome.json": "fa89d430f563ae0ce030638bc3c67d415307331e20fc7b844032df8f4f6ca9d7",
+    "rental-history/host4-58858374/intent-0002-attach-outcome.json": "b0aaa9c8ce36bdadedbf9ddc634b82e9dcab5218a12cbefd97b0d58fc6abab02",
+    "rental-history/host4-58858374/intent-0013-delete.json": "ff467981b0fc40cd5e131e8e32f5b64d2c8457751905a57d97b9bbdfb9b0427a",
+    "rental-history/host4-58858374/intent-0010-stop.json": "8131ca2f4629eaabe340f8ad0c155ef8e1453fdc62f58ecc311294b0215bd2ca",
+    "rental-history/host4-58858374/inventory-read-errors.jsonl": "89669d71ec82faaffa7564fd7e96563cc7f2077b085328219887b571d8e645e7",
+    "rental-history/host4-58858374/intent-0005-stop-outcome.json": "398b5ec20facc34d7d4d7816bacf105f170677ec0ac202bd177d9acf0211346b",
+    "rental-history/host4-58858374/intent-0008-start-outcome.json": "b4793fba9a2a34f1b58ff61f551563f4acc0c0a47d4e4bfbfd9f94627b916135",
+    "rental-history/host4-58858374/rental-scope.json": "20243ea647f4b77e472b38a2cafdafdb8d74a3f5a4bd1c23edba7bc6fa9fef70",
+    "rental-history/host4-58858374/intent-0005-stop-reconciled.json": "16907e7570ba047ecd59caa14c5545ee2e1b42b225f6aa21d669b60e8defcd10",
+    "rental-history/host4-58858374/billing-receipt.json": "491204dcf6015a9eb96f8701ccc8f9f3285afea414502d938e93ccae9927187d",
+    "rental-history/host4-58858374/intent-0008-start.json": "5f9e952ce5b7596404702b7e96891258481071bb08c097aa9e9ada71a629dbf7",
+    "rental-history/host4-58858374/intent-0010-stop-outcome.json": "d67cc21750a5ba51677504ecbdd147c781486c248d02287ec22388ba7ad0e32a",
+    "rental-history/host4-58858374/intent-0000-create.json": "efd53e28e590fd08521d4aa269e4cbcc9605e4cc8587c83b64a3c9025bda108a",
+    "rental-history/host4-58858374/intent-0002-attach.json": "ccdf619737f779a12418e7f72968c5a37ade2a2b599eb0cf35b8c3eb2857c1a7",
+    "rental-history/host4-58858374/intent-0000-create-reconciled.json": "2d122fd077c1a0593fdc488b3432ab89fd7acb708279c739e79ae094caf395a3",
+    "rental-history/host4-58858374/final-state.json": "5c02a6090c7720f72a5e4c786f72a8d37cbe5483c2ba1b6137e4a12b540ebca1",
+    "rental-history/host4-58858374/hard_vast.py": "41a42da16bc08a95a08c7eccb2df82713ac154e6da9bb575d1b8c226bbae8451",
+    "rental-history/host4-58858374/destroy-receipt.json": "2e31daf557141e635850c760e2dd14eb023343e4676063ed82d6d73131ed2278",
+    "rental-history/host4-58858374/intent-0010-stop-reconciled.json": "6041a34f83339085e572b1f7795e7b7817220181584e01059149eccee09ffb02",
+    "rental-history/host4-58858374/intent-0000-create-outcome.json": "13c8b46745030e34492eb76fec71b40902721d2e030b7f9769c93c2334e39f41",
+    "rental-history/host4-58858374/known_hosts": "074649da974f8df4e86ba29719a38c35e46d1b7529fd9805573832453c9baf21"
+  },
+  "history_manifest": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prior-hard-hosts-4.json",
+    "sha256": "e1ceee7ae844dec2783f4a102c130e1c5eb03ad8d7a1c086066a9af1d2c63d87"
+  },
+  "parent_history": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prior-hard-hosts-3.json",
+    "sha256": "c1d3900117e4cff6445827a646539315e364258ad436d96c47c3da8e884240e1"
+  }
+}

@@ -1,0 +1,301 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "hard-08",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.82,
+  "evidence": [
+   "Arrivals rose from normal 2.8 rps to 6-8.4 rps, with p95 latency reaching 10.19s vs 10s SLO",
+   "Running requests pinned at max_num_seqs=64 in recent logs, with waiting rising to 18",
+   "GPU KV cache usage remains only about 5%, leaving ample KV headroom",
+   "Prompt-token mean remains near normal (roughly 130-290 vs 184), excluding a long-prompt shift",
+   "No non-engine GPU process is present and errors are not elevated"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 128
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency is capped at 64, causing queueing and latency growth despite very low KV-cache use. Raising max_num_seqs should admit queued requests and improve batching throughput without needing traffic shedding.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.82, \"evidence\": [\"Arrivals rose from normal 2.8 rps to 6-8.4 rps, with p95 latency reaching 10.19s vs 10s SLO\", \"Running requests pinned at max_num_seqs=64 in recent logs, with waiting rising to 18\", \"GPU KV cache usage remains only about 5%, leaving ample KV headroom\", \"Prompt-token mean remains near normal (roughly 130-290 vs 184), excluding a long-prompt shift\", \"No non-engine GPU process is present and errors are not elevated\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 128}], \"explanation\": \"Concurrency is capped at 64, causing queueing and latency growth despite very low KV-cache use. Raising max_num_seqs should admit queued requests and improve batching throughput without needing traffic shedding.\"}",
+  "usage": {
+   "completion_tokens": 1024,
+   "prompt_tokens": 3340,
+   "total_tokens": 4364,
+   "completion_tokens_details": {
+    "reasoning_tokens": 798
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 270
+ },
+ "checkpoints": 9,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "be02d017517e2b80bbc79d920bef955bb197edc3ff1dd363521e6ca9917001bf",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.5-6.1s under 10s SLO, zero shed/errors, GPU util stable at 100% with low KV usage. No anomaly.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.5-6.1s under 10s SLO, zero shed/errors, GPU util stable at 100% with low KV usage. No anomaly.\"}",
+    "usage": {
+     "prompt_tokens": 984,
+     "total_tokens": 1129,
+     "completion_tokens": 145,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "5dcdac66861bb365abc5cafb00954709e4b8332eaab34299b5313cb8c35615f9",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.7-7.1s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.7-7.1s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable.\"}",
+    "usage": {
+     "prompt_tokens": 1451,
+     "total_tokens": 1587,
+     "completion_tokens": 136,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "ddf5f2eba287f95753011b3708ee266a2e87f967c4f0941aa84e7a283d20edb6",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~6.4s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~6.4s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable.\"}",
+    "usage": {
+     "prompt_tokens": 1917,
+     "total_tokens": 2056,
+     "completion_tokens": 139,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "4a71ed7118c0d61894d21491d41b0b88f1119433fac6e21cf30b9d292ce40fd3",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.8-7.1s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable at 100% with normal throughput.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.8-7.1s under 10s SLO, zero shed/errors, no queue buildup, GPU util stable at 100% with normal throughput.\"}",
+    "usage": {
+     "prompt_tokens": 2402,
+     "total_tokens": 2560,
+     "completion_tokens": 158,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2437ff115414196d453dd4c8456ab82bb1a4c6234c721a11f8d35f9c17e13523",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~7.8s under 10s SLO, error and shed rates zero, GPU util stable. Recent arrival increase to ~6.9 rps raises running to ~51 but within capacity, no SLO breach.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~7.8s under 10s SLO, error and shed rates zero, GPU util stable. Recent arrival increase to ~6.9 rps raises running to ~51 but within capacity, no SLO breach.\"}",
+    "usage": {
+     "prompt_tokens": 2611,
+     "total_tokens": 2845,
+     "completion_tokens": 234,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "81d40eddfb99c66395ef636c8d484f4cff1ff14c83b012686eb556101eb86868",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Load spike to ~6.5 rps raised p95 latency to ~8.3s and running to ~38 reqs, but still under SLO p95 10s with zero shed/errors and no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Load spike to ~6.5 rps raised p95 latency to ~8.3s and running to ~38 reqs, but still under SLO p95 10s with zero shed/errors and no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2820,
+     "total_tokens": 3060,
+     "completion_tokens": 240,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "f74ffa0365674c4779d29da843452bca7133bdf6d4504c7379bbff5ed2dc23ba",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Load increased to ~7.4 rps with running ~48 reqs, but p95 latency ~8.2s remains under 10s SLO, no errors or shedding observed.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Load increased to ~7.4 rps with running ~48 reqs, but p95 latency ~8.2s remains under 10s SLO, no errors or shedding observed.\"}",
+    "usage": {
+     "prompt_tokens": 2825,
+     "total_tokens": 2974,
+     "completion_tokens": 149,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "b3c60a30c7d6d769ee02986f7773ac19be7cbc4b672bfe62afb17653a263d2af",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~7.4s under 10s SLO, shed and error rates zero, GPU util stable at 100%. Load elevated vs normal profile but within SLO.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~7.4s under 10s SLO, shed and error rates zero, GPU util stable at 100%. Load elevated vs normal profile but within SLO.\"}",
+    "usage": {
+     "prompt_tokens": 2850,
+     "total_tokens": 3044,
+     "completion_tokens": 194,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "02e43de93aad79d8fd3eca7ec78263af4434f470c483b230a28d8ddaeea8db99",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "p95 latency 10.19s exceeds SLO 10s at t=269s with arrivals ~8.4 rps vs normal 2.8, running 63/64 and waiting_max 18 growing, queue building.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"p95 latency 10.19s exceeds SLO 10s at t=269s with arrivals ~8.4 rps vs normal 2.8, running 63/64 and waiting_max 18 growing, queue building.\"}",
+    "usage": {
+     "prompt_tokens": 2854,
+     "total_tokens": 3060,
+     "completion_tokens": 206,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.82,
+    "evidence": [
+     "Arrivals rose from normal 2.8 rps to 6-8.4 rps, with p95 latency reaching 10.19s vs 10s SLO",
+     "Running requests pinned at max_num_seqs=64 in recent logs, with waiting rising to 18",
+     "GPU KV cache usage remains only about 5%, leaving ample KV headroom",
+     "Prompt-token mean remains near normal (roughly 130-290 vs 184), excluding a long-prompt shift",
+     "No non-engine GPU process is present and errors are not elevated"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 128
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency is capped at 64, causing queueing and latency growth despite very low KV-cache use. Raising max_num_seqs should admit queued requests and improve batching throughput without needing traffic shedding.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.82, \"evidence\": [\"Arrivals rose from normal 2.8 rps to 6-8.4 rps, with p95 latency reaching 10.19s vs 10s SLO\", \"Running requests pinned at max_num_seqs=64 in recent logs, with waiting rising to 18\", \"GPU KV cache usage remains only about 5%, leaving ample KV headroom\", \"Prompt-token mean remains near normal (roughly 130-290 vs 184), excluding a long-prompt shift\", \"No non-engine GPU process is present and errors are not elevated\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 128}], \"explanation\": \"Concurrency is capped at 64, causing queueing and latency growth despite very low KV-cache use. Raising max_num_seqs should admit queued requests and improve batching throughput without needing traffic shedding.\"}",
+    "usage": {
+     "completion_tokens": 1024,
+     "prompt_tokens": 3340,
+     "total_tokens": 4364,
+     "completion_tokens_details": {
+      "reasoning_tokens": 798
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

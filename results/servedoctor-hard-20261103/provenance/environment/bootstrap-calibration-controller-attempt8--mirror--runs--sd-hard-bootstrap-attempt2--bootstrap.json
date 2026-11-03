@@ -1,0 +1,61 @@
+{
+  "scope": "Hard bootstrap; no benchmark results or paid model calls",
+  "started_at_utc": "2026-11-02T19:46:57.847401+00:00",
+  "instance_id": 58866756,
+  "guide_sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f",
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "cloned_branch_head": "973bdd9ef96b4087845fc83f3e4ebcaa2ad3a4d4",
+  "source_checkout": "explicit detached expected commit before verification/install",
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "status": "completed",
+  "commands": [
+    {
+      "label": "install-gpu-extra",
+      "started_at_utc": "2026-11-02T19:46:57.847417+00:00",
+      "returncode": 0
+    },
+    {
+      "label": "doctor",
+      "started_at_utc": "2026-11-02T19:46:59.618287+00:00",
+      "returncode": 0
+    },
+    {
+      "label": "prepare-data",
+      "started_at_utc": "2026-11-02T19:46:59.733839+00:00",
+      "returncode": 0
+    },
+    {
+      "label": "public-pinned-model-download",
+      "started_at_utc": "2026-11-02T19:47:01.305381+00:00",
+      "returncode": 0
+    }
+  ],
+  "file_descriptor_limits": {
+    "old_soft": 1024,
+    "soft": 65536,
+    "hard": 524288
+  },
+  "default_data_alias": {
+    "path": "data/gsm8k",
+    "relative_target": "hard-gsm8k",
+    "prepared_dataset": "data/hard-gsm8k"
+  },
+  "environment": {
+    "python": "3.12.3",
+    "executable": "/venv/main/bin/python",
+    "vllm": "0.26.1rc1.dev608+g99a10304d",
+    "torch": "2.13.0+cu130",
+    "huggingface_hub": "1.27.0",
+    "workspace_free_bytes": 100678463488,
+    "runtime_env": {
+      "HF_HOME": "/workspace/.hf_home",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "HF_HUB_DISABLE_TELEMETRY": "1",
+      "VLLM_NO_USAGE_STATS": "1",
+      "VLLM_CACHE_ROOT": "/workspace/.vllm_cache"
+    }
+  },
+  "finished_at_utc": "2026-11-02T20:02:04.002504+00:00"
+}

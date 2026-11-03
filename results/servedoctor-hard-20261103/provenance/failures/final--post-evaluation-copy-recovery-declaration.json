@@ -1,0 +1,61 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T04:13:21.833768+00:00",
+  "status": "Post-evaluation copy recovery declared before any restart",
+  "reason": "Recursive SCP of operator files closed remotely after completed evaluation and successful study copy. Preserve its failed parent and partial files; recover immutable files through a separately logged transport attempt. Do not run validation, evaluation, recording, generation or model calls.",
+  "original_parent": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/outcome.json",
+    "sha256": "62d9b4be48ba341579b84f59dadf47a12c0c84dc758df882c9bc1bac7c9a4a20"
+  },
+  "failed_copy_stderr": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/job-05.stderr",
+    "sha256": "6c4cc703f53c44fe3e3c1d93e514edf5343a8e9df9a011946632a6673598761a"
+  },
+  "evaluation_outcome": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/outcome.json",
+    "sha256": "c41ada9e338f4a0ca4a9365c811b12ca356c9c6a1598f6a7700b652cade48d88"
+  },
+  "canonical_native_ledger": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/final-canonical-ledger.json",
+    "sha256": "7c5fa20826516ae5dc6a17ca92a603516c85eda92248ebf9acfe7ed8d96a8385"
+  },
+  "safe_score_projection": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/hard15-score-projection.json",
+    "sha256": "77286752ca7fd8ce60b080b825b3ac024242cb3627bcf1b6734e7b4bc455b765"
+  },
+  "stable_native_archive": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/study-ledger.tar.gz",
+    "sha256": "f6a57fc04dda93d59a2f68f2beab27c73009bfd355ce0c29322fd2fe7e2744fa"
+  },
+  "native_manifest": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/mirror-manifest.json",
+    "sha256": "807e92fc4d019e5ec52f0cc1491a75717671eccf8f49f02d35b43ea00d3aff8c"
+  },
+  "completed_decisions": 90,
+  "evaluation_finished_at_utc": "2026-11-03T03:46:05.586297+00:00",
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "original_freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "scientific_inputs_changed": false,
+  "model_calls_authorized_for_recovery": false,
+  "gpu_total_cap_usd": 43,
+  "fixed_allocation_deadline_epoch": 1793682868.2367759,
+  "stop_confirmed": true,
+  "owned_cleanup_confirmed": true,
+  "stopped_export_attempt1": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt1/response.json",
+    "sha256": "a4ddea30690d34d7957459bdc86c8aad7fbffd97b1b7469dfa35db45132987e0"
+  },
+  "stopped_export_attempt2": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/response.json",
+    "sha256": "b12aa3ff9de207555f62c3a559406ff0bbaba98afedabc0bd0c64a0d27a395ba"
+  },
+  "stopped_export_rsync_outcome": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync-outcome.json",
+    "sha256": "cf6d93e0c7c62ea43b9bfde92b63b68a5ccdbcb0b282cd789bec1df42e1da4fe"
+  },
+  "stopped_export_rsync_stderr": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync.stderr",
+    "sha256": "f56e9c77e1a94d53a358274646c3258a646a3c6ffedc58c8f5ddc1f2e196379e"
+  }
+}

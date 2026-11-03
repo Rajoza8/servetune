@@ -1,0 +1,26 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T04:24:04.326742+00:00",
+  "returncode": 0,
+  "tests": 7,
+  "observed_result": "Ran 7 tests in 1.087s; OK",
+  "observed_tool_session_id": 27106,
+  "py_compile": "passed",
+  "files_sha256": {
+    "materialize_inference_offline.py": "7b28620f6e598f38e96d749cea9bc2b992ffd6194f425017fa9cff00e71d54f1",
+    "test_materialize_inference_offline.py": "b544704551a44b7728f2410bd433e65354dad952a60352b7ed4df7daea7ffab3"
+  },
+  "fixtures_only": true,
+  "actual_restore_provider_model_or_ledger_actions": false,
+  "covered": [
+    "default audit has no writes",
+    "exact326 target restoration",
+    "preserved original failed parent",
+    "partial OPS retained",
+    "opaque archive extraction",
+    "changed study/source/ledger rejects",
+    "full c98 gate failure retains outputs",
+    "relocated source rebound to preserved byte-identical file"
+  ]
+}

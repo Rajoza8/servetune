@@ -1,0 +1,14 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "phase": "hard-bootstrap-calibration-attempt2",
+  "returncode": 1,
+  "stop_confirmed": false,
+  "deadline_epoch": 1793638821.063252,
+  "work_deadline_epoch": 1793638641.063252,
+  "command_sha256": "bfa26b98a9502fb4315350beace1712a786929a7d3457345205bd663a456bd05",
+  "failure_class": "CalledProcessError",
+  "stop_error_class": "CalledProcessError",
+  "reconcile_error_class": "CalledProcessError",
+  "stop_failure": "Read-only reconciliation required; no mutation retry",
+  "finished_epoch": 1793633601.82295
+}

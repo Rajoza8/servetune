@@ -1,0 +1,241 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "hard-04",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "long_prompt_flood",
+  "confidence": 0.87,
+  "evidence": [
+   "Arrivals ~2.4-3.1 rps, unchanged from normal 2.8 rps",
+   "prompt_tokens_mean jumps from normal 184 to 664-1290 after t=130s",
+   "p95 latency rises to 21-31s, exceeding 10s SLO",
+   "Running hits max_num_seqs=64 with waiting up to 22",
+   "KV usage only ~10% with 0 preemptions, GPU util/power unchanged"
+  ],
+  "actions": [
+   {
+    "type": "gateway_max_prompt_tokens",
+    "max_prompt_tokens": 1024
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Offered rate is normal but prompt length surged, so prefill dominates and queues build at the sequence cap. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without restarting the engine.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.87, \"evidence\": [\"Arrivals ~2.4-3.1 rps, unchanged from normal 2.8 rps\", \"prompt_tokens_mean jumps from normal 184 to 664-1290 after t=130s\", \"p95 latency rises to 21-31s, exceeding 10s SLO\", \"Running hits max_num_seqs=64 with waiting up to 22\", \"KV usage only ~10% with 0 preemptions, GPU util/power unchanged\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1024}], \"explanation\": \"Offered rate is normal but prompt length surged, so prefill dominates and queues build at the sequence cap. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without restarting the engine.\"}",
+  "usage": {
+   "completion_tokens": 892,
+   "prompt_tokens": 3402,
+   "total_tokens": 4294,
+   "completion_tokens_details": {
+    "reasoning_tokens": 688
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 180
+ },
+ "checkpoints": 6,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "66acb01edca0555adb493aad2711f91629cd159752fbfbb58a14f9de9bb1c34a",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.95s under 10s SLO, zero errors and shed, GPU util stable at 100% with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.95s under 10s SLO, zero errors and shed, GPU util stable at 100% with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 994,
+     "total_tokens": 1171,
+     "completion_tokens": 177,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "7d11bfc7e0c2eaeffc6e172b2faaeafabe7b730e21ae0d7e86580b5c829fbdd6",
+   "monitor": {
+    "status": "healthy",
+    "summary": "P95 latency ~5.4s under 10s SLO, zero errors/shed, arrivals and GPU metrics within normal profile.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"P95 latency ~5.4s under 10s SLO, zero errors/shed, arrivals and GPU metrics within normal profile.\"}",
+    "usage": {
+     "prompt_tokens": 1515,
+     "total_tokens": 1650,
+     "completion_tokens": 135,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "a621fab8623b265e7d9c89e74e1b42a695f9962e31c25d67d23acaaad8f4e4a3",
+   "monitor": {
+    "status": "healthy",
+    "summary": "Latency p95 ~5.9s under 10s SLO, zero shed/errors, GPU util and KV usage within normal profile, no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"Latency p95 ~5.9s under 10s SLO, zero shed/errors, GPU util and KV usage within normal profile, no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 1980,
+     "total_tokens": 2121,
+     "completion_tokens": 141,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "bb0a133da071d588dd1ff53379471f593a486b72c093fb5cf0fd601a0fa70e17",
+   "monitor": {
+    "status": "healthy",
+    "summary": "p95 latency ~5.9s under 10s SLO, zero errors and shed, arrivals and running near normal profile, GPU util stable at 100% with no queue buildup.",
+    "raw_output": "{\"status\": \"healthy\", \"summary\": \"p95 latency ~5.9s under 10s SLO, zero errors and shed, arrivals and running near normal profile, GPU util stable at 100% with no queue buildup.\"}",
+    "usage": {
+     "prompt_tokens": 2446,
+     "total_tokens": 2631,
+     "completion_tokens": 185,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ]
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2ffa301c6669b6b555eded67c0479a58ce4ae7b43a89428774a67eee63abe662",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "P95 latency breached SLO: 24.98s at t=149s vs 10s limit. Running 62 reqs, waiting_max 3, prompt_tokens_mean 664 spike. No shedding, likely overload.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"P95 latency breached SLO: 24.98s at t=149s vs 10s limit. Running 62 reqs, waiting_max 3, prompt_tokens_mean 664 spike. No shedding, likely overload.\"}",
+    "usage": {
+     "prompt_tokens": 2707,
+     "total_tokens": 2871,
+     "completion_tokens": 164,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "valid_output": false,
+    "evidence": [],
+    "explanation": "",
+    "rejected_actions": [],
+    "raw_output": "",
+    "usage": {
+     "completion_tokens": 2048,
+     "prompt_tokens": 3193,
+     "total_tokens": 5241,
+     "completion_tokens_details": {
+      "reasoning_tokens": 2046
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "13558e509ab23704bfe6c54ad8f6222d7cbbbf77531597b4052a37d0c866f864",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "P95 latency ~31s exceeds SLO 10s, waiting queue up to 22, running near max 64 seqs with KV usage ~10%. Likely overload spike.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"P95 latency ~31s exceeds SLO 10s, waiting queue up to 22, running near max 64 seqs with KV usage ~10%. Likely overload spike.\"}",
+    "usage": {
+     "prompt_tokens": 2916,
+     "total_tokens": 3029,
+     "completion_tokens": 113,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "long_prompt_flood",
+    "confidence": 0.87,
+    "evidence": [
+     "Arrivals ~2.4-3.1 rps, unchanged from normal 2.8 rps",
+     "prompt_tokens_mean jumps from normal 184 to 664-1290 after t=130s",
+     "p95 latency rises to 21-31s, exceeding 10s SLO",
+     "Running hits max_num_seqs=64 with waiting up to 22",
+     "KV usage only ~10% with 0 preemptions, GPU util/power unchanged"
+    ],
+    "actions": [
+     {
+      "type": "gateway_max_prompt_tokens",
+      "max_prompt_tokens": 1024
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Offered rate is normal but prompt length surged, so prefill dominates and queues build at the sequence cap. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without restarting the engine.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.87, \"evidence\": [\"Arrivals ~2.4-3.1 rps, unchanged from normal 2.8 rps\", \"prompt_tokens_mean jumps from normal 184 to 664-1290 after t=130s\", \"p95 latency rises to 21-31s, exceeding 10s SLO\", \"Running hits max_num_seqs=64 with waiting up to 22\", \"KV usage only ~10% with 0 preemptions, GPU util/power unchanged\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1024}], \"explanation\": \"Offered rate is normal but prompt length surged, so prefill dominates and queues build at the sequence cap. Rejecting prompts over 1024 tokens at the gateway protects normal short requests without restarting the engine.\"}",
+    "usage": {
+     "completion_tokens": 892,
+     "prompt_tokens": 3402,
+     "total_tokens": 4294,
+     "completion_tokens_details": {
+      "reasoning_tokens": 688
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

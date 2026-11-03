@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "hard-11",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.6152,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.9,
+  "evidence": [
+   "max_model_len cut 4096->1280 at deploy t=0.0",
+   "http_400=1 and http_400=2 in last two 10s buckets",
+   "error rate ~3-6% exceeds SLO max 0.01",
+   "arrivals_rps 2.6-3.4 matches normal 2.8, p95_latency ~5.3s <10s",
+   "waiting_max 0, preemptions 0, TTFT normal"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency and queue healthy but 400 errors started after max_model_len reduction rejects valid prompts. Restore to reference 4096 to stop errors.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len cut 4096->1280 at deploy t=0.0\", \"http_400=1 and http_400=2 in last two 10s buckets\", \"error rate ~3-6% exceeds SLO max 0.01\", \"arrivals_rps 2.6-3.4 matches normal 2.8, p95_latency ~5.3s <10s\", \"waiting_max 0, preemptions 0, TTFT normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and queue healthy but 400 errors started after max_model_len reduction rejects valid prompts. Restore to reference 4096 to stop errors.\"}",
+  "usage": {
+   "completion_tokens": 1266,
+   "prompt_tokens": 1494,
+   "total_tokens": 2760,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1064
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "f4abd90ed632956628c22d876ab05b8e40182dd8d829d4c420d3309a646f03bc",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Error rate exceeds SLO: http_400 errors in recent buckets ~2.9-7.7% vs max 1%. p95 latency OK but errors likely from config rollback reducing max_model_len to 1280 and GPU mem util.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Error rate exceeds SLO: http_400 errors in recent buckets ~2.9-7.7% vs max 1%. p95 latency OK but errors likely from config rollback reducing max_model_len to 1280 and GPU mem util.\"}",
+    "usage": {
+     "prompt_tokens": 1008,
+     "total_tokens": 1270,
+     "completion_tokens": 262,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.9,
+    "evidence": [
+     "max_model_len cut 4096->1280 at deploy t=0.0",
+     "http_400=1 and http_400=2 in last two 10s buckets",
+     "error rate ~3-6% exceeds SLO max 0.01",
+     "arrivals_rps 2.6-3.4 matches normal 2.8, p95_latency ~5.3s <10s",
+     "waiting_max 0, preemptions 0, TTFT normal"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency and queue healthy but 400 errors started after max_model_len reduction rejects valid prompts. Restore to reference 4096 to stop errors.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len cut 4096->1280 at deploy t=0.0\", \"http_400=1 and http_400=2 in last two 10s buckets\", \"error rate ~3-6% exceeds SLO max 0.01\", \"arrivals_rps 2.6-3.4 matches normal 2.8, p95_latency ~5.3s <10s\", \"waiting_max 0, preemptions 0, TTFT normal\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and queue healthy but 400 errors started after max_model_len reduction rejects valid prompts. Restore to reference 4096 to stop errors.\"}",
+    "usage": {
+     "completion_tokens": 1266,
+     "prompt_tokens": 1494,
+     "total_tokens": 2760,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1064
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

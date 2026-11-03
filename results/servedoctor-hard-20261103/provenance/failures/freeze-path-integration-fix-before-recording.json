@@ -1,0 +1,7 @@
+{
+  "reason": "Final freeze verification used a relative Path with an absolute repository root; generated study and freeze succeeded. Recheck the existing immutable freeze with an absolute study path, without regenerating or altering any study file.",
+  "failed_outcome_sha256": "50a30f01d19567bb48869ccd72febb212fa180f61ac5656cb2cf7a44de1bcbb2",
+  "new_job_index": 19,
+  "scientific_inputs_changed": false,
+  "existing_study_reused": true
+}

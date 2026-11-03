@@ -1,0 +1,40 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "started_at_utc": "2026-11-02T16:49:30.728033+00:00",
+  "scope": "Setup and pre-generation host calibration only",
+  "attempt": 4,
+  "controller_source_sha256": "5f27520c6f706a804615f09bb28f7b4450d01ea23bdd4e133bda41dc4fb90daa",
+  "commands": [
+    {
+      "label": "host-key-readiness",
+      "started_at_utc": "2026-11-02T16:49:30.796313+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T16:49:31.527189+00:00"
+    },
+    {
+      "label": "read-instance-guide",
+      "started_at_utc": "2026-11-02T16:49:31.535482+00:00",
+      "returncode": 255,
+      "finished_at_utc": "2026-11-02T16:49:32.017139+00:00"
+    },
+    {
+      "label": "read-instance-guide-attempt2",
+      "started_at_utc": "2026-11-02T16:49:37.027730+00:00",
+      "returncode": 255,
+      "finished_at_utc": "2026-11-02T16:49:37.485810+00:00"
+    },
+    {
+      "label": "read-instance-guide-attempt3",
+      "started_at_utc": "2026-11-02T16:49:42.493404+00:00",
+      "returncode": 255,
+      "finished_at_utc": "2026-11-02T16:49:42.971128+00:00"
+    }
+  ],
+  "status": "failed",
+  "instance_id": 58851643,
+  "reason_receipt_sha256": "70b6f590ed0efff58fdd641974b8e9f038c1e2f72539fa0703eebdcd7aa01b5c",
+  "stage": "read-instance-guide-attempt3",
+  "error_class": "RuntimeError",
+  "finished_at_utc": "2026-11-02T16:49:42.973587+00:00"
+}

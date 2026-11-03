@@ -1,0 +1,11 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "instance_id": 58905385,
+  "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+  "operation": "attach",
+  "method": "POST",
+  "path": "/api/v0/instances/58905385/ssh/",
+  "requested_epoch": 1793672068.569192,
+  "reason": "Immediate public-key attach after CREATE ACK",
+  "payload_sha256": "62a87946012975f947f9b48fe4961af040ce8e7e9487047c73fc1a92fe779169"
+}

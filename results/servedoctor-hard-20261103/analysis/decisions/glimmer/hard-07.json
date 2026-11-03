@@ -1,0 +1,78 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-07",
+ "engine_config": {
+  "max_model_len": 1408,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.75,
+  "evidence": [
+   "max_model_len reduced from 4096 to 1408 in deploy at t=0",
+   "http_400=1 error in 19s bucket with arrivals 4.0 rps",
+   "p95_latency_s 6.57 < SLO 10.0 and shed_rps 0.0",
+   "prompt_tokens_mean 244 < 1408 but tail rejections likely",
+   "kv_usage_pct_max 2.43% low, no KV starvation"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Deploy lowered max_model_len to 1408 causing 400 rejections and error rate above SLO. Latency is fine and KV usage is low, so restoring max_model_len to reference 4096 is the least disruptive fix.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.75, \"evidence\": [\"max_model_len reduced from 4096 to 1408 in deploy at t=0\", \"http_400=1 error in 19s bucket with arrivals 4.0 rps\", \"p95_latency_s 6.57 < SLO 10.0 and shed_rps 0.0\", \"prompt_tokens_mean 244 < 1408 but tail rejections likely\", \"kv_usage_pct_max 2.43% low, no KV starvation\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy lowered max_model_len to 1408 causing 400 rejections and error rate above SLO. Latency is fine and KV usage is low, so restoring max_model_len to reference 4096 is the least disruptive fix.\"}",
+  "usage": {
+   "prompt_tokens": 1502,
+   "total_tokens": 2186,
+   "completion_tokens": 684,
+   "prompt_tokens_details": null
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c9abcc651e2128a8798f6d5c50ad23359b9c601b16125d7f27dd6bedb8625034",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.75,
+    "evidence": [
+     "max_model_len reduced from 4096 to 1408 in deploy at t=0",
+     "http_400=1 error in 19s bucket with arrivals 4.0 rps",
+     "p95_latency_s 6.57 < SLO 10.0 and shed_rps 0.0",
+     "prompt_tokens_mean 244 < 1408 but tail rejections likely",
+     "kv_usage_pct_max 2.43% low, no KV starvation"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Deploy lowered max_model_len to 1408 causing 400 rejections and error rate above SLO. Latency is fine and KV usage is low, so restoring max_model_len to reference 4096 is the least disruptive fix.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.75, \"evidence\": [\"max_model_len reduced from 4096 to 1408 in deploy at t=0\", \"http_400=1 error in 19s bucket with arrivals 4.0 rps\", \"p95_latency_s 6.57 < SLO 10.0 and shed_rps 0.0\", \"prompt_tokens_mean 244 < 1408 but tail rejections likely\", \"kv_usage_pct_max 2.43% low, no KV starvation\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Deploy lowered max_model_len to 1408 causing 400 rejections and error rate above SLO. Latency is fine and KV usage is low, so restoring max_model_len to reference 4096 is the least disruptive fix.\"}",
+    "usage": {
+     "prompt_tokens": 1502,
+     "total_tokens": 2186,
+     "completion_tokens": 684,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

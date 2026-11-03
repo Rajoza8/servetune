@@ -1,0 +1,20 @@
+{
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "config_sha256": "0cc70e7ec4cbb0b26c6e13a4b9311dedf6dd05a862d9c0d9d2934ec25a017014",
+  "answer_keys_commitment": "fb168177884005df77a94cbb75e6d52946a26ccfc3675db82820bb9105eaadc0",
+  "scenarios_commitment": "bbd1f792878602f6472e56a5795f9f257882ad541b3184ce38af00588c4d3f20",
+  "freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "recordings_started": false,
+  "decisions_started": false,
+  "validity_written": false,
+  "raw_remote_study_mirrored": false,
+  "preserved_evidence_sha256": {
+    "prepare-next-attempt1/outcome.json": "bf1b165e32d274d448243860fe1292780f4a411a06846824bf743655b5540629",
+    "prepare-next-attempt1/generate-hard.stdout": "ba7ad24cc14b1e8bbea80e059d0ff3fefaaa6945c9ed1b27ac559cbf26eeed40",
+    "prepare-next-attempt1/freeze-hard.stdout": "7a6dac7e5b3c01cfe9d3632aa9253724cbe7f9480ccc3768aa5151241907b985",
+    "prepare-next-attempt1/verify-final-freeze.stderr": "fc83f473967f391857ee35181e180133776d036982892b9da09c937f8bca41e8",
+    "post-refined-calibration-attempt1/official-unittest-receipt.json": "9c7aa328d5329827d19f217240722c84a249246f4f66db974eb0bbab5e68764e",
+    "prepare-next-attempt1/model-catalog-proof.json": "4c5dcbfa4fc64bba5608484b16c1472ed43418cf5be241e24456d12f26090f9f",
+    "host-58866756-kv-change-before-generation.json": "3539ab9bae083722b84f7603504ae939d42d7ec3a7b0fb55919b99eb7c55034c"
+  }
+}

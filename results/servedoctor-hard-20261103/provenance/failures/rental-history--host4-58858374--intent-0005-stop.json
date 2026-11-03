@@ -1,0 +1,18 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58858374,
+  "operation": "stop",
+  "method": "PUT",
+  "path": "/api/v0/instances/58858374/",
+  "requested_epoch": 1793642510.570164,
+  "phase": "requested",
+  "reason": "inventory unavailable; conservative shutdown",
+  "rental_scope_sha256": "20243ea647f4b77e472b38a2cafdafdb8d74a3f5a4bd1c23edba7bc6fa9fef70",
+  "offer_selection_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/offer-selection-attempt11.json",
+    "sha256": "a52d8263c556c9b28ecb749d7254ac8b3adccac29acbfb38eeb7406307f830be",
+    "at_utc": "2026-11-02T17:52:32.916436+00:00"
+  },
+  "payload_sha256": "cece93e3432d922bee1edefa43ae32bd8664c79571acbe0a58bcb4c66cb55243",
+  "payload_bytes": 20
+}

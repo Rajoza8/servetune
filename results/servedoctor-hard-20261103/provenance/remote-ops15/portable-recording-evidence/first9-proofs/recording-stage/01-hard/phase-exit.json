@@ -1,0 +1,24 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "split": "hard",
+  "ids": [
+    "hard-01",
+    "hard-02",
+    "hard-03",
+    "hard-04",
+    "hard-05",
+    "hard-06",
+    "hard-07",
+    "hard-08"
+  ],
+  "completed": true,
+  "record_returncode": 0,
+  "observer_returncode": 0,
+  "failure_class": null,
+  "cleanup_errors": [],
+  "owned_observer_proof": {
+    "path": "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/record-stages/record-first9-attempt1/01-hard/owned-observer.json",
+    "sha256": "b3ef05c21cead2cd01aa7d988fb24cf41e34172554524273fd9f855fc0619f5d"
+  },
+  "finished_at_utc": "2026-11-02T22:00:54.384134+00:00"
+}

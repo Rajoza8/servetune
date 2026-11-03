@@ -1,0 +1,23 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58848277,
+  "rental_scope_sha256": "e415e2c68ee66065fd759e63c748eda3db2936280b798ebb981f653b0a694083",
+  "at_utc": "2026-11-02T16:26:13.561144+00:00",
+  "phase": "hard-bootstrap-calibration-attempt8",
+  "owner_pid": 7885,
+  "owner_birth": "Mon Nov  2 11:20:08 2026",
+  "provider_status": {
+    "id": 58848277,
+    "label": "servedoctor-hard-20261102",
+    "machine_id": 138726,
+    "actual_status": "loading",
+    "cur_state": "stopped",
+    "intended_status": "stopped",
+    "status_msg": "failed to copy: local error: tls: bad record MAC\n",
+    "public_ipaddr": "24.234.67.152",
+    "ports": null,
+    "image_uuid": "vastai/vllm@sha256:d17aa376347c086ce53d9f9ac3a70e904acbc37882a7ee0b1ba4f7f538f8d843"
+  },
+  "reason": "Pinned image pull failed with tls bad record MAC and provider target changed to stopped; no actualrunning readiness, key attachment, SSH/controller/calibration/study ever started. Interrupt owning phase so its unconditional stop reconciles billing. No retry or scientific change.",
+  "no_controller_started": true
+}

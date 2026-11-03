@@ -1,0 +1,15 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "phase": "hard-bootstrap-calibration-attempt4",
+  "returncode": 1,
+  "stop_confirmed": true,
+  "deadline_epoch": 1793639673.503204,
+  "work_deadline_epoch": 1793639493.503204,
+  "command_sha256": "ae951db71a817c01b157d7d5442a4fe438e33a1ceba5fa2616915e7b815b5036",
+  "expected_offer_id": 48635918,
+  "expected_machine_id": 140634,
+  "watchdog_pid": 5647,
+  "child_pid": 5986,
+  "stop_error_class": "CalledProcessError",
+  "finished_epoch": 1793634476.420672
+}

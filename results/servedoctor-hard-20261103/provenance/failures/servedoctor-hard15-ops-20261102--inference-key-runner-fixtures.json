@@ -1,0 +1,29 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T01:48:37.575714+00:00",
+  "returncode": 0,
+  "py_compile": "passed",
+  "budget_amendment_sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a",
+  "scope": "Invented credentials/transport/process/command fixtures only; no real key/env/provider/SSH/GPU/model/ledger/native-study actions.",
+  "old_seven_helpers_sha256": {
+    "hard_partial_integrity.py": "eca7c03250aa7b75439ce9b6505c648d4584c3f5fbdba48b341d42ab78b813c5",
+    "key_runner.py": "d262566e97f06691cbcedf1ac2b93d5df23f5b3f54be91007a0bd4cfdcc04689",
+    "hard_report_common.py": "8c01113fe02b335979807a516e9a5678a34feb87259006d9891aff6a21c8499e",
+    "measure_contexts.py": "a2d366f8470a31f07f1da88f8bbc0e2899f7e387bc981f388d0669f91b3a90dc",
+    "model_response_guard.py": "68602959e499804a33d28751153347d06973a39361c525587885f150e7c6b92a",
+    "export_hard_scores.py": "daf5a37ee9f40356c203cf4a0711b115a272c13d5e281a970b082f96ee3317d3",
+    "partial_evaluation_stage.py": "00c07e59a5170812b92f25539c277e175ce23dfd81a9043439a0b44208b3334e"
+  },
+  "native_child_sha256": "e016fa0da62bf796c5e830b51e7c5196f2ff0cdd5041d23bb1f69d6b2a8bd23e",
+  "frozen": true,
+  "tests": 22,
+  "helper_sha256": "334fa9ec77c90af1fcfc77dc187252177d2dc9aad76b8726c4acbb07dbd50b41",
+  "test_sha256": "22330e84ff4334c519331b7fa50ff9021ec45baef9fb16a72ccd79494bf68a9b",
+  "protocol": "servedoctor-hard15-inference-key-runner-1",
+  "remote_code_sha256": "ac7f8ecf852e1b1e35647655e8b42b45eccfe89e33b788203e5c6d5634a58283",
+  "remote_diagnostic_sha256": "e866f12e66f3aeda7c6ff97b768afd6f7173f52103dee8f33eff70304028fafb",
+  "known_create_ack_allows_serve_while_loading": true,
+  "dispatch_requires_running_scope_and_validation": true,
+  "secret_transport": "User-shell snapshot only; SSHstdin; originalASCIIvalidation/redaction; no files/logs/argv."
+}

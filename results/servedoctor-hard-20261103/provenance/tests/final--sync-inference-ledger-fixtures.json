@@ -1,0 +1,33 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "rental_project": "servedoctor-hard15-inference-20261103",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "completed": true,
+  "created_at_utc": "2026-11-03T03:43:29.695115+00:00",
+  "test_count": 15,
+  "test_result": "PASS",
+  "py_compile": "passed",
+  "test_command": "python3 -m unittest -q test_sync_inference_ledger",
+  "files": {
+    "sync_inference_ledger.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/sync_inference_ledger.py",
+      "sha256": "08bb5d9dd68376ba8fc601be57aa32c623db420918ea5fbde66b160f68a71e0e"
+    },
+    "test_sync_inference_ledger.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_sync_inference_ledger.py",
+      "sha256": "e8a7e856c72bb48291681b914e43cb5bf186312aaae17806ada1c37878d4f7d5"
+    }
+  },
+  "independent_review": "audit_api exact current lifecycle/metadata review CLEAR; independently repeated15 synthetic fixtures PASS",
+  "instance_id": 58905385,
+  "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+  "expected_canonical_before_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "inherited_prefix_entries": 443,
+  "finalizer_helper_sha256": "fcbb55ca1b58a810ac87f9991cf5961b5f139f633ecaa10736696495ba5a553c",
+  "default_verify_only_writes": 0,
+  "default_verify_only_provider_actions": 0,
+  "sync_method": "Explicit --sync; native canonical lock + exact streamed byte copy + fsync + SHA validation + atomic os.replace; no ledger JSON serialization",
+  "already_final_policy": "Return verified/already_synchronized/nochange without any new files even with --sync",
+  "actual_ledger_sync_or_provider_or_model_actions": false,
+  "existing_helpers_or_canonical_ledger_modified": false
+}

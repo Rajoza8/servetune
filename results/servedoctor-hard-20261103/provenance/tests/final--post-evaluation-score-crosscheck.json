@@ -1,0 +1,25 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T04:17:21.632646+00:00",
+  "native_all_scoreboard_matches_projection": true,
+  "native_valid_only_scoreboard_matches_projection": true,
+  "expected_decisions": 90,
+  "present_decisions": 90,
+  "valid_cases": 14,
+  "invalid_cases": 1,
+  "public_suite": {
+    "tests_run": 319,
+    "skipped": 1,
+    "status": "OK"
+  },
+  "files": {
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/final-score-all.stdout": "cfb7a0c566bf411b8258c2847655083b0e267474d83dfe04f0520611a457adf4",
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/final-score-valid_only.stdout": "123d2490be609fbfa466bead83ae60f3c3ccbc78bf389013ddd5ec0cd8b14e05",
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-evaluation-attempt1/hard15-score-projection.json": "77286752ca7fd8ce60b080b825b3ac024242cb3627bcf1b6734e7b4bc455b765",
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/public-suite-before-publication.stdout": "1167c594d30dbbac51fe3c97183a1fc0b3874e5f3aa681540efe51951947d2e8",
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/public-suite-before-publication.stderr": "b3fbff51d6eb0c75e0c45be9f12bdb4537f7601f49e076995f273ed60c459aed"
+  },
+  "no_native_or_model_rerun": true,
+  "answer_or_model_text_parsed": false
+}

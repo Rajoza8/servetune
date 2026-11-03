@@ -1,0 +1,71 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T03:44:00.277053+00:00",
+  "scope": "Synthetic fixtures, compilation and opaque scanner review only; no actual finalization/provider/model/answer/ledger action.",
+  "source": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_inference_provenance.py",
+    "sha256": "d616d0cefd3df8bc46fb7c089c7c5bc4a79e9d05aafe529fa2422b60ddee0cb6"
+  },
+  "tests": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_finalize_inference_provenance.py",
+    "sha256": "59a8916536644b1ee3fbe181ce45cc2ff4cd328dd32e873b5707d3cf21c25109"
+  },
+  "synthetic_tests": {
+    "command": "python3 -B -m unittest discover -s runs/servedoctor-hard15-ops-20261102 -p test_finalize_inference_provenance.py -q",
+    "count": 13,
+    "result": "passed"
+  },
+  "compile": "passed",
+  "existing243_packager_scan": {
+    "source_sha256": "c98b3fc35f111ce4b852d04dfd362687e5b37aa230c7a2165438f1ef8b8386fc",
+    "files": 243,
+    "failures": 0,
+    "opaque_bytes_only": true
+  },
+  "reviewed_drafts": {
+    "flat_sha256": "4b74c1b135c49e4d4ba174e4fc947419e3136d32dbbe39dbcdb0581c60ec0f7c",
+    "failure_sha256": "c1bb7bd8006a36fcde4e326406d09f0b51e81959dc8853bc1ec7c3c0758be488"
+  },
+  "ledger_sync_compatibility": {
+    "source_sha256": "08bb5d9dd68376ba8fc601be57aa32c623db420918ea5fbde66b160f68a71e0e",
+    "required_receipt": "inference-ledger-sync-attempt1/outcome.json",
+    "requires_post_sync_canonical_equals_remote": true
+  },
+  "output_directory": "inference-provenance-finalization-attempt1 (must be fresh; later reasoned attemptN retains failed attempts)",
+  "output_files": [
+    "failure-index.json",
+    "published-allowlist.json",
+    "receipt.json"
+  ],
+  "required_arguments": {
+    "--additions": "Absolute path to actual project/label/files[] and optional append-only failures[] JSON",
+    "--ledger-sync-receipt": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-ledger-sync-attempt1/outcome.json"
+  },
+  "additions_schema": {
+    "project": "servedoctor-hard15-20261102",
+    "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+    "files": [
+      {
+        "source": {
+          "path": "ABSOLUTE_EXISTING_SAFE_FILE",
+          "sha256": "ACTUAL64HEX"
+        },
+        "destination": "provenance/GROUP/UNIQUE_NAME",
+        "group": "ONE_OF_TEN_GROUPS"
+      }
+    ],
+    "failures": []
+  },
+  "workflow_order": [
+    "Actual complete90evaluation and mirrored evidence; owned cleanup/STOP/backup/DELETE/GETabsence",
+    "Explicit byte-identical canonical ledger sync and retained outcome",
+    "Select exact new safe helper/proof/checklist and actual end-of-run additions, plus any new failure receipts",
+    "Run new provenance finalizer once",
+    "Render README using newly finalized failure-index.json",
+    "Run frozen package verification/create using published-allowlist.json and the same explicit final-gpu-ledger path"
+  ],
+  "existing_files_edited": false,
+  "actual_finalization_run": false,
+  "active_writers": false
+}

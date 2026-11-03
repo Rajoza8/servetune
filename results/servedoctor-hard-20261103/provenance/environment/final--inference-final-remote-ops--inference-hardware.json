@@ -1,0 +1,17 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "instance_id": 58905385,
+  "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+  "container_id_matches_scope": true,
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "dtype": "bf16",
+  "vllm_version": "0.26.1rc1.dev608+g99a10304d",
+  "gpu_uuid": "GPU-a38fda97-350c-5724-46e6-82b87f985a96",
+  "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "gpu_memory_mib": 97887.0,
+  "fd_soft": 65536,
+  "fd_hard": 1048576,
+  "purpose": "inference-only; original recording GPU identity stays in sealed observations",
+  "captured_at_utc": "2026-11-03T02:26:33.855667+00:00"
+}

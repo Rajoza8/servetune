@@ -1,0 +1,18 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "log_level": [
+        "INFO",
+        "WARNING"
+      ]
+    }
+  },
+  {
+    "t": 22.7,
+    "kind": "note",
+    "text": "Alert routing rules re-synced from source control."
+  }
+]

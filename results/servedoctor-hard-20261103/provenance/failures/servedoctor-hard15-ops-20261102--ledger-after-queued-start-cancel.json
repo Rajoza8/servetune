@@ -1,0 +1,18 @@
+{
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T01:21:27.944696+00:00",
+  "ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "summary": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 12.255891,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 443
+  },
+  "hard_paid_calls": 0
+}

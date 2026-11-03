@@ -1,0 +1,12 @@
+{
+  "index": 3,
+  "name": "verify-existing-freeze",
+  "argv_sha256": "fdc89144e83c8a37d563f75d99fb986851b90a3f249f71b7155ec7b020e9e8ae",
+  "started_epoch": 1793653239.435406,
+  "owner_deadline_epoch": 1793660439.435316,
+  "returncode": 0,
+  "pid": 25617,
+  "birth": "Mon Nov  2 16:00:39 2026",
+  "outcome_recorded_epoch": 1793653244.482112,
+  "finished_epoch": 1793653244.482116
+}

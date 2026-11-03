@@ -1,0 +1,11 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "instance_id": null,
+  "rental_scope_sha256": null,
+  "operation": "create",
+  "method": "PUT",
+  "path": "/api/v0/asks/46205793/",
+  "requested_epoch": 1793672068.239854,
+  "reason": "One explicit inference-only CREATE",
+  "payload_sha256": "0c16083adcdd65df66d4614328d7e717e26a00093f597108200ef178f8e1d5e6"
+}

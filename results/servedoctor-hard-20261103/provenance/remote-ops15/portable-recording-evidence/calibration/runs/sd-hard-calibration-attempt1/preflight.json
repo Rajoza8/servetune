@@ -1,0 +1,454 @@
+{
+  "started_at": "2026-11-02T20:02:09.852140+00:00",
+  "status": "completed",
+  "stage": "preflight_passed",
+  "gpu_index": 0,
+  "scope": "Hard preflight and capacity only; no benchmark decisions",
+  "preflight_jobs": [
+    {
+      "spec": {
+        "module": "servedoctor.jobs.embedding_batch",
+        "seconds": 10,
+        "duty": 0.6,
+        "matrix_size": 8192,
+        "period": 0.2
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 79.368,
+        "energy_mj": 60902909197,
+        "temp_c": 32,
+        "sm_clock_mhz": 2610,
+        "util_gpu": 0,
+        "util_mem": 0,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2050,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2050",
+        "PPid": "1637",
+        "NStgid": "2050",
+        "NSpid": "2050",
+        "NSsid": "2050"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "b06b9ae6046dcaf6b6e905db070ca2dec6a05c9c571bde1ac2ede574294e6d59",
+      "job_start_ticks": "44235098",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.022,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.025,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.embedding_batch",
+        "seconds": 10,
+        "duty": 0.02,
+        "matrix_size": 1024,
+        "period": 1.0
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 418.672,
+        "energy_mj": 60907180645,
+        "temp_c": 43,
+        "sm_clock_mhz": 2355,
+        "util_gpu": 38,
+        "util_mem": 12,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2103,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2103",
+        "PPid": "1637",
+        "NStgid": "2103",
+        "NSpid": "2103",
+        "NSsid": "2103"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "7e398bc9e499fd2d55a8ef591c1ce4f86f82bcad0f86d24012914246abd8cb15",
+      "job_start_ticks": "44236202",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.046,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.048,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.reranker_eval",
+        "seconds": 10,
+        "duty": 0.6,
+        "matrix_size": 8192,
+        "period": 0.2
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 81.032,
+        "energy_mj": 60908164974,
+        "temp_c": 36,
+        "sm_clock_mhz": 2610,
+        "util_gpu": 0,
+        "util_mem": 0,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2156,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2156",
+        "PPid": "1637",
+        "NStgid": "2156",
+        "NSpid": "2156",
+        "NSsid": "2156"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "d40190865a5194a4ad7fbb5fb4a4f87026e4d3e5f3fe3ebd90af0cd4dd3d447d",
+      "job_start_ticks": "44237308",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.027,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.03,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.reranker_eval",
+        "seconds": 10,
+        "duty": 0.02,
+        "matrix_size": 1024,
+        "period": 1.0
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 350.708,
+        "energy_mj": 60912436171,
+        "temp_c": 43,
+        "sm_clock_mhz": 2475,
+        "util_gpu": 0,
+        "util_mem": 0,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2209,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2209",
+        "PPid": "1637",
+        "NStgid": "2209",
+        "NSpid": "2209",
+        "NSsid": "2209"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "5e09191d3317b7f0fd2764ec607710efa4f2175400d20d2e8ec2800c0a7a0ee3",
+      "job_start_ticks": "44238413",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.027,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.03,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.thumbnail_index",
+        "seconds": 10,
+        "duty": 0.6,
+        "matrix_size": 8192,
+        "period": 0.2
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 82.594,
+        "energy_mj": 60913440058,
+        "temp_c": 38,
+        "sm_clock_mhz": 2610,
+        "util_gpu": 0,
+        "util_mem": 0,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2262,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2262",
+        "PPid": "1637",
+        "NStgid": "2262",
+        "NSpid": "2262",
+        "NSsid": "2262"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "786ca0a9e05634960899d6c2f9ce7db0c935aec443d3ae97a2176408a5364d91",
+      "job_start_ticks": "44239517",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.059,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.061,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.thumbnail_index",
+        "seconds": 10,
+        "duty": 0.02,
+        "matrix_size": 1024,
+        "period": 1.0
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 403.529,
+        "energy_mj": 60917662031,
+        "temp_c": 46,
+        "sm_clock_mhz": 2302,
+        "util_gpu": 0,
+        "util_mem": 0,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2315,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2315",
+        "PPid": "1637",
+        "NStgid": "2315",
+        "NSpid": "2315",
+        "NSsid": "2315"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "14499305cfb47cd3a90d5e5d7ad009b4cca51d81e3f3d7022fa304e52eb60aff",
+      "job_start_ticks": "44240624",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.023,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.027,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.feature_cache_sync",
+        "seconds": 10,
+        "duty": 0.6,
+        "matrix_size": 8192,
+        "period": 0.2
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 89.821,
+        "energy_mj": 60918642529,
+        "temp_c": 39,
+        "sm_clock_mhz": 2610,
+        "util_gpu": 0,
+        "util_mem": 0,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2368,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2368",
+        "PPid": "1637",
+        "NStgid": "2368",
+        "NSpid": "2368",
+        "NSsid": "2368"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "17f2fe77cd4ff8e019de00e17391c19d205eb0b44b6fe65207b002e72da1c480",
+      "job_start_ticks": "44241728",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.033,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.036,
+      "job_stopped": true
+    },
+    {
+      "spec": {
+        "module": "servedoctor.jobs.feature_cache_sync",
+        "seconds": 10,
+        "duty": 0.02,
+        "matrix_size": 1024,
+        "period": 1.0
+      },
+      "status": "completed",
+      "baseline_gpu": {
+        "power_w": 423.416,
+        "energy_mj": 60922932107,
+        "temp_c": 50,
+        "sm_clock_mhz": 2392,
+        "util_gpu": 62,
+        "util_mem": 21,
+        "mem_used_mb": 87436,
+        "mem_total_mb": 97887,
+        "processes": [
+          {
+            "pid": 1747,
+            "used_mb": 86790,
+            "command": "VLLM::EngineCore"
+          }
+        ]
+      },
+      "job_pid": 2421,
+      "job_proc_status": {
+        "Name": "python3",
+        "Pid": "2421",
+        "PPid": "1637",
+        "NStgid": "2421",
+        "NSpid": "2421",
+        "NSsid": "2421"
+      },
+      "engine_proc_status": {
+        "Name": "vllm",
+        "Pid": "1638",
+        "PPid": "1637",
+        "NStgid": "1638",
+        "NSpid": "1638",
+        "NSsid": "1638"
+      },
+      "owner_marker_verified": true,
+      "owner_marker_sha256": "5338aeab8377d4d3302046c73538c6b487b3ee9bea75397e431961b45072c0bf",
+      "job_start_ticks": "44242833",
+      "job_uid": 0,
+      "job_returncode": 0,
+      "job_elapsed_s": 11.046,
+      "job_visible_with_local_pid": true,
+      "gpu_samples": 12,
+      "preflight_elapsed_s": 11.049,
+      "job_stopped": true
+    }
+  ],
+  "memory_footprint_lines": [
+    "(EngineCore pid=1747) INFO 11-02 20:02:43 [model_runner.py:355] Model loading took 55.83 GiB and 7.583894 seconds",
+    "(EngineCore pid=1747) INFO 11-02 20:03:15 [gpu_worker.py:564] Available KV cache memory: 27.35 GiB",
+    "(EngineCore pid=1747) INFO 11-02 20:03:15 [kv_cache_utils.py:1882] GPU KV cache size: 549,809 tokens, Maximum concurrency for 4,096 tokens per request: 134.23x"
+  ],
+  "kv_cache_log_lines": [
+    "(EngineCore pid=1747) INFO 11-02 20:02:30 [core.py:121] Initializing a V1 LLM engine (v0.26.1rc1.dev608+g99a10304d) with config: model='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', speculative_config=None, tokenizer='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', skip_tokenizer_init=False, tokenizer_mode=auto, revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, tokenizer_revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='muse_glimmer', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=servetune-glimmer, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm",
+    "(EngineCore pid=1747) INFO 11-02 20:03:15 [gpu_worker.py:564] Available KV cache memory: 27.35 GiB",
+    "(EngineCore pid=1747) INFO 11-02 20:03:15 [kv_cache_utils.py:1882] GPU KV cache size: 549,809 tokens, Maximum concurrency for 4,096 tokens per request: 134.23x",
+    "(EngineCore pid=1747) INFO 11-02 20:04:25 [gpu_worker.py:790] Free memory on device (94.42/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.47 GiB). Actual usage is 56.33 GiB for consumed memory (weights + non-torch), 1.8 GiB for peak activation, and 0.32 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=28865119949` (26.88 GiB) to fit into requested memory, or `--kv-cache-memory=38476052992` (35.83 GiB) to fully utilize gpu memory. Current kv cache memory in use is 27.35 GiB.",
+    "(EngineCore pid=1747) INFO 11-02 20:04:27 [core.py:344] init engine (profile, create kv cache, warmup model) took 104.59 s (compilation: 23.73 s)"
+  ],
+  "finished_at": "2026-11-02T20:05:59.045152+00:00"
+}

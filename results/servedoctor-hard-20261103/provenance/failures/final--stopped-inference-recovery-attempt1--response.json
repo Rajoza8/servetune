@@ -1,0 +1,5 @@
+{
+  "success": false,
+  "safe_error_code": "invalid_args",
+  "safe_error_message": "Invalid dst_path."
+}

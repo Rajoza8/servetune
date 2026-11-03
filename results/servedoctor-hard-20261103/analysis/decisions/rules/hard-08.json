@@ -1,0 +1,174 @@
+{
+ "arm": "rules",
+ "incident": "hard-08",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "traffic_surge",
+  "actions": [
+   {
+    "type": "gateway_rate_limit",
+    "max_rps": 4.48
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 270
+ },
+ "checkpoints": 9,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "be02d017517e2b80bbc79d920bef955bb197edc3ff1dd363521e6ca9917001bf",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "5dcdac66861bb365abc5cafb00954709e4b8332eaab34299b5313cb8c35615f9",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "ddf5f2eba287f95753011b3708ee266a2e87f967c4f0941aa84e7a283d20edb6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "4a71ed7118c0d61894d21491d41b0b88f1119433fac6e21cf30b9d292ce40fd3",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2437ff115414196d453dd4c8456ab82bb1a4c6234c721a11f8d35f9c17e13523",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "81d40eddfb99c66395ef636c8d484f4cff1ff14c83b012686eb556101eb86868",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "f74ffa0365674c4779d29da843452bca7133bdf6d4504c7379bbff5ed2dc23ba",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "b3c60a30c7d6d769ee02986f7773ac19be7cbc4b672bfe62afb17653a263d2af",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "02e43de93aad79d8fd3eca7ec78263af4434f470c483b230a28d8ddaeea8db99",
+   "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "actions": [
+     {
+      "type": "gateway_rate_limit",
+      "max_rps": 4.48
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "created_at_utc": "2026-11-02T20:59:38.455067+00:00",
+  "helper": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen_host5_ssh_window.py",
+    "sha256": "7371f152c13ac653ef7f20be43af7a5a99504f89934b1df06e97e273a0d0468f"
+  },
+  "tests": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/test_frozen_host5_ssh_window.py",
+    "sha256": "ff9aebdc08cf2977b7d95c1eecedba8499690229943d7eee6626dff20ce4d5d5"
+  },
+  "focused_tests": 12,
+  "returncode": 0,
+  "compile_passed": true,
+  "stdout": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-host5-ssh-window-fixtures-20261102.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-host5-ssh-window-fixtures-20261102.stderr",
+    "sha256": "41755f85892655c3402992a904d9b96be576c23025761c68b76cf896e46d3f9d"
+  },
+  "independent_review": {
+    "agent": "root",
+    "result": "clear; actual local bootstrap_evidence gate passed14 items, provenance and truthful600s contract reviewed"
+  },
+  "frozen_source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "known_generated_and_frozen_unrecorded_study": true,
+  "raw_remote_frozen_study_mirrored": false,
+  "timeout_policy": "User explicitly authorizes600s denial DELETE despite unmirrored unrecorded study; disclose abandonment/loss and back up all available local evidence only.",
+  "window_seconds": 600,
+  "logs_at_seconds": 300,
+  "fixed_remote_argv": [
+    "cat",
+    "/etc/vast-agents-guide.md"
+  ],
+  "snapshot_before_delete": [
+    "generation commitments",
+    "freeze receipt SHA",
+    "available calibration/control/guide evidence",
+    "public source/config archive",
+    "helper upload snapshots",
+    "opaque inherited ledger",
+    "GPU hours"
+  ],
+  "no_regeneration_or_recording_or_model_dispatch": true,
+  "old_helpers_unchanged": true,
+  "scope": "Fake-only fixtures. No actual network, provider, SSH, GPU, model, ledger, key, or real process actions.",
+  "frozen": true
+}

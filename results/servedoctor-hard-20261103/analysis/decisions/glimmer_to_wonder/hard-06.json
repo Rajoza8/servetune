@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_wonder",
+ "incident": "hard-06",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 16,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.78,
+  "evidence": [
+   "http_400=3 in latest 10s bucket despite otherwise normal latency",
+   "max_model_len reduced 4096->1280 in deploy at t=0",
+   "current max_model_len=1280 vs reference 4096",
+   "arrivals 2.6-3.2 rps, KV usage ~1.1% and GPU util normal, ruling out surge/KV starvation",
+   "p95 latency ~5.8s within 10s SLO"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Valid longer requests are rejected with 400s after max_model_len was cut to 1280. Restore reference 4096; other metrics remain healthy.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.78, \"evidence\": [\"http_400=3 in latest 10s bucket despite otherwise normal latency\", \"max_model_len reduced 4096->1280 in deploy at t=0\", \"current max_model_len=1280 vs reference 4096\", \"arrivals 2.6-3.2 rps, KV usage ~1.1% and GPU util normal, ruling out surge/KV starvation\", \"p95 latency ~5.8s within 10s SLO\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Valid longer requests are rejected with 400s after max_model_len was cut to 1280. Restore reference 4096; other metrics remain healthy.\"}",
+  "usage": {
+   "completion_tokens": 1193,
+   "prompt_tokens": 1520,
+   "total_tokens": 2713,
+   "completion_tokens_details": {
+    "reasoning_tokens": 994
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "e3e68c52c5ebd36d36ca329c354bbb3f495e1ce2050b4686b6211a8daf659086",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Error rate spike: 3 http_400 errors in last 10s vs ~32 arrivals ~9% > SLO 1%. p95 latency 5.79s within SLO, no shedding.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Error rate spike: 3 http_400 errors in last 10s vs ~32 arrivals ~9% > SLO 1%. p95 latency 5.79s within SLO, no shedding.\"}",
+    "usage": {
+     "prompt_tokens": 1034,
+     "total_tokens": 1285,
+     "completion_tokens": 251,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.78,
+    "evidence": [
+     "http_400=3 in latest 10s bucket despite otherwise normal latency",
+     "max_model_len reduced 4096->1280 in deploy at t=0",
+     "current max_model_len=1280 vs reference 4096",
+     "arrivals 2.6-3.2 rps, KV usage ~1.1% and GPU util normal, ruling out surge/KV starvation",
+     "p95 latency ~5.8s within 10s SLO"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Valid longer requests are rejected with 400s after max_model_len was cut to 1280. Restore reference 4096; other metrics remain healthy.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.78, \"evidence\": [\"http_400=3 in latest 10s bucket despite otherwise normal latency\", \"max_model_len reduced 4096->1280 in deploy at t=0\", \"current max_model_len=1280 vs reference 4096\", \"arrivals 2.6-3.2 rps, KV usage ~1.1% and GPU util normal, ruling out surge/KV starvation\", \"p95 latency ~5.8s within 10s SLO\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Valid longer requests are rejected with 400s after max_model_len was cut to 1280. Restore reference 4096; other metrics remain healthy.\"}",
+    "usage": {
+     "completion_tokens": 1193,
+     "prompt_tokens": 1520,
+     "total_tokens": 2713,
+     "completion_tokens_details": {
+      "reasoning_tokens": 994
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

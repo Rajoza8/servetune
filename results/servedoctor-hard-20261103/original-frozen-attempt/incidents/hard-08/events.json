@@ -1,0 +1,27 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "gpu_memory_utilization": [
+        0.9,
+        0.86
+      ],
+      "request_timeout_s": [
+        120,
+        180
+      ]
+    }
+  },
+  {
+    "t": 100.9,
+    "kind": "change",
+    "text": "Web tier autoscaler policy updated."
+  },
+  {
+    "t": 229.1,
+    "kind": "note",
+    "text": "Rotated the gateway TLS certificate."
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "checked_at_utc": "2026-11-02T16:39:58.738132+00:00",
+  "model_id": "meta-models/Muse-Glimmer-30B",
+  "revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "prior_receipt": {
+    "path": "runs/servedoctor-hard-ops-20261102/hf-artifact-preflight-20261102T163908Z.json",
+    "sha256": "4efb563804703423bcc3f824bc7e7992c625cc332ae3026193c34c3ccc4196e7"
+  },
+  "reason": "Initial config requests returned expected relative307 metadata redirects. Fetch only their exact same-host pinned public metadata paths; do not follow external/auth redirects.",
+  "requests": [
+    {
+      "url": "https://huggingface.co/api/resolve-cache/models/meta-models/Muse-Glimmer-30B/cec94fcfd6512f2cfe708138c32533b346ea4f69/config.json",
+      "method": "GET",
+      "authenticated": false,
+      "file": "config.json",
+      "http_status": 200,
+      "bytes": 5109,
+      "body_sha256": "5a9df2d8a385b3d361ab6ae68d73586f4e775033933bd0cd863fb7f3820e6a14",
+      "repo_commit": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+      "valid_json": true,
+      "public_config": {
+        "model_type": "muse_glimmer",
+        "architectures": [
+          "MuseGlimmerForConditionalGeneration"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "url": "https://huggingface.co/api/resolve-cache/models/meta-models/Muse-Glimmer-30B/cec94fcfd6512f2cfe708138c32533b346ea4f69/tokenizer_config.json",
+      "method": "GET",
+      "authenticated": false,
+      "file": "tokenizer_config.json",
+      "http_status": 200,
+      "bytes": 79936,
+      "body_sha256": "781e6c74f571642c71202167b67d9255b28cc439bdda1582ff31346182f5a9c5",
+      "repo_commit": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+      "valid_json": true,
+      "public_config": {
+        "tokenizer_class": "TokenizersBackend",
+        "model_max_length": 131072
+      },
+      "chat_template_present": false
+    }
+  ],
+  "config_and_tokenizer_config_available_without_auth": true,
+  "weights_downloaded": 0,
+  "tokenizer_blob_downloaded": false,
+  "credentials_or_environment_inspected": false
+}

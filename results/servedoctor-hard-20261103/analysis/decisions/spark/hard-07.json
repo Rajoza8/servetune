@@ -1,0 +1,123 @@
+{
+ "arm": "spark",
+ "incident": "hard-07",
+ "engine_config": {
+  "max_model_len": 1408,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.9,
+  "evidence": [
+   "max_model_len cut 4096->1408 at deploy t=0",
+   "http_400 errors in 4/5 buckets, up to 3 per 10s",
+   "p95_latency 5-6.5s within SLO, waiting_max 0",
+   "prompt_tokens_mean up to 461 vs normal 184",
+   "kv_usage_pct_max <=2.43% with no preemptions"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency/SLO ok and no queueing, but 400 errors since deploy cut max_model_len. Prompt mean elevated, valid prompts rejected. Restore max_model_len to reference 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len cut 4096->1408 at deploy t=0\", \"http_400 errors in 4/5 buckets, up to 3 per 10s\", \"p95_latency 5-6.5s within SLO, waiting_max 0\", \"prompt_tokens_mean up to 461 vs normal 184\", \"kv_usage_pct_max <=2.43% with no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency/SLO ok and no queueing, but 400 errors since deploy cut max_model_len. Prompt mean elevated, valid prompts rejected. Restore max_model_len to reference 4096.\"}",
+  "usage": {
+   "completion_tokens": 835,
+   "prompt_tokens": 1967,
+   "total_tokens": 2802,
+   "completion_tokens_details": {
+    "reasoning_tokens": 640
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c9abcc651e2128a8798f6d5c50ad23359b9c601b16125d7f27dd6bedb8625034",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.9,
+    "evidence": [
+     "p95_latency_s 6.57 < SLO 10.0",
+     "shed_rps 0.0, waiting_max 0.0",
+     "kv_usage_pct_max 2.43% with 0 preemptions",
+     "running 20.6 < max_num_seqs 64"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and queueing within SLO. Single http_400 is isolated client error, not sustained breach. KV, running and throughput match healthy profile. No capacity or config exhaustion.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 6.57 < SLO 10.0\", \"shed_rps 0.0, waiting_max 0.0\", \"kv_usage_pct_max 2.43% with 0 preemptions\", \"running 20.6 < max_num_seqs 64\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency, shed and queueing within SLO. Single http_400 is isolated client error, not sustained breach. KV, running and throughput match healthy profile. No capacity or config exhaustion.\"}",
+    "usage": {
+     "completion_tokens": 1008,
+     "prompt_tokens": 1487,
+     "total_tokens": 2495,
+     "completion_tokens_details": {
+      "reasoning_tokens": 857
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "578f043e90a49157c6630ff03a98e2aee84c0eea1daf920b01352ff29dd85cd3",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.9,
+    "evidence": [
+     "max_model_len cut 4096->1408 at deploy t=0",
+     "http_400 errors in 4/5 buckets, up to 3 per 10s",
+     "p95_latency 5-6.5s within SLO, waiting_max 0",
+     "prompt_tokens_mean up to 461 vs normal 184",
+     "kv_usage_pct_max <=2.43% with no preemptions"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency/SLO ok and no queueing, but 400 errors since deploy cut max_model_len. Prompt mean elevated, valid prompts rejected. Restore max_model_len to reference 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len cut 4096->1408 at deploy t=0\", \"http_400 errors in 4/5 buckets, up to 3 per 10s\", \"p95_latency 5-6.5s within SLO, waiting_max 0\", \"prompt_tokens_mean up to 461 vs normal 184\", \"kv_usage_pct_max <=2.43% with no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency/SLO ok and no queueing, but 400 errors since deploy cut max_model_len. Prompt mean elevated, valid prompts rejected. Restore max_model_len to reference 4096.\"}",
+    "usage": {
+     "completion_tokens": 835,
+     "prompt_tokens": 1967,
+     "total_tokens": 2802,
+     "completion_tokens_details": {
+      "reasoning_tokens": 640
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+  "pid": 1212,
+  "state": "R",
+  "ppid": 726,
+  "start_ticks": 44596532,
+  "uid": 0,
+  "cwd": "/workspace/servedoctor-hard/servetune",
+  "argv": [
+    "/venv/main/bin/python3",
+    "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/hard_job_observer.py",
+    "--study-dir",
+    "runs/sd-hard",
+    "--recorder-pid",
+    "1211",
+    "--recorder-start-ticks",
+    "44596530",
+    "--out",
+    "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/record-stages/record-first9-attempt1/01-hard/owned-observer.json",
+    "--ready-file",
+    "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/record-stages/record-first9-attempt1/01-hard/observer-ready.json",
+    "--expected-ids",
+    "hard-01,hard-02,hard-03,hard-04,hard-05,hard-06,hard-07,hard-08"
+  ],
+  "fd_soft": 65536,
+  "fd_hard": 524288
+}

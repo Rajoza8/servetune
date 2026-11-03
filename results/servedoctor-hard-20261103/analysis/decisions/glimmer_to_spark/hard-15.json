@@ -1,0 +1,101 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "hard-15",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 12,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.9,
+  "evidence": [
+   "max_num_seqs cut 64->12 at deploy t=0",
+   "Running capped at 12 reqs, Waiting up to 29 vs normal 0",
+   "KV usage 0.85% max, no memory pressure",
+   "p95_ttft 3.95s vs normal 0.46s",
+   "ok_rps 2.4 < arrivals 5.0, queue growing"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Queue buildup with Running pinned at new limit 12 while KV cache <1% proves concurrency limit, not memory. Restore reference 64 to drain queue.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.9, \"evidence\": [\"max_num_seqs cut 64->12 at deploy t=0\", \"Running capped at 12 reqs, Waiting up to 29 vs normal 0\", \"KV usage 0.85% max, no memory pressure\", \"p95_ttft 3.95s vs normal 0.46s\", \"ok_rps 2.4 < arrivals 5.0, queue growing\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Queue buildup with Running pinned at new limit 12 while KV cache <1% proves concurrency limit, not memory. Restore reference 64 to drain queue.\"}",
+  "usage": {
+   "completion_tokens": 986,
+   "prompt_tokens": 1493,
+   "total_tokens": 2479,
+   "completion_tokens_details": {
+    "reasoning_tokens": 800
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "9042000c4cb569a064db1ea80726c3d6c4cfe14c09d65de9ab59893d4b401c1f",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Post-deploy config reduced max_num_seqs to 12. Arrivals up to 5.0 rps vs normal 2.8, waiting_max spiked to 29 with running at cap 12. P95 latency 7.95s still under SLO but queue building risks breach.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Post-deploy config reduced max_num_seqs to 12. Arrivals up to 5.0 rps vs normal 2.8, waiting_max spiked to 29 with running at cap 12. P95 latency 7.95s still under SLO but queue building risks breach.\"}",
+    "usage": {
+     "prompt_tokens": 1007,
+     "total_tokens": 1312,
+     "completion_tokens": 305,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.9,
+    "evidence": [
+     "max_num_seqs cut 64->12 at deploy t=0",
+     "Running capped at 12 reqs, Waiting up to 29 vs normal 0",
+     "KV usage 0.85% max, no memory pressure",
+     "p95_ttft 3.95s vs normal 0.46s",
+     "ok_rps 2.4 < arrivals 5.0, queue growing"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Queue buildup with Running pinned at new limit 12 while KV cache <1% proves concurrency limit, not memory. Restore reference 64 to drain queue.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.9, \"evidence\": [\"max_num_seqs cut 64->12 at deploy t=0\", \"Running capped at 12 reqs, Waiting up to 29 vs normal 0\", \"KV usage 0.85% max, no memory pressure\", \"p95_ttft 3.95s vs normal 0.46s\", \"ok_rps 2.4 < arrivals 5.0, queue growing\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Queue buildup with Running pinned at new limit 12 while KV cache <1% proves concurrency limit, not memory. Restore reference 64 to drain queue.\"}",
+    "usage": {
+     "completion_tokens": 986,
+     "prompt_tokens": 1493,
+     "total_tokens": 2479,
+     "completion_tokens_details": {
+      "reasoning_tokens": 800
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

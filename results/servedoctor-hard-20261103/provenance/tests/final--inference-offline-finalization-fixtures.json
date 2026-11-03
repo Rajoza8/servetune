@@ -1,0 +1,90 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T04:24:43.405721+00:00",
+  "files": {
+    "inference_offline_recovery_gate.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_offline_recovery_gate.py",
+      "sha256": "625eeabd3035ac61f70b25409df1a227cd479138155d12a441af17f4ab28db2c"
+    },
+    "finalize_inference_offline_rental.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_inference_offline_rental.py",
+      "sha256": "4b46b8042871b4d86ba631e3e816c47a6087e4a516962f11cf69f5d823c59475"
+    },
+    "sync_inference_offline_ledger.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/sync_inference_offline_ledger.py",
+      "sha256": "f103d68ed31e5d9cf40526f9461a5e669a9ba065057ed3d7cddf4d439a9f17bc"
+    },
+    "test_inference_offline_recovery_gate.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_inference_offline_recovery_gate.py",
+      "sha256": "9acdf454ce4e97a4580656f422bac2a12132d05612d549faa9435b30e6d075ef"
+    },
+    "test_finalize_inference_offline_rental.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_finalize_inference_offline_rental.py",
+      "sha256": "1bb328e36392eabbcbc50261a251890473e505cd1a3f952098b46f610de3db5e"
+    },
+    "test_sync_inference_offline_ledger.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_sync_inference_offline_ledger.py",
+      "sha256": "692ea63963c7834c2bc5b215ebf0a91e01a23532245adb766374f0240edbedb7"
+    }
+  },
+  "synthetic_tests": {
+    "shared_gate": 8,
+    "financial_finalizer": 17,
+    "byte_sync": 17,
+    "total": 42,
+    "result": "passed"
+  },
+  "compile": "passed",
+  "independent_review": {
+    "reviewer": "gpu_setup",
+    "result": "clear",
+    "tests_rerun": 42
+  },
+  "ast_invariants": {
+    "finalizer.verify_inputs": true,
+    "finalizer.scope": true,
+    "finalizer.stopped": true,
+    "finalizer.process_identity": true,
+    "finalizer.transport_quiescent": true,
+    "finalizer.intents": true,
+    "finalizer.execute": true,
+    "sync.ReadOnlyLedger": true,
+    "sync.execute": true
+  },
+  "retained_originals": {
+    "finalize_inference_rental.py": "fcbb55ca1b58a810ac87f9991cf5961b5f139f633ecaa10736696495ba5a553c",
+    "sync_inference_ledger.py": "08bb5d9dd68376ba8fc601be57aa32c623db420918ea5fbde66b160f68a71e0e",
+    "package_inference_results.py": "c98b3fc35f111ce4b852d04dfd362687e5b37aa230c7a2165438f1ef8b8386fc"
+  },
+  "policy": {
+    "original_pipeline_returncode": 1,
+    "original_pipeline_sha256": "62d9b4be48ba341579b84f59dadf47a12c0c84dc758df882c9bc1bac7c9a4a20",
+    "allowed_failure": "Only job5 mirror-ops255 after jobs0..4 success",
+    "required_restoration_targets": 326,
+    "coverage_sha256": "d96433c46a48507beb9ee8c17fcfa5a4301de65d93f2a5d00cc760d0a0e03420",
+    "c98_verify_inputs_unchanged": true,
+    "all_required_scientific_artifacts_backed_up": true,
+    "all_remote_artifacts_backed_up": false,
+    "remote_ops_control_tail_unverified": true,
+    "no_model_calls": true,
+    "no_new_start": true
+  },
+  "superseded_uninvoked_drafts": [
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_copy_recovery_gate.py",
+      "sha256": "1da8a1bdd10a6f96ecc36aa7de05b89dc1d5441a6bbb2301dee73e4c9ba5f128"
+    },
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_inference_recovered_rental.py",
+      "sha256": "b3f5c3cb32c2adca4e2e0c2baa2c09c99fbc563748c177a0f6abb8dc65b57c39"
+    },
+    {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/sync_inference_recovered_ledger.py",
+      "sha256": "ee9faa1022fc452fd9ac5f1636ed2fd899bc97f7cb09173315edc51e91a969b2"
+    }
+  ],
+  "superseded_reason": "A planned copy-only restart was canceled before dispatch after verified offline closure; these uninvoked draft files are retained, not evidence of any rental or model retry.",
+  "actual_provider_or_ledger_or_finalization_actions": false,
+  "active_writers": false
+}

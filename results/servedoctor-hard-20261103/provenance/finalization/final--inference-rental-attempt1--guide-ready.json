@@ -1,0 +1,10 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "instance_id": 58905385,
+  "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+  "guide": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/startup-ssh-window-attempt1/probe-0012/guide.stdout",
+    "sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f"
+  },
+  "requires_human_full_guide_review": true
+}

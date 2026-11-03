@@ -1,0 +1,27 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58858374,
+  "rental_scope_sha256": "20243ea647f4b77e472b38a2cafdafdb8d74a3f5a4bd1c23edba7bc6fa9fef70",
+  "returncode": 1,
+  "stop_confirmed": true,
+  "started_epoch": 1793645142.556341,
+  "commands": [],
+  "queue_source": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/pipeline-queue-attempt1.json",
+  "no_intermediate_stop": true,
+  "deadline_epoch": 1793659542.5563421,
+  "latest_queue": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/pipeline-attempt1/queue-snapshot-0000.json",
+    "sha256": "0351a49f79ed247672dc4f830fc40ef86b2dcdf084bdd866fc3cdc055510c68f"
+  },
+  "watchdog_pid": 16971,
+  "start_request_returncode": 1,
+  "queued_start": {
+    "requested_epoch": 1793645142.957199,
+    "outcome_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0008-start-outcome.json",
+    "outcome_sha256": "b4793fba9a2a34f1b58ff61f551563f4acc0c0a47d4e4bfbfd9f94627b916135"
+  },
+  "error_class": "TimeoutError",
+  "stop_request_returncode": 1,
+  "cleanup_confirmed": true,
+  "finished_epoch": 1793645317.326452
+}

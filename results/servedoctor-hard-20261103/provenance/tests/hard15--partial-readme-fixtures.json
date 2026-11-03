@@ -1,0 +1,19 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-02T23:42:25.222515+00:00",
+  "tests_run": 3,
+  "returncode": 0,
+  "compile_passed": true,
+  "scope": "Invented numeric projections only; no actual study/answers/native report/model/provider/ledger reads or actions. No README/result produced.",
+  "files": {
+    "render_partial_readme.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/render_partial_readme.py",
+      "sha256": "c60740d0761bf672294f14df62a3dcd44aab44ab216203ce4b911ff0d87bcaeb"
+    },
+    "test_render_partial_readme.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_render_partial_readme.py",
+      "sha256": "317f4f5b91f5e0f7e51c16af7c4e4926c0f744c44e0ba4785d085aa71f5475e2"
+    }
+  }
+}

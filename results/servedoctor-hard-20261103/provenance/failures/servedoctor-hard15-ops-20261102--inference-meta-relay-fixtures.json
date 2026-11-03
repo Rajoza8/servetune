@@ -1,0 +1,26 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T01:57:49.535696+00:00",
+  "synthetic_tests": 12,
+  "passed": true,
+  "compile": "passed",
+  "network_or_provider_or_model_calls": false,
+  "credential_access": false,
+  "source_sha256": {
+    "inference_meta_tunnel.py": "499b6ccacef24ec6df41d6600429f8bc9b92eccf621adf3a0972321d8889bdc6",
+    "test_inference_meta_tunnel.py": "f24f3c4152acd911dafc91df32584fda49cf93d324c998a4b3078b27a780949a"
+  },
+  "core_launcher_sha256": "ade2ecbb3f732953fa80b33363d0e2ee56a3e781b9961eddeb52c2b4321a5f85",
+  "core_relay_sha256": "c3aa28f5c5784dbc0afde3a73a7492758432def5a5cc135172e9c16b4c8c9b5d",
+  "coverage": [
+    "unchanged relay core pinned",
+    "new scope only",
+    "minimal child environment",
+    "single start and GET probe",
+    "failed probe retained/owned transport cleanup",
+    "changed source refuses",
+    "guardian deadline/dead owner",
+    "no hidden cleanup ownership failure"
+  ]
+}

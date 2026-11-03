@@ -1,0 +1,12 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "phase": "hard-bootstrap-calibration-attempt5",
+  "returncode": 1,
+  "stop_confirmed": true,
+  "deadline_epoch": 1793640067.2989151,
+  "work_deadline_epoch": 1793639887.2989151,
+  "command_sha256": "d2630dd3d14c60d7552efbaabc2e38cd9ba5e390971ca939e8dc1cb4ac7a27c4",
+  "failure_class": "CalledProcessError",
+  "stop_command_returncode": 0,
+  "finished_epoch": 1793634668.652149
+}

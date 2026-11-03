@@ -1,0 +1,52 @@
+{
+  "at_utc": "2026-11-02T20:27:32.996491+00:00",
+  "instance_id": 58866756,
+  "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "remote_physical_gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+  "calibration_source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "capacity_rps": 6,
+  "mild_selected": {
+    "utilization": 0.61632,
+    "p95_s": 10.004323831864165
+  },
+  "first_compound_preserved": {
+    "utilization": 0.61559,
+    "kv_gib": 0.34,
+    "p95_s": 11.708734180324244
+  },
+  "compound_probe_candidates_in_order": [
+    0.61505,
+    0.6152,
+    0.6149
+  ],
+  "selection": "First complete90s standalone4096-context probe at3RPS with0errors/allrequestscomplete and p95in13..17s; preserveallothers. No Hardrecording/answer/modeloutput consulted.",
+  "reason": "OriginalcompoundKV pool0.34GiB gavep9511.71s below~15starget. Fit latency pressure from (.40GiB,10.00s) and(.34GiB,11.71s) suggests~.29GiB near15s; .61505 targets~.29GiB andother2predeclaredvalues bracketit. Only2hostKVvalues+notesmaychangebeforegeneration.",
+  "stopped_snapshot": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host5-calibrated-stopped-state.json",
+    "sha256": "b660e9b7b80252c6f56c4cc95b86d890bfc01c218f8e7749fd3dac4ea9ca5ce8"
+  },
+  "no_hard_study_generated": true,
+  "cap_usd": 40,
+  "forecast": {
+    "prior_v0_usd_upper": 25.90010443543525,
+    "hard_running_hours": 1.7361993018123838,
+    "hard_compute_usd_upper": 2.8290073098730155,
+    "hard_disk_usd_upper": 0.2426913044509696,
+    "current_host_cost": {
+      "running_hours": 0.6645163949330648,
+      "compute_usd_upper": 1.0100649202982583,
+      "disk_usd_upper": 0.09490317189583071
+    },
+    "prior_hard_host_cost": {
+      "running_hours": 1.071682906879319,
+      "compute_usd_upper": 1.8189423895747572,
+      "disk_usd_upper": 0.1477881325551389
+    },
+    "new_network_reserve_usd": 4.0,
+    "new_slack_reserve_usd": 1.0,
+    "total_usd_upper": 33.97180304975923,
+    "remaining_gpu_hours": 3.1,
+    "forecast_usd_upper": 38.94213638309256,
+    "shutdown_margin_usd": 0.04008333333333333
+  }
+}

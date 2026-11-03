@@ -1,0 +1,14 @@
+{
+  "name": "mirror-ops",
+  "index": 5,
+  "started_epoch": 1793677657.083742,
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_remote.py",
+    "get",
+    "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard15-ops-20261102",
+    "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-final-remote-ops"
+  ],
+  "pid": 68446,
+  "birth": "Mon Nov  2 22:47:37 2026"
+}

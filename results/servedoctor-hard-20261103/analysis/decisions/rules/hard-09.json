@@ -1,0 +1,208 @@
+{
+ "arm": "rules",
+ "incident": "hard-09",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": null,
+ "checkpoints": 12,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "55d8abb851721db4cb3f15334f123e5dc92088422ddaba197613c9ab318095fa",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "b9aba345ea422e677fa49212fc6aeeed78a33dc1c05e9a732ecd044637d05310",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "4fff5077fc0156c6f5feead56a15ad84c944dd9e1ab3c5b58992b9ae23201a25",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "e3f2170c3981d33b29c4ceeee29cae0d3fe6684874125e4aceb5416165c1f84a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "0cafaeec29280c38d6681ee73200572e5c424ed963385efd9d22a4533da22101",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "60f37921307189840107200c2097d39d394075ffce2c185ad318ce493171d8ca",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "1a619f0caeb73887fe10a464387f07879a8d50a28349e127c5f7c3b712987bc8",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "28f31d750d1c12d5a1cd46c877888ff95093f31b60a317db0c0f1e8e00cd210c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "c782f3a76a958b76f58380179aea2d1f28587c5a6646ccb1c7ff18ee7ee8d6d4",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 300,
+   "observation_sha256": "e0fab5755ace76c6a1d660b26b0bb7b5fa8e372420bd041d78e60b08bd3e4bbf",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 330,
+   "observation_sha256": "a5fd45d16aa95a8c185d1dd1e6178f5be26078e4a850beec7bb33dd7f48988f9",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 360,
+   "observation_sha256": "0e8d93cf587b48a92680747d6960090f2a71d38de1f5fd58d7688428c6e0099d",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

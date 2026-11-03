@@ -1,0 +1,13 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "network_slack_reserved_once": true,
+  "hosts": [
+    {
+      "instance_id": 58843932,
+      "receipt": {
+        "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host1-58843932/billing-receipt.json",
+        "sha256": "e77d30f3e736967c0aa2a43b5123e4234acf5718ce2c95ad2f5874551841c52d"
+      }
+    }
+  ]
+}

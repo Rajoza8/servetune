@@ -1,0 +1,86 @@
+{
+ "arm": "spark",
+ "incident": "hard-06",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 16,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.85,
+  "evidence": [
+   "http_400=3 in last bucket, error rate ~0.09 exceeds SLO 0.01",
+   "max_model_len cut 4096->1280 at deploy t=0.0",
+   "p95_latency ~5.8s within SLO, kv_usage ~1.1% low",
+   "running ~14.8 waiting 1-2, gen_tokens_per_s ~365 matches healthy"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency and throughput match healthy profile, but 400 errors after max_model_len reduced to 1280 indicate valid prompts rejected. Restore 4096 to accept workload; KV usage ~1% shows headroom.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"http_400=3 in last bucket, error rate ~0.09 exceeds SLO 0.01\", \"max_model_len cut 4096->1280 at deploy t=0.0\", \"p95_latency ~5.8s within SLO, kv_usage ~1.1% low\", \"running ~14.8 waiting 1-2, gen_tokens_per_s ~365 matches healthy\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and throughput match healthy profile, but 400 errors after max_model_len reduced to 1280 indicate valid prompts rejected. Restore 4096 to accept workload; KV usage ~1% shows headroom.\"}",
+  "usage": {
+   "completion_tokens": 944,
+   "prompt_tokens": 1520,
+   "total_tokens": 2464,
+   "completion_tokens_details": {
+    "reasoning_tokens": 747
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "e3e68c52c5ebd36d36ca329c354bbb3f495e1ce2050b4686b6211a8daf659086",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.85,
+    "evidence": [
+     "http_400=3 in last bucket, error rate ~0.09 exceeds SLO 0.01",
+     "max_model_len cut 4096->1280 at deploy t=0.0",
+     "p95_latency ~5.8s within SLO, kv_usage ~1.1% low",
+     "running ~14.8 waiting 1-2, gen_tokens_per_s ~365 matches healthy"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency and throughput match healthy profile, but 400 errors after max_model_len reduced to 1280 indicate valid prompts rejected. Restore 4096 to accept workload; KV usage ~1% shows headroom.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"http_400=3 in last bucket, error rate ~0.09 exceeds SLO 0.01\", \"max_model_len cut 4096->1280 at deploy t=0.0\", \"p95_latency ~5.8s within SLO, kv_usage ~1.1% low\", \"running ~14.8 waiting 1-2, gen_tokens_per_s ~365 matches healthy\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and throughput match healthy profile, but 400 errors after max_model_len reduced to 1280 indicate valid prompts rejected. Restore 4096 to accept workload; KV usage ~1% shows headroom.\"}",
+    "usage": {
+     "completion_tokens": 944,
+     "prompt_tokens": 1520,
+     "total_tokens": 2464,
+     "completion_tokens_details": {
+      "reasoning_tokens": 747
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-02T23:44:16.677009+00:00",
+  "completed": true,
+  "test_count": 18,
+  "test_result": "PASS",
+  "py_compile": "passed",
+  "test_command": "python3 -m unittest -q test_finalize_partial_rental",
+  "files": {
+    "finalize_partial_rental.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_partial_rental.py",
+      "sha256": "c5a58f5f79cc36552c8553febf126f2e025bba3a832a2c00509260f68949e3fd"
+    },
+    "test_finalize_partial_rental.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_finalize_partial_rental.py",
+      "sha256": "75586c95d92c70b0997d02004a6adff5496cdd916b9e83094bf0678f676978d7"
+    }
+  },
+  "independent_review": "audit_api read-only CLEAR for exact c5a58f5f79cc36552c8553febf126f2e025bba3a832a2c00509260f68949e3fd",
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "authorization": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-exclusion-20261102T2306Z.json",
+    "sha256": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9"
+  },
+  "original_preservation": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/preservation-receipt.json",
+    "sha256": "0bb31a20b50ebb5db6c7680f54b22849c76cf007c9b0aa99f6d68bd4dfeb5af8"
+  },
+  "original_full_finalizer_unchanged": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/finalize_hard_rental.py",
+    "sha256": "ba3a03bd1e358292be8abe8986d1b5023d4c4e08be1fdbc26a9422b8fc3d785c"
+  },
+  "rental_helper_unchanged": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard_vast.py",
+    "sha256": "38e82c37863d2847cae7ff9e6f46978ba0e68b75a4be52e7a82adbbd69b824a5"
+  },
+  "full17_backup_gate_called_or_modified": false,
+  "actual_provider_ssh_gpu_api_model_ledger_actions": false,
+  "default_read_only": true,
+  "unknown_delete_policy": "GET-only reconciliation; no mutation replay",
+  "immutable_hours_snapshot": "final-partial-cleanup-attempt1/gpu-hours-before-delete.md"
+}

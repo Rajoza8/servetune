@@ -1,0 +1,62 @@
+{
+ "arm": "rules",
+ "incident": "hard-14",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 96,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 5449
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "1762bcdb27caec4a95c2a75b0ff1c7ca16a0268353dd10e800c48c9de5facd9e",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "10b588938498e41aa456eee021ae96dc1fa53f0b6b0d54a4d85c5edaa18bd4e4",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 5449
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

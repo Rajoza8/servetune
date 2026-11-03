@@ -1,0 +1,200 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-01",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "confidence": 0.72,
+  "evidence": [
+   "p95_latency_s 11.07 at t=149 exceeds SLO 10.0",
+   "arrivals_rps ~3.2 similar to normal 2.8, no traffic surge",
+   "GPU process table shows non-engine pid 3127 embedding_batch using 1102 MB GPU",
+   "GPU util_pct 100.0 sustained with running up to 36.2 vs normal 15.0",
+   "KV usage low 3.02% max, waiting_max 0.0"
+  ],
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 3127
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency SLO breach with stable arrival rate and low KV usage points to compute contention. A non-engine embedding batch job shares the GPU, keeping utilization at 100% and inflating running queue and p95 latency. Stopping the competing process is least disruptive.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.72, \"evidence\": [\"p95_latency_s 11.07 at t=149 exceeds SLO 10.0\", \"arrivals_rps ~3.2 similar to normal 2.8, no traffic surge\", \"GPU process table shows non-engine pid 3127 embedding_batch using 1102 MB GPU\", \"GPU util_pct 100.0 sustained with running up to 36.2 vs normal 15.0\", \"KV usage low 3.02% max, waiting_max 0.0\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"Latency SLO breach with stable arrival rate and low KV usage points to compute contention. A non-engine embedding batch job shares the GPU, keeping utilization at 100% and inflating running queue and p95 latency. Stopping the competing process is least disruptive.\"}",
+  "usage": {
+   "prompt_tokens": 3172,
+   "total_tokens": 3826,
+   "completion_tokens": 654,
+   "prompt_tokens_details": null
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "29f54bdf01859a965b786201d01b74cf2d03b1bf8d775a30673b566490ee35f8",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 6.23-7.58 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' with arrivals ~3.5-3.9 rps",
+     "waiting_max 0.0 and running 17-23 within normal range",
+     "kv_usage_pct_max 1.72-2.78% low, no preemptions",
+     "gpu_util_pct 80-100% with power ~450W"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency and error metrics are within SLO, no shedding or queue buildup, KV usage low and GPU fully utilized. Slight arrival increase is handled by the recent max_num_batched_tokens raise. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 6.23-7.58 < SLO 10.0\", \"shed_rps 0.0 and errors '-' with arrivals ~3.5-3.9 rps\", \"waiting_max 0.0 and running 17-23 within normal range\", \"kv_usage_pct_max 1.72-2.78% low, no preemptions\", \"gpu_util_pct 80-100% with power ~450W\"], \"actions\": [], \"explanation\": \"Latency and error metrics are within SLO, no shedding or queue buildup, KV usage low and GPU fully utilized. Slight arrival increase is handled by the recent max_num_batched_tokens raise. No incident.\"}",
+    "usage": {
+     "prompt_tokens": 1487,
+     "total_tokens": 1936,
+     "completion_tokens": 449,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "a1f8ad076838ee510f2ef5f328b6c6287338b14233571161a7535e99cc201abe",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.86-7.58 < SLO 10.0",
+     "shed_rps 0.0 and waiting_max 0.0 across recent buckets",
+     "arrivals_rps 2.4-3.9 close to normal profile 2.8 rps",
+     "kv_usage_pct_max ~1.7-2.8% well below saturation",
+     "gpu_util_pct 80-100% with power ~450W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and queue metrics are within SLO and match the healthy reference profile. The recent config increase to max_num_batched_tokens is not causing overload.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.86-7.58 < SLO 10.0\", \"shed_rps 0.0 and waiting_max 0.0 across recent buckets\", \"arrivals_rps 2.4-3.9 close to normal profile 2.8 rps\", \"kv_usage_pct_max ~1.7-2.8% well below saturation\", \"gpu_util_pct 80-100% with power ~450W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, shed and queue metrics are within SLO and match the healthy reference profile. The recent config increase to max_num_batched_tokens is not causing overload.\"}",
+    "usage": {
+     "prompt_tokens": 1956,
+     "total_tokens": 2296,
+     "completion_tokens": 340,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "d4c08b6600522a4cc5dc9be7595e35c5ef69ce009ece6acc845a9c1ab2839406",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.76-7.58 < SLO 10.0 across recent buckets",
+     "shed_rps 0.0 and errors '-' with max_shed_rate SLO 0.05",
+     "arrivals_rps 2.4-4.0 around normal profile 2.8 rps",
+     "waiting_max 0.0 and kv_usage_pct_max 0.83-2.78% low",
+     "gpu_util_pct 80-100% with no contention, single VLLM process"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, queue is empty and KV usage is low. Recent config increase of max_num_batched_tokens is not causing degradation; metrics are normal variation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.76-7.58 < SLO 10.0 across recent buckets\", \"shed_rps 0.0 and errors '-' with max_shed_rate SLO 0.05\", \"arrivals_rps 2.4-4.0 around normal profile 2.8 rps\", \"waiting_max 0.0 and kv_usage_pct_max 0.83-2.78% low\", \"gpu_util_pct 80-100% with no contention, single VLLM process\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, queue is empty and KV usage is low. Recent config increase of max_num_batched_tokens is not causing degradation; metrics are normal variation.\"}",
+    "usage": {
+     "prompt_tokens": 2424,
+     "total_tokens": 2807,
+     "completion_tokens": 383,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "7224fcc45c0f1e13a39a2a0c8f608701066d5dc016327dc2f31265f0a3deff29",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s recent 5.4-7.2 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "arrivals_rps 2.4-4.0 near normal 2.8",
+     "gpu_util_pct 80-100 with no waiting_max and low kv_usage_pct_max 0.8-2.8%",
+     "engine config change max_num_batched_tokens increased but metrics stable"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, load is normal, no queueing or KV pressure. Recent config increase to max_num_batched_tokens is not causing issues.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s recent 5.4-7.2 < SLO 10.0\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"arrivals_rps 2.4-4.0 near normal 2.8\", \"gpu_util_pct 80-100 with no waiting_max and low kv_usage_pct_max 0.8-2.8%\", \"engine config change max_num_batched_tokens increased but metrics stable\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, load is normal, no queueing or KV pressure. Recent config increase to max_num_batched_tokens is not causing issues.\"}",
+    "usage": {
+     "prompt_tokens": 2915,
+     "total_tokens": 3250,
+     "completion_tokens": 335,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "d441d3695094e91e7906ffcec4337a818569a31813e5b386ca896706e86677dc",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "confidence": 0.72,
+    "evidence": [
+     "p95_latency_s 11.07 at t=149 exceeds SLO 10.0",
+     "arrivals_rps ~3.2 similar to normal 2.8, no traffic surge",
+     "GPU process table shows non-engine pid 3127 embedding_batch using 1102 MB GPU",
+     "GPU util_pct 100.0 sustained with running up to 36.2 vs normal 15.0",
+     "KV usage low 3.02% max, waiting_max 0.0"
+    ],
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 3127
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency SLO breach with stable arrival rate and low KV usage points to compute contention. A non-engine embedding batch job shares the GPU, keeping utilization at 100% and inflating running queue and p95 latency. Stopping the competing process is least disruptive.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.72, \"evidence\": [\"p95_latency_s 11.07 at t=149 exceeds SLO 10.0\", \"arrivals_rps ~3.2 similar to normal 2.8, no traffic surge\", \"GPU process table shows non-engine pid 3127 embedding_batch using 1102 MB GPU\", \"GPU util_pct 100.0 sustained with running up to 36.2 vs normal 15.0\", \"KV usage low 3.02% max, waiting_max 0.0\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"Latency SLO breach with stable arrival rate and low KV usage points to compute contention. A non-engine embedding batch job shares the GPU, keeping utilization at 100% and inflating running queue and p95 latency. Stopping the competing process is least disruptive.\"}",
+    "usage": {
+     "prompt_tokens": 3172,
+     "total_tokens": 3826,
+     "completion_tokens": 654,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

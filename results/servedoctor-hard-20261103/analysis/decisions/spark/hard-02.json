@@ -1,0 +1,230 @@
+{
+ "arm": "spark",
+ "incident": "hard-02",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 96,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "long_prompt_flood",
+  "confidence": 0.9,
+  "evidence": [
+   "p95_latency_s 12.2 exceeds SLO 10.0 in last bucket",
+   "prompt_tokens_mean 1009 vs normal 184",
+   "p95_ttft_s 2.23 vs normal 0.46",
+   "prompt_tokens_per_s 3278 vs ~500-1100 earlier",
+   "waiting_max 0 and kv_usage 6% with zero preemptions"
+  ],
+  "actions": [
+   {
+    "type": "gateway_max_prompt_tokens",
+    "max_prompt_tokens": 500
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency SLO breach coincides with 4-5x prompt size and prefill surge, TTFT spike, no queue from batch limit or KV pressure. Shedding oversized prompts at gateway restores TTFT without engine restart.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 12.2 exceeds SLO 10.0 in last bucket\", \"prompt_tokens_mean 1009 vs normal 184\", \"p95_ttft_s 2.23 vs normal 0.46\", \"prompt_tokens_per_s 3278 vs ~500-1100 earlier\", \"waiting_max 0 and kv_usage 6% with zero preemptions\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 500}], \"explanation\": \"Latency SLO breach coincides with 4-5x prompt size and prefill surge, TTFT spike, no queue from batch limit or KV pressure. Shedding oversized prompts at gateway restores TTFT without engine restart.\"}",
+  "usage": {
+   "completion_tokens": 997,
+   "prompt_tokens": 3150,
+   "total_tokens": 4147,
+   "completion_tokens_details": {
+    "reasoning_tokens": 808
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "fd3a19dfa4cf031dd379faa18bfd564a0fbdca3ec8d6b539ffe42ac05136607c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.84-6.9 < SLO 10.0",
+     "shed_rps 0.0 and errors - (none)",
+     "waiting_max 0.0 with running 14-20",
+     "kv_usage_pct_max 1.3-2.1% no preemptions",
+     "arrivals 2.9-3.3 rps vs normal 2.8 rps"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, errors and shed within SLO. Load near normal profile with no queueing or KV pressure. Extra GPU process is tiny (738MB, duty 0.02). No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.84-6.9 < SLO 10.0\", \"shed_rps 0.0 and errors - (none)\", \"waiting_max 0.0 with running 14-20\", \"kv_usage_pct_max 1.3-2.1% no preemptions\", \"arrivals 2.9-3.3 rps vs normal 2.8 rps\"], \"actions\": [], \"explanation\": \"Latency, errors and shed within SLO. Load near normal profile with no queueing or KV pressure. Extra GPU process is tiny (738MB, duty 0.02). No incident.\"}",
+    "usage": {
+     "completion_tokens": 641,
+     "prompt_tokens": 1520,
+     "total_tokens": 2161,
+     "completion_tokens_details": {
+      "reasoning_tokens": 469
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "0be41a079220872d8208ffdc1fb2c616fa536127b034fb3c4cdb8c9b7e0bf7e6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency 5.84-6.9s < SLO 10.0s",
+     "shed_rps 0.0 and errors 0 vs SLO limits",
+     "arrivals 2.5-3.3 rps matches normal 2.8 rps",
+     "waiting_max 0, kv_usage 1.3-2.1% matches normal",
+     "gpu power/util ~450W/100% matches normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLOs met and metrics match healthy reference run; co-located thumbnail job uses 738MB and 2% duty with no impact. Normal variation only.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency 5.84-6.9s < SLO 10.0s\", \"shed_rps 0.0 and errors 0 vs SLO limits\", \"arrivals 2.5-3.3 rps matches normal 2.8 rps\", \"waiting_max 0, kv_usage 1.3-2.1% matches normal\", \"gpu power/util ~450W/100% matches normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met and metrics match healthy reference run; co-located thumbnail job uses 738MB and 2% duty with no impact. Normal variation only.\"}",
+    "usage": {
+     "completion_tokens": 683,
+     "prompt_tokens": 1988,
+     "total_tokens": 2671,
+     "completion_tokens_details": {
+      "reasoning_tokens": 506
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 497
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "29529da3f120121fad6e7b7a6cd2189ab4cc41984b1f79bf55d1038283ed994b",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.48-6.9 < SLO 10.0",
+     "shed_rps 0.0 and errors - (no errors)",
+     "waiting_max 0.0, preemptions 0.0",
+     "arrivals_rps 2.4-3.3 matches profile 2.8",
+     "kv_usage_pct_max 0.93-2.08% matches profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLOs met and metrics match healthy profile. Extra GPU process uses only 738MB with no queuing or latency impact. max_num_seqs increase caused no degradation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.48-6.9 < SLO 10.0\", \"shed_rps 0.0 and errors - (no errors)\", \"waiting_max 0.0, preemptions 0.0\", \"arrivals_rps 2.4-3.3 matches profile 2.8\", \"kv_usage_pct_max 0.93-2.08% matches profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met and metrics match healthy profile. Extra GPU process uses only 738MB with no queuing or latency impact. max_num_seqs increase caused no degradation.\"}",
+    "usage": {
+     "completion_tokens": 795,
+     "prompt_tokens": 2455,
+     "total_tokens": 3250,
+     "completion_tokens_details": {
+      "reasoning_tokens": 621
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "dd0cb5f80fa7839dceb3157ec0435f240225e2a90864c1596e41404ec931987c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.3-7.1 < SLO 10.0",
+     "shed_rps 0.0 and errors 0",
+     "arrivals_rps 2.4-3.4 vs normal 2.8",
+     "waiting_max 0.0, kv_usage_pct_max ~1-2%",
+     "gen_tokens_per_s ~300-420 vs normal 367.6"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLOs met. Traffic, latency, TTFT, running, KV usage match healthy reference. Extra GPU process uses only 738MB at 2% duty with no impact. Variation in prompt mean is normal.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.3-7.1 < SLO 10.0\", \"shed_rps 0.0 and errors 0\", \"arrivals_rps 2.4-3.4 vs normal 2.8\", \"waiting_max 0.0, kv_usage_pct_max ~1-2%\", \"gen_tokens_per_s ~300-420 vs normal 367.6\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met. Traffic, latency, TTFT, running, KV usage match healthy reference. Extra GPU process uses only 738MB at 2% duty with no impact. Variation in prompt mean is normal.\"}",
+    "usage": {
+     "completion_tokens": 550,
+     "prompt_tokens": 2921,
+     "total_tokens": 3471,
+     "completion_tokens_details": {
+      "reasoning_tokens": 369
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "7302fc0c96ee14219158280617ebcdfbaf75613f51fd0a6e201bc03e9d486571",
+   "decision": {
+    "incident": true,
+    "root_cause": "long_prompt_flood",
+    "confidence": 0.9,
+    "evidence": [
+     "p95_latency_s 12.2 exceeds SLO 10.0 in last bucket",
+     "prompt_tokens_mean 1009 vs normal 184",
+     "p95_ttft_s 2.23 vs normal 0.46",
+     "prompt_tokens_per_s 3278 vs ~500-1100 earlier",
+     "waiting_max 0 and kv_usage 6% with zero preemptions"
+    ],
+    "actions": [
+     {
+      "type": "gateway_max_prompt_tokens",
+      "max_prompt_tokens": 500
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency SLO breach coincides with 4-5x prompt size and prefill surge, TTFT spike, no queue from batch limit or KV pressure. Shedding oversized prompts at gateway restores TTFT without engine restart.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 12.2 exceeds SLO 10.0 in last bucket\", \"prompt_tokens_mean 1009 vs normal 184\", \"p95_ttft_s 2.23 vs normal 0.46\", \"prompt_tokens_per_s 3278 vs ~500-1100 earlier\", \"waiting_max 0 and kv_usage 6% with zero preemptions\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 500}], \"explanation\": \"Latency SLO breach coincides with 4-5x prompt size and prefill surge, TTFT spike, no queue from batch limit or KV pressure. Shedding oversized prompts at gateway restores TTFT without engine restart.\"}",
+    "usage": {
+     "completion_tokens": 997,
+     "prompt_tokens": 3150,
+     "total_tokens": 4147,
+     "completion_tokens_details": {
+      "reasoning_tokens": 808
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

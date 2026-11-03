@@ -1,0 +1,21 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-02T23:13:16.126600+00:00",
+  "returncode": 0,
+  "tests": 26,
+  "py_compile": "passed",
+  "fake_only": true,
+  "actual_study_read": false,
+  "network_gpu_model_ledger_actions": false,
+  "files_sha256": {
+    "partial_evaluation_stage.py": "00c07e59a5170812b92f25539c277e175ce23dfd81a9043439a0b44208b3334e",
+    "hard_report_common.py": "8c01113fe02b335979807a516e9a5678a34feb87259006d9891aff6a21c8499e",
+    "measure_contexts.py": "a2d366f8470a31f07f1da88f8bbc0e2899f7e387bc981f388d0669f91b3a90dc",
+    "model_response_guard.py": "68602959e499804a33d28751153347d06973a39361c525587885f150e7c6b92a",
+    "export_hard_scores.py": "daf5a37ee9f40356c203cf4a0711b115a272c13d5e281a970b082f96ee3317d3",
+    "test_partial_evaluation_stage.py": "ff6e43815d5c4adb3a5d602981f8a0dbf67c800b4d2094a4f26989565e1be9f3",
+    "test_partial_report_helpers.py": "8baf41ecb4a0e6b40808bf62f52112ffb93f9cc521baf1f96a2a969e99cee113"
+  },
+  "contract": "Fifteen retained scenario IDs; original sixteen scenario/key commitments remain unchanged. Fixed65-minute model work maximum plus180-second cleanup, owner deadline may be tighter. Two genuine-response guarded groups; no retry; both native scoreboards; immutable opaque study/ledger mirror even after failure; labelled wrappers preserve native report bytes."
+}

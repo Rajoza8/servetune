@@ -1,0 +1,46 @@
+{
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T01:19:24.844632+00:00",
+  "offer_id": 54078995,
+  "machine_id": 135236,
+  "read_only": true,
+  "advertised": {
+    "geolocation": "Massachusetts, US",
+    "verification": "verified",
+    "gpu_name": "RTX PRO 6000 WS",
+    "num_gpus": 1,
+    "gpu_ram": 97887,
+    "disk_space": 3038.0,
+    "disk_bw": 5734.0,
+    "inet_down": 593.9,
+    "inet_up": 648.9,
+    "dph_total": 1.4704666666666668,
+    "storage_total_cost": 0.041666666666666664,
+    "inet_down_cost": 0.0026041666666666665,
+    "inet_up_cost": 0.00390625,
+    "cpu_ram": 128562,
+    "cpu_cores_effective": 32.0,
+    "cuda_max_good": 13.2,
+    "direct_port_count": 98,
+    "driver_version": "595.71.05",
+    "reliability": 0.9960407,
+    "rentable": true,
+    "rented": false
+  },
+  "cache_evidence": "No cache, download, image or bandwidth-named cache metadata fields in raw row; no SSH or storage probe performed. Assume cold image/dependencies/weights.",
+  "weight_bytes": 59553435272,
+  "weight_decimal_gb": 59.553435272,
+  "weight_gib": 55.46345866471529,
+  "bandwidth_units_basis": {
+    "url": "https://docs.vast.ai/guides/instances/choosing/find-and-rent",
+    "claim": "Offer-card network bandwidth Mbps; disk speed MB/s. Use conservative Mbps interpretation for raw inet_down."
+  },
+  "weight_transfer_minutes": {
+    "1": 13.37002531784251,
+    "0.5": 26.74005063568502,
+    "0.25": 53.48010127137004
+  },
+  "weight_ingress_charge_usd": 0.15508707102083333,
+  "disk_safety": "150GB allocation leaves about90GB after 59.55GB weights before image/venv/download staging; exact image unpack footprint not advertised. Same filesystem HF cache/snapshot avoids a second fullweight copy.",
+  "prohibited_actions_performed": false
+}

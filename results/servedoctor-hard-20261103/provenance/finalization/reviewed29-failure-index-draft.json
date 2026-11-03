@@ -1,0 +1,866 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "status": "DRAFT: final inference results/accounting/cleanup pending; prior28 entries retained exactly",
+  "created_at_utc": "2026-11-03T02:21:31.004711+00:00",
+  "frozen_source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "failures": [
+    {
+      "id": "setup-phase-exits-retained",
+      "category": "setup-history",
+      "summary": "Eleven existing nonzero bootstrap-phase exit receipts are retained, including attempts declined before allocation.",
+      "reason": "Numbering gaps do not imply unrecorded executions. Some wrappers failed after useful calibration completed; the incident entries below distinguish confirmed provider, SSH, setup and controller causes.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt1-exit.json",
+          "sha256": "f021beb8ac344557e2e5ee9eeeb27f23ff74f109aac8cddd308962944ee5db1a"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt2-exit.json",
+          "sha256": "03c874ffc37f33880381fd749a85f76c45752db1c14dde242dc362ae17efdf14"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt3-exit.json",
+          "sha256": "8b0599468d1f7f6d12c372ea5fceac35e5cdfe0049ef3cc766c744803404fea4"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt4-exit.json",
+          "sha256": "ce8de21e6c622d5837e8f375d4772dd984c9c25a63b2cd893d63f1cd845ad159"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt5-exit.json",
+          "sha256": "622fc9667646bb1e899e1174e5916d2cfecfdfa9c61c2ccbc9ee90687c7894f5"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt6-exit.json",
+          "sha256": "f4248098e26c5b28179cc27bc910b26ee17dde0730272bd20a62e97952df4ded"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt7-exit.json",
+          "sha256": "4e08a014d3a11b199b0421563a46a4182998a93c64ae0186514411e999c753a2"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt8-exit.json",
+          "sha256": "b3ab1e6fe9a86ad46b836b99916573ef882c4ef2b5e0d13ec5e8d0a6bff61f13"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt10-exit.json",
+          "sha256": "f1fdc6fb42e8022490e3c389f0037b7d70fa3815fbee63f4630ee988d14478d2"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt11-exit.json",
+          "sha256": "d691a1a67a306e20fa6fecfa601c8f4681987e2cb267137c4f68520494fb7d00"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt12-exit.json",
+          "sha256": "8e38b76ef14ed2d80d40e36ee0e2777a2bf5624b0f1cf04633d18df9643e03ad"
+        }
+      ]
+    },
+    {
+      "id": "withdrawn-offers-no-dispatch",
+      "category": "provider-availability",
+      "summary": "Several reviewed offers disappeared before CREATE dispatch.",
+      "reason": "The first provisioning and later fresh-quote preflights declined unavailable offers without dispatching CREATE. A later Massachusetts quote was also withdrawn; fresh quotes were considered as separate attempts.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/provisioning-attempt1-reconciliation.json",
+          "sha256": "6f60a5804bd485a8be42797ae5e24fe89497465b87447d917b9957b2c99a5912"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/provisioning-attempt7-no-dispatch.json",
+          "sha256": "6c1c460a56add81d2875517af112d9648e85c002edd36e1d300dcaefd3a36ec7"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/massachusetts-offer-withdrawn-plan.json",
+          "sha256": "d14ee307c7f7b3e291212722b86e21e42665aff389e2e7ce800fb00853d72e37"
+        }
+      ]
+    },
+    {
+      "id": "create-http400-no-instance",
+      "category": "provider-create",
+      "summary": "Two separately journaled CREATE attempts on offer47655764 were rejected with HTTP 400/success=false; no instance was confirmed.",
+      "reason": "Read-only complete inventory checks found zero instances. The rejected intents and outcomes were archived; no successful rental or benchmark execution is inferred from those requests.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/provisioning-attempt2-readonly-inspection.json",
+          "sha256": "e40bf4efce10e06d85e403a0b40b4b3539963338d0c9bdccc395c38c789baae0"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/provisioning-attempt3-readonly-inspection.json",
+          "sha256": "4be23ade433ce588eb360b395fec72ff43a888108b6e399419d1d7c247a1b228"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/archive-rejected-create-intent.json",
+          "sha256": "e06926b557ca6ce94c3add652deb8f21263c89ab1be4a0a55769548f46ab13b0"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/archive-provisioning-attempt3-rejected-intent.json",
+          "sha256": "767203ff49e0b1302751f52007bcca7d7d3d6f8a7e0f89e293677eb6cf3aaebc"
+        }
+      ]
+    },
+    {
+      "id": "host1-initial-ssh-denial",
+      "category": "ssh-readiness",
+      "summary": "Host 58843932 reached SSH but the initial fixed guide command returned255.",
+      "reason": "The failed guide outcome was retained and the instance was later backed up and deleted. This is infrastructure setup failure, not a Hard recording or model result.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt1/outcome.json",
+          "sha256": "1fc6c86bb4da0bde88b5a4b2f6e2f1ca78b5b04b5453b7a0d6f8f6ccba92e01e"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-setup-host1-backup-attempt1/backup-receipt.json",
+          "sha256": "b4d7c64319a921374521010886b060b2aac27195ee4569d9d5ed923013867ffd"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-setup-host1-backup-attempt1/destroy-receipt.json",
+          "sha256": "4dee8f2083dc20d2174247b3a9d6c90e149f023982dda1c4188db6c80682647b"
+        }
+      ]
+    },
+    {
+      "id": "host1-queued-restarts",
+      "category": "provider-availability",
+      "summary": "Host 58843932 restart requests were queued/resources unavailable.",
+      "reason": "The earlier wrapper cancelled a queued start immediately; a fresh explicit attempt used the revised bounded queue policy. Requests and cancellations remain separate, and no new recording or benchmark was generated.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/phase6-start-reason.json",
+          "sha256": "e459737f3cebc9e55bc257985189e3466083d832b9bb47d1b54a5cfb01ce9068"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt5-exit.json",
+          "sha256": "622fc9667646bb1e899e1174e5916d2cfecfdfa9c61c2ccbc9ee90687c7894f5"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt6-exit.json",
+          "sha256": "f4248098e26c5b28179cc27bc910b26ee17dde0730272bd20a62e97952df4ded"
+        }
+      ]
+    },
+    {
+      "id": "host2-image-pull",
+      "category": "provider-image",
+      "summary": "Host 58848277 failed the pinned container image pull with a TLS bad-record-MAC provider error.",
+      "reason": "No controller, SSH, calibration or study started. Its loading/stopped discrepancy and unsuccessful stop confirmation were retained; a verified local backup preceded one DELETE and billing closure on confirmed absence.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/phase8-provider-image-failure.json",
+          "sha256": "d4ef71862a2712db3fa9f03cfd5e579dcbb31c553be08cedcb2f176963cef715"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/phase8-watchdog-retirement.json",
+          "sha256": "eb5224495822a88e729913815672548f715aef2ac517661a2aeb2edd256cb88a"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-loading-host2-backup-attempt1/backup-receipt.json",
+          "sha256": "b517c76573dd3be467281d4f9da99909f7a0e18d886c52890e1ecd1b7ccdf8dd"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-loading-host2-backup-attempt1/destroy-receipt.json",
+          "sha256": "7d517867ee9d6ed1e91f30043219d8bad01b5312e86659398710cb0648e91321"
+        }
+      ]
+    },
+    {
+      "id": "host3-ssh-denials-no-cause-established",
+      "category": "ssh-readiness",
+      "summary": "Host 58851643 retained three failed fixed-guide authentication attempts.",
+      "reason": "The original study keypair and provider association were checked, but container diagnostics did not establish a supported ownership/mode fix. The bounded log collection is retained in its original legacy projection format; absence of an onstart category is not proof that startup did not run.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt4/outcome.json",
+          "sha256": "52246ac1aaf7c31a9c604b8179c2bdd38f5332874f5d1de43d63cd1a19664877"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/container-logs-58851643-attempt1/receipt.json",
+          "sha256": "048548c13b857e4068d496b56948604df4829425361c89b5eb5c075776dfdf11"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/container-logs-58851643-attempt1/container-sanitized.log",
+          "sha256": "4995d20eba7e28e965de4974558412f08868b17822a72b6aa65f0c35a7f26c13"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/request-logs-58851643-legacy-format-note.json",
+          "sha256": "b66349a284872734a154e84549f8c360cdb7e54f25fe5edd42dbd254759c8196"
+        }
+      ]
+    },
+    {
+      "id": "associated-key-proposal-reverted-before-use",
+      "category": "operator-proposal",
+      "summary": "A proposed default-associated-key transport change was cancelled before actual use.",
+      "reason": "The user required the original study-key path and log-based diagnosis. Original Hard worker bytes were restored before a real worker started; no proposed key route, permission fix or paid call was executed.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-default-associated-key-fixtures-20261102.json",
+          "sha256": "fe37d18936fd270b1ddf67cc6a93698a2cddf7f3aa89a01cf2d079bf8e48ec05"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-default-no-agent-fixtures-20261102.json",
+          "sha256": "a7907c48f39a99deb6e7aeac6b5dc56c9fdf4aee5692b275970573d1b94129dd"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-user-steering-reversion-20261102.json",
+          "sha256": "a91a9a49416e2940a490dd949c7ab674e9968547f18d2ae9e346782fbdf25fe4"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-user-steering-ssh10m-state.json",
+          "sha256": "aab175682b882204824ca6b0f22eb082f6dc8d20911112e21953506c0312a93a"
+        }
+      ]
+    },
+    {
+      "id": "host3-restart-unavailable",
+      "category": "provider-availability",
+      "summary": "A queued restart of58851643 was unavailable before a longer authentication test could run.",
+      "reason": "The queued request was cancelled and the stopped instance was backed up and deleted. Its earlier SSH denials remain failures; later success on a different host is not used to rewrite their cause.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt11-exit.json",
+          "sha256": "d691a1a67a306e20fa6fecfa601c8f4681987e2cb267137c4f68520494fb7d00"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-auth-host3-backup-attempt1/backup-receipt.json",
+          "sha256": "45d19dba8fcfff3658cb40c5e8ad1d566866a4123c6f2f2aa918bd18d660d76c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-auth-host3-backup-attempt1/destroy-receipt.json",
+          "sha256": "3df9e93f0877ddfd8ef457ec99e0d6d8939531461bad395ce01d7b143f607cd0"
+        }
+      ]
+    },
+    {
+      "id": "host4-watchdog-inventory-stop",
+      "category": "watchdog",
+      "summary": "The local watchdog requested STOP for58858374 during calibration after an inventory-read failure.",
+      "reason": "An early operator update incorrectly attributed this to phase completion; the correction and immutable STOP reason are retained. Calibration commands completed successfully, so this is an orchestration failure rather than a failed Hard recording.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/unexpected-watchdog-stop-host4.json",
+          "sha256": "d106d4f4dfbbdc03d8a3d536d607d5af7627ba1dd9eedeb59571c77ecd004959"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-history/host4-58858374/intent-0005-stop.json",
+          "sha256": "999fc4ec341ad296547cdd59f2f6e854d60ca80a74b419b3bfaa70acd13a0af7"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt6/outcome.json",
+          "sha256": "632fd0e477a112143f89a4d5fc6d9a5d563bf83fb56a739cc5c172157ad7a56f"
+        }
+      ]
+    },
+    {
+      "id": "host4-restart-unavailable-retired",
+      "category": "provider-availability",
+      "summary": "The later same-host 58858374 restart was resources unavailable and its continuous pipeline ran no commands.",
+      "reason": "The queued request was cancelled and stopped state confirmed. The local calibration archive and unchanged canonical ledger were backed up before one DELETE; unverified remote tail bytes were disclosed. Host 4 was retired before another rental.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/pipeline-attempt1/outcome.json",
+          "sha256": "10b39d050a94f212546659088dd05579c93e00b9ce73401eb0deb1f5dbf4a328"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-queued-restart-host4-backup-attempt1/backup-receipt.json",
+          "sha256": "38aa6a8f38986b908ac873a050f538b5286244879654bba5b663c794d0f17463"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-queued-restart-host4-backup-attempt1/destroy-receipt.json",
+          "sha256": "2e31daf557141e635850c760e2dd14eb023343e4676063ed82d6d73131ed2278"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host4-archive-complete.json",
+          "sha256": "ca5bf911199dee0b77fe5523f620a3f81eb734fa590c08f9f16481419b0b732d"
+        }
+      ]
+    },
+    {
+      "id": "host5-clone-head-pin",
+      "category": "bootstrap",
+      "summary": "Bootstrap7 on58866756 cloned branchHEAD973 but checked it before detaching the intendedD3 calibration commit.",
+      "reason": "The bootstrap failed before installation/calibration. Repair8 preserved only the clean failed clone with no ignored data or active clone/guard owner, then cloned fresh and checked out detachedD3 before installation. Same-instance guide approval was reused only for byte-identical previously fully reviewed text.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt7/outcome.json",
+          "sha256": "91d070e8d98c125c745fa159b36795f979702a194857d17b6b314a455b440043"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt7/bootstrap.stderr",
+          "sha256": "b7e59285897e4c79178b5e08f3d3014a4af27e6e2f54a765f39d448ad4e9012d"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt8/preserve-failed-clone-attempt7.stdout",
+          "sha256": "7e250abc7304d61eff6f80c8b047605515bf0c81230e49503f5b1594684e7f8c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt8/outcome.json",
+          "sha256": "73273998f50171381dfd8c6fbc87112496950bce78332d1867989542ce384d5b"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-next-guard-source-proof.json",
+          "sha256": "80fd8314cacd2e8ca13a84acc32302381becc81a81c0de728cc3e9ebb1553098"
+        }
+      ]
+    },
+    {
+      "id": "host5-original-compound-calibration-too-weak",
+      "category": "pre-generation-calibration",
+      "summary": "The first standalone compound-use KV probe was complete but below the predeclared pressure target:0.61559 gave p95 11.708734 s.",
+      "reason": "Before any Hard generation, a fixed ordered refinement [.61505,.61520,.61490] was declared. The first candidate completed268/268 but p95 19.660511 s was outside13..17; the second completed268/268 with p95 15.239634 s and was selected. The third was unrun by the declared first eligible rule; the mild0.61632 probe stayed unchanged.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt8/mirror/runs/sd-hard-kv-probes-attempt1/summary.json",
+          "sha256": "7471ec041d7c72d2d1fbe2676fb5845584cc8796b9789795eb1fc3d3a39b8530"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/predeclared-compound-kv-refinement-plan-58866756.json",
+          "sha256": "c4ec9be6e838da3dadd3725a1c6a20fdc67a4d9dc563cf1b82f35c0c667d1ebf"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/resume-pipeline-attempt1/outcome.json",
+          "sha256": "b34b4d9c2ca16f551408d8d3a02abb9f346a2b32868284794c62d193dca8c777"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror/refinement/summary.json",
+          "sha256": "07918d39e59d58faf20823be1fb4ce02097c68a51da9b877ada9d59defb3dbd7"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror/refinement/selected-kv-summary.json",
+          "sha256": "068d81e181520a2b08cb56748502614d578634facdc7d577366d639b1b63654b"
+        }
+      ]
+    },
+    {
+      "id": "host5-idle-stop-after-original-calibration",
+      "category": "idle-fallback",
+      "summary": "D7 stopped the calibrated host during CPU review around20:19UTC.",
+      "reason": "The retained guard record says idle, requested2026-11-02T20:19:22.322752Z; the stopped interval was confirmed before a fresh START. Rearm used the pinned closed-stop snapshot, START/running-seen lineage and old-guard quiescence, then preserved the exact stop records before installing a fresh lease. No Hard recording or paid call existed at that point.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host5-calibrated-stopped-state.json",
+          "sha256": "b660e9b7b80252c6f56c4cc95b86d890bfc01c218f8e7749fd3dac4ea9ca5ce8"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rearm-calibrated-attempt1/receipt.json",
+          "sha256": "2410e889a2adb81df14def6800b9a1e46e93458c1cac7fb7bc28aba844eecd6e"
+        }
+      ]
+    },
+    {
+      "id": "wrong-old-worker-corrected-before-hard-paid",
+      "category": "operator-readiness",
+      "summary": "The operator reported correcting an old worker selection to the Hard-specific worker before Hard paid work.",
+      "reason": "No Hard paid call was made in this episode. The retained validation/reversion proofs describe the intended Hard protocol; the successful source 4b GET-only catalog proof corroborates the corrected route without reserving ledger funds. No secret or process environment is included in this index.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-validation-final-20261102.json",
+          "sha256": "8a00ac9cf453ab8fa77e29f37b6e0940ad55bc416d7301cab408194a0b7f634a"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-user-steering-reversion-20261102.json",
+          "sha256": "a91a9a49416e2940a490dd949c7ab674e9968547f18d2ae9e346782fbdf25fe4"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prepare-next-attempt1/model-catalog-proof.json",
+          "sha256": "4c5dcbfa4fc64bba5608484b16c1472ed43418cf5be241e24456d12f26090f9f"
+        }
+      ]
+    },
+    {
+      "id": "relative-final-freeze-check",
+      "category": "path-integration",
+      "summary": "Hard generation and freeze succeeded; only the final verification command failed because it supplied a relative study root to an absolute-root gate.",
+      "reason": "The existing commitments and freeze 868fa1c8 were preserved. An appended old repair job19 never dispatched after its parent exited. A later fresh controller rechecked the existing freeze with the corrected absolute path; no regeneration, answer change or recording repeat occurred.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prepare-next-attempt1/outcome.json",
+          "sha256": "bf1b165e32d274d448243860fe1292780f4a411a06846824bf743655b5540629"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/calibrated-resume-pipeline-attempt1/prepare-study.json",
+          "sha256": "50a30f01d19567bb48869ccd72febb212fa180f61ac5656cb2cf7a44de1bcbb2"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prepare-next-attempt1/generate-hard.stdout",
+          "sha256": "ba7ad24cc14b1e8bbea80e059d0ff3fefaaa6945c9ed1b27ac559cbf26eeed40"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prepare-next-attempt1/freeze-hard.stdout",
+          "sha256": "7a6dac7e5b3c01cfe9d3632aa9253724cbe7f9480ccc3768aa5151241907b985"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prepare-next-attempt1/verify-final-freeze.stderr",
+          "sha256": "fc83f473967f391857ee35181e180133776d036982892b9da09c937f8bca41e8"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/freeze-path-integration-fix-before-recording.json",
+          "sha256": "76bad3a8e661a64b2d06ed1bbf470b6028f07e4bb67be4d0b715282d10bf4021"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/calibrated-resume-pipeline-attempt1/prepare-study-repair-attention.json",
+          "sha256": "c84e5193c11a88549494085ae54d31c47b8926537a4d124ea1e856b23167497c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-resume-pipeline-attempt1/verify-existing-freeze.json",
+          "sha256": "624374c95c72782664ab9de947ee63742ee883d01e7e7d0011d8db17b08b19b0"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-resume-pipeline-attempt1/verify-existing-freeze.stdout",
+          "sha256": "3e246611f4db92919509e37de24cc54470cb859ff1eb45f6356631c738021f37"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-pre-recording-state-20261102.json",
+          "sha256": "44060a63d9f15e02bfc6e388e21d4f085ecc37d51fe08ee006e990b37e3ce7aa"
+        }
+      ]
+    },
+    {
+      "id": "host5-idle-stop-after-freeze",
+      "category": "idle-fallback",
+      "summary": "D7 stopped the generated/frozen host around20:53UTC during CPU tests/preparation attention.",
+      "reason": "The retained guard record says idle, requested2026-11-02T20:53:41.246500Z. At that time no recording or Hard model decision had started and the raw frozen directory had not been mirrored. A new full 600 s read-only window and scope-bound rearm preserved old stop records; the existing freeze was successfully rechecked after restart.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host5-frozen-stopped-state.json",
+          "sha256": "f8c3424237ad69dcb4b5d1867544dcfa98075c0d254869dc6015d0b7b278220c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rearm-frozen-attempt1/receipt.json",
+          "sha256": "2364058cb13047766c19ad9a797700c11be0ea754f92a1db716c6418329ec94c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-pre-recording-state-20261102.json",
+          "sha256": "44060a63d9f15e02bfc6e388e21d4f085ecc37d51fe08ee006e990b37e3ce7aa"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-host5-ssh-window-fixtures-20261102.json",
+          "sha256": "2e3ef706694f2b431ece81bb074eb397dfb706a9c3f36abc075219acaacdd448"
+        }
+      ]
+    },
+    {
+      "id": "offline-contract-drafts-retained",
+      "category": "offline-validation",
+      "summary": "Several pre-execution contract-test drafts failed and were retained before their fixes passed.",
+      "reason": "These are preparation evidence, not GPU incident or model outcomes. Final public-source checks passed319 tests with one skip before generation; initial fixture failures do not alter the frozen scientific inputs.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-preflight-fixture-first-failure.json",
+          "sha256": "6047ad0107b8da32e75aee2b6d2d77b4191ce8fd1cef095a16ed88c5f2f2affc"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-network-fixture-initial-failure.json",
+          "sha256": "bc4f98c6884aa96193e040086575cb949cfb68905c842a02b8b7fd9e8bc66507"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/rental-network-3.5-fixture-initial-failure.json",
+          "sha256": "3bf11927a55b420928a11a930e80dadbe4e56ccd7558fb1bb867e78902509f76"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/network-reserve4-fixture-correction.json",
+          "sha256": "66816ff76a986a93d7c734c107993eb0d872b4ba90830bbf1c31bb5a1de92832"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/post-refined-calibration-attempt1/official-unittest-receipt.json",
+          "sha256": "9c7aa328d5329827d19f217240722c84a249246f4f66db974eb0bbab5e68764e"
+        }
+      ]
+    },
+    {
+      "id": "hard-16-frozen-engine-startup-failure",
+      "category": "frozen-incident-startup",
+      "summary": "hard-16 could not start: vLLM reported -0.54 GiB available KV cache and no available cache blocks before its workload.",
+      "reason": "The frozen mild KV utilization0.61632 interacted with max_num_batched_tokens12288, while the standalone calibration used8192. Cleanup showed2MiB GPU memory and no compute processes. No same-input residue explanation or authorized configuration repair was claimed. Reference+hard01\u201315 completed; the original16-incident attempt remains incomplete.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-cost-and-status-20261102.json",
+          "sha256": "e70c2439b718413cffd1b80dbe56c2071bf4d3eb1dd10dd54d88d1f2d088277e"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-report-20261102.md",
+          "sha256": "373fb2ab5c409bf8f42281acfeb0dddeef93df5d588db06cdea27e9b67012a7e"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/preservation-receipt.json",
+          "sha256": "0bb31a20b50ebb5db6c7680f54b22849c76cf007c9b0aa99f6d68bd4dfeb5af8"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/preserved-files-manifest.json",
+          "sha256": "505d7d74d4a978f1de9058380c3d38b85826d7c06affe1d7cffcabe16032d068"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/latest/study/engines/engine-06-hard-16/engine.log",
+          "sha256": "d4656e6cb398f67d010092509f433d316d185a1ea82063ef58c1eb5631dbae26"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/latest/study/engines/engine-06-hard-16/failure.json",
+          "sha256": "5e6137a560ff81a7d5d5b8355f113a6a8dc9a42e424ffecb91dfb444d2fad49e"
+        }
+      ]
+    },
+    {
+      "id": "hard16-failure-deliberate-controller-stop",
+      "category": "operator-stop",
+      "summary": "The parent controller was deliberately interrupted at2026-11-02T22:53:13UTC after the recording worker exited; the scope-bound STOP was confirmed.",
+      "reason": "No validity verdict or Hard arm had run. The stopped rental and immutable original failure were preserved while the user decided whether to authorize an amended analysis. The stop is not classified as a successful full16 study.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-resume-pipeline-attempt1/outcome.json",
+          "sha256": "0e346be402defb7be9a4ad8331a0b8231b83d623c1a1c46e485f45fcde50aa83"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/frozen-resume-pipeline-attempt1/record-last8.json",
+          "sha256": "eb05c1fbc8b282b5d061e753b3b877459b03cdf7558737be8937ecc0c6a4b705"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0017-stop.json",
+          "sha256": "acde98eb79897d4bdcf688b4dd25453aef2ea40dc584b8e79464c81844398784"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0017-stop-outcome.json",
+          "sha256": "37644f9ba5aedddf5588839e9c32a434c0e516ef3f1ce303c4eaaa59062abd1f"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0017-stop-reconciled.json",
+          "sha256": "6c35a0de0d58c50967694ee26d2c04894180a445277c630f057668a715e9f4f0"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-stopped-state.json",
+          "sha256": "4b01fa0a1789447c916ad323fc12ee18ff9d54d285e2d81029b53c7edebeb4b6"
+        }
+      ]
+    },
+    {
+      "id": "explicit-fifteen-case-protocol-amendment",
+      "category": "user-approved-protocol-amendment",
+      "summary": "The user explicitly authorized a separately labeled15-case analysis before any native validation or Hard model call; only hard-16 is excluded.",
+      "reason": "The timestamped exclusion records before_validation=true and before_any_hard_arm_evaluation=true. The new namespace copies original16 keys/scenarios/freeze bytes unchanged, retains the original failed attempt and uses native fixed validity/scoring and all six arms. It cannot be described as the full16 result. The exact required label is ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start).",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-exclusion-20261102T2306Z.json",
+          "sha256": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/partial-integrity-fixtures.json",
+          "sha256": "7e6268939e90ada81966c036aab0c6a0d7fee5d3ae0ff02678c61ebb498929d1"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/key-runner-fixtures.json",
+          "sha256": "b914cdd3b0db054d90d4beeb460671157f50a216d484b78d703aae1ab3b7b009"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/partial-evaluation-stage-fixtures.json",
+          "sha256": "08a31c66ea7abbf704e04ca3c89117b91505786f95c4c90e6bdda6c4f34b07e0"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-remote-guard-rearm-fixtures-20261102.json",
+          "sha256": "9af1eeca0bf45501b02f69c99fc10b472f626a0bfb4d4a851258ae0762017702"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-window-fixtures-20261102.json",
+          "sha256": "81898643a7103a397208db78da2b9813b592dd8c63f4484c8d8c24c4745bcacf"
+        }
+      ]
+    },
+    {
+      "id": "partial-restart-resource-unavailability",
+      "category": "provider-availability",
+      "summary": "The approved15-case analysis restart of58866756 remained resources_unavailable through its120s queue allowance; no inner command ran.",
+      "reason": "The parent outcome retains TimeoutError/return1 and commands[]. No native validation or model arm was dispatched in that phase. This was a failed restart attempt, not a failed model result or a study rerun.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/outcome.json",
+          "sha256": "17430d395755150bfaf43723ecabcc3618f588681126933726ccbe5bc8590183"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0020-start.json",
+          "sha256": "2687407c4275098cd7787d3420ae1560f47ef70a534f898f0f360f68a4069264"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0020-start-outcome.json",
+          "sha256": "6b9b36b1ed9f04eaf51f867e230b2db8f2ae667c2727f79c6054f68b1643706b"
+        }
+      ]
+    },
+    {
+      "id": "partial-cancel-inventory-failure-watchdog-stop",
+      "category": "controller-provider-read",
+      "summary": "Inventory reads failed during queue cancellation/reconciliation; the watchdog subsequently sent a scoped STOP and GET confirmed exited/stopped.",
+      "reason": "The failed status/cancel/reconcile streams remain recorded. The STOP reason is inventory unavailable; conservative shutdown. The watchdog success does not rewrite the earlier cancellation/read failures or claim the GPU ever ran the analysis.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/control-0023-status.stderr",
+          "sha256": "d6592dc9f89417c070239de4057a13a5999ccd4b323972fdddd26ca95eeacf3c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/control-0025-stop.stderr",
+          "sha256": "d6592dc9f89417c070239de4057a13a5999ccd4b323972fdddd26ca95eeacf3c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/control-0026-reconcile.stderr",
+          "sha256": "d6592dc9f89417c070239de4057a13a5999ccd4b323972fdddd26ca95eeacf3c"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0022-stop.json",
+          "sha256": "064582a2c85b81cc8d04f80877cd89699487cd622e86797b4dca59626f2373d6"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0022-stop-outcome.json",
+          "sha256": "3acc6dfaefee699dcbb15fac04f4de18df467eb3cc683e2aeea24f963f5d103e"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0022-stop-reconciled.json",
+          "sha256": "8f3a6520e44ef3359ef9aa34f557846d5c20aa3671ed5d4e01d8642303149162"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-attempt1/outcome.json",
+          "sha256": "17430d395755150bfaf43723ecabcc3618f588681126933726ccbe5bc8590183"
+        }
+      ]
+    },
+    {
+      "id": "forty-dollar-paid-work-pause",
+      "category": "historical-budget-stop",
+      "summary": "Paid work was halted under the original$40 cap when the conservative fresh-host plan projected$40.42909174855866.",
+      "reason": "At that pause no Hard paid call or native validation/arm had run; H13 ledger history was unchanged. The stopped budget plan was retained. Further work became authorized only after the separate dated$43 amendment below; no retrospective cap or old proof edit occurred.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/paid-work-stopped-budget-plan-attempt1.json",
+          "sha256": "6086ed05b5edb6860e191df49ef430baa0e33de6fe12bd40469fe1a3e131ce03"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/ledger-after-queued-start-cancel.json",
+          "sha256": "9a170c1e672d6a3f3bf2eda1fd8fe17ab3faa0b8bec1e3a512ac57a52cf63b7b"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/replacement-evaluation-bandwidth-plan-attempt1.json",
+          "sha256": "ee8db92ec54d1216250db67ecb3d409b505aa44d7103299625ead47ae1e56020"
+        }
+      ]
+    },
+    {
+      "id": "two-historical-ancillary-json-gaps",
+      "category": "preservation-limit",
+      "summary": "Two ancillary readiness JSON files committed by the old freeze could not be recovered:142e8954\u2026 preflight-readiness.json and8b5534f7\u2026 declaration JSON.",
+      "reason": "The original178 files,16 recording seals/112 payloads, owned observer proof bytes and successful readiness stdout commitment are retained. Failed stopped-host recovery attempts remain evidence. The portable gate explicitly discloses both missing raw JSON files and does not claim the old full verify_freeze gate passed; no descriptor, answer, scoring rule or original freeze was rewritten.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/original-portable-closure-audit.json",
+          "sha256": "8daefb611817aaa8a460bd10c255ba262623bafbf679437210bf442dbfe6ba97"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-preflight-recovery-attempt1/intent.json",
+          "sha256": "a7657ac90ccec72bb7f8b9208b6c3f32a4fd5aab9b15d52d196ba0f5b1737c7d"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-preflight-recovery-attempt1/response.json",
+          "sha256": "12efc482929679417605534f6362b8a866f4ffe9c979492aa3683160d17d161e"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/prepare-next-attempt1/declare-readiness.stdout",
+          "sha256": "88300ba18c5fb4a4cd5478794261fab4c3a724791df9f6e880501b742c9fc0fa"
+        }
+      ]
+    },
+    {
+      "id": "explicit-three-dollar-budget-amendment",
+      "category": "user-approved-budget-amendment",
+      "summary": "The user explicitly added$3, raising the shared GPU limit from$40 to$43 before the new inference rental.",
+      "reason": "Only new provider control/finalization uses overlay8efba536\u2026. Original$40 exclusion/control proofs remain historical and unchanged. Meta$50/Baseten$20 caps and native50%-warning stops remain unchanged; the canonical ledger is reused without reset/edit.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/gpu-budget-amendment-43-20261102.json",
+          "sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/destroy-receipt.json",
+          "sha256": "57b61384c4494633266c2f5f6fca1fa12f238d118ae08c9901a91df4a49cd76a"
+        }
+      ]
+    },
+    {
+      "id": "new-inference-host-recording-separation",
+      "category": "environment-migration",
+      "summary": "After58866756 was deleted with the available local scientific evidence backed up, a separate inference-only host58905385 was created and bound to scope7da4c657\u2026.",
+      "reason": "The original recording GPU ced, physical measurements, source4b, all16 keys/scenarios/freeze868 and15 completed Hard recordings remain unchanged. The new host performs inference only, with a fixed3h allocation including setup/SSH/transfer/cleanup. Its actual GPU UUID and final cost remain pending final evidence; no new generation, calibration or recording is claimed.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inactive-host5-backup-attempt1/destroy-receipt.json",
+          "sha256": "57b61384c4494633266c2f5f6fca1fa12f238d118ae08c9901a91df4a49cd76a"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/binding.json",
+          "sha256": "7f50f4693e5fa4774c9538b7274c241923a67d75e2c24b679d9a50e6f8bbc5c9"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/rental-scope.json",
+          "sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/prior-accounting.json",
+          "sha256": "a3537c29c30b14617d715755000eb5d06881b3035143ed811f71da11ddfebe92"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/queue.json",
+          "sha256": "758755c465125c61313600f5f8803814f0f293c7a4e1cd937c50c9103849b601"
+        }
+      ]
+    },
+    {
+      "id": "pre-use-api-transport-migration",
+      "category": "operator-transport-integration",
+      "summary": "Pre-rental review found the original freeze contained three API transport files bound to recording instance58866756; directly copying them would reject the new container.",
+      "reason": "Before model calls, only the analysis copy archives the old three files byte-for-byte under operator-provenance/original-api-transport and installs a new-instance-bound Mac CONNECT trio before the new operator protocol/native validation. Original178/freeze868 remain intact. FixedMeta URLs/models/prices, end-to-endTLS, native prompts/payloads/scoring and childE016 are unchanged. Unused worker334/634 candidates/proofs are retained as superseded pre-use proposals; final059 worker makes diagnostic GET use the same native verified CONNECT path.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-key-runner-fixtures.json",
+          "sha256": "48375f98a8ebc639b0d03c6ed291ad4137e0333f1a7d33f3e3e76d7fc9f27964"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-key-runner-fixtures-v2.json",
+          "sha256": "ba0ae7578a0c22d592c78d309f6c9b97ffe0058b50dea9db6da8a3aa780c5ec7"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-key-runner-fixtures-v3.json",
+          "sha256": "6ab739b7eda22b24722c3ec3dc72561ae97658f78c46d8a02c0f83d504d8af4d"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-portable-setup-fixtures.json",
+          "sha256": "dbaaae86f0c629a32133fbf0438206f57f7ea5352c1d86fa6b1384e74e4bdc47"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-meta-relay-fixtures.json",
+          "sha256": "53f0df0767ac7caf0fcb3aeb5c1239ceaa95806c8cf8e7ef6542dac24455dcbf"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-control-fixtures-v2.json",
+          "sha256": "02876fd08a0f96bacacd03cac256f3f6669e8032eba9db7aeaa99839dac89692"
+        }
+      ]
+    },
+    {
+      "id": "offline-finalizer-helper-import-collision",
+      "category": "offline-integration-test-failure",
+      "summary": "Two synthetic finalizer integration tests initially failed because historical helper imports selected the old Hard namespace.",
+      "reason": "The new finalizer and new packager restore explicit OPS15 import precedence. Historical helpers and scientific source remained unchanged; no actual study/provider/model/ledger operation occurred. The original failed review receipt is retained beside the later passing18 finalizer and13 packager fixture proofs.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-finalizer-import-review-failure.json",
+          "sha256": "589a0f2639c7ca425dc76ae18d3bfd7b468b8932583b49faa568e975f0ca056a"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize-inference-rental-fixtures.json",
+          "sha256": "3b1ed24b758ac029b7e614754b4af574ce52656045081193e691ff909a1b2923"
+        },
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/package-inference-results-fixtures.json",
+          "sha256": "19cd5157f8a5f14dd83566e9d3cc2fa27cf3e0c00cb4a4c1d1a858e56abcfef4"
+        }
+      ]
+    }
+  ],
+  "configuration_changes": [
+    {
+      "commit": "973bdd9ef96b4087845fc83f3e4ebcaa2ad3a4d4",
+      "timing": "Before any Hard generation on retired host58858374",
+      "changed_only": [
+        "kv-near-threshold.gpu_memory_utilization:0.61733->0.61711",
+        "kv-plus-context.gpu_memory_utilization:0.61613->0.61624",
+        "notes"
+      ],
+      "reason": "Host-specific standalone probes at measured8 RPS capacity: mildp959.686876 s and compoundp9514.192525 s;344/344 successful requests for each.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host-kv-config-change-before-generation.json",
+          "sha256": "096be893968926c4258137ecfa5f67b30be433c9befa736857799831e0c07221"
+        }
+      ]
+    },
+    {
+      "commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+      "timing": "Before any Hard generation on actual recording host58866756",
+      "changed_only": [
+        "kv-near-threshold.gpu_memory_utilization:0.61711->0.61632",
+        "kv-plus-context.gpu_memory_utilization:0.61624->0.61520",
+        "notes"
+      ],
+      "reason": "New host measured6 RPS capacity; preserved mildp9510.004324 s and predeclared selected compoundp9515.239634 s,268/268 successful requests each. Earlier .61559/11.708734 s and .61505/19.660511 s outcomes are retained.",
+      "artifacts": [
+        {
+          "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/host-58866756-kv-change-before-generation.json",
+          "sha256": "3539ab9bae083722b84f7603504ae939d42d7ec3a7b0fb55919b99eb7c55034c"
+        }
+      ]
+    }
+  ],
+  "scientific_limits": "Only the two authorized host-specific KV utilizations and notes changed before generation. No Hard validity result, answer key, recording telemetry, arm output, native report, prompt, scoring rule or threshold was read or changed for this draft.",
+  "historical_reference_note": "Some archived receipts retain their original canonical paths. This flat list publishes the actual current regular file locations and verified byte hashes; original receipt contents are not rewritten.",
+  "pending_appendices": [
+    "actual native15 validity and all90 final decision coverage",
+    "actual safe all+valid score projection and per-case D/F/H/X/category denominators",
+    "fresh final authoritative ledger/copy proof",
+    "new finalizer confirmed STOP/deletion/accounting and immutablebackup",
+    "every additional inference-stage failure, including failedmodelcalls without retries"
+  ],
+  "current_outcome_not_claimed": "No eventual evaluation, final costs, cleanup or publication completion is claimed by this draft.",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "original_failure_index": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-failure-index-draft.json",
+    "sha256": "0212d304fff313a3053e7ce31da942ce113b4a8ab9b0e24cd786b382b4c3ad67"
+  },
+  "retained_original_entries": 18,
+  "protocol_amendment": {
+    "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+    "included_ids": [
+      "hard-01",
+      "hard-02",
+      "hard-03",
+      "hard-04",
+      "hard-05",
+      "hard-06",
+      "hard-07",
+      "hard-08",
+      "hard-09",
+      "hard-10",
+      "hard-11",
+      "hard-12",
+      "hard-13",
+      "hard-14",
+      "hard-15"
+    ],
+    "excluded_ids": [
+      "hard-16"
+    ],
+    "before_validation_and_models": true,
+    "exclusion": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-exclusion-20261102T2306Z.json",
+      "sha256": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9"
+    },
+    "original_sixteen_inputs_and_freeze_unchanged": true,
+    "native_scoring_unchanged": true
+  },
+  "finalized": false,
+  "prior_partial_failure_index": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/hard-failure-index-draft.json",
+    "sha256": "3f120a18a7cee0b1d867464da84374fd8de1d42abb3e02cded85daa7cc9dc057"
+  },
+  "retained_prior_partial_entries": 21,
+  "budget_amendment": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/gpu-budget-amendment-43-20261102.json",
+    "sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a"
+  },
+  "current_gpu_cap_usd": 43,
+  "inference_binding": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/binding.json",
+    "sha256": "7f50f4693e5fa4774c9538b7274c241923a67d75e2c24b679d9a50e6f8bbc5c9"
+  },
+  "recording_instance_id": 58866756,
+  "inference_instance_id": 58905385,
+  "prior_inference_failure_index": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-failure-index-draft.json",
+    "sha256": "c7ba858338d6d8d0821b4b45b49daa529e23991ef5dc7fd7d7038dc5b0fc1dc0"
+  },
+  "retained_prior_inference_entries": 28
+}

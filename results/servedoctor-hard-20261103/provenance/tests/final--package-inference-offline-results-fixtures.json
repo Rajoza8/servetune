@@ -1,0 +1,47 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T04:33:25.661339+00:00",
+  "passed": true,
+  "tests": 30,
+  "compile": true,
+  "scanner": true,
+  "science_functions_ast_equal": [
+    "verify_freeze",
+    "verify_validation",
+    "verify_scores",
+    "verify_reports",
+    "_verify_inputs",
+    "verify_inputs",
+    "verify_rental_accounting"
+  ],
+  "synthetic_only": true,
+  "no_actual_package_or_provider_operations": true,
+  "policy": "Original62d9 parent remains returncode1; all required scientific bytes backed up; unknown remote operator tails explicitly unverified. Exact3 native relative report aliases retain descriptor hashes.",
+  "files": {
+    "package_inference_offline_results.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/package_inference_offline_results.py",
+      "sha256": "9edacefb99d466629671e51e8f264b747690500bcb0ad60a0ba6b395e76f9b4f"
+    },
+    "test_package_inference_offline_results.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/test_package_inference_offline_results.py",
+      "sha256": "09ecb486e04d284520842fa676f4b14a6c80e72d87dc4eca07c1e0d4b509b9cd"
+    },
+    "inference_descriptor_adapter.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_descriptor_adapter.py",
+      "sha256": "fdaf66af25327c4501c8e66b2fa56708600d4c4acc8b5585a32724d3b5f0ae91"
+    },
+    "inference_offline_recovery_gate.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference_offline_recovery_gate.py",
+      "sha256": "625eeabd3035ac61f70b25409df1a227cd479138155d12a441af17f4ab28db2c"
+    },
+    "finalize_inference_offline_rental_v2.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_inference_offline_rental_v2.py",
+      "sha256": "309faa6208e0cc414d295e99a51ac12b8a4997a846fab4f590af314c803de223"
+    },
+    "package_inference_results.py": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/package_inference_results.py",
+      "sha256": "c98b3fc35f111ce4b852d04dfd362687e5b37aa230c7a2165438f1ef8b8386fc"
+    }
+  }
+}

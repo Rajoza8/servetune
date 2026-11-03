@@ -1,0 +1,15 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58848277,
+  "phase_exit_sha256": "b3ab1e6fe9a86ad46b836b99916573ef882c4ef2b5e0d13ec5e8d0a6bff61f13",
+  "pid": 7906,
+  "at_utc": "2026-11-02T16:30:35.450647+00:00",
+  "reason": "Retire this completed failed phase watchdog before a one-shot provisioning-abort DELETE; no GPU or model child ever started.",
+  "birth": "Mon Nov 2 11:20:10 2026",
+  "uid": 501,
+  "pgid": 7906,
+  "args_sha256": "9d49667e937d073881c6d325d909e7bea77d83093da405e21e6fb934e458a10e",
+  "scope_role_verified": true,
+  "signal": "SIGTERM",
+  "quiescent": true
+}

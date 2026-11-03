@@ -1,0 +1,12 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "instance_id": 58905385,
+  "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+  "method": "DELETE",
+  "path": "/api/v0/instances/58905385/",
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-final-cleanup-attempt1/backup-receipt.json",
+    "sha256": "21dab147b93c3b72f41f05843aeec89140f1d551d78f43627702c626c12c4cf8"
+  },
+  "helper_sha256": "309faa6208e0cc414d295e99a51ac12b8a4997a846fab4f590af314c803de223"
+}

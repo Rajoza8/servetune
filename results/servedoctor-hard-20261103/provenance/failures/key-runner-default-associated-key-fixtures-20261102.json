@@ -1,0 +1,18 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "created_at_utc": "2026-11-02T17:00:57.542753+00:00",
+  "scope": "Only NEW Hard worker SSH IdentityFile changed to the root-approved default-associated Vast identity; fake process/key/transport tests only.",
+  "identity_path_expression": "Path.home() / '.ssh/gemma_vast_pilot_ed25519'",
+  "private_key_contents_or_real_key_metadata_read": false,
+  "tests": 19,
+  "returncode": 0,
+  "py_compile": "passed",
+  "files_sha256": {
+    "key_runner.py": "0d3d68c51e4db5522eb8e20af257be84903bc1a7e9b52ec8a1f6c72283ddf6cd",
+    "key_runner_stub_test.py": "2980a52396332def96749eb6829a9d9c4eead4ba3f39545210c03bd8bb687d77"
+  },
+  "stdout_sha256": "9cb408a6ec517a799fd3dd22159498f11362fc7a528051cbd4d4bcb1ab110caa",
+  "source_policy_and_transport_protocol_changed": false,
+  "network_provider_gpu_model_or_authenticated_calls": 0,
+  "supersedes_worker_sha_in": "hard-worker-and-report-fixtures-final-20261102.json"
+}

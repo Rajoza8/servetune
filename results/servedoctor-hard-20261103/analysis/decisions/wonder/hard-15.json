@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "hard-15",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 12,
+  "max_num_batched_tokens": 12288,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.92,
+  "evidence": [
+   "max_num_seqs changed 64->12 in deploy, now 12 vs reference 64",
+   "running pinned at 12.0 while waiting_max rises to 29",
+   "p95_ttft_s 3.95 vs normal 0.46, p95_latency approaching 10s SLO",
+   "prompt_tokens_mean ~150 similar to normal 184, arrivals ~2.8 rps normal",
+   "kv_usage_pct_max ~0.89% with 0 preemptions, so not KV starvation"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 64
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency capped at 12 below normal running 15, causing queueing and high TTFT despite low KV use and normal traffic/prompt length. Restore reference max_num_seqs=64.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.92, \"evidence\": [\"max_num_seqs changed 64->12 in deploy, now 12 vs reference 64\", \"running pinned at 12.0 while waiting_max rises to 29\", \"p95_ttft_s 3.95 vs normal 0.46, p95_latency approaching 10s SLO\", \"prompt_tokens_mean ~150 similar to normal 184, arrivals ~2.8 rps normal\", \"kv_usage_pct_max ~0.89% with 0 preemptions, so not KV starvation\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 12 below normal running 15, causing queueing and high TTFT despite low KV use and normal traffic/prompt length. Restore reference max_num_seqs=64.\"}",
+  "usage": {
+   "completion_tokens": 593,
+   "prompt_tokens": 1493,
+   "total_tokens": 2086,
+   "completion_tokens_details": {
+    "reasoning_tokens": 377
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 628
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "9042000c4cb569a064db1ea80726c3d6c4cfe14c09d65de9ab59893d4b401c1f",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.92,
+    "evidence": [
+     "max_num_seqs changed 64->12 in deploy, now 12 vs reference 64",
+     "running pinned at 12.0 while waiting_max rises to 29",
+     "p95_ttft_s 3.95 vs normal 0.46, p95_latency approaching 10s SLO",
+     "prompt_tokens_mean ~150 similar to normal 184, arrivals ~2.8 rps normal",
+     "kv_usage_pct_max ~0.89% with 0 preemptions, so not KV starvation"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 64
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency capped at 12 below normal running 15, causing queueing and high TTFT despite low KV use and normal traffic/prompt length. Restore reference max_num_seqs=64.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.92, \"evidence\": [\"max_num_seqs changed 64->12 in deploy, now 12 vs reference 64\", \"running pinned at 12.0 while waiting_max rises to 29\", \"p95_ttft_s 3.95 vs normal 0.46, p95_latency approaching 10s SLO\", \"prompt_tokens_mean ~150 similar to normal 184, arrivals ~2.8 rps normal\", \"kv_usage_pct_max ~0.89% with 0 preemptions, so not KV starvation\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 12 below normal running 15, causing queueing and high TTFT despite low KV use and normal traffic/prompt length. Restore reference max_num_seqs=64.\"}",
+    "usage": {
+     "completion_tokens": 593,
+     "prompt_tokens": 1493,
+     "total_tokens": 2086,
+     "completion_tokens_details": {
+      "reasoning_tokens": 377
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 628
+     }
+    }
+   }
+  }
+ ]
+}

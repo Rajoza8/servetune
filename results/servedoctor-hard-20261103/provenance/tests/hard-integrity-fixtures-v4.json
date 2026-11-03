@@ -1,0 +1,15 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T15:28:47.365672+00:00",
+  "scope": "Invented public records and fake /proc only; no real study generation/access, network, GPU, API or ledger calls.",
+  "supersedes": "hard-integrity-fixtures-v3.json",
+  "returncode": 0,
+  "tests": 23,
+  "stdout": "",
+  "stderr": "----------------------------------------------------------------------\nRan 23 tests in 0.226s\n\nOK\n",
+  "files_sha256": {
+    "hard_integrity.py": "766ac5dd1daff7e590045cecf625e0bdf55be0cde28abf3e7e3a1ce629d0f801",
+    "hard_job_observer.py": "661e2b70791daa8c7b83e290266fa03bfa74d9dba7a9de378a7c8371daa25158",
+    "test_hard_integrity.py": "d85285709ce5da868a931224de4c747a6b61e2abf2de742a6bd0c92cdb310353"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-02T23:26:17.125297+00:00",
+  "helper": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/key_runner.py",
+    "sha256": "d262566e97f06691cbcedf1ac2b93d5df23f5b3f54be91007a0bd4cfdcc04689"
+  },
+  "tests": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/key_runner_stub_test.py",
+    "sha256": "c5f1952a1fa10abc7f166ea1f76027d5f00705ed1aabbfa944f89d79fdcba047"
+  },
+  "tests_run": 22,
+  "returncode": 0,
+  "compile_passed": true,
+  "stdout": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/key-runner-fixtures.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/key-runner-fixtures.stderr",
+    "sha256": "225874cf9629a99e4a9a234a22536f8e924d736afde74a61e09e81cf5d75edc7"
+  },
+  "remote_child_sha256": "e016fa0da62bf796c5e830b51e7c5196f2ff0cdd5041d23bb1f69d6b2a8bd23e",
+  "remote_code_sha256": "267fe3f8ba53fc353c96f6c4f4b63ff742112156239f5a58e11f3f24dca5a2fc",
+  "original97_file_unchanged": true,
+  "credential_snapshot": "Only user environment inside serve; encrypted SSH stdin; no files/logs/argv.",
+  "stopped_startup_allowed_without_dispatch": true,
+  "every_dispatch_requires_running_scope_no_pending_and_port": true,
+  "financial_behavior_unchanged": true,
+  "scope": "Invented credentials, fake transports/processes; no actual key/env/provider/GPU/model/API actions.",
+  "frozen": true
+}

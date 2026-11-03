@@ -1,0 +1,15 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-03T02:12:43.913333+00:00",
+  "operation": "offer_discovery_only",
+  "completed": false,
+  "failure": "No verified US offer met the operator-selected $1.55/hour ceiling; cheapest observed US offer was $1.5531777777777778/hour",
+  "provider_CREATE_dispatched": false,
+  "gpu_rental_created": false,
+  "discovery": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-offer-discovery-attempt1.json",
+    "sha256": "a6807af54f76b4f2ba68e9167e3884ff29531ffd7fab5110e0e940e6743540f4"
+  },
+  "next_attempt_reason": "Raise only the operator rate ceiling to $1.65/hour while retaining the authorized total $43 cap and fixed three-hour clock. Maximum plan including shutdown remains about $42.54. No scientific change."
+}

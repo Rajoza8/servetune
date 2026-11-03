@@ -1,0 +1,21 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "phase": "hard-bootstrap-calibration-attempt11",
+  "returncode": 1,
+  "stop_confirmed": true,
+  "deadline_epoch": 1793643848.663869,
+  "work_deadline_epoch": 1793643668.663869,
+  "command_sha256": "722463eb61c247ec11fee721487f4e3c4d1ca3c2d757c561550d719f125d78be",
+  "start_request_returncode": 1,
+  "start_request_queued": true,
+  "queued_start_evidence": {
+    "requested_epoch": 1793638449.3239198,
+    "outcome_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0008-start-outcome.json",
+    "outcome_sha256": "fe9eb761f910d0207a52222da4c784698b857cc5ed64da08764e9d278bc9409b"
+  },
+  "start_queue_deadline_epoch": 1793638569.3239198,
+  "watchdog_pid": 10022,
+  "failure_class": "TimeoutError",
+  "stop_command_returncode": 0,
+  "finished_epoch": 1793638571.661723
+}

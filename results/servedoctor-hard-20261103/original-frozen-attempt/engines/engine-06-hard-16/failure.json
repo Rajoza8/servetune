@@ -1,0 +1,9 @@
+{
+  "stage": "engine_start",
+  "incident_id": null,
+  "group_ids": [
+    "hard-16"
+  ],
+  "error": "EngineError",
+  "at": "2026-11-02T22:51:02.933603+00:00"
+}

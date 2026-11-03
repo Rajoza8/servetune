@@ -1,0 +1,13 @@
+{
+  "failed_run": {
+    "tests": 311,
+    "duration_s": 3.027,
+    "failures": 1,
+    "test": "test_region_cpu_reliability_and_full_transfer_allowance_are_enforced"
+  },
+  "reason": "The declared invalid transfer-price fixture0.0351/GB is within the newly increased aggregate4.00 network allowance. Increase only the invented invalid fixture to0.0401/GB, whose100GB download alone exceeds4.00. No scientific or actual recorded evidence changed.",
+  "old_fixture": 0.0351,
+  "new_fixture": 0.0401,
+  "network_reserve_usd": 4,
+  "cap_usd": 40
+}

@@ -1,0 +1,97 @@
+{
+  "project": "servedoctor-hard15-inference-20261103",
+  "analysis_project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "instance_id": 58905385,
+  "rental_scope_sha256": "7da4c657be8e5e6bf971e5e017a24b02385d6c0f3221daa20ae64e7eb7cedce7",
+  "original_recording_instance_id": 58866756,
+  "original_recording_gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+  "excluded_ids": [
+    "hard-16"
+  ],
+  "original_freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "binding": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/binding.json",
+    "sha256": "7f50f4693e5fa4774c9538b7274c241923a67d75e2c24b679d9a50e6f8bbc5c9"
+  },
+  "budget_amendment": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/gpu-budget-amendment-43-20261102.json",
+    "sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a"
+  },
+  "authorization": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-analysis-exclusion-20261102T2306Z.json",
+    "sha256": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9"
+  },
+  "original_preservation": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/preservation-receipt.json",
+    "sha256": "0bb31a20b50ebb5db6c7680f54b22849c76cf007c9b0aa99f6d68bd4dfeb5af8"
+  },
+  "canonical_ledger_sha256": "7c5fa20826516ae5dc6a17ca92a603516c85eda92248ebf9acfe7ed8d96a8385",
+  "remote_ledger_sha256": "7c5fa20826516ae5dc6a17ca92a603516c85eda92248ebf9acfe7ed8d96a8385",
+  "ledger_summary": {
+    "caps_usd": {
+      "meta": 50.0,
+      "baseten": 20.0
+    },
+    "accounted_usd": {
+      "meta": 15.105682,
+      "baseten": 0.0
+    },
+    "warnings": [],
+    "calls": 633
+  },
+  "original_failed_pipeline_outcome": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/outcome.json",
+    "sha256": "62d9b4be48ba341579b84f59dadf47a12c0c84dc758df882c9bc1bac7c9a4a20"
+  },
+  "offline_recovery_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-offline-materialization-attempt2/receipt.json",
+    "sha256": "8ae16d76ae4c7ff9829282f93d31fcdd6f9140e3f59b7965d07ceaa84fa1f97a"
+  },
+  "offline_recovery_adapter": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/finalize_inference_offline_rental_v2.py",
+    "sha256": "309faa6208e0cc414d295e99a51ac12b8a4997a846fab4f590af314c803de223"
+  },
+  "all_required_scientific_artifacts_backed_up": true,
+  "all_remote_artifacts_backed_up": false,
+  "remote_ops_control_tail_unverified": true,
+  "confirmed_absent": true,
+  "stopped_confirmed": true,
+  "owned_work_quiescent": true,
+  "destroyed_epoch": 1793680340.3607738,
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-final-cleanup-attempt1/backup-receipt.json",
+    "sha256": "21dab147b93c3b72f41f05843aeec89140f1d551d78f43627702c626c12c4cf8"
+  },
+  "delete_intent": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/intent-0009-delete.json",
+    "sha256": "b759bb35824b30d491bd9ef389c040966897b99fa98fdda8322872e5b1cd2bb0"
+  },
+  "delete_outcome": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-rental-attempt1/intent-0009-delete-outcome.json",
+    "sha256": "44ca326637b5f99cbf02494a1ae2c8340907fb3827868058f9900167de06ff88"
+  },
+  "delete_reconciliation": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-final-cleanup-attempt1/delete-reconciliation.json",
+    "sha256": "7799ada44968b2f291b85b7c57ef70cf7b34867a6ebcb447ddea38ec926f8d06"
+  },
+  "final_state": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-final-cleanup-attempt1/final-state.json",
+    "sha256": "207e7227843ce8b3f7c12978274d6b0af806af56844acebb2fd6bc86789cd43a"
+  },
+  "gpu_accounting": {
+    "prior_v0_and_five_hard_hosts_usd_upper": 37.552391290596844,
+    "inference_host_cost": {
+      "running_hours": 1.5619995722505782,
+      "compute_usd_upper": 2.317590832000591,
+      "disk_usd_upper": 0.15957029316988253
+    },
+    "total_usd_upper": 40.02955241576732,
+    "remaining_gpu_hours": 0.7021868629588022,
+    "forecast_usd_upper": 41.12017344716242,
+    "shutdown_margin_usd": 0.038829444444444444,
+    "total_cap_usd": 43.0,
+    "network_and_slack_reserved_once": true
+  },
+  "gpu_hours_log_sha256": "94bce6012494b12e5b6b574f8f9946425f0f947382859f02c2a7b360147f550e"
+}

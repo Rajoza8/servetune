@@ -1,0 +1,11 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T16:16:07.157847+00:00",
+  "phase": "hard-bootstrap-calibration-attempt7",
+  "selected_offer_id": 56348541,
+  "create_dispatched": false,
+  "canonical_state_present": false,
+  "root_create_intents": 0,
+  "observed_guard_diagnostic": "Selected offer unavailable",
+  "reason": "Fresh selected offer was absent at helper second-query preflight. Root ran a read-only guard reproduction with intent replaced by a throwing boundary; no mutation was allowed. This does not recover an HTTP response because no CREATE request occurred."
+}

@@ -1,0 +1,21 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "phase": "hard-bootstrap-calibration-attempt8",
+  "returncode": 1,
+  "stop_confirmed": false,
+  "deadline_epoch": 1793641809.284713,
+  "work_deadline_epoch": 1793641629.284713,
+  "command_sha256": "d4c800d5228279b39b3d484f6db6f8f346a31d592f21d32bf48bcb0b6b10c353",
+  "expected_offer_id": 56348541,
+  "expected_machine_id": 138726,
+  "offer_selection_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/offer-selection-attempt7.json",
+    "sha256": "dea61e2bec613b26f74979695f2a70f4e730ba8f66d0a8e836cf6188f317fc34"
+  },
+  "watchdog_pid": 7906,
+  "failure_class": "KeyboardInterrupt",
+  "stop_command_returncode": 0,
+  "reconcile_error_class": "CalledProcessError",
+  "stop_failure": "Read-only reconciliation required; no mutation retry",
+  "finished_epoch": 1793636953.567272
+}

@@ -1,0 +1,10 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+AI agents: READ /etc/vast-agents-guide.md (also linked as ./AGENTS.md) before acting on or describing this instance: it is the operating guide. ('vast-capabilities' shows live state only, not the guide.)
+Cloning into '/workspace/servedoctor-hard/servetune'...
+Traceback (most recent call last):
+  File "/tmp/sd-hard-bootstrap-attempt1/hard_bootstrap.py", line 137, in <module>
+    main()
+  File "/tmp/sd-hard-bootstrap-attempt1/hard_bootstrap.py", line 80, in main
+    raise RuntimeError("Remote servedoctor HEAD differs from root's intended source commit")
+RuntimeError: Remote servedoctor HEAD differs from root's intended source commit

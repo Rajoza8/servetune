@@ -1,0 +1,99 @@
+{
+ "arm": "glimmer_to_spark",
+ "incident": "hard-06",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 16,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.85,
+  "evidence": [
+   "max_model_len cut 4096->1280 at deploy t=0",
+   "http_400=3 errors in t_end 29.0 bucket",
+   "error rate ~0.1 exceeds SLO 0.01",
+   "p95_latency 5.79s within SLO, kv_usage ~1.1% healthy"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Latency and throughput match healthy profile but 400 errors appear after max_model_len was reduced to 1280. Restore to reference 4096 to stop rejecting valid requests. KV usage ~1% shows memory headroom.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"max_model_len cut 4096->1280 at deploy t=0\", \"http_400=3 errors in t_end 29.0 bucket\", \"error rate ~0.1 exceeds SLO 0.01\", \"p95_latency 5.79s within SLO, kv_usage ~1.1% healthy\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and throughput match healthy profile but 400 errors appear after max_model_len was reduced to 1280. Restore to reference 4096 to stop rejecting valid requests. KV usage ~1% shows memory headroom.\"}",
+  "usage": {
+   "completion_tokens": 982,
+   "prompt_tokens": 1520,
+   "total_tokens": 2502,
+   "completion_tokens_details": {
+    "reasoning_tokens": 799
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "e3e68c52c5ebd36d36ca329c354bbb3f495e1ce2050b4686b6211a8daf659086",
+   "monitor": {
+    "status": "anomaly",
+    "summary": "Error rate spike: 3 http_400 errors in last 10s vs ~32 arrivals ~9% > SLO 1%. p95 latency 5.79s within SLO, no shedding.",
+    "raw_output": "{\"status\": \"anomaly\", \"summary\": \"Error rate spike: 3 http_400 errors in last 10s vs ~32 arrivals ~9% > SLO 1%. p95 latency 5.79s within SLO, no shedding.\"}",
+    "usage": {
+     "prompt_tokens": 1034,
+     "total_tokens": 1285,
+     "completion_tokens": 251,
+     "prompt_tokens_details": null
+    },
+    "valid_output": true
+   },
+   "escalated": true,
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.85,
+    "evidence": [
+     "max_model_len cut 4096->1280 at deploy t=0",
+     "http_400=3 errors in t_end 29.0 bucket",
+     "error rate ~0.1 exceeds SLO 0.01",
+     "p95_latency 5.79s within SLO, kv_usage ~1.1% healthy"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency and throughput match healthy profile but 400 errors appear after max_model_len was reduced to 1280. Restore to reference 4096 to stop rejecting valid requests. KV usage ~1% shows memory headroom.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"max_model_len cut 4096->1280 at deploy t=0\", \"http_400=3 errors in t_end 29.0 bucket\", \"error rate ~0.1 exceeds SLO 0.01\", \"p95_latency 5.79s within SLO, kv_usage ~1.1% healthy\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and throughput match healthy profile but 400 errors appear after max_model_len was reduced to 1280. Restore to reference 4096 to stop rejecting valid requests. KV usage ~1% shows memory headroom.\"}",
+    "usage": {
+     "completion_tokens": 982,
+     "prompt_tokens": 1520,
+     "total_tokens": 2502,
+     "completion_tokens_details": {
+      "reasoning_tokens": 799
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,339 @@
+{
+ "arm": "wonder",
+ "incident": "hard-08",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "batch_limit_too_low",
+  "confidence": 0.68,
+  "evidence": [
+   "Arrivals rose from ~2.8 rps in the normal profile to 6-7.4 rps",
+   "Running requests rose from 15 to 57 and engine logs show Running hitting the 64-sequence cap with waiting requests",
+   "p95 latency rose from 5.81s to 9.67s, approaching the 10s SLO",
+   "GPU KV cache usage remains only ~5% maximum, showing memory headroom for more sequences",
+   "Prompt length remains near normal at ~150-260 tokens, ruling out a long-prompt shift"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_num_seqs",
+    "value": 128
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Concurrency is capped by max_num_seqs=64 while KV cache is nearly empty. Raising the sequence limit should absorb the higher offered load and reduce queueing without shedding traffic.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.68, \"evidence\": [\"Arrivals rose from ~2.8 rps in the normal profile to 6-7.4 rps\", \"Running requests rose from 15 to 57 and engine logs show Running hitting the 64-sequence cap with waiting requests\", \"p95 latency rose from 5.81s to 9.67s, approaching the 10s SLO\", \"GPU KV cache usage remains only ~5% maximum, showing memory headroom for more sequences\", \"Prompt length remains near normal at ~150-260 tokens, ruling out a long-prompt shift\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 128}], \"explanation\": \"Concurrency is capped by max_num_seqs=64 while KV cache is nearly empty. Raising the sequence limit should absorb the higher offered load and reduce queueing without shedding traffic.\"}",
+  "usage": {
+   "completion_tokens": 1519,
+   "prompt_tokens": 3336,
+   "total_tokens": 4855,
+   "completion_tokens_details": {
+    "reasoning_tokens": 1297
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 240
+ },
+ "checkpoints": 8,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "be02d017517e2b80bbc79d920bef955bb197edc3ff1dd363521e6ca9917001bf",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.55-6.11s < 10s SLO, no errors or shedding",
+     "arrivals 2.6-3.2 rps near normal 2.8 rps",
+     "waiting_max 0.0 and running 11-18 near normal 15",
+     "KV usage 0.89-1.93% near normal 1.26%, no preemptions",
+     "GPU only engine process, util/power normal"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match healthy profile; gpu_memory_utilization 0.86 vs 0.9 change has no impact given ~1-2% KV usage. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.55-6.11s < 10s SLO, no errors or shedding\", \"arrivals 2.6-3.2 rps near normal 2.8 rps\", \"waiting_max 0.0 and running 11-18 near normal 15\", \"KV usage 0.89-1.93% near normal 1.26%, no preemptions\", \"GPU only engine process, util/power normal\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match healthy profile; gpu_memory_utilization 0.86 vs 0.9 change has no impact given ~1-2% KV usage. No incident.\"}",
+    "usage": {
+     "completion_tokens": 472,
+     "prompt_tokens": 1470,
+     "total_tokens": 1942,
+     "completion_tokens_details": {
+      "reasoning_tokens": 290
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 628
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "5dcdac66861bb365abc5cafb00954709e4b8332eaab34299b5313cb8c35615f9",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.5-7.1s < 10.0s SLO",
+     "waiting_max 0.0 and no preemptions in all buckets",
+     "KV usage max 2.76% vs 1.26% normal, no starvation",
+     "arrivals 2.6-3.8 rps near normal 2.8 rps, shed 0",
+     "running 11-21, gen throughput near normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All SLOs met: latency, waiting, KV and throughput match healthy profile. The gpu_memory_utilization 0.90->0.86 change is immaterial at ~2% KV usage. No action needed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.5-7.1s < 10.0s SLO\", \"waiting_max 0.0 and no preemptions in all buckets\", \"KV usage max 2.76% vs 1.26% normal, no starvation\", \"arrivals 2.6-3.8 rps near normal 2.8 rps, shed 0\", \"running 11-21, gen throughput near normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met: latency, waiting, KV and throughput match healthy profile. The gpu_memory_utilization 0.90->0.86 change is immaterial at ~2% KV usage. No action needed.\"}",
+    "usage": {
+     "completion_tokens": 354,
+     "prompt_tokens": 1937,
+     "total_tokens": 2291,
+     "completion_tokens_details": {
+      "reasoning_tokens": 164
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "ddf5f2eba287f95753011b3708ee266a2e87f967c4f0941aa84e7a283d20edb6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.5-7.1s < SLO 10s in all buckets",
+     "arrivals ~2.5-3.8 rps vs normal 2.8 rps, ok_rps similar",
+     "waiting_max 0.0 and preemptions 0.0, running 11-21",
+     "KV usage max ~2.8% vs normal 1.26%, no starvation",
+     "errors/shed 0, GPU only engine process"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics within normal profile and SLO: latency below 10s, no queueing, errors, or KV pressure despite gpu_memory_utilization 0.86 change.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.5-7.1s < SLO 10s in all buckets\", \"arrivals ~2.5-3.8 rps vs normal 2.8 rps, ok_rps similar\", \"waiting_max 0.0 and preemptions 0.0, running 11-21\", \"KV usage max ~2.8% vs normal 1.26%, no starvation\", \"errors/shed 0, GPU only engine process\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics within normal profile and SLO: latency below 10s, no queueing, errors, or KV pressure despite gpu_memory_utilization 0.86 change.\"}",
+    "usage": {
+     "completion_tokens": 316,
+     "prompt_tokens": 2403,
+     "total_tokens": 2719,
+     "completion_tokens_details": {
+      "reasoning_tokens": 130
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "4a71ed7118c0d61894d21491d41b0b88f1119433fac6e21cf30b9d292ce40fd3",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95 latency 5.55-7.06s < SLO 10.0s in all buckets",
+     "arrivals 2.5-3.8 rps near normal 2.8 rps, waiting_max 0.0, no shed",
+     "KV usage max ~2.76% and preemptions 0.0, running 11-25 < max_num_seqs 64",
+     "prompt_tokens_mean similar to normal 184, gen throughput near normal"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "All metrics match healthy profile: latency within SLO, no queueing, errors, shed, or KV pressure despite small gpu_memory_utilization change.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95 latency 5.55-7.06s < SLO 10.0s in all buckets\", \"arrivals 2.5-3.8 rps near normal 2.8 rps, waiting_max 0.0, no shed\", \"KV usage max ~2.76% and preemptions 0.0, running 11-25 < max_num_seqs 64\", \"prompt_tokens_mean similar to normal 184, gen throughput near normal\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All metrics match healthy profile: latency within SLO, no queueing, errors, shed, or KV pressure despite small gpu_memory_utilization change.\"}",
+    "usage": {
+     "completion_tokens": 346,
+     "prompt_tokens": 2888,
+     "total_tokens": 3234,
+     "completion_tokens_details": {
+      "reasoning_tokens": 166
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2437ff115414196d453dd4c8456ab82bb1a4c6234c721a11f8d35f9c17e13523",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.72,
+    "evidence": [
+     "p95 latency 7.8s at t=149 below 10s SLO despite brief arrival rise",
+     "waiting_max 0.0 and no shed or errors in all buckets",
+     "KV usage max 4.06% with 0 preemptions/s",
+     "ok_rps 6.2/s roughly matches arrivals 6.9/s, throughput scaled to 888.9 gen tokens/s",
+     "prompt_tokens_mean 163 near normal 184, no length shift"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "A short arrival increase is being absorbed: completions and generation throughput rose, queues remain empty, KV pressure is negligible, and latency remains within SLO. No disruptive change is warranted.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.72, \"evidence\": [\"p95 latency 7.8s at t=149 below 10s SLO despite brief arrival rise\", \"waiting_max 0.0 and no shed or errors in all buckets\", \"KV usage max 4.06% with 0 preemptions/s\", \"ok_rps 6.2/s roughly matches arrivals 6.9/s, throughput scaled to 888.9 gen tokens/s\", \"prompt_tokens_mean 163 near normal 184, no length shift\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"A short arrival increase is being absorbed: completions and generation throughput rose, queues remain empty, KV pressure is negligible, and latency remains within SLO. No disruptive change is warranted.\"}",
+    "usage": {
+     "completion_tokens": 1326,
+     "prompt_tokens": 3097,
+     "total_tokens": 4423,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1141
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "81d40eddfb99c66395ef636c8d484f4cff1ff14c83b012686eb556101eb86868",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.87,
+    "evidence": [
+     "p95 latency 7.5-8.4s in latest buckets, below 10s SLO",
+     "waiting_max=0.0 and no shed/errors despite arrivals rising to ~6.4 rps",
+     "ok_rps ~5-7.6 rps matches arrivals; gen_tokens_per_s rose to ~850/s",
+     "running 38-51 below max_num_seqs=64; KV usage max ~4.2% with 0 preemptions",
+     "prompt_tokens_mean ~120-244, similar to normal 184"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Traffic increased but the engine is absorbing it: throughput scales, queues remain empty, KV pressure is negligible, and latency stays within SLO. No disruptive change is warranted.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.87, \"evidence\": [\"p95 latency 7.5-8.4s in latest buckets, below 10s SLO\", \"waiting_max=0.0 and no shed/errors despite arrivals rising to ~6.4 rps\", \"ok_rps ~5-7.6 rps matches arrivals; gen_tokens_per_s rose to ~850/s\", \"running 38-51 below max_num_seqs=64; KV usage max ~4.2% with 0 preemptions\", \"prompt_tokens_mean ~120-244, similar to normal 184\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Traffic increased but the engine is absorbing it: throughput scales, queues remain empty, KV pressure is negligible, and latency stays within SLO. No disruptive change is warranted.\"}",
+    "usage": {
+     "completion_tokens": 494,
+     "prompt_tokens": 3306,
+     "total_tokens": 3800,
+     "completion_tokens_details": {
+      "reasoning_tokens": 298
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "f74ffa0365674c4779d29da843452bca7133bdf6d4504c7379bbff5ed2dc23ba",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.85,
+    "evidence": [
+     "p95 latency 7.5-8.4s remains below 10s SLO despite arrivals rising to ~6-7 rps",
+     "waiting_max=0.0 and no preemptions in all buckets, running 37-51 below max_num_seqs=64",
+     "KV usage max ~4.2% with no errors or shed requests",
+     "prompt_tokens_mean ~120-260 similar to normal 184, no prompt mix shift",
+     "only VLLM engine process on GPU, GPU util/power match normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Traffic increased but system is absorbing it: no queueing, preemptions, errors, or SLO breach, and KV/GPU headroom remains. No disruptive fix warranted; monitor.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.85, \"evidence\": [\"p95 latency 7.5-8.4s remains below 10s SLO despite arrivals rising to ~6-7 rps\", \"waiting_max=0.0 and no preemptions in all buckets, running 37-51 below max_num_seqs=64\", \"KV usage max ~4.2% with no errors or shed requests\", \"prompt_tokens_mean ~120-260 similar to normal 184, no prompt mix shift\", \"only VLLM engine process on GPU, GPU util/power match normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Traffic increased but system is absorbing it: no queueing, preemptions, errors, or SLO breach, and KV/GPU headroom remains. No disruptive fix warranted; monitor.\"}",
+    "usage": {
+     "completion_tokens": 590,
+     "prompt_tokens": 3311,
+     "total_tokens": 3901,
+     "completion_tokens_details": {
+      "reasoning_tokens": 393
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "b3c60a30c7d6d769ee02986f7773ac19be7cbc4b672bfe62afb17653a263d2af",
+   "decision": {
+    "incident": true,
+    "root_cause": "batch_limit_too_low",
+    "confidence": 0.68,
+    "evidence": [
+     "Arrivals rose from ~2.8 rps in the normal profile to 6-7.4 rps",
+     "Running requests rose from 15 to 57 and engine logs show Running hitting the 64-sequence cap with waiting requests",
+     "p95 latency rose from 5.81s to 9.67s, approaching the 10s SLO",
+     "GPU KV cache usage remains only ~5% maximum, showing memory headroom for more sequences",
+     "Prompt length remains near normal at ~150-260 tokens, ruling out a long-prompt shift"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_num_seqs",
+      "value": 128
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Concurrency is capped by max_num_seqs=64 while KV cache is nearly empty. Raising the sequence limit should absorb the higher offered load and reduce queueing without shedding traffic.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.68, \"evidence\": [\"Arrivals rose from ~2.8 rps in the normal profile to 6-7.4 rps\", \"Running requests rose from 15 to 57 and engine logs show Running hitting the 64-sequence cap with waiting requests\", \"p95 latency rose from 5.81s to 9.67s, approaching the 10s SLO\", \"GPU KV cache usage remains only ~5% maximum, showing memory headroom for more sequences\", \"Prompt length remains near normal at ~150-260 tokens, ruling out a long-prompt shift\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 128}], \"explanation\": \"Concurrency is capped by max_num_seqs=64 while KV cache is nearly empty. Raising the sequence limit should absorb the higher offered load and reduce queueing without shedding traffic.\"}",
+    "usage": {
+     "completion_tokens": 1519,
+     "prompt_tokens": 3336,
+     "total_tokens": 4855,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1297
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

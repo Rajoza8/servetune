@@ -1,0 +1,14 @@
+{
+  "instance_id": 58905385,
+  "argv": [
+    "rsync",
+    "-arz",
+    "--timeout=45",
+    "-e",
+    "ssh -F /dev/null -i '/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/vast-preflight-20261029/ssh_ed25519' -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new -o 'UserKnownHostsFile=/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt2/rsync-known_hosts' -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -p 4999",
+    "vastai_kaalia@208.68.65.246::58905385//workspace/servedoctor-hard/",
+    "/tmp/sd-hard15-copy-58905385-attempt2/"
+  ],
+  "at_epoch": 1793678977.165872,
+  "purpose": "Official stopped-instance rsync recovery; original failing SCP preserved; no START or model call"
+}

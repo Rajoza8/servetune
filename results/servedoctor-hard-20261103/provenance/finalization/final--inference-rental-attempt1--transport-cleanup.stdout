@@ -1,0 +1,1 @@
+{"cleanup": [{"name": "ssh", "pid": 61651, "already_exited": true}, {"name": "relay", "pid": 61648, "signal": "SIGTERM", "exited": true}], "stopped": true, "guardian": {"pid": 61674, "signal": "SIGTERM", "exited": true}}

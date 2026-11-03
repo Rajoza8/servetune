@@ -1,0 +1,14 @@
+{
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "gpu_index": 0,
+  "gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+  "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "gpu_memory_mib": 97887.0,
+  "driver_version": "595.99.02",
+  "vllm_version": "0.26.1rc1.dev608+g99a10304d",
+  "captured_after_guide_review": true,
+  "guide_sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f",
+  "same_physical_calibration_gpu": true,
+  "at_utc": "2026-11-02T21:00:35.389782+00:00"
+}

@@ -1,0 +1,387 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-09",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": null,
+ "checkpoints": 12,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "55d8abb851721db4cb3f15334f123e5dc92088422ddaba197613c9ab318095fa",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.34 at t=29 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' in recent buckets",
+     "waiting_max 0.0 and running ~9.5 vs normal 15.0",
+     "kv_usage_pct_max 0.98% well below pressure",
+     "gpu_util_pct 100.0 with power ~449.97 W matching normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and queue metrics are within SLO and match normal profile. No contention or cache pressure observed after gpu_memory_utilization change.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.34 at t=29 < SLO 10.0\", \"shed_rps 0.0 and errors '-' in recent buckets\", \"waiting_max 0.0 and running ~9.5 vs normal 15.0\", \"kv_usage_pct_max 0.98% well below pressure\", \"gpu_util_pct 100.0 with power ~449.97 W matching normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency, shed and queue metrics are within SLO and match normal profile. No contention or cache pressure observed after gpu_memory_utilization change.\"}",
+    "usage": {
+     "prompt_tokens": 1487,
+     "total_tokens": 1855,
+     "completion_tokens": 368,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "b9aba345ea422e677fa49212fc6aeeed78a33dc1c05e9a732ecd044637d05310",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.31-6.01 < SLO 10.0",
+     "shed_rps 0.0 and errors absent across recent buckets",
+     "arrivals_rps 2.1-3.2 close to normal_profile 2.8",
+     "waiting_max 0.0 and running ~9-17 vs normal 15.0",
+     "kv_usage_pct_max ~0.98-1.82% similar to normal 1.26%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLO and traffic matches the healthy reference profile. No queueing or KV pressure is observed, so no incident is present.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.31-6.01 < SLO 10.0\", \"shed_rps 0.0 and errors absent across recent buckets\", \"arrivals_rps 2.1-3.2 close to normal_profile 2.8\", \"waiting_max 0.0 and running ~9-17 vs normal 15.0\", \"kv_usage_pct_max ~0.98-1.82% similar to normal 1.26%\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLO and traffic matches the healthy reference profile. No queueing or KV pressure is observed, so no incident is present.\"}",
+    "usage": {
+     "prompt_tokens": 1975,
+     "total_tokens": 2361,
+     "completion_tokens": 386,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "4fff5077fc0156c6f5feead56a15ad84c944dd9e1ab3c5b58992b9ae23201a25",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.66 at t=89 < SLO 10.0",
+     "shed_rps 0.0 and errors '-' across recent buckets",
+     "waiting_max 0.0 and running ~14.9 < max_num_seqs 64",
+     "kv_usage_pct_max 1.32% well below saturation",
+     "gpu_util_pct 100.0 with power ~450W matching normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLO, queue is empty and KV usage is low. Recent deploy only lowered gpu_memory_utilization to 0.86 with no degradation observed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.66 at t=89 < SLO 10.0\", \"shed_rps 0.0 and errors '-' across recent buckets\", \"waiting_max 0.0 and running ~14.9 < max_num_seqs 64\", \"kv_usage_pct_max 1.32% well below saturation\", \"gpu_util_pct 100.0 with power ~450W matching normal profile\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLO, queue is empty and KV usage is low. Recent deploy only lowered gpu_memory_utilization to 0.86 with no degradation observed.\"}",
+    "usage": {
+     "prompt_tokens": 2440,
+     "total_tokens": 2754,
+     "completion_tokens": 314,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "e3f2170c3981d33b29c4ceeee29cae0d3fe6684874125e4aceb5416165c1f84a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.28-6.44 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "arrivals_rps 1.6-3.2 near normal 2.8",
+     "running 9-20 with waiting_max 0.0",
+     "kv_usage_pct_max 0.98-2.13 similar to normal 1.26"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLO and traffic matches normal profile. GPU is fully utilized with no queueing or KV pressure. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.28-6.44 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"arrivals_rps 1.6-3.2 near normal 2.8\", \"running 9-20 with waiting_max 0.0\", \"kv_usage_pct_max 0.98-2.13 similar to normal 1.26\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLO and traffic matches normal profile. GPU is fully utilized with no queueing or KV pressure. No incident.\"}",
+    "usage": {
+     "prompt_tokens": 2939,
+     "total_tokens": 3284,
+     "completion_tokens": 345,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "0cafaeec29280c38d6681ee73200572e5c424ed963385efd9d22a4533da22101",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.31-6.44 < SLO 10.0",
+     "shed_rps 0.0 and errors absent across recent buckets",
+     "arrivals_rps 1.6-3.3 around normal profile 2.8",
+     "waiting_max 0.0 and kv_usage_pct_max ~1-2%",
+     "gpu_util_pct 100 with power ~450W matching normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs and match the healthy reference profile. No queue buildup or KV pressure is observed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.31-6.44 < SLO 10.0\", \"shed_rps 0.0 and errors absent across recent buckets\", \"arrivals_rps 1.6-3.3 around normal profile 2.8\", \"waiting_max 0.0 and kv_usage_pct_max ~1-2%\", \"gpu_util_pct 100 with power ~450W matching normal profile\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs and match the healthy reference profile. No queue buildup or KV pressure is observed.\"}",
+    "usage": {
+     "prompt_tokens": 3144,
+     "total_tokens": 3465,
+     "completion_tokens": 321,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "60f37921307189840107200c2097d39d394075ffce2c185ad318ce493171d8ca",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 6.75 < SLO 10.0 in latest bucket",
+     "shed_rps 0.0 and errors absent across recent buckets",
+     "arrivals_rps ~2.9 close to normal_profile 2.8 rps",
+     "waiting_max 0.0 and running ~21.2 within normal range",
+     "gpu_util_pct 100.0 and power ~450W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, arrival rate and queueing match the healthy reference profile, and no resource contention is observed. No incident requires action.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 6.75 < SLO 10.0 in latest bucket\", \"shed_rps 0.0 and errors absent across recent buckets\", \"arrivals_rps ~2.9 close to normal_profile 2.8 rps\", \"waiting_max 0.0 and running ~21.2 within normal range\", \"gpu_util_pct 100.0 and power ~450W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, arrival rate and queueing match the healthy reference profile, and no resource contention is observed. No incident requires action.\"}",
+    "usage": {
+     "prompt_tokens": 3350,
+     "total_tokens": 3759,
+     "completion_tokens": 409,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 210,
+   "observation_sha256": "1a619f0caeb73887fe10a464387f07879a8d50a28349e127c5f7c3b712987bc8",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s ~5.8-6.7 < SLO 10.0",
+     "shed_rps 0.0 and errors absent across recent buckets",
+     "arrivals_rps 2.2-3.9 around normal profile 2.8",
+     "running 10-22 < max_num_seqs 64 with waiting_max 0.0",
+     "kv_usage_pct_max 1.0-2.3% low, no preemptions"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, load matches normal profile, engine is not queueing and KV usage is low. Recent gpu_memory_utilization reduction has not caused degradation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s ~5.8-6.7 < SLO 10.0\", \"shed_rps 0.0 and errors absent across recent buckets\", \"arrivals_rps 2.2-3.9 around normal profile 2.8\", \"running 10-22 < max_num_seqs 64 with waiting_max 0.0\", \"kv_usage_pct_max 1.0-2.3% low, no preemptions\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, load matches normal profile, engine is not queueing and KV usage is low. Recent gpu_memory_utilization reduction has not caused degradation.\"}",
+    "usage": {
+     "prompt_tokens": 3352,
+     "total_tokens": 3739,
+     "completion_tokens": 387,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 240,
+   "observation_sha256": "28f31d750d1c12d5a1cd46c877888ff95093f31b60a317db0c0f1e8e00cd210c",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s max 6.78 < SLO 10.0 in recent buckets",
+     "shed_rps 0.0 and errors absent across 10s buckets",
+     "waiting_max 0.0 and running <=22.5 < max_num_seqs 64",
+     "gpu_util_pct 100.0 and gpu_power_w ~450W with low KV usage ~2.5%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs, queue is empty and GPU is fully utilized without contention. Recent gpu_memory_utilization reduction has not caused degradation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s max 6.78 < SLO 10.0 in recent buckets\", \"shed_rps 0.0 and errors absent across 10s buckets\", \"waiting_max 0.0 and running <=22.5 < max_num_seqs 64\", \"gpu_util_pct 100.0 and gpu_power_w ~450W with low KV usage ~2.5%\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency, shed and error rates are within SLOs, queue is empty and GPU is fully utilized without contention. Recent gpu_memory_utilization reduction has not caused degradation.\"}",
+    "usage": {
+     "prompt_tokens": 3352,
+     "total_tokens": 3754,
+     "completion_tokens": 402,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 270,
+   "observation_sha256": "c782f3a76a958b76f58380179aea2d1f28587c5a6646ccb1c7ff18ee7ee8d6d4",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.59-6.78 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "arrivals_rps 2.6-3.9 near normal 2.8",
+     "waiting_max 0.0 and kv_usage_pct_max ~1.5-2.5%",
+     "gpu_util_pct 100.0 with power ~450W consistent with normal profile"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs and traffic matches the healthy reference profile. No queue buildup or KV pressure is observed.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.59-6.78 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"arrivals_rps 2.6-3.9 near normal 2.8\", \"waiting_max 0.0 and kv_usage_pct_max ~1.5-2.5%\", \"gpu_util_pct 100.0 with power ~450W consistent with normal profile\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLOs and traffic matches the healthy reference profile. No queue buildup or KV pressure is observed.\"}",
+    "usage": {
+     "prompt_tokens": 3351,
+     "total_tokens": 3665,
+     "completion_tokens": 314,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 300,
+   "observation_sha256": "e0fab5755ace76c6a1d660b26b0bb7b5fa8e372420bd041d78e60b08bd3e4bbf",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.68-6.78 < SLO 10.0 in recent buckets",
+     "shed_rps 0.0 and errors '-' across last 10s buckets",
+     "waiting_max 0.0 and running 12-22 near normal 15.0",
+     "arrivals_rps 2.0-3.9 around normal 2.8 with gpu_util_pct 100.0",
+     "kv_usage_pct_max 1.31-2.51% comparable to normal 1.26%"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLO, queue is empty, arrival rate matches normal profile and GPU is fully utilized as expected. No incident detected.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.68-6.78 < SLO 10.0 in recent buckets\", \"shed_rps 0.0 and errors '-' across last 10s buckets\", \"waiting_max 0.0 and running 12-22 near normal 15.0\", \"arrivals_rps 2.0-3.9 around normal 2.8 with gpu_util_pct 100.0\", \"kv_usage_pct_max 1.31-2.51% comparable to normal 1.26%\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLO, queue is empty, arrival rate matches normal profile and GPU is fully utilized as expected. No incident detected.\"}",
+    "usage": {
+     "prompt_tokens": 3350,
+     "total_tokens": 3800,
+     "completion_tokens": 450,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 330,
+   "observation_sha256": "a5fd45d16aa95a8c185d1dd1e6178f5be26078e4a850beec7bb33dd7f48988f9",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.59-6.78 < SLO 10.0",
+     "shed_rps 0.0 and errors absent across recent buckets",
+     "waiting_max 0.0 and kv_usage_pct_max ~1-2.5%",
+     "arrivals_rps 2.0-3.9 near normal 2.8 rps",
+     "gpu_util_pct 100.0 with stable power ~450W"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLOs, queue is empty and KV usage low. Recent gpu_memory_utilization reduction has not degraded performance; metrics match normal profile.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.59-6.78 < SLO 10.0\", \"shed_rps 0.0 and errors absent across recent buckets\", \"waiting_max 0.0 and kv_usage_pct_max ~1-2.5%\", \"arrivals_rps 2.0-3.9 near normal 2.8 rps\", \"gpu_util_pct 100.0 with stable power ~450W\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLOs, queue is empty and KV usage low. Recent gpu_memory_utilization reduction has not degraded performance; metrics match normal profile.\"}",
+    "usage": {
+     "prompt_tokens": 3349,
+     "total_tokens": 3692,
+     "completion_tokens": 343,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 360,
+   "observation_sha256": "0e8d93cf587b48a92680747d6960090f2a71d38de1f5fd58d7688428c6e0099d",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.6-6.8 < SLO 10.0",
+     "shed_rps 0.0 and errors absent",
+     "waiting_max 0.0 and running 12-22 < max_num_seqs 64",
+     "kv_usage_pct_max 1.3-2.5% well below saturation",
+     "arrivals_rps 2.0-3.9 around normal profile 2.8 rps"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, shed and error rates are within SLO, queue is empty, KV usage low and GPU fully utilized with normal load. Recent gpu_memory_utilization reduction has not caused degradation.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.6-6.8 < SLO 10.0\", \"shed_rps 0.0 and errors absent\", \"waiting_max 0.0 and running 12-22 < max_num_seqs 64\", \"kv_usage_pct_max 1.3-2.5% well below saturation\", \"arrivals_rps 2.0-3.9 around normal profile 2.8 rps\"], \"actions\": [], \"explanation\": \"Latency, shed and error rates are within SLO, queue is empty, KV usage low and GPU fully utilized with normal load. Recent gpu_memory_utilization reduction has not caused degradation.\"}",
+    "usage": {
+     "prompt_tokens": 3347,
+     "total_tokens": 3735,
+     "completion_tokens": 388,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

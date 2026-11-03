@@ -1,0 +1,23 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58848277,
+  "confirmed_absent": true,
+  "destroyed_epoch": 1793637661.285404,
+  "rental_scope_sha256": "e415e2c68ee66065fd759e63c748eda3db2936280b798ebb981f653b0a694083",
+  "backup_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-loading-host2-backup-attempt1/backup-receipt.json",
+    "sha256": "b517c76573dd3be467281d4f9da99909f7a0e18d886c52890e1ecd1b7ccdf8dd"
+  },
+  "final_state": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/failed-loading-host2-backup-attempt1/final-state.json",
+    "sha256": "8efa7e01fe04553e9b7af8c74cf95085cb75d62c7e43a05103ab7290993867b1"
+  },
+  "host_cost": {
+    "running_hours": 0.3477373633119795,
+    "compute_usd_upper": 0.5872124941794961,
+    "disk_usd_upper": 0.014489056804665813
+  },
+  "network_slack_reserved_once": true,
+  "stop_unconfirmed_until_deletion": true,
+  "closure_reason": "GET-confirmed deletion after failed image pull; STOP unconfirmed"
+}

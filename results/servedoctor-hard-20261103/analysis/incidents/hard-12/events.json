@@ -1,0 +1,30 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "max_model_len": [
+        4096,
+        6144
+      ],
+      "max_num_batched_tokens": [
+        8192,
+        12288
+      ],
+      "max_num_seqs": [
+        64,
+        24
+      ],
+      "request_timeout_s": [
+        120,
+        180
+      ]
+    }
+  },
+  {
+    "t": 218.5,
+    "kind": "note",
+    "text": "Updated the Grafana serving dashboard layout."
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "created_at_utc": "2026-11-02T21:04:44.887981+00:00",
+  "study_dir": "runs/sd-hard",
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "preflight_sha256": "142e8954be0e8a31414ccfbf6bdc973944f7783e04dba113d1e946dd06f152a5",
+  "recorder_pid": 751,
+  "recorder_start_ticks": 44574171,
+  "finished": true,
+  "jobs": [],
+  "issues": [],
+  "owned_leaks": [],
+  "cleanup": "Read-only observer; verified leaks require explicit owned cleanup before reuse.",
+  "observations": {
+    "path": "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/record-stages/record-first9-attempt1/00-reference/owned-observer.observations.jsonl",
+    "sha256": "9e21b3d80a978df45b7dd6fe65d995cd0e64af488c2438914d7d214a12792afb"
+  },
+  "readiness": {
+    "path": "/workspace/servedoctor-hard/servetune/runs/servedoctor-hard-ops-20261102/record-stages/record-first9-attempt1/00-reference/observer-ready.json",
+    "sha256": "9b8bd4bba6cd0c4ec7968644107076f321eb67b2fff88da1274ed7ae64d81f57"
+  }
+}

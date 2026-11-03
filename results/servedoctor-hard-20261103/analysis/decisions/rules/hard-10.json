@@ -1,0 +1,126 @@
+{
+ "arm": "rules",
+ "incident": "hard-10",
+ "engine_config": {
+  "max_model_len": 6144,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "gpu_contention",
+  "actions": [
+   {
+    "type": "stop_gpu_process",
+    "pid": 6203
+   }
+  ],
+  "evidence": [],
+  "explanation": "threshold rules",
+  "rejected_actions": [],
+  "t": 180
+ },
+ "checkpoints": 6,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "6f9941cb402ebb2742e9fd9cf26914572da79d491e0f88727e4d33a7c92dc80e",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "b20dffd86add315432004a334b12198c3d61eee6e8d34a1c20ecccb1825076f4",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "cd05974e4de994382e3adc687c4dd0ac83150a773d38c19ce8c74afcd0ee21a3",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "8db1651ed8b7dae368be6b3dac6a352f61dbf04f539621df5a0ef26a102e07b7",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "6357eea7601cab6a33166c3d2831fade3f01fa75eee4352c455c3d9de4d6455d",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  },
+  {
+   "t": 180,
+   "observation_sha256": "a1807f4b68629af87d9e5f1dcf96de360be5be90660dcae7b306efc5cac5ab4b",
+   "decision": {
+    "incident": true,
+    "root_cause": "gpu_contention",
+    "actions": [
+     {
+      "type": "stop_gpu_process",
+      "pid": 6203
+     }
+    ],
+    "evidence": [],
+    "explanation": "threshold rules",
+    "rejected_actions": []
+   }
+  }
+ ]
+}

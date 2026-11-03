@@ -1,0 +1,21 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "ready_at_utc": "2026-11-02T21:01:01.454100+00:00",
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "recorder_pid": 751,
+  "recorder_start_ticks": 44574171,
+  "selected_ids": [
+    "reference"
+  ],
+  "selected_incident_directories_absent": true,
+  "ready_before_source_job_timers": true,
+  "physical_gpu_binding": {
+    "verified": true,
+    "instance_id": 58866756,
+    "gpu_index": 0,
+    "gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+    "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+    "container_id_matches_scope": true
+  }
+}

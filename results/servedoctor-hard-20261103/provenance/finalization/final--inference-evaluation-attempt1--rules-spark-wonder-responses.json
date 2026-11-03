@@ -1,0 +1,364 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "split": "hard",
+  "by_arm": {
+    "rules": {
+      "incidents": 15,
+      "call_failures": 0,
+      "successful_responses": 0,
+      "ready_for_next_group": true,
+      "failed_calls_preserved_as_measured_results": true,
+      "incidents_with_successful_response": 0,
+      "per_incident": [
+        {
+          "id": "hard-01",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 5,
+          "decision_sha256": "a9cf50d31e39bd1c8773cb74bdc0b4537d0d21f5cf6cf952d3109bfc1c3927fd"
+        },
+        {
+          "id": "hard-02",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 3,
+          "decision_sha256": "5fb2f841502429585d42b9f85cf02515d1ca8c2f8c2dfb19aa60a21b048d80e3"
+        },
+        {
+          "id": "hard-03",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 12,
+          "decision_sha256": "e943dc096ea5c83a8156d84c0351c81815675c065034ac8268f372a2b5f148d7"
+        },
+        {
+          "id": "hard-04",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 5,
+          "decision_sha256": "34075364c385ff816009aa0f86fd9e9b518027a3d248ad14ef801b025abd0361"
+        },
+        {
+          "id": "hard-05",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 5,
+          "decision_sha256": "dcec810eb0aff1cf174041dec18ccb02a663047b69c15265951e9f288a4ce02b"
+        },
+        {
+          "id": "hard-06",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 1,
+          "decision_sha256": "c3d2a2bc851479c5cb59efefb2beb59cb4bb7db6330c30fbc88d08d92aa837c7"
+        },
+        {
+          "id": "hard-07",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 1,
+          "decision_sha256": "aef6c75ca64d829845d815c33ff858465a6a4a8bc8d934d87fcfab4e3ddfa630"
+        },
+        {
+          "id": "hard-08",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 9,
+          "decision_sha256": "73eb3060bf302653fbc25a2c75d1b19167fba5a9d5ee72984099b544d1ec8a3c"
+        },
+        {
+          "id": "hard-09",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 12,
+          "decision_sha256": "86651cafba0627291c40c071d1d6bbac9fa13fc0464d1c7a7798324298964ada"
+        },
+        {
+          "id": "hard-10",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 6,
+          "decision_sha256": "9760640417f34d62adaa7132945cf956aeb2121b33db6a1bd48b00f38896d6e9"
+        },
+        {
+          "id": "hard-11",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 1,
+          "decision_sha256": "b1c68f5d18ca468a0b2d1993c7ca7109f3d89e71ce60ea91ee5b5877a7faab9e"
+        },
+        {
+          "id": "hard-12",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 9,
+          "decision_sha256": "935437922a87cbb82ab25cb998da66bfbac7ebac6a3412604824293f100f9c7b"
+        },
+        {
+          "id": "hard-13",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 5,
+          "decision_sha256": "15077b988e85a3db4754472e699bbe5e438df00b5f6738f5f974ee866bdacd5e"
+        },
+        {
+          "id": "hard-14",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 2,
+          "decision_sha256": "3e7f6b5c7f7d484ad6445176e2e0601dbb5669214b8aa094037560239c6e0890"
+        },
+        {
+          "id": "hard-15",
+          "call_failures": 0,
+          "successful_responses": 0,
+          "checkpoints": 1,
+          "decision_sha256": "ff3e58549da284385f1d855e551adea2a860684954ba3ee8358c54801908052d"
+        }
+      ]
+    },
+    "spark": {
+      "incidents": 15,
+      "call_failures": 0,
+      "successful_responses": 88,
+      "ready_for_next_group": true,
+      "failed_calls_preserved_as_measured_results": true,
+      "incidents_with_successful_response": 15,
+      "per_incident": [
+        {
+          "id": "hard-01",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "5b3e1304b436601e7e45f19f5497aa42eb9ed71def8bba12c2d12d3930b89618"
+        },
+        {
+          "id": "hard-02",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "b16e9945c02b73488333c61f125921ecdab2a1397734981cbdf6dabcd5220088"
+        },
+        {
+          "id": "hard-03",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "dfa6cda38074b8143c0c601d3abf1180a88bd2cf12896be717eb9b7840d0aa93"
+        },
+        {
+          "id": "hard-04",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "8bf4e0ff054479c57b8192721edc16505ca6ee68c16be3b312a506c1b53966b0"
+        },
+        {
+          "id": "hard-05",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "04f79a9a4c877869bb469debb1cbc0ce6d683204412382e57b08592b3d284ed1"
+        },
+        {
+          "id": "hard-06",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "61570e43046304a216c2855318b603624b45b2154383a07301135d6cd643c95f"
+        },
+        {
+          "id": "hard-07",
+          "call_failures": 0,
+          "successful_responses": 2,
+          "checkpoints": 2,
+          "decision_sha256": "563dea51912c538929b8f7a9db58f6150d6e5d95f439c69f82e34ee0ce16ad45"
+        },
+        {
+          "id": "hard-08",
+          "call_failures": 0,
+          "successful_responses": 9,
+          "checkpoints": 9,
+          "decision_sha256": "01db14439d4460ddd335f977c5754248465831948ae685c1614c370da64cd4b8"
+        },
+        {
+          "id": "hard-09",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "f4f0b01ef0a1b00d7df030c1c1a3ba4c5dbcfcd450fb1216a74cc6e80d69a8d3"
+        },
+        {
+          "id": "hard-10",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "ff3f2c7a38c2922f19612e3fa8d397874c40158276a7e07329d3969806d72072"
+        },
+        {
+          "id": "hard-11",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "44ae82f21d7ab82206bf7548cf06c0273ed205e6e31252b76fd90cdd65f71271"
+        },
+        {
+          "id": "hard-12",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "40f10d92ec342e573c37b8b6ac43664036fa7ace7131f9c5688253c6d850cc23"
+        },
+        {
+          "id": "hard-13",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "8d1be8b88831a7dc30380dd02a78a35b191d5841c65cb38c3d4776cb810ac743"
+        },
+        {
+          "id": "hard-14",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "66ca1f5057cdd457997d58d2bd35ed59aa4b79b4c889e70ba98bf37f7ae15dc1"
+        },
+        {
+          "id": "hard-15",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "04d244b26e6202f8f4609ffcfc1e05723b598e84d08df81e1cda9b04d0b66c90"
+        }
+      ]
+    },
+    "wonder": {
+      "incidents": 15,
+      "call_failures": 0,
+      "successful_responses": 77,
+      "ready_for_next_group": true,
+      "failed_calls_preserved_as_measured_results": true,
+      "incidents_with_successful_response": 15,
+      "per_incident": [
+        {
+          "id": "hard-01",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "5ec2790ba6c10f3fb29f5c81a3c17e162dda247f1dc2aa6a12880994eb52cd1b"
+        },
+        {
+          "id": "hard-02",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "85f3cec4e2420ada38d73c59d26e458ebd855a2c1b1cca8cdfae648767c4443e"
+        },
+        {
+          "id": "hard-03",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "95f593749eb7f5f868094a45764273882daf4659b1118b0610989c764e3007f6"
+        },
+        {
+          "id": "hard-04",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "52bdefc1ab64abc009ae3a1c0b999cf504c3ca092c57187fbd29593dee69043e"
+        },
+        {
+          "id": "hard-05",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "5f59f9ec812d9673feb0c4ef5f2e3cefeb96157b13699966f42238b2f729b9a0"
+        },
+        {
+          "id": "hard-06",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "6d5e5dfe24f5c0f7fd440ba637cd24fd496bf457c546dccbf8092147457998a9"
+        },
+        {
+          "id": "hard-07",
+          "call_failures": 0,
+          "successful_responses": 2,
+          "checkpoints": 2,
+          "decision_sha256": "77f65a380a44009c42e6b2326722faa0bef462417126f275e3c6682c7c9c1ac9"
+        },
+        {
+          "id": "hard-08",
+          "call_failures": 0,
+          "successful_responses": 8,
+          "checkpoints": 8,
+          "decision_sha256": "7b98f32636bda7d1a8917860ecc1feb53c793f9bdfd8a29648577c26de1c9c24"
+        },
+        {
+          "id": "hard-09",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "b17ff52fbb58161b1c5d38c085518efcb2f013420e448644bddaf4d2c80314df"
+        },
+        {
+          "id": "hard-10",
+          "call_failures": 0,
+          "successful_responses": 12,
+          "checkpoints": 12,
+          "decision_sha256": "691a81578052ee36d29f5bc0a072795f7679a1c6298a0b7a7c2b66220592322d"
+        },
+        {
+          "id": "hard-11",
+          "call_failures": 0,
+          "successful_responses": 2,
+          "checkpoints": 2,
+          "decision_sha256": "0087454ed7e472b4dc1372c67d3fcf22775849f2f12ea918361377d9436dadef"
+        },
+        {
+          "id": "hard-12",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "67bac7cb64da30625d211e9f9823188f179e4c003f066f9164ed0a987b2eeaa3"
+        },
+        {
+          "id": "hard-13",
+          "call_failures": 0,
+          "successful_responses": 5,
+          "checkpoints": 5,
+          "decision_sha256": "9baa0f0532eac1a39573d3a9322c064da0ba57ad2ed4ba59f971cf56c96a4798"
+        },
+        {
+          "id": "hard-14",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "4de2caa984761f4d3533d2a03b90d30fea6da46440682ca760d474e71c742d96"
+        },
+        {
+          "id": "hard-15",
+          "call_failures": 0,
+          "successful_responses": 1,
+          "checkpoints": 1,
+          "decision_sha256": "f59e07ecc9c7e052b13d855860e3b2e04e4a4448be8b5d825cbd5fab9d0ae622"
+        }
+      ]
+    }
+  },
+  "ready_for_next_group": true,
+  "validation": {
+    "project": "servedoctor-hard15-20261102",
+    "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+    "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+    "evaluation_ready": true,
+    "total": 15,
+    "protocol_sha256": "c5750faf63511320424d40791f645ffc891f4d1cb814315d5aab0b6b3fd24cef",
+    "validation_sha256": "bbb6b2cb9604411b6226eb66c55b9acd22fb642e531d451f65f2cdb4d39a07b9",
+    "inference_binding_sha256": "7f50f4693e5fa4774c9538b7274c241923a67d75e2c24b679d9a50e6f8bbc5c9"
+  },
+  "helper_sha256": "207fdc6a7dd2dcda9c526d9aa4c1bf023f8663ccfd09310fc674a99e02b131ce"
+}

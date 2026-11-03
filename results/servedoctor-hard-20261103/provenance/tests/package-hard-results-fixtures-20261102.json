@@ -1,0 +1,39 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T21:20:25.558806+00:00",
+  "passed": true,
+  "returncode": 0,
+  "tests": 15,
+  "test_command": "python3 -m unittest test_package_hard_results -q",
+  "py_compile": "passed",
+  "fake_only": true,
+  "files_sha256": {
+    "package_hard_results.py": "dc6c92814f44e3f7e8ecbf018cc22afb9a36b75b360a1ed3827d42060cc1d0b6",
+    "test_package_hard_results.py": "80764fc0d9199191b8b870271b3ff3a95bb362991d0249aa733276543e450cca"
+  },
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "config_sha256": "0cc70e7ec4cbb0b26c6e13a4b9311dedf6dd05a862d9c0d9d2934ec25a017014",
+  "freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "independent_review": {
+    "agent": "/root",
+    "result": "CLEAR",
+    "basis": "Full code read-only review, own15fakecontract pass, and actual frozen868 resolver-only audit; no result data decoded."
+  },
+  "default_mode": "verify-only; --create is explicit one-shot fresh results copy",
+  "destination": "results/servedoctor-hard-20261103",
+  "published_ledger_name": "ledger.json",
+  "gates": [
+    "17 exact structurally complete sealed recordings and namespace/FD/owned-job proofs",
+    "Write-once16-case validity gate and unchanged runtime/manifests",
+    "All96 final decisions, genuine response/context checks, canonical all and valid-only scoreboards and safe96-row projection",
+    "Full inherited ledger prefix/caps and exact final remote hash; no ledger lock/write/reset",
+    "All4 finalized prior rentals plus current closed/deleted interval cost recomputation, network/slack once, cap40",
+    "Verified full pre-delete backup, immutable hours snapshot, stopped/oneDELETE/GET-confirmed absence scope",
+    "Explicit flat provenance/failure-index only; mapped original remote descriptors remain unchanged",
+    "Opaque keys/decisions/native reports; secret/key/symlink/archive/payload exclusions",
+    "Post-copy hashes, exclusive manifest, retained partial-copy failure/no overwrite"
+  ],
+  "no_actual_results_created": true,
+  "no_actual_provider_ssh_gpu_api_model_ledger_lifecycle_actions": true,
+  "scientific_source_config_freeze_and_study_modified": false
+}

@@ -1,0 +1,20 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "split": "hard",
+  "ids": [
+    "hard-09",
+    "hard-10",
+    "hard-11",
+    "hard-12",
+    "hard-13",
+    "hard-14",
+    "hard-15",
+    "hard-16"
+  ],
+  "completed": false,
+  "record_returncode": 1,
+  "observer_returncode": 0,
+  "failure_class": "StageError",
+  "cleanup_errors": [],
+  "finished_at_utc": "2026-11-02T22:51:03.860386+00:00"
+}

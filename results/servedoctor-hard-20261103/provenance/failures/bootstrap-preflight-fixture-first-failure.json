@@ -1,0 +1,6 @@
+{
+  "recorded_at_utc": "2026-11-02T15:09:11.533738+00:00",
+  "scope": "Fake-only operator fixture, no GPU/API or benchmark data",
+  "failure": "macOS temp path /var resolves to /private/var; fixture expected unresolved path",
+  "repair": "Resolve both sides of the path-identity assertion; operator implementation unchanged"
+}

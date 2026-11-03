@@ -1,0 +1,26 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "at_utc": "2026-11-02T18:26:26.629981+00:00",
+  "instance_id": 58858374,
+  "source_commit": "973bdd9",
+  "failure": "STOP was requested by the local watchdog on an inventory read failure during calibration; the early user update incorrectly attributed it to phase completion. The immutable STOP reason is authoritative.",
+  "stop_intent": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/intent-0005-stop.json",
+    "sha256": "999fc4ec341ad296547cdd59f2f6e854d60ca80a74b419b3bfaa70acd13a0af7"
+  },
+  "phase_exit": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard-bootstrap-calibration-attempt12-exit.json",
+    "sha256": "8e38b76ef14ed2d80d40e36ee0e2777a2bf5624b0f1cf04633d18df9643e03ad"
+  },
+  "calibration_outcome": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt6/outcome.json",
+    "sha256": "632fd0e477a112143f89a4d5fc6d9a5d563bf83fb56a739cc5c172157ad7a56f"
+  },
+  "subsequent_read_only_status": "actual_status=exited,cur_state=stopped,intended_status=stopped,no pending intent",
+  "all_calibration_commands_returncode": 0,
+  "ssh_failure": false,
+  "hard_generated": false,
+  "hard_recorded": false,
+  "paid_model_calls": false,
+  "next_action": "Restart the same scoped rental once under a bounded continuous-work controller. If resources are unavailable, cancel its queued start and confirm stopped before any further decision. Do not treat successful pre-generation calibration as a failed recording."
+}

@@ -1,0 +1,124 @@
+{
+ "arm": "wonder",
+ "incident": "hard-07",
+ "engine_config": {
+  "max_model_len": 1408,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "max_model_len changed 4096->1408 in deploy at t=0 vs reference 4096",
+   "http_400 errors appear repeatedly, 3 in last bucket, despite otherwise normal load",
+   "arrivals ~2.7 rps near normal 2.8 rps, p95 latency 6.18s < 10s SLO",
+   "waiting_max 0 and KV usage ~1.9%, no queueing or preemptions",
+   "prompt_tokens_mean rose to 461, suggesting longer valid prompts hitting the reduced limit"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Reduced max_model_len rejects valid long requests with HTTP 400 while capacity metrics are healthy. Restore reference context length 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"max_model_len changed 4096->1408 in deploy at t=0 vs reference 4096\", \"http_400 errors appear repeatedly, 3 in last bucket, despite otherwise normal load\", \"arrivals ~2.7 rps near normal 2.8 rps, p95 latency 6.18s < 10s SLO\", \"waiting_max 0 and KV usage ~1.9%, no queueing or preemptions\", \"prompt_tokens_mean rose to 461, suggesting longer valid prompts hitting the reduced limit\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Reduced max_model_len rejects valid long requests with HTTP 400 while capacity metrics are healthy. Restore reference context length 4096.\"}",
+  "usage": {
+   "completion_tokens": 511,
+   "prompt_tokens": 1967,
+   "total_tokens": 2478,
+   "completion_tokens_details": {
+    "reasoning_tokens": 302
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "c9abcc651e2128a8798f6d5c50ad23359b9c601b16125d7f27dd6bedb8625034",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.68,
+    "evidence": [
+     "p95 latency 5.37-6.57s is below 10s SLO and near normal 5.81s",
+     "waiting_max=0.0, preemptions=0, running below max_num_seqs=64",
+     "KV usage max 2.43% versus normal 1.26%, no starvation",
+     "arrivals 2.3-4.0 rps near normal 2.8 rps with no shedding",
+     "only one isolated http_400 across the buckets"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Performance, queueing, KV, and throughput remain near the healthy profile despite the config change; the isolated 400 and small metric variations do not constitute an incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.68, \"evidence\": [\"p95 latency 5.37-6.57s is below 10s SLO and near normal 5.81s\", \"waiting_max=0.0, preemptions=0, running below max_num_seqs=64\", \"KV usage max 2.43% versus normal 1.26%, no starvation\", \"arrivals 2.3-4.0 rps near normal 2.8 rps with no shedding\", \"only one isolated http_400 across the buckets\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Performance, queueing, KV, and throughput remain near the healthy profile despite the config change; the isolated 400 and small metric variations do not constitute an incident.\"}",
+    "usage": {
+     "completion_tokens": 1348,
+     "prompt_tokens": 1487,
+     "total_tokens": 2835,
+     "completion_tokens_details": {
+      "reasoning_tokens": 1159
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "578f043e90a49157c6630ff03a98e2aee84c0eea1daf920b01352ff29dd85cd3",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "max_model_len changed 4096->1408 in deploy at t=0 vs reference 4096",
+     "http_400 errors appear repeatedly, 3 in last bucket, despite otherwise normal load",
+     "arrivals ~2.7 rps near normal 2.8 rps, p95 latency 6.18s < 10s SLO",
+     "waiting_max 0 and KV usage ~1.9%, no queueing or preemptions",
+     "prompt_tokens_mean rose to 461, suggesting longer valid prompts hitting the reduced limit"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Reduced max_model_len rejects valid long requests with HTTP 400 while capacity metrics are healthy. Restore reference context length 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"max_model_len changed 4096->1408 in deploy at t=0 vs reference 4096\", \"http_400 errors appear repeatedly, 3 in last bucket, despite otherwise normal load\", \"arrivals ~2.7 rps near normal 2.8 rps, p95 latency 6.18s < 10s SLO\", \"waiting_max 0 and KV usage ~1.9%, no queueing or preemptions\", \"prompt_tokens_mean rose to 461, suggesting longer valid prompts hitting the reduced limit\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Reduced max_model_len rejects valid long requests with HTTP 400 while capacity metrics are healthy. Restore reference context length 4096.\"}",
+    "usage": {
+     "completion_tokens": 511,
+     "prompt_tokens": 1967,
+     "total_tokens": 2478,
+     "completion_tokens_details": {
+      "reasoning_tokens": 302
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

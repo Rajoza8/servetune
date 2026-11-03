@@ -1,0 +1,29 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "prepared_at_utc": "2026-11-02T15:53:09.054864+00:00",
+  "scope": "Invented credentials, fake transport/proc metadata, synthetic scorer dictionaries and temporary file fixtures only.",
+  "returncode": 0,
+  "tests": 33,
+  "py_compile": "passed",
+  "files_sha256": {
+    "key_runner.py": "97b6d359fa1bb6330921d5834e5e22a1f5ef4082842fd422a6d017165825c143",
+    "key_runner_stub_test.py": "48f55b2b0845bcbe3f0a3a74bf3e1fe7491b30bfb7426ed5bc011bd73ae69a5f",
+    "hard_report_common.py": "a3ddf50cdfa97f0a243037599604541d17518fa02f34fc4d70abaa7754b2c704",
+    "measure_contexts.py": "245432ddca0dc2eadfd1314a5544b8e96e95e89b5d0f0ce964ec589300ac6128",
+    "model_response_guard.py": "c98d51a011263e6526d0e374037db229d15ce2b276cfe9f1b4e8bd558d1ef24d",
+    "export_hard_scores.py": "2e804246540b15178503b4005c81755360dccbb5694c15309e7f8c9046bb0d36",
+    "test_hard_report_helpers.py": "f563b88ec74beb6c20b6ef57960f5d362cda811b3bbc4e000b6582fa2c0c3f4b",
+    "hard-reporting-workflow.md": "1b7d775c75c41fafd0b09dd9a456ff0aeaebe0dff77c68746f794dccc8d62e74"
+  },
+  "shared_integrity_sha256": "2d436f4c16c16d16afe3c4dda0681ea0fb4c11a4dcec55ca713ec34a1159608c",
+  "stdout_sha256": "36f2e1af9855fd06cd59373ffea060c049741390356c74e896d29c77c8a62c10",
+  "actual_key_reads": 0,
+  "actual_study_or_answer_reads": 0,
+  "actual_ledger_reads_or_mutations": 0,
+  "model_or_authenticated_requests": 0,
+  "supersedes_worker_proofs": [
+    "key-runner-validation-20261102.json",
+    "key-runner-validation-final-20261102.json"
+  ],
+  "behavior": "No public CLI flag added. Optional canonical frozen transport trio verified locally/remotely before remote credential read; no upload or overwrite. Source policy permits only verified config-only descendant."
+}

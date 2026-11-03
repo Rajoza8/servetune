@@ -1,0 +1,115 @@
+{
+ "arm": "wonder",
+ "incident": "hard-11",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.6152,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.82,
+  "evidence": [
+   "http_400 errors in nearly every 10s bucket, about 6 errors over ~150 requests exceeding 1% SLO",
+   "max_model_len reduced 4096 to 1280 in deploy change log and differs from reference 4096",
+   "Arrivals ~2.6-3.4 rps and prompt_tokens_mean ~106-218 match normal profile 2.8 rps and 184, so traffic/prompt mix is normal",
+   "p95 latency ~5.0-5.6s is within 10s SLO and waiting_max is 0, ruling out overload"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Valid requests are being rejected with HTTP 400 after max_model_len was cut to 1280. Restore the reference 4096 context length; load and latency are otherwise normal.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.82, \"evidence\": [\"http_400 errors in nearly every 10s bucket, about 6 errors over ~150 requests exceeding 1% SLO\", \"max_model_len reduced 4096 to 1280 in deploy change log and differs from reference 4096\", \"Arrivals ~2.6-3.4 rps and prompt_tokens_mean ~106-218 match normal profile 2.8 rps and 184, so traffic/prompt mix is normal\", \"p95 latency ~5.0-5.6s is within 10s SLO and waiting_max is 0, ruling out overload\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Valid requests are being rejected with HTTP 400 after max_model_len was cut to 1280. Restore the reference 4096 context length; load and latency are otherwise normal.\"}",
+  "usage": {
+   "completion_tokens": 977,
+   "prompt_tokens": 1974,
+   "total_tokens": 2951,
+   "completion_tokens_details": {
+    "reasoning_tokens": 748
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 500
+   }
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "f4abd90ed632956628c22d876ab05b8e40182dd8d829d4c420d3309a646f03bc",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "valid_output": false,
+    "evidence": [],
+    "explanation": "",
+    "rejected_actions": [],
+    "raw_output": "",
+    "usage": {
+     "completion_tokens": 2048,
+     "prompt_tokens": 1494,
+     "total_tokens": 3542,
+     "completion_tokens_details": {
+      "reasoning_tokens": 2046
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 628
+     }
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "94b674b143a0381341f35678be86e6c3f74c5b40279a7c07a71eb2a01c80bd0c",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.82,
+    "evidence": [
+     "http_400 errors in nearly every 10s bucket, about 6 errors over ~150 requests exceeding 1% SLO",
+     "max_model_len reduced 4096 to 1280 in deploy change log and differs from reference 4096",
+     "Arrivals ~2.6-3.4 rps and prompt_tokens_mean ~106-218 match normal profile 2.8 rps and 184, so traffic/prompt mix is normal",
+     "p95 latency ~5.0-5.6s is within 10s SLO and waiting_max is 0, ruling out overload"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Valid requests are being rejected with HTTP 400 after max_model_len was cut to 1280. Restore the reference 4096 context length; load and latency are otherwise normal.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.82, \"evidence\": [\"http_400 errors in nearly every 10s bucket, about 6 errors over ~150 requests exceeding 1% SLO\", \"max_model_len reduced 4096 to 1280 in deploy change log and differs from reference 4096\", \"Arrivals ~2.6-3.4 rps and prompt_tokens_mean ~106-218 match normal profile 2.8 rps and 184, so traffic/prompt mix is normal\", \"p95 latency ~5.0-5.6s is within 10s SLO and waiting_max is 0, ruling out overload\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Valid requests are being rejected with HTTP 400 after max_model_len was cut to 1280. Restore the reference 4096 context length; load and latency are otherwise normal.\"}",
+    "usage": {
+     "completion_tokens": 977,
+     "prompt_tokens": 1974,
+     "total_tokens": 2951,
+     "completion_tokens_details": {
+      "reasoning_tokens": 748
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 500
+     }
+    }
+   }
+  }
+ ]
+}

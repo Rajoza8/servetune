@@ -1,0 +1,20 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "recorded_at_utc": "2026-11-03T02:37:00.080694+00:00",
+  "scope": "Offline synthetic finalizer integration review only; no actual data/provider/model/ledger operations.",
+  "command": "python3 -B -m unittest discover -s runs/servedoctor-hard15-ops-20261102 -p test_finalize_inference_rental.py -q",
+  "tests_run": 17,
+  "errors": 2,
+  "failure_class": "ImportError",
+  "failure_summary": "Old import-only helpers inserted original Hard OPS ahead of OPS15; shared mapped verification resolved old hard_report_common without LABEL.",
+  "failed_tests": [
+    "test_changed_included_recording_rejected_by_shared_gate_before_provider",
+    "test_complete_actual_mapped_gate_reaches_readonly_finalizer"
+  ],
+  "primary_error_diagnostic": "cannot import name LABEL from original Hard OPS hard_report_common",
+  "source_hash_before_fix_captured": false,
+  "owner_reported_fix": "New finalizer restores OPS15 import precedence after import-only old helpers; frozen original7 unchanged. Final verification/pin pending.",
+  "scientific_or_running_inference_impact": false,
+  "mutation_dispatched": false
+}

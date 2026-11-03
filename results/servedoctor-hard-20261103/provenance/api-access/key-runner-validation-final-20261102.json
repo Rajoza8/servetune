@@ -1,0 +1,45 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "created_at_utc": "2026-11-02T15:33:44.598925+00:00",
+  "scope": "Offline invented-credential and fake-process/transport fixtures only; no actual key, catalog, model, GPU or ledger call.",
+  "runner": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key_runner.py",
+    "sha256": "623e02ba6e5e498ff6974a8b242f75095cc8209de6a2509ff261438120184eea",
+    "protocol": "servedoctor-hard-key-runner-1"
+  },
+  "fixture": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key_runner_stub_test.py",
+    "sha256": "dfdb5dce089077925d1c436e373a630174b2ced8b85f7d74d70176a432b82bec"
+  },
+  "source_policy": {
+    "baseline_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+    "helper": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard_integrity.py",
+    "helper_sha256": "766ac5dd1daff7e590045cecf625e0bdf55be0cde28abf3e7e3a1ce629d0f801",
+    "runtime_commit": "Integrity-verified study freeze source_commit; only approved two-KV/notes config descendant allowed without worker reload."
+  },
+  "validation": {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+      "-m",
+      "unittest",
+      "key_runner_stub_test",
+      "-q"
+    ],
+    "returncode": 0,
+    "tests": 15,
+    "stdout": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-validation-final-20261102.stdout",
+    "stdout_sha256": "4788f8f0292853f4a616aaa132d20b97cca003230e9ccbd19121616fb7961239"
+  },
+  "remote_repo": "/workspace/servedoctor-hard/servetune",
+  "canonical_ledger": "runs/servedoctor-ledger.json",
+  "expected_seed_ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "actual_seed_or_scope_verified": false,
+  "paid_deadline_utc": "2026-11-04T04:59:59+00:00",
+  "record_validate_evaluate_cutoff": "2026-11-03T23:00:00+00:00, separately enforced by the Hard phase wrapper",
+  "ready_to_start": "Only after root supplies new immutable scope/session, known_hosts, remote helpers and preserved ledger; user starts server once in existing MODEL_API_KEY shell.",
+  "supersedes_validation": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/key-runner-validation-20261102.json",
+    "sha256": "f907537c402a7a417619a9bf05d53dd99c16d2b32c3011d539ad23371546f1e9",
+    "reason": "Added safe handling of disconnected local submit clients before any real worker startup; no remote command is replayed."
+  }
+}

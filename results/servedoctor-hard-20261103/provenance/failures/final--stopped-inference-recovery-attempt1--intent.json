@@ -1,0 +1,14 @@
+{
+  "method": "PUT",
+  "endpoint": "/api/v0/commands/rsync/",
+  "at_epoch": 1793678836.53267,
+  "instance_id": 58905385,
+  "purpose": "Read-only stopped-instance operator evidence recovery; no START, GPU or model calls",
+  "payload": {
+    "client_id": "me",
+    "src_id": 58905385,
+    "dst_id": null,
+    "src_path": "/workspace/servedoctor-hard/",
+    "dst_path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/stopped-inference-recovery-attempt1/export"
+  }
+}

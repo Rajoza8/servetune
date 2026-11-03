@@ -1,0 +1,25 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "created_at_utc": "2026-11-03T02:07:42.100306+00:00",
+  "returncode": 0,
+  "py_compile": "passed",
+  "tests": 26,
+  "protocol": "servedoctor-hard15-inference-key-runner-3",
+  "helper_sha256": "059fd8eb6ffb7e3e41cbb5f3ff47476df30b112a6917edbe382e7388fe1f27d1",
+  "test_sha256": "3bdc1e542a2eed3b0c7d04ad733e58384afc1ad1a5b18e3c081fd85e41f2f0b3",
+  "native_child_sha256": "e016fa0da62bf796c5e830b51e7c5196f2ff0cdd5041d23bb1f69d6b2a8bd23e",
+  "remote_code_sha256": "bac8f8dc247342cee0c7631b5a2a7840f87383a6ca89bdbe390915abb8487caa",
+  "remote_diagnostic_sha256": "73b1663b7b035dd161e10125d8e537edceac7907269eeda82704a2fb83bd3894",
+  "budget_amendment_sha256": "8efba5368ca146e45ff55d16fb45567058ae015bcee51a26a5510a0e31c4ee2a",
+  "transport_mode": "meta-https-connect-local-mac",
+  "diagnostic_route": "Fixed GET via load_api_transport plus native _MetaConnectConnection; no environment proxy bypass; redirect blocked; config validated before credential line.",
+  "known_ack_loading_server_includes_null_actual_status": true,
+  "every_dispatch_requires_running_no_pending_valid_port": true,
+  "superseded_pre_use_candidate": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-worker-proposal634/inference_key_runner.py",
+    "sha256": "634a65f4b965d3da38ed907ab680c2c8646412726b4361be9c1d8b236b779d2a"
+  },
+  "scope": "Invented credentials/fakeprocess/transport fixtures; no actualkey/env/provider/SSH/GPU/model/native-study/ledger actions.",
+  "frozen": true
+}

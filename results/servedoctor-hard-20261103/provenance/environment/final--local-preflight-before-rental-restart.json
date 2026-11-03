@@ -1,0 +1,33 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "at_utc": "2026-11-02T23:42:29.835533+00:00",
+  "files_sha256": {
+    "hard_partial_integrity.py": "eca7c03250aa7b75439ce9b6505c648d4584c3f5fbdba48b341d42ab78b813c5",
+    "key_runner.py": "d262566e97f06691cbcedf1ac2b93d5df23f5b3f54be91007a0bd4cfdcc04689",
+    "hard_report_common.py": "8c01113fe02b335979807a516e9a5678a34feb87259006d9891aff6a21c8499e",
+    "measure_contexts.py": "a2d366f8470a31f07f1da88f8bbc0e2899f7e387bc981f388d0669f91b3a90dc",
+    "model_response_guard.py": "68602959e499804a33d28751153347d06973a39361c525587885f150e7c6b92a",
+    "export_hard_scores.py": "daf5a37ee9f40356c203cf4a0711b115a272c13d5e281a970b082f96ee3317d3",
+    "partial_evaluation_stage.py": "00c07e59a5170812b92f25539c277e175ce23dfd81a9043439a0b44208b3334e",
+    "prepare_partial_study.py": "095fc7c241a9f575ddd668373c0acc88d8722418a33d5af6d0387bd8650ec5fc",
+    "model_catalog_preflight.py": "450d25101fe3729636ca11076420b4e183e5b5451d51800bcc6af9c0126d90ed"
+  },
+  "controller": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/hard_partial_resume_pipeline.py",
+    "sha256": "d4cc636d4ff018da4b8e07834bbf765c56a0777049d755ab7da3a5013185fda6"
+  },
+  "queue": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/partial-resume-pipeline-queue-attempt1.json",
+    "sha256": "0d7864e4341817de970d5c162cd34ce5f5af818e874b84970f1425cf7a647713"
+  },
+  "exclusion_sha256": "783ae7be7b60c35146090911ac03d854ad0e5af366c4a178685dbed670a0d1d9",
+  "total_allocation_hours": 1.5,
+  "forecast_usd_upper": 39.7198990612599,
+  "shutdown_margin_usd": 0.04008333333333333,
+  "cap_usd": 40,
+  "gpu_stopped": true,
+  "paid_hard_calls": 0,
+  "native_public_source_unchanged": true,
+  "preparer_review": "audit_runtime/audit_api/gpu_setup CLEAR; deadline+SIGTERM issue corrected before any dispatch"
+}

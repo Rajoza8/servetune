@@ -1,0 +1,105 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-14",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 96,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "underutilization",
+  "confidence": 0.72,
+  "evidence": [
+   "arrivals_rps ~1.0 vs normal_profile 2.8",
+   "p95_latency_s ~5.1 vs SLO 10.0 and normal 5.81",
+   "gen_tokens_per_s ~130-171 vs normal 367.6",
+   "gpu_util_pct 90-100 and gpu_power_w ~450W with low traffic",
+   "waiting_max 0.0 and kv_usage_pct_max <0.8%"
+  ],
+  "actions": [
+   {
+    "type": "recommend_consolidation"
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "SLOs are met with low latency and zero shed/errors, but offered load is ~35% of normal profile while GPU power/util remain high. This is an efficiency underutilization, not a performance incident.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.72, \"evidence\": [\"arrivals_rps ~1.0 vs normal_profile 2.8\", \"p95_latency_s ~5.1 vs SLO 10.0 and normal 5.81\", \"gen_tokens_per_s ~130-171 vs normal 367.6\", \"gpu_util_pct 90-100 and gpu_power_w ~450W with low traffic\", \"waiting_max 0.0 and kv_usage_pct_max <0.8%\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs are met with low latency and zero shed/errors, but offered load is ~35% of normal profile while GPU power/util remain high. This is an efficiency underutilization, not a performance incident.\"}",
+  "usage": {
+   "prompt_tokens": 1999,
+   "total_tokens": 2759,
+   "completion_tokens": 760,
+   "prompt_tokens_details": null
+  },
+  "t": 60
+ },
+ "checkpoints": 2,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "1762bcdb27caec4a95c2a75b0ff1c7ca16a0268353dd10e800c48c9de5facd9e",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.45 < SLO 10.0 at t=29s",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "arrivals_rps ~1.0 vs normal profile 2.8 rps, load is low",
+     "waiting_max 0.0 and running ~5.5 < max_num_seqs 96",
+     "kv_usage_pct_max 0.78% well below saturation"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency and error metrics are within SLO, no shedding, queue is empty and KV usage is low. Recent load is below normal profile, so the increased max_num_seqs is not causing issues. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.45 < SLO 10.0 at t=29s\", \"shed_rps 0.0 and errors absent in recent buckets\", \"arrivals_rps ~1.0 vs normal profile 2.8 rps, load is low\", \"waiting_max 0.0 and running ~5.5 < max_num_seqs 96\", \"kv_usage_pct_max 0.78% well below saturation\"], \"actions\": [], \"explanation\": \"Latency and error metrics are within SLO, no shedding, queue is empty and KV usage is low. Recent load is below normal profile, so the increased max_num_seqs is not causing issues. No incident.\"}",
+    "usage": {
+     "prompt_tokens": 1481,
+     "total_tokens": 1859,
+     "completion_tokens": 378,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "10b588938498e41aa456eee021ae96dc1fa53f0b6b0d54a4d85c5edaa18bd4e4",
+   "decision": {
+    "incident": true,
+    "root_cause": "underutilization",
+    "confidence": 0.72,
+    "evidence": [
+     "arrivals_rps ~1.0 vs normal_profile 2.8",
+     "p95_latency_s ~5.1 vs SLO 10.0 and normal 5.81",
+     "gen_tokens_per_s ~130-171 vs normal 367.6",
+     "gpu_util_pct 90-100 and gpu_power_w ~450W with low traffic",
+     "waiting_max 0.0 and kv_usage_pct_max <0.8%"
+    ],
+    "actions": [
+     {
+      "type": "recommend_consolidation"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "SLOs are met with low latency and zero shed/errors, but offered load is ~35% of normal profile while GPU power/util remain high. This is an efficiency underutilization, not a performance incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.72, \"evidence\": [\"arrivals_rps ~1.0 vs normal_profile 2.8\", \"p95_latency_s ~5.1 vs SLO 10.0 and normal 5.81\", \"gen_tokens_per_s ~130-171 vs normal 367.6\", \"gpu_util_pct 90-100 and gpu_power_w ~450W with low traffic\", \"waiting_max 0.0 and kv_usage_pct_max <0.8%\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"SLOs are met with low latency and zero shed/errors, but offered load is ~35% of normal profile while GPU power/util remain high. This is an efficiency underutilization, not a performance incident.\"}",
+    "usage": {
+     "prompt_tokens": 1999,
+     "total_tokens": 2759,
+     "completion_tokens": 760,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

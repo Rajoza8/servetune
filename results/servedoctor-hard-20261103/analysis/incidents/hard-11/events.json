@@ -1,0 +1,26 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "gpu_memory_utilization": [
+        0.9,
+        0.6152
+      ],
+      "max_model_len": [
+        4096,
+        1280
+      ],
+      "metrics_scrape_interval_s": [
+        15,
+        10
+      ]
+    }
+  },
+  {
+    "t": 263.2,
+    "kind": "note",
+    "text": "Updated the Grafana serving dashboard layout."
+  }
+]

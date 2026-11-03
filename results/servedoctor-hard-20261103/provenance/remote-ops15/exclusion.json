@@ -1,0 +1,54 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "recorded_at_utc": "2026-11-02T23:07:44.538859+00:00",
+  "authorization_source": "Explicit user reply in this chat authorizing separately labeled15-completed-Hard-incident analysis, preserving original16-incident freeze and hard16 failure.",
+  "protocol_amendment": "Mechanical exclusion of unrecordable hard-16 only; original frozen attempt remains unchanged. Validate15using the predeclared rule, evaluateall6unchangedarms, scoreall15andvalid-only, report and package.",
+  "reason": "Generator defect: benign max_num_batched_tokens8192\u219212288 raised vLLM startup activation reserve; at gpu_memory_utilization0.61632 availableKVcache was -0.54GiB. The pre-generation probe used8192. The exclusion is mechanical and independent of any arm output.",
+  "included_hard_ids": [
+    "hard-01",
+    "hard-02",
+    "hard-03",
+    "hard-04",
+    "hard-05",
+    "hard-06",
+    "hard-07",
+    "hard-08",
+    "hard-09",
+    "hard-10",
+    "hard-11",
+    "hard-12",
+    "hard-13",
+    "hard-14",
+    "hard-15"
+  ],
+  "reference_id": "reference",
+  "excluded_ids": [
+    "hard-16"
+  ],
+  "hard16_may_be_modified_regenerated_or_rerecorded": false,
+  "before_validation": true,
+  "before_any_hard_arm_evaluation": true,
+  "original_source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "original_config_sha256": "0cc70e7ec4cbb0b26c6e13a4b9311dedf6dd05a862d9c0d9d2934ec25a017014",
+  "original_freeze_sha256": "868fa1c8c8be1bba186937839bdeba0bebeaab7f95623c181a72f42ba0120a68",
+  "original_preservation_receipt": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/preservation-receipt.json",
+    "sha256": "0bb31a20b50ebb5db6c7680f54b22849c76cf007c9b0aa99f6d68bd4dfeb5af8"
+  },
+  "startup_failure_log": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/blocked-hard-study-attempt1/latest/study/engines/engine-06-hard-16/engine.log",
+    "sha256": "d4656e6cb398f67d010092509f433d316d185a1ea82063ef58c1eb5631dbae26"
+  },
+  "limits": {
+    "gpu_total_usd": 40,
+    "meta_ledger_cap_usd": 50,
+    "baseten_ledger_cap_usd": 20,
+    "analysis_cutoff_utc": "2026-11-03T23:00:00Z",
+    "paid_calls_finish_cutoff_utc": "2026-11-04T04:59:59Z",
+    "optional_live_runs_minimum_gpu_budget_remaining_usd": 5
+  },
+  "prompts_rules_scoring_answer_keys_unchanged": true,
+  "native_validity_must_not_be_rewritten": true,
+  "full_hard_set_claim_permitted": false
+}

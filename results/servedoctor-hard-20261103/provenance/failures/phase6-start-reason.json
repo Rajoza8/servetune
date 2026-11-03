@@ -1,0 +1,10 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58843932,
+  "rental_scope_sha256": "d873214456121a21a3a87b7f3421e4d87c0db9d55f8d1615f3a5ba12ae28bc3f",
+  "at_utc": "2026-11-02T15:56:19.364035+00:00",
+  "prior_phase_sha256": "622fc9667646bb1e899e1174e5916d2cfecfdfa9c61c2ccbc9ee90687c7894f5",
+  "reason": "Prior start returned resources_unavailable/state change queued and old wrapper cancelled it immediately; prior attempt retained. New tested wrapper permits one explicit fresh START, at most120seconds read-only queue polling, no repeated START, then unconditional stop on failure/completion. No recording or benchmark was generated.",
+  "phase_helper_sha256": "7f192ad35ce368055cbe8125f216027c0c953eef56f0ed0f0f4835ee970e85cb",
+  "scientific_inputs_changed": false
+}

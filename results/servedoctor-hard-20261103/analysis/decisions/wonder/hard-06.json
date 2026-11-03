@@ -1,0 +1,88 @@
+{
+ "arm": "wonder",
+ "incident": "hard-06",
+ "engine_config": {
+  "max_model_len": 1280,
+  "max_num_seqs": 16,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.86,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "context_limit_too_small",
+  "confidence": 0.92,
+  "evidence": [
+   "http_400=3 in last 10s bucket with ok_rps 2.7 implies ~10% error rate > 1% SLO",
+   "Deploy changed max_model_len 4096->1280; current 1280 vs reference 4096",
+   "p95 latency 5.79s < 10s SLO, so not latency/capacity failure",
+   "KV usage ~1.17% and no preemptions, so not KV starvation",
+   "Arrivals 3.2 rps near normal 2.8 rps, prompt mean 250"
+  ],
+  "actions": [
+   {
+    "type": "set_engine_config",
+    "knob": "max_model_len",
+    "value": 4096
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "HTTP 400s appeared after max_model_len was cut to 1280, rejecting valid long-context requests while latency and KV remain healthy. Restore reference 4096.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"http_400=3 in last 10s bucket with ok_rps 2.7 implies ~10% error rate > 1% SLO\", \"Deploy changed max_model_len 4096->1280; current 1280 vs reference 4096\", \"p95 latency 5.79s < 10s SLO, so not latency/capacity failure\", \"KV usage ~1.17% and no preemptions, so not KV starvation\", \"Arrivals 3.2 rps near normal 2.8 rps, prompt mean 250\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"HTTP 400s appeared after max_model_len was cut to 1280, rejecting valid long-context requests while latency and KV remain healthy. Restore reference 4096.\"}",
+  "usage": {
+   "completion_tokens": 698,
+   "prompt_tokens": 1520,
+   "total_tokens": 2218,
+   "completion_tokens_details": {
+    "reasoning_tokens": 473
+   },
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "t": 30
+ },
+ "checkpoints": 1,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "e3e68c52c5ebd36d36ca329c354bbb3f495e1ce2050b4686b6211a8daf659086",
+   "decision": {
+    "incident": true,
+    "root_cause": "context_limit_too_small",
+    "confidence": 0.92,
+    "evidence": [
+     "http_400=3 in last 10s bucket with ok_rps 2.7 implies ~10% error rate > 1% SLO",
+     "Deploy changed max_model_len 4096->1280; current 1280 vs reference 4096",
+     "p95 latency 5.79s < 10s SLO, so not latency/capacity failure",
+     "KV usage ~1.17% and no preemptions, so not KV starvation",
+     "Arrivals 3.2 rps near normal 2.8 rps, prompt mean 250"
+    ],
+    "actions": [
+     {
+      "type": "set_engine_config",
+      "knob": "max_model_len",
+      "value": 4096
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "HTTP 400s appeared after max_model_len was cut to 1280, rejecting valid long-context requests while latency and KV remain healthy. Restore reference 4096.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.92, \"evidence\": [\"http_400=3 in last 10s bucket with ok_rps 2.7 implies ~10% error rate > 1% SLO\", \"Deploy changed max_model_len 4096->1280; current 1280 vs reference 4096\", \"p95 latency 5.79s < 10s SLO, so not latency/capacity failure\", \"KV usage ~1.17% and no preemptions, so not KV starvation\", \"Arrivals 3.2 rps near normal 2.8 rps, prompt mean 250\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"HTTP 400s appeared after max_model_len was cut to 1280, rejecting valid long-context requests while latency and KV remain healthy. Restore reference 4096.\"}",
+    "usage": {
+     "completion_tokens": 698,
+     "prompt_tokens": 1520,
+     "total_tokens": 2218,
+     "completion_tokens_details": {
+      "reasoning_tokens": 473
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   }
+  }
+ ]
+}

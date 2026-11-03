@@ -1,0 +1,143 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "scope": "Same-host pre-generation standalone compound KV refinement; no Hard/model decisions",
+  "status": "completed",
+  "capacity_rps": 6,
+  "instance_id": 58866756,
+  "rental_scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "gpu_uuid": "GPU-ced6c24c-2234-f9e6-4b0f-6b11b82f9681",
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "candidates": [
+    {
+      "target_kv_gib": 0.40937506347294994,
+      "working_set_factor": 0.76,
+      "gpu_memory_utilization": 0.61632,
+      "path": "runs/sd-hard-kv-probes-attempt1/candidate-00-0.61632",
+      "status": "completed",
+      "memory_log_lines": [
+        "(EngineCore pid=3134) INFO 11-02 20:13:11 [core.py:121] Initializing a V1 LLM engine (v0.26.1rc1.dev608+g99a10304d) with config: model='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', speculative_config=None, tokenizer='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', skip_tokenizer_init=False, tokenizer_mode=auto, revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, tokenizer_revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='muse_glimmer', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=servetune-glimmer, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm",
+        "(EngineCore pid=3134) INFO 11-02 20:13:22 [model_runner.py:355] Model loading took 55.83 GiB and 7.485251 seconds",
+        "(EngineCore pid=3134) INFO 11-02 20:13:26 [gpu_worker.py:564] Available KV cache memory: 0.4 GiB",
+        "(EngineCore pid=3134) INFO 11-02 20:13:26 [kv_cache_utils.py:1882] GPU KV cache size: 8,132 tokens, Maximum concurrency for 4,096 tokens per request: 1.99x",
+        "(EngineCore pid=3134) INFO 11-02 20:13:29 [gpu_worker.py:790] Free memory on device (94.42/94.97 GiB) on startup. Desired GPU memory utilization is (0.61632, 58.53 GiB). Actual usage is 56.33 GiB for consumed memory (weights + non-torch), 1.8 GiB for peak activation, and 0.32 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=-62720180` (-0.06 GiB) to fit into requested memory, or `--kv-cache-memory=38476052992` (35.83 GiB) to fully utilize gpu memory. Current kv cache memory in use is 0.4 GiB.",
+        "(EngineCore pid=3134) INFO 11-02 20:13:30 [core.py:344] init engine (profile, create kv cache, warmup model) took 7.66 s (compilation: 0.16 s)",
+        "(APIServer pid=3076) INFO 11-02 20:13:42 [loggers.py:310] Engine 000: Avg prompt throughput: 198.0 tokens/s, Avg generation throughput: 65.5 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 39.8%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:13:52 [loggers.py:310] Engine 000: Avg prompt throughput: 1082.4 tokens/s, Avg generation throughput: 403.5 tokens/s, Running: 18 reqs, Waiting: 4 reqs, GPU KV cache usage: 99.7%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:14:02 [loggers.py:310] Engine 000: Avg prompt throughput: 594.4 tokens/s, Avg generation throughput: 386.2 tokens/s, Running: 18 reqs, Waiting: 0 reqs, GPU KV cache usage: 60.8%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:14:12 [loggers.py:310] Engine 000: Avg prompt throughput: 980.0 tokens/s, Avg generation throughput: 317.2 tokens/s, Running: 18 reqs, Waiting: 0 reqs, GPU KV cache usage: 95.6%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:14:22 [loggers.py:310] Engine 000: Avg prompt throughput: 901.3 tokens/s, Avg generation throughput: 443.0 tokens/s, Running: 15 reqs, Waiting: 8 reqs, GPU KV cache usage: 87.1%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:14:32 [loggers.py:310] Engine 000: Avg prompt throughput: 1045.1 tokens/s, Avg generation throughput: 317.7 tokens/s, Running: 21 reqs, Waiting: 0 reqs, GPU KV cache usage: 78.9%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:14:42 [loggers.py:310] Engine 000: Avg prompt throughput: 553.0 tokens/s, Avg generation throughput: 378.9 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 24.7%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:14:52 [loggers.py:310] Engine 000: Avg prompt throughput: 894.1 tokens/s, Avg generation throughput: 405.6 tokens/s, Running: 19 reqs, Waiting: 0 reqs, GPU KV cache usage: 65.4%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:15:02 [loggers.py:310] Engine 000: Avg prompt throughput: 843.7 tokens/s, Avg generation throughput: 405.9 tokens/s, Running: 17 reqs, Waiting: 0 reqs, GPU KV cache usage: 69.3%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=3076) INFO 11-02 20:15:12 [loggers.py:310] Engine 000: Avg prompt throughput: 422.4 tokens/s, Avg generation throughput: 248.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%"
+      ],
+      "kv_gib": 0.4,
+      "kv_tokens": 8132,
+      "telemetry_rows": 95,
+      "work_window_telemetry_rows": 90,
+      "kv_occupancy_pct": {
+        "mean": 73.54705048522517,
+        "p95": 99.81354268891069,
+        "max": 99.90186457311088
+      },
+      "preemptions_delta": 33.0,
+      "recording_status": "completed",
+      "request_summary": {
+        "requests": 268,
+        "ok": 268,
+        "shed": 0,
+        "failed": 0,
+        "shed_rate": 0.0,
+        "error_rate": 0.0,
+        "p50_latency_s": 6.08242056198651,
+        "p95_latency_s": 10.004323831864165
+      },
+      "telemetry_errors": 0,
+      "recording_failure": null,
+      "failures": []
+    },
+    {
+      "gpu_memory_utilization": 0.6152,
+      "path": "runs/sd-hard-kv-compound-refinement-attempt1/compound-candidate-01-0.61520",
+      "status": "completed",
+      "candidate_index": 1,
+      "memory_log_lines": [
+        "(EngineCore pid=1044) INFO 11-02 20:49:36 [core.py:121] Initializing a V1 LLM engine (v0.26.1rc1.dev608+g99a10304d) with config: model='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', speculative_config=None, tokenizer='/workspace/.hf_home/hub/models--meta-models--Muse-Glimmer-30B/snapshots/cec94fcfd6512f2cfe708138c32533b346ea4f69', skip_tokenizer_init=False, tokenizer_mode=auto, revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, tokenizer_revision=cec94fcfd6512f2cfe708138c32533b346ea4f69, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='muse_glimmer', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=servetune-glimmer, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm",
+        "(EngineCore pid=1044) INFO 11-02 20:49:47 [model_runner.py:355] Model loading took 55.83 GiB and 7.507435 seconds",
+        "(EngineCore pid=1044) INFO 11-02 20:49:51 [gpu_worker.py:564] Available KV cache memory: 0.3 GiB",
+        "(EngineCore pid=1044) INFO 11-02 20:49:51 [kv_cache_utils.py:1882] GPU KV cache size: 5,990 tokens, Maximum concurrency for 4,096 tokens per request: 1.46x",
+        "(EngineCore pid=1044) INFO 11-02 20:49:54 [gpu_worker.py:790] Free memory on device (94.42/94.97 GiB) on startup. Desired GPU memory utilization is (0.6152, 58.43 GiB). Actual usage is 56.33 GiB for consumed memory (weights + non-torch), 1.8 GiB for peak activation, and 0.32 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=-176930490` (-0.16 GiB) to fit into requested memory, or `--kv-cache-memory=38476052992` (35.83 GiB) to fully utilize gpu memory. Current kv cache memory in use is 0.3 GiB.",
+        "(EngineCore pid=1044) INFO 11-02 20:49:55 [core.py:344] init engine (profile, create kv cache, warmup model) took 7.61 s (compilation: 0.15 s)",
+        "(APIServer pid=986) INFO 11-02 20:50:07 [loggers.py:310] Engine 000: Avg prompt throughput: 198.0 tokens/s, Avg generation throughput: 62.7 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 53.0%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:50:17 [loggers.py:310] Engine 000: Avg prompt throughput: 905.6 tokens/s, Avg generation throughput: 381.5 tokens/s, Running: 13 reqs, Waiting: 8 reqs, GPU KV cache usage: 99.1%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:50:27 [loggers.py:310] Engine 000: Avg prompt throughput: 771.2 tokens/s, Avg generation throughput: 381.6 tokens/s, Running: 17 reqs, Waiting: 0 reqs, GPU KV cache usage: 75.9%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:50:37 [loggers.py:310] Engine 000: Avg prompt throughput: 627.9 tokens/s, Avg generation throughput: 308.8 tokens/s, Running: 14 reqs, Waiting: 4 reqs, GPU KV cache usage: 94.9%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:50:47 [loggers.py:310] Engine 000: Avg prompt throughput: 940.8 tokens/s, Avg generation throughput: 315.1 tokens/s, Running: 16 reqs, Waiting: 19 reqs, GPU KV cache usage: 99.9%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:50:57 [loggers.py:310] Engine 000: Avg prompt throughput: 782.7 tokens/s, Avg generation throughput: 286.0 tokens/s, Running: 11 reqs, Waiting: 22 reqs, GPU KV cache usage: 91.4%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:51:07 [loggers.py:310] Engine 000: Avg prompt throughput: 867.4 tokens/s, Avg generation throughput: 323.5 tokens/s, Running: 17 reqs, Waiting: 14 reqs, GPU KV cache usage: 83.9%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:51:17 [loggers.py:310] Engine 000: Avg prompt throughput: 691.0 tokens/s, Avg generation throughput: 366.7 tokens/s, Running: 17 reqs, Waiting: 25 reqs, GPU KV cache usage: 86.6%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:51:27 [loggers.py:310] Engine 000: Avg prompt throughput: 686.5 tokens/s, Avg generation throughput: 396.5 tokens/s, Running: 19 reqs, Waiting: 25 reqs, GPU KV cache usage: 93.0%, Prefix cache hit rate: 0.0%",
+        "(APIServer pid=986) INFO 11-02 20:51:37 [loggers.py:310] Engine 000: Avg prompt throughput: 761.9 tokens/s, Avg generation throughput: 366.8 tokens/s, Running: 16 reqs, Waiting: 7 reqs, GPU KV cache usage: 85.3%, Prefix cache hit rate: 0.0%"
+      ],
+      "kv_gib": 0.3,
+      "kv_tokens": 5990,
+      "telemetry_rows": 103,
+      "work_window_telemetry_rows": 90,
+      "kv_occupancy_pct": {
+        "mean": 88.19601746983493,
+        "p95": 99.66688874083944,
+        "max": 99.93337774816789
+      },
+      "preemptions_delta": 71.0,
+      "recording_status": "completed",
+      "request_summary": {
+        "requests": 268,
+        "ok": 268,
+        "shed": 0,
+        "failed": 0,
+        "shed_rate": 0.0,
+        "error_rate": 0.0,
+        "p50_latency_s": 11.922268989001168,
+        "p95_latency_s": 15.239633663152924
+      },
+      "telemetry_errors": 0,
+      "recording_failure": null,
+      "failures": [],
+      "request_completion": {
+        "all_scheduled_requests_complete": true,
+        "scheduled_requests": 268,
+        "actual_requests": 268,
+        "successful_requests": 268
+      },
+      "selected": true
+    }
+  ],
+  "original_summary_sha256": "7471ec041d7c72d2d1fbe2676fb5845584cc8796b9789795eb1fc3d3a39b8530",
+  "refinement_summary_sha256": "07918d39e59d58faf20823be1fb4ce02097c68a51da9b877ada9d59defb3dbd7",
+  "refinement_summary": {
+    "path": "runs/sd-hard-kv-compound-refinement-attempt1/summary.json",
+    "sha256": "07918d39e59d58faf20823be1fb4ce02097c68a51da9b877ada9d59defb3dbd7"
+  },
+  "predeclared_plan_sha256": "c4ec9be6e838da3dadd3725a1c6a20fdc67a4d9dc563cf1b82f35c0c667d1ebf",
+  "refinement_helper_sha256": "079adb45ddfc894393b4b7452b5e783e7848b88cdc3ad2af831898e358068b5d",
+  "selected_candidate_index": 1,
+  "predeclared_values": [
+    0.61505,
+    0.6152,
+    0.6149
+  ],
+  "selection_criteria": {
+    "first_in_declared_order": true,
+    "successful_p95_s_inclusive": [
+      13,
+      17
+    ],
+    "all_scheduled_requests_complete": true,
+    "failed_requests": 0,
+    "shed_requests": 0
+  },
+  "selection_reason": "Unchanged original mild plus first eligible compound candidate in the immutable declared order",
+  "hard_study_inputs_mutated": false,
+  "source_configuration_mutated": false
+}

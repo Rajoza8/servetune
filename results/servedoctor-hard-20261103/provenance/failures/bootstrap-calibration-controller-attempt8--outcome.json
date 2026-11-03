@@ -1,0 +1,147 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "started_at_utc": "2026-11-02T19:46:41.153634+00:00",
+  "scope": "Setup and pre-generation host calibration only",
+  "attempt": 8,
+  "controller_source_sha256": "b517e7bf51dee5e78994cf6eaf46f4f62c929966354adb52c8529d7f8b47afd2",
+  "commands": [
+    {
+      "label": "preserve-failed-clone-attempt7",
+      "started_at_utc": "2026-11-02T19:46:41.249045+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:42.463261+00:00"
+    },
+    {
+      "label": "create-control-path",
+      "started_at_utc": "2026-11-02T19:46:42.466545+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:43.296886+00:00"
+    },
+    {
+      "label": "put-2",
+      "started_at_utc": "2026-11-02T19:46:43.298742+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:44.703192+00:00"
+    },
+    {
+      "label": "put-3",
+      "started_at_utc": "2026-11-02T19:46:44.705050+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:46.121175+00:00"
+    },
+    {
+      "label": "put-4",
+      "started_at_utc": "2026-11-02T19:46:46.122383+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:47.601790+00:00"
+    },
+    {
+      "label": "put-5",
+      "started_at_utc": "2026-11-02T19:46:47.603549+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:49.058320+00:00"
+    },
+    {
+      "label": "put-guard-state",
+      "started_at_utc": "2026-11-02T19:46:49.067275+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:50.449487+00:00"
+    },
+    {
+      "label": "arm-remote-guard",
+      "started_at_utc": "2026-11-02T19:46:50.451072+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T19:46:51.325435+00:00"
+    },
+    {
+      "label": "bootstrap",
+      "started_at_utc": "2026-11-02T19:46:51.328644+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:02:04.120175+00:00"
+    },
+    {
+      "label": "make-remote-ops",
+      "started_at_utc": "2026-11-02T20:02:04.123651+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:02:05.014025+00:00"
+    },
+    {
+      "label": "upload-preflight_calibrate.py",
+      "started_at_utc": "2026-11-02T20:02:05.015674+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:02:06.604463+00:00"
+    },
+    {
+      "label": "upload-kv_pre_generation.py",
+      "started_at_utc": "2026-11-02T20:02:06.605992+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:02:07.985374+00:00"
+    },
+    {
+      "label": "calibration-execution-origin",
+      "started_at_utc": "2026-11-02T20:02:07.987328+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:02:08.924763+00:00"
+    },
+    {
+      "label": "preflight-calibrate",
+      "started_at_utc": "2026-11-02T20:02:08.926281+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:10:44.642750+00:00"
+    },
+    {
+      "label": "bind-calibration-execution-origin",
+      "started_at_utc": "2026-11-02T20:10:44.645196+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:10:45.707627+00:00"
+    },
+    {
+      "label": "kv-host-probes",
+      "started_at_utc": "2026-11-02T20:10:45.709821+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:17:26.639234+00:00"
+    },
+    {
+      "label": "calibration-evidence-archive",
+      "started_at_utc": "2026-11-02T20:17:26.643745+00:00",
+      "returncode": 0,
+      "finished_at_utc": "2026-11-02T20:17:27.697575+00:00"
+    }
+  ],
+  "status": "completed",
+  "local_controller_source_commit": "973bdd9ef96b4087845fc83f3e4ebcaa2ad3a4d4",
+  "remote_calibration_source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "instance_id": 58866756,
+  "failed_bootstrap7": {
+    "outcome": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt7/outcome.json",
+      "sha256": "91d070e8d98c125c745fa159b36795f979702a194857d17b6b314a455b440043"
+    },
+    "stderr": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt7/bootstrap.stderr",
+      "sha256": "b7e59285897e4c79178b5e08f3d3014a4af27e6e2f54a765f39d448ad4e9012d"
+    },
+    "stdout": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt7/bootstrap.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reason": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-controller-attempt7-reason.json",
+      "sha256": "8d17752dbcf47f1ca88fb021be726234ad3dbbe4abbde4112efdf5550bd9c5a8"
+    },
+    "expected_failed_head": "973bdd9ef96b4087845fc83f3e4ebcaa2ad3a4d4",
+    "no_bootstrap_install_or_model_download_started": true
+  },
+  "reason_receipt_sha256": "5fd06b52ccddc96bb404c902317cb36271f7fc5bf014307c5092650d1d0b903a",
+  "stage": "pre-generation-calibration-complete",
+  "ssh_window_out": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/startup-ssh-window-attempt4",
+  "guide_sha256": "5375848521e6133e4d8512c1dc37eb1a182a604ca7c9a2d181f8e86543742f9f",
+  "identical_guide7_review_continued": true,
+  "guard_source": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/bootstrap-calibration-controller-attempt8/remote-guard-source.py",
+    "sha256": "d7bae662c2a9ac709ab25a81c6180172795f02f0ef999ea014590a455c3edbed"
+  },
+  "archive_sha256": "77b470c91533dfe090409b68507c3b6422815fa2a99ec9c292123898af9cd8a4",
+  "finished_at_utc": "2026-11-02T20:17:27.727354+00:00"
+}

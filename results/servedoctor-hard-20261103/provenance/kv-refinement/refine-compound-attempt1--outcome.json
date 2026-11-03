@@ -1,0 +1,77 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58866756,
+  "scope_sha256": "c941c466f1e56180a66c6ebe98972c8507c4fa94bee6b3c96a419e3e6eed0b4c",
+  "completed": true,
+  "failure": null,
+  "commands": [
+    {
+      "label": "preserve-original",
+      "started_epoch": 1793652411.1973288,
+      "returncode": 0,
+      "finished_epoch": 1793652412.756067
+    },
+    {
+      "label": "upload-refine_compound_kv-py",
+      "started_epoch": 1793652412.7566059,
+      "returncode": 0,
+      "finished_epoch": 1793652415.4994502
+    },
+    {
+      "label": "upload-predeclared-plan-json",
+      "started_epoch": 1793652415.499815,
+      "returncode": 0,
+      "finished_epoch": 1793652418.1492171
+    },
+    {
+      "label": "install-canonical-alias",
+      "started_epoch": 1793652418.156013,
+      "returncode": 0,
+      "finished_epoch": 1793652419.850348
+    },
+    {
+      "label": "run-refinement",
+      "started_epoch": 1793652419.850986,
+      "returncode": 0,
+      "finished_epoch": 1793652706.267006
+    },
+    {
+      "label": "archive-evidence",
+      "started_epoch": 1793652706.273834,
+      "returncode": 0,
+      "finished_epoch": 1793652707.322989
+    },
+    {
+      "label": "copy-evidence",
+      "started_epoch": 1793652707.3240168,
+      "returncode": 0,
+      "finished_epoch": 1793652708.932307
+    }
+  ],
+  "remote_output": "runs/sd-hard-kv-compound-refinement-attempt1",
+  "replacement_helper_sha256": "079adb45ddfc894393b4b7452b5e783e7848b88cdc3ad2af831898e358068b5d",
+  "original_helper_sha256": "0ab13c9d7e0d7c2f76d07ec17f8ca3f2613d9469d4c39bae7b92b5b8a7a0cada",
+  "refinement_returncode": 0,
+  "mirror": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror",
+    "archive": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/refinement-evidence.tar.gz",
+      "sha256": "8b75cdea728d2677052b76a440abbed4530ca0c48951897b4b2ddd5062c9d4fa"
+    },
+    "files": 38,
+    "summary": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror/refinement/summary.json",
+      "sha256": "07918d39e59d58faf20823be1fb4ce02097c68a51da9b877ada9d59defb3dbd7"
+    },
+    "selected_kv_summary": {
+      "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/refine-compound-attempt1/mirror/refinement/selected-kv-summary.json",
+      "sha256": "068d81e181520a2b08cb56748502614d578634facdc7d577366d639b1b63654b"
+    }
+  },
+  "selected_compound": {
+    "gpu_memory_utilization": 0.6152,
+    "p95_latency_s": 15.239633663152924,
+    "candidate_index": 1
+  },
+  "finished_epoch": 1793652708.974431
+}

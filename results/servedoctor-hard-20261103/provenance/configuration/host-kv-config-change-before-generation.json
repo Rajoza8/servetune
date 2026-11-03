@@ -1,0 +1,8 @@
+{
+  "source_commit": "d3fe20a07ce9c687e75956200b655c5913021d49",
+  "config_before_sha256": "89d814809e0a115ce549629d2cf12a27fafaa93c17edfaec76fedcf77737c07b",
+  "config_after_sha256": "72b461527ac451409fdc282d2a12a18c32676c150332341221374940b23766eb",
+  "reason": " New recording host calibration before generation: Vast instance 58858374, GPU GPU-bca4245b-1348-7ce9-392a-d976e3a9b39e, measured capacity 8 RPS. runs/sd-hard-kv-probes-attempt1/summary.json (SHA256 e152728fca8bfef514a5d3adeae744433e5b90da0ed26f59285987e0e4a14e46) records standalone 4096-context, 90-second probes at 4 RPS: mild utilization 0.61711 gave p95 9.68687555365031 s, KV 0.48 GiB, 46 preemptions; compound-use utilization 0.61624 gave p95 14.192525350011417 s, KV 0.40 GiB, 104 preemptions. Both completed 344/344 requests with no errors. These replace only the host-specific KV values under the authorized new-host procedure; no Hard incidents, answer keys or arm outputs existed or were consulted. Calibration source was d3fe20a07ce9c687e75956200b655c5913021d49.",
+  "study_generated": false,
+  "decision_outputs_consulted": false
+}

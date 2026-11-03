@@ -1,0 +1,200 @@
+{
+ "arm": "glimmer",
+ "incident": "hard-04",
+ "engine_config": {
+  "max_model_len": 4096,
+  "max_num_seqs": 64,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "enable_chunked_prefill": true,
+  "enable_prefix_caching": false
+ },
+ "final": {
+  "incident": true,
+  "root_cause": "long_prompt_flood",
+  "confidence": 0.78,
+  "evidence": [
+   "p95_latency_s rose to 24.98 at 149s exceeding SLO 10.0",
+   "prompt_tokens_mean spiked to 1290 at 130s vs normal 184",
+   "p95_ttft_s jumped to 6.24s at 149s",
+   "running sequences reached 62.33 with waiting_max 3.0 near max_num_seqs 64",
+   "engine log shows prompt throughput 2957 tokens/s with generation throughput 30.8 tokens/s at 21:41:56"
+  ],
+  "actions": [
+   {
+    "type": "gateway_max_prompt_tokens",
+    "max_prompt_tokens": 1024
+   }
+  ],
+  "rejected_actions": [],
+  "explanation": "Prompt length mix shifted to long prompts causing prefill dominance, TTFT and p95 latency blow up. Capping prompt size at gateway sheds the extreme long prompts while preserving normal traffic.",
+  "valid_output": true,
+  "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.78, \"evidence\": [\"p95_latency_s rose to 24.98 at 149s exceeding SLO 10.0\", \"prompt_tokens_mean spiked to 1290 at 130s vs normal 184\", \"p95_ttft_s jumped to 6.24s at 149s\", \"running sequences reached 62.33 with waiting_max 3.0 near max_num_seqs 64\", \"engine log shows prompt throughput 2957 tokens/s with generation throughput 30.8 tokens/s at 21:41:56\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1024}], \"explanation\": \"Prompt length mix shifted to long prompts causing prefill dominance, TTFT and p95 latency blow up. Capping prompt size at gateway sheds the extreme long prompts while preserving normal traffic.\"}",
+  "usage": {
+   "prompt_tokens": 3208,
+   "total_tokens": 4005,
+   "completion_tokens": 797,
+   "prompt_tokens_details": null
+  },
+  "t": 150
+ },
+ "checkpoints": 5,
+ "trail": [
+  {
+   "t": 30,
+   "observation_sha256": "66acb01edca0555adb493aad2711f91629cd159752fbfbb58a14f9de9bb1c34a",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.95 < SLO 10.0",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "arrivals_rps 2.64 near normal profile 2.8",
+     "gpu_util_pct 100.0 with kv_usage_pct_max 1.52% and waiting_max 0.0",
+     "engine config unchanged from reference"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLO and traffic is near the normal profile with no queueing or KV pressure. No incident detected.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.95 < SLO 10.0\", \"shed_rps 0.0 and errors absent in recent buckets\", \"arrivals_rps 2.64 near normal profile 2.8\", \"gpu_util_pct 100.0 with kv_usage_pct_max 1.52% and waiting_max 0.0\", \"engine config unchanged from reference\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLO and traffic is near the normal profile with no queueing or KV pressure. No incident detected.\"}",
+    "usage": {
+     "prompt_tokens": 1495,
+     "total_tokens": 1807,
+     "completion_tokens": 312,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 60,
+   "observation_sha256": "7d11bfc7e0c2eaeffc6e172b2faaeafabe7b730e21ae0d7e86580b5c829fbdd6",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.95,
+    "evidence": [
+     "p95_latency_s 5.43 at t=60 < SLO 10.0",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "arrivals_rps 2.5 at t=60 close to normal_profile 2.8",
+     "gpu_util_pct 100.0 and gpu_power_w 450.0 matches normal profile",
+     "kv_usage_pct_max 0.98 and waiting_max 0.0 with no queue buildup"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLO and traffic matches the healthy reference profile. No queueing or KV pressure is observed, so no incident is present.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.43 at t=60 < SLO 10.0\", \"shed_rps 0.0 and errors absent in recent buckets\", \"arrivals_rps 2.5 at t=60 close to normal_profile 2.8\", \"gpu_util_pct 100.0 and gpu_power_w 450.0 matches normal profile\", \"kv_usage_pct_max 0.98 and waiting_max 0.0 with no queue buildup\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLO and traffic matches the healthy reference profile. No queueing or KV pressure is observed, so no incident is present.\"}",
+    "usage": {
+     "prompt_tokens": 2016,
+     "total_tokens": 2412,
+     "completion_tokens": 396,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 90,
+   "observation_sha256": "a621fab8623b265e7d9c89e74e1b42a695f9962e31c25d67d23acaaad8f4e4a3",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.85,
+    "evidence": [
+     "p95_latency_s ~5.9s < SLO 10.0s in latest bucket",
+     "shed_rps 0.0 and errors absent across recent 10s buckets",
+     "waiting_max 0.0 and running ~14.7 within normal profile",
+     "gpu_memory_used_mb ~88584 MB with engine using 87194 MB, no OOM signs",
+     "engine config unchanged from reference"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, queue is empty and KV usage is low. The small reranker eval process coexists without degrading latency, so no incident is present.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.85, \"evidence\": [\"p95_latency_s ~5.9s < SLO 10.0s in latest bucket\", \"shed_rps 0.0 and errors absent across recent 10s buckets\", \"waiting_max 0.0 and running ~14.7 within normal profile\", \"gpu_memory_used_mb ~88584 MB with engine using 87194 MB, no OOM signs\", \"engine config unchanged from reference\"], \"actions\": [], \"explanation\": \"Latency, error and shed rates are within SLOs, queue is empty and KV usage is low. The small reranker eval process coexists without degrading latency, so no incident is present.\"}",
+    "usage": {
+     "prompt_tokens": 2481,
+     "total_tokens": 2989,
+     "completion_tokens": 508,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 120,
+   "observation_sha256": "bb0a133da071d588dd1ff53379471f593a486b72c093fb5cf0fd601a0fa70e17",
+   "decision": {
+    "incident": false,
+    "root_cause": "healthy",
+    "confidence": 0.92,
+    "evidence": [
+     "p95_latency_s 5.88 < SLO 10.0 at t=120",
+     "shed_rps 0.0 and errors absent in recent buckets",
+     "waiting_max 0.0 and running ~15.1 near normal profile 15.0",
+     "gpu_util_pct 100.0 with kv_usage_pct_max 1.32% indicating no KV pressure",
+     "prompt_tokens_mean 235 vs normal 184 within normal variation"
+    ],
+    "actions": [
+     {
+      "type": "no_action"
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Latency, error and shed rates are within SLOs, no queue buildup and KV usage is low. The small reranker process uses <1GB and does not impact serving. No incident.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s 5.88 < SLO 10.0 at t=120\", \"shed_rps 0.0 and errors absent in recent buckets\", \"waiting_max 0.0 and running ~15.1 near normal profile 15.0\", \"gpu_util_pct 100.0 with kv_usage_pct_max 1.32% indicating no KV pressure\", \"prompt_tokens_mean 235 vs normal 184 within normal variation\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Latency, error and shed rates are within SLOs, no queue buildup and KV usage is low. The small reranker process uses <1GB and does not impact serving. No incident.\"}",
+    "usage": {
+     "prompt_tokens": 2947,
+     "total_tokens": 3363,
+     "completion_tokens": 416,
+     "prompt_tokens_details": null
+    }
+   }
+  },
+  {
+   "t": 150,
+   "observation_sha256": "2ffa301c6669b6b555eded67c0479a58ce4ae7b43a89428774a67eee63abe662",
+   "decision": {
+    "incident": true,
+    "root_cause": "long_prompt_flood",
+    "confidence": 0.78,
+    "evidence": [
+     "p95_latency_s rose to 24.98 at 149s exceeding SLO 10.0",
+     "prompt_tokens_mean spiked to 1290 at 130s vs normal 184",
+     "p95_ttft_s jumped to 6.24s at 149s",
+     "running sequences reached 62.33 with waiting_max 3.0 near max_num_seqs 64",
+     "engine log shows prompt throughput 2957 tokens/s with generation throughput 30.8 tokens/s at 21:41:56"
+    ],
+    "actions": [
+     {
+      "type": "gateway_max_prompt_tokens",
+      "max_prompt_tokens": 1024
+     }
+    ],
+    "rejected_actions": [],
+    "explanation": "Prompt length mix shifted to long prompts causing prefill dominance, TTFT and p95 latency blow up. Capping prompt size at gateway sheds the extreme long prompts while preserving normal traffic.",
+    "valid_output": true,
+    "raw_output": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.78, \"evidence\": [\"p95_latency_s rose to 24.98 at 149s exceeding SLO 10.0\", \"prompt_tokens_mean spiked to 1290 at 130s vs normal 184\", \"p95_ttft_s jumped to 6.24s at 149s\", \"running sequences reached 62.33 with waiting_max 3.0 near max_num_seqs 64\", \"engine log shows prompt throughput 2957 tokens/s with generation throughput 30.8 tokens/s at 21:41:56\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1024}], \"explanation\": \"Prompt length mix shifted to long prompts causing prefill dominance, TTFT and p95 latency blow up. Capping prompt size at gateway sheds the extreme long prompts while preserving normal traffic.\"}",
+    "usage": {
+     "prompt_tokens": 3208,
+     "total_tokens": 4005,
+     "completion_tokens": 797,
+     "prompt_tokens_details": null
+    }
+   }
+  }
+ ]
+}

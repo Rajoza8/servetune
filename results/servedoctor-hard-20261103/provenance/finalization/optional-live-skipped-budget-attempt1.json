@@ -1,0 +1,17 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "recorded_at_utc": "2026-11-03T02:48:45.422866+00:00",
+  "status": "not-run-budget-below-5",
+  "gpu_cap_usd": 43,
+  "cost_usd_upper_at_decision": 38.4249793272291,
+  "gpu_budget_remaining_usd_upper": 4.575020672770897,
+  "minimum_required_remaining_after_evaluation_usd": 5,
+  "reason": "Less than $5 remains even before evaluation finishes; accumulated rental cost cannot decrease. Optional live runs therefore cannot meet the predeclared budget condition.",
+  "evidence": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard15-ops-20261102/inference-progress-attempt1/snapshot-0006.json",
+    "sha256": "572dda066dbbac203a43fbdcb89ab6a95b3a52b7a0b5f5e9fcb99656c01c002f"
+  },
+  "no_live_incident_ids_selected": true,
+  "no_live_runs_attempted": true
+}

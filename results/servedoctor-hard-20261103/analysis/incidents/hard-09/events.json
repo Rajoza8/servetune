@@ -1,0 +1,27 @@
+[
+  {
+    "t": 0.0,
+    "kind": "deploy",
+    "text": "Serving deployment rolled out.",
+    "config_diff": {
+      "gpu_memory_utilization": [
+        0.9,
+        0.86
+      ],
+      "metrics_scrape_interval_s": [
+        15,
+        10
+      ]
+    }
+  },
+  {
+    "t": 48.1,
+    "kind": "note",
+    "text": "On-call handoff: no open incidents."
+  },
+  {
+    "t": 98.0,
+    "kind": "alert",
+    "text": "Disk usage on /var/log reached 81% on the serving host (warning, non-paging)."
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "instance_id": 58851643,
+  "scope_sha256": "fd9cf107da4639f2abbf1cba1e38115e56ea8ef7f24f231e7b84e8bb2c212f49",
+  "requested_at_utc": "2026-11-02T17:10:03.943301+00:00",
+  "method": "PUT",
+  "endpoint": "/api/v0/instances/request_logs/58851643/",
+  "payload": {
+    "tail": "1000",
+    "daemon_logs": false
+  },
+  "completed": true,
+  "failure": null,
+  "put_replays": 0,
+  "get_readiness_max_seconds": 45,
+  "get_attempts": [
+    {
+      "attempt": 1,
+      "elapsed_s": 3.01,
+      "http_status": 200
+    }
+  ],
+  "raw_logs_or_result_url_persisted": false,
+  "api_http_status": 200,
+  "object_http_status": 200,
+  "raw_log_sha256": "9e1e9f078ac7d7d22cf12c0e2d1daf37c7bc95739f3f21ffecf10433508a6a8c",
+  "raw_bytes": 51296,
+  "raw_lines": 533,
+  "sensitive_lines_discarded": 5,
+  "diagnostics": [
+    {
+      "line_number": 29,
+      "category": "ssh_startup_marker",
+      "known_paths": []
+    },
+    {
+      "line_number": 30,
+      "category": "ssh_startup_marker",
+      "known_paths": []
+    },
+    {
+      "line_number": 164,
+      "category": "entrypoint_marker",
+      "known_paths": []
+    },
+    {
+      "line_number": 173,
+      "category": "entrypoint_marker",
+      "known_paths": []
+    }
+  ],
+  "onstart_evidence_observed": false,
+  "startup_evidence_observed": true,
+  "absence_interpretation": "No matching projected line is not proof startup/onstart did not run.",
+  "projection": "Fixed categories/known paths only; no raw or freeform log text retained.",
+  "sanitized_log_sha256": "4995d20eba7e28e965de4974558412f08868b17822a72b6aa65f0c35a7f26c13",
+  "finished_at_utc": "2026-11-02T17:10:07.713469+00:00"
+}

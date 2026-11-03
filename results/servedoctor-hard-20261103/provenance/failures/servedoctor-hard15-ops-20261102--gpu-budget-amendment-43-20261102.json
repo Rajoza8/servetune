@@ -1,0 +1,20 @@
+{
+  "project": "servedoctor-hard15-20261102",
+  "analysis_label": "ServeIncidents-Hard (15 of 16 frozen incidents; hard-16 could not start)",
+  "recorded_at_utc": "2026-11-03T01:24:12.430098+00:00",
+  "authorization_source": "Direct human message in this chat",
+  "authorization_verbatim": "extend the budget by 3 dollars if needed",
+  "previous_total_gpu_cap_usd": 40,
+  "additional_authorized_usd": 3,
+  "new_total_gpu_cap_usd": 43,
+  "scope": "ServeDoctor total GPU rental budget including v0 and all Hard attempts; use only as needed",
+  "prior_receipts_and_original_exclusion_783_unchanged": true,
+  "scientific_freeze_unchanged": true,
+  "api_caps_unchanged": {
+    "meta": 50,
+    "baseten": 20
+  },
+  "hard_analysis_cutoff_utc": "2026-11-03T23:00:00+00:00",
+  "paid_calls_cutoff_utc": "2026-11-04T04:59:59+00:00",
+  "replacement_purpose": "Pinned Glimmer30B bf16/vLLM inference replay only; no generation, recording, calibration, incident, prompt, rule, answer-key or scoring changes. Original recording hardware evidence remains authoritative and separate."
+}

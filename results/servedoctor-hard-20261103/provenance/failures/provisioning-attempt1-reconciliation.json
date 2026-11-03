@@ -1,0 +1,8 @@
+{
+  "at_utc": "2026-11-02T15:30:20.382375+00:00",
+  "phase": "hard-bootstrap-calibration-attempt1",
+  "reason": "Pinned offer disappeared before create dispatch; no session/intent file and complete paginated inventory has no Hard rental",
+  "actual_rental_created": false,
+  "additional_gpu_cost_usd": 0,
+  "old_failure_receipt_retained": true
+}

@@ -1,0 +1,168 @@
+{
+  "project": "servedoctor-hard-20261102",
+  "rental_binding": {
+    "path": "/Users/rajoza/Documents/ChatGPT/meta hackathon/servetune/runs/servedoctor-hard-ops-20261102/create-pipeline-attempt1/binding.json",
+    "sha256": "8217d408e7edc0f91997ee3c9844ee8b9177004fa719b33f292d08fdd2474fa1"
+  },
+  "completed": false,
+  "failure": {
+    "class": "CalledProcessError",
+    "returncode": 1
+  },
+  "commands": [
+    {
+      "label": "same-gpu-and-absence",
+      "started_epoch": 1793652773.170736,
+      "returncode": 0,
+      "finished_epoch": 1793652774.1304882
+    },
+    {
+      "label": "fetch-exact-source",
+      "started_epoch": 1793652774.13205,
+      "returncode": 0,
+      "finished_epoch": 1793652775.477739
+    },
+    {
+      "label": "fast-forward-exact-head",
+      "started_epoch": 1793652775.4778502,
+      "returncode": 0,
+      "finished_epoch": 1793652776.656368
+    },
+    {
+      "label": "upload-hard_integrity-py",
+      "started_epoch": 1793652776.6565042,
+      "returncode": 0,
+      "finished_epoch": 1793652778.4437618
+    },
+    {
+      "label": "upload-hard_job_observer-py",
+      "started_epoch": 1793652778.4441972,
+      "returncode": 0,
+      "finished_epoch": 1793652779.873492
+    },
+    {
+      "label": "upload-record_hard_stage-py",
+      "started_epoch": 1793652779.874178,
+      "returncode": 0,
+      "finished_epoch": 1793652781.373033
+    },
+    {
+      "label": "upload-declare_hard_readiness-py",
+      "started_epoch": 1793652781.3732538,
+      "returncode": 0,
+      "finished_epoch": 1793652782.813663
+    },
+    {
+      "label": "upload-hard_recording_stage-py",
+      "started_epoch": 1793652782.8139179,
+      "returncode": 0,
+      "finished_epoch": 1793652784.269717
+    },
+    {
+      "label": "upload-hard_report_common-py",
+      "started_epoch": 1793652784.269877,
+      "returncode": 0,
+      "finished_epoch": 1793652785.681411
+    },
+    {
+      "label": "upload-measure_contexts-py",
+      "started_epoch": 1793652785.6815639,
+      "returncode": 0,
+      "finished_epoch": 1793652787.114561
+    },
+    {
+      "label": "upload-model_response_guard-py",
+      "started_epoch": 1793652787.1147032,
+      "returncode": 0,
+      "finished_epoch": 1793652788.5231402
+    },
+    {
+      "label": "upload-export_hard_scores-py",
+      "started_epoch": 1793652788.523393,
+      "returncode": 0,
+      "finished_epoch": 1793652789.9695091
+    },
+    {
+      "label": "upload-key_runner-py",
+      "started_epoch": 1793652789.9696782,
+      "returncode": 0,
+      "finished_epoch": 1793652791.484355
+    },
+    {
+      "label": "upload-hard-recording-lifecycle-fixtures-json",
+      "started_epoch": 1793652791.484735,
+      "returncode": 0,
+      "finished_epoch": 1793652792.88726
+    },
+    {
+      "label": "upload-hard-worker-and-report-fixtures-final-20261102-json",
+      "started_epoch": 1793652792.887398,
+      "returncode": 0,
+      "finished_epoch": 1793652794.285742
+    },
+    {
+      "label": "upload-rental-scope-json",
+      "started_epoch": 1793652794.285902,
+      "returncode": 0,
+      "finished_epoch": 1793652795.726051
+    },
+    {
+      "label": "upload-session-json",
+      "started_epoch": 1793652795.726215,
+      "returncode": 0,
+      "finished_epoch": 1793652797.141597
+    },
+    {
+      "label": "upload-host-kv-config-change-before-generation-json",
+      "started_epoch": 1793652797.141751,
+      "returncode": 0,
+      "finished_epoch": 1793652798.614814
+    },
+    {
+      "label": "upload-rental-binding-json",
+      "started_epoch": 1793652798.615032,
+      "returncode": 0,
+      "finished_epoch": 1793652799.888044
+    },
+    {
+      "label": "upload-ledger-seed",
+      "started_epoch": 1793652799.8882072,
+      "returncode": 0,
+      "finished_epoch": 1793652801.5575218
+    },
+    {
+      "label": "verify-and-install",
+      "started_epoch": 1793652801.565272,
+      "returncode": 0,
+      "finished_epoch": 1793652802.590358
+    },
+    {
+      "label": "declare-readiness",
+      "started_epoch": 1793652802.5904682,
+      "returncode": 0,
+      "finished_epoch": 1793652803.607997
+    },
+    {
+      "label": "generate-hard",
+      "started_epoch": 1793652803.608193,
+      "returncode": 0,
+      "finished_epoch": 1793652807.196461
+    },
+    {
+      "label": "freeze-hard",
+      "started_epoch": 1793652807.1966238,
+      "returncode": 0,
+      "finished_epoch": 1793652808.1978161
+    },
+    {
+      "label": "verify-final-freeze",
+      "started_epoch": 1793652808.198293,
+      "returncode": 1,
+      "finished_epoch": 1793652809.205299
+    }
+  ],
+  "source_commit": "4b0add12be36cef0d0776607f683310b1641b0f7",
+  "route": "direct",
+  "initial_ledger_sha256": "13f777ed328bb0c71bb2063b6b12cf3b6cb8024d78b0ab46b9e374521a566123",
+  "finished_epoch": 1793652809.205415
+}
