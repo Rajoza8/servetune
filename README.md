@@ -12,6 +12,35 @@ Built during the Meta AI Developer Hackathon (Push the Frontier), October 29 –
 **Results page with live-repair replays:** https://rajoza8.github.io/servetune/ (built from the committed results by
 `scripts/build_site.py`; it makes no API calls).
 
+## Try it in five minutes (no GPU)
+
+Needs Python 3.11 or later; there is nothing to install.
+
+```sh
+git clone https://github.com/Rajoza8/servetune && cd servetune
+python3 -m unittest discover -s tests -q
+```
+
+**A live Meta model call, with your own Meta Model API key:**
+
+```sh
+cp .env.example .env            # put your key after MODEL_API_KEY=
+set -a; . ./.env; set +a        # load it into this shell (nothing reads .env automatically)
+python3 -m servedoctor demo
+```
+
+The demo loads a real incident recorded on the GPU (a traffic surge, with a harmless decoy job running on the same
+GPU), prints what the agent sees, sends that snapshot to **Muse Spark** (`muse-spark-1.3`) on the Meta Model API, and
+prints the diagnosis, its evidence and the proposed fix. It then grades the reply against the sealed answer key, which
+the model never sees, and shows what the threshold rules did on the same incident. One call uses about 3,000 input and
+1,000 output tokens, roughly $0.01. The prompt hash, reply, token usage and cost are saved under `runs/demo/`; the key
+never is. Options: `--model wonder` for Muse Wonder (`muse-wonder-1.0`), `--incident`, `--study-dir`, `--at` and
+`--recorded`.
+
+**No key?** The same command runs in recorded mode and says so: it shows the reply the model gave when the study was
+evaluated. Every recorded reply, its token usage and cost are in `results/*/decisions/`. `.env` is git-ignored; never
+commit a key.
+
 ## Results at a glance
 
 | | Result |
