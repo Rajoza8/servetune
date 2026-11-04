@@ -1,0 +1,745 @@
+{
+  "mode": "live",
+  "model": "muse-spark-1.3",
+  "study": "results/servedoctor-hard-20261103/analysis",
+  "started_at_utc": "2026-11-04T04:27:00.597332+00:00",
+  "workers": 4,
+  "agent": {
+    "faults": 12,
+    "diagnosed": 10,
+    "safe_fixes": 10,
+    "harmful": 0,
+    "stopped_decoy": 0,
+    "false_alarms": 0
+  },
+  "rules": {
+    "faults": 12,
+    "diagnosed": 7,
+    "safe_fixes": 6,
+    "harmful": 5,
+    "stopped_decoy": 5,
+    "false_alarms": 2
+  },
+  "cost_usd": 0.11205549999999999,
+  "failed_calls": 0,
+  "incidents": [
+    {
+      "incident": "hard-01",
+      "at_s": 150,
+      "prompt_sha256": "d441d3695094e91e7906ffcec4337a818569a31813e5b386ca896706e86677dc",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"gpu_contention\", \"confidence\": 0.88, \"evidence\": [\"p95_latency_s 11.07 exceeds SLO 10.0 in bucket 149\", \"non-engine GPU process pid 3127 embedding_batch using 1102 MB present\", \"gpu_mem_used_mb jumped 86942 to 87926 around t=129 coinciding with latency jump\", \"kv_usage_pct_max ~3% waiting_max 0 preemptions 0 rules out KV/config limits\", \"arrivals_rps ~3.2 and prompt mean ~239 near normal 2.8/184 rules out surge/flood\"], \"actions\": [{\"type\": \"stop_gpu_process\", \"pid\": 3127}], \"explanation\": \"Latency SLO breach coincides with appearance of embedding_batch GPU process and memory jump, with no queue/preemption/KV pressure. Removing the competing process is least-disruptive fix.\"}",
+      "usage": {
+        "completion_tokens": 1360,
+        "prompt_tokens": 3157,
+        "total_tokens": 4517,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1153
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00972625,
+      "elapsed_s": 13.94,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "gpu_contention",
+        "actions": [
+          {
+            "type": "stop_gpu_process",
+            "pid": 3127
+          }
+        ],
+        "t": 150
+      },
+      "score": {
+        "truth": "gpu_contention",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "gpu_contention",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-02",
+      "at_s": 150,
+      "prompt_sha256": "7302fc0c96ee14219158280617ebcdfbaf75613f51fd0a6e201bc03e9d486571",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.9, \"evidence\": [\"p95_latency_s 12.2s exceeds SLO 10.0s\", \"prompt_tokens_mean 1009 vs normal 184\", \"arrivals_rps ~3.5 vs normal 2.8 - no surge\", \"p95_ttft_s 2.23s vs normal 0.46s\", \"prompt_tokens_per_s 3278 with KV usage only 6%\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 512}], \"explanation\": \"Offered rate normal but prompt length 4-5x normal drives prefill load, TTFT and queue latency over SLO with low KV use and no waiting due to chunked prefill. Shedding long prompts at gateway restores SLO without restart.\"}",
+      "usage": {
+        "completion_tokens": 1209,
+        "prompt_tokens": 3150,
+        "total_tokens": 4359,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1011
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00907575,
+      "elapsed_s": 11.91,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "long_prompt_flood",
+        "actions": [
+          {
+            "type": "gateway_max_prompt_tokens",
+            "max_prompt_tokens": 512
+          }
+        ],
+        "t": 150
+      },
+      "score": {
+        "truth": "long_prompt_flood",
+        "predicted": "long_prompt_flood",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "long_prompt_flood",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "harmful": true,
+        "stopped_decoy": true,
+        "false_alarm": true
+      }
+    },
+    {
+      "incident": "hard-03",
+      "at_s": 360,
+      "prompt_sha256": "d7039fae96184b38f94dc5e1560f74235cabb4775220b7e935ae73616eda5fee",
+      "raw_reply": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.92, \"evidence\": [\"p95_latency_s max 8.22 < SLO 10.0\", \"shed_rps 0.0 and errors 0, within SLO\", \"waiting_max 0.0, preemptions 0.0\", \"kv_usage_pct_max 3.89% vs normal 1.26%, no pressure\", \"p95_ttft ~0.4-0.9s near normal 0.46s\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"Transient arrival peak to ~6 rps raised running and latency modestly, but SLOs met, no queueing, KV cache <4%, no shed/errors. Normal variation, no fix needed.\"}",
+      "usage": {
+        "completion_tokens": 625,
+        "prompt_tokens": 3336,
+        "total_tokens": 3961,
+        "completion_tokens_details": {
+          "reasoning_tokens": 443
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00682625,
+      "elapsed_s": 6.07,
+      "attempts": 1,
+      "error": null,
+      "decision": null,
+      "score": {
+        "truth": "healthy",
+        "predicted": "healthy",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "healthy",
+        "predicted": "healthy",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-04",
+      "at_s": 150,
+      "prompt_sha256": "2ffa301c6669b6b555eded67c0479a58ce4ae7b43a89428774a67eee63abe662",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"long_prompt_flood\", \"confidence\": 0.88, \"evidence\": [\"p95_latency 24.98s > SLO 10.0s\", \"prompt_tokens_mean 1290 at t130 vs normal 184\", \"prompt_tokens_per_s 2617 vs ~800 typical\", \"p95_ttft 6.24s vs normal 0.46s\", \"arrivals_rps ~2.7 stable vs normal 2.8\"], \"actions\": [{\"type\": \"gateway_max_prompt_tokens\", \"max_prompt_tokens\": 1000}], \"explanation\": \"Arrival rate normal but prompt size spiked 7x, prefill throughput spiked and TTFT/latency breached SLO. KV usage low, no errors, no config change. Shedding overlong prompts at gateway is least disruptive.\"}",
+      "usage": {
+        "completion_tokens": 1300,
+        "prompt_tokens": 3193,
+        "total_tokens": 4493,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1107
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00951625,
+      "elapsed_s": 12.16,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "long_prompt_flood",
+        "actions": [
+          {
+            "type": "gateway_max_prompt_tokens",
+            "max_prompt_tokens": 1000
+          }
+        ],
+        "t": 150
+      },
+      "score": {
+        "truth": "long_prompt_flood+gpu_contention",
+        "predicted": "long_prompt_flood",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "long_prompt_flood+gpu_contention",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": true,
+        "fix_proposed": false,
+        "harmful": true,
+        "stopped_decoy": true,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-05",
+      "at_s": 150,
+      "prompt_sha256": "98b05c9f50797e8b54a5f36b16fb9cfd18e8691cf5ef209e4c4125134c74c368",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps 8.1/6.7/8.0 vs normal 2.8\", \"p95_latency 18-21s exceeds SLO 10s\", \"running 95.6 at max_num_seqs 96 with waiting_max 53\", \"kv_usage 6.9% low with 0 preemptions, not KV starvation\", \"prompt_tokens_mean ~228-282 vs normal 184, no long shift\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 3}], \"explanation\": \"3x arrival surge saturates concurrency limit causing queueing and SLO breach; KV and prompts normal. Rate-limit to capacity is least disruptive vs restart.\"}",
+      "usage": {
+        "completion_tokens": 1080,
+        "prompt_tokens": 3127,
+        "total_tokens": 4207,
+        "completion_tokens_details": {
+          "reasoning_tokens": 893
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00849875,
+      "elapsed_s": 10.65,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 3.0
+          }
+        ],
+        "t": 150
+      },
+      "score": {
+        "truth": "traffic_surge+gpu_contention",
+        "predicted": "traffic_surge",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "traffic_surge+gpu_contention",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-06",
+      "at_s": 30,
+      "prompt_sha256": "e3e68c52c5ebd36d36ca329c354bbb3f495e1ce2050b4686b6211a8daf659086",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.85, \"evidence\": [\"max_model_len cut 4096->1280 at deploy t=0.0\", \"http_400=3 in t_end 29.0 bucket ~9% error rate >0.01 SLO\", \"p95_latency_s 5.79 within 10.0 SLO, no queue pressure\", \"kv_usage_pct_max 1.17% with zero preemptions\", \"prompt_tokens_mean 250 vs normal 184, longer prompts rejected\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency/throughput/KV healthy, but 400 errors after max_model_len reduced to 1280 rejects valid prompts. Restore to reference 4096 via engine restart.\"}",
+      "usage": {
+        "completion_tokens": 911,
+        "prompt_tokens": 1520,
+        "total_tokens": 2431,
+        "completion_tokens_details": {
+          "reasoning_tokens": 710
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00577175,
+      "elapsed_s": 7.58,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "context_limit_too_small",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          }
+        ],
+        "t": 30
+      },
+      "score": {
+        "truth": "batch_limit_too_low+context_limit_too_small",
+        "predicted": "context_limit_too_small",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "batch_limit_too_low+context_limit_too_small",
+        "predicted": "context_limit_too_small",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-07",
+      "at_s": 60,
+      "prompt_sha256": "578f043e90a49157c6630ff03a98e2aee84c0eea1daf920b01352ff29dd85cd3",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"max_model_len reduced 4096->1408 at deploy t=0.0\", \"http_400 errors in 4/5 buckets, 3 errors in last bucket\", \"error rate ~0.2 in last bucket exceeds SLO 0.01\", \"p95_latency 5-6s within SLO 10s, waiting_max 0\", \"kv_usage_pct_max 0.9-2.4% low, no preemptions\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"Latency and queue healthy but 400 errors after max_model_len cut to 1408 rejects valid prompts. Restore to reference 4096 to admit them.\"}",
+      "usage": {
+        "completion_tokens": 794,
+        "prompt_tokens": 1967,
+        "total_tokens": 2761,
+        "completion_tokens_details": {
+          "reasoning_tokens": 596
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00583325,
+      "elapsed_s": 7.33,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "context_limit_too_small",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          }
+        ],
+        "t": 60
+      },
+      "score": {
+        "truth": "context_limit_too_small",
+        "predicted": "context_limit_too_small",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "context_limit_too_small",
+        "predicted": "context_limit_too_small",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-08",
+      "at_s": 270,
+      "prompt_sha256": "02e43de93aad79d8fd3eca7ec78263af4434f470c483b230a28d8ddaeea8db99",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps 8.4 vs normal 2.8, ok_rps 7.2 sustained\", \"running 63.3 capped at max_num_seqs 64 with waiting_max 18.0\", \"kv_usage_pct_max 5.27% with 0 preemptions, large headroom\", \"p95_latency_s 10.19 exceeds SLO 10.0, p95_ttft 1.26 vs 0.46\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 96}], \"explanation\": \"Load ~3x normal saturates max_num_seqs=64 causing queueing and SLO breach, while KV cache ~5% shows capacity for more concurrency. Raising max_num_seqs relieves queue without shedding.\"}",
+      "usage": {
+        "completion_tokens": 1153,
+        "prompt_tokens": 3340,
+        "total_tokens": 4493,
+        "completion_tokens_details": {
+          "reasoning_tokens": 940
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00907525,
+      "elapsed_s": 11.87,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "batch_limit_too_low",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_num_seqs",
+            "value": 96
+          }
+        ],
+        "t": 270
+      },
+      "score": {
+        "truth": "traffic_surge",
+        "predicted": "batch_limit_too_low",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "complete_fix": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "traffic_surge",
+        "predicted": "traffic_surge",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-09",
+      "at_s": 360,
+      "prompt_sha256": "0e8d93cf587b48a92680747d6960090f2a71d38de1f5fd58d7688428c6e0099d",
+      "raw_reply": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency 5.6-6.8s < SLO 10.0s\", \"shed_rps 0 and errors 0, within SLO\", \"arrivals_rps ~2-3.8 vs normal 2.8\", \"waiting_max 0, kv_usage ~1-2.5%, no preemptions\", \"gen throughput and power match normal profile\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met with load and latency near healthy reference. Slight config change 0.9->0.86 did not cause queuing or errors. Normal variation only.\"}",
+      "usage": {
+        "completion_tokens": 548,
+        "prompt_tokens": 3332,
+        "total_tokens": 3880,
+        "completion_tokens_details": {
+          "reasoning_tokens": 380
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.006494,
+      "elapsed_s": 4.91,
+      "attempts": 1,
+      "error": null,
+      "decision": null,
+      "score": {
+        "truth": "healthy",
+        "predicted": "healthy",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "healthy",
+        "predicted": "healthy",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-10",
+      "at_s": 360,
+      "prompt_sha256": "4d308bf77782900096138a98ba2a8076a9bbdfec1559ef8444322f3a51de3fbc",
+      "raw_reply": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.95, \"evidence\": [\"p95_latency_s 5.5-7.8 < SLO 10.0 in all buckets\", \"shed_rps 0 and errors 0, within SLO\", \"waiting_max 0 and running ~10-25 vs normal 15.0\", \"kv_usage_pct_max 1-3.5% with 0 preemptions\", \"arrivals_rps ~2-3.9 vs normal 2.8, prompt mean similar\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met with no queueing, no preemptions, and load matching healthy profile. Extra GPU process is tiny (738MB, duty 0.02). No incident.\"}",
+      "usage": {
+        "completion_tokens": 747,
+        "prompt_tokens": 3424,
+        "total_tokens": 4171,
+        "completion_tokens_details": {
+          "reasoning_tokens": 562
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00745475,
+      "elapsed_s": 7.06,
+      "attempts": 1,
+      "error": null,
+      "decision": null,
+      "score": {
+        "truth": "healthy",
+        "predicted": "healthy",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "healthy",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "harmful": true,
+        "stopped_decoy": true,
+        "false_alarm": true
+      }
+    },
+    {
+      "incident": "hard-11",
+      "at_s": 30,
+      "prompt_sha256": "f4abd90ed632956628c22d876ab05b8e40182dd8d829d4c420d3309a646f03bc",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"context_limit_too_small\", \"confidence\": 0.9, \"evidence\": [\"http_400=1 and http_400=2 errors in last 2 buckets vs SLO max_error_rate 0.01\", \"max_model_len cut 4096->1280 at t=0.0 deploy\", \"p95_latency ~5.3s <10s and waiting_max 0, preemptions 0\", \"prompt_tokens_mean 106-218 vs normal 184, tail exceeds 1280\", \"only GPU process is VLLM::EngineCore\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_model_len\", \"value\": 4096}], \"explanation\": \"400 errors started after max_model_len reduced to 1280. Latency, queue and KV preemptions healthy, so reject is context limit. Restore max_model_len to reference 4096.\"}",
+      "usage": {
+        "completion_tokens": 1429,
+        "prompt_tokens": 1494,
+        "total_tokens": 2923,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1216
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.00794075,
+      "elapsed_s": 12.9,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "context_limit_too_small",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_model_len",
+            "value": 4096
+          }
+        ],
+        "t": 30
+      },
+      "score": {
+        "truth": "kv_cache_starvation+context_limit_too_small",
+        "predicted": "context_limit_too_small",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "kv_cache_starvation+context_limit_too_small",
+        "predicted": "context_limit_too_small",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-12",
+      "at_s": 360,
+      "prompt_sha256": "2182e6e2e5d59961fad5eec4a2ead804e749d56e00ef0ffe8f50872bfd054915",
+      "raw_reply": "{\"incident\": false, \"root_cause\": \"healthy\", \"confidence\": 0.93, \"evidence\": [\"p95_latency_s 5.2-6.7 < SLO 10.0, no errors\", \"shed_rps 0.0 < SLO 0.05 max\", \"arrivals_rps 2.2-3.6 matches normal 2.8\", \"kv_usage_pct_max 0.67-2.16% matches normal 1.26%\", \"running 10-20 matches normal 15, waiting mostly 0\"], \"actions\": [{\"type\": \"no_action\"}], \"explanation\": \"All SLOs met and metrics match healthy reference profile; transient waiting/TTFT spikes are normal variation, no capacity or config breach.\"}",
+      "usage": {
+        "completion_tokens": 563,
+        "prompt_tokens": 3313,
+        "total_tokens": 3876,
+        "completion_tokens_details": {
+          "reasoning_tokens": 390
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.006534,
+      "elapsed_s": 7.68,
+      "attempts": 1,
+      "error": null,
+      "decision": null,
+      "score": {
+        "truth": "batch_limit_too_low",
+        "predicted": "healthy",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "complete_fix": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "batch_limit_too_low",
+        "predicted": "other",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-13",
+      "at_s": 150,
+      "prompt_sha256": "410f95b080c2cad0634e71d6f974defb4df0a2bcf57472a347af9d86a9bbf59c",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.9, \"evidence\": [\"arrivals_rps 9.1 vs normal 2.8, ~3x surge\", \"p95_latency_s 13.55 exceeds SLO 10.0\", \"running 95.3 + waiting_max 20.0 shows queuing\", \"kv_usage_pct_max 7.79% low, no preemptions\", \"prompt_tokens_mean 294 vs normal 184, no long-prompt shift\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 4}], \"explanation\": \"3x arrival surge causes queue buildup and SLO breach while KV cache is ample and GPU is saturated, so shed excess at gateway to protect latency.\"}",
+      "usage": {
+        "completion_tokens": 929,
+        "prompt_tokens": 3131,
+        "total_tokens": 4060,
+        "completion_tokens_details": {
+          "reasoning_tokens": 751
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 3057
+        }
+      },
+      "cost_usd": 0.007862,
+      "elapsed_s": 8.18,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "traffic_surge",
+        "actions": [
+          {
+            "type": "gateway_rate_limit",
+            "max_rps": 4.0
+          }
+        ],
+        "t": 150
+      },
+      "score": {
+        "truth": "traffic_surge",
+        "predicted": "traffic_surge",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "traffic_surge",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "harmful": true,
+        "stopped_decoy": true,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-14",
+      "at_s": 30,
+      "prompt_sha256": "1762bcdb27caec4a95c2a75b0ff1c7ca16a0268353dd10e800c48c9de5facd9e",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"underutilization\", \"confidence\": 0.85, \"evidence\": [\"arrivals_rps ~1.0 vs normal 2.8\", \"running ~5 vs normal 15.0\", \"gen_tokens_per_s ~130 vs normal 367.6\", \"gpu_power_w ~450 same as normal, gpu_util 90-100%\", \"p95_latency ~5.4s within SLO, waiting 0, no shed\"], \"actions\": [{\"type\": \"recommend_consolidation\"}], \"explanation\": \"Traffic ~35% of normal with SLO met but GPU power/util same as full load. Healthy but inefficient; consolidate to fewer GPUs.\"}",
+      "usage": {
+        "completion_tokens": 882,
+        "prompt_tokens": 1466,
+        "total_tokens": 2348,
+        "completion_tokens_details": {
+          "reasoning_tokens": 724
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.005581,
+      "elapsed_s": 8.6,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "underutilization",
+        "actions": [
+          {
+            "type": "recommend_consolidation"
+          }
+        ],
+        "t": 30
+      },
+      "score": {
+        "truth": "underutilization",
+        "predicted": "underutilization",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "underutilization",
+        "predicted": "gpu_contention",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "harmful": true,
+        "stopped_decoy": true,
+        "false_alarm": false
+      }
+    },
+    {
+      "incident": "hard-15",
+      "at_s": 30,
+      "prompt_sha256": "9042000c4cb569a064db1ea80726c3d6c4cfe14c09d65de9ab59893d4b401c1f",
+      "raw_reply": "{\"incident\": true, \"root_cause\": \"batch_limit_too_low\", \"confidence\": 0.9, \"evidence\": [\"max_num_seqs 12 vs reference 64 after deploy\", \"running pinned at 12.0 = limit, log Running: 12 reqs\", \"waiting_max 29.0 vs normal 0.0, log Waiting: 18 reqs\", \"kv_usage_pct_max 0.85% low, no preemptions\", \"p95_ttft 3.95s vs normal 0.46s\"], \"actions\": [{\"type\": \"set_engine_config\", \"knob\": \"max_num_seqs\", \"value\": 64}], \"explanation\": \"Concurrency capped at 12 vs 15 needed normally. Queue built even at normal RPS, KV <1% so not memory. Restore max_num_seqs to reference 64.\"}",
+      "usage": {
+        "completion_tokens": 941,
+        "prompt_tokens": 1493,
+        "total_tokens": 2434,
+        "completion_tokens_details": {
+          "reasoning_tokens": 744
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "cost_usd": 0.0058655,
+      "elapsed_s": 7.79,
+      "attempts": 1,
+      "error": null,
+      "decision": {
+        "root_cause": "batch_limit_too_low",
+        "actions": [
+          {
+            "type": "set_engine_config",
+            "knob": "max_num_seqs",
+            "value": 64
+          }
+        ],
+        "t": 30
+      },
+      "score": {
+        "truth": "batch_limit_too_low",
+        "predicted": "batch_limit_too_low",
+        "diagnosis_correct": true,
+        "fix_proposed": true,
+        "complete_fix": true,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      },
+      "rules_score": {
+        "truth": "batch_limit_too_low",
+        "predicted": "other",
+        "diagnosis_correct": false,
+        "fix_proposed": false,
+        "harmful": false,
+        "stopped_decoy": false,
+        "false_alarm": false
+      }
+    }
+  ]
+}

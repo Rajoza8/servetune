@@ -40,7 +40,9 @@ never is. Options: `--model wonder` for Muse Wonder (`muse-wonder-1.0`), `--inci
 **The whole Hard set, live:** `python3 -m servedoctor demo --suite` sends all 15 recorded Hard-set incidents to Muse
 Spark, four calls at a time (`--workers`), and prints each diagnosis as it arrives next to the sealed answer and what the
 threshold rules did, then a tally scored by the benchmark's own scoring code. One call per incident, about $0.11 in all
-for Spark (about $0.40 with `--model wonder`); the replies and costs are saved under `runs/demo/`.
+for Spark (about $0.40 with `--model wonder`); the replies and costs are saved under `runs/demo/`. The two live suite
+runs made while recording the demo video each scored 10 of 12 with zero harmful actions (the rules: 7 of 12, five
+harmful); their records and a verifier are in [results/live-demo-20261104](results/live-demo-20261104/README.md).
 
 **No key?** The same commands run in recorded mode and say so: they show the replies the model gave when the study was
 evaluated (`--suite` then reproduces the published Spark and rules scoreboard rows). Every recorded reply, its token usage and cost are in `results/*/decisions/`. `.env` is git-ignored; never

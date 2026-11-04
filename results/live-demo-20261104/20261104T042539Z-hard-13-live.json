@@ -1,0 +1,36 @@
+{
+  "incident": "hard-13",
+  "at_s": 150,
+  "prompt_sha256": "410f95b080c2cad0634e71d6f974defb4df0a2bcf57472a347af9d86a9bbf59c",
+  "mode": "live",
+  "model": "muse-spark-1.3",
+  "elapsed_s": 9.87,
+  "usage": {
+    "completion_tokens": 994,
+    "prompt_tokens": 3131,
+    "total_tokens": 4125,
+    "completion_tokens_details": {
+      "reasoning_tokens": 830
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "cost_usd": 0.00813825,
+  "called_at_utc": "2026-11-04T04:25:39.403217+00:00",
+  "valid_output": true,
+  "decision": {
+    "incident": true,
+    "root_cause": "traffic_surge",
+    "actions": [
+      {
+        "type": "gateway_rate_limit",
+        "max_rps": 4.0
+      }
+    ]
+  },
+  "correct_cause": true,
+  "safe_fix": true,
+  "stopped_decoy": false,
+  "raw_reply": "{\"incident\": true, \"root_cause\": \"traffic_surge\", \"confidence\": 0.9, \"evidence\": [\"arrivals_rps 8.4,7.9,9.1 vs normal 2.8\", \"p95_latency_s 13.55 exceeds SLO 10.0\", \"running 95.3 at limit 96 with waiting_max 20\", \"kv_usage_pct_max only 7.79% with 0 preemptions\"], \"actions\": [{\"type\": \"gateway_rate_limit\", \"max_rps\": 4}], \"explanation\": \"Offered rate tripled, queue formed and p95 breached SLO while KV and prompts normal. Shed excess at gateway to restore latency.\"}"
+}
