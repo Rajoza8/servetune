@@ -19,6 +19,7 @@ import os
 from pathlib import Path
 import statistics
 import sys
+import textwrap
 import time
 import urllib.error
 
@@ -86,7 +87,9 @@ def _summary_lines(observation):
         "config diff  " + (", ".join(changed) if changed else "none"),
     ]
     for proc in observation.get("gpu_processes") or []:
-        lines.append(f"GPU process  pid {proc['pid']}  {proc.get('used_mb')} MB  {proc.get('command')}")
+        command = str(proc.get("command"))
+        command = command if len(command) <= 64 else command[:63] + "…"
+        lines.append(f"GPU process  pid {proc['pid']}  {proc.get('used_mb')} MB  {command}")
     for event in observation.get("change_log") or []:
         lines.append(f"change log   {event['t']:>5.0f}s  {event['text']}")
     return lines
@@ -158,7 +161,7 @@ def run_demo(*, study_dir=DEFAULT_STUDY, incident_id=DEFAULT_INCIDENT, at=None, 
         text, usage, step_t, path = _recorded_reply(study, incident_id, arm, at)
         reason = "--recorded was given" if recorded else "no MODEL_API_KEY is set"
         say(style("33", f"→ Recorded mode ({reason}): the reply this model gave at {step_t:.0f} s when the "
-                        f"study was evaluated, from {path}"))
+                        f"study was evaluated,\n  from {path}"))
         record.update(model=arm, recorded_step_t=step_t, usage=usage, source=str(path))
     say()
 
@@ -175,9 +178,9 @@ def run_demo(*, study_dir=DEFAULT_STUDY, incident_id=DEFAULT_INCIDENT, at=None, 
         ROOT_CAUSES.get(decision["root_cause"], "").rstrip(".").lower() +
         (f"  (confidence {decision['confidence']})" if decision.get("confidence") is not None else ""))
     for item in decision.get("evidence") or []:
-        say("  • " + item)
+        say(textwrap.fill(str(item), 100, initial_indent="  • ", subsequent_indent="    "))
     if decision.get("explanation"):
-        say("  " + decision["explanation"])
+        say(textwrap.fill(str(decision["explanation"]), 100, initial_indent="  ", subsequent_indent="  "))
     for action in decision["actions"]:
         say(style("1", "Proposed fix: ") + _action(action))
     for rejected in decision.get("rejected_actions") or []:
