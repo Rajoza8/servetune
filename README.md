@@ -37,8 +37,13 @@ the model never sees, and shows what the threshold rules did on the same inciden
 never is. Options: `--model wonder` for Muse Wonder (`muse-wonder-1.0`), `--incident`, `--study-dir`, `--at` and
 `--recorded`.
 
-**No key?** The same command runs in recorded mode and says so: it shows the reply the model gave when the study was
-evaluated. Every recorded reply, its token usage and cost are in `results/*/decisions/`. `.env` is git-ignored; never
+**The whole Hard set, live:** `python3 -m servedoctor demo --suite` sends all 15 recorded Hard-set incidents to Muse
+Spark, four calls at a time (`--workers`), and prints each diagnosis as it arrives next to the sealed answer and what the
+threshold rules did, then a tally scored by the benchmark's own scoring code. One call per incident, about $0.11 in all
+for Spark (about $0.40 with `--model wonder`); the replies and costs are saved under `runs/demo/`.
+
+**No key?** The same commands run in recorded mode and say so: they show the replies the model gave when the study was
+evaluated (`--suite` then reproduces the published Spark and rules scoreboard rows). Every recorded reply, its token usage and cost are in `results/*/decisions/`. `.env` is git-ignored; never
 commit a key.
 
 ## Results at a glance

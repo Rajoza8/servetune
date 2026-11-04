@@ -130,12 +130,15 @@ def main(argv=None):
     p.add_argument("--glimmer", choices=["local", "baseten"], default="local")
     p.add_argument("--out")
 
-    p = sub.add_parser("demo", help="One live Muse Spark diagnosis of a recorded incident (needs only an API key)")
+    p = sub.add_parser("demo", help="Live Muse Spark diagnoses of recorded incidents (needs only an API key)")
     p.add_argument("--study-dir", default="results/servedoctor-hard-20261103/analysis")
     p.add_argument("--incident", default="hard-13")
     p.add_argument("--at", type=float, help="Seconds into the incident (default: when Spark flagged it)")
     p.add_argument("--model", choices=["spark", "wonder"], default="spark")
     p.add_argument("--recorded", action="store_true", help="Replay the recorded reply instead of calling the API")
+    p.add_argument("--suite", action="store_true",
+                   help="Diagnose every incident of the study (one call each) and score them against the rules")
+    p.add_argument("--workers", type=int, default=4, help="Concurrent API calls in --suite mode")
 
     p = sub.add_parser("simulate", help="Synthetic rehearsal study (never a result)")
     p.add_argument("--out", required=True)
@@ -253,9 +256,12 @@ def main(argv=None):
         print(json.dumps({k: result[k] for k in ("decision", "executed", "recovered", "rolled_back",
                                                  "time_to_recover_s")}, indent=2, default=str))
     elif args.command == "demo":
-        from .demo import run_demo
-        run_demo(study_dir=args.study_dir, incident_id=args.incident, at=args.at, model=args.model,
-                 recorded=args.recorded)
+        from .demo import run_demo, run_suite
+        if args.suite:
+            run_suite(study_dir=args.study_dir, model=args.model, recorded=args.recorded, workers=args.workers)
+        else:
+            run_demo(study_dir=args.study_dir, incident_id=args.incident, at=args.at, model=args.model,
+                     recorded=args.recorded)
     elif args.command == "simulate":
         from .simulate import simulate_study
         study = _study(ROOT / "configs" / ("servedoctor-hard.json" if args.hard else "servedoctor.json"))
